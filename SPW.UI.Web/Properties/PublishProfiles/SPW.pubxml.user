@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\SARARAT\Desktop\WebSite</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>06/23/2012 22:35:36</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>06/18/2015 05:23:44</publishTime>
+    </File>
+    <File Include="bin/SPW.DAL.dll">
+      <publishTime>09/19/2015 10:45:53</publishTime>
+    </File>
+    <File Include="bin/SPW.DataService.dll">
+      <publishTime>09/19/2015 10:45:54</publishTime>
+    </File>
+    <File Include="bin/SPW.Model.dll">
+      <publishTime>09/19/2015 10:45:52</publishTime>
+    </File>
+    <File Include="bin/SPW.UI.Web.dll">
+      <publishTime>09/19/2015 10:45:54</publishTime>
+    </File>
+    <File Include="CSS/bootstrap-theme.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/bootstrap-theme.min.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/bootstrap.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/bootstrap.min.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/custom.css">
+      <publishTime>06/27/2015 01:54:56</publishTime>
+    </File>
+    <File Include="CSS/font-awesome.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/font-awesome.min.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/metisMenu.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/metisMenu.min.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="CSS/sb-admin-2.css">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Fonts/fontawesome-webfont.eot">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Fonts/fontawesome-webfont.svg">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Fonts/fontawesome-webfont.ttf">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Fonts/fontawesome-webfont.woff">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Fonts/FontAwesome.otf">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="Image/Icon/close.png">
+      <publishTime>10/09/2013 06:23:26</publishTime>
+    </File>
+    <File Include="Image/Icon/find.png">
+      <publishTime>10/09/2013 06:23:26</publishTime>
+    </File>
+    <File Include="Image/Icon/Product.gif">
+      <publishTime>09/09/2012 21:56:10</publishTime>
+    </File>
+    <File Include="JQuery/bootstrap.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/bootstrap.min.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/jquery-1.6.4.js">
+      <publishTime>11/13/2012 03:41:28</publishTime>
+    </File>
+    <File Include="JQuery/jquery-1.6.4.min.js">
+      <publishTime>11/13/2012 03:41:28</publishTime>
+    </File>
+    <File Include="JQuery/jquery.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/jquery.min.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/metisMenu.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/metisMenu.min.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/npm.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="JQuery/sb-admin-2.js">
+      <publishTime>04/20/2015 22:02:54</publishTime>
+    </File>
+    <File Include="MasterPage/MasterPageLogin.Master">
+      <publishTime>06/28/2015 21:00:26</publishTime>
+    </File>
+    <File Include="MasterPage/MasterPageMainAdmin.Master">
+      <publishTime>09/19/2015 07:10:45</publishTime>
+    </File>
+    <File Include="Page/DeliveryOrder.aspx">
+      <publishTime>09/14/2015 14:02:44</publishTime>
+    </File>
+    <File Include="Page/InternalOrder.aspx">
+      <publishTime>09/19/2015 08:43:38</publishTime>
+    </File>
+    <File Include="Page/MainAdmin.aspx">
+      <publishTime>06/11/2015 01:00:34</publishTime>
+    </File>
+    <File Include="Page/Order.aspx">
+      <publishTime>09/07/2015 03:44:13</publishTime>
+    </File>
+    <File Include="Page/OrderProduct.aspx">
+      <publishTime>09/19/2015 06:15:46</publishTime>
+    </File>
+    <File Include="Page/SearchCategory.aspx">
+      <publishTime>06/28/2015 02:09:00</publishTime>
+    </File>
+    <File Include="Page/SearchColorProduct.aspx">
+      <publishTime>09/03/2015 10:58:09</publishTime>
+    </File>
+    <File Include="Page/SearchDepartment.aspx">
+      <publishTime>09/07/2015 14:42:51</publishTime>
+    </File>
+    <File Include="Page/SearchEmployee.aspx">
+      <publishTime>09/19/2015 04:30:08</publishTime>
+    </File>
+    <File Include="Page/SearchProduct.aspx">
+      <publishTime>09/19/2015 05:52:11</publishTime>
+    </File>
+    <File Include="Page/SearchRole.aspx">
+      <publishTime>09/19/2015 04:27:21</publishTime>
+    </File>
+    <File Include="Page/SearchStore.aspx">
+      <publishTime>09/07/2015 01:04:24</publishTime>
+    </File>
+    <File Include="Page/SearchTracery.aspx">
+      <publishTime>07/31/2015 09:19:56</publishTime>
+    </File>
+    <File Include="Page/SearchUser.aspx">
+      <publishTime>09/03/2015 13:02:27</publishTime>
+    </File>
+    <File Include="Page/SearchVehicle.aspx">
+      <publishTime>08/02/2015 14:55:23</publishTime>
+    </File>
+    <File Include="Page/SearchZone.aspx">
+      <publishTime>07/03/2015 01:45:46</publishTime>
+    </File>
+    <File Include="Page/Shipping.aspx">
+      <publishTime>09/19/2015 10:10:11</publishTime>
+    </File>
+    <File Include="Page/SurveyOrder.aspx">
+      <publishTime>09/19/2015 10:09:34</publishTime>
+    </File>
+    <File Include="PageLogin/Login.aspx">
+      <publishTime>09/07/2015 15:40:44</publishTime>
+    </File>
+    <File Include="Reports/InOrder.aspx">
+      <publishTime>09/19/2015 10:45:42</publishTime>
+    </File>
+    <File Include="Reports/InOrderReportData.xsc">
+      <publishTime>09/19/2015 06:45:44</publishTime>
+    </File>
+    <File Include="Reports/InOrderReportData.xss">
+      <publishTime>09/19/2015 06:45:44</publishTime>
+    </File>
+    <File Include="Reports/SendOrder.aspx">
+      <publishTime>09/19/2015 10:45:42</publishTime>
+    </File>
+    <File Include="Reports/SendOrderReportData.xsc">
+      <publishTime>09/19/2015 08:08:38</publishTime>
+    </File>
+    <File Include="Reports/SendOrderReportData.xss">
+      <publishTime>09/19/2015 08:08:38</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/14/2015 12:13:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

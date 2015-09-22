@@ -1,0 +1,3170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SPW.Model.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:SPW.Model.Fakes.ShimCATEGORY">
+            <summary>Shim type of SPW.Model.CATEGORY</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimCATEGORY.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimCATEGORY.#ctor(SPW.Model.CATEGORY)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimCATEGORY.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimCATEGORY.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_CODEGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_CODESetString">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_IDGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_IDSetInt32">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_NAMEGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CATEGORY_NAMESetString">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CREATE_DATEGet">
+            <summary>Sets the shim of CATEGORY.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of CATEGORY.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of CATEGORY.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of CATEGORY.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.Constructor">
+            <summary>Sets the shim of CATEGORY.CATEGORY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.PRODUCTGet">
+            <summary>Sets the shim of CATEGORY.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.PRODUCTSetICollectionOfPRODUCT">
+            <summary>Sets the shim of CATEGORY.set_PRODUCT(ICollection`1&lt;PRODUCT&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.SYE_DELGet">
+            <summary>Sets the shim of CATEGORY.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of CATEGORY.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.UPDATE_DATEGet">
+            <summary>Sets the shim of CATEGORY.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of CATEGORY.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of CATEGORY.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of CATEGORY.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimCATEGORY.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_CODEGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_CODESetString">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_IDGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_IDSetInt32">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_NAMEGet">
+            <summary>Sets the shim of CATEGORY.get_CATEGORY_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CATEGORY_NAMESetString">
+            <summary>Sets the shim of CATEGORY.set_CATEGORY_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of CATEGORY.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of CATEGORY.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of CATEGORY.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of CATEGORY.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.PRODUCTGet">
+            <summary>Sets the shim of CATEGORY.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.PRODUCTSetICollectionOfPRODUCT">
+            <summary>Sets the shim of CATEGORY.set_PRODUCT(ICollection`1&lt;PRODUCT&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of CATEGORY.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of CATEGORY.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of CATEGORY.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of CATEGORY.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of CATEGORY.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimCATEGORY.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of CATEGORY.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDELIVERY_ORDER">
+            <summary>Shim type of SPW.Model.DELIVERY_ORDER</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER.#ctor(SPW.Model.DELIVERY_ORDER)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.CREATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.Constructor">
+            <summary>Sets the shim of DELIVERY_ORDER.DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELIVERY_ORDER_DETAILGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELIVERY_ORDER_DETAILSetICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_CODEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_CODESetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_STEPGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_STEP()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.DELORDER_STEPSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_STEP(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ORDERGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ORDERSetORDER">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.SYE_DELGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DELIVERY_ORDER.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.UPDATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ZONE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.ZONE_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELIVERY_ORDER_DETAILGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELIVERY_ORDER_DETAILSetICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_CODEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_CODESetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_STEPGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_DELORDER_STEP()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.DELORDER_STEPSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_DELORDER_STEP(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ORDERGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ORDERSetORDER">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DELIVERY_ORDER.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ZONE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER.AllInstances.ZONE_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL">
+            <summary>Shim type of SPW.Model.DELIVERY_ORDER_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.#ctor(SPW.Model.DELIVERY_ORDER_DETAIL)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.CREATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.Constructor">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELIVERY_ORDERGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELIVERY_ORDERSetDELIVERY_ORDER">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELIVERY_ORDER(DELIVERY_ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELORDER_DETAIL_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELORDER_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELORDER_DETAIL_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELORDER_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.DELORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCTGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_PRICEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_QTYGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_QTYSetNullableOfInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_SEQGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_SEQ()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_SEQSetNullableOfInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_SEQ(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_TOTALGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.PRODUCT_TOTALSetNullableOfDecimal">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_TOTAL(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.SYE_DELGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.UPDATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELIVERY_ORDERGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELIVERY_ORDERSetDELIVERY_ORDER">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELIVERY_ORDER(DELIVERY_ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELORDER_DETAIL_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELORDER_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELORDER_DETAIL_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELORDER_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELORDER_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_DELORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.DELORDER_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_DELORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCTGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_PRICEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_QTYGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_QTYSetNullableOfInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_SEQGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_SEQ()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_SEQSetNullableOfInt32">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_SEQ(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_TOTALGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_PRODUCT_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.PRODUCT_TOTALSetNullableOfDecimal">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_PRODUCT_TOTAL(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDELIVERY_ORDER_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of DELIVERY_ORDER_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDEPARTMENT">
+            <summary>Shim type of SPW.Model.DEPARTMENT</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDEPARTMENT.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDEPARTMENT.#ctor(SPW.Model.DEPARTMENT)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDEPARTMENT.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimDEPARTMENT.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.CREATE_DATEGet">
+            <summary>Sets the shim of DEPARTMENT.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DEPARTMENT.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.CREATE_EMPLOYEE_IDSetNullableOfInt32">
+            <summary>Sets the shim of DEPARTMENT.set_CREATE_EMPLOYEE_ID(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.Constructor">
+            <summary>Sets the shim of DEPARTMENT.DEPARTMENT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_CODEGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_CODESetString">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_IDSetInt32">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_NAMEGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.DEPARTMENT_NAMESetString">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.EMPLOYEEGet">
+            <summary>Sets the shim of DEPARTMENT.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.EMPLOYEESetICollectionOfEMPLOYEE">
+            <summary>Sets the shim of DEPARTMENT.set_EMPLOYEE(ICollection`1&lt;EMPLOYEE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.SYE_DELGet">
+            <summary>Sets the shim of DEPARTMENT.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DEPARTMENT.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.UPDATE_DATEGet">
+            <summary>Sets the shim of DEPARTMENT.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DEPARTMENT.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.UPDATE_EMPLOYEE_IDSetNullableOfInt32">
+            <summary>Sets the shim of DEPARTMENT.set_UPDATE_EMPLOYEE_ID(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of DEPARTMENT.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DEPARTMENT.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.CREATE_EMPLOYEE_IDSetNullableOfInt32">
+            <summary>Sets the shim of DEPARTMENT.set_CREATE_EMPLOYEE_ID(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_CODEGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_CODESetString">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_IDSetInt32">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_NAMEGet">
+            <summary>Sets the shim of DEPARTMENT.get_DEPARTMENT_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.DEPARTMENT_NAMESetString">
+            <summary>Sets the shim of DEPARTMENT.set_DEPARTMENT_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.EMPLOYEEGet">
+            <summary>Sets the shim of DEPARTMENT.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.EMPLOYEESetICollectionOfEMPLOYEE">
+            <summary>Sets the shim of DEPARTMENT.set_EMPLOYEE(ICollection`1&lt;EMPLOYEE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of DEPARTMENT.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of DEPARTMENT.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of DEPARTMENT.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of DEPARTMENT.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of DEPARTMENT.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimDEPARTMENT.AllInstances.UPDATE_EMPLOYEE_IDSetNullableOfInt32">
+            <summary>Sets the shim of DEPARTMENT.set_UPDATE_EMPLOYEE_ID(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimEMPLOYEE">
+            <summary>Shim type of SPW.Model.EMPLOYEE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimEMPLOYEE.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimEMPLOYEE.#ctor(SPW.Model.EMPLOYEE)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimEMPLOYEE.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimEMPLOYEE.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.CREATE_DATEGet">
+            <summary>Sets the shim of EMPLOYEE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of EMPLOYEE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of EMPLOYEE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.Constructor">
+            <summary>Sets the shim of EMPLOYEE.EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.DEPARTMENTGet">
+            <summary>Sets the shim of EMPLOYEE.get_DEPARTMENT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.DEPARTMENTSetDEPARTMENT">
+            <summary>Sets the shim of EMPLOYEE.set_DEPARTMENT(DEPARTMENT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.DEPARTMENT_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_DEPARTMENT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.DEPARTMENT_IDSetInt32">
+            <summary>Sets the shim of EMPLOYEE.set_DEPARTMENT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_CODEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_CODESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_IDSetInt32">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_NAMEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_NAMESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_SURNAMEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_SURNAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.EMPLOYEE_SURNAMESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_SURNAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.SYE_DELGet">
+            <summary>Sets the shim of EMPLOYEE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of EMPLOYEE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.UPDATE_DATEGet">
+            <summary>Sets the shim of EMPLOYEE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of EMPLOYEE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of EMPLOYEE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.ZONE_DETAILGet">
+            <summary>Sets the shim of EMPLOYEE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of EMPLOYEE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of EMPLOYEE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of EMPLOYEE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of EMPLOYEE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.DEPARTMENTGet">
+            <summary>Sets the shim of EMPLOYEE.get_DEPARTMENT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.DEPARTMENTSetDEPARTMENT">
+            <summary>Sets the shim of EMPLOYEE.set_DEPARTMENT(DEPARTMENT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.DEPARTMENT_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_DEPARTMENT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.DEPARTMENT_IDSetInt32">
+            <summary>Sets the shim of EMPLOYEE.set_DEPARTMENT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_CODEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_CODESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_IDSetInt32">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_NAMEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_NAMESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_SURNAMEGet">
+            <summary>Sets the shim of EMPLOYEE.get_EMPLOYEE_SURNAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.EMPLOYEE_SURNAMESetString">
+            <summary>Sets the shim of EMPLOYEE.set_EMPLOYEE_SURNAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of EMPLOYEE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of EMPLOYEE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of EMPLOYEE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of EMPLOYEE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of EMPLOYEE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of EMPLOYEE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.ZONE_DETAILGet">
+            <summary>Sets the shim of EMPLOYEE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimEMPLOYEE.AllInstances.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of EMPLOYEE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimORDER">
+            <summary>Shim type of SPW.Model.ORDER</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER.#ctor(SPW.Model.ORDER)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.CREATE_DATEGet">
+            <summary>Sets the shim of ORDER.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.Constructor">
+            <summary>Sets the shim of ORDER.ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.DELIVERY_ORDERGet">
+            <summary>Sets the shim of ORDER.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.DELIVERY_ORDERSetICollectionOfDELIVERY_ORDER">
+            <summary>Sets the shim of ORDER.set_DELIVERY_ORDER(ICollection`1&lt;DELIVERY_ORDER&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_APPROVEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_APPROVE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_APPROVESetString">
+            <summary>Sets the shim of ORDER.set_ORDER_APPROVE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_CODEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_CODESetString">
+            <summary>Sets the shim of ORDER.set_ORDER_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_DATEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_ORDER_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_DETAILGet">
+            <summary>Sets the shim of ORDER.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_DETAILSetICollectionOfORDER_DETAIL">
+            <summary>Sets the shim of ORDER.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_IDGet">
+            <summary>Sets the shim of ORDER.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_IDSetInt32">
+            <summary>Sets the shim of ORDER.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_STEPGet">
+            <summary>Sets the shim of ORDER.get_ORDER_STEP()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_STEPSetString">
+            <summary>Sets the shim of ORDER.set_ORDER_STEP(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_TOTALGet">
+            <summary>Sets the shim of ORDER.get_ORDER_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ORDER_TOTALSetString">
+            <summary>Sets the shim of ORDER.set_ORDER_TOTAL(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.SYE_DELGet">
+            <summary>Sets the shim of ORDER.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ORDER.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.UPDATE_DATEGet">
+            <summary>Sets the shim of ORDER.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ZONE_IDGet">
+            <summary>Sets the shim of ORDER.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.ZONE_IDSetInt32">
+            <summary>Sets the shim of ORDER.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimORDER.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of ORDER.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.DELIVERY_ORDERGet">
+            <summary>Sets the shim of ORDER.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.DELIVERY_ORDERSetICollectionOfDELIVERY_ORDER">
+            <summary>Sets the shim of ORDER.set_DELIVERY_ORDER(ICollection`1&lt;DELIVERY_ORDER&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_APPROVEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_APPROVE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_APPROVESetString">
+            <summary>Sets the shim of ORDER.set_ORDER_APPROVE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_CODEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_CODESetString">
+            <summary>Sets the shim of ORDER.set_ORDER_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_DATEGet">
+            <summary>Sets the shim of ORDER.get_ORDER_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_ORDER_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_DETAILGet">
+            <summary>Sets the shim of ORDER.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_DETAILSetICollectionOfORDER_DETAIL">
+            <summary>Sets the shim of ORDER.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_IDGet">
+            <summary>Sets the shim of ORDER.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_IDSetInt32">
+            <summary>Sets the shim of ORDER.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_STEPGet">
+            <summary>Sets the shim of ORDER.get_ORDER_STEP()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_STEPSetString">
+            <summary>Sets the shim of ORDER.set_ORDER_STEP(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_TOTALGet">
+            <summary>Sets the shim of ORDER.get_ORDER_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ORDER_TOTALSetString">
+            <summary>Sets the shim of ORDER.set_ORDER_TOTAL(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of ORDER.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ORDER.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of ORDER.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ZONE_IDGet">
+            <summary>Sets the shim of ORDER.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER.AllInstances.ZONE_IDSetInt32">
+            <summary>Sets the shim of ORDER.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimORDER_DETAIL">
+            <summary>Shim type of SPW.Model.ORDER_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER_DETAIL.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER_DETAIL.#ctor(SPW.Model.ORDER_DETAIL)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER_DETAIL.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimORDER_DETAIL.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.CREATE_DATEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.Constructor">
+            <summary>Sets the shim of ORDER_DETAIL.ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDERGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDERSetORDER">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDER_DETAIL_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDER_DETAIL_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDER_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.ORDER_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCTGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_PRICEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_QTYGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_QTYSetNullableOfInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_SEQGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_SEQ()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_SEQSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_SEQ(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_TOTALGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.PRODUCT_TOTALSetNullableOfDecimal">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_TOTAL(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.SYE_DELGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ORDER_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.UPDATE_DATEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDERGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDERSetORDER">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDER_DETAIL_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDER_DETAIL_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDER_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_ORDER_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.ORDER_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_ORDER_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCTGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_PRICEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_QTYGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_QTYSetNullableOfInt32">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_SEQGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_SEQ()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_SEQSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_SEQ(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_TOTALGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_PRODUCT_TOTAL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.PRODUCT_TOTALSetNullableOfDecimal">
+            <summary>Sets the shim of ORDER_DETAIL.set_PRODUCT_TOTAL(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ORDER_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ORDER_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ORDER_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimORDER_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ORDER_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT">
+            <summary>Shim type of SPW.Model.PRODUCT</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT.#ctor(SPW.Model.PRODUCT)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CATEGORYGet">
+            <summary>Sets the shim of PRODUCT.get_CATEGORY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CATEGORYSetCATEGORY">
+            <summary>Sets the shim of PRODUCT.set_CATEGORY(CATEGORY value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CATEGORY_IDGet">
+            <summary>Sets the shim of PRODUCT.get_CATEGORY_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CATEGORY_IDSetInt32">
+            <summary>Sets the shim of PRODUCT.set_CATEGORY_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.Constructor">
+            <summary>Sets the shim of PRODUCT.PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.DELIVERY_ORDER_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.DELIVERY_ORDER_DETAILSetICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.ORDER_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.ORDER_DETAILSetICollectionOfORDER_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_CODEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_CODESetString">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_DETAILSetICollectionOfPRODUCT_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_DETAIL(ICollection`1&lt;PRODUCT_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_NAMEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_NAMESetString">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_PACKINGGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_PACKING()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_PACKINGSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_PACKING(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_PROMOTIONGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_PROMOTION()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_PROMOTIONSetICollectionOfPRODUCT_PROMOTION">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_PROMOTION(ICollection`1&lt;PRODUCT_PROMOTION&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_SIZEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_SIZE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_SIZESetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_SIZE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_WEIGHTGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_WEIGHT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.PRODUCT_WEIGHTSetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_WEIGHT(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CATEGORYGet">
+            <summary>Sets the shim of PRODUCT.get_CATEGORY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CATEGORYSetCATEGORY">
+            <summary>Sets the shim of PRODUCT.set_CATEGORY(CATEGORY value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CATEGORY_IDGet">
+            <summary>Sets the shim of PRODUCT.get_CATEGORY_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CATEGORY_IDSetInt32">
+            <summary>Sets the shim of PRODUCT.set_CATEGORY_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.DELIVERY_ORDER_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.DELIVERY_ORDER_DETAILSetICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.ORDER_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.ORDER_DETAILSetICollectionOfORDER_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_CODEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_CODESetString">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_DETAILGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_DETAILSetICollectionOfPRODUCT_DETAIL">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_DETAIL(ICollection`1&lt;PRODUCT_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_NAMEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_NAMESetString">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_PACKINGGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_PACKING()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_PACKINGSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_PACKING(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_PROMOTIONGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_PROMOTION()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_PROMOTIONSetICollectionOfPRODUCT_PROMOTION">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_PROMOTION(ICollection`1&lt;PRODUCT_PROMOTION&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_SIZEGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_SIZE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_SIZESetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_SIZE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_WEIGHTGet">
+            <summary>Sets the shim of PRODUCT.get_PRODUCT_WEIGHT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.PRODUCT_WEIGHTSetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT.set_PRODUCT_WEIGHT(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT_DETAIL">
+            <summary>Shim type of SPW.Model.PRODUCT_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_DETAIL.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_DETAIL.#ctor(SPW.Model.PRODUCT_DETAIL)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_DETAIL.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_DETAIL.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.Constructor">
+            <summary>Sets the shim of PRODUCT_DETAIL.PRODUCT_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCTGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCT_PRICEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.ZONE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.ZONE_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCTGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCT_PRICEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_PRODUCT_PRICE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.PRODUCT_PRICESetNullableOfDecimal">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_PRODUCT_PRICE(Nullable`1&lt;Decimal&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.ZONE_IDGet">
+            <summary>Sets the shim of PRODUCT_DETAIL.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_DETAIL.AllInstances.ZONE_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_DETAIL.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT_PROMOTION">
+            <summary>Shim type of SPW.Model.PRODUCT_PROMOTION</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.#ctor(SPW.Model.PRODUCT_PROMOTION)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.Constructor">
+            <summary>Sets the shim of PRODUCT_PROMOTION.PRODUCT_PROMOTION()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCTGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_CONDITION_QTYGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_CONDITION_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_CONDITION_QTYSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_CONDITION_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_FREE_QTYGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_FREE_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_FREE_QTYSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_FREE_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_CODEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_CODESetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_EFFECTIVE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_EFFECTIVE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_EFFECTIVE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_EFFECTIVE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_EXPIRE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_EXPIRE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_EXPIRE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_EXPIRE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.PROMOTION_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCTGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCTSetPRODUCT">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_CONDITION_QTYGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_CONDITION_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_CONDITION_QTYSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_CONDITION_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_FREE_QTYGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_FREE_QTY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_FREE_QTYSetNullableOfInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_FREE_QTY(Nullable`1&lt;Int32&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PRODUCT_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PRODUCT_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PRODUCT_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_CODEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_CODESetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_EFFECTIVE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_EFFECTIVE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_EFFECTIVE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_EFFECTIVE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_EXPIRE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_EXPIRE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_EXPIRE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_EXPIRE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_PROMOTION_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.PROMOTION_IDSetInt32">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_PROMOTION_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PRODUCT_PROMOTION.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPRODUCT_PROMOTION.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PRODUCT_PROMOTION.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPROVINCE">
+            <summary>Shim type of SPW.Model.PROVINCE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPROVINCE.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPROVINCE.#ctor(SPW.Model.PROVINCE)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPROVINCE.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimPROVINCE.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.CREATE_DATEGet">
+            <summary>Sets the shim of PROVINCE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PROVINCE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PROVINCE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.Constructor">
+            <summary>Sets the shim of PROVINCE.PROVINCE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.PROVINCE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_PROVINCE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.PROVINCE_IDSetInt32">
+            <summary>Sets the shim of PROVINCE.set_PROVINCE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.PROVINCE_NAMEGet">
+            <summary>Sets the shim of PROVINCE.get_PROVINCE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.PROVINCE_NAMESetString">
+            <summary>Sets the shim of PROVINCE.set_PROVINCE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.STOREGet">
+            <summary>Sets the shim of PROVINCE.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.STORESetICollectionOfSTORE">
+            <summary>Sets the shim of PROVINCE.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.SYE_DELGet">
+            <summary>Sets the shim of PROVINCE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PROVINCE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.UPDATE_DATEGet">
+            <summary>Sets the shim of PROVINCE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PROVINCE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PROVINCE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimPROVINCE.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of PROVINCE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PROVINCE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PROVINCE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.PROVINCE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_PROVINCE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.PROVINCE_IDSetInt32">
+            <summary>Sets the shim of PROVINCE.set_PROVINCE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.PROVINCE_NAMEGet">
+            <summary>Sets the shim of PROVINCE.get_PROVINCE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.PROVINCE_NAMESetString">
+            <summary>Sets the shim of PROVINCE.set_PROVINCE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.STOREGet">
+            <summary>Sets the shim of PROVINCE.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.STORESetICollectionOfSTORE">
+            <summary>Sets the shim of PROVINCE.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of PROVINCE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of PROVINCE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of PROVINCE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of PROVINCE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of PROVINCE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimPROVINCE.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of PROVINCE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimSECTOR">
+            <summary>Shim type of SPW.Model.SECTOR</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSECTOR.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSECTOR.#ctor(SPW.Model.SECTOR)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSECTOR.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSECTOR.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.CREATE_DATEGet">
+            <summary>Sets the shim of SECTOR.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of SECTOR.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of SECTOR.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of SECTOR.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.Constructor">
+            <summary>Sets the shim of SECTOR.SECTOR()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SECTOR_IDGet">
+            <summary>Sets the shim of SECTOR.get_SECTOR_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SECTOR_IDSetInt32">
+            <summary>Sets the shim of SECTOR.set_SECTOR_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SECTOR_NAMEGet">
+            <summary>Sets the shim of SECTOR.get_SECTOR_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SECTOR_NAMESetString">
+            <summary>Sets the shim of SECTOR.set_SECTOR_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.STOREGet">
+            <summary>Sets the shim of SECTOR.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.STORESetICollectionOfSTORE">
+            <summary>Sets the shim of SECTOR.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SYE_DELGet">
+            <summary>Sets the shim of SECTOR.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of SECTOR.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.UPDATE_DATEGet">
+            <summary>Sets the shim of SECTOR.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of SECTOR.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of SECTOR.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of SECTOR.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimSECTOR.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of SECTOR.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of SECTOR.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of SECTOR.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of SECTOR.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SECTOR_IDGet">
+            <summary>Sets the shim of SECTOR.get_SECTOR_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SECTOR_IDSetInt32">
+            <summary>Sets the shim of SECTOR.set_SECTOR_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SECTOR_NAMEGet">
+            <summary>Sets the shim of SECTOR.get_SECTOR_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SECTOR_NAMESetString">
+            <summary>Sets the shim of SECTOR.set_SECTOR_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.STOREGet">
+            <summary>Sets the shim of SECTOR.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.STORESetICollectionOfSTORE">
+            <summary>Sets the shim of SECTOR.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of SECTOR.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of SECTOR.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of SECTOR.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of SECTOR.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of SECTOR.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSECTOR.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of SECTOR.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimSTORE">
+            <summary>Shim type of SPW.Model.STORE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSTORE.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSTORE.#ctor(SPW.Model.STORE)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSTORE.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimSTORE.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.CREATE_DATEGet">
+            <summary>Sets the shim of STORE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of STORE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of STORE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of STORE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.Constructor">
+            <summary>Sets the shim of STORE.STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.PROVINCEGet">
+            <summary>Sets the shim of STORE.get_PROVINCE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.PROVINCESetPROVINCE">
+            <summary>Sets the shim of STORE.set_PROVINCE(PROVINCE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.PROVINCE_IDGet">
+            <summary>Sets the shim of STORE.get_PROVINCE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.PROVINCE_IDSetInt32">
+            <summary>Sets the shim of STORE.set_PROVINCE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SECTORGet">
+            <summary>Sets the shim of STORE.get_SECTOR()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SECTORSetSECTOR">
+            <summary>Sets the shim of STORE.set_SECTOR(SECTOR value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SECTOR_IDGet">
+            <summary>Sets the shim of STORE.get_SECTOR_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SECTOR_IDSetInt32">
+            <summary>Sets the shim of STORE.set_SECTOR_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_ADDR1Get">
+            <summary>Sets the shim of STORE.get_STORE_ADDR1()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_ADDR1SetString">
+            <summary>Sets the shim of STORE.set_STORE_ADDR1(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_CODEGet">
+            <summary>Sets the shim of STORE.get_STORE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_CODESetString">
+            <summary>Sets the shim of STORE.set_STORE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_DISTRICTGet">
+            <summary>Sets the shim of STORE.get_STORE_DISTRICT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_DISTRICTSetString">
+            <summary>Sets the shim of STORE.set_STORE_DISTRICT(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_FAXGet">
+            <summary>Sets the shim of STORE.get_STORE_FAX()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_FAXSetString">
+            <summary>Sets the shim of STORE.set_STORE_FAX(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_IDGet">
+            <summary>Sets the shim of STORE.get_STORE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_IDSetInt32">
+            <summary>Sets the shim of STORE.set_STORE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_MOBILEGet">
+            <summary>Sets the shim of STORE.get_STORE_MOBILE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_MOBILESetString">
+            <summary>Sets the shim of STORE.set_STORE_MOBILE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_NAMEGet">
+            <summary>Sets the shim of STORE.get_STORE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_NAMESetString">
+            <summary>Sets the shim of STORE.set_STORE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_POSTCODEGet">
+            <summary>Sets the shim of STORE.get_STORE_POSTCODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_POSTCODESetString">
+            <summary>Sets the shim of STORE.set_STORE_POSTCODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_STREETGet">
+            <summary>Sets the shim of STORE.get_STORE_STREET()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_STREETSetString">
+            <summary>Sets the shim of STORE.set_STORE_STREET(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_SUBDISTRICTGet">
+            <summary>Sets the shim of STORE.get_STORE_SUBDISTRICT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_SUBDISTRICTSetString">
+            <summary>Sets the shim of STORE.set_STORE_SUBDISTRICT(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_TEL1Get">
+            <summary>Sets the shim of STORE.get_STORE_TEL1()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_TEL1SetString">
+            <summary>Sets the shim of STORE.set_STORE_TEL1(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_TEL2Get">
+            <summary>Sets the shim of STORE.get_STORE_TEL2()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.STORE_TEL2SetString">
+            <summary>Sets the shim of STORE.set_STORE_TEL2(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SYE_DELGet">
+            <summary>Sets the shim of STORE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of STORE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.UPDATE_DATEGet">
+            <summary>Sets the shim of STORE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of STORE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of STORE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of STORE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.ZONE_DETAILGet">
+            <summary>Sets the shim of STORE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of STORE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimSTORE.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of STORE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of STORE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of STORE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of STORE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.PROVINCEGet">
+            <summary>Sets the shim of STORE.get_PROVINCE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.PROVINCESetPROVINCE">
+            <summary>Sets the shim of STORE.set_PROVINCE(PROVINCE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.PROVINCE_IDGet">
+            <summary>Sets the shim of STORE.get_PROVINCE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.PROVINCE_IDSetInt32">
+            <summary>Sets the shim of STORE.set_PROVINCE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SECTORGet">
+            <summary>Sets the shim of STORE.get_SECTOR()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SECTORSetSECTOR">
+            <summary>Sets the shim of STORE.set_SECTOR(SECTOR value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SECTOR_IDGet">
+            <summary>Sets the shim of STORE.get_SECTOR_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SECTOR_IDSetInt32">
+            <summary>Sets the shim of STORE.set_SECTOR_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_ADDR1Get">
+            <summary>Sets the shim of STORE.get_STORE_ADDR1()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_ADDR1SetString">
+            <summary>Sets the shim of STORE.set_STORE_ADDR1(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_CODEGet">
+            <summary>Sets the shim of STORE.get_STORE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_CODESetString">
+            <summary>Sets the shim of STORE.set_STORE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_DISTRICTGet">
+            <summary>Sets the shim of STORE.get_STORE_DISTRICT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_DISTRICTSetString">
+            <summary>Sets the shim of STORE.set_STORE_DISTRICT(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_FAXGet">
+            <summary>Sets the shim of STORE.get_STORE_FAX()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_FAXSetString">
+            <summary>Sets the shim of STORE.set_STORE_FAX(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_IDGet">
+            <summary>Sets the shim of STORE.get_STORE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_IDSetInt32">
+            <summary>Sets the shim of STORE.set_STORE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_MOBILEGet">
+            <summary>Sets the shim of STORE.get_STORE_MOBILE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_MOBILESetString">
+            <summary>Sets the shim of STORE.set_STORE_MOBILE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_NAMEGet">
+            <summary>Sets the shim of STORE.get_STORE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_NAMESetString">
+            <summary>Sets the shim of STORE.set_STORE_NAME(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_POSTCODEGet">
+            <summary>Sets the shim of STORE.get_STORE_POSTCODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_POSTCODESetString">
+            <summary>Sets the shim of STORE.set_STORE_POSTCODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_STREETGet">
+            <summary>Sets the shim of STORE.get_STORE_STREET()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_STREETSetString">
+            <summary>Sets the shim of STORE.set_STORE_STREET(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_SUBDISTRICTGet">
+            <summary>Sets the shim of STORE.get_STORE_SUBDISTRICT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_SUBDISTRICTSetString">
+            <summary>Sets the shim of STORE.set_STORE_SUBDISTRICT(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_TEL1Get">
+            <summary>Sets the shim of STORE.get_STORE_TEL1()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_TEL1SetString">
+            <summary>Sets the shim of STORE.set_STORE_TEL1(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_TEL2Get">
+            <summary>Sets the shim of STORE.get_STORE_TEL2()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.STORE_TEL2SetString">
+            <summary>Sets the shim of STORE.set_STORE_TEL2(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of STORE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of STORE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of STORE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of STORE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of STORE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of STORE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.ZONE_DETAILGet">
+            <summary>Sets the shim of STORE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimSTORE.AllInstances.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of STORE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimZONE">
+            <summary>Shim type of SPW.Model.ZONE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE.#ctor(SPW.Model.ZONE)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.CREATE_DATEGet">
+            <summary>Sets the shim of ZONE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.Constructor">
+            <summary>Sets the shim of ZONE.ZONE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.SYE_DELGet">
+            <summary>Sets the shim of ZONE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ZONE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.UPDATE_DATEGet">
+            <summary>Sets the shim of ZONE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_CODEGet">
+            <summary>Sets the shim of ZONE.get_ZONE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_CODESetString">
+            <summary>Sets the shim of ZONE.set_ZONE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_DETAILGet">
+            <summary>Sets the shim of ZONE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of ZONE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_IDGet">
+            <summary>Sets the shim of ZONE.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_IDSetInt32">
+            <summary>Sets the shim of ZONE.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_NAMEGet">
+            <summary>Sets the shim of ZONE.get_ZONE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.ZONE_NAMESetString">
+            <summary>Sets the shim of ZONE.set_ZONE_NAME(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimZONE.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of ZONE.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of ZONE.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ZONE.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of ZONE.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_CODEGet">
+            <summary>Sets the shim of ZONE.get_ZONE_CODE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_CODESetString">
+            <summary>Sets the shim of ZONE.set_ZONE_CODE(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_DETAILGet">
+            <summary>Sets the shim of ZONE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_DETAILSetICollectionOfZONE_DETAIL">
+            <summary>Sets the shim of ZONE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_IDGet">
+            <summary>Sets the shim of ZONE.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_IDSetInt32">
+            <summary>Sets the shim of ZONE.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_NAMEGet">
+            <summary>Sets the shim of ZONE.get_ZONE_NAME()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE.AllInstances.ZONE_NAMESetString">
+            <summary>Sets the shim of ZONE.set_ZONE_NAME(String value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimZONE_DETAIL">
+            <summary>Shim type of SPW.Model.ZONE_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE_DETAIL.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE_DETAIL.#ctor(SPW.Model.ZONE_DETAIL)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE_DETAIL.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.ShimZONE_DETAIL.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.CREATE_DATEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.Constructor">
+            <summary>Sets the shim of ZONE_DETAIL.ZONE_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.EMPLOYEEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.EMPLOYEESetEMPLOYEE">
+            <summary>Sets the shim of ZONE_DETAIL.set_EMPLOYEE(EMPLOYEE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.EMPLOYEE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_EMPLOYEE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.STOREGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.STORESetSTORE">
+            <summary>Sets the shim of ZONE_DETAIL.set_STORE(STORE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.STORE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_STORE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.STORE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_STORE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.SYE_DELGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ZONE_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.UPDATE_DATEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONESetZONE">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE(ZONE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONE_DETAIL_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONE_DETAIL_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.ZONE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.CREATE_DATEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_CREATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.CREATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE_DETAIL.set_CREATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.CREATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_CREATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.CREATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE_DETAIL.set_CREATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.EMPLOYEEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.EMPLOYEESetEMPLOYEE">
+            <summary>Sets the shim of ZONE_DETAIL.set_EMPLOYEE(EMPLOYEE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.EMPLOYEE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_EMPLOYEE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.STOREGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.STORESetSTORE">
+            <summary>Sets the shim of ZONE_DETAIL.set_STORE(STORE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.STORE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_STORE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.STORE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_STORE_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.SYE_DELGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_SYE_DEL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.SYE_DELSetNullableOfBoolean">
+            <summary>Sets the shim of ZONE_DETAIL.set_SYE_DEL(Nullable`1&lt;Boolean&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.UPDATE_DATEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_UPDATE_DATE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.UPDATE_DATESetNullableOfDateTime">
+            <summary>Sets the shim of ZONE_DETAIL.set_UPDATE_DATE(Nullable`1&lt;DateTime&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_UPDATE_EMPLOYEE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.UPDATE_EMPLOYEE_IDSetString">
+            <summary>Sets the shim of ZONE_DETAIL.set_UPDATE_EMPLOYEE_ID(String value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONEGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONESetZONE">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE(ZONE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONE_DETAIL_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE_DETAIL_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONE_DETAIL_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE_DETAIL_ID(Int32 value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONE_IDGet">
+            <summary>Sets the shim of ZONE_DETAIL.get_ZONE_ID()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.ShimZONE_DETAIL.AllInstances.ZONE_IDSetInt32">
+            <summary>Sets the shim of ZONE_DETAIL.set_ZONE_ID(Int32 value)</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubCATEGORY">
+            <summary>Stub type of SPW.Model.CATEGORY</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubCATEGORY.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubCATEGORY.AttachBackingFieldToPRODUCT">
+            <summary>Attaches delegates to emulate StubCATEGORY.PRODUCT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubCATEGORY.InitializeStub">
+            <summary>Initializes a new instance of type StubCATEGORY</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubCATEGORY.PRODUCTGet">
+            <summary>Sets the stub of CATEGORY.get_PRODUCT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubCATEGORY.PRODUCTSetICollectionOfPRODUCT">
+            <summary>Sets the stub of CATEGORY.set_PRODUCT(ICollection`1&lt;PRODUCT&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubCATEGORY.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubCATEGORY.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubCATEGORY.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubCATEGORY.PRODUCT">
+            <summary>Sets the stub of CATEGORY.get_PRODUCT()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubDELIVERY_ORDER">
+            <summary>Stub type of SPW.Model.DELIVERY_ORDER</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER.AttachBackingFieldToDELIVERY_ORDER_DETAIL">
+            <summary>Attaches delegates to emulate StubDELIVERY_ORDER.DELIVERY_ORDER_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER.AttachBackingFieldToORDER">
+            <summary>Attaches delegates to emulate StubDELIVERY_ORDER.ORDER as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER.InitializeStub">
+            <summary>Initializes a new instance of type StubDELIVERY_ORDER</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER.ORDERGet">
+            <summary>Sets the stub of DELIVERY_ORDER.get_ORDER()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER.ORDERSetORDER">
+            <summary>Sets the stub of DELIVERY_ORDER.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER.ORDER_DETAILGetDELIVERY">
+            <summary>Sets the stub of DELIVERY_ORDER.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER.ORDER_DETAILSetDELIVERYICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the stub of DELIVERY_ORDER.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER.DELIVERY_ORDER_DETAIL">
+            <summary>Sets the stub of DELIVERY_ORDER.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER.ORDER">
+            <summary>Sets the stub of DELIVERY_ORDER.get_ORDER()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL">
+            <summary>Stub type of SPW.Model.DELIVERY_ORDER_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.AttachBackingFieldToDELIVERY_ORDER">
+            <summary>Attaches delegates to emulate StubDELIVERY_ORDER_DETAIL.DELIVERY_ORDER as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.AttachBackingFieldToPRODUCT">
+            <summary>Attaches delegates to emulate StubDELIVERY_ORDER_DETAIL.PRODUCT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.InitializeStub">
+            <summary>Initializes a new instance of type StubDELIVERY_ORDER_DETAIL</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.ORDERGetDELIVERY">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.ORDERSetDELIVERYDELIVERY_ORDER">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.set_DELIVERY_ORDER(DELIVERY_ORDER value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.PRODUCTGet">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.DELIVERY_ORDER">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDELIVERY_ORDER_DETAIL.PRODUCT">
+            <summary>Sets the stub of DELIVERY_ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubDEPARTMENT">
+            <summary>Stub type of SPW.Model.DEPARTMENT</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDEPARTMENT.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDEPARTMENT.AttachBackingFieldToEMPLOYEE">
+            <summary>Attaches delegates to emulate StubDEPARTMENT.EMPLOYEE as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDEPARTMENT.EMPLOYEEGet">
+            <summary>Sets the stub of DEPARTMENT.get_EMPLOYEE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubDEPARTMENT.EMPLOYEESetICollectionOfEMPLOYEE">
+            <summary>Sets the stub of DEPARTMENT.set_EMPLOYEE(ICollection`1&lt;EMPLOYEE&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubDEPARTMENT.InitializeStub">
+            <summary>Initializes a new instance of type StubDEPARTMENT</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDEPARTMENT.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDEPARTMENT.EMPLOYEE">
+            <summary>Sets the stub of DEPARTMENT.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDEPARTMENT.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubDEPARTMENT.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubEMPLOYEE">
+            <summary>Stub type of SPW.Model.EMPLOYEE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubEMPLOYEE.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubEMPLOYEE.AttachBackingFieldToDEPARTMENT">
+            <summary>Attaches delegates to emulate StubEMPLOYEE.DEPARTMENT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubEMPLOYEE.AttachBackingFieldToZONE_DETAIL">
+            <summary>Attaches delegates to emulate StubEMPLOYEE.ZONE_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubEMPLOYEE.DEPARTMENTGet">
+            <summary>Sets the stub of EMPLOYEE.get_DEPARTMENT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubEMPLOYEE.DEPARTMENTSetDEPARTMENT">
+            <summary>Sets the stub of EMPLOYEE.set_DEPARTMENT(DEPARTMENT value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubEMPLOYEE.DETAILGetZONE">
+            <summary>Sets the stub of EMPLOYEE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubEMPLOYEE.DETAILSetZONEICollectionOfZONE_DETAIL">
+            <summary>Sets the stub of EMPLOYEE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubEMPLOYEE.InitializeStub">
+            <summary>Initializes a new instance of type StubEMPLOYEE</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubEMPLOYEE.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubEMPLOYEE.DEPARTMENT">
+            <summary>Sets the stub of EMPLOYEE.get_DEPARTMENT()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubEMPLOYEE.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubEMPLOYEE.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubEMPLOYEE.ZONE_DETAIL">
+            <summary>Sets the stub of EMPLOYEE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubORDER">
+            <summary>Stub type of SPW.Model.ORDER</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER.AttachBackingFieldToDELIVERY_ORDER">
+            <summary>Attaches delegates to emulate StubORDER.DELIVERY_ORDER as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER.AttachBackingFieldToORDER_DETAIL">
+            <summary>Attaches delegates to emulate StubORDER.ORDER_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER.DETAILGetORDER">
+            <summary>Sets the stub of ORDER.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER.DETAILSetORDERICollectionOfORDER_DETAIL">
+            <summary>Sets the stub of ORDER.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER.InitializeStub">
+            <summary>Initializes a new instance of type StubORDER</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER.ORDERGetDELIVERY">
+            <summary>Sets the stub of ORDER.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER.ORDERSetDELIVERYICollectionOfDELIVERY_ORDER">
+            <summary>Sets the stub of ORDER.set_DELIVERY_ORDER(ICollection`1&lt;DELIVERY_ORDER&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER.DELIVERY_ORDER">
+            <summary>Sets the stub of ORDER.get_DELIVERY_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER.ORDER_DETAIL">
+            <summary>Sets the stub of ORDER.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubORDER_DETAIL">
+            <summary>Stub type of SPW.Model.ORDER_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER_DETAIL.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER_DETAIL.AttachBackingFieldToORDER">
+            <summary>Attaches delegates to emulate StubORDER_DETAIL.ORDER as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER_DETAIL.AttachBackingFieldToPRODUCT">
+            <summary>Attaches delegates to emulate StubORDER_DETAIL.PRODUCT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubORDER_DETAIL.InitializeStub">
+            <summary>Initializes a new instance of type StubORDER_DETAIL</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER_DETAIL.ORDERGet">
+            <summary>Sets the stub of ORDER_DETAIL.get_ORDER()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER_DETAIL.ORDERSetORDER">
+            <summary>Sets the stub of ORDER_DETAIL.set_ORDER(ORDER value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER_DETAIL.PRODUCTGet">
+            <summary>Sets the stub of ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubORDER_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the stub of ORDER_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER_DETAIL.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER_DETAIL.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER_DETAIL.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER_DETAIL.ORDER">
+            <summary>Sets the stub of ORDER_DETAIL.get_ORDER()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubORDER_DETAIL.PRODUCT">
+            <summary>Sets the stub of ORDER_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubPRODUCT">
+            <summary>Stub type of SPW.Model.PRODUCT</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.AttachBackingFieldToCATEGORY">
+            <summary>Attaches delegates to emulate StubPRODUCT.CATEGORY as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.AttachBackingFieldToDELIVERY_ORDER_DETAIL">
+            <summary>Attaches delegates to emulate StubPRODUCT.DELIVERY_ORDER_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.AttachBackingFieldToORDER_DETAIL">
+            <summary>Attaches delegates to emulate StubPRODUCT.ORDER_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.AttachBackingFieldToPRODUCT_DETAIL">
+            <summary>Attaches delegates to emulate StubPRODUCT.PRODUCT_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.AttachBackingFieldToPRODUCT_PROMOTION">
+            <summary>Attaches delegates to emulate StubPRODUCT.PRODUCT_PROMOTION as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.CATEGORYGet">
+            <summary>Sets the stub of PRODUCT.get_CATEGORY()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.CATEGORYSetCATEGORY">
+            <summary>Sets the stub of PRODUCT.set_CATEGORY(CATEGORY value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.DETAILGetORDER">
+            <summary>Sets the stub of PRODUCT.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.DETAILGetPRODUCT">
+            <summary>Sets the stub of PRODUCT.get_PRODUCT_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.DETAILSetORDERICollectionOfORDER_DETAIL">
+            <summary>Sets the stub of PRODUCT.set_ORDER_DETAIL(ICollection`1&lt;ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.DETAILSetPRODUCTICollectionOfPRODUCT_DETAIL">
+            <summary>Sets the stub of PRODUCT.set_PRODUCT_DETAIL(ICollection`1&lt;PRODUCT_DETAIL&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT.InitializeStub">
+            <summary>Initializes a new instance of type StubPRODUCT</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.ORDER_DETAILGetDELIVERY">
+            <summary>Sets the stub of PRODUCT.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.ORDER_DETAILSetDELIVERYICollectionOfDELIVERY_ORDER_DETAIL">
+            <summary>Sets the stub of PRODUCT.set_DELIVERY_ORDER_DETAIL(ICollection`1&lt;DELIVERY_ORDER_DETAIL&gt; value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.PROMOTIONGetPRODUCT">
+            <summary>Sets the stub of PRODUCT.get_PRODUCT_PROMOTION()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT.PROMOTIONSetPRODUCTICollectionOfPRODUCT_PROMOTION">
+            <summary>Sets the stub of PRODUCT.set_PRODUCT_PROMOTION(ICollection`1&lt;PRODUCT_PROMOTION&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.CATEGORY">
+            <summary>Sets the stub of PRODUCT.get_CATEGORY()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.DELIVERY_ORDER_DETAIL">
+            <summary>Sets the stub of PRODUCT.get_DELIVERY_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.ORDER_DETAIL">
+            <summary>Sets the stub of PRODUCT.get_ORDER_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.PRODUCT_DETAIL">
+            <summary>Sets the stub of PRODUCT.get_PRODUCT_DETAIL()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT.PRODUCT_PROMOTION">
+            <summary>Sets the stub of PRODUCT.get_PRODUCT_PROMOTION()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubPRODUCT_DETAIL">
+            <summary>Stub type of SPW.Model.PRODUCT_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_DETAIL.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_DETAIL.AttachBackingFieldToPRODUCT">
+            <summary>Attaches delegates to emulate StubPRODUCT_DETAIL.PRODUCT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_DETAIL.InitializeStub">
+            <summary>Initializes a new instance of type StubPRODUCT_DETAIL</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT_DETAIL.PRODUCTGet">
+            <summary>Sets the stub of PRODUCT_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT_DETAIL.PRODUCTSetPRODUCT">
+            <summary>Sets the stub of PRODUCT_DETAIL.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_DETAIL.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_DETAIL.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_DETAIL.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_DETAIL.PRODUCT">
+            <summary>Sets the stub of PRODUCT_DETAIL.get_PRODUCT()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubPRODUCT_PROMOTION">
+            <summary>Stub type of SPW.Model.PRODUCT_PROMOTION</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_PROMOTION.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_PROMOTION.AttachBackingFieldToPRODUCT">
+            <summary>Attaches delegates to emulate StubPRODUCT_PROMOTION.PRODUCT as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPRODUCT_PROMOTION.InitializeStub">
+            <summary>Initializes a new instance of type StubPRODUCT_PROMOTION</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT_PROMOTION.PRODUCTGet">
+            <summary>Sets the stub of PRODUCT_PROMOTION.get_PRODUCT()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPRODUCT_PROMOTION.PRODUCTSetPRODUCT">
+            <summary>Sets the stub of PRODUCT_PROMOTION.set_PRODUCT(PRODUCT value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_PROMOTION.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_PROMOTION.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_PROMOTION.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPRODUCT_PROMOTION.PRODUCT">
+            <summary>Sets the stub of PRODUCT_PROMOTION.get_PRODUCT()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubPROVINCE">
+            <summary>Stub type of SPW.Model.PROVINCE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPROVINCE.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPROVINCE.AttachBackingFieldToSTORE">
+            <summary>Attaches delegates to emulate StubPROVINCE.STORE as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubPROVINCE.InitializeStub">
+            <summary>Initializes a new instance of type StubPROVINCE</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPROVINCE.STOREGet">
+            <summary>Sets the stub of PROVINCE.get_STORE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubPROVINCE.STORESetICollectionOfSTORE">
+            <summary>Sets the stub of PROVINCE.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPROVINCE.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPROVINCE.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPROVINCE.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubPROVINCE.STORE">
+            <summary>Sets the stub of PROVINCE.get_STORE()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubSECTOR">
+            <summary>Stub type of SPW.Model.SECTOR</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSECTOR.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSECTOR.AttachBackingFieldToSTORE">
+            <summary>Attaches delegates to emulate StubSECTOR.STORE as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSECTOR.InitializeStub">
+            <summary>Initializes a new instance of type StubSECTOR</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSECTOR.STOREGet">
+            <summary>Sets the stub of SECTOR.get_STORE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSECTOR.STORESetICollectionOfSTORE">
+            <summary>Sets the stub of SECTOR.set_STORE(ICollection`1&lt;STORE&gt; value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSECTOR.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSECTOR.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSECTOR.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSECTOR.STORE">
+            <summary>Sets the stub of SECTOR.get_STORE()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubSTORE">
+            <summary>Stub type of SPW.Model.STORE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSTORE.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSTORE.AttachBackingFieldToPROVINCE">
+            <summary>Attaches delegates to emulate StubSTORE.PROVINCE as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSTORE.AttachBackingFieldToSECTOR">
+            <summary>Attaches delegates to emulate StubSTORE.SECTOR as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSTORE.AttachBackingFieldToZONE_DETAIL">
+            <summary>Attaches delegates to emulate StubSTORE.ZONE_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.DETAILGetZONE">
+            <summary>Sets the stub of STORE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.DETAILSetZONEICollectionOfZONE_DETAIL">
+            <summary>Sets the stub of STORE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubSTORE.InitializeStub">
+            <summary>Initializes a new instance of type StubSTORE</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.PROVINCEGet">
+            <summary>Sets the stub of STORE.get_PROVINCE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.PROVINCESetPROVINCE">
+            <summary>Sets the stub of STORE.set_PROVINCE(PROVINCE value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.SECTORGet">
+            <summary>Sets the stub of STORE.get_SECTOR()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubSTORE.SECTORSetSECTOR">
+            <summary>Sets the stub of STORE.set_SECTOR(SECTOR value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.PROVINCE">
+            <summary>Sets the stub of STORE.get_PROVINCE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.SECTOR">
+            <summary>Sets the stub of STORE.get_SECTOR()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubSTORE.ZONE_DETAIL">
+            <summary>Sets the stub of STORE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubZONE">
+            <summary>Stub type of SPW.Model.ZONE</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE.AttachBackingFieldToZONE_DETAIL">
+            <summary>Attaches delegates to emulate StubZONE.ZONE_DETAIL as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE.DETAILGetZONE">
+            <summary>Sets the stub of ZONE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE.DETAILSetZONEICollectionOfZONE_DETAIL">
+            <summary>Sets the stub of ZONE.set_ZONE_DETAIL(ICollection`1&lt;ZONE_DETAIL&gt; value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE.InitializeStub">
+            <summary>Initializes a new instance of type StubZONE</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE.ZONE_DETAIL">
+            <summary>Sets the stub of ZONE.get_ZONE_DETAIL()</summary>
+        </member>
+        <member name="T:SPW.Model.Fakes.StubZONE_DETAIL">
+            <summary>Stub type of SPW.Model.ZONE_DETAIL</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE_DETAIL.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE_DETAIL.AttachBackingFieldToEMPLOYEE">
+            <summary>Attaches delegates to emulate StubZONE_DETAIL.EMPLOYEE as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE_DETAIL.AttachBackingFieldToSTORE">
+            <summary>Attaches delegates to emulate StubZONE_DETAIL.STORE as a property with a backing field.</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE_DETAIL.AttachBackingFieldToZONE">
+            <summary>Attaches delegates to emulate StubZONE_DETAIL.ZONE as a property with a backing field.</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.EMPLOYEEGet">
+            <summary>Sets the stub of ZONE_DETAIL.get_EMPLOYEE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.EMPLOYEESetEMPLOYEE">
+            <summary>Sets the stub of ZONE_DETAIL.set_EMPLOYEE(EMPLOYEE value)</summary>
+        </member>
+        <member name="M:SPW.Model.Fakes.StubZONE_DETAIL.InitializeStub">
+            <summary>Initializes a new instance of type StubZONE_DETAIL</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.STOREGet">
+            <summary>Sets the stub of ZONE_DETAIL.get_STORE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.STORESetSTORE">
+            <summary>Sets the stub of ZONE_DETAIL.set_STORE(STORE value)</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.ZONEGet">
+            <summary>Sets the stub of ZONE_DETAIL.get_ZONE()</summary>
+        </member>
+        <member name="F:SPW.Model.Fakes.StubZONE_DETAIL.ZONESetZONE">
+            <summary>Sets the stub of ZONE_DETAIL.set_ZONE(ZONE value)</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.EMPLOYEE">
+            <summary>Sets the stub of ZONE_DETAIL.get_EMPLOYEE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.STORE">
+            <summary>Sets the stub of ZONE_DETAIL.get_STORE()</summary>
+        </member>
+        <member name="P:SPW.Model.Fakes.StubZONE_DETAIL.ZONE">
+            <summary>Sets the stub of ZONE_DETAIL.get_ZONE()</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,13 @@
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\SPW.Model.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\SPW.Model.pdb
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\EntityFramework.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\EntityFramework.xml
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\obj\Release\SPW.Model.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.Model\obj\Release\SPW.Model.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\SPW.Model.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\SPW.Model.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\EntityFramework.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\bin\Release\EntityFramework.xml
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\obj\Release\SPW.Model.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\obj\Release\SPW.Model.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.Model\obj\Release\SPW.Model.csprojResolveAssemblyReference.cache

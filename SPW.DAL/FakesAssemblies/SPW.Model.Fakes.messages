@@ -1,0 +1,2 @@
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\Fakes\SPW.Model.fakes : warning : Cannot generate stub for SPW.Model.ActionEnum: type is a value type.
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\Fakes\SPW.Model.fakes : warning : Cannot generate shim for SPW.Model.ActionEnum: type is an enum.

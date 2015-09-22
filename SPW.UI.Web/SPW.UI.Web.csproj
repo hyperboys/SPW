@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{043F3842-7530-43A4-9D9C-99D1566F3BA6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPW.UI.Web</RootNamespace>
+    <AssemblyName>SPW.UI.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="CRVsPackageLib, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSS\bootstrap-theme.css" />
+    <Content Include="CSS\bootstrap-theme.min.css" />
+    <Content Include="CSS\bootstrap.css" />
+    <Content Include="CSS\bootstrap.min.css" />
+    <Content Include="CSS\custom.css" />
+    <Content Include="CSS\font-awesome.css" />
+    <Content Include="CSS\font-awesome.min.css" />
+    <Content Include="CSS\metisMenu.css" />
+    <Content Include="CSS\metisMenu.min.css" />
+    <Content Include="CSS\sb-admin-2.css" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Image\Icon\close.png" />
+    <Content Include="Image\Icon\find.png" />
+    <Content Include="Image\Icon\Product.gif" />
+    <Content Include="JQuery\bootstrap.js" />
+    <Content Include="JQuery\bootstrap.min.js" />
+    <None Include="JQuery\jquery-1.6.4-vsdoc.js" />
+    <Content Include="JQuery\jquery-1.6.4.js" />
+    <Content Include="JQuery\jquery-1.6.4.min.js" />
+    <Content Include="JQuery\jquery.js" />
+    <Content Include="JQuery\jquery.min.js" />
+    <Content Include="JQuery\metisMenu.js" />
+    <Content Include="JQuery\metisMenu.min.js" />
+    <Content Include="JQuery\npm.js" />
+    <Content Include="JQuery\sb-admin-2.js" />
+    <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\SearchRole.aspx" />
+    <Content Include="Page\SearchUser.aspx" />
+    <Content Include="Page\SearchColorProduct.aspx" />
+    <Content Include="Page\SearchTracery.aspx" />
+    <Content Include="Page\SearchVehicle.aspx" />
+    <Content Include="Page\Shipping.aspx" />
+    <Content Include="Page\SurveyOrder.aspx" />
+    <Content Include="Page\InternalOrder.aspx" />
+    <Content Include="Page\OrderProduct.aspx" />
+    <Content Include="Page\Order.aspx" />
+    <Content Include="Page\SearchZone.aspx" />
+    <Content Include="Page\SearchStore.aspx" />
+    <Content Include="Page\SearchProduct.aspx" />
+    <Content Include="Page\SearchCategory.aspx" />
+    <Content Include="Page\MainAdmin.aspx" />
+    <Content Include="Page\SearchDepartment.aspx" />
+    <Content Include="Page\SearchEmployee.aspx" />
+    <Content Include="Reports\InOrder.aspx" />
+    <Content Include="Reports\SendOrder.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MasterPage\MasterPageLogin.Master.cs">
+      <DependentUpon>MasterPageLogin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MasterPageLogin.Master.designer.cs">
+      <DependentUpon>MasterPageLogin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MasterPageMainAdmin.Master.cs">
+      <DependentUpon>MasterPageMainAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MasterPageMainAdmin.Master.designer.cs">
+      <DependentUpon>MasterPageMainAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PageLogin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageLogin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchRole.aspx.cs">
+      <DependentUpon>SearchRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchRole.aspx.designer.cs">
+      <DependentUpon>SearchRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchUser.aspx.cs">
+      <DependentUpon>SearchUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchUser.aspx.designer.cs">
+      <DependentUpon>SearchUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchColorProduct.aspx.cs">
+      <DependentUpon>SearchColorProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchColorProduct.aspx.designer.cs">
+      <DependentUpon>SearchColorProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchTracery.aspx.cs">
+      <DependentUpon>SearchTracery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchTracery.aspx.designer.cs">
+      <DependentUpon>SearchTracery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchVehicle.aspx.cs">
+      <DependentUpon>SearchVehicle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchVehicle.aspx.designer.cs">
+      <DependentUpon>SearchVehicle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Shipping.aspx.cs">
+      <DependentUpon>Shipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\Shipping.aspx.designer.cs">
+      <DependentUpon>Shipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SurveyOrder.aspx.cs">
+      <DependentUpon>SurveyOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SurveyOrder.aspx.designer.cs">
+      <DependentUpon>SurveyOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\InternalOrder.aspx.cs">
+      <DependentUpon>InternalOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\InternalOrder.aspx.designer.cs">
+      <DependentUpon>InternalOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\OrderProduct.aspx.cs">
+      <DependentUpon>OrderProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\OrderProduct.aspx.designer.cs">
+      <DependentUpon>OrderProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Order.aspx.cs">
+      <DependentUpon>Order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\Order.aspx.designer.cs">
+      <DependentUpon>Order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchZone.aspx.cs">
+      <DependentUpon>SearchZone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchZone.aspx.designer.cs">
+      <DependentUpon>SearchZone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchStore.aspx.cs">
+      <DependentUpon>SearchStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchStore.aspx.designer.cs">
+      <DependentUpon>SearchStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchProduct.aspx.cs">
+      <DependentUpon>SearchProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchProduct.aspx.designer.cs">
+      <DependentUpon>SearchProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchCategory.aspx.cs">
+      <DependentUpon>SearchCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchCategory.aspx.designer.cs">
+      <DependentUpon>SearchCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\MainAdmin.aspx.cs">
+      <DependentUpon>MainAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\MainAdmin.aspx.designer.cs">
+      <DependentUpon>MainAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchDepartment.aspx.cs">
+      <DependentUpon>SearchDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchDepartment.aspx.designer.cs">
+      <DependentUpon>SearchDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmployee.aspx.cs">
+      <DependentUpon>SearchEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmployee.aspx.designer.cs">
+      <DependentUpon>SearchEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\InOrder.aspx.cs">
+      <DependentUpon>InOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\InOrder.aspx.designer.cs">
+      <DependentUpon>InOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InOrderReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InOrderReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InOrderReportData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InOrderReportData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SendOrder.aspx.cs">
+      <DependentUpon>SendOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\SendOrder.aspx.designer.cs">
+      <DependentUpon>SendOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SendOrderReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SendOrderReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SendOrderReportData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SendOrderReportData.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPage\MasterPageLogin.Master" />
+    <Content Include="Fonts\fontawesome-webfont.eot" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\FontAwesome.otf" />
+    <Content Include="MasterPage\MasterPageMainAdmin.Master" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\SPW.pubxml" />
+    <Content Include="Reports\SendOrderReportData.xsc">
+      <DependentUpon>SendOrderReportData.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\InOrderReportData.xsc">
+      <DependentUpon>InOrderReportData.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\InOrderReportData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InOrderReportData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\InOrderReportData.xss">
+      <DependentUpon>InOrderReportData.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\SendOrderReportData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SendOrderReportData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\SendOrderReportData.xss">
+      <DependentUpon>SendOrderReportData.xsd</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPW.DataService\SPW.DataService.csproj">
+      <Project>{79f9c811-b55c-4e21-bcda-daa766265c61}</Project>
+      <Name>SPW.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPW.Model\SPW.Model.csproj">
+      <Project>{26d4a16b-57e2-4007-9406-b2d00004a840}</Project>
+      <Name>SPW.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\InOrderReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SendOrderReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SendOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1208/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

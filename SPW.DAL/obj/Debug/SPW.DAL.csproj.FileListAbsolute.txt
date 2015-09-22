@@ -1,0 +1,60 @@
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+C:\Users\SARARAT\Documents\Visual Studio 2012\Projects\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+D:\Work\work\SPW\Project SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+D:\Soup\Work\work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+D:\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+D:\Soup\Work\SPW\SPW Code\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll.config
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.dll
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.DAL.pdb
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.dll
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\SPW.Model.pdb
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.dll
+C:\Users\Supachai\Desktop\SPW\SPW.UI.Web\SPW.DAL\obj\Debug\SPW.DAL.pdb

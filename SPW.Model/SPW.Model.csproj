@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26D4A16B-57E2-4007-9406-B2D00004A840}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPW.Model</RootNamespace>
+    <AssemblyName>SPW.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionEnum.cs" />
+    <Compile Include="CATEGORY.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COLOR.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COLOR_TYPE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomModel\CATEGORY.cs" />
+    <Compile Include="CustomModel\COLOR_TYPE.cs" />
+    <Compile Include="CustomModel\COLOR.cs" />
+    <Compile Include="CustomModel\ZONE_DETAIL.cs" />
+    <Compile Include="CustomModel\ROLE_FUNCTION.cs" />
+    <Compile Include="CustomModel\SUB_FUNCTION.cs" />
+    <Compile Include="CustomModel\ROLE.cs" />
+    <Compile Include="CustomModel\DELIVERY_ORDER.cs" />
+    <Compile Include="CustomModel\DELIVERY_ORDER_DETAIL.cs" />
+    <Compile Include="CustomModel\FUNCTION.cs" />
+    <Compile Include="CustomModel\ORDER_DETAIL.cs" />
+    <Compile Include="CustomModel\ORDER.cs" />
+    <Compile Include="CustomModel\PRODUCT_COLOR.cs" />
+    <Compile Include="CustomModel\PRODUCT_PRICELIST.cs" />
+    <Compile Include="CustomModel\PRODUCT_PROMOTION.cs" />
+    <Compile Include="CustomModel\PROVINCE.cs" />
+    <Compile Include="CustomModel\ROAD.cs" />
+    <Compile Include="CustomModel\SECTOR.cs" />
+    <Compile Include="CustomModel\USER.cs" />
+    <Compile Include="CustomModel\VEHICLE.cs" />
+    <Compile Include="CustomModel\ZONE.cs" />
+    <Compile Include="CustomModel\DEPARTMENT.cs" />
+    <Compile Include="CustomModel\EMPLOYEE.cs" />
+    <Compile Include="CustomModel\PRODUCT.cs" />
+    <Compile Include="CustomModel\STORE.cs" />
+    <Compile Include="DELIVERY_ORDER.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DELIVERY_ORDER_DETAIL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEPARTMENT.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FUNCTION.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InOrderForPrint.cs" />
+    <Compile Include="ORDER.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORDER_DETAIL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCT.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCT_PRICELIST.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCT_PROMOTION.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PROVINCE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ROAD.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ROLE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ROLE_FUNCTION.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SECTOR.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowProduct.cs" />
+    <Compile Include="SPW.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="STORE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUB_FUNCTION.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VEHICLE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZONE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZONE_DETAIL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SPW.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SPW.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

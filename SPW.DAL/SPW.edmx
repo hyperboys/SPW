@@ -1,0 +1,2133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SPWModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SPWModelStoreContainer">
+          <EntitySet Name="CATEGORY" EntityType="SPWModel.Store.CATEGORY" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COLOR" EntityType="SPWModel.Store.COLOR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COLOR_TYPE" EntityType="SPWModel.Store.COLOR_TYPE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DELIVERY_ORDER" EntityType="SPWModel.Store.DELIVERY_ORDER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DELIVERY_ORDER_DETAIL" EntityType="SPWModel.Store.DELIVERY_ORDER_DETAIL" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DEPARTMENT" EntityType="SPWModel.Store.DEPARTMENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EMPLOYEE" EntityType="SPWModel.Store.EMPLOYEE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FUNCTION" EntityType="SPWModel.Store.FUNCTION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ORDER" EntityType="SPWModel.Store.ORDER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="SPWModel.Store.ORDER_DETAIL" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCT" EntityType="SPWModel.Store.PRODUCT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCT_PRICELIST" EntityType="SPWModel.Store.PRODUCT_PRICELIST" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUCT_PROMOTION" EntityType="SPWModel.Store.PRODUCT_PROMOTION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PROVINCE" EntityType="SPWModel.Store.PROVINCE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ROAD" EntityType="SPWModel.Store.ROAD" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ROLE" EntityType="SPWModel.Store.ROLE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ROLE_FUNCTION" EntityType="SPWModel.Store.ROLE_FUNCTION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SECTOR" EntityType="SPWModel.Store.SECTOR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STORE" EntityType="SPWModel.Store.STORE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SUB_FUNCTION" EntityType="SPWModel.Store.SUB_FUNCTION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="USER" EntityType="SPWModel.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VEHICLE" EntityType="SPWModel.Store.VEHICLE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ZONE" EntityType="SPWModel.Store.ZONE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ZONE_DETAIL" EntityType="SPWModel.Store.ZONE_DETAIL" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DELIVERY_ORDER_DELIVERY_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_DELIVERY_ORDER">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_DEPARTMENT" Association="SPWModel.Store.FK_EMPLOYEE_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_ORDER" Association="SPWModel.Store.FK_ORDER_DETAIL_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_PRODUCT" Association="SPWModel.Store.FK_ORDER_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_STORE" Association="SPWModel.Store.FK_ORDER_STORE">
+            <End Role="STORE" EntitySet="STORE" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="SPWModel.Store.FK_PRODUCT_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PRICELIST_PRODUCT" Association="SPWModel.Store.FK_PRODUCT_PRICELIST_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PRODUCT_PRICELIST" EntitySet="PRODUCT_PRICELIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PRICELIST_ZONE" Association="SPWModel.Store.FK_PRODUCT_PRICELIST_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="PRODUCT_PRICELIST" EntitySet="PRODUCT_PRICELIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PROMOTION_PRODUCT" Association="SPWModel.Store.FK_PRODUCT_PROMOTION_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PROMOTION_ZONE" Association="SPWModel.Store.FK_PRODUCT_PROMOTION_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVINCE_SECTOR" Association="SPWModel.Store.FK_PROVINCE_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="PROVINCE" EntitySet="PROVINCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_FUNCTION_FUNCTION" Association="SPWModel.Store.FK_ROLE_FUNCTION_FUNCTION">
+            <End Role="FUNCTION" EntitySet="FUNCTION" />
+            <End Role="ROLE_FUNCTION" EntitySet="ROLE_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_FUNCTION_ROLE" Association="SPWModel.Store.FK_ROLE_FUNCTION_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="ROLE_FUNCTION" EntitySet="ROLE_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_ROLE" Association="SPWModel.Store.FK_ROLE_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="ROLE1" EntitySet="ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_PROVINCE" Association="SPWModel.Store.FK_STORE_PROVINCE">
+            <End Role="PROVINCE" EntitySet="PROVINCE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ROAD" Association="SPWModel.Store.FK_STORE_ROAD">
+            <End Role="ROAD" EntitySet="ROAD" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_SECTOR" Association="SPWModel.Store.FK_STORE_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ZONE" Association="SPWModel.Store.FK_STORE_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUB_FUNCTION_FUNCTION" Association="SPWModel.Store.FK_SUB_FUNCTION_FUNCTION">
+            <End Role="FUNCTION" EntitySet="FUNCTION" />
+            <End Role="SUB_FUNCTION" EntitySet="SUB_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_EMPLOYEE" Association="SPWModel.Store.FK_USER_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE" Association="SPWModel.Store.FK_USER_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_DETAIL_EMPLOYEE" Association="SPWModel.Store.FK_ZONE_DETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_DETAIL_ZONE" Association="SPWModel.Store.FK_ZONE_DETAIL_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="COLOR">
+          <Key>
+            <PropertyRef Name="COLOR_ID" />
+          </Key>
+          <Property Name="COLOR_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COLOR_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_SUBNAME" Type="nvarchar" MaxLength="4" />
+          <Property Name="COLOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="COLOR_TYPE">
+          <Key>
+            <PropertyRef Name="COLOR_TYPE_ID" />
+          </Key>
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COLOR_TYPE_SUBNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_TYPE_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="DELIVERY_ORDER">
+          <Key>
+            <PropertyRef Name="DELORDER_ID" />
+          </Key>
+          <Property Name="DELORDER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="DELORDER_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DELORDER_DATE" Type="date" />
+          <Property Name="DELORDER_STEP" Type="nvarchar" MaxLength="50" />
+          <Property Name="VEHICLE_ID" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="DELIVERY_ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="DELORDER_DETAIL_ID" />
+          </Key>
+          <Property Name="DELORDER_DETAIL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DELORDER_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_SEQ" Type="int" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_QTY" Type="int" />
+          <Property Name="PRODUCT_SEND_QTY" Type="int" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" />
+          <Property Name="PRODUCT_TOTAL" Type="decimal" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+          <Property Name="COLOR_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_ID" />
+          </Key>
+          <Property Name="DEPARTMENT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMENT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEPARTMENT_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMPLOYEE_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMPLOYEE_SURNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEPARTMENT_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="FUNCTION">
+          <Key>
+            <PropertyRef Name="FUNCTION_ID" />
+          </Key>
+          <Property Name="FUNCTION_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FUNCTION_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDER_DATE" Type="date" />
+          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="ORDER_APPROVE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDER_STEP" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="ORDER_DETAIL_ID" />
+          </Key>
+          <Property Name="ORDER_DETAIL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_SEQ" Type="int" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_QTY" Type="int" />
+          <Property Name="PRODUCT_SEND_QTY" Type="int" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" />
+          <Property Name="PRODUCT_TOTAL" Type="decimal" />
+          <Property Name="IS_FREE" Type="bit" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_SIZE" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_IMAGE_PATH" Type="nvarchar(max)" />
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_CODE" Type="int" />
+          <Property Name="PRODUCT_PACKING_DESC" Type="nvarchar" MaxLength="75" />
+          <Property Name="PRODUCT_PACKING_QTY" Type="int" />
+          <Property Name="PRODUCT_PACKING_PER_UDESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_PACKING_PER_PDESC" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_WEIGHT" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT_DEFINE" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="PRODUCT_PRICELIST">
+          <Key>
+            <PropertyRef Name="PRODUCT_PRICELIST_ID" />
+          </Key>
+          <Property Name="PRODUCT_PRICELIST_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZONE_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" Scale="2" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="PRODUCT_PROMOTION">
+          <Key>
+            <PropertyRef Name="PROMOTION_ID" />
+          </Key>
+          <Property Name="PROMOTION_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PROMOTION_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_CONDITION_QTY" Type="int" />
+          <Property Name="PRODUCT_FREE_QTY" Type="int" />
+          <Property Name="PROMOTION_EFFECTIVE_DATE" Type="date" />
+          <Property Name="PROMOTION_EXPIRE_DATE" Type="date" />
+          <Property Name="ZONE_ID" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="PROVINCE_ID" />
+          </Key>
+          <Property Name="PROVINCE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PROVINCE_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="SECTOR_ID" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ROAD">
+          <Key>
+            <PropertyRef Name="ROAD_ID" />
+          </Key>
+          <Property Name="ROAD_ID" Type="int" Nullable="false" />
+          <Property Name="ROAD_NAME" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_CODE" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ROLE_NAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ROLE_FUNCTION">
+          <Key>
+            <PropertyRef Name="ROLE_FUNCTION_ID" />
+          </Key>
+          <Property Name="ROLE_FUNCTION_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="FUNCTION_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="SECTOR">
+          <Key>
+            <PropertyRef Name="SECTOR_ID" />
+          </Key>
+          <Property Name="SECTOR_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SECTOR_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STORE">
+          <Key>
+            <PropertyRef Name="STORE_ID" />
+          </Key>
+          <Property Name="STORE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="STORE_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="STORE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="STORE_TEL1" Type="nvarchar" MaxLength="50" />
+          <Property Name="STORE_TEL2" Type="nvarchar" MaxLength="50" />
+          <Property Name="STORE_MOBILE" Type="nvarchar" MaxLength="50" />
+          <Property Name="STORE_FAX" Type="nvarchar" MaxLength="50" />
+          <Property Name="STORE_ADDR1" Type="nvarchar" MaxLength="200" />
+          <Property Name="STORE_STREET" Type="nvarchar" MaxLength="200" />
+          <Property Name="STORE_SUBDISTRICT" Type="nvarchar" MaxLength="200" />
+          <Property Name="STORE_DISTRICT" Type="nvarchar" MaxLength="200" />
+          <Property Name="PROVINCE_ID" Type="int" Nullable="false" />
+          <Property Name="SECTOR_ID" Type="int" Nullable="false" />
+          <Property Name="ZONE_ID" Type="int" />
+          <Property Name="ROAD_ID" Type="int" />
+          <Property Name="STORE_POSTCODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="SUB_FUNCTION">
+          <Key>
+            <PropertyRef Name="SUB_FUNCTION_ID" />
+          </Key>
+          <Property Name="SUB_FUNCTION_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FUNCTION_ID" Type="int" Nullable="false" />
+          <Property Name="SUB_FUNCTION_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SUB_FUNCTION_PATH" Type="varchar" MaxLength="255" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="VEHICLE">
+          <Key>
+            <PropertyRef Name="VEHICLE_ID" />
+          </Key>
+          <Property Name="VEHICLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VEHICLE_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="VEHICLE_REGNO" Type="nvarchar" MaxLength="15" />
+          <Property Name="VEHICLE_TYPENO" Type="nvarchar" MaxLength="2" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="ZONE_ID" />
+          </Key>
+          <Property Name="ZONE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ZONE_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZONE_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ZONE_DETAIL">
+          <Key>
+            <PropertyRef Name="ZONE_DETAIL_ID" />
+          </Key>
+          <Property Name="ZONE_DETAIL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ZONE_ID" Type="int" />
+          <Property Name="EMPLOYEE_ID" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <Association Name="FK_DELIVERY_ORDER_DELIVERY_ORDER">
+          <End Role="VEHICLE" Type="SPWModel.Store.VEHICLE" Multiplicity="0..1" />
+          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
+          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_ORDER">
+              <PropertyRef Name="DELORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="DELORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_ORDER">
+          <End Role="ORDER" Type="SPWModel.Store.ORDER" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="SPWModel.Store.DEPARTMENT" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="SPWModel.Store.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_ORDER">
+          <End Role="ORDER" Type="SPWModel.Store.ORDER" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_STORE">
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="1" />
+          <End Role="ORDER" Type="SPWModel.Store.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Role="CATEGORY" Type="SPWModel.Store.CATEGORY" Multiplicity="1" />
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PRICELIST_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="PRODUCT_PRICELIST" Type="SPWModel.Store.PRODUCT_PRICELIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PRICELIST">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PRICELIST_ZONE">
+          <End Role="ZONE" Type="SPWModel.Store.ZONE" Multiplicity="1" />
+          <End Role="PRODUCT_PRICELIST" Type="SPWModel.Store.PRODUCT_PRICELIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PRICELIST">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PROMOTION_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="PRODUCT_PROMOTION" Type="SPWModel.Store.PRODUCT_PROMOTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PROMOTION">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PROMOTION_ZONE">
+          <End Role="ZONE" Type="SPWModel.Store.ZONE" Multiplicity="0..1" />
+          <End Role="PRODUCT_PROMOTION" Type="SPWModel.Store.PRODUCT_PROMOTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PROMOTION">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVINCE_SECTOR">
+          <End Role="SECTOR" Type="SPWModel.Store.SECTOR" Multiplicity="0..1" />
+          <End Role="PROVINCE" Type="SPWModel.Store.PROVINCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SECTOR_ID" />
+            </Principal>
+            <Dependent Role="PROVINCE">
+              <PropertyRef Name="SECTOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_FUNCTION_FUNCTION">
+          <End Role="FUNCTION" Type="SPWModel.Store.FUNCTION" Multiplicity="1" />
+          <End Role="ROLE_FUNCTION" Type="SPWModel.Store.ROLE_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Principal>
+            <Dependent Role="ROLE_FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_FUNCTION_ROLE">
+          <End Role="ROLE" Type="SPWModel.Store.ROLE" Multiplicity="1" />
+          <End Role="ROLE_FUNCTION" Type="SPWModel.Store.ROLE_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="ROLE_FUNCTION">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_ROLE">
+          <End Role="ROLE" Type="SPWModel.Store.ROLE" Multiplicity="1" />
+          <End Role="ROLE1" Type="SPWModel.Store.ROLE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="ROLE1">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_PROVINCE">
+          <End Role="PROVINCE" Type="SPWModel.Store.PROVINCE" Multiplicity="1" />
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCE">
+              <PropertyRef Name="PROVINCE_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="PROVINCE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ROAD">
+          <End Role="ROAD" Type="SPWModel.Store.ROAD" Multiplicity="0..1" />
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROAD">
+              <PropertyRef Name="ROAD_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ROAD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_SECTOR">
+          <End Role="SECTOR" Type="SPWModel.Store.SECTOR" Multiplicity="1" />
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SECTOR_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="SECTOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ZONE">
+          <End Role="ZONE" Type="SPWModel.Store.ZONE" Multiplicity="0..1" />
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUB_FUNCTION_FUNCTION">
+          <End Role="FUNCTION" Type="SPWModel.Store.FUNCTION" Multiplicity="1" />
+          <End Role="SUB_FUNCTION" Type="SPWModel.Store.SUB_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Principal>
+            <Dependent Role="SUB_FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="SPWModel.Store.EMPLOYEE" Multiplicity="1" />
+          <End Role="USER" Type="SPWModel.Store.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE">
+          <End Role="ROLE" Type="SPWModel.Store.ROLE" Multiplicity="1" />
+          <End Role="USER" Type="SPWModel.Store.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_DETAIL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="SPWModel.Store.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="ZONE_DETAIL" Type="SPWModel.Store.ZONE_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="ZONE_DETAIL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_DETAIL_ZONE">
+          <End Role="ZONE" Type="SPWModel.Store.ZONE" Multiplicity="0..1" />
+          <End Role="ZONE_DETAIL" Type="SPWModel.Store.ZONE_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="ZONE_DETAIL">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPWModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SPWEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORY" EntityType="SPWModel.CATEGORY" />
+          <EntitySet Name="COLOR" EntityType="SPWModel.COLOR" />
+          <EntitySet Name="COLOR_TYPE" EntityType="SPWModel.COLOR_TYPE" />
+          <EntitySet Name="DELIVERY_ORDER" EntityType="SPWModel.DELIVERY_ORDER" />
+          <EntitySet Name="DELIVERY_ORDER_DETAIL" EntityType="SPWModel.DELIVERY_ORDER_DETAIL" />
+          <EntitySet Name="DEPARTMENT" EntityType="SPWModel.DEPARTMENT" />
+          <EntitySet Name="EMPLOYEE" EntityType="SPWModel.EMPLOYEE" />
+          <EntitySet Name="FUNCTION" EntityType="SPWModel.FUNCTION" />
+          <EntitySet Name="ORDER" EntityType="SPWModel.ORDER" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="SPWModel.ORDER_DETAIL" />
+          <EntitySet Name="PRODUCT" EntityType="SPWModel.PRODUCT" />
+          <EntitySet Name="PRODUCT_PRICELIST" EntityType="SPWModel.PRODUCT_PRICELIST" />
+          <EntitySet Name="PRODUCT_PROMOTION" EntityType="SPWModel.PRODUCT_PROMOTION" />
+          <EntitySet Name="PROVINCE" EntityType="SPWModel.PROVINCE" />
+          <EntitySet Name="ROAD" EntityType="SPWModel.ROAD" />
+          <EntitySet Name="ROLE" EntityType="SPWModel.ROLE" />
+          <EntitySet Name="ROLE_FUNCTION" EntityType="SPWModel.ROLE_FUNCTION" />
+          <EntitySet Name="SECTOR" EntityType="SPWModel.SECTOR" />
+          <EntitySet Name="STORE" EntityType="SPWModel.STORE" />
+          <EntitySet Name="SUB_FUNCTION" EntityType="SPWModel.SUB_FUNCTION" />
+          <EntitySet Name="USER" EntityType="SPWModel.USER" />
+          <EntitySet Name="VEHICLE" EntityType="SPWModel.VEHICLE" />
+          <EntitySet Name="ZONE" EntityType="SPWModel.ZONE" />
+          <EntitySet Name="ZONE_DETAIL" EntityType="SPWModel.ZONE_DETAIL" />
+          <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="SPWModel.FK_PRODUCT_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DELIVERY_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_DEPARTMENT" Association="SPWModel.FK_EMPLOYEE_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_EMPLOYEE" Association="SPWModel.FK_USER_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_DETAIL_EMPLOYEE" Association="SPWModel.FK_ZONE_DETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_FUNCTION_FUNCTION" Association="SPWModel.FK_ROLE_FUNCTION_FUNCTION">
+            <End Role="FUNCTION" EntitySet="FUNCTION" />
+            <End Role="ROLE_FUNCTION" EntitySet="ROLE_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUB_FUNCTION_FUNCTION" Association="SPWModel.FK_SUB_FUNCTION_FUNCTION">
+            <End Role="FUNCTION" EntitySet="FUNCTION" />
+            <End Role="SUB_FUNCTION" EntitySet="SUB_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_ORDER" Association="SPWModel.FK_ORDER_DETAIL_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_STORE" Association="SPWModel.FK_ORDER_STORE">
+            <End Role="STORE" EntitySet="STORE" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_PRODUCT" Association="SPWModel.FK_ORDER_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PRICELIST_PRODUCT" Association="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PRODUCT_PRICELIST" EntitySet="PRODUCT_PRICELIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PROMOTION_PRODUCT" Association="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PRICELIST_ZONE" Association="SPWModel.FK_PRODUCT_PRICELIST_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="PRODUCT_PRICELIST" EntitySet="PRODUCT_PRICELIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_PROMOTION_ZONE" Association="SPWModel.FK_PRODUCT_PROMOTION_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROVINCE_SECTOR" Association="SPWModel.FK_PROVINCE_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="PROVINCE" EntitySet="PROVINCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_PROVINCE" Association="SPWModel.FK_STORE_PROVINCE">
+            <End Role="PROVINCE" EntitySet="PROVINCE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ROAD" Association="SPWModel.FK_STORE_ROAD">
+            <End Role="ROAD" EntitySet="ROAD" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_FUNCTION_ROLE" Association="SPWModel.FK_ROLE_FUNCTION_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="ROLE_FUNCTION" EntitySet="ROLE_FUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_ROLE" Association="SPWModel.FK_ROLE_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="ROLE1" EntitySet="ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE" Association="SPWModel.FK_USER_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_SECTOR" Association="SPWModel.FK_STORE_SECTOR">
+            <End Role="SECTOR" EntitySet="SECTOR" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ZONE" Association="SPWModel.FK_STORE_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_DETAIL_ZONE" Association="SPWModel.FK_ZONE_DETAIL_ZONE">
+            <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Type="Int32" Name="CATEGORY_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CATEGORY_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CATEGORY_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_PRODUCT_CATEGORY" FromRole="CATEGORY" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="COLOR">
+          <Key>
+            <PropertyRef Name="COLOR_ID" />
+          </Key>
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="COLOR_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COLOR_SUBNAME" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COLOR_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+        </EntityType>
+        <EntityType Name="COLOR_TYPE">
+          <Key>
+            <PropertyRef Name="COLOR_TYPE_ID" />
+          </Key>
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="COLOR_TYPE_SUBNAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COLOR_TYPE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+        </EntityType>
+        <EntityType Name="DELIVERY_ORDER">
+          <Key>
+            <PropertyRef Name="DELORDER_ID" />
+          </Key>
+          <Property Type="Int32" Name="DELORDER_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="String" Name="DELORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DELORDER_DATE" Precision="0" />
+          <Property Type="String" Name="DELORDER_STEP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VEHICLE_ID" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" FromRole="DELIVERY_ORDER" ToRole="VEHICLE" />
+          <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" FromRole="DELIVERY_ORDER" ToRole="DELIVERY_ORDER_DETAIL" />
+          <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_ORDER" FromRole="DELIVERY_ORDER" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="DELIVERY_ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="DELORDER_DETAIL_ID" />
+          </Key>
+          <Property Type="Int32" Name="DELORDER_DETAIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DELORDER_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_SEQ" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_QTY" />
+          <Property Type="Int32" Name="PRODUCT_SEND_QTY" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PRODUCT_TOTAL" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <Property Type="String" Name="COLOR_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" FromRole="DELIVERY_ORDER_DETAIL" ToRole="DELIVERY_ORDER" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" FromRole="DELIVERY_ORDER_DETAIL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENT_ID" />
+          </Key>
+          <Property Type="Int32" Name="DEPARTMENT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DEPARTMENT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DEPARTMENT_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="SPWModel.FK_EMPLOYEE_DEPARTMENT" FromRole="DEPARTMENT" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Type="Int32" Name="EMPLOYEE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EMPLOYEE_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMPLOYEE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMPLOYEE_SURNAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DEPARTMENT_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="SPWModel.FK_EMPLOYEE_DEPARTMENT" FromRole="EMPLOYEE" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="USER" Relationship="SPWModel.FK_USER_EMPLOYEE" FromRole="EMPLOYEE" ToRole="USER" />
+          <NavigationProperty Name="ZONE_DETAIL" Relationship="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="ZONE_DETAIL" />
+        </EntityType>
+        <EntityType Name="FUNCTION">
+          <Key>
+            <PropertyRef Name="FUNCTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="FUNCTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FUNCTION_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="ROLE_FUNCTION" Relationship="SPWModel.FK_ROLE_FUNCTION_FUNCTION" FromRole="FUNCTION" ToRole="ROLE_FUNCTION" />
+          <NavigationProperty Name="SUB_FUNCTION" Relationship="SPWModel.FK_SUB_FUNCTION_FUNCTION" FromRole="FUNCTION" ToRole="SUB_FUNCTION" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ORDER_DATE" Precision="0" />
+          <Property Type="Int32" Name="STORE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="ORDER_TOTAL" Precision="18" Scale="2" />
+          <Property Type="String" Name="ORDER_APPROVE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORDER_STEP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_ORDER" FromRole="ORDER" ToRole="DELIVERY_ORDER" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_ORDER" FromRole="ORDER" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_ORDER_STORE" FromRole="ORDER" ToRole="STORE" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="ORDER_DETAIL_ID" />
+          </Key>
+          <Property Type="Int32" Name="ORDER_DETAIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_SEQ" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_QTY" />
+          <Property Type="Int32" Name="PRODUCT_SEND_QTY" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PRODUCT_TOTAL" Precision="18" Scale="0" />
+          <Property Type="Boolean" Name="IS_FREE" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_ORDER_DETAIL_ORDER" FromRole="ORDER_DETAIL" ToRole="ORDER" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_ORDER_DETAIL_PRODUCT" FromRole="ORDER_DETAIL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRODUCT_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRODUCT_SIZE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRODUCT_IMAGE_PATH" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CATEGORY_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_TYPE_CODE" />
+          <Property Type="String" Name="PRODUCT_PACKING_DESC" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PRODUCT_PACKING_QTY" />
+          <Property Type="String" Name="PRODUCT_PACKING_PER_UDESC" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRODUCT_PACKING_PER_PDESC" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT" Precision="18" Scale="2" />
+          <Property Type="String" Name="PRODUCT_WEIGHT_DEFINE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="CATEGORY" Relationship="SPWModel.FK_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="DELIVERY_ORDER_DETAIL" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="PRODUCT_PRICELIST" Relationship="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_PRICELIST" />
+          <NavigationProperty Name="PRODUCT_PROMOTION" Relationship="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_PROMOTION" />
+        </EntityType>
+        <EntityType Name="PRODUCT_PRICELIST">
+          <Key>
+            <PropertyRef Name="PRODUCT_PRICELIST_ID" />
+          </Key>
+          <Property Type="Int32" Name="PRODUCT_PRICELIST_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ZONE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT" FromRole="PRODUCT_PRICELIST" ToRole="PRODUCT" />
+          <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_PRODUCT_PRICELIST_ZONE" FromRole="PRODUCT_PRICELIST" ToRole="ZONE" />
+        </EntityType>
+        <EntityType Name="PRODUCT_PROMOTION">
+          <Key>
+            <PropertyRef Name="PROMOTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="PROMOTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PROMOTION_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_CONDITION_QTY" />
+          <Property Type="Int32" Name="PRODUCT_FREE_QTY" />
+          <Property Type="DateTime" Name="PROMOTION_EFFECTIVE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="PROMOTION_EXPIRE_DATE" Precision="0" />
+          <Property Type="Int32" Name="ZONE_ID" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" FromRole="PRODUCT_PROMOTION" ToRole="PRODUCT" />
+          <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_PRODUCT_PROMOTION_ZONE" FromRole="PRODUCT_PROMOTION" ToRole="ZONE" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="PROVINCE_ID" />
+          </Key>
+          <Property Type="Int32" Name="PROVINCE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PROVINCE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SECTOR_ID" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="SECTOR" Relationship="SPWModel.FK_PROVINCE_SECTOR" FromRole="PROVINCE" ToRole="SECTOR" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_PROVINCE" FromRole="PROVINCE" ToRole="STORE" />
+        </EntityType>
+        <EntityType Name="ROAD">
+          <Key>
+            <PropertyRef Name="ROAD_ID" />
+          </Key>
+          <Property Type="Int32" Name="ROAD_ID" Nullable="false" />
+          <Property Type="String" Name="ROAD_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_ROAD" FromRole="ROAD" ToRole="STORE" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ROLE_CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ROLE_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="ROLE_FUNCTION" Relationship="SPWModel.FK_ROLE_FUNCTION_ROLE" FromRole="ROLE" ToRole="ROLE_FUNCTION" />
+          <NavigationProperty Name="ROLE1" Relationship="SPWModel.FK_ROLE_ROLE" FromRole="ROLE" ToRole="ROLE1" />
+          <NavigationProperty Name="ROLE2" Relationship="SPWModel.FK_ROLE_ROLE" FromRole="ROLE1" ToRole="ROLE" />
+          <NavigationProperty Name="USER" Relationship="SPWModel.FK_USER_ROLE" FromRole="ROLE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="ROLE_FUNCTION">
+          <Key>
+            <PropertyRef Name="ROLE_FUNCTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="ROLE_FUNCTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="Int32" Name="FUNCTION_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="FUNCTION" Relationship="SPWModel.FK_ROLE_FUNCTION_FUNCTION" FromRole="ROLE_FUNCTION" ToRole="FUNCTION" />
+          <NavigationProperty Name="ROLE" Relationship="SPWModel.FK_ROLE_FUNCTION_ROLE" FromRole="ROLE_FUNCTION" ToRole="ROLE" />
+        </EntityType>
+        <EntityType Name="SECTOR">
+          <Key>
+            <PropertyRef Name="SECTOR_ID" />
+          </Key>
+          <Property Type="Int32" Name="SECTOR_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SECTOR_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PROVINCE" Relationship="SPWModel.FK_PROVINCE_SECTOR" FromRole="SECTOR" ToRole="PROVINCE" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_SECTOR" FromRole="SECTOR" ToRole="STORE" />
+        </EntityType>
+        <EntityType Name="STORE">
+          <Key>
+            <PropertyRef Name="STORE_ID" />
+          </Key>
+          <Property Type="Int32" Name="STORE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="STORE_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_NAME" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_TEL1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_TEL2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_MOBILE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_FAX" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_ADDR1" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_STREET" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_SUBDISTRICT" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STORE_DISTRICT" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PROVINCE_ID" Nullable="false" />
+          <Property Type="Int32" Name="SECTOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="ZONE_ID" />
+          <Property Type="Int32" Name="ROAD_ID" />
+          <Property Type="String" Name="STORE_POSTCODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_ORDER_STORE" FromRole="STORE" ToRole="ORDER" />
+          <NavigationProperty Name="PROVINCE" Relationship="SPWModel.FK_STORE_PROVINCE" FromRole="STORE" ToRole="PROVINCE" />
+          <NavigationProperty Name="ROAD" Relationship="SPWModel.FK_STORE_ROAD" FromRole="STORE" ToRole="ROAD" />
+          <NavigationProperty Name="SECTOR" Relationship="SPWModel.FK_STORE_SECTOR" FromRole="STORE" ToRole="SECTOR" />
+          <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_STORE_ZONE" FromRole="STORE" ToRole="ZONE" />
+        </EntityType>
+        <EntityType Name="SUB_FUNCTION">
+          <Key>
+            <PropertyRef Name="SUB_FUNCTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="SUB_FUNCTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="FUNCTION_ID" Nullable="false" />
+          <Property Type="String" Name="SUB_FUNCTION_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SUB_FUNCTION_PATH" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="FUNCTION" Relationship="SPWModel.FK_SUB_FUNCTION_FUNCTION" FromRole="SUB_FUNCTION" ToRole="FUNCTION" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Type="Int32" Name="USER_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EMPLOYEE_ID" Nullable="false" />
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="SPWModel.FK_USER_EMPLOYEE" FromRole="USER" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="ROLE" Relationship="SPWModel.FK_USER_ROLE" FromRole="USER" ToRole="ROLE" />
+        </EntityType>
+        <EntityType Name="VEHICLE">
+          <Key>
+            <PropertyRef Name="VEHICLE_ID" />
+          </Key>
+          <Property Type="Int32" Name="VEHICLE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="VEHICLE_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VEHICLE_REGNO" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VEHICLE_TYPENO" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" FromRole="VEHICLE" ToRole="DELIVERY_ORDER" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="ZONE_ID" />
+          </Key>
+          <Property Type="Int32" Name="ZONE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ZONE_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZONE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PRODUCT_PRICELIST" Relationship="SPWModel.FK_PRODUCT_PRICELIST_ZONE" FromRole="ZONE" ToRole="PRODUCT_PRICELIST" />
+          <NavigationProperty Name="PRODUCT_PROMOTION" Relationship="SPWModel.FK_PRODUCT_PROMOTION_ZONE" FromRole="ZONE" ToRole="PRODUCT_PROMOTION" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_ZONE" FromRole="ZONE" ToRole="STORE" />
+          <NavigationProperty Name="ZONE_DETAIL" Relationship="SPWModel.FK_ZONE_DETAIL_ZONE" FromRole="ZONE" ToRole="ZONE_DETAIL" />
+        </EntityType>
+        <EntityType Name="ZONE_DETAIL">
+          <Key>
+            <PropertyRef Name="ZONE_DETAIL_ID" />
+          </Key>
+          <Property Type="Int32" Name="ZONE_DETAIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ZONE_ID" />
+          <Property Type="Int32" Name="EMPLOYEE_ID" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" FromRole="ZONE_DETAIL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_ZONE_DETAIL_ZONE" FromRole="ZONE_DETAIL" ToRole="ZONE" />
+        </EntityType>
+        <Association Name="FK_PRODUCT_CATEGORY">
+          <End Type="SPWModel.CATEGORY" Role="CATEGORY" Multiplicity="1" />
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DELIVERY_ORDER">
+          <End Type="SPWModel.VEHICLE" Role="VEHICLE" Multiplicity="0..1" />
+          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
+          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER_DETAIL" Role="DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_ORDER">
+              <PropertyRef Name="DELORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="DELORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_ORDER">
+          <End Type="SPWModel.ORDER" Role="ORDER" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER_DETAIL" Role="DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_DEPARTMENT">
+          <End Type="SPWModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="1" />
+          <End Type="SPWModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_EMPLOYEE">
+          <End Type="SPWModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+          <End Type="SPWModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_DETAIL_EMPLOYEE">
+          <End Type="SPWModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="SPWModel.ZONE_DETAIL" Role="ZONE_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="ZONE_DETAIL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_FUNCTION_FUNCTION">
+          <End Type="SPWModel.FUNCTION" Role="FUNCTION" Multiplicity="1" />
+          <End Type="SPWModel.ROLE_FUNCTION" Role="ROLE_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Principal>
+            <Dependent Role="ROLE_FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUB_FUNCTION_FUNCTION">
+          <End Type="SPWModel.FUNCTION" Role="FUNCTION" Multiplicity="1" />
+          <End Type="SPWModel.SUB_FUNCTION" Role="SUB_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Principal>
+            <Dependent Role="SUB_FUNCTION">
+              <PropertyRef Name="FUNCTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_ORDER">
+          <End Type="SPWModel.ORDER" Role="ORDER" Multiplicity="1" />
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_STORE">
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="1" />
+          <End Type="SPWModel.ORDER" Role="ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PRICELIST_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.PRODUCT_PRICELIST" Role="PRODUCT_PRICELIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PRICELIST">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PROMOTION_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.PRODUCT_PROMOTION" Role="PRODUCT_PROMOTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PROMOTION">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PRICELIST_ZONE">
+          <End Type="SPWModel.ZONE" Role="ZONE" Multiplicity="1" />
+          <End Type="SPWModel.PRODUCT_PRICELIST" Role="PRODUCT_PRICELIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PRICELIST">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_PROMOTION_ZONE">
+          <End Type="SPWModel.ZONE" Role="ZONE" Multiplicity="0..1" />
+          <End Type="SPWModel.PRODUCT_PROMOTION" Role="PRODUCT_PROMOTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_PROMOTION">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROVINCE_SECTOR">
+          <End Type="SPWModel.SECTOR" Role="SECTOR" Multiplicity="0..1" />
+          <End Type="SPWModel.PROVINCE" Role="PROVINCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SECTOR_ID" />
+            </Principal>
+            <Dependent Role="PROVINCE">
+              <PropertyRef Name="SECTOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_PROVINCE">
+          <End Type="SPWModel.PROVINCE" Role="PROVINCE" Multiplicity="1" />
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCE">
+              <PropertyRef Name="PROVINCE_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="PROVINCE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ROAD">
+          <End Type="SPWModel.ROAD" Role="ROAD" Multiplicity="0..1" />
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROAD">
+              <PropertyRef Name="ROAD_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ROAD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_FUNCTION_ROLE">
+          <End Type="SPWModel.ROLE" Role="ROLE" Multiplicity="1" />
+          <End Type="SPWModel.ROLE_FUNCTION" Role="ROLE_FUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="ROLE_FUNCTION">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_ROLE">
+          <End Type="SPWModel.ROLE" Role="ROLE" Multiplicity="1" />
+          <End Type="SPWModel.ROLE" Role="ROLE1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="ROLE1">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE">
+          <End Type="SPWModel.ROLE" Role="ROLE" Multiplicity="1" />
+          <End Type="SPWModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_SECTOR">
+          <End Type="SPWModel.SECTOR" Role="SECTOR" Multiplicity="1" />
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SECTOR">
+              <PropertyRef Name="SECTOR_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="SECTOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ZONE">
+          <End Type="SPWModel.ZONE" Role="ZONE" Multiplicity="0..1" />
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_DETAIL_ZONE">
+          <End Type="SPWModel.ZONE" Role="ZONE" Multiplicity="0..1" />
+          <End Type="SPWModel.ZONE_DETAIL" Role="ZONE_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE">
+              <PropertyRef Name="ZONE_ID" />
+            </Principal>
+            <Dependent Role="ZONE_DETAIL">
+              <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SPWModelStoreContainer" CdmEntityContainer="SPWEntities">
+          <EntitySetMapping Name="CATEGORY">
+            <EntityTypeMapping TypeName="SPWModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_CODE" ColumnName="CATEGORY_CODE" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COLOR">
+            <EntityTypeMapping TypeName="SPWModel.COLOR">
+              <MappingFragment StoreEntitySet="COLOR">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="COLOR_NAME" ColumnName="COLOR_NAME" />
+                <ScalarProperty Name="COLOR_SUBNAME" ColumnName="COLOR_SUBNAME" />
+                <ScalarProperty Name="COLOR_CODE" ColumnName="COLOR_CODE" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COLOR_TYPE">
+            <EntityTypeMapping TypeName="SPWModel.COLOR_TYPE">
+              <MappingFragment StoreEntitySet="COLOR_TYPE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="COLOR_TYPE_NAME" ColumnName="COLOR_TYPE_NAME" />
+                <ScalarProperty Name="COLOR_TYPE_SUBNAME" ColumnName="COLOR_TYPE_SUBNAME" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERY_ORDER">
+            <EntityTypeMapping TypeName="SPWModel.DELIVERY_ORDER">
+              <MappingFragment StoreEntitySet="DELIVERY_ORDER">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
+                <ScalarProperty Name="DELORDER_STEP" ColumnName="DELORDER_STEP" />
+                <ScalarProperty Name="DELORDER_DATE" ColumnName="DELORDER_DATE" />
+                <ScalarProperty Name="DELORDER_CODE" ColumnName="DELORDER_CODE" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="DELORDER_ID" ColumnName="DELORDER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERY_ORDER_DETAIL">
+            <EntityTypeMapping TypeName="SPWModel.DELIVERY_ORDER_DETAIL">
+              <MappingFragment StoreEntitySet="DELIVERY_ORDER_DETAIL">
+                <ScalarProperty Name="COLOR_CODE" ColumnName="COLOR_CODE" />
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="PRODUCT_TOTAL" ColumnName="PRODUCT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_SEND_QTY" ColumnName="PRODUCT_SEND_QTY" />
+                <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_SEQ" ColumnName="PRODUCT_SEQ" />
+                <ScalarProperty Name="DELORDER_ID" ColumnName="DELORDER_ID" />
+                <ScalarProperty Name="DELORDER_DETAIL_ID" ColumnName="DELORDER_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENT">
+            <EntityTypeMapping TypeName="SPWModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
+                <ScalarProperty Name="DEPARTMENT_CODE" ColumnName="DEPARTMENT_CODE" />
+                <ScalarProperty Name="DEPARTMENT_ID" ColumnName="DEPARTMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE">
+            <EntityTypeMapping TypeName="SPWModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="DEPARTMENT_ID" ColumnName="DEPARTMENT_ID" />
+                <ScalarProperty Name="EMPLOYEE_SURNAME" ColumnName="EMPLOYEE_SURNAME" />
+                <ScalarProperty Name="EMPLOYEE_NAME" ColumnName="EMPLOYEE_NAME" />
+                <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FUNCTION">
+            <EntityTypeMapping TypeName="SPWModel.FUNCTION">
+              <MappingFragment StoreEntitySet="FUNCTION">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="FUNCTION_NAME" ColumnName="FUNCTION_NAME" />
+                <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER">
+            <EntityTypeMapping TypeName="SPWModel.ORDER">
+              <MappingFragment StoreEntitySet="ORDER">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ORDER_STEP" ColumnName="ORDER_STEP" />
+                <ScalarProperty Name="ORDER_APPROVE" ColumnName="ORDER_APPROVE" />
+                <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+                <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
+                <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER_DETAIL">
+            <EntityTypeMapping TypeName="SPWModel.ORDER_DETAIL">
+              <MappingFragment StoreEntitySet="ORDER_DETAIL">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="IS_FREE" ColumnName="IS_FREE" />
+                <ScalarProperty Name="PRODUCT_TOTAL" ColumnName="PRODUCT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_SEND_QTY" ColumnName="PRODUCT_SEND_QTY" />
+                <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_SEQ" ColumnName="PRODUCT_SEQ" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ORDER_DETAIL_ID" ColumnName="ORDER_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT">
+            <EntityTypeMapping TypeName="SPWModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT_DEFINE" ColumnName="PRODUCT_WEIGHT_DEFINE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT" ColumnName="PRODUCT_WEIGHT" />
+                <ScalarProperty Name="PRODUCT_PACKING_PER_PDESC" ColumnName="PRODUCT_PACKING_PER_PDESC" />
+                <ScalarProperty Name="PRODUCT_PACKING_PER_UDESC" ColumnName="PRODUCT_PACKING_PER_UDESC" />
+                <ScalarProperty Name="PRODUCT_PACKING_QTY" ColumnName="PRODUCT_PACKING_QTY" />
+                <ScalarProperty Name="PRODUCT_PACKING_DESC" ColumnName="PRODUCT_PACKING_DESC" />
+                <ScalarProperty Name="PRODUCT_TYPE_CODE" ColumnName="PRODUCT_TYPE_CODE" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="PRODUCT_IMAGE_PATH" ColumnName="PRODUCT_IMAGE_PATH" />
+                <ScalarProperty Name="PRODUCT_SIZE" ColumnName="PRODUCT_SIZE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT_PRICELIST">
+            <EntityTypeMapping TypeName="SPWModel.PRODUCT_PRICELIST">
+              <MappingFragment StoreEntitySet="PRODUCT_PRICELIST">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_PRICELIST_ID" ColumnName="PRODUCT_PRICELIST_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT_PROMOTION">
+            <EntityTypeMapping TypeName="SPWModel.PRODUCT_PROMOTION">
+              <MappingFragment StoreEntitySet="PRODUCT_PROMOTION">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="PROMOTION_EXPIRE_DATE" ColumnName="PROMOTION_EXPIRE_DATE" />
+                <ScalarProperty Name="PROMOTION_EFFECTIVE_DATE" ColumnName="PROMOTION_EFFECTIVE_DATE" />
+                <ScalarProperty Name="PRODUCT_FREE_QTY" ColumnName="PRODUCT_FREE_QTY" />
+                <ScalarProperty Name="PRODUCT_CONDITION_QTY" ColumnName="PRODUCT_CONDITION_QTY" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PROMOTION_CODE" ColumnName="PROMOTION_CODE" />
+                <ScalarProperty Name="PROMOTION_ID" ColumnName="PROMOTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCE">
+            <EntityTypeMapping TypeName="SPWModel.PROVINCE">
+              <MappingFragment StoreEntitySet="PROVINCE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SECTOR_ID" ColumnName="SECTOR_ID" />
+                <ScalarProperty Name="PROVINCE_NAME" ColumnName="PROVINCE_NAME" />
+                <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROAD">
+            <EntityTypeMapping TypeName="SPWModel.ROAD">
+              <MappingFragment StoreEntitySet="ROAD">
+                <ScalarProperty Name="ROAD_NAME" ColumnName="ROAD_NAME" />
+                <ScalarProperty Name="ROAD_ID" ColumnName="ROAD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE">
+            <EntityTypeMapping TypeName="SPWModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="ROLE_CODE" ColumnName="ROLE_CODE" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_FUNCTION">
+            <EntityTypeMapping TypeName="SPWModel.ROLE_FUNCTION">
+              <MappingFragment StoreEntitySet="ROLE_FUNCTION">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_FUNCTION_ID" ColumnName="ROLE_FUNCTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SECTOR">
+            <EntityTypeMapping TypeName="SPWModel.SECTOR">
+              <MappingFragment StoreEntitySet="SECTOR">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SECTOR_NAME" ColumnName="SECTOR_NAME" />
+                <ScalarProperty Name="SECTOR_ID" ColumnName="SECTOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STORE">
+            <EntityTypeMapping TypeName="SPWModel.STORE">
+              <MappingFragment StoreEntitySet="STORE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="STORE_POSTCODE" ColumnName="STORE_POSTCODE" />
+                <ScalarProperty Name="ROAD_ID" ColumnName="ROAD_ID" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="SECTOR_ID" ColumnName="SECTOR_ID" />
+                <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+                <ScalarProperty Name="STORE_DISTRICT" ColumnName="STORE_DISTRICT" />
+                <ScalarProperty Name="STORE_SUBDISTRICT" ColumnName="STORE_SUBDISTRICT" />
+                <ScalarProperty Name="STORE_STREET" ColumnName="STORE_STREET" />
+                <ScalarProperty Name="STORE_ADDR1" ColumnName="STORE_ADDR1" />
+                <ScalarProperty Name="STORE_FAX" ColumnName="STORE_FAX" />
+                <ScalarProperty Name="STORE_MOBILE" ColumnName="STORE_MOBILE" />
+                <ScalarProperty Name="STORE_TEL2" ColumnName="STORE_TEL2" />
+                <ScalarProperty Name="STORE_TEL1" ColumnName="STORE_TEL1" />
+                <ScalarProperty Name="STORE_NAME" ColumnName="STORE_NAME" />
+                <ScalarProperty Name="STORE_CODE" ColumnName="STORE_CODE" />
+                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUB_FUNCTION">
+            <EntityTypeMapping TypeName="SPWModel.SUB_FUNCTION">
+              <MappingFragment StoreEntitySet="SUB_FUNCTION">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SUB_FUNCTION_PATH" ColumnName="SUB_FUNCTION_PATH" />
+                <ScalarProperty Name="SUB_FUNCTION_NAME" ColumnName="SUB_FUNCTION_NAME" />
+                <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+                <ScalarProperty Name="SUB_FUNCTION_ID" ColumnName="SUB_FUNCTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="SPWModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEHICLE">
+            <EntityTypeMapping TypeName="SPWModel.VEHICLE">
+              <MappingFragment StoreEntitySet="VEHICLE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="VEHICLE_TYPENO" ColumnName="VEHICLE_TYPENO" />
+                <ScalarProperty Name="VEHICLE_REGNO" ColumnName="VEHICLE_REGNO" />
+                <ScalarProperty Name="VEHICLE_CODE" ColumnName="VEHICLE_CODE" />
+                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONE">
+            <EntityTypeMapping TypeName="SPWModel.ZONE">
+              <MappingFragment StoreEntitySet="ZONE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="ZONE_NAME" ColumnName="ZONE_NAME" />
+                <ScalarProperty Name="ZONE_CODE" ColumnName="ZONE_CODE" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONE_DETAIL">
+            <EntityTypeMapping TypeName="SPWModel.ZONE_DETAIL">
+              <MappingFragment StoreEntitySet="ZONE_DETAIL">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="ZONE_DETAIL_ID" ColumnName="ZONE_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="9.63769685739544" PointY="7.3950867538317508" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="9.9881366798598954" PointY="29.086751653387562" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="0.19822802031330206" PointY="21.285887534397602" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="0.30755417249517242" PointY="17.817760505628662" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="2.5825632468716071" PointY="19.548510709567232" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="0.41746783462235137" PointY="5.4492274548156319" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="8.7955693084725972" PointY="28.600085748638996" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="10.481953968518392" PointY="26.571768370723245" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="7.1955431062707422" PointY="8.1280241795480368" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="10.138693654042992" PointY="9.0998885971959158" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="2.4990566086485311" PointY="24.04232719170038" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="10.38510727434657" PointY="1.4243495172934371" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="1.1662924462772404" PointY="8.7161432843264866" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="8.9170333169945675" PointY="29.856364994242956" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="3.4827728976881005" PointY="22.653135801969626" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="10.98313525644277" PointY="26.554826078263496" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="7.9760732333995747" PointY="31.991895526643795" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="9.76996281452941" PointY="0.53606586183238114" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="11.865126488667507" PointY="0.65824221105232938" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="0.18357819141055373" PointY="5.12951874971833" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="8.1614399944252511" PointY="20.5484948849997" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="6.5379763983832557" PointY="16.768021233737478" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="4.9447222822088381" PointY="0.26531417680220409" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="5.0289326426707825" PointY="8.96461503625131" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_CATEGORY" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_EMPLOYEE_DEPARTMENT" />
+        <AssociationConnector Association="SPWModel.FK_USER_EMPLOYEE" />
+        <AssociationConnector Association="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" />
+        <AssociationConnector Association="SPWModel.FK_ROLE_FUNCTION_FUNCTION" />
+        <AssociationConnector Association="SPWModel.FK_SUB_FUNCTION_FUNCTION" />
+        <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_ORDER_STORE" />
+        <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_PRICELIST_ZONE" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_PROMOTION_ZONE" />
+        <AssociationConnector Association="SPWModel.FK_PROVINCE_SECTOR" />
+        <AssociationConnector Association="SPWModel.FK_STORE_PROVINCE" />
+        <AssociationConnector Association="SPWModel.FK_STORE_ROAD" />
+        <AssociationConnector Association="SPWModel.FK_ROLE_FUNCTION_ROLE" />
+        <AssociationConnector Association="SPWModel.FK_ROLE_ROLE" />
+        <AssociationConnector Association="SPWModel.FK_USER_ROLE" />
+        <AssociationConnector Association="SPWModel.FK_STORE_SECTOR" />
+        <AssociationConnector Association="SPWModel.FK_STORE_ZONE" />
+        <AssociationConnector Association="SPWModel.FK_ZONE_DETAIL_ZONE" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

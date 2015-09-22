@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79F9C811-B55C-4E21-BCDA-DAA766265C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPW.DataService</RootNamespace>
+    <AssemblyName>SPW.DataService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CategoryService.cs" />
+    <Compile Include="ColorService.cs" />
+    <Compile Include="ProductPromotionService.cs" />
+    <Compile Include="RoleFunctionService.cs" />
+    <Compile Include="FunctionService.cs" />
+    <Compile Include="RoleService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="VehicleService.cs" />
+    <Compile Include="TraceryService.cs" />
+    <Compile Include="DeliveryOrderDetailService.cs" />
+    <Compile Include="DeliveryOrderService.cs" />
+    <Compile Include="OrderDetailService.cs" />
+    <Compile Include="RoadService.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="ProductPriceListService.cs" />
+    <Compile Include="ZoneDetailService.cs" />
+    <Compile Include="ZoneService.cs" />
+    <Compile Include="SectorService.cs" />
+    <Compile Include="ProvinceService.cs" />
+    <Compile Include="StoreService.cs" />
+    <Compile Include="ProductService.cs" />
+    <Compile Include="DepartmentService.cs" />
+    <Compile Include="EmployeeService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPW.DAL\SPW.DAL.csproj">
+      <Project>{fe70015a-20a7-4eda-ad1e-04c614f1a5f8}</Project>
+      <Name>SPW.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPW.Model\SPW.Model.csproj">
+      <Project>{26d4a16b-57e2-4007-9406-b2d00004a840}</Project>
+      <Name>SPW.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
