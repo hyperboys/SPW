@@ -65,9 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.col-lg-6 (nested) -->
             </div>
-            <!-- /.row (nested) -->
             <div class="panel panel-primary">
                 <asp:GridView ID="gridZone" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                     DataKeyNames="ZONE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลโซน"
@@ -101,66 +99,7 @@
                 </asp:GridView>
             </div>
         </div>
-        <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
-
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-
-    <asp:Panel ID="Panel1" runat="server" Visible="True" Width="862px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                ข้อมูลราคาขายสินค้า
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form">
-                            <div class="form-group">
-                                <table style="width: 803px; height: 51px;">
-                                    <tr>
-                                        <td class="auto-style7">รหัสราคาขายสินค้า</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td class="auto-style2">
-                                            <asp:TextBox ID="popTxtZoneCode" class="form-control" runat="server" Height="35px" Width="150px"></asp:TextBox>
-                                        </td>
-                                        <td class="auto-style6"></td>
-                                        <td class="auto-style8">ชื่อราคาขายสินค้า</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td class="auto-style2">
-                                            <asp:TextBox ID="popTxtZoneName" class="form-control" runat="server" Height="35px" Width="150px"></asp:TextBox>
-                                        </td>
-                                        <td class="auto-style3"></td>
-                                        <td>
-                                            <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnSave_Click" />
-                                        </td>
-                                        <td class="auto-style3"></td>
-                                        <td>
-                                            <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table style="width: 803px; height: 51px;">
-                                    <tr>
-                                        <td class="auto-style4">พนักงานขาย</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlSell" class="form-control" runat="server" Height="35px" Width="456px">
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </asp:Panel>
-    <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
-    <asp:LinkButton ID="lnkFake" runat="server"></asp:LinkButton>
-    <ajax:ModalPopupExtender ID="popup" runat="server" BackgroundCssClass="modalBackground" DropShadow="false" PopupControlID="Panel1" TargetControlID="lnkFake" Enabled="True">
-    </ajax:ModalPopupExtender>
 </asp:Content>

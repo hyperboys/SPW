@@ -8,32 +8,60 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class RoadService
+    public class RoadService : ServiceBase, IDataService<ROAD>, IService 
     {
-        private ROAD _item = new ROAD();
-        private List<ROAD> _lstItem = new List<ROAD>();
 
-        public RoadService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
+            get
+            {
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
+            }
+        }
+        #endregion
 
+        #region IDataService<ROAD> Members
+
+        public void Add(ROAD obj)
+        {
+            this.Datacontext.ROAD.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<ROAD> GetALL()
+        public void AddList(List<ROAD> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROAD.ToList();
-                return list;
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Edit(ROAD obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<ROAD> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ROAD Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ROAD Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROAD.Where(x => x.ROAD_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ROAD.Where(x => x.ROAD_ID == ID).FirstOrDefault();
         }
+
+        public List<ROAD> GetAll()
+        {
+            return this.Datacontext.ROAD.ToList();
+        }
+        #endregion
     }
 }

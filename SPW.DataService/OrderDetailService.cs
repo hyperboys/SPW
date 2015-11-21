@@ -8,87 +8,142 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class OrderDetailService
+    public class OrderDetailService : ServiceBase, IDataService<ORDER_DETAIL>, IService 
     {
-        private ORDER_DETAIL _item = new ORDER_DETAIL();
-        private List<ORDER_DETAIL> _lstItem = new List<ORDER_DETAIL>();
-
-        public OrderDetailService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public OrderDetailService(ORDER_DETAIL item)
-        {
-            _item = item;
-        }
-
-        public OrderDetailService(List<ORDER_DETAIL> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ORDER_DETAIL> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ORDER_DETAIL.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<ORDER_DETAIL> GetALLInclude()
+        #region IDataService<ORDER_DETAIL> Members
+
+        public void Add(ORDER_DETAIL obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER_DETAIL.Include("PRODUCT").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            this.Datacontext.ORDER_DETAIL.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<ORDER_DETAIL> GetALLInclude(int ID)
+        public void AddList(List<ORDER_DETAIL> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER_DETAIL.Include("PRODUCT").Where(x => x.SYE_DEL == true && x.ORDER_ID == ID).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<ORDER_DETAIL> GetALLIncludeByOrder(int ID)
+        public void Edit(ORDER_DETAIL obj)
         {
-            using (var ctx = new SPWEntities())
+            var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == obj.ORDER_DETAIL_ID).FirstOrDefault();
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+        public void EditOrderDetailCancel(int ORDER_DETAIL_ID)
+        {
+            var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
+            item.UPDATE_DATE = DateTime.Now;
+            item.SYE_DEL = true;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<ORDER_DETAIL> objList)
+        {
+            foreach (var item in objList)
             {
-                var list = ctx.ORDER_DETAIL.Include("PRODUCT").Where(x => x.SYE_DEL == true && x.ORDER_ID == ID).ToList();
-                return list;
+                var obj = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == item.ORDER_DETAIL_ID).FirstOrDefault();
+                if (obj != null)
+                {
+                    obj.PRODUCT_SEND_QTY = item.PRODUCT_SEND_QTY;
+                    obj.UPDATE_DATE = item.UPDATE_DATE;
+                    obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                }
             }
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditOrderDetailList(List<ORDER_DETAIL> objList)
+        {
+            foreach (var item in objList)
+            {
+                var obj = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == item.ORDER_DETAIL_ID).FirstOrDefault();
+                if (obj != null)
+                {
+                    obj.COLOR_ID = item.COLOR_ID;
+                    obj.COLOR_TYPE_ID = item.COLOR_TYPE_ID;
+                    obj.PRODUCT_QTY = item.PRODUCT_QTY;
+                    obj.PRODUCT_PRICE_TOTAL = item.PRODUCT_QTY * obj.PRODUCT_PRICE;
+                    obj.PRODUCT_WEIGHT_TOTAL = item.PRODUCT_WEIGHT * item.PRODUCT_QTY;
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.PRODUCT_SEND_REMAIN = item.PRODUCT_SEND_REMAIN;
+                }
+            }
+            this.Datacontext.SaveChanges();
+        }
+
+        public ORDER_DETAIL Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ORDER_DETAIL Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ID).FirstOrDefault();
         }
 
-        public void UpdateList()
+        public List<ORDER_DETAIL> GetAll()
         {
-            using (var ctx = new SPWEntities())
+            return this.Datacontext.ORDER_DETAIL.Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<ORDER_DETAIL> GetAllInclude()
+        {
+            return this.Datacontext.ORDER_DETAIL.Include("PRODUCT").Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<ORDER_DETAIL> GetAllInclude(int ID)
+        {
+            return this.Datacontext.ORDER_DETAIL.Include("PRODUCT").Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).ToList();
+        }
+
+        public List<ORDER_DETAIL> GetAllIncludeByOrder(int ID)
+        {
+            return this.Datacontext.ORDER_DETAIL.Include("PRODUCT").Include("COLOR").Include("COLOR_TYPE").Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).ToList();
+        }
+
+        public void ConfirmOrder(List<DELIVERY_ORDER> DelOrderItems)
+        {
+            foreach (var delOrder in DelOrderItems)
             {
-                foreach (var item in _lstItem)
+                foreach (var Details in delOrder.DELIVERY_ORDER_DETAIL)
                 {
-                    var obj = ctx.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == item.ORDER_DETAIL_ID).FirstOrDefault();
-                    if (obj != null)
+                    ORDER_DETAIL objtempUpdate = Select(Details.ORDER_DETAIL_ID);
+                    if (objtempUpdate != null)
                     {
-                        obj.PRODUCT_SEND_QTY = item.PRODUCT_SEND_QTY;
-                        obj.UPDATE_DATE = item.UPDATE_DATE;
-                        obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                        if (Details.PRODUCT_SENT_QTY > 0)
+                        {
+                            objtempUpdate.PRODUCT_SEND_ROUND = Details.PRODUCT_SENT_ROUND;
+                            objtempUpdate.PRODUCT_SEND_QTY += Details.PRODUCT_SENT_QTY;
+                            objtempUpdate.PRODUCT_SEND_REMAIN = Details.PRODUCT_SENT_REMAIN;
+                            if (objtempUpdate.PRODUCT_SEND_REMAIN == 0)
+                            {
+                                objtempUpdate.PRODUCT_SEND_COMPLETE = "1";
+                            }
+                            else
+                            {
+                                objtempUpdate.PRODUCT_SEND_COMPLETE = "0";
+                            }
+                        }
                     }
                 }
-                ctx.SaveChanges();
             }
+            this._Datacontext.SaveChanges();
         }
+        #endregion
     }
 }

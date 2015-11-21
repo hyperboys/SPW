@@ -8,110 +8,66 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class CategoryService
+    public class CategoryService : ServiceBase, IDataService<CATEGORY>, IService 
     {
-        private CATEGORY _item = new CATEGORY();
-        private List<CATEGORY> _lstItem = new List<CATEGORY>();
 
-        public CategoryService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public CategoryService(CATEGORY item)
-        {
-            _item = item;
-        }
-
-        public CategoryService(List<CATEGORY> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<CATEGORY> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.CATEGORY.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<CATEGORY> GetALL(CATEGORY item)
+        #region IDataService<CATEGORY> Members
+
+        public void Add(CATEGORY obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.CATEGORY.Where(x => x.CATEGORY_CODE.Contains(item.CATEGORY_CODE)).ToList();
-                return list;
-            }
+            this.Datacontext.CATEGORY.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<CATEGORY> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(CATEGORY obj)
+        {
+            var item = this.Datacontext.CATEGORY.Where(x => x.CATEGORY_ID == obj.CATEGORY_ID).FirstOrDefault();
+            item.CATEGORY_CODE = obj.CATEGORY_CODE;
+            item.CATEGORY_NAME = obj.CATEGORY_NAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<CATEGORY> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CATEGORY Select()
+        {
+            throw new NotImplementedException();
         }
 
         public CATEGORY Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.CATEGORY.Where(x => x.CATEGORY_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.CATEGORY.Where(x => x.CATEGORY_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<CATEGORY> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.CATEGORY.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.CATEGORY.Where(x => x.SYE_DEL == false).ToList();
         }
-
-        public void AddList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.CATEGORY.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
-
-        public void Edit()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.CATEGORY.Where(x => x.CATEGORY_ID == _item.CATEGORY_ID).FirstOrDefault();
-                obj.CATEGORY_CODE = _item.CATEGORY_CODE;
-                obj.CATEGORY_NAME = _item.CATEGORY_NAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void EditList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Update)
-                    {
-                        var obj = ctx.CATEGORY.Where(x => x.CATEGORY_ID == item.CATEGORY_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            obj.CATEGORY_CODE = item.CATEGORY_CODE;
-                            obj.CATEGORY_NAME = item.CATEGORY_NAME;
-                            obj.UPDATE_DATE = item.UPDATE_DATE;
-                            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                        }
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
+        #endregion
+    
     }
 }

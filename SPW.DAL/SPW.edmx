@@ -9,6 +9,8 @@
           <EntitySet Name="CATEGORY" EntityType="SPWModel.Store.CATEGORY" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COLOR" EntityType="SPWModel.Store.COLOR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COLOR_TYPE" EntityType="SPWModel.Store.COLOR_TYPE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DELIVERY_INDEX" EntityType="SPWModel.Store.DELIVERY_INDEX" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DELIVERY_INDEX_DETAIL" EntityType="SPWModel.Store.DELIVERY_INDEX_DETAIL" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DELIVERY_ORDER" EntityType="SPWModel.Store.DELIVERY_ORDER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DELIVERY_ORDER_DETAIL" EntityType="SPWModel.Store.DELIVERY_ORDER_DETAIL" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DEPARTMENT" EntityType="SPWModel.Store.DEPARTMENT" store:Type="Tables" Schema="dbo" />
@@ -24,31 +26,79 @@
           <EntitySet Name="ROLE" EntityType="SPWModel.Store.ROLE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ROLE_FUNCTION" EntityType="SPWModel.Store.ROLE_FUNCTION" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SECTOR" EntityType="SPWModel.Store.SECTOR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.Store.STOCK_PRODUCT_STOCK" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.Store.STOCK_TYPE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STORE" EntityType="SPWModel.Store.STORE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SUB_FUNCTION" EntityType="SPWModel.Store.SUB_FUNCTION" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="USER" EntityType="SPWModel.Store.USER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="VEHICLE" EntityType="SPWModel.Store.VEHICLE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ZONE" EntityType="SPWModel.Store.ZONE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ZONE_DETAIL" EntityType="SPWModel.Store.ZONE_DETAIL" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_DELIVERY_ORDER_DELIVERY_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_DELIVERY_ORDER">
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_COLOR" Association="SPWModel.Store.FK_DELIVERY_INDEX_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE" Association="SPWModel.Store.FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX" Association="SPWModel.Store.FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX">
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_PRODUCT" Association="SPWModel.Store.FK_DELIVERY_INDEX_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_VEHICLE" Association="SPWModel.Store.FK_DELIVERY_INDEX_VEHICLE">
             <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DELIND" Association="SPWModel.Store.FK_DELIVERY_ORDER_DELIND">
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_COLOR" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_ORDERDET" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_ORDERDET">
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
             <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT" Association="SPWModel.Store.FK_DELIVERY_ORDER_DETAIL_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_DELIVERY_ORDER_ORDER" Association="SPWModel.Store.FK_DELIVERY_ORDER_ORDER">
-            <End Role="ORDER" EntitySet="ORDER" />
+          <AssociationSet Name="FK_DELIVERY_ORDER_STORE" Association="SPWModel.Store.FK_DELIVERY_ORDER_STORE">
+            <End Role="STORE" EntitySet="STORE" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_VEHICLE" Association="SPWModel.Store.FK_DELIVERY_ORDER_VEHICLE">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
           </AssociationSet>
           <AssociationSet Name="FK_EMPLOYEE_DEPARTMENT" Association="SPWModel.Store.FK_EMPLOYEE_DEPARTMENT">
             <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_COLOR" Association="SPWModel.Store.FK_ORDER_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_COLOR_TYPE" Association="SPWModel.Store.FK_ORDER_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDER_DETAIL_ORDER" Association="SPWModel.Store.FK_ORDER_DETAIL_ORDER">
             <End Role="ORDER" EntitySet="ORDER" />
@@ -82,6 +132,10 @@
             <End Role="ZONE" EntitySet="ZONE" />
             <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_STOCK_TYPE" Association="SPWModel.Store.FK_PRODUCT_STOCK_TYPE">
+            <End Role="STOCK_TYPE" EntitySet="STOCK_TYPE" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
           <AssociationSet Name="FK_PROVINCE_SECTOR" Association="SPWModel.Store.FK_PROVINCE_SECTOR">
             <End Role="SECTOR" EntitySet="SECTOR" />
             <End Role="PROVINCE" EntitySet="PROVINCE" />
@@ -98,6 +152,58 @@
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="ROLE1" EntitySet="ROLE" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR" Association="SPWModel.Store.FK_STOCK_PRODUCT_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_TYPE" Association="SPWModel.Store.FK_STOCK_PRODUCT_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_PRODUCT" Association="SPWModel.Store.FK_STOCK_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_COLOR" Association="SPWModel.Store.FK_STOCK_PRODUCT_TRANS_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" Association="SPWModel.Store.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_PRODUCT" Association="SPWModel.Store.FK_STOCK_PRODUCT_TRANS_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_COLOR" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_COLOR_TYPE" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_ORDER" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_ORDER_DTL" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_ORDER_DTL">
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_PRODUCT" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_STORE" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_STORE">
+            <End Role="STORE" EntitySet="STORE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_VEHICLE" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_VEHICLE">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_STORE_PROVINCE" Association="SPWModel.Store.FK_STORE_PROVINCE">
             <End Role="PROVINCE" EntitySet="PROVINCE" />
             <End Role="STORE" EntitySet="STORE" />
@@ -112,6 +218,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_STORE_ZONE" Association="SPWModel.Store.FK_STORE_ZONE">
             <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ZONE_DETAIL" Association="SPWModel.Store.FK_STORE_ZONE_DETAIL">
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
             <End Role="STORE" EntitySet="STORE" />
           </AssociationSet>
           <AssociationSet Name="FK_SUB_FUNCTION_FUNCTION" Association="SPWModel.Store.FK_SUB_FUNCTION_FUNCTION">
@@ -175,16 +285,56 @@
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
         </EntityType>
+        <EntityType Name="DELIVERY_INDEX">
+          <Key>
+            <PropertyRef Name="DELIND_ID" />
+          </Key>
+          <Property Name="DELIND_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DELIND_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DELIND_DATE" Type="date" />
+          <Property Name="VEHICLE_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="DELIVERY_INDEX_DETAIL">
+          <Key>
+            <PropertyRef Name="DELIND_DETAIL_ID" />
+          </Key>
+          <Property Name="DELIND_DETAIL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DELIND_ID" Type="int" Nullable="false" />
+          <Property Name="DELIND_SEQ_NO" Type="int" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT" Type="decimal" Scale="2" />
+          <Property Name="IS_FREE" Type="nvarchar" MaxLength="1" />
+          <Property Name="PRODUCT_SENT_QTY" Type="int" />
+          <Property Name="PRODUCT_PRICE_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
         <EntityType Name="DELIVERY_ORDER">
           <Key>
             <PropertyRef Name="DELORDER_ID" />
           </Key>
           <Property Name="DELORDER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="DELIND_ID" Type="int" Nullable="false" />
           <Property Name="DELORDER_CODE" Type="nvarchar" MaxLength="50" />
           <Property Name="DELORDER_DATE" Type="date" />
+          <Property Name="DELORDER_SEQ_NO" Type="int" />
+          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="VEHICLE_ID" Type="int" Nullable="false" />
+          <Property Name="DELORDER_PRICE_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="DELORDER_WEIGHT_TOTAL" Type="decimal" Scale="2" />
           <Property Name="DELORDER_STEP" Type="nvarchar" MaxLength="50" />
-          <Property Name="VEHICLE_ID" Type="int" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -197,18 +347,27 @@
           </Key>
           <Property Name="DELORDER_DETAIL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DELORDER_ID" Type="int" Nullable="false" />
+          <Property Name="DELORDER_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DELORDER_SEQ_NO" Type="int" />
+          <Property Name="ORDER_DETAIL_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCT_SEQ" Type="int" />
           <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCT_QTY" Type="int" />
-          <Property Name="PRODUCT_SEND_QTY" Type="int" />
-          <Property Name="PRODUCT_PRICE" Type="decimal" />
-          <Property Name="PRODUCT_TOTAL" Type="decimal" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT" Type="decimal" Scale="2" />
+          <Property Name="IS_FREE" Type="nvarchar" MaxLength="1" />
+          <Property Name="PRODUCT_SENT_ROUND" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_SENT_QTY" Type="int" />
+          <Property Name="PRODUCT_SENT_REMAIN" Type="int" />
+          <Property Name="PRODUCT_SENT_PRICE_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_SENT_WEIGHT_TOTAL" Type="decimal" Scale="2" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
-          <Property Name="COLOR_CODE" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -258,9 +417,9 @@
           <Property Name="ORDER_CODE" Type="nvarchar" MaxLength="50" />
           <Property Name="ORDER_DATE" Type="date" />
           <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_SEND_ROUND" Type="int" Nullable="false" />
           <Property Name="ORDER_TOTAL" Type="decimal" Scale="2" />
-          <Property Name="ORDER_APPROVE" Type="nvarchar" MaxLength="50" />
-          <Property Name="ORDER_STEP" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDER_STEP" Type="nvarchar" MaxLength="2" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -275,11 +434,18 @@
           <Property Name="ORDER_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCT_SEQ" Type="int" />
           <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCT_QTY" Type="int" />
+          <Property Name="PRODUCT_PRICE" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_PRICE_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT" Type="decimal" Scale="2" />
+          <Property Name="PRODUCT_WEIGHT_TOTAL" Type="decimal" Scale="2" />
+          <Property Name="IS_FREE" Type="nvarchar" MaxLength="1" />
+          <Property Name="PRODUCT_SEND_ROUND" Type="int" Nullable="false" />
           <Property Name="PRODUCT_SEND_QTY" Type="int" />
-          <Property Name="PRODUCT_PRICE" Type="decimal" />
-          <Property Name="PRODUCT_TOTAL" Type="decimal" />
-          <Property Name="IS_FREE" Type="bit" />
+          <Property Name="PRODUCT_SEND_REMAIN" Type="int" />
+          <Property Name="PRODUCT_SEND_COMPLETE" Type="nvarchar" MaxLength="1" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -308,6 +474,7 @@
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
+          <Property Name="STOCK_TYPE_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCT_PRICELIST">
           <Key>
@@ -400,6 +567,88 @@
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
         </EntityType>
+        <EntityType Name="STOCK_PRODUCT_STOCK">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="COLOR_ID" />
+            <PropertyRef Name="COLOR_TYPE_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="STOCK_REMAIN" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOCK_PRODUCT_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Name="TRANS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="TRANS_DATE" Type="date" Nullable="false" />
+          <Property Name="TRANS_TYPE" Type="nvarchar" MaxLength="5" />
+          <Property Name="STOCK_BEFORE" Type="int" />
+          <Property Name="TRANS_QTY" Type="int" />
+          <Property Name="STOCK_AFTER" Type="int" />
+          <Property Name="APPROVE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYS_TIME" Type="time" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOCK_PRODUCT_WITHDRAW_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Name="TRANS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VEHICLE_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="STORE_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="TRANS_DATE" Type="date" Nullable="false" />
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDER_DATE" Type="date" />
+          <Property Name="ORDER_DETAIL_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_SEQ" Type="int" />
+          <Property Name="PRODUCT_QTY" Type="int" />
+          <Property Name="STOCK_BEFORE" Type="int" />
+          <Property Name="WITHDRAW_QTY" Type="int" />
+          <Property Name="STOCK_AFTER" Type="int" />
+          <Property Name="WITHDRAW_REMAIN_QTY" Type="int" />
+          <Property Name="WITHDRAW_COMPLETE_FLG" Type="int" />
+          <Property Name="APPROVE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYS_TIME" Type="time" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOCK_TYPE">
+          <Key>
+            <PropertyRef Name="STOCK_TYPE_ID" />
+          </Key>
+          <Property Name="STOCK_TYPE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="STOCK_TYPE_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
         <EntityType Name="STORE">
           <Key>
             <PropertyRef Name="STORE_ID" />
@@ -418,6 +667,7 @@
           <Property Name="PROVINCE_ID" Type="int" Nullable="false" />
           <Property Name="SECTOR_ID" Type="int" Nullable="false" />
           <Property Name="ZONE_ID" Type="int" />
+          <Property Name="ZONE_DETAIL_ID" Type="int" />
           <Property Name="ROAD_ID" Type="int" />
           <Property Name="STORE_POSTCODE" Type="nvarchar" MaxLength="50" />
           <Property Name="CREATE_DATE" Type="date" />
@@ -495,15 +745,99 @@
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
         </EntityType>
-        <Association Name="FK_DELIVERY_ORDER_DELIVERY_ORDER">
-          <End Role="VEHICLE" Type="SPWModel.Store.VEHICLE" Multiplicity="0..1" />
-          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="DELIVERY_INDEX_DETAIL" Type="SPWModel.Store.DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="DELIVERY_INDEX_DETAIL" Type="SPWModel.Store.DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX">
+          <End Role="DELIVERY_INDEX" Type="SPWModel.Store.DELIVERY_INDEX" Multiplicity="1" />
+          <End Role="DELIVERY_INDEX_DETAIL" Type="SPWModel.Store.DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_INDEX">
+              <PropertyRef Name="DELIND_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="DELIND_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="DELIVERY_INDEX_DETAIL" Type="SPWModel.Store.DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_VEHICLE">
+          <End Role="VEHICLE" Type="SPWModel.Store.VEHICLE" Multiplicity="1" />
+          <End Role="DELIVERY_INDEX" Type="SPWModel.Store.DELIVERY_INDEX" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VEHICLE">
               <PropertyRef Name="VEHICLE_ID" />
             </Principal>
-            <Dependent Role="DELIVERY_ORDER">
+            <Dependent Role="DELIVERY_INDEX">
               <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DELIND">
+          <End Role="DELIVERY_INDEX" Type="SPWModel.Store.DELIVERY_INDEX" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_INDEX">
+              <PropertyRef Name="DELIND_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="DELIND_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -519,6 +853,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_ORDERDET">
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT">
           <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
           <End Role="DELIVERY_ORDER_DETAIL" Type="SPWModel.Store.DELIVERY_ORDER_DETAIL" Multiplicity="*" />
@@ -531,15 +877,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DELIVERY_ORDER_ORDER">
-          <End Role="ORDER" Type="SPWModel.Store.ORDER" Multiplicity="1" />
+        <Association Name="FK_DELIVERY_ORDER_STORE">
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="1" />
           <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ORDER">
-              <PropertyRef Name="ORDER_ID" />
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
             </Principal>
             <Dependent Role="DELIVERY_ORDER">
-              <PropertyRef Name="ORDER_ID" />
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_VEHICLE">
+          <End Role="VEHICLE" Type="SPWModel.Store.VEHICLE" Multiplicity="1" />
+          <End Role="DELIVERY_ORDER" Type="SPWModel.Store.DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="VEHICLE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -552,6 +910,30 @@
             </Principal>
             <Dependent Role="EMPLOYEE">
               <PropertyRef Name="DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -651,6 +1033,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUCT_STOCK_TYPE">
+          <End Role="STOCK_TYPE" Type="SPWModel.Store.STOCK_TYPE" Multiplicity="1" />
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STOCK_TYPE">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PROVINCE_SECTOR">
           <End Role="SECTOR" Type="SPWModel.Store.SECTOR" Multiplicity="0..1" />
           <End Role="PROVINCE" Type="SPWModel.Store.PROVINCE" Multiplicity="*" />
@@ -699,6 +1093,162 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_ORDER">
+          <End Role="ORDER" Type="SPWModel.Store.ORDER" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_ORDER_DTL">
+          <End Role="ORDER_DETAIL" Type="SPWModel.Store.ORDER_DETAIL" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_PRODUCT">
+          <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_STORE">
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_VEHICLE">
+          <End Role="VEHICLE" Type="SPWModel.Store.VEHICLE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" Type="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORE_PROVINCE">
           <End Role="PROVINCE" Type="SPWModel.Store.PROVINCE" Multiplicity="1" />
           <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
@@ -744,6 +1294,18 @@
             </Principal>
             <Dependent Role="STORE">
               <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ZONE_DETAIL">
+          <End Role="ZONE_DETAIL" Type="SPWModel.Store.ZONE_DETAIL" Multiplicity="0..1" />
+          <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE_DETAIL">
+              <PropertyRef Name="ZONE_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ZONE_DETAIL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -807,6 +1369,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'SPW.dbo.ReportSaleVolume' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="ReportSaleVolume">
+        <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+        <Property Name="PRODUCT_NAME" Type="nvarchar" MaxLength="50" />
+        <Property Name="ZONE_NAME" Type="nvarchar" MaxLength="50" />
+        <Property Name="EMPLOYEE_NAME" Type="nvarchar" MaxLength="50" />
+        <Property Name="Expr1" Type="int" />
+        <Property Name="Expr2" Type="decimal" Precision="38" Scale="2" />
+      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -815,6 +1388,8 @@
           <EntitySet Name="CATEGORY" EntityType="SPWModel.CATEGORY" />
           <EntitySet Name="COLOR" EntityType="SPWModel.COLOR" />
           <EntitySet Name="COLOR_TYPE" EntityType="SPWModel.COLOR_TYPE" />
+          <EntitySet Name="DELIVERY_INDEX" EntityType="SPWModel.DELIVERY_INDEX" />
+          <EntitySet Name="DELIVERY_INDEX_DETAIL" EntityType="SPWModel.DELIVERY_INDEX_DETAIL" />
           <EntitySet Name="DELIVERY_ORDER" EntityType="SPWModel.DELIVERY_ORDER" />
           <EntitySet Name="DELIVERY_ORDER_DETAIL" EntityType="SPWModel.DELIVERY_ORDER_DETAIL" />
           <EntitySet Name="DEPARTMENT" EntityType="SPWModel.DEPARTMENT" />
@@ -830,6 +1405,10 @@
           <EntitySet Name="ROLE" EntityType="SPWModel.ROLE" />
           <EntitySet Name="ROLE_FUNCTION" EntityType="SPWModel.ROLE_FUNCTION" />
           <EntitySet Name="SECTOR" EntityType="SPWModel.SECTOR" />
+          <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.STOCK_PRODUCT_STOCK" />
+          <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.STOCK_PRODUCT_TRANS" />
+          <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" />
+          <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.STOCK_TYPE" />
           <EntitySet Name="STORE" EntityType="SPWModel.STORE" />
           <EntitySet Name="SUB_FUNCTION" EntityType="SPWModel.SUB_FUNCTION" />
           <EntitySet Name="USER" EntityType="SPWModel.USER" />
@@ -840,17 +1419,85 @@
             <End Role="CATEGORY" EntitySet="CATEGORY" />
             <End Role="PRODUCT" EntitySet="PRODUCT" />
           </AssociationSet>
-          <AssociationSet Name="FK_DELIVERY_ORDER_DELIVERY_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER">
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_COLOR" Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_COLOR" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_COLOR" Association="SPWModel.FK_ORDER_DETAIL_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR" Association="SPWModel.FK_STOCK_PRODUCT_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_COLOR" Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_COLOR" Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE" Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_DETAIL_COLOR_TYPE" Association="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX" Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX">
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_VEHICLE" Association="SPWModel.FK_DELIVERY_INDEX_VEHICLE">
             <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DELIND" Association="SPWModel.FK_DELIVERY_ORDER_DELIND">
+            <End Role="DELIVERY_INDEX" EntitySet="DELIVERY_INDEX" />
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_INDEX_DETAIL_PRODUCT" Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DELIVERY_INDEX_DETAIL" EntitySet="DELIVERY_INDEX_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER">
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
             <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_DELIVERY_ORDER_ORDER" Association="SPWModel.FK_DELIVERY_ORDER_ORDER">
-            <End Role="ORDER" EntitySet="ORDER" />
+          <AssociationSet Name="FK_DELIVERY_ORDER_STORE" Association="SPWModel.FK_DELIVERY_ORDER_STORE">
+            <End Role="STORE" EntitySet="STORE" />
             <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_VEHICLE" Association="SPWModel.FK_DELIVERY_ORDER_VEHICLE">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="DELIVERY_ORDER" EntitySet="DELIVERY_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_ORDERDET" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_ORDERDET">
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+            <End Role="DELIVERY_ORDER_DETAIL" EntitySet="DELIVERY_ORDER_DETAIL" />
           </AssociationSet>
           <AssociationSet Name="FK_DELIVERY_ORDER_DETAIL_PRODUCT" Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -884,9 +1531,17 @@
             <End Role="STORE" EntitySet="STORE" />
             <End Role="ORDER" EntitySet="ORDER" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_ORDER" Association="SPWModel.FK_STOCK_PRODUCT_WD_ORDER">
+            <End Role="ORDER" EntitySet="ORDER" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_ORDER_DETAIL_PRODUCT" Association="SPWModel.FK_ORDER_DETAIL_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_ORDER_DTL" Association="SPWModel.FK_STOCK_PRODUCT_WD_ORDER_DTL">
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_PRICELIST_PRODUCT" Association="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -895,6 +1550,22 @@
           <AssociationSet Name="FK_PRODUCT_PROMOTION_PRODUCT" Association="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="PRODUCT_PROMOTION" EntitySet="PRODUCT_PROMOTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_STOCK_TYPE" Association="SPWModel.FK_PRODUCT_STOCK_TYPE">
+            <End Role="STOCK_TYPE" EntitySet="STOCK_TYPE" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_PRODUCT" Association="SPWModel.FK_STOCK_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_PRODUCT" Association="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_TRANS" EntitySet="STOCK_PRODUCT_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_PRODUCT" Association="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_PRICELIST_ZONE" Association="SPWModel.FK_PRODUCT_PRICELIST_ZONE">
             <End Role="ZONE" EntitySet="ZONE" />
@@ -932,8 +1603,20 @@
             <End Role="SECTOR" EntitySet="SECTOR" />
             <End Role="STORE" EntitySet="STORE" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_STORE" Association="SPWModel.FK_STOCK_PRODUCT_WD_STORE">
+            <End Role="STORE" EntitySet="STORE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_WD_VEHICLE" Association="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE">
+            <End Role="VEHICLE" EntitySet="VEHICLE" />
+            <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_STORE_ZONE" Association="SPWModel.FK_STORE_ZONE">
             <End Role="ZONE" EntitySet="ZONE" />
+            <End Role="STORE" EntitySet="STORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORE_ZONE_DETAIL" Association="SPWModel.FK_STORE_ZONE_DETAIL">
+            <End Role="ZONE_DETAIL" EntitySet="ZONE_DETAIL" />
             <End Role="STORE" EntitySet="STORE" />
           </AssociationSet>
           <AssociationSet Name="FK_ZONE_DETAIL_ZONE" Association="SPWModel.FK_ZONE_DETAIL_ZONE">
@@ -968,6 +1651,12 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR" FromRole="COLOR" ToRole="DELIVERY_INDEX_DETAIL" />
+          <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR" FromRole="COLOR" ToRole="DELIVERY_ORDER_DETAIL" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR" FromRole="COLOR" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_STOCK" />
+          <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_TRANS" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
         </EntityType>
         <EntityType Name="COLOR_TYPE">
           <Key>
@@ -981,25 +1670,79 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="DELIVERY_INDEX_DETAIL" />
+          <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="DELIVERY_ORDER_DETAIL" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_STOCK" />
+          <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_TRANS" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
+        </EntityType>
+        <EntityType Name="DELIVERY_INDEX">
+          <Key>
+            <PropertyRef Name="DELIND_ID" />
+          </Key>
+          <Property Type="Int32" Name="DELIND_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DELIND_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DELIND_DATE" Precision="0" />
+          <Property Type="Int32" Name="VEHICLE_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX" FromRole="DELIVERY_INDEX" ToRole="DELIVERY_INDEX_DETAIL" />
+          <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_DELIVERY_INDEX_VEHICLE" FromRole="DELIVERY_INDEX" ToRole="VEHICLE" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIND" FromRole="DELIVERY_INDEX" ToRole="DELIVERY_ORDER" />
+        </EntityType>
+        <EntityType Name="DELIVERY_INDEX_DETAIL">
+          <Key>
+            <PropertyRef Name="DELIND_DETAIL_ID" />
+          </Key>
+          <Property Type="Int32" Name="DELIND_DETAIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DELIND_ID" Nullable="false" />
+          <Property Type="Int32" Name="DELIND_SEQ_NO" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT" Precision="18" Scale="2" />
+          <Property Type="String" Name="IS_FREE" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PRODUCT_SENT_QTY" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE_TOTAL" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT_TOTAL" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR" FromRole="DELIVERY_INDEX_DETAIL" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE" FromRole="DELIVERY_INDEX_DETAIL" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="DELIVERY_INDEX" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX" FromRole="DELIVERY_INDEX_DETAIL" ToRole="DELIVERY_INDEX" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_PRODUCT" FromRole="DELIVERY_INDEX_DETAIL" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="DELIVERY_ORDER">
           <Key>
             <PropertyRef Name="DELORDER_ID" />
           </Key>
           <Property Type="Int32" Name="DELORDER_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="Int32" Name="DELIND_ID" Nullable="false" />
           <Property Type="String" Name="DELORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="DELORDER_DATE" Precision="0" />
+          <Property Type="Int32" Name="DELORDER_SEQ_NO" />
+          <Property Type="Int32" Name="STORE_ID" Nullable="false" />
+          <Property Type="Int32" Name="VEHICLE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="DELORDER_PRICE_TOTAL" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="DELORDER_WEIGHT_TOTAL" Precision="18" Scale="2" />
           <Property Type="String" Name="DELORDER_STEP" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="VEHICLE_ID" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" FromRole="DELIVERY_ORDER" ToRole="VEHICLE" />
+          <NavigationProperty Name="DELIVERY_INDEX" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIND" FromRole="DELIVERY_ORDER" ToRole="DELIVERY_INDEX" />
           <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" FromRole="DELIVERY_ORDER" ToRole="DELIVERY_ORDER_DETAIL" />
-          <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_ORDER" FromRole="DELIVERY_ORDER" ToRole="ORDER" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_DELIVERY_ORDER_STORE" FromRole="DELIVERY_ORDER" ToRole="STORE" />
+          <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_DELIVERY_ORDER_VEHICLE" FromRole="DELIVERY_ORDER" ToRole="VEHICLE" />
         </EntityType>
         <EntityType Name="DELIVERY_ORDER_DETAIL">
           <Key>
@@ -1007,19 +1750,31 @@
           </Key>
           <Property Type="Int32" Name="DELORDER_DETAIL_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="DELORDER_ID" Nullable="false" />
+          <Property Type="String" Name="DELORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DELORDER_SEQ_NO" />
+          <Property Type="Int32" Name="ORDER_DETAIL_ID" Nullable="false" />
           <Property Type="Int32" Name="PRODUCT_SEQ" />
           <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
           <Property Type="Int32" Name="PRODUCT_QTY" />
-          <Property Type="Int32" Name="PRODUCT_SEND_QTY" />
-          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="PRODUCT_TOTAL" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT" Precision="18" Scale="2" />
+          <Property Type="String" Name="IS_FREE" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PRODUCT_SENT_ROUND" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_SENT_QTY" />
+          <Property Type="Int32" Name="PRODUCT_SENT_REMAIN" />
+          <Property Type="Decimal" Name="PRODUCT_SENT_PRICE_TOTAL" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_SENT_WEIGHT_TOTAL" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <Property Type="String" Name="COLOR_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR" FromRole="DELIVERY_ORDER_DETAIL" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" FromRole="DELIVERY_ORDER_DETAIL" ToRole="COLOR_TYPE" />
           <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" FromRole="DELIVERY_ORDER_DETAIL" ToRole="DELIVERY_ORDER" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_ORDERDET" FromRole="DELIVERY_ORDER_DETAIL" ToRole="ORDER_DETAIL" />
           <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" FromRole="DELIVERY_ORDER_DETAIL" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
@@ -1076,17 +1831,17 @@
           <Property Type="String" Name="ORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="ORDER_DATE" Precision="0" />
           <Property Type="Int32" Name="STORE_ID" Nullable="false" />
+          <Property Type="Int32" Name="ORDER_SEND_ROUND" Nullable="false" />
           <Property Type="Decimal" Name="ORDER_TOTAL" Precision="18" Scale="2" />
-          <Property Type="String" Name="ORDER_APPROVE" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ORDER_STEP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ORDER_STEP" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_ORDER" FromRole="ORDER" ToRole="DELIVERY_ORDER" />
           <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_ORDER" FromRole="ORDER" ToRole="ORDER_DETAIL" />
           <NavigationProperty Name="STORE" Relationship="SPWModel.FK_ORDER_STORE" FromRole="ORDER" ToRole="STORE" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_ORDER" FromRole="ORDER" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
         </EntityType>
         <EntityType Name="ORDER_DETAIL">
           <Key>
@@ -1096,18 +1851,29 @@
           <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
           <Property Type="Int32" Name="PRODUCT_SEQ" />
           <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
           <Property Type="Int32" Name="PRODUCT_QTY" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_PRICE_TOTAL" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PRODUCT_WEIGHT_TOTAL" Precision="18" Scale="2" />
+          <Property Type="String" Name="IS_FREE" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PRODUCT_SEND_ROUND" Nullable="false" />
           <Property Type="Int32" Name="PRODUCT_SEND_QTY" />
-          <Property Type="Decimal" Name="PRODUCT_PRICE" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="PRODUCT_TOTAL" Precision="18" Scale="0" />
-          <Property Type="Boolean" Name="IS_FREE" />
+          <Property Type="Int32" Name="PRODUCT_SEND_REMAIN" />
+          <Property Type="String" Name="PRODUCT_SEND_COMPLETE" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR" FromRole="ORDER_DETAIL" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE" FromRole="ORDER_DETAIL" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_ORDERDET" FromRole="ORDER_DETAIL" ToRole="DELIVERY_ORDER_DETAIL" />
           <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_ORDER_DETAIL_ORDER" FromRole="ORDER_DETAIL" ToRole="ORDER" />
           <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_ORDER_DETAIL_PRODUCT" FromRole="ORDER_DETAIL" ToRole="PRODUCT" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_ORDER_DTL" FromRole="ORDER_DETAIL" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -1131,11 +1897,17 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <Property Type="Int32" Name="STOCK_TYPE_ID" Nullable="false" />
           <NavigationProperty Name="CATEGORY" Relationship="SPWModel.FK_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <NavigationProperty Name="DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="DELIVERY_INDEX_DETAIL" />
           <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="DELIVERY_ORDER_DETAIL" />
           <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="ORDER_DETAIL" />
           <NavigationProperty Name="PRODUCT_PRICELIST" Relationship="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_PRICELIST" />
           <NavigationProperty Name="PRODUCT_PROMOTION" Relationship="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_PROMOTION" />
+          <NavigationProperty Name="STOCK_TYPE" Relationship="SPWModel.FK_PRODUCT_STOCK_TYPE" FromRole="PRODUCT" ToRole="STOCK_TYPE" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_STOCK" />
+          <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_TRANS" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
         </EntityType>
         <EntityType Name="PRODUCT_PRICELIST">
           <Key>
@@ -1243,6 +2015,102 @@
           <NavigationProperty Name="PROVINCE" Relationship="SPWModel.FK_PROVINCE_SECTOR" FromRole="SECTOR" ToRole="PROVINCE" />
           <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_SECTOR" FromRole="SECTOR" ToRole="STORE" />
         </EntityType>
+        <EntityType Name="STOCK_PRODUCT_STOCK">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="COLOR_ID" />
+            <PropertyRef Name="COLOR_TYPE_ID" />
+          </Key>
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
+          <Property Type="Int32" Name="STOCK_REMAIN" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR" FromRole="STOCK_PRODUCT_STOCK" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" FromRole="STOCK_PRODUCT_STOCK" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_PRODUCT" FromRole="STOCK_PRODUCT_STOCK" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="STOCK_PRODUCT_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Type="Int32" Name="TRANS_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
+          <Property Type="DateTime" Name="TRANS_DATE" Nullable="false" Precision="0" />
+          <Property Type="String" Name="TRANS_TYPE" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="STOCK_BEFORE" />
+          <Property Type="Int32" Name="TRANS_QTY" />
+          <Property Type="Int32" Name="STOCK_AFTER" />
+          <Property Type="Int32" Name="APPROVE_EMPLOYEE_ID" />
+          <Property Type="Time" Name="SYS_TIME" Precision="7" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR" FromRole="STOCK_PRODUCT_TRANS" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" FromRole="STOCK_PRODUCT_TRANS" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT" FromRole="STOCK_PRODUCT_TRANS" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="STOCK_PRODUCT_WITHDRAW_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Type="Int32" Name="TRANS_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="VEHICLE_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
+          <Property Type="Int32" Name="STORE_ID" Nullable="false" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
+          <Property Type="DateTime" Name="TRANS_DATE" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="String" Name="ORDER_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ORDER_DATE" Precision="0" />
+          <Property Type="Int32" Name="ORDER_DETAIL_ID" Nullable="false" />
+          <Property Type="Int32" Name="PRODUCT_SEQ" />
+          <Property Type="Int32" Name="PRODUCT_QTY" />
+          <Property Type="Int32" Name="STOCK_BEFORE" />
+          <Property Type="Int32" Name="WITHDRAW_QTY" />
+          <Property Type="Int32" Name="STOCK_AFTER" />
+          <Property Type="Int32" Name="WITHDRAW_REMAIN_QTY" />
+          <Property Type="Int32" Name="WITHDRAW_COMPLETE_FLG" />
+          <Property Type="Int32" Name="APPROVE_EMPLOYEE_ID" />
+          <Property Type="Time" Name="SYS_TIME" Precision="7" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_ORDER" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="ORDER" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_ORDER_DTL" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="PRODUCT" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_STORE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="STORE" />
+          <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="VEHICLE" />
+        </EntityType>
+        <EntityType Name="STOCK_TYPE">
+          <Key>
+            <PropertyRef Name="STOCK_TYPE_ID" />
+          </Key>
+          <Property Type="Int32" Name="STOCK_TYPE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="STOCK_TYPE_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_PRODUCT_STOCK_TYPE" FromRole="STOCK_TYPE" ToRole="PRODUCT" />
+        </EntityType>
         <EntityType Name="STORE">
           <Key>
             <PropertyRef Name="STORE_ID" />
@@ -1261,6 +2129,7 @@
           <Property Type="Int32" Name="PROVINCE_ID" Nullable="false" />
           <Property Type="Int32" Name="SECTOR_ID" Nullable="false" />
           <Property Type="Int32" Name="ZONE_ID" />
+          <Property Type="Int32" Name="ZONE_DETAIL_ID" />
           <Property Type="Int32" Name="ROAD_ID" />
           <Property Type="String" Name="STORE_POSTCODE" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
@@ -1268,11 +2137,14 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_STORE" FromRole="STORE" ToRole="DELIVERY_ORDER" />
           <NavigationProperty Name="ORDER" Relationship="SPWModel.FK_ORDER_STORE" FromRole="STORE" ToRole="ORDER" />
           <NavigationProperty Name="PROVINCE" Relationship="SPWModel.FK_STORE_PROVINCE" FromRole="STORE" ToRole="PROVINCE" />
           <NavigationProperty Name="ROAD" Relationship="SPWModel.FK_STORE_ROAD" FromRole="STORE" ToRole="ROAD" />
           <NavigationProperty Name="SECTOR" Relationship="SPWModel.FK_STORE_SECTOR" FromRole="STORE" ToRole="SECTOR" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_STORE" FromRole="STORE" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
           <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_STORE_ZONE" FromRole="STORE" ToRole="ZONE" />
+          <NavigationProperty Name="ZONE_DETAIL" Relationship="SPWModel.FK_STORE_ZONE_DETAIL" FromRole="STORE" ToRole="ZONE_DETAIL" />
         </EntityType>
         <EntityType Name="SUB_FUNCTION">
           <Key>
@@ -1319,7 +2191,9 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" FromRole="VEHICLE" ToRole="DELIVERY_ORDER" />
+          <NavigationProperty Name="DELIVERY_INDEX" Relationship="SPWModel.FK_DELIVERY_INDEX_VEHICLE" FromRole="VEHICLE" ToRole="DELIVERY_INDEX" />
+          <NavigationProperty Name="DELIVERY_ORDER" Relationship="SPWModel.FK_DELIVERY_ORDER_VEHICLE" FromRole="VEHICLE" ToRole="DELIVERY_ORDER" />
+          <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE" FromRole="VEHICLE" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
         </EntityType>
         <EntityType Name="ZONE">
           <Key>
@@ -1351,6 +2225,7 @@
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
           <NavigationProperty Name="EMPLOYEE" Relationship="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" FromRole="ZONE_DETAIL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_ZONE_DETAIL" FromRole="ZONE_DETAIL" ToRole="STORE" />
           <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_ZONE_DETAIL_ZONE" FromRole="ZONE_DETAIL" ToRole="ZONE" />
         </EntityType>
         <Association Name="FK_PRODUCT_CATEGORY">
@@ -1365,15 +2240,195 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DELIVERY_ORDER_DELIVERY_ORDER">
-          <End Type="SPWModel.VEHICLE" Role="VEHICLE" Multiplicity="0..1" />
-          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_INDEX_DETAIL" Role="DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER_DETAIL" Role="DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_TRANS" Role="STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_INDEX_DETAIL" Role="DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER_DETAIL" Role="DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_DETAIL_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_TRANS" Role="STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX">
+          <End Type="SPWModel.DELIVERY_INDEX" Role="DELIVERY_INDEX" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_INDEX_DETAIL" Role="DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_INDEX">
+              <PropertyRef Name="DELIND_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="DELIND_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_VEHICLE">
+          <End Type="SPWModel.VEHICLE" Role="VEHICLE" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_INDEX" Role="DELIVERY_INDEX" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VEHICLE">
               <PropertyRef Name="VEHICLE_ID" />
             </Principal>
-            <Dependent Role="DELIVERY_ORDER">
+            <Dependent Role="DELIVERY_INDEX">
               <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DELIND">
+          <End Type="SPWModel.DELIVERY_INDEX" Role="DELIVERY_INDEX" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY_INDEX">
+              <PropertyRef Name="DELIND_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="DELIND_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_INDEX_DETAIL_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_INDEX_DETAIL" Role="DELIVERY_INDEX_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_INDEX_DETAIL">
+              <PropertyRef Name="PRODUCT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1389,15 +2444,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DELIVERY_ORDER_ORDER">
-          <End Type="SPWModel.ORDER" Role="ORDER" Multiplicity="1" />
+        <Association Name="FK_DELIVERY_ORDER_STORE">
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="1" />
           <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ORDER">
-              <PropertyRef Name="ORDER_ID" />
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
             </Principal>
             <Dependent Role="DELIVERY_ORDER">
-              <PropertyRef Name="ORDER_ID" />
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_VEHICLE">
+          <End Type="SPWModel.VEHICLE" Role="VEHICLE" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER" Role="DELIVERY_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DELIVERY_ORDER_DETAIL_ORDERDET">
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="1" />
+          <End Type="SPWModel.DELIVERY_ORDER_DETAIL" Role="DELIVERY_ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="DELIVERY_ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1497,6 +2576,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_ORDER">
+          <End Type="SPWModel.ORDER" Role="ORDER" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ORDER_DETAIL_PRODUCT">
           <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
           <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
@@ -1506,6 +2597,18 @@
             </Principal>
             <Dependent Role="ORDER_DETAIL">
               <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_ORDER_DTL">
+          <End Type="SPWModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDER_DETAIL">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="ORDER_DETAIL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1529,6 +2632,54 @@
               <PropertyRef Name="PRODUCT_ID" />
             </Principal>
             <Dependent Role="PRODUCT_PROMOTION">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_STOCK_TYPE">
+          <End Type="SPWModel.STOCK_TYPE" Role="STOCK_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STOCK_TYPE">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_TRANS_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_TRANS" Role="STOCK_PRODUCT_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_TRANS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_PRODUCT">
+          <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
               <PropertyRef Name="PRODUCT_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1641,6 +2792,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_STORE">
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE">
+              <PropertyRef Name="STORE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="STORE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_WD_VEHICLE">
+          <End Type="SPWModel.VEHICLE" Role="VEHICLE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Role="STOCK_PRODUCT_WITHDRAW_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICLE">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_WITHDRAW_TRANS">
+              <PropertyRef Name="VEHICLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORE_ZONE">
           <End Type="SPWModel.ZONE" Role="ZONE" Multiplicity="0..1" />
           <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
@@ -1650,6 +2825,18 @@
             </Principal>
             <Dependent Role="STORE">
               <PropertyRef Name="ZONE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORE_ZONE_DETAIL">
+          <End Type="SPWModel.ZONE_DETAIL" Role="ZONE_DETAIL" Multiplicity="0..1" />
+          <End Type="SPWModel.STORE" Role="STORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZONE_DETAIL">
+              <PropertyRef Name="ZONE_DETAIL_ID" />
+            </Principal>
+            <Dependent Role="STORE">
+              <PropertyRef Name="ZONE_DETAIL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1714,6 +2901,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERY_INDEX">
+            <EntityTypeMapping TypeName="SPWModel.DELIVERY_INDEX">
+              <MappingFragment StoreEntitySet="DELIVERY_INDEX">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
+                <ScalarProperty Name="DELIND_DATE" ColumnName="DELIND_DATE" />
+                <ScalarProperty Name="DELIND_CODE" ColumnName="DELIND_CODE" />
+                <ScalarProperty Name="DELIND_ID" ColumnName="DELIND_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DELIVERY_INDEX_DETAIL">
+            <EntityTypeMapping TypeName="SPWModel.DELIVERY_INDEX_DETAIL">
+              <MappingFragment StoreEntitySet="DELIVERY_INDEX_DETAIL">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT_TOTAL" ColumnName="PRODUCT_WEIGHT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_PRICE_TOTAL" ColumnName="PRODUCT_PRICE_TOTAL" />
+                <ScalarProperty Name="PRODUCT_SENT_QTY" ColumnName="PRODUCT_SENT_QTY" />
+                <ScalarProperty Name="IS_FREE" ColumnName="IS_FREE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT" ColumnName="PRODUCT_WEIGHT" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="DELIND_SEQ_NO" ColumnName="DELIND_SEQ_NO" />
+                <ScalarProperty Name="DELIND_ID" ColumnName="DELIND_ID" />
+                <ScalarProperty Name="DELIND_DETAIL_ID" ColumnName="DELIND_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DELIVERY_ORDER">
             <EntityTypeMapping TypeName="SPWModel.DELIVERY_ORDER">
               <MappingFragment StoreEntitySet="DELIVERY_ORDER">
@@ -1722,11 +2947,15 @@
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
-                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
                 <ScalarProperty Name="DELORDER_STEP" ColumnName="DELORDER_STEP" />
+                <ScalarProperty Name="DELORDER_WEIGHT_TOTAL" ColumnName="DELORDER_WEIGHT_TOTAL" />
+                <ScalarProperty Name="DELORDER_PRICE_TOTAL" ColumnName="DELORDER_PRICE_TOTAL" />
+                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
+                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+                <ScalarProperty Name="DELORDER_SEQ_NO" ColumnName="DELORDER_SEQ_NO" />
                 <ScalarProperty Name="DELORDER_DATE" ColumnName="DELORDER_DATE" />
                 <ScalarProperty Name="DELORDER_CODE" ColumnName="DELORDER_CODE" />
-                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="DELIND_ID" ColumnName="DELIND_ID" />
                 <ScalarProperty Name="DELORDER_ID" ColumnName="DELORDER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1734,18 +2963,27 @@
           <EntitySetMapping Name="DELIVERY_ORDER_DETAIL">
             <EntityTypeMapping TypeName="SPWModel.DELIVERY_ORDER_DETAIL">
               <MappingFragment StoreEntitySet="DELIVERY_ORDER_DETAIL">
-                <ScalarProperty Name="COLOR_CODE" ColumnName="COLOR_CODE" />
                 <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
                 <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
-                <ScalarProperty Name="PRODUCT_TOTAL" ColumnName="PRODUCT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_SENT_WEIGHT_TOTAL" ColumnName="PRODUCT_SENT_WEIGHT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_SENT_PRICE_TOTAL" ColumnName="PRODUCT_SENT_PRICE_TOTAL" />
+                <ScalarProperty Name="PRODUCT_SENT_REMAIN" ColumnName="PRODUCT_SENT_REMAIN" />
+                <ScalarProperty Name="PRODUCT_SENT_QTY" ColumnName="PRODUCT_SENT_QTY" />
+                <ScalarProperty Name="PRODUCT_SENT_ROUND" ColumnName="PRODUCT_SENT_ROUND" />
+                <ScalarProperty Name="IS_FREE" ColumnName="IS_FREE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT" ColumnName="PRODUCT_WEIGHT" />
                 <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
-                <ScalarProperty Name="PRODUCT_SEND_QTY" ColumnName="PRODUCT_SEND_QTY" />
                 <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="PRODUCT_SEQ" ColumnName="PRODUCT_SEQ" />
+                <ScalarProperty Name="ORDER_DETAIL_ID" ColumnName="ORDER_DETAIL_ID" />
+                <ScalarProperty Name="DELORDER_SEQ_NO" ColumnName="DELORDER_SEQ_NO" />
+                <ScalarProperty Name="DELORDER_CODE" ColumnName="DELORDER_CODE" />
                 <ScalarProperty Name="DELORDER_ID" ColumnName="DELORDER_ID" />
                 <ScalarProperty Name="DELORDER_DETAIL_ID" ColumnName="DELORDER_DETAIL_ID" />
               </MappingFragment>
@@ -1803,8 +3041,8 @@
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
                 <ScalarProperty Name="ORDER_STEP" ColumnName="ORDER_STEP" />
-                <ScalarProperty Name="ORDER_APPROVE" ColumnName="ORDER_APPROVE" />
                 <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="ORDER_SEND_ROUND" ColumnName="ORDER_SEND_ROUND" />
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
                 <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
                 <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
@@ -1820,11 +3058,18 @@
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
-                <ScalarProperty Name="IS_FREE" ColumnName="IS_FREE" />
-                <ScalarProperty Name="PRODUCT_TOTAL" ColumnName="PRODUCT_TOTAL" />
-                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
+                <ScalarProperty Name="PRODUCT_SEND_COMPLETE" ColumnName="PRODUCT_SEND_COMPLETE" />
+                <ScalarProperty Name="PRODUCT_SEND_REMAIN" ColumnName="PRODUCT_SEND_REMAIN" />
                 <ScalarProperty Name="PRODUCT_SEND_QTY" ColumnName="PRODUCT_SEND_QTY" />
+                <ScalarProperty Name="PRODUCT_SEND_ROUND" ColumnName="PRODUCT_SEND_ROUND" />
+                <ScalarProperty Name="IS_FREE" ColumnName="IS_FREE" />
+                <ScalarProperty Name="PRODUCT_WEIGHT_TOTAL" ColumnName="PRODUCT_WEIGHT_TOTAL" />
+                <ScalarProperty Name="PRODUCT_WEIGHT" ColumnName="PRODUCT_WEIGHT" />
+                <ScalarProperty Name="PRODUCT_PRICE_TOTAL" ColumnName="PRODUCT_PRICE_TOTAL" />
+                <ScalarProperty Name="PRODUCT_PRICE" ColumnName="PRODUCT_PRICE" />
                 <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="PRODUCT_SEQ" ColumnName="PRODUCT_SEQ" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
@@ -1835,6 +3080,7 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="SPWModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="STOCK_TYPE_ID" ColumnName="STOCK_TYPE_ID" />
                 <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
                 <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
@@ -1954,6 +3200,90 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_PRODUCT_STOCK">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_PRODUCT_STOCK">
+              <MappingFragment StoreEntitySet="STOCK_PRODUCT_STOCK">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="STOCK_REMAIN" ColumnName="STOCK_REMAIN" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_PRODUCT_TRANS">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_PRODUCT_TRANS">
+              <MappingFragment StoreEntitySet="STOCK_PRODUCT_TRANS">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SYS_TIME" ColumnName="SYS_TIME" />
+                <ScalarProperty Name="APPROVE_EMPLOYEE_ID" ColumnName="APPROVE_EMPLOYEE_ID" />
+                <ScalarProperty Name="STOCK_AFTER" ColumnName="STOCK_AFTER" />
+                <ScalarProperty Name="TRANS_QTY" ColumnName="TRANS_QTY" />
+                <ScalarProperty Name="STOCK_BEFORE" ColumnName="STOCK_BEFORE" />
+                <ScalarProperty Name="TRANS_TYPE" ColumnName="TRANS_TYPE" />
+                <ScalarProperty Name="TRANS_DATE" ColumnName="TRANS_DATE" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="TRANS_ID" ColumnName="TRANS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_PRODUCT_WITHDRAW_TRANS">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS">
+              <MappingFragment StoreEntitySet="STOCK_PRODUCT_WITHDRAW_TRANS">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SYS_TIME" ColumnName="SYS_TIME" />
+                <ScalarProperty Name="APPROVE_EMPLOYEE_ID" ColumnName="APPROVE_EMPLOYEE_ID" />
+                <ScalarProperty Name="WITHDRAW_COMPLETE_FLG" ColumnName="WITHDRAW_COMPLETE_FLG" />
+                <ScalarProperty Name="WITHDRAW_REMAIN_QTY" ColumnName="WITHDRAW_REMAIN_QTY" />
+                <ScalarProperty Name="STOCK_AFTER" ColumnName="STOCK_AFTER" />
+                <ScalarProperty Name="WITHDRAW_QTY" ColumnName="WITHDRAW_QTY" />
+                <ScalarProperty Name="STOCK_BEFORE" ColumnName="STOCK_BEFORE" />
+                <ScalarProperty Name="PRODUCT_QTY" ColumnName="PRODUCT_QTY" />
+                <ScalarProperty Name="PRODUCT_SEQ" ColumnName="PRODUCT_SEQ" />
+                <ScalarProperty Name="ORDER_DETAIL_ID" ColumnName="ORDER_DETAIL_ID" />
+                <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
+                <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="TRANS_DATE" ColumnName="TRANS_DATE" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="VEHICLE_ID" ColumnName="VEHICLE_ID" />
+                <ScalarProperty Name="TRANS_ID" ColumnName="TRANS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_TYPE">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_TYPE">
+              <MappingFragment StoreEntitySet="STOCK_TYPE">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="STOCK_TYPE_NAME" ColumnName="STOCK_TYPE_NAME" />
+                <ScalarProperty Name="STOCK_TYPE_ID" ColumnName="STOCK_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="STORE">
             <EntityTypeMapping TypeName="SPWModel.STORE">
               <MappingFragment StoreEntitySet="STORE">
@@ -1964,6 +3294,7 @@
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
                 <ScalarProperty Name="STORE_POSTCODE" ColumnName="STORE_POSTCODE" />
                 <ScalarProperty Name="ROAD_ID" ColumnName="ROAD_ID" />
+                <ScalarProperty Name="ZONE_DETAIL_ID" ColumnName="ZONE_DETAIL_ID" />
                 <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
                 <ScalarProperty Name="SECTOR_ID" ColumnName="SECTOR_ID" />
                 <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
@@ -2076,35 +3407,58 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="67">
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="9.63769685739544" PointY="7.3950867538317508" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="9.9881366798598954" PointY="29.086751653387562" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="0.19822802031330206" PointY="21.285887534397602" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="0.30755417249517242" PointY="17.817760505628662" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="2.5825632468716071" PointY="19.548510709567232" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="0.41746783462235137" PointY="5.4492274548156319" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="8.7955693084725972" PointY="28.600085748638996" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="10.481953968518392" PointY="26.571768370723245" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="7.1955431062707422" PointY="8.1280241795480368" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="10.138693654042992" PointY="9.0998885971959158" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="2.4990566086485311" PointY="24.04232719170038" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="10.38510727434657" PointY="1.4243495172934371" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="1.1662924462772404" PointY="8.7161432843264866" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="8.9170333169945675" PointY="29.856364994242956" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="3.4827728976881005" PointY="22.653135801969626" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="10.98313525644277" PointY="26.554826078263496" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="7.9760732333995747" PointY="31.991895526643795" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="9.76996281452941" PointY="0.53606586183238114" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="11.865126488667507" PointY="0.65824221105232938" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="0.18357819141055373" PointY="5.12951874971833" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="8.1614399944252511" PointY="20.5484948849997" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="6.5379763983832557" PointY="16.768021233737478" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="4.9447222822088381" PointY="0.26531417680220409" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="5.0289326426707825" PointY="8.96461503625131" />
+      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="5.68310276869829" PointY="26.286139247140913" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="3.7375399562239369" PointY="12.524970254173955" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="2.7832819161858788" PointY="22.178688849405706" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="0.67414784462849975" PointY="14.898657671594368" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="2.0379377836538191" PointY="0.35256548242297281" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="7.7701171095343859" PointY="3.616128014221847" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="11.981304936102269" PointY="1.6320277609080205" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="7.6816794647284228" PointY="7.8860596604114672" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="0.37325293215608824" PointY="3.8468010890515525" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="0.758251302297344" PointY="21.099530527880198" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="1.1507101474100305" PointY="24.576427247643668" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="5.1498152432729558" PointY="29.60423052199382" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="9.8424053126212243" PointY="2.8637869669421514" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="10.922618228440461" PointY="24.189289029775786" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="1.3651750541129966" PointY="11.422290554001132" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="11.241867150758331" PointY="12.408821707781787" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="8.8626748588228015" PointY="9.6882770851665541" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="2.6296668381568358" PointY="21.049281651642769" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="9.9756828369459534" PointY="6.2209761469722613" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="11.371688844343503" PointY="8.81472926252276" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="1.1146738254999153" PointY="30.888319283206165" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="9.026588943333639" PointY="6.1366961626972518" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="4.186417855409168" PointY="22.668383355563684" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="8.6113080869481458" PointY="2.2717462639658463" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="4.99193945387003" PointY="20.856819430765146" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="4.5744304529272162" PointY="4.7364772133233384" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="0.80367098599843256" PointY="4.7248237155027795" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="8.0690298527800621" PointY="22.578513468885102" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="4.7074869744048859" PointY="12.362542694603345" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="6.8544585326940091" PointY="4.5582981428868594" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_CATEGORY" />
-        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DELIVERY_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_DELIVERY_INDEX" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_VEHICLE" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DELIND" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_DELIVERY_ORDER" />
-        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_ORDER" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_STORE" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_VEHICLE" />
+        <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_ORDERDET" />
         <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_EMPLOYEE_DEPARTMENT" />
         <AssociationConnector Association="SPWModel.FK_USER_EMPLOYEE" />
@@ -2113,9 +3467,15 @@
         <AssociationConnector Association="SPWModel.FK_SUB_FUNCTION_FUNCTION" />
         <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_ORDER" />
         <AssociationConnector Association="SPWModel.FK_ORDER_STORE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_ORDER" />
         <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_ORDER_DTL" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_PRICELIST_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_PRODUCT_STOCK_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_PRICELIST_ZONE" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_PROMOTION_ZONE" />
         <AssociationConnector Association="SPWModel.FK_PROVINCE_SECTOR" />
@@ -2125,7 +3485,10 @@
         <AssociationConnector Association="SPWModel.FK_ROLE_ROLE" />
         <AssociationConnector Association="SPWModel.FK_USER_ROLE" />
         <AssociationConnector Association="SPWModel.FK_STORE_SECTOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_STORE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE" />
         <AssociationConnector Association="SPWModel.FK_STORE_ZONE" />
+        <AssociationConnector Association="SPWModel.FK_STORE_ZONE_DETAIL" />
         <AssociationConnector Association="SPWModel.FK_ZONE_DETAIL_ZONE" />
       </Diagram>
     </Diagrams>

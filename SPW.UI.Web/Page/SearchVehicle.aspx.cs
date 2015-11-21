@@ -11,7 +11,9 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchVehicle : System.Web.UI.Page
     {
-        private VEHICLE _item;
+        private DataServiceEngine _dataServiceEngine;
+        private VehicleService cmdVehicle;
+
         public List<VEHICLE> DataSouce
         {
             get
@@ -25,6 +27,32 @@ namespace SPW.UI.Web.Page
             }
         }
 
+        private void ReloadPageEngine()
+        {
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            cmdVehicle = (VehicleService)_dataServiceEngine.GetDataService(typeof(VehicleService));
+        }
+
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
+        }
+
         private void BlindGrid()
         {
             gridVehicle.DataSource = DataSouce;
@@ -35,14 +63,18 @@ namespace SPW.UI.Web.Page
         {
             if (!Page.IsPostBack)
             {
+                CreatePageEngine();
                 InitialData();
+            }
+            else
+            {
+                ReloadPageEngine();
             }
         }
 
         private void InitialData()
         {
-            var cmd = new VehicleService();
-            DataSouce = cmd.GetALL();
+            DataSouce = cmdVehicle.GetAll();
             gridVehicle.DataSource = DataSouce;
             gridVehicle.DataBind();
         }
@@ -61,9 +93,7 @@ namespace SPW.UI.Web.Page
 
         protected void gridVehicle_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["VehicleID"] = gridVehicle.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageVehicle.aspx?id=" + gridVehicle.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridVehicle_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -81,9 +111,7 @@ namespace SPW.UI.Web.Page
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            ViewState["VehicleID"] = null;
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageVehicle.aspx");
         }
 
         protected void gridCategory_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -96,58 +124,6 @@ namespace SPW.UI.Web.Page
                     e.Row.Cells[i].HorizontalAlign = HorizontalAlign.Center;
                 }
             }
-        }
-
-        private void InitialDataPopup()
-        {
-            if (ViewState["VehicleID"] != null)
-            {
-                var cmd = new VehicleService();
-                _item = cmd.Select(Convert.ToInt32(ViewState["VehicleID"].ToString()));
-                if (_item != null)
-                {
-                    popTxtCode.Text = _item.VEHICLE_CODE;
-                    popTxtReg.Text = _item.VEHICLE_REGNO;
-                    popTxtTypNO.Text = _item.VEHICLE_TYPENO;
-                    flag.Text = "Edit";
-                }
-            }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new VEHICLE();
-            obj.VEHICLE_REGNO = popTxtReg.Text;
-            obj.VEHICLE_CODE = popTxtCode.Text;
-            obj.VEHICLE_TYPENO = popTxtTypNO.Text;
-            var cmd = new VehicleService(obj);
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.VEHICLE_ID = Convert.ToInt32(ViewState["VehicleID"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-            ViewState["VehicleID"] = null;
-            Response.Redirect("SearchVehicle.aspx");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["VehicleID"] = null;
-            Response.Redirect("SearchVehicle.aspx");
         }
     }
 }

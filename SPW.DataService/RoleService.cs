@@ -8,100 +8,75 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class RoleService
+    public class RoleService : ServiceBase, IDataService<ROLE>, IService 
     {
-        private ROLE _item = new ROLE();
-        private List<ROLE> _lstItem = new List<ROLE>();
-
-        public RoleService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public RoleService(ROLE item)
-        {
-            _item = item;
-        }
-
-        public RoleService(List<ROLE> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ROLE> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ROLE.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        //public List<ROLE> GetALLInclude()
-        //{
-        //    using (var ctx = new SPWEntities())
-        //    {
-        //        var list = ctx.ROLE.Include("EMPLOYEE").Where(x => x.SYE_DEL == true).ToList();
-        //        return list;
-        //    }
-        //}
+        #region IDataService<ROLE> Members
 
-        public List<ROLE> GetALL(string name)
+        public void Add(ROLE obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROLE.Where(x => x.ROLE_NAME.Contains(name)).ToList();
-                return list;
-            }
+            this.Datacontext.ROLE.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<ROLE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(ROLE obj)
+        {
+            var item = this.Datacontext.ROLE.Where(x => x.ROLE_ID == obj.ROLE_ID).FirstOrDefault();
+            item.ROLE_CODE = obj.ROLE_CODE;
+            item.ROLE_NAME = obj.ROLE_NAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<ROLE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ROLE Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ROLE Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROLE.Where(x => x.ROLE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ROLE.Where(x => x.ROLE_ID == ID).FirstOrDefault();
         }
 
         public ROLE SelectIncludeEmployee(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROLE.Include("ROLE_FUNCTION").Where(x => x.ROLE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ROLE.Include("ROLE_FUNCTION").Where(x => x.ROLE_ID == ID).FirstOrDefault();
         }
 
-        //public ROLE SelectIncludeUserRole(int ID)
-        //{
-        //    using (var ctx = new SPWEntities())
-        //    {
-        //        var list = ctx.ROLE.Include("USER_ROLE").Where(x => x.USER_ID == ID).FirstOrDefault();
-        //        return list;
-        //    }
-        //}
-
-        public void Add()
+        public List<ROLE> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.ROLE.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ROLE.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Edit()
+        public List<ROLE> GetAll(string name)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.ROLE.Where(x => x.ROLE_ID == _item.ROLE_ID).FirstOrDefault();
-                obj.ROLE_CODE = _item.ROLE_CODE;
-                obj.ROLE_NAME = _item.ROLE_NAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ROLE.Where(x => x.ROLE_NAME.ToUpper().Contains(name.ToUpper())).ToList();
         }
+
+        #endregion
     }
 }

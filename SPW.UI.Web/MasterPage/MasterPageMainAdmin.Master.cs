@@ -14,29 +14,40 @@ namespace SPW.UI.Web.MasterPage
         {
             if (!IsPostBack)
             {
-                USER userItem = Session["user"] as USER;
-
-                foreach (ROLE_FUNCTION item in userItem.ROLE.ROLE_FUNCTION)
+                try
                 {
-                    switch (item.FUNCTION_ID.ToString())
+                    USER userItem = Session["user"] as USER;
+
+                    foreach (ROLE_FUNCTION item in userItem.ROLE.ROLE_FUNCTION)
                     {
-                        case "1":
-                            {
-                                this.MainAdmin.Visible = true;
-                            } break;
-                        case "2":
-                            {
-                                this.SystemData.Visible = true;
-                            } break;
-                        case "3":
-                            {
-                                this.StandardData.Visible = true;
-                            } break;
-                        case "4":
-                            {
-                                this.OrderData.Visible = true;
-                            } break;
+                        switch (item.FUNCTION_ID.ToString())
+                        {
+                            case "1":
+                                {
+                                    this.MainAdmin.Visible = true;
+                                } break;
+                            case "2":
+                                {
+                                    this.SystemData.Visible = true;
+                                } break;
+                            case "3":
+                                {
+                                    this.StandardData.Visible = true;
+                                } break;
+                            case "4":
+                                {
+                                    this.OrderData.Visible = true;
+                                } break;
+                            case "5":
+                                {
+                                    this.Report.Visible = true;
+                                } break;
+                        }
                     }
+                }
+                catch
+                {
+                    Response.RedirectPermanent("../PageLogin/Login.aspx");
                 }
             }
         }

@@ -20,7 +20,6 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
-    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,13 +96,15 @@
     <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,18 +125,29 @@
     <Content Include="CSS\bootstrap-theme.min.css" />
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\bootstrap.min.css" />
+    <Content Include="CSS\cssUpdateProgress.css" />
     <Content Include="CSS\custom.css" />
+    <Content Include="CSS\datepicker.css" />
     <Content Include="CSS\font-awesome.css" />
     <Content Include="CSS\font-awesome.min.css" />
     <Content Include="CSS\metisMenu.css" />
     <Content Include="CSS\metisMenu.min.css" />
     <Content Include="CSS\sb-admin-2.css" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Image\Icon\close.png" />
     <Content Include="Image\Icon\find.png" />
+    <Content Include="Image\Icon\order.jpg" />
     <Content Include="Image\Icon\Product.gif" />
+    <Content Include="JQuery\bootstrap-datepicker.js" />
     <Content Include="JQuery\bootstrap.js" />
     <Content Include="JQuery\bootstrap.min.js" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.eot" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <None Include="JQuery\jquery-1.6.4-vsdoc.js" />
     <Content Include="JQuery\jquery-1.6.4.js" />
     <Content Include="JQuery\jquery-1.6.4.min.js" />
@@ -146,14 +158,44 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ReportMonthlySale.aspx" />
+    <Content Include="Page\ReportSaleVolume.aspx" />
+    <Content Include="Page\ManageOrderDelivery.aspx" />
+    <Content Include="Page\ManageOrderDeliveryDetail.aspx" />
+    <Content Include="Page\ManageOrderDeliveryPreview.aspx" />
+    <Content Include="Page\ManageOrderDeliveryProduct.aspx" />
+    <Content Include="Page\ManageOrderHQ.aspx" />
+    <Content Include="Page\ManageOrderHQDetail.aspx" />
+    <Content Include="Page\ManageOrderHQEdit.aspx" />
+    <Content Include="Page\ManageOrderHQPreview.aspx" />
+    <Content Include="Page\ManageOrderHQPrint.aspx" />
+    <Content Include="Page\ManageOrderHQSuccess.aspx" />
+    <Content Include="Page\OrderProductDetailSummary.aspx" />
+    <Content Include="Page\OrderProductPreview.aspx" />
+    <Content Include="Page\ManageSendOrder.aspx" />
+    <Content Include="Page\ManageZone.aspx" />
+    <Content Include="Page\ManageVehicle.aspx" />
+    <Content Include="Page\ManageUser.aspx" />
+    <Content Include="Page\ManageColorType.aspx" />
+    <Content Include="Page\ManageStore.aspx" />
+    <Content Include="Page\ManageRole.aspx" />
+    <Content Include="Page\ManageProduct.aspx" />
+    <Content Include="Page\ManageEmployee.aspx" />
+    <Content Include="Page\ManageDepartment.aspx" />
+    <Content Include="Page\ManageColorProduct.aspx" />
+    <Content Include="Page\ManageCategory.aspx" />
+    <Content Include="Page\OrderProductDetail.aspx" />
     <Content Include="Page\SearchRole.aspx" />
     <Content Include="Page\SearchUser.aspx" />
     <Content Include="Page\SearchColorProduct.aspx" />
-    <Content Include="Page\SearchTracery.aspx" />
+    <Content Include="Page\SearchColorType.aspx" />
     <Content Include="Page\SearchVehicle.aspx" />
-    <Content Include="Page\Shipping.aspx" />
-    <Content Include="Page\SurveyOrder.aspx" />
-    <Content Include="Page\InternalOrder.aspx" />
+    <Content Include="Page\SendOrderStore.aspx" />
+    <Content Include="Page\SendOrderStore2.aspx" />
+    <Content Include="Page\SendOrderStore3.aspx" />
+    <Content Include="Page\SendOrderStore4.aspx" />
+    <Content Include="Page\SendOrderStore5.aspx" />
+    <Content Include="Page\SendOrderStore6.aspx" />
     <Content Include="Page\OrderProduct.aspx" />
     <Content Include="Page\Order.aspx" />
     <Content Include="Page\SearchZone.aspx" />
@@ -163,6 +205,8 @@
     <Content Include="Page\MainAdmin.aspx" />
     <Content Include="Page\SearchDepartment.aspx" />
     <Content Include="Page\SearchEmployee.aspx" />
+    <Content Include="Reports\MonthlySale.aspx" />
+    <Content Include="Reports\SaleVolume.aspx" />
     <Content Include="Reports\InOrder.aspx" />
     <Content Include="Reports\SendOrder.aspx" />
     <Content Include="Web.config">
@@ -184,12 +228,208 @@
     <Compile Include="MasterPage\MasterPageMainAdmin.Master.designer.cs">
       <DependentUpon>MasterPageMainAdmin.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage\MasterPageReport.Master.cs">
+      <DependentUpon>MasterPageReport.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MasterPageReport.Master.designer.cs">
+      <DependentUpon>MasterPageReport.Master</DependentUpon>
+    </Compile>
     <Compile Include="PageLogin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ReportMonthlySale.aspx.cs">
+      <DependentUpon>ReportMonthlySale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ReportMonthlySale.aspx.designer.cs">
+      <DependentUpon>ReportMonthlySale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ReportSaleVolume.aspx.cs">
+      <DependentUpon>ReportSaleVolume.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ReportSaleVolume.aspx.designer.cs">
+      <DependentUpon>ReportSaleVolume.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderDelivery.aspx.cs">
+      <DependentUpon>ManageOrderDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderDelivery.aspx.designer.cs">
+      <DependentUpon>ManageOrderDelivery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryDetail.aspx.cs">
+      <DependentUpon>ManageOrderDeliveryDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryDetail.aspx.designer.cs">
+      <DependentUpon>ManageOrderDeliveryDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryPreview.aspx.cs">
+      <DependentUpon>ManageOrderDeliveryPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryPreview.aspx.designer.cs">
+      <DependentUpon>ManageOrderDeliveryPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryProduct.aspx.cs">
+      <DependentUpon>ManageOrderDeliveryProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderDeliveryProduct.aspx.designer.cs">
+      <DependentUpon>ManageOrderDeliveryProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQ.aspx.cs">
+      <DependentUpon>ManageOrderHQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQ.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQDetail.aspx.cs">
+      <DependentUpon>ManageOrderHQDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQDetail.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQEdit.aspx.cs">
+      <DependentUpon>ManageOrderHQEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQEdit.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQPreview.aspx.cs">
+      <DependentUpon>ManageOrderHQPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQPreview.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQPrint.aspx.cs">
+      <DependentUpon>ManageOrderHQPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQPrint.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQSuccess.aspx.cs">
+      <DependentUpon>ManageOrderHQSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageOrderHQSuccess.aspx.designer.cs">
+      <DependentUpon>ManageOrderHQSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\OrderProductDetailSummary.aspx.cs">
+      <DependentUpon>OrderProductDetailSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\OrderProductDetailSummary.aspx.designer.cs">
+      <DependentUpon>OrderProductDetailSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\OrderProductPreview.aspx.cs">
+      <DependentUpon>OrderProductPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\OrderProductPreview.aspx.designer.cs">
+      <DependentUpon>OrderProductPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageSendOrder.aspx.cs">
+      <DependentUpon>ManageSendOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageSendOrder.aspx.designer.cs">
+      <DependentUpon>ManageSendOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageZone.aspx.cs">
+      <DependentUpon>ManageZone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageZone.aspx.designer.cs">
+      <DependentUpon>ManageZone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageVehicle.aspx.cs">
+      <DependentUpon>ManageVehicle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageVehicle.aspx.designer.cs">
+      <DependentUpon>ManageVehicle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageColorType.aspx.cs">
+      <DependentUpon>ManageColorType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageColorType.aspx.designer.cs">
+      <DependentUpon>ManageColorType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageStore.aspx.cs">
+      <DependentUpon>ManageStore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageStore.aspx.designer.cs">
+      <DependentUpon>ManageStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageRole.aspx.cs">
+      <DependentUpon>ManageRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageRole.aspx.designer.cs">
+      <DependentUpon>ManageRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageProduct.aspx.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageProduct.aspx.designer.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageEmployee.aspx.cs">
+      <DependentUpon>ManageEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageEmployee.aspx.designer.cs">
+      <DependentUpon>ManageEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageDepartment.aspx.cs">
+      <DependentUpon>ManageDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageDepartment.aspx.designer.cs">
+      <DependentUpon>ManageDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageColorProduct.aspx.cs">
+      <DependentUpon>ManageColorProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageColorProduct.aspx.designer.cs">
+      <DependentUpon>ManageColorProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageCategory.aspx.cs">
+      <DependentUpon>ManageCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageCategory.aspx.designer.cs">
+      <DependentUpon>ManageCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\OrderProductDetail.aspx.cs">
+      <DependentUpon>OrderProductDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\OrderProductDetail.aspx.designer.cs">
+      <DependentUpon>OrderProductDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchRole.aspx.cs">
       <DependentUpon>SearchRole.aspx</DependentUpon>
@@ -212,12 +452,12 @@
     <Compile Include="Page\SearchColorProduct.aspx.designer.cs">
       <DependentUpon>SearchColorProduct.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\SearchTracery.aspx.cs">
-      <DependentUpon>SearchTracery.aspx</DependentUpon>
+    <Compile Include="Page\SearchColorType.aspx.cs">
+      <DependentUpon>SearchColorType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\SearchTracery.aspx.designer.cs">
-      <DependentUpon>SearchTracery.aspx</DependentUpon>
+    <Compile Include="Page\SearchColorType.aspx.designer.cs">
+      <DependentUpon>SearchColorType.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchVehicle.aspx.cs">
       <DependentUpon>SearchVehicle.aspx</DependentUpon>
@@ -226,26 +466,47 @@
     <Compile Include="Page\SearchVehicle.aspx.designer.cs">
       <DependentUpon>SearchVehicle.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\Shipping.aspx.cs">
-      <DependentUpon>Shipping.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore.aspx.cs">
+      <DependentUpon>SendOrderStore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\Shipping.aspx.designer.cs">
-      <DependentUpon>Shipping.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore.aspx.designer.cs">
+      <DependentUpon>SendOrderStore.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\SurveyOrder.aspx.cs">
-      <DependentUpon>SurveyOrder.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore2.aspx.cs">
+      <DependentUpon>SendOrderStore2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\SurveyOrder.aspx.designer.cs">
-      <DependentUpon>SurveyOrder.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore2.aspx.designer.cs">
+      <DependentUpon>SendOrderStore2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\InternalOrder.aspx.cs">
-      <DependentUpon>InternalOrder.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore3.aspx.cs">
+      <DependentUpon>SendOrderStore3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\InternalOrder.aspx.designer.cs">
-      <DependentUpon>InternalOrder.aspx</DependentUpon>
+    <Compile Include="Page\SendOrderStore3.aspx.designer.cs">
+      <DependentUpon>SendOrderStore3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SendOrderStore4.aspx.cs">
+      <DependentUpon>SendOrderStore4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SendOrderStore4.aspx.designer.cs">
+      <DependentUpon>SendOrderStore4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SendOrderStore5.aspx.cs">
+      <DependentUpon>SendOrderStore5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SendOrderStore5.aspx.designer.cs">
+      <DependentUpon>SendOrderStore5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SendOrderStore6.aspx.cs">
+      <DependentUpon>SendOrderStore6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SendOrderStore6.aspx.designer.cs">
+      <DependentUpon>SendOrderStore6.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\OrderProduct.aspx.cs">
       <DependentUpon>OrderProduct.aspx</DependentUpon>
@@ -311,6 +572,31 @@
       <DependentUpon>SearchEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\MonthlySale.aspx.cs">
+      <DependentUpon>MonthlySale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\MonthlySale.aspx.designer.cs">
+      <DependentUpon>MonthlySale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MonthlySaleReport.cs">
+      <DependentUpon>MonthlySaleReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\MonthlySaleData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthlySaleData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SaleVolume.aspx.cs">
+      <DependentUpon>SaleVolume.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\SaleVolume.aspx.designer.cs">
+      <DependentUpon>SaleVolume.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\InOrder.aspx.cs">
       <DependentUpon>InOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -328,6 +614,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InOrderReportData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SaleVolumeData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleVolumeData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SaleVolumeReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleVolumeReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\SendOrder.aspx.cs">
       <DependentUpon>SendOrder.aspx</DependentUpon>
@@ -350,12 +647,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage\MasterPageLogin.Master" />
-    <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
-    <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\FontAwesome.otf" />
     <Content Include="MasterPage\MasterPageMainAdmin.Master" />
-    <Content Include="packages.config" />
+    <Content Include="MasterPage\MasterPageReport.Master" />
     <None Include="Properties\PublishProfiles\SPW.pubxml" />
     <Content Include="Reports\SendOrderReportData.xsc">
       <DependentUpon>SendOrderReportData.xsd</DependentUpon>
@@ -370,6 +665,28 @@
     </None>
     <Content Include="Reports\InOrderReportData.xss">
       <DependentUpon>InOrderReportData.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\SaleVolumeData.xsc">
+      <DependentUpon>SaleVolumeData.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\MonthlySaleData.xsc">
+      <DependentUpon>MonthlySaleData.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\MonthlySaleData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonthlySaleData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\MonthlySaleData.xss">
+      <DependentUpon>MonthlySaleData.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\SaleVolumeData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SaleVolumeData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\SaleVolumeData.xss">
+      <DependentUpon>SaleVolumeData.xsd</DependentUpon>
     </Content>
     <None Include="Reports\SendOrderReportData.xsd">
       <SubType>Designer</SubType>
@@ -387,6 +704,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPW.DAL\SPW.DAL.csproj">
+      <Project>{fe70015a-20a7-4eda-ad1e-04c614f1a5f8}</Project>
+      <Name>SPW.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPW.DataService\SPW.DataService.csproj">
       <Project>{79f9c811-b55c-4e21-bcda-daa766265c61}</Project>
       <Name>SPW.DataService</Name>
@@ -397,12 +718,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\MonthlySaleReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthlySaleReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\InOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SaleVolumeReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SaleVolumeReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SendOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

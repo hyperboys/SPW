@@ -8,75 +8,76 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class VehicleService
+    public class VehicleService : ServiceBase, IDataService<VEHICLE>, IService 
     {
-        private VEHICLE _item = new VEHICLE();
-        private List<VEHICLE> _lstItem = new List<VEHICLE>();
-
-        public VehicleService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public VehicleService(VEHICLE item)
-        {
-            _item = item;
-        }
-
-        public VehicleService(List<VEHICLE> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<VEHICLE> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.VEHICLE.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<VEHICLE> GetALL(string subname, string name)
+        #region IDataService<PROVINCE> Members
+
+        public void Add(VEHICLE obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.VEHICLE.Where(x => x.VEHICLE_CODE.Contains(subname)
-                    && x.VEHICLE_REGNO.Contains(name)).ToList();
-                return list;
-            }
+            this.Datacontext.VEHICLE.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<VEHICLE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(VEHICLE obj)
+        {
+            var item = this.Datacontext.VEHICLE.Where(x => x.VEHICLE_ID == obj.VEHICLE_ID).FirstOrDefault();
+            item.VEHICLE_REGNO = obj.VEHICLE_REGNO;
+            item.VEHICLE_TYPENO = obj.VEHICLE_TYPENO;
+            item.VEHICLE_CODE = obj.VEHICLE_CODE;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<VEHICLE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public VEHICLE Select()
+        {
+            throw new NotImplementedException();
         }
 
         public VEHICLE Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.VEHICLE.Where(x => x.VEHICLE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.VEHICLE.Where(x => x.VEHICLE_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<VEHICLE> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.VEHICLE.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.VEHICLE.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Edit()
+        public List<VEHICLE> GetAll(string subname, string name)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.VEHICLE.Where(x => x.VEHICLE_ID == _item.VEHICLE_ID).FirstOrDefault();
-                obj.VEHICLE_REGNO = _item.VEHICLE_REGNO;
-                obj.VEHICLE_TYPENO = _item.VEHICLE_TYPENO;
-                obj.VEHICLE_CODE = _item.VEHICLE_CODE;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.VEHICLE.Where(x => x.VEHICLE_CODE.ToUpper().Contains(subname.ToUpper())
+                && x.VEHICLE_REGNO.ToUpper().Contains(name.ToUpper())).ToList();
         }
+
+        public VEHICLE GetCurrentByID(int VehicleID)
+        {
+            return this.Datacontext.VEHICLE.FirstOrDefault(x => x.VEHICLE_ID == VehicleID);
+        }
+        #endregion
     }
 }

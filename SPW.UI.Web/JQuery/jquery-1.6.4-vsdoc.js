@@ -394,7 +394,7 @@ jQuery.ajax = function( url, options ) {
 				},
 
 				// Raw string
-				getAllResponseHeaders: function() {
+				GetAllResponseHeaders: function() {
 					return state === 2 ? responseHeadersString : null;
 				},
 
@@ -1193,8 +1193,8 @@ jQuery.clone = function( elem, dataAndEvents, deepDataAndEvents ) {
 
 			// Using Sizzle here is crazy slow, so we use getElementsByTagName
 			// instead
-			srcElements = getAll( elem );
-			destElements = getAll( clone );
+			srcElements = GetAll( elem );
+			destElements = GetAll( clone );
 
 			// Weird iteration because IE will replace the length property
 			// with an element if you are cloning the body and one of the
@@ -1212,8 +1212,8 @@ jQuery.clone = function( elem, dataAndEvents, deepDataAndEvents ) {
 			cloneCopyEvent( elem, clone );
 
 			if ( deepDataAndEvents ) {
-				srcElements = getAll( elem );
-				destElements = getAll( clone );
+				srcElements = GetAll( elem );
+				destElements = GetAll( clone );
 
 				for ( i = 0; srcElements[i]; ++i ) {
 					cloneCopyEvent( srcElements[i], destElements[i] );

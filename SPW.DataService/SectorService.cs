@@ -8,41 +8,65 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class SectorService
+    public class SectorService : ServiceBase, IDataService<SECTOR>, IService 
     {
-        private SECTOR _item = new SECTOR();
-        private List<SECTOR> _lstItem = new List<SECTOR>();
-
-        public SectorService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public List<SECTOR> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.SECTOR.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<SECTOR> GetALLInclude()
+        #region IDataService<PROVINCE> Members
+
+        public void Add(SECTOR obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.SECTOR.Include("PROVINCE").ToList();
-                return list;
-            }
+            this.Datacontext.SECTOR.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<SECTOR> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(SECTOR obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<SECTOR> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SECTOR Select()
+        {
+            throw new NotImplementedException();
         }
 
         public SECTOR Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.SECTOR.Where(x => x.SECTOR_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.SECTOR.Where(x => x.SECTOR_ID == ID).FirstOrDefault();
         }
+
+        public List<SECTOR> GetAll()
+        {
+            return this.Datacontext.SECTOR.Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<SECTOR> GetAllInclude()
+        {
+            return this.Datacontext.SECTOR.Include("PROVINCE").ToList();
+        }
+
+        #endregion
     }
 }

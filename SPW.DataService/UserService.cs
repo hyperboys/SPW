@@ -8,110 +8,97 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class UserService
+    public class UserService : ServiceBase, IDataService<USER>, IService 
     {
-        private USER _item = new USER();
-        private List<USER> _lstItem = new List<USER>();
-
-        public UserService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public UserService(USER item)
-        {
-            _item = item;
-        }
-
-        public UserService(List<USER> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<USER> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.USER.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<USER> GetALLInclude()
+        #region IDataService<USER> Members
+
+        public void Add(USER obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Include("EMPLOYEE").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            this.Datacontext.USER.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<USER> GetALL(string name)
+        public void AddList(List<USER> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Where(x => x.USER_NAME.Contains(name)).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Edit(USER obj)
+        {
+            var item = this.Datacontext.USER.Where(x => x.USER_ID == obj.USER_ID).FirstOrDefault();
+            item.USER_NAME = obj.USER_NAME;
+            item.PASSWORD = obj.PASSWORD;
+            item.EMPLOYEE_ID = obj.EMPLOYEE_ID;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<USER> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public USER Select()
+        {
+            throw new NotImplementedException();
         }
 
         public USER Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Where(x => x.USER_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.USER.Where(x => x.USER_ID == ID).FirstOrDefault();
+        }
+
+        public USER Select(string username)
+        {
+            return this.Datacontext.USER.Where(x => x.USER_NAME.ToUpper() == username.ToUpper()).FirstOrDefault();
         }
 
         public USER SelectIncludeEmployee(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Include("EMPLOYEE").Where(x => x.USER_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.USER.Include("EMPLOYEE").Where(x => x.USER_ID == ID).FirstOrDefault();
         }
 
         public USER SelectIncludeUserRole(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Include("ROLE").Where(x => x.USER_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.USER.Include("ROLE").Where(x => x.USER_ID == ID).FirstOrDefault();
         }
 
         public USER SelectInclude(string username, string password)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.USER.Include("EMPLOYEE").Include("ROLE").Where(x => x.USER_NAME == username && x.PASSWORD == password).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.USER.Include("EMPLOYEE").Include("ROLE").Where(x => x.USER_NAME == username && x.PASSWORD == password).FirstOrDefault();
         }
 
-        public void Add()
+        public List<USER> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.USER.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.USER.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Edit()
+        public List<USER> GetAllInclude()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.USER.Where(x => x.USER_ID == _item.USER_ID).FirstOrDefault();
-                obj.USER_NAME = _item.USER_NAME;
-                obj.PASSWORD = _item.PASSWORD;
-                obj.EMPLOYEE_ID = _item.EMPLOYEE_ID;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.USER.Include("EMPLOYEE").Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public List<USER> GetAll(string name)
+        {
+            return this.Datacontext.USER.Where(x => x.USER_NAME.Contains(name)).ToList();
+        }
+
+        #endregion
+   
     }
 }

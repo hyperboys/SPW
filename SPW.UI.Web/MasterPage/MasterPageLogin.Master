@@ -7,18 +7,20 @@
     <title>SPW Management System</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- MetisMenu CSS -->
-    <link href="../CSS/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/metisMenu.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom CSS -->
-    <link href="../CSS/sb-admin-2.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/sb-admin-2.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom Fonts -->
-    <link href="../CSS/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../CSS/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-     <!-- jQuery -->
+    <link href="../CSS/cssUpdateProgress.css" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery -->
     <script type="text/javascript" src="../JQuery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -30,16 +32,30 @@
     <!-- Custom Theme JavaScript -->
     <script type="text/javascript" src="../JQuery/sb-admin-2.js"></script>
 
+    <script type="text/javascript" src="../JQuery/jsUpdateProgress.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<script type="text/javascript">
+    function cancelBack() {
+        if ((event.keyCode == 8 ||
+           (event.keyCode == 37 && event.altKey) ||
+           (event.keyCode == 39 && event.altKey))
+            &&
+           (event.srcElement.form == null || event.srcElement.isTextEdit == false)
+          ) {
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
+    }
+</script>
+<body onkeydown="cancelBack()">
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
 </body>
 </html>

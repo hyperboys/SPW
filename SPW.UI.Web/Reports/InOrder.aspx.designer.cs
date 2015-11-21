@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace SPW.UI.Web.Reports {
-
-
-    public partial class InOrder
-    {
+    
+    
+    public partial class InOrder {
         
         /// <summary>
         /// CrystalReportViewer1 control.

@@ -8,110 +8,70 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ZoneService
+    public class ZoneService : ServiceBase, IDataService<ZONE>, IService 
     {
-        private ZONE _item = new ZONE();
-        private List<ZONE> _lstItem = new List<ZONE>();
-
-        public ZoneService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ZoneService(ZONE item)
-        {
-            _item = item;
-        }
-
-        public ZoneService(List<ZONE> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ZONE> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ZONE.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<ZONE> GetALL(ZONE item)
+        #region IDataService<ZONE> Members
+
+        public void Add(ZONE obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ZONE.Where(x => x.ZONE_CODE.Contains(item.ZONE_CODE)).ToList();
-                return list;
-            }
+            this.Datacontext.ZONE.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<ZONE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(ZONE obj)
+        {
+            var item = this.Datacontext.ZONE.Where(x => x.ZONE_ID == obj.ZONE_ID).FirstOrDefault();
+            item.ZONE_CODE = obj.ZONE_CODE;
+            item.ZONE_NAME = obj.ZONE_NAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<ZONE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ZONE Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ZONE Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ZONE.Where(x => x.ZONE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ZONE.Where(x => x.ZONE_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<ZONE> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.ZONE.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ZONE.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void AddList()
+        public List<ZONE> GetAll(ZONE item)
         {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.ZONE.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ZONE.Where(x => x.ZONE_CODE.Contains(item.ZONE_CODE)).ToList();
         }
 
-        public void Edit()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.ZONE.Where(x => x.ZONE_ID == _item.ZONE_ID).FirstOrDefault();
-                obj.ZONE_CODE = _item.ZONE_CODE;
-                obj.ZONE_NAME = _item.ZONE_NAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void EditList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Update)
-                    {
-                        var obj = ctx.ZONE.Where(x => x.ZONE_ID == item.ZONE_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            obj.ZONE_CODE = _item.ZONE_CODE;
-                            obj.ZONE_NAME = _item.ZONE_NAME;
-                            obj.UPDATE_DATE = item.UPDATE_DATE;
-                            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                        }
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
+        #endregion
     }
 }

@@ -11,7 +11,8 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchEmployee : System.Web.UI.Page
     {
-        private EMPLOYEE _employee;
+        private DataServiceEngine _dataServiceEngine;
+        private EmployeeService cmdEmp;
         public List<EMPLOYEE> DataSouce
         {
             get
@@ -25,50 +26,42 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        public List<ZONE> DataSouceFunction
+        private void ReloadPageEngine()
         {
-            get
+            if (Session["DataServiceEngine"] != null)
             {
-                var list = (List<ZONE>)ViewState["listZone"];
-                return list;
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
             }
-            set
+            else
             {
-                ViewState["listZone"] = value;
+                CreatePageEngine();
             }
         }
 
-        public List<ZONE_DETAIL> DataSouceRoleFunction
+        private void InitialDataService()
         {
-            get
-            {
-                var list = (List<ZONE_DETAIL>)ViewState["DataSouceRoleFunction"];
-                return list;
-            }
-            set
-            {
-                ViewState["DataSouceRoleFunction"] = value;
-            }
+            cmdEmp = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));
         }
 
-        public List<ZONE_DETAIL> DataSouceNewRoleFunction
+
+        private void CreatePageEngine()
         {
-            get
-            {
-                var list = (List<ZONE_DETAIL>)ViewState["DataSouceNewRoleFunction"];
-                return list;
-            }
-            set
-            {
-                ViewState["DataSouceNewRoleFunction"] = value;
-            }
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                CreatePageEngine();
                 InitialData();
+            }
+            else
+            {
+                ReloadPageEngine();
             }
         }
 
@@ -80,53 +73,9 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            var cmd = new EmployeeService();
-            DataSouce = cmd.GetALL();
+            DataSouce = cmdEmp.GetAll();
             gridEmployee.DataSource = DataSouce;
             gridEmployee.DataBind();
-            DataSouceNewRoleFunction = new List<ZONE_DETAIL>();
-        }
-
-        private void InitialDataPopup()
-        {
-            var cmd = new DepartmentService();
-            var list = cmd.GetALL();
-            foreach (var item in list)
-            {
-                ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
-            }
-
-            if (ViewState["empId"] != null)
-            {
-                var cmdEmp = new EmployeeService();
-                _employee = cmdEmp.Select(Convert.ToInt32(ViewState["empId"].ToString()));
-                if (_employee != null)
-                {
-                    popTxtEmployeeCode.Text = _employee.EMPLOYEE_CODE;
-                    txtName.Text = _employee.EMPLOYEE_NAME;
-                    txtLastName.Text = _employee.EMPLOYEE_SURNAME;
-                    ddlDepartment.SelectedValue = _employee.DEPARTMENT_ID.ToString();
-                    flag.Text = "Edit";
-                }
-
-                var cmdFunc = new ZoneDetailService();
-                DataSouceRoleFunction = cmdFunc.GetALLInclude(_employee.EMPLOYEE_ID);
-            }
-            else
-            {
-                DataSouceRoleFunction = new List<ZONE_DETAIL>();
-            }
-            DataSouceRoleFunction.AddRange(DataSouceNewRoleFunction);
-
-            gridZone.DataSource = DataSouceRoleFunction;
-            gridZone.DataBind();
-        }
-
-        private void InitialDataPopupZone()
-        {
-            var cmd = new ZoneService();
-            gridSelectZone.DataSource = cmd.GetALL();
-            gridSelectZone.DataBind();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -142,16 +91,14 @@ namespace SPW.UI.Web.Page
             }
             else
             {
-                gridEmployee.DataSource = DataSouce.Where(x => x.EMPLOYEE_CODE.Contains(txtEmployeeCode.Text) && x.SYE_DEL == true).ToList();
+                gridEmployee.DataSource = DataSouce.Where(x => x.EMPLOYEE_CODE.Contains(txtEmployeeCode.Text) && x.SYE_DEL == false).ToList();
             }
             gridEmployee.DataBind();
         }
 
         protected void gridEmployee_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["empId"] = gridEmployee.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageEmployee.aspx?id=" + gridEmployee.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -162,125 +109,13 @@ namespace SPW.UI.Web.Page
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageEmployee.aspx");
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             txtEmployeeCode.Text = "";
             SearchGrid();
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["empId"] = null;
-            Response.Redirect("SearchEmployee.aspx");
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new EMPLOYEE();
-            obj.DEPARTMENT_ID = Convert.ToInt32(ddlDepartment.SelectedValue);
-            obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
-            obj.EMPLOYEE_NAME = txtName.Text;
-            obj.EMPLOYEE_SURNAME = txtLastName.Text;
-            var cmd = new EmployeeService(obj);
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.EMPLOYEE_ID = Convert.ToInt32(ViewState["empId"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-            ViewState["empId"] = null;
-            Response.Redirect("SearchEmployee.aspx");
-        }
-
-        protected void AddZone_Click(object sender, EventArgs e)
-        {
-            InitialDataPopupZone();
-            this.popup2.Show();
-        }
-
-        protected void gridSelectZone_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gridSelectZone.PageIndex = e.NewPageIndex;
-            gridSelectZone.DataBind();
-        }
-
-        protected void btnAddZone_Click(object sender, EventArgs e)
-        {
-            var cmdZone = new ZoneService();
-            List<ZONE_DETAIL> list = new List<ZONE_DETAIL>();
-
-            for (int i = 0; i < gridSelectZone.Rows.Count; i++)
-            {
-                if (((CheckBox)gridSelectZone.Rows[i].Cells[0].FindControl("check")).Checked)
-                {
-                    if (ViewState["empId"] != null && DataSouceRoleFunction.Where(x => x.ZONE_ID == Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-                    {
-                        ZONE_DETAIL obj = new ZONE_DETAIL();
-                        obj.Action = ActionEnum.Create;
-                        obj.EMPLOYEE_ID = Convert.ToInt32(ViewState["empId"].ToString());
-                        obj.ZONE_ID = Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString());
-                        obj.CREATE_DATE = DateTime.Now;
-                        obj.CREATE_EMPLOYEE_ID = 0;
-                        obj.UPDATE_DATE = DateTime.Now;
-                        obj.UPDATE_EMPLOYEE_ID = 0;
-                        obj.SYE_DEL = true;
-                        list.Add(obj);
-                    }
-                    else if (DataSouceNewRoleFunction.Where(x => x.ZONE_ID == Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-                    {
-                        ZONE_DETAIL obj = new ZONE_DETAIL();
-                        obj.Action = ActionEnum.Create;
-                        obj.EMPLOYEE_ID = 0;
-                        obj.ZONE_ID = Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString());
-                        obj.CREATE_DATE = DateTime.Now;
-                        obj.CREATE_EMPLOYEE_ID = 0;
-                        obj.UPDATE_DATE = DateTime.Now;
-                        obj.UPDATE_EMPLOYEE_ID = 0;
-                        obj.SYE_DEL = true;
-                        DataSouceNewRoleFunction.Add(obj);
-                    }
-                }
-            }
-
-            if (list.Count > 0)
-            {
-                var cmd = new ZoneDetailService(list);
-                cmd.AddList();
-            }
-
-            InitialDataPopup();
-            this.popup.Show();
-        }
-
-        protected void btnCancelZone_Click(object sender, EventArgs e)
-        {
-            InitialDataPopup();
-            this.popup.Show();
-        }
-
-        protected void gridZone_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            var cmd = new ZoneDetailService();
-            cmd.Delete(Convert.ToInt32(gridZone.DataKeys[e.RowIndex].Values[0].ToString()));
-            InitialDataPopup();
-            this.popup.Show();
         }
     }
 }

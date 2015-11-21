@@ -8,117 +8,89 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ZoneDetailService
+    public class ZoneDetailService : ServiceBase, IDataService<ZONE_DETAIL>, IService 
     {
-        private ZONE_DETAIL _item = new ZONE_DETAIL();
-        private List<ZONE_DETAIL> _lstItem = new List<ZONE_DETAIL>();
-
-        public ZoneDetailService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ZoneDetailService(ZONE_DETAIL item)
-        {
-            _item = item;
-        }
-
-        public ZoneDetailService(List<ZONE_DETAIL> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ZONE_DETAIL> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ZONE_DETAIL.ToList().Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<ZONE_DETAIL> GetALLByUser(int ID)
+        #region IDataService<ZONE_DETAIL> Members
+
+        public void Add(ZONE_DETAIL obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ZONE_DETAIL.ToList().Where(x => x.SYE_DEL == true && x.EMPLOYEE_ID == ID).ToList();
-                return list;
-            }
+            this.Datacontext.ZONE_DETAIL.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<ZONE_DETAIL> GetALLInclude()
+        public void AddList(List<ZONE_DETAIL> obj)
         {
-            using (var ctx = new SPWEntities())
+            foreach (var item in obj)
             {
-                var list = ctx.ZONE_DETAIL.Include("ZONE").ToList().Where(x =>x.SYE_DEL == true).ToList();
-                return list;
+                if (item.Action == ActionEnum.Create)
+                {
+                    this.Datacontext.ZONE_DETAIL.Add(item);
+                }
             }
+            this.Datacontext.SaveChanges();
         }
 
-        public List<ZONE_DETAIL> GetALLInclude(int ID)
+        public void Edit(ZONE_DETAIL obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ZONE_DETAIL.Include("ZONE").ToList().Where(x => x.SYE_DEL == true && x.EMPLOYEE_ID == ID).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<ZONE_DETAIL> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ZONE_DETAIL Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ZONE_DETAIL Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ZONE_DETAIL.Where(x => x.ZONE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ZONE_DETAIL.Where(x => x.ZONE_DETAIL_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<ZONE_DETAIL> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.ZONE_DETAIL.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ZONE_DETAIL.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        //public void Edit()
-        //{
-        //    using (var ctx = new SPWEntities())
-        //    {
-        //        var obj = ctx.ZONE_DETAIL.Where(x => x.STORE_ID == _item.STORE_ID).FirstOrDefault();
-        //        //obj.EMPLOYEE_ID = _item.EMPLOYEE_ID;
-        //        obj.UPDATE_DATE = _item.UPDATE_DATE;
-        //        obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-        //        ctx.SaveChanges();
-        //    }
-        //}
-
-        public void AddList()
+        public List<ZONE_DETAIL> GetAllByUser(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.ZONE_DETAIL.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ZONE_DETAIL.ToList().Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == ID).ToList();
+        }
+
+        public List<ZONE_DETAIL> GetAllInclude()
+        {
+            return this.Datacontext.ZONE_DETAIL.Include("ZONE").ToList().Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<ZONE_DETAIL> GetAllInclude(int ID)
+        {
+            return this.Datacontext.ZONE_DETAIL.Include("ZONE").ToList().Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == ID).ToList();
         }
 
         public void Delete(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.ZONE_DETAIL.Where(x => x.ZONE_DETAIL_ID == ID).FirstOrDefault();
-                obj.SYE_DEL = false;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            var obj = this.Datacontext.ZONE_DETAIL.Where(x => x.ZONE_DETAIL_ID == ID).FirstOrDefault();
+            obj.SYE_DEL = true;
+            this.Datacontext.SaveChanges();
         }
+
+        #endregion
     }
 }

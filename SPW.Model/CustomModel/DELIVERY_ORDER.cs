@@ -9,11 +9,6 @@ namespace SPW.Model
     [Serializable]
     public partial class DELIVERY_ORDER
     {
-        private STORE _store;
-        public STORE STORE
-        {
-            get { return _store; }
-            set { _store = value; }
-        }
+        public bool? Status { get; set; }
     }
 }
