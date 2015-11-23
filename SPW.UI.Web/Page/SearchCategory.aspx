@@ -67,6 +67,7 @@
             <asp:GridView ID="gridCategory" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                 DataKeyNames="CATEGORY_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลหมวดหมู่สินค้า"
                 OnRowEditing="gridCategory_EditCommand" OnPageIndexChanging="gridCategory_PageIndexChanging"
+                OnRowDeleting="gridCategory_RowDeleting" OnRowDataBound="gridCategory_RowDataBound"
                 Style="text-align: center" CssClass="grid">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
@@ -74,12 +75,19 @@
                         ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
                         <ItemStyle Width="10%"></ItemStyle>
                     </asp:CommandField>
-                    <asp:BoundField DataField="CATEGORY_CODE" HeaderText="รหัสหมวดหมู่สินค้า" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
-                        <ItemStyle Width="45%"></ItemStyle>
+                    <asp:BoundField DataField="CATEGORY_CODE" HeaderText="รหัสหมวดหมู่สินค้า" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                        <ItemStyle Width="40%"></ItemStyle>
                     </asp:BoundField>
-                    <asp:BoundField DataField="CATEGORY_NAME" HeaderText="ชื่อหมวดหมู่สินค้า" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
-                        <ItemStyle Width="45%"></ItemStyle>
+                    <asp:BoundField DataField="CATEGORY_NAME" HeaderText="ชื่อหมวดหมู่สินค้า" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                        <ItemStyle Width="40%"></ItemStyle>
                     </asp:BoundField>
+                    <asp:TemplateField HeaderText="ลบ" ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="ImageButton1" runat="server"  ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
+                                ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
                 </Columns>
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

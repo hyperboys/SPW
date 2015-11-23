@@ -67,6 +67,14 @@ namespace SPW.DataService
         {
             return this.Datacontext.CATEGORY.Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.CATEGORY.Where(x => x.CATEGORY_ID == ID).FirstOrDefault();
+            //obj.SYE_DEL = true;
+            this.Datacontext.CATEGORY.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
         #endregion
     
     }

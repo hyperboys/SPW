@@ -78,6 +78,15 @@ namespace SPW.DataService
         {
             return this.Datacontext.VEHICLE.FirstOrDefault(x => x.VEHICLE_ID == VehicleID);
         }
+        
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.VEHICLE.Where(x => x.VEHICLE_ID == ID).FirstOrDefault();
+            this.Datacontext.VEHICLE.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+
         #endregion
     }
 }

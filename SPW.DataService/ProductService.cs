@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ProductService : ServiceBase, IDataService<PRODUCT>, IService 
+    public class ProductService : ServiceBase, IDataService<PRODUCT>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -114,7 +114,15 @@ namespace SPW.DataService
         {
             return this.Datacontext.PRODUCT.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.PRODUCT.Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
+            this.Datacontext.PRODUCT.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
+
         #endregion
-    
+
     }
 }

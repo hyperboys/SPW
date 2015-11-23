@@ -62,6 +62,13 @@ namespace SPW.DataService
             this.Datacontext.SaveChanges();
         }
 
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.STORE.Where(x => x.SECTOR_ID == ID).FirstOrDefault();
+            this.Datacontext.STORE.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
+
         public void EditList(List<STORE> obj)
         {
             throw new NotImplementedException();

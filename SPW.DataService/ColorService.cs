@@ -67,6 +67,13 @@ namespace SPW.DataService
         {
             return this.Datacontext.COLOR.Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.COLOR.Where(x => x.COLOR_ID == ID).FirstOrDefault();
+            this.Datacontext.COLOR.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
         
         #endregion
    

@@ -68,6 +68,13 @@ namespace SPW.DataService
             return this.Datacontext.COLOR_TYPE.Where(x => x.SYE_DEL == false).ToList();
         }
 
+        public void Delete(int ID)
+        {
+            var obj = this.Datacontext.COLOR_TYPE.Where(x => x.COLOR_TYPE_ID == ID).FirstOrDefault();
+            this.Datacontext.COLOR_TYPE.Remove(obj);
+            this.Datacontext.SaveChanges();
+        }
+
         #endregion
 
     }

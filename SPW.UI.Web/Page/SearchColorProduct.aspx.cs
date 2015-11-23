@@ -126,5 +126,34 @@ namespace SPW.UI.Web.Page
             txtColorTypeSubName.Text = "";
             SearchGrid();
         }
+
+        protected void gridColor_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                foreach (ImageButton button in e.Row.Cells[3].Controls.OfType<ImageButton>())
+                {
+                    if (button.CommandName == "Delete")
+                    {
+                        button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                    }
+                }
+            }
+        }
+
+        protected void gridColor_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                cmdColor.Delete(Convert.ToInt32(gridColor.DataKeys[e.RowIndex].Values[0].ToString()));
+            }
+            catch
+            {
+                string script = "alert(\"ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้\");";
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                                      "ServerControlScript", script, true);
+            }
+            InitialData();
+        }
     }
 }
