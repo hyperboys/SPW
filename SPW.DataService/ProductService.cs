@@ -117,9 +117,26 @@ namespace SPW.DataService
 
         public void Delete(int ID)
         {
-            var obj = this.Datacontext.PRODUCT.Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
-            this.Datacontext.PRODUCT.Remove(obj);
-            this.Datacontext.SaveChanges();
+
+            var obj = this.Datacontext.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
+
+            List<ORDER_DETAIL> od = this.Datacontext.ORDER_DETAIL.Where(x => x.PRODUCT_ID == obj.PRODUCT_ID).ToList();
+
+            if (od.Count > 0)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                foreach (PRODUCT_PRICELIST tmp in obj.PRODUCT_PRICELIST.ToList()) 
+                {
+                    tmp.SYE_DEL = true;
+                }
+                obj.SYE_DEL = true;
+                this.Datacontext.SaveChanges();
+            }
+
+
         }
 
         #endregion

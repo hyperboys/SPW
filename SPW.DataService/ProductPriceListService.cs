@@ -43,7 +43,6 @@ namespace SPW.DataService
             {
                 if (item.Action == ActionEnum.Create)
                 {
-                    this.Datacontext = new SPWEntities();
                     this.Datacontext.PRODUCT_PRICELIST.Add(item);
                 }
                 else if (item.Action == ActionEnum.Update)

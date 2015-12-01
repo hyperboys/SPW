@@ -190,6 +190,8 @@ namespace SPW.UI.Web.Page
             DataTable SendOrderHeader = ds.Tables["SendOrderHeader"];
 
             List<DELIVERY_ORDER_DETAIL> listOrder = new List<DELIVERY_ORDER_DETAIL>();
+
+            objDEl.DELIVERY_ORDER = objDEl.DELIVERY_ORDER.OrderBy(x => x.STORE_ID).ToList();
             foreach (DELIVERY_ORDER item in objDEl.DELIVERY_ORDER)
             {
                 item.DELIVERY_ORDER_DETAIL = cmdDeliveryOrderDetail.GetAllIncludeByDeliveryOrder(item.DELORDER_ID);
@@ -251,45 +253,118 @@ namespace SPW.UI.Web.Page
                 SendOrderHeader.Rows.Add(drSendOrderHeader);
             }
 
+            List<DELIVERY_ORDER> listItem = new List<DELIVERY_ORDER>();
             foreach (DELIVERY_ORDER item in objDEl.DELIVERY_ORDER)
             {
+                DELIVERY_ORDER tmpStore = listItem.Where(x => x.STORE_ID == item.STORE_ID).FirstOrDefault();
                 item.DELIVERY_ORDER_DETAIL = cmdDeliveryOrderDetail.GetAllIncludeByDeliveryOrder(item.DELORDER_ID);
+                if (tmpStore == null)
+                {
+                    tmpStore = ObjectCopier.Clone<DELIVERY_ORDER>(item);
+
+
+                    listOrder = new List<DELIVERY_ORDER_DETAIL>();
+                    foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
+                    {
+                        DELIVERY_ORDER_DETAIL tmp = listOrder.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.COLOR_TYPE_ID == od.COLOR_TYPE_ID
+                            && x.COLOR_ID == od.COLOR_ID && x.IS_FREE == od.IS_FREE).FirstOrDefault();
+                        if (tmp != null)
+                        {
+                            tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
+                        }
+                        else
+                        {
+                            tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
+                            listOrder.Add(tmp);
+                        }
+                    }
+
+                    listOrder2 = new List<DELIVERY_ORDER_DETAIL>();
+                    foreach (DELIVERY_ORDER_DETAIL od in listOrder)
+                    {
+                        DELIVERY_ORDER_DETAIL tmp = listOrder2.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.IS_FREE == od.IS_FREE).FirstOrDefault();
+                        if (tmp != null)
+                        {
+                            if (od.IS_FREE == "N")
+                            {
+                                tmp.ColorDesc += ", " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            }
+                            else
+                            {
+                                tmp.ColorDesc += ", แถม " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+
+                            }
+                            tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
+                        }
+                        else
+                        {
+                            tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
+                            if (tmp.IS_FREE == "N")
+                            {
+                                tmp.ColorDesc = od.PRODUCT.PRODUCT_NAME + " " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            }
+                            else
+                            {
+                                tmp.ColorDesc = "แถม " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            }
+                            listOrder2.Add(tmp);
+                        }
+                    }
+                    tmpStore.DELIVERY_ORDER_DETAIL = listOrder2;
+
+                    listItem.Add(tmpStore);
+                }
+                else
+                {
+                    foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
+                    {
+                        DELIVERY_ORDER_DETAIL tmp = listOrder.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.COLOR_TYPE_ID == od.COLOR_TYPE_ID
+                            && x.COLOR_ID == od.COLOR_ID && x.IS_FREE == od.IS_FREE).FirstOrDefault();
+                        if (tmp != null)
+                        {
+                            tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
+                        }
+                        else
+                        {
+                            tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
+                            listOrder.Add(tmp);
+                        }
+                    }
+
+                    listOrder2 = new List<DELIVERY_ORDER_DETAIL>();
+                    foreach (DELIVERY_ORDER_DETAIL od in listOrder)
+                    {
+                        DELIVERY_ORDER_DETAIL tmp = listOrder2.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.IS_FREE == od.IS_FREE).FirstOrDefault();
+                        if (tmp != null)
+                        {
+
+                            tmp.ColorDesc += ", " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
+                        }
+                        else
+                        {
+
+                            tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
+                            if (tmp.IS_FREE == "N")
+                            {
+                                tmp.ColorDesc = od.PRODUCT.PRODUCT_NAME + " " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            }
+                            else
+                            {
+                                tmp.ColorDesc = "แถม " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                            }
+                            listOrder2.Add(tmp);
+                        }
+                    }
+                    tmpStore.DELIVERY_ORDER_DETAIL = listOrder2;
+                }
+            }
+
+            foreach (DELIVERY_ORDER item in listItem)
+            {
                 seq = 1;
                 sumWeight = 0;
-                listOrder = new List<DELIVERY_ORDER_DETAIL>();
                 foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
-                {
-                    DELIVERY_ORDER_DETAIL tmp = listOrder.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.COLOR_TYPE_ID == od.COLOR_TYPE_ID && x.COLOR_ID == od.COLOR_ID).FirstOrDefault();
-                    if (tmp != null)
-                    {
-                        tmp.PRODUCT_QTY += od.PRODUCT_QTY;
-                    }
-                    else
-                    {
-                        tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
-                        listOrder.Add(tmp);
-                    }
-                }
-
-                listOrder2 = new List<DELIVERY_ORDER_DETAIL>();
-                foreach (DELIVERY_ORDER_DETAIL od in listOrder)
-                {
-                    DELIVERY_ORDER_DETAIL tmp = listOrder2.Where(x => x.PRODUCT_ID == od.PRODUCT_ID).FirstOrDefault();
-                    if (tmp != null)
-                    {
-                        tmp.ColorDesc += ", " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
-                        tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
-                    }
-                    else
-                    {
-                        tmp = ObjectCopier.Clone<DELIVERY_ORDER_DETAIL>(od);
-                        tmp.ColorDesc = od.PRODUCT.PRODUCT_NAME + " " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
-                        listOrder2.Add(tmp);
-                    }
-                }
-
-
-                foreach (DELIVERY_ORDER_DETAIL od in listOrder2)
                 {
                     DataRow drSendOrderHeader = SendOrderHeader.NewRow();
                     item.STORE = cmdStore.SelectInclude(item.STORE_ID);

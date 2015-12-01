@@ -132,9 +132,11 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+
+
                 cmdProduct.Delete(Convert.ToInt32(gridProduct.DataKeys[e.RowIndex].Values[0].ToString()));
             }
-            catch
+            catch(Exception ex)
             {
                 string script = "alert(\"ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้\");";
                 ScriptManager.RegisterStartupScript(this, GetType(),

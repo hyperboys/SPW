@@ -169,7 +169,7 @@ namespace SPW.UI.Web.Page
                     ddlCategory.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString()));
                 }
 
-                DataSouce = cmdProductService.GetAllInclude().Where(x => x.PRODUCT_TYPE_CODE == 1).ToList();
+                DataSouce = cmdProductService.GetAllInclude();
                 DataSouceShowProduct = new List<ShowProduct>();
                 foreach (PRODUCT pro in DataSouce)
                 {
