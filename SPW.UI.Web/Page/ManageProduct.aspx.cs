@@ -78,7 +78,6 @@ namespace SPW.UI.Web.Page
         private void InitialPage()
         {
             CreatePageEngine();
-            //ReloadDatasource();
             PrepareObjectScreen();
         }
 
@@ -95,11 +94,6 @@ namespace SPW.UI.Web.Page
             cmdProductService = (ProductService)_dataServiceEngine.GetDataService(typeof(ProductService));
             cmdZoneService = (ZoneService)_dataServiceEngine.GetDataService(typeof(ZoneService));
             cmdProductPriceListService = (ProductPriceListService)_dataServiceEngine.GetDataService(typeof(ProductPriceListService));
-        }
-
-        private void ReloadDatasource()
-        {
-            //DataSouce = _categoryService.GetAll();
         }
 
         private void ReloadPageEngine()
@@ -257,6 +251,9 @@ namespace SPW.UI.Web.Page
             }
 
             cmdProductPriceListService.AddUpdateList(listDetail);
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchProduct.aspx");
         }

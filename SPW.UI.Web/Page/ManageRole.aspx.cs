@@ -62,7 +62,6 @@ namespace SPW.UI.Web.Page
         private void InitialPage()
         {
             CreatePageEngine();
-            //ReloadDatasource();
             PrepareObjectScreen();
         }
 
@@ -78,11 +77,6 @@ namespace SPW.UI.Web.Page
             cmdRoleService = (RoleService)_dataServiceEngine.GetDataService(typeof(RoleService));
             cmdRoleFunctionService = (RoleFunctionService)_dataServiceEngine.GetDataService(typeof(RoleFunctionService));
             cmdFunctionService = (FunctionService)_dataServiceEngine.GetDataService(typeof(FunctionService));
-        }
-
-        private void ReloadDatasource()
-        {
-            //DataSouce = _categoryService.GetAll();
         }
 
         private void ReloadPageEngine()
@@ -158,6 +152,9 @@ namespace SPW.UI.Web.Page
                 cmdRoleFunctionService.AddList(DataSouceNewRoleFunction);
             }
 
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
         }

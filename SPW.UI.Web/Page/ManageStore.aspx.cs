@@ -175,6 +175,9 @@ namespace SPW.UI.Web.Page
                 cmdStore.Edit(obj);
             }
 
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchStore.aspx");
         }

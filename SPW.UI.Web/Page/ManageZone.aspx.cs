@@ -58,8 +58,6 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            
-
             if (Request.QueryString["id"] != null)
             {
                 _zone = cmdZone.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
@@ -98,6 +96,10 @@ namespace SPW.UI.Web.Page
                 obj.SYE_DEL = false;
                 cmdZone.Edit(obj);
             }
+
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchZone.aspx");
         }

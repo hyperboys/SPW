@@ -64,7 +64,6 @@ namespace SPW.UI.Web.Page
         private void InitialPage()
         {
             CreatePageEngine();
-            //ReloadDatasource();
             PrepareObjectScreen();
         }
 
@@ -83,11 +82,6 @@ namespace SPW.UI.Web.Page
             cmdZoneService = (ZoneService)_dataServiceEngine.GetDataService(typeof(ZoneService));
         }
 
-        private void ReloadDatasource()
-        {
-            //DataSouce = _categoryService.GetAll();
-        }
-
         private void PrepareObjectScreen()
         {
             var list = cmdDepartmentService.GetAll();
@@ -95,17 +89,6 @@ namespace SPW.UI.Web.Page
             {
                 ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
             }
-
-            //if (ddlDepartment.SelectedItem.Text == "Sale")
-            //{
-            //    AddZone.Enabled = true;
-            //    gridZone.Visible = true;
-            //}
-            //else
-            //{
-            //    AddZone.Enabled = false;
-            //    gridZone.Visible = false;
-            //}
 
             if (Request.QueryString["id"] != null)
             {
@@ -119,23 +102,7 @@ namespace SPW.UI.Web.Page
                     lblName.Text = _employee.EMPLOYEE_CODE;
                     flag.Text = "Edit";
                 }
-
-                //DataSouceRoleFunction = cmdZoneDetailService.GetAllInclude(_employee.EMPLOYEE_ID);
             }
-            else
-            {
-                //DataSouceRoleFunction = new List<ZONE_DETAIL>();
-            }
-
-            //if (DataSouceNewRoleFunction.Count > 0) 
-            //{
-            //    DataSouceRoleFunction.AddRange(DataSouceNewRoleFunction);
-            //}
-
-            //gridZone.DataSource = DataSouceRoleFunction;
-            //gridZone.DataBind();
-
-            //InitialDataPopupZone();
         }
 
         private void ReloadPageEngine()
@@ -150,12 +117,6 @@ namespace SPW.UI.Web.Page
                 CreatePageEngine();
             }
         }
-
-        //private void InitialDataPopupZone()
-        //{
-        //    gridSelectZone.DataSource = cmdZoneService.GetAll();
-        //    gridSelectZone.DataBind();
-        //}
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -189,95 +150,20 @@ namespace SPW.UI.Web.Page
                 obj.SYE_DEL = false;
                 cmdEmployeeService.Edit(obj);
             }
+
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchEmployee.aspx");
         }
-
-        //protected void gridSelectZone_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gridSelectZone.PageIndex = e.NewPageIndex;
-        //    gridSelectZone.DataBind();
-        //}
 
         protected void btnAddZone_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
             var cmdZoneService = new ZoneService();
             List<ZONE_DETAIL> list = new List<ZONE_DETAIL>();
-
-            //for (int i = 0; i < gridSelectZone.Rows.Count; i++)
-            //{
-            //    if (((CheckBox)gridSelectZone.Rows[i].Cells[0].FindControl("check")).Checked)
-            //    {
-            //        if (Request.QueryString["id"] != null && DataSouceRoleFunction.Where(x => x.ZONE_ID == Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-            //        {
-            //            ZONE_DETAIL obj = new ZONE_DETAIL();
-            //            obj.Action = ActionEnum.Create;
-            //            obj.EMPLOYEE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-            //            obj.ZONE_ID = Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString());
-            //            obj.CREATE_DATE = DateTime.Now;
-            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.UPDATE_DATE = DateTime.Now;
-            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.SYE_DEL = false;
-            //            list.Add(obj);
-            //        }
-            //        else if (DataSouceNewRoleFunction.Where(x => x.ZONE_ID == Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-            //        {
-            //            ZONE_DETAIL obj = new ZONE_DETAIL();
-            //            obj.Action = ActionEnum.Create;
-            //            obj.EMPLOYEE_ID = 0;
-            //            obj.ZONE_ID = Convert.ToInt32(gridSelectZone.DataKeys[i].Value.ToString());
-            //            obj.CREATE_DATE = DateTime.Now;
-            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.UPDATE_DATE = DateTime.Now;
-            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.SYE_DEL = false;
-            //            DataSouceNewRoleFunction.Add(obj);
-            //        }
-            //    }
-            //}
-
-            //if (list.Count > 0)
-            //{
-            //    cmdZoneDetailService.AddList(list);
-            //}
-
             PrepareObjectScreen();
         }
-
-        //protected void gridZone_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    cmdZoneDetailService.Delete(Convert.ToInt32(gridZone.DataKeys[e.RowIndex].Values[0].ToString()));
-        //    PrepareObjectScreen();
-        //}
-
-        //protected void gridZone_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        foreach (ImageButton button in e.Row.Cells[0].Controls.OfType<ImageButton>())
-        //        {
-        //            if (button.CommandName == "Delete")
-        //            {
-        //                button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
-        //            }
-        //        }
-        //    }
-        //}
-
-        //protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (ddlDepartment.SelectedItem.Text == "Sale")
-        //    {
-        //        AddZone.Enabled = true;
-        //        gridZone.Visible = true;
-        //    }
-        //    else 
-        //    {
-        //        AddZone.Enabled = false;
-        //        gridZone.Visible = false;
-        //    }
-        //}
     }
 }

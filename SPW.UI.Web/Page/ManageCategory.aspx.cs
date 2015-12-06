@@ -100,6 +100,10 @@ namespace SPW.UI.Web.Page
                 obj.SYE_DEL = false;
                 _categoryService.Edit(obj);
             }
+
+            btnSave.Enabled = false;
+            btnSave.Visible = false;
+            btnCancel.Visible = false;
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchCategory.aspx");
         }
