@@ -16,7 +16,10 @@ namespace SPW.Model
     {
         public VEHICLE()
         {
+            this.AP_VEHICLE_TRANS = new HashSet<AP_VEHICLE_TRANS>();
+            this.DELIVERY_INDEX = new HashSet<DELIVERY_INDEX>();
             this.DELIVERY_ORDER = new HashSet<DELIVERY_ORDER>();
+            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
         }
     
         public int VEHICLE_ID { get; set; }
@@ -29,6 +32,9 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
+        public virtual ICollection<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
+        public virtual ICollection<DELIVERY_INDEX> DELIVERY_INDEX { get; set; }
         public virtual ICollection<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
     }
 }

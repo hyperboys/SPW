@@ -45,13 +45,21 @@
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
+    <Compile Include="DataServiceController\DataServiceBase.cs" />
+    <Compile Include="DataServiceController\DataServiceEngine.cs" />
+    <Compile Include="DataServiceController\IDataService.cs" />
+    <Compile Include="DataServiceController\IService.cs" />
+    <Compile Include="DataServiceController\StockDataService.cs" />
+    <Compile Include="DeliveryIndexDetailsService.cs" />
+    <Compile Include="DeliveryIndexService.cs" />
     <Compile Include="ProductPromotionService.cs" />
     <Compile Include="RoleFunctionService.cs" />
     <Compile Include="FunctionService.cs" />
     <Compile Include="RoleService.cs" />
+    <Compile Include="DataServiceController\ServiceBase.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="VehicleService.cs" />
-    <Compile Include="TraceryService.cs" />
+    <Compile Include="ColorTypeService.cs" />
     <Compile Include="DeliveryOrderDetailService.cs" />
     <Compile Include="DeliveryOrderService.cs" />
     <Compile Include="OrderDetailService.cs" />

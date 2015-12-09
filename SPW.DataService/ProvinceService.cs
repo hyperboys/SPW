@@ -8,32 +8,60 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ProvinceService
+    public class ProvinceService : ServiceBase, IDataService<PROVINCE>, IService 
     {
-        private PROVINCE _item = new PROVINCE();
-        private List<PROVINCE> _lstItem = new List<PROVINCE>();
-
-        public ProvinceService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
+            get
+            {
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
+            }
+        }
+        #endregion
 
+        #region IDataService<PROVINCE> Members
+
+        public void Add(PROVINCE obj)
+        {
+            this.Datacontext.PROVINCE.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<PROVINCE> GetALL()
+        public void AddList(List<PROVINCE> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PROVINCE.Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Edit(PROVINCE obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<PROVINCE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PROVINCE Select()
+        {
+            throw new NotImplementedException();
         }
 
         public PROVINCE Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PROVINCE.Where(x => x.PROVINCE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_ID == ID).FirstOrDefault();
         }
+
+        public List<PROVINCE> GetAll()
+        {
+            return this.Datacontext.PROVINCE.Where(x => x.SYE_DEL == false).ToList();
+        }
+        #endregion
+    
     }
 }

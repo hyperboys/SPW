@@ -26,9 +26,14 @@ namespace SPW.DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<ACCOUNT_MAST> ACCOUNT_MAST { get; set; }
+        public DbSet<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
+        public DbSet<ASSET_TYPE> ASSET_TYPE { get; set; }
         public DbSet<CATEGORY> CATEGORY { get; set; }
         public DbSet<COLOR> COLOR { get; set; }
         public DbSet<COLOR_TYPE> COLOR_TYPE { get; set; }
+        public DbSet<DELIVERY_INDEX> DELIVERY_INDEX { get; set; }
+        public DbSet<DELIVERY_INDEX_DETAIL> DELIVERY_INDEX_DETAIL { get; set; }
         public DbSet<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
         public DbSet<DELIVERY_ORDER_DETAIL> DELIVERY_ORDER_DETAIL { get; set; }
         public DbSet<DEPARTMENT> DEPARTMENT { get; set; }
@@ -36,6 +41,8 @@ namespace SPW.DAL
         public DbSet<FUNCTION> FUNCTION { get; set; }
         public DbSet<ORDER> ORDER { get; set; }
         public DbSet<ORDER_DETAIL> ORDER_DETAIL { get; set; }
+        public DbSet<PAYIN_APPROVER> PAYIN_APPROVER { get; set; }
+        public DbSet<PAYIN_TRANS> PAYIN_TRANS { get; set; }
         public DbSet<PRODUCT> PRODUCT { get; set; }
         public DbSet<PRODUCT_PRICELIST> PRODUCT_PRICELIST { get; set; }
         public DbSet<PRODUCT_PROMOTION> PRODUCT_PROMOTION { get; set; }
@@ -44,10 +51,15 @@ namespace SPW.DAL
         public DbSet<ROLE> ROLE { get; set; }
         public DbSet<ROLE_FUNCTION> ROLE_FUNCTION { get; set; }
         public DbSet<SECTOR> SECTOR { get; set; }
+        public DbSet<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
+        public DbSet<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
+        public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
+        public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
         public DbSet<STORE> STORE { get; set; }
         public DbSet<SUB_FUNCTION> SUB_FUNCTION { get; set; }
         public DbSet<USER> USER { get; set; }
         public DbSet<VEHICLE> VEHICLE { get; set; }
+        public DbSet<VENDOR> VENDOR { get; set; }
         public DbSet<ZONE> ZONE { get; set; }
         public DbSet<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }

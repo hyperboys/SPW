@@ -8,81 +8,75 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class FunctionService
+    public class FunctionService : ServiceBase, IDataService<FUNCTION>, IService 
     {
-        private FUNCTION _item = new FUNCTION();
-        private List<FUNCTION> _lstItem = new List<FUNCTION>();
 
-        public FunctionService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public FunctionService(FUNCTION item)
-        {
-            _item = item;
-        }
-
-        public FunctionService(List<FUNCTION> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<FUNCTION> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.FUNCTION.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<FUNCTION> GetALLInclude()
+        #region IDataService<EMPLOYEE> Members
+
+        public void Add(FUNCTION obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.FUNCTION.Include("SUB_FUNCTION").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            this.Datacontext.FUNCTION.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<FUNCTION> GetALL(string name)
+        public void AddList(List<FUNCTION> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.FUNCTION.Where(x => x.FUNCTION_NAME.Contains(name)).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Edit(FUNCTION obj)
+        {
+            var item = this.Datacontext.FUNCTION.Where(x => x.FUNCTION_ID == obj.FUNCTION_ID).FirstOrDefault();
+            item.FUNCTION_NAME = obj.FUNCTION_NAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<FUNCTION> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FUNCTION Select()
+        {
+            throw new NotImplementedException();
         }
 
         public FUNCTION Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.FUNCTION.Where(x => x.FUNCTION_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.FUNCTION.Where(x => x.FUNCTION_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<FUNCTION> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.FUNCTION.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.FUNCTION.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Edit()
+        public List<FUNCTION> GetAllInclude()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.FUNCTION.Where(x => x.FUNCTION_ID == _item.FUNCTION_ID).FirstOrDefault();
-                obj.FUNCTION_NAME = _item.FUNCTION_NAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.FUNCTION.Include("SUB_FUNCTION").Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public List<FUNCTION> GetAll(string name)
+        {
+            return this.Datacontext.FUNCTION.Where(x => x.FUNCTION_NAME.ToUpper().Contains(name.ToUpper())).ToList();
+        }
+
+        #endregion
     }
 }

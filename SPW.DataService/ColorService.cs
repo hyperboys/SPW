@@ -8,92 +8,74 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ColorService
+    public class ColorService : ServiceBase, IDataService<COLOR>, IService 
     {
-        private COLOR _item = new COLOR();
-        private List<COLOR> _lstItem = new List<COLOR>();
 
-        public ColorService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ColorService(COLOR item)
-        {
-            _item = item;
-        }
-
-        public ColorService(List<COLOR> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<COLOR> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.COLOR.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        //public List<COLOR> GetALLInclude()
-        //{
-        //    using (var ctx = new SPWEntities())
-        //    {
-        //        var list = ctx.COLOR.Include("COLOR_TYPE").Where(x => x.SYE_DEL == true).ToList();
-        //        return list;
-        //    }
-        //}
+        #region IDataService<COLOR> Members
 
-        public List<COLOR> GetALL(string subname, string name)
+        public void Add(COLOR obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.COLOR.Where(x => x.COLOR_SUBNAME.Contains(subname)
-                    && x.COLOR_NAME.Contains(name)).ToList();
-                return list;
-            }
+            this.Datacontext.COLOR.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<COLOR> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(COLOR obj)
+        {
+            var item = this.Datacontext.COLOR.Where(x => x.COLOR_ID == obj.COLOR_ID).FirstOrDefault();
+            item.COLOR_NAME = obj.COLOR_NAME;
+            item.COLOR_SUBNAME = obj.COLOR_SUBNAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<COLOR> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public COLOR Select()
+        {
+            throw new NotImplementedException();
         }
 
         public COLOR Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.COLOR.Where(x => x.COLOR_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.COLOR.Where(x => x.COLOR_ID == ID).FirstOrDefault();
         }
 
-        public COLOR SelectInclude(int ID)
+        public List<COLOR> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.COLOR.Include("COLOR_TYPE").Where(x => x.COLOR_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.COLOR.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Add()
+        public void Delete(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.COLOR.Add(_item);
-                ctx.SaveChanges();
-            }
+            var obj = this.Datacontext.COLOR.Where(x => x.COLOR_ID == ID).FirstOrDefault();
+            this.Datacontext.COLOR.Remove(obj);
+            this.Datacontext.SaveChanges();
         }
-
-        public void Edit()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.COLOR.Where(x => x.COLOR_ID == _item.COLOR_ID).FirstOrDefault();
-                obj.COLOR_NAME = _item.COLOR_NAME;
-                obj.COLOR_SUBNAME = _item.COLOR_SUBNAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
-        }
+        
+        #endregion
+   
     }
 }

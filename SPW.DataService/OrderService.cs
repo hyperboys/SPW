@@ -8,108 +8,165 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class OrderService
+    public class OrderService : ServiceBase, IDataService<ORDER>, IService
     {
-        private ORDER _item = new ORDER();
-        private List<ORDER> _lstItem = new List<ORDER>();
-
-        public OrderService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public OrderService(ORDER item)
-        {
-            _item = item;
-        }
-
-        public OrderService(List<ORDER> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ORDER> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ORDER.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<ORDER> GetALLInclude()
+        #region IDataService<ORDER> Members
+
+        public void Add(ORDER obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            this.Datacontext.ORDER.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<ORDER> GetALLIncludeStore()
+        public void AddList(List<ORDER> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER.Include("STORE").Where(x => x.SYE_DEL == true && x.ORDER_APPROVE == "2").ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<ORDER> GetALLIncludeByStore(int ID)
+        public void Edit(ORDER obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == true && x.STORE_ID == ID).ToList();
-                return list;
-            }
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == obj.ORDER_ID).FirstOrDefault();
+            item.ORDER_CODE = obj.ORDER_CODE;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
         }
 
-        public List<STORE> GetStoreInOrder()
+        public void EditList(List<ORDER> objList)
         {
-            using (var ctx = new SPWEntities())
+            foreach (var item in objList)
             {
-                var list = ctx.STORE.Include("STORE").Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                var obj = this.Datacontext.ORDER.Where(x => x.ORDER_ID == item.ORDER_ID).FirstOrDefault();
+                if (obj != null)
+                {
+                    //obj.ORDER_APPROVE = item.ORDER_APPROVE;
+                    obj.UPDATE_DATE = item.UPDATE_DATE;
+                    obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                }
             }
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditOrderStepCancel(int EditSysDel)
+        {
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == EditSysDel).FirstOrDefault();
+            item.ORDER_STEP = "12"; //Cancel
+            item.UPDATE_DATE = DateTime.Now;
+            //item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditOrderStepHQApprove(int EditSysDel)
+        {
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == EditSysDel).FirstOrDefault();
+            item.ORDER_STEP = "11"; //HQ Approve
+            item.UPDATE_DATE = DateTime.Now;
+            //item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditSysDel(int EditSysDel)
+        {
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == EditSysDel).FirstOrDefault();
+            item.SYE_DEL = true;
+            item.UPDATE_DATE = DateTime.Now;
+            //item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public ORDER Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ORDER Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER.Include("ORDER_DETAIL").Where(x => x.ORDER_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ORDER.Include("ORDER_DETAIL").Where(x => x.ORDER_ID == ID).FirstOrDefault();
+        }
+
+        public List<ORDER> GetAllIncludeStore()
+        {
+            return this.Datacontext.ORDER.Include("STORE").Where(x => x.SYE_DEL == false).ToList();
         }
 
         public ORDER SelectIncludeStore(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ORDER.Include("STORE").Where(x => x.ORDER_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ORDER.Include("STORE").Where(x => x.ORDER_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<ORDER> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.ORDER.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ORDER.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void Edit()
+        public List<ORDER> GetAllInclude()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.ORDER.Where(x => x.ORDER_ID == _item.ORDER_ID).FirstOrDefault();
-                obj.ORDER_CODE = _item.ORDER_CODE;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.ORDER.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public List<ORDER> GetStoreInOrder()
+        {
+            return this.Datacontext.ORDER.Include("STORE").Where(x => x.SYE_DEL == false && x.ORDER_STEP != "30" && x.ORDER_STEP != "40" && x.ORDER_STEP != "50" && x.ORDER_STEP != "12").ToList();
+        }
+
+        public List<ORDER> GetAllIncludeByStore(int ID)
+        {
+            return this.Datacontext.ORDER.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == false && x.STORE_ID == ID).ToList();
+        }
+
+        public List<ORDER> GetAllNotCompleteIncludeByStore(int ID)
+        {
+            // Not Complete Status 10,12,30,50
+            return this.Datacontext.ORDER.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == false && x.STORE_ID == ID && x.ORDER_STEP != "10" && x.ORDER_STEP != "12" && x.ORDER_STEP != "30" && x.ORDER_STEP != "50").ToList();
+        }
+
+        public int GetOrderCode(string date)
+        {
+            return this.Datacontext.ORDER.Where(x=>x.ORDER_CODE.Contains(date)).Count() + 1;
+        }
+
+        public List<ORDER> GetAllByStore(List<STORE> StoreList)
+        {
+            List<ORDER> SourceItems = new List<ORDER>();
+            foreach (var item in StoreList)
+            {
+                SourceItems.AddRange(GetAllNotCompleteIncludeByStore(item.STORE_ID));
+            }
+
+            return SourceItems.ToList();
+        }
+
+        public void FlagStatus(List<int> objOrderItems, string Flag, int UpdateID)
+        {
+            foreach (var item in objOrderItems)
+            {
+                ORDER objOrder = Select(item);
+                objOrder.ORDER_STEP = Flag;
+                objOrder.UPDATE_EMPLOYEE_ID = UpdateID;
+                objOrder.UPDATE_DATE = DateTime.Now;
+            }
+            this.Datacontext.SaveChanges();
+        }
+
+        public List<ORDER> GetAllByID(List<int> KeyItems)
+        {
+            return (this._Datacontext.ORDER.Include("STORE").Where(x => KeyItems.Any(y => y == x.ORDER_ID)).ToList());
+        }
+
+        #endregion
     }
 }

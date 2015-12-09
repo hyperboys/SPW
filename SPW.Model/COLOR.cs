@@ -14,6 +14,16 @@ namespace SPW.Model
     
     public partial class COLOR
     {
+        public COLOR()
+        {
+            this.DELIVERY_INDEX_DETAIL = new HashSet<DELIVERY_INDEX_DETAIL>();
+            this.DELIVERY_ORDER_DETAIL = new HashSet<DELIVERY_ORDER_DETAIL>();
+            this.ORDER_DETAIL = new HashSet<ORDER_DETAIL>();
+            this.STOCK_PRODUCT_STOCK = new HashSet<STOCK_PRODUCT_STOCK>();
+            this.STOCK_PRODUCT_TRANS = new HashSet<STOCK_PRODUCT_TRANS>();
+            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
+        }
+    
         public int COLOR_ID { get; set; }
         public string COLOR_CODE { get; set; }
         public string COLOR_SUBNAME { get; set; }
@@ -23,5 +33,12 @@ namespace SPW.Model
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual ICollection<DELIVERY_INDEX_DETAIL> DELIVERY_INDEX_DETAIL { get; set; }
+        public virtual ICollection<DELIVERY_ORDER_DETAIL> DELIVERY_ORDER_DETAIL { get; set; }
+        public virtual ICollection<ORDER_DETAIL> ORDER_DETAIL { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
     }
 }

@@ -8,142 +8,77 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class EmployeeService
+    public class EmployeeService : ServiceBase, IDataService<EMPLOYEE>, IService 
     {
-        private EMPLOYEE _item = new EMPLOYEE();
-        private List<EMPLOYEE> _lstItem = new List<EMPLOYEE>();
-
-        public EmployeeService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
+            get
+            {
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
+            }
+        }
+        #endregion
+
+        #region IDataService<EMPLOYEE> Members
+
+        public void Add(EMPLOYEE obj)
+        {
+            this.Datacontext.EMPLOYEE.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public EmployeeService(EMPLOYEE item)
+        public void AddList(List<EMPLOYEE> obj)
         {
-            _item = item;
+            throw new NotImplementedException();
         }
 
-        public EmployeeService(List<EMPLOYEE> lstItem)
+        public void Edit(EMPLOYEE obj)
         {
-            _lstItem = lstItem;
+            var item = this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_ID == obj.EMPLOYEE_ID).FirstOrDefault();
+            item.EMPLOYEE_NAME = obj.EMPLOYEE_NAME;
+            item.EMPLOYEE_SURNAME = obj.EMPLOYEE_SURNAME;
+            item.EMPLOYEE_CODE = obj.EMPLOYEE_CODE;
+            item.DEPARTMENT_ID = obj.DEPARTMENT_ID;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<EMPLOYEE> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EMPLOYEE Select()
+        {
+            throw new NotImplementedException();
         }
 
         public EMPLOYEE Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.EMPLOYEE.Where(x => x.EMPLOYEE_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_ID == ID).FirstOrDefault();
         }
 
-        public List<EMPLOYEE> GetALL()
+        public List<EMPLOYEE> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.EMPLOYEE.Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            return this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public List<EMPLOYEE> GetALLInclude()
+        public List<EMPLOYEE> GetAllInclude()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.EMPLOYEE.Include("DEPARTMENT").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            return this.Datacontext.EMPLOYEE.Include("DEPARTMENT").Where(x => x.SYE_DEL == false).ToList();
         }
 
-
-        public List<EMPLOYEE> GetALL(EMPLOYEE item)
+        public List<EMPLOYEE> GetAll(EMPLOYEE item)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.EMPLOYEE.Where(x => x.EMPLOYEE_CODE.Contains(item.EMPLOYEE_CODE) && x.SYE_DEL == true).ToList();
-                return list;
-            }
+            return this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_CODE.Contains(item.EMPLOYEE_CODE) && x.SYE_DEL == false).ToList();
         }
 
-        public void Add()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.EMPLOYEE.Add(_item);
-                ctx.SaveChanges();
-            }
-        }
-
-        public void AddList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.EMPLOYEE.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
-
-        public void Edit()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.EMPLOYEE.Where(x => x.EMPLOYEE_ID == _item.EMPLOYEE_ID).FirstOrDefault();
-                obj.EMPLOYEE_NAME = _item.EMPLOYEE_NAME;
-                obj.EMPLOYEE_SURNAME = _item.EMPLOYEE_SURNAME;
-                obj.EMPLOYEE_CODE = _item.EMPLOYEE_CODE;
-                obj.DEPARTMENT_ID = _item.DEPARTMENT_ID;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void EditList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Update)
-                    {
-                        var obj = ctx.EMPLOYEE.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            obj.EMPLOYEE_NAME = item.EMPLOYEE_NAME;
-                            obj.EMPLOYEE_SURNAME = item.EMPLOYEE_SURNAME;
-                            obj.EMPLOYEE_CODE = item.EMPLOYEE_CODE;
-                            obj.DEPARTMENT_ID = item.DEPARTMENT_ID;
-                            obj.UPDATE_DATE = item.UPDATE_DATE;
-                            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                        }
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
-
-        public void Delete()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Delete)
-                    {
-                        var obj = ctx.EMPLOYEE.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            ctx.EMPLOYEE.Remove(obj);
-                        }
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
+        #endregion
     }
 }

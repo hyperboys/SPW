@@ -17,6 +17,7 @@ namespace SPW.Model
         public PROVINCE()
         {
             this.STORE = new HashSet<STORE>();
+            this.VENDOR = new HashSet<VENDOR>();
         }
     
         public int PROVINCE_ID { get; set; }
@@ -30,5 +31,6 @@ namespace SPW.Model
     
         public virtual SECTOR SECTOR { get; set; }
         public virtual ICollection<STORE> STORE { get; set; }
+        public virtual ICollection<VENDOR> VENDOR { get; set; }
     }
 }

@@ -8,131 +8,138 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ProductService
+    public class ProductService : ServiceBase, IDataService<PRODUCT>, IService
     {
-        private PRODUCT _item = new PRODUCT();
-        private List<PRODUCT> _lstItem = new List<PRODUCT>();
-
-        public ProductService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ProductService(PRODUCT item)
-        {
-            _item = item;
-        }
-
-        public ProductService(List<PRODUCT> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<PRODUCT> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.PRODUCT.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<string> GetUDescPacking() 
+        #region IDataService<PRODUCT> Members
+
+        public void Add(PRODUCT obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Select(x=>x.PRODUCT_PACKING_PER_UDESC).Distinct().ToList();
-                return list;
-            }
+            this.Datacontext.PRODUCT.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<string> GetPDescPacking()
+        public void AddList(List<PRODUCT> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Select(x => x.PRODUCT_PACKING_PER_PDESC).Distinct().ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<PRODUCT> GetALL(PRODUCT item)
+        public void Edit(PRODUCT obj)
         {
-            using (var ctx = new SPWEntities())
+            var item = this.Datacontext.PRODUCT.Where(x => x.PRODUCT_ID == obj.PRODUCT_ID).FirstOrDefault();
+            item.PRODUCT_CODE = obj.PRODUCT_CODE;
+            item.PRODUCT_NAME = obj.PRODUCT_NAME;
+            item.PRODUCT_SIZE = obj.PRODUCT_SIZE;
+            item.PRODUCT_WEIGHT = obj.PRODUCT_WEIGHT;
+            item.PRODUCT_PACKING_DESC = obj.PRODUCT_PACKING_DESC;
+            item.PRODUCT_PACKING_PER_PDESC = obj.PRODUCT_PACKING_PER_PDESC;
+            item.PRODUCT_PACKING_PER_UDESC = obj.PRODUCT_PACKING_PER_UDESC;
+            item.PRODUCT_PACKING_QTY = obj.PRODUCT_PACKING_QTY;
+            item.PRODUCT_TYPE_CODE = obj.PRODUCT_TYPE_CODE;
+            item.PRODUCT_WEIGHT_DEFINE = obj.PRODUCT_WEIGHT_DEFINE;
+            if (obj.PRODUCT_IMAGE_PATH != null)
             {
-                var list = ctx.PRODUCT.Where(x => x.PRODUCT_CODE.Contains(item.PRODUCT_CODE)).ToList();
-                return list;
+                item.PRODUCT_IMAGE_PATH = obj.PRODUCT_IMAGE_PATH;
             }
+            item.CATEGORY_ID = obj.CATEGORY_ID;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
         }
 
-        public List<PRODUCT> GetALLInclude()
+        public void EditList(List<PRODUCT> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<PRODUCT> GetALLIncludeBySale()
+        public PRODUCT Select()
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
-        }
-
-        public List<PRODUCT> GetALLIncludeOrder()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
         public PRODUCT Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public PRODUCT SelectNotInclude(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.PRODUCT.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.PRODUCT.Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
         }
 
-        public void Edit()
+        public List<PRODUCT> GetAll()
         {
-            using (var ctx = new SPWEntities())
+            return this.Datacontext.PRODUCT.Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<string> GetUDescPacking()
+        {
+            return this.Datacontext.PRODUCT.Select(x => x.PRODUCT_PACKING_PER_UDESC).Distinct().ToList();
+        }
+
+        public List<string> GetPDescPacking()
+        {
+            return this.Datacontext.PRODUCT.Select(x => x.PRODUCT_PACKING_PER_PDESC).Distinct().ToList();
+        }
+
+        public List<PRODUCT> GetAll(PRODUCT item)
+        {
+            return this.Datacontext.PRODUCT.Where(x => x.PRODUCT_CODE.Contains(item.PRODUCT_CODE)).ToList();
+        }
+
+        public List<PRODUCT> GetAllInclude()
+        {
+            return this.Datacontext.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<PRODUCT> GetAllIncludeBySale()
+        {
+            return this.Datacontext.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<PRODUCT> GetAllIncludeOrder()
+        {
+            return this.Datacontext.PRODUCT.Include("ORDER_DETAIL").Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public void Delete(int ID)
+        {
+
+            var obj = this.Datacontext.PRODUCT.Include("PRODUCT_PRICELIST").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
+
+            List<ORDER_DETAIL> od = this.Datacontext.ORDER_DETAIL.Where(x => x.PRODUCT_ID == obj.PRODUCT_ID).ToList();
+
+            if (od.Count > 0)
             {
-                var obj = ctx.PRODUCT.Where(x => x.PRODUCT_ID == _item.PRODUCT_ID).FirstOrDefault();
-                obj.PRODUCT_CODE = _item.PRODUCT_CODE;
-                obj.PRODUCT_NAME = _item.PRODUCT_NAME;
-                obj.PRODUCT_SIZE = _item.PRODUCT_SIZE;
-                obj.PRODUCT_WEIGHT = _item.PRODUCT_WEIGHT;
-                obj.PRODUCT_PACKING_DESC = _item.PRODUCT_PACKING_DESC;
-                obj.PRODUCT_PACKING_PER_PDESC = _item.PRODUCT_PACKING_PER_PDESC;
-                obj.PRODUCT_PACKING_PER_UDESC = _item.PRODUCT_PACKING_PER_UDESC;
-                obj.PRODUCT_PACKING_QTY = _item.PRODUCT_PACKING_QTY;
-                obj.PRODUCT_TYPE_CODE = _item.PRODUCT_TYPE_CODE;
-                obj.PRODUCT_WEIGHT_DEFINE = _item.PRODUCT_WEIGHT_DEFINE;
-                if (_item.PRODUCT_IMAGE_PATH != null)
+                throw new Exception();
+            }
+            else
+            {
+                foreach (PRODUCT_PRICELIST tmp in obj.PRODUCT_PRICELIST.ToList()) 
                 {
-                    obj.PRODUCT_IMAGE_PATH = _item.PRODUCT_IMAGE_PATH;
+                    tmp.SYE_DEL = true;
                 }
-                obj.CATEGORY_ID = _item.CATEGORY_ID;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
+                obj.SYE_DEL = true;
+                this.Datacontext.SaveChanges();
             }
+
+
         }
+
+        #endregion
+
     }
 }

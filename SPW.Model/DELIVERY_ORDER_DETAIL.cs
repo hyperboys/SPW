@@ -16,20 +16,32 @@ namespace SPW.Model
     {
         public int DELORDER_DETAIL_ID { get; set; }
         public int DELORDER_ID { get; set; }
+        public string DELORDER_CODE { get; set; }
+        public Nullable<int> DELORDER_SEQ_NO { get; set; }
+        public int ORDER_DETAIL_ID { get; set; }
         public Nullable<int> PRODUCT_SEQ { get; set; }
         public int PRODUCT_ID { get; set; }
+        public int COLOR_ID { get; set; }
+        public int COLOR_TYPE_ID { get; set; }
         public Nullable<int> PRODUCT_QTY { get; set; }
-        public Nullable<int> PRODUCT_SEND_QTY { get; set; }
         public Nullable<decimal> PRODUCT_PRICE { get; set; }
-        public Nullable<decimal> PRODUCT_TOTAL { get; set; }
+        public Nullable<decimal> PRODUCT_WEIGHT { get; set; }
+        public string IS_FREE { get; set; }
+        public int PRODUCT_SENT_ROUND { get; set; }
+        public Nullable<int> PRODUCT_SENT_QTY { get; set; }
+        public Nullable<int> PRODUCT_SENT_REMAIN { get; set; }
+        public Nullable<decimal> PRODUCT_SENT_PRICE_TOTAL { get; set; }
+        public Nullable<decimal> PRODUCT_SENT_WEIGHT_TOTAL { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
-        public string COLOR_CODE { get; set; }
     
+        public virtual COLOR COLOR { get; set; }
+        public virtual COLOR_TYPE COLOR_TYPE { get; set; }
         public virtual DELIVERY_ORDER DELIVERY_ORDER { get; set; }
+        public virtual ORDER_DETAIL ORDER_DETAIL { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
     }
 }

@@ -17,11 +17,13 @@ namespace SPW.Model
         public ROAD()
         {
             this.STORE = new HashSet<STORE>();
+            this.VENDOR = new HashSet<VENDOR>();
         }
     
         public int ROAD_ID { get; set; }
         public string ROAD_NAME { get; set; }
     
         public virtual ICollection<STORE> STORE { get; set; }
+        public virtual ICollection<VENDOR> VENDOR { get; set; }
     }
 }

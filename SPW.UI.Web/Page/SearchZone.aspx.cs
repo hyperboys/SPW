@@ -11,7 +11,9 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchZone : System.Web.UI.Page
     {
-        private ZONE _zone;
+        private DataServiceEngine _dataServiceEngine;
+        private ZoneService cmdZone;
+
         public List<ZONE> DataSouce
         {
             get
@@ -25,6 +27,32 @@ namespace SPW.UI.Web.Page
             }
         }
 
+        private void ReloadPageEngine()
+        {
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            cmdZone = (ZoneService)_dataServiceEngine.GetDataService(typeof(ZoneService));
+        }
+
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
+        }
+
         private void BlindGrid()
         {
             gridZone.DataSource = DataSouce;
@@ -35,37 +63,20 @@ namespace SPW.UI.Web.Page
         {
             if (!Page.IsPostBack)
             {
+                CreatePageEngine();
                 InitialData();
+            }
+            else
+            {
+                ReloadPageEngine();
             }
         }
 
         private void InitialData()
         {
-            var cmd = new ZoneService();
-            DataSouce = cmd.GetALL();
+            DataSouce = cmdZone.GetAll();
             gridZone.DataSource = DataSouce;
             gridZone.DataBind();
-        }
-
-        private void InitialDataPopup()
-        {
-            var cmdEmp = new EmployeeService();
-            foreach (var item in cmdEmp.GetALLInclude())
-            {
-                ddlSell.Items.Add(new ListItem(("แผนก " + item.DEPARTMENT.DEPARTMENT_NAME + " ชื่อ " + item.EMPLOYEE_NAME + " " + item.EMPLOYEE_SURNAME), item.EMPLOYEE_ID.ToString()));
-            }
-
-            if (ViewState["zoneID"] != null)
-            {
-                var cmd = new ZoneService();
-                _zone = cmd.Select(Convert.ToInt32(ViewState["zoneID"].ToString()));
-                if (_zone != null)
-                {
-                    popTxtZoneCode.Text = _zone.ZONE_CODE;
-                    popTxtZoneName.Text = _zone.ZONE_NAME;
-                    flag.Text = "Edit";
-                }
-            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -88,9 +99,7 @@ namespace SPW.UI.Web.Page
 
         protected void gridZone_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["zoneID"] = gridZone.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageZone.aspx?id=" + gridZone.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridZone_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -105,46 +114,9 @@ namespace SPW.UI.Web.Page
             SearchGrid();
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new ZONE();
-            obj.ZONE_CODE = popTxtZoneCode.Text;
-            obj.ZONE_NAME = popTxtZoneName.Text;
-            var cmd = new ZoneService(obj);
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.ZONE_ID = Convert.ToInt32(ViewState["zoneID"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-            flag.Text = "Add";
-            ViewState["zoneID"] = null;
-            Response.Redirect("SearchZone.aspx");
-        }
-
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            InitialDataPopup();
-            this.popup.Show();
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["zoneID"] = null;
-            Response.Redirect("SearchZone.aspx");
+            Response.RedirectPermanent("ManageZone.aspx");
         }
     }
 }

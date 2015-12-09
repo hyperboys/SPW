@@ -8,85 +8,84 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class RoleFunctionService
+    public class RoleFunctionService : ServiceBase, IDataService<ROLE_FUNCTION>, IService 
     {
-        private ROLE_FUNCTION _item = new ROLE_FUNCTION();
-        private List<ROLE_FUNCTION> _lstItem = new List<ROLE_FUNCTION>();
-
-        public RoleFunctionService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public RoleFunctionService(ROLE_FUNCTION item)
-        {
-            _item = item;
-        }
-
-        public RoleFunctionService(List<ROLE_FUNCTION> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<ROLE_FUNCTION> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.ROLE_FUNCTION.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<ROLE_FUNCTION> GetALLIncludeFunction(int roleId)
+        #region IDataService<ROLE_FUNCTION> Members
+
+        public void Add(ROLE_FUNCTION obj)
         {
-            using (var ctx = new SPWEntities())
+            this.Datacontext.ROLE_FUNCTION.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<ROLE_FUNCTION> obj)
+        {
+            foreach (var item in obj)
             {
-                var list = ctx.ROLE_FUNCTION.Include("FUNCTION").Where(x => x.ROLE_ID == roleId && x.SYE_DEL == true).ToList();
-                return list;
+                if (item.Action == ActionEnum.Create)
+                {
+                    this.Datacontext.ROLE_FUNCTION.Add(item);
+                }
             }
+            this.Datacontext.SaveChanges();
+        }
+
+        public void Edit(ROLE_FUNCTION obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<ROLE_FUNCTION> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ROLE_FUNCTION Select()
+        {
+            throw new NotImplementedException();
         }
 
         public ROLE_FUNCTION Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
+        }
+
+        public List<ROLE_FUNCTION> GetAll()
+        {
+            return this.Datacontext.ROLE_FUNCTION.Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<ROLE_FUNCTION> GetAllIncludeFunction(int roleId)
+        {
+            return this.Datacontext.ROLE_FUNCTION.Include("FUNCTION").Where(x => x.ROLE_ID == roleId && x.SYE_DEL == false).ToList();
         }
 
         public List<ROLE_FUNCTION> SelectByRole(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.ROLE_FUNCTION.Where(x => x.ROLE_ID == ID).ToList();
-                return list;
-            }
+            return this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_ID == ID).ToList();
         }
 
         public void Delete(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
-                ctx.ROLE_FUNCTION.Remove(obj);
-                ctx.SaveChanges();
-            }
+            var obj = this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
+            obj.SYE_DEL = true;
+            this.Datacontext.SaveChanges();
         }
 
-        public void AddList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.ROLE_FUNCTION.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
+        #endregion
     }
 }

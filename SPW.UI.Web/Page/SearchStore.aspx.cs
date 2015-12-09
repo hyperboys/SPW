@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
@@ -11,7 +12,9 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchStore : System.Web.UI.Page
     {
-        private STORE _store;
+        private DataServiceEngine _dataServiceEngine;
+        private StoreService cmdStore;
+
         public List<STORE> DataSouce
         {
             get
@@ -25,51 +28,68 @@ namespace SPW.UI.Web.Page
             }
         }
 
+        private void ReloadPageEngine()
+        {
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            cmdStore = (StoreService)_dataServiceEngine.GetDataService(typeof(StoreService));
+        }
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
+        }
+
         private void BlindGrid()
         {
             gridStore.DataSource = DataSouce;
             gridStore.DataBind();
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)// Edit for Filter
         {
             if (!Page.IsPostBack)
             {
-                InitialData();
-            }
-        }
-
-        private void InitialData()
-        {
-            var cmd = new StoreService();
-            DataSouce = cmd.GetALL();
-            gridStore.DataSource = DataSouce;
-            gridStore.DataBind();
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            SearchGrid();
-        }
-
-        private void SearchGrid()
-        {
-            if (txtStoreCode.Text.Equals("") && txtStoreName.Text.Equals(""))
-            {
-                gridStore.DataSource = DataSouce;
+                CreatePageEngine();
+                CreateFilterControl();
+                CreateFilterDataSource();
+                CreateFilterPageSelected(cmdStore.GetAllCount());
+                ClearFilter();
+                BindData();
             }
             else
             {
-                gridStore.DataSource = DataSouce.Where(x => x.STORE_CODE.Contains(txtStoreCode.Text) && x.STORE_NAME.Contains(txtStoreName.Text)).ToList();
+                ReloadPageEngine();
+                CreateFilterControl();
             }
-            gridStore.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e) // Edit for Filter
+        {
+            List<object> ParamItems = new List<object>();
+            ParamItems.Insert(0, txtStoreCode.Text.Trim());
+            ParamItems.Insert(1, txtStoreName.Text.Trim());
+            Session[this.GetType().Name + "Filter"] = ParamItems;
+            CreateFilterDataSource();
+            BindData();
         }
 
         protected void gridProduct_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["stoId"] = gridStore.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageStore.aspx?id=" + gridStore.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridProduct_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -78,154 +98,215 @@ namespace SPW.UI.Web.Page
             gridStore.DataBind();
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
+        protected void btnReset_Click(object sender, EventArgs e)// Edit for Filter
         {
             txtStoreCode.Text = "";
             txtStoreName.Text = "";
-            SearchGrid();
+            CreateFilterDataSource();
+            CreateFilterPageSelected(cmdStore.GetAllCount());
+            ClearFilter();
+            BindData();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            ViewState["stoId"] = null;
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageStore.aspx");
         }
 
-
-        private void InitialDataPopup()
+        #region FilterControl
+        private void ClearFilter()
         {
-            var cmd = new SectorService();
-            var list = cmd.GetALL();
-            foreach (var item in list)
+            Session[this.GetType().Name + "Filter"] = null;
+        }
+        private void BindData() 
+        {
+            if (Session[this.GetType().Name + "Filter"] != null)
             {
-                ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString()));
+                List<object> ParamItems = (List<object>)Session[this.GetType().Name + "Filter"];
+                int SourceItemCount = 0;
+                DataSouce = cmdStore.GetAllByFilterCondition((string)ParamItems[0], (string)ParamItems[1], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount);
+                CreateFilterPageSelected(SourceItemCount);
+                UpdatePageControl((int)ViewState["PageIndex"]);
+                gridStore.DataSource = DataSouce;
+                gridStore.DataBind();
+                PrepareButtonFilterDisplay();
             }
-            var cmdPro = new ProvinceService();
-            ViewState["listProvince"] = cmdPro.GetALL();
-            foreach (var item in (List<PROVINCE>)ViewState["listProvince"])
+            else
             {
-                ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString()));
+                DataSouce = cmdStore.GetAllByFilter((int)ViewState["PageIndex"], (int)ViewState["PageLimit"]);
+                gridStore.DataSource = DataSouce;
+                gridStore.DataBind();
+                PrepareButtonFilterDisplay();
+            }
+        }
+
+        private void CreateFilterControl()
+        {
+            PlaceHolder1.Controls.Clear();
+            UpdatePanel1.Triggers.Clear();
+            UpdatePanel1.Triggers.Add(new AsyncPostBackTrigger() { ControlID = "btnSearch" ,EventName ="Click"});
+
+            Button objBtnPrevious = new Button();
+            objBtnPrevious.ID = "btnPrevious";
+            objBtnPrevious.Text = "Previous";
+            objBtnPrevious.CssClass = "btn btn-primary";
+            objBtnPrevious.Width = 100; 
+            objBtnPrevious.Click += new EventHandler(objBtnPrevious_Click);
+            UpdatePanel1.Triggers.Add(new AsyncPostBackTrigger() { ControlID = "btnPrevious" ,EventName ="Click"});
+            PlaceHolder1.Controls.Add(objBtnPrevious);
+            //PlaceHolder1.Controls.Add(new LiteralControl("<br/>"));
+
+            DropDownList objddlPageSelect = new DropDownList();
+            objddlPageSelect.ID = "ddlPageIndex";
+            objddlPageSelect.CssClass = "btn";
+            objddlPageSelect.Width = 100;
+            objddlPageSelect.Style["text-align"] = "center";
+            objddlPageSelect.AutoPostBack = true;
+            objddlPageSelect.SelectedIndexChanged += new EventHandler(objddlPageSelect_SelectedIndexChanged);
+            UpdatePanel1.Triggers.Add(new AsyncPostBackTrigger() { ControlID = "ddlPageIndex", EventName = "SelectedIndexChanged" });
+            PlaceHolder1.Controls.Add(objddlPageSelect);
+
+            Button objBtnNext = new Button();
+            objBtnNext.ID = "btnNext";
+            objBtnNext.Text = "Next";
+            objBtnNext.CssClass = "btn btn-primary";
+            objBtnNext.Width = 100;
+            objBtnNext.Click += new EventHandler(objBtnNext_Click);
+            UpdatePanel1.Triggers.Add(new AsyncPostBackTrigger() { ControlID = "btnNext", EventName = "Click" });
+            PlaceHolder1.Controls.Add(objBtnNext);
+
+            TextBox objPageIndex = new TextBox();
+            objPageIndex.ID = "txtPageIndex";
+            objPageIndex.Text = "40";
+            objPageIndex.CssClass = "text-center";
+            objPageIndex.Width = 100;
+            objPageIndex.Height = 32;
+            objPageIndex.Style["float"] = "right";
+            objPageIndex.MaxLength = 3;
+            PlaceHolder1.Controls.Add(objPageIndex);
+
+            CompareValidator compval = new CompareValidator();
+            compval.ID = "Compval";
+            compval.ControlToValidate = "txtPageIndex";
+            compval.ForeColor = System.Drawing.Color.Red;
+            compval.Type = ValidationDataType.Integer;
+            compval.Operator = ValidationCompareOperator.GreaterThanEqual;
+            compval.ValueToCompare = "10";
+            compval.Text = "Digit Only Accepted And Digit 10 - 999 ";
+            compval.Style["float"] = "right";
+            compval.CssClass = "text-center";
+            compval.Width = 260;
+            compval.Height = 30; 
+            compval.SetFocusOnError = true;
+            compval.Style["margin-top"] = "6px";
+            PlaceHolder1.Controls.Add(compval);
+        }
+
+        void objddlPageSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList objddlSelected = (DropDownList)sender;
+            ViewState["PageIndex"] = Convert.ToInt32(objddlSelected.SelectedValue);
+            BindData();
+        }
+
+        protected void objBtnNext_Click(object sender, EventArgs e)
+        {
+            ViewState["PageIndex"] = (int)ViewState["PageIndex"] + 1;
+            UpdatePageControl((int)ViewState["PageIndex"]);
+            BindData();
+        }
+
+        protected void objBtnPrevious_Click(object sender, EventArgs e)
+        {
+            ViewState["PageIndex"] = (int)ViewState["PageIndex"] - 1;
+            UpdatePageControl((int)ViewState["PageIndex"]);
+            BindData();
+        }
+
+        private void UpdatePageControl(int PageIndex) 
+        {
+            DropDownList ddlPageIndex = (DropDownList)PlaceHolder1.FindControl("ddlPageIndex");
+            ddlPageIndex.SelectedIndex = PageIndex - 1;
+        }
+
+        private void CreateFilterDataSource() 
+        {
+            DropDownList ddlPageIndex = (DropDownList)PlaceHolder1.FindControl("ddlPageIndex");
+            TextBox objtxtPageLimit = (TextBox)PlaceHolder1.FindControl("txtPageIndex");
+            ViewState["PageIndex"] = 1;
+            int PageLimit = Convert.ToInt32(objtxtPageLimit.Text);
+            ViewState["PageLimit"] = PageLimit;
+        }
+
+        private void CreateFilterPageSelected(int SourceItems) 
+        {
+            DropDownList ddlPageIndex = (DropDownList)PlaceHolder1.FindControl("ddlPageIndex");
+            ddlPageIndex.Items.Clear();
+            int PageLimit = (int)ViewState["PageLimit"];
+            int AllPage = (int)Math.Ceiling((decimal)SourceItems / (decimal)PageLimit);
+            ddlPageIndex.Items.Add("1");
+            for (int i = 2; i <= AllPage; i++)
+            {
+                ddlPageIndex.Items.Add(i.ToString());
+            }
+        }
+
+        private void PrepareButtonFilterDisplay()
+        {
+            Button btnPrevious = (Button)PlaceHolder1.FindControl("btnPrevious");
+            Button btnNext = (Button)PlaceHolder1.FindControl("btnNext");
+            DropDownList ddlPageIndex = (DropDownList)PlaceHolder1.FindControl("ddlPageIndex");
+
+            if ((int)ViewState["PageIndex"] > 1)
+            {
+                btnPrevious.Enabled = true;
+            }
+            else
+            {
+                btnPrevious.Enabled = false;
             }
 
-            var cmdRoad = new RoadService();
-            ViewState["listRoad"] = cmdRoad.GetALL();
-            foreach (var item in (List<ROAD>)ViewState["listRoad"])
+            int LastPageIndex = Convert.ToInt32(ddlPageIndex.Items[ddlPageIndex.Items.Count - 1].Text);
+            if ((int)ViewState["PageIndex"] < LastPageIndex)
             {
-                ddlRoad.Items.Add(new ListItem(item.ROAD_NAME, item.ROAD_ID.ToString()));
+                btnNext.Enabled = true;
             }
-
-            var cmdZone = new ZoneService();
-            var listZone = cmdZone.GetALL();
-            foreach (var item in listZone)
+            else
             {
-                ddlZone.Items.Add(new ListItem(item.ZONE_NAME, item.ZONE_ID.ToString()));
+                btnNext.Enabled = false;
             }
+            PlaceHolder1.Visible = (btnNext.Enabled || btnPrevious.Enabled);
+        }
+        #endregion
 
-            if (ViewState["stoId"] != null)
+        protected void gridProduct_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var cmdStore = new StoreService();
-                _store = cmdStore.Select(Convert.ToInt32(ViewState["stoId"].ToString()));
-                if (_store != null)
+                foreach (ImageButton button in e.Row.Cells[3].Controls.OfType<ImageButton>())
                 {
-                    txtAddress.Text = _store.STORE_ADDR1;
-                    txtAmpur.Text = _store.STORE_DISTRICT;
-                    txtFax.Text = _store.STORE_FAX;
-                    txtMobli.Text = _store.STORE_MOBILE;
-                    txtPostCode.Text = _store.STORE_POSTCODE;
-                    popTxtStoreCode.Text = _store.STORE_CODE;
-                    poptxtStoreName.Text = _store.STORE_NAME;
-                    txtTel1.Text = _store.STORE_TEL1;
-                    txtTel2.Text = _store.STORE_TEL2;
-                    txtTumbon.Text = _store.STORE_SUBDISTRICT;
-                    ddlSector.SelectedValue = _store.SECTOR_ID.ToString();
-                    ddlProvince.SelectedValue = _store.PROVINCE_ID.ToString();
-                    ddlProvince.Enabled = true;
-                    ddlZone.SelectedValue = _store.ZONE_ID.ToString();
-                    //if (ddlProvince.SelectedItem.Text.Equals("กรุงเทพมหานคร"))
-                    //{
-                    ddlRoad.Visible = true;
-                    ddlRoad.SelectedValue = _store.ROAD_ID.ToString();
-                    txtRoad.Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    txtRoad.Text = _store.STORE_STREET;
-                    //    ddlRoad.Visible = false;
-                    //}
-                    flag.Text = "Edit";
+                    if (button.CommandName == "Delete")
+                    {
+                        button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                    }
                 }
             }
         }
 
-        protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gridProduct_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            if (!ddlProvince.Enabled) ddlProvince.Enabled = true;
-            ddlProvince.Items.Clear();
-            foreach (var item in ((List<PROVINCE>)ViewState["listProvince"]).Where(x => x.SECTOR_ID == Convert.ToInt32(ddlSector.SelectedValue)))
+            try
             {
-                ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString()));
+                cmdStore.Delete(Convert.ToInt32(gridStore.DataKeys[e.RowIndex].Values[0].ToString()));
             }
-            this.popup.Show();
+            catch
+            {
+                string script = "alert(\"ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้\");";
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                                      "ServerControlScript", script, true);
+            }
+            
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new STORE();
-            obj.PROVINCE_ID = Convert.ToInt32(ddlProvince.SelectedValue);
-            obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
-            obj.ROAD_ID = Convert.ToInt32(ddlRoad.SelectedValue);
-            obj.STORE_ADDR1 = txtAddress.Text;
-            obj.STORE_CODE = popTxtStoreCode.Text;
-            obj.STORE_DISTRICT = txtAmpur.Text;
-            obj.STORE_FAX = txtFax.Text;
-            obj.STORE_MOBILE = txtMobli.Text;
-            obj.STORE_NAME = poptxtStoreName.Text;
-            obj.STORE_POSTCODE = txtPostCode.Text;
-            obj.STORE_STREET = txtRoad.Text;
-            obj.STORE_SUBDISTRICT = txtTumbon.Text;
-            obj.STORE_TEL1 = txtTel1.Text;
-            obj.STORE_TEL2 = txtTel2.Text;
-            obj.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
-            var cmd = new StoreService(obj);
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.STORE_ID = Convert.ToInt32(ViewState["stoId"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-
-            ViewState["stoId"] = null;
-            Response.Redirect("SearchStore.aspx");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["stoId"] = null;
-            Response.Redirect("SearchStore.aspx");
-        }
-
-        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlProvince.Enabled && ddlProvince.SelectedItem.Text.Equals("กรุงเทพมหานคร"))
-            {
-                txtRoad.Visible = false;
-                ddlRoad.Visible = true;
-            }
-            this.popup.Show();
-        }
     }
 }

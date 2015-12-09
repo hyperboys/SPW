@@ -26,10 +26,6 @@ namespace SPW.UI.Web.Reports {
         
         private SendOrderHeaderDataTable tableSendOrderHeader;
         
-        private SendOrderDetailDataTable tableSendOrderDetail;
-        
-        private SendOrderFooterDataTable tableSendOrderFooter;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,12 +57,6 @@ namespace SPW.UI.Web.Reports {
                 if ((ds.Tables["SendOrderHeader"] != null)) {
                     base.Tables.Add(new SendOrderHeaderDataTable(ds.Tables["SendOrderHeader"]));
                 }
-                if ((ds.Tables["SendOrderDetail"] != null)) {
-                    base.Tables.Add(new SendOrderDetailDataTable(ds.Tables["SendOrderDetail"]));
-                }
-                if ((ds.Tables["SendOrderFooter"] != null)) {
-                    base.Tables.Add(new SendOrderFooterDataTable(ds.Tables["SendOrderFooter"]));
-                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -92,26 +82,6 @@ namespace SPW.UI.Web.Reports {
         public SendOrderHeaderDataTable SendOrderHeader {
             get {
                 return this.tableSendOrderHeader;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SendOrderDetailDataTable SendOrderDetail {
-            get {
-                return this.tableSendOrderDetail;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SendOrderFooterDataTable SendOrderFooter {
-            get {
-                return this.tableSendOrderFooter;
             }
         }
         
@@ -185,12 +155,6 @@ namespace SPW.UI.Web.Reports {
                 if ((ds.Tables["SendOrderHeader"] != null)) {
                     base.Tables.Add(new SendOrderHeaderDataTable(ds.Tables["SendOrderHeader"]));
                 }
-                if ((ds.Tables["SendOrderDetail"] != null)) {
-                    base.Tables.Add(new SendOrderDetailDataTable(ds.Tables["SendOrderDetail"]));
-                }
-                if ((ds.Tables["SendOrderFooter"] != null)) {
-                    base.Tables.Add(new SendOrderFooterDataTable(ds.Tables["SendOrderFooter"]));
-                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -230,18 +194,6 @@ namespace SPW.UI.Web.Reports {
                     this.tableSendOrderHeader.InitVars();
                 }
             }
-            this.tableSendOrderDetail = ((SendOrderDetailDataTable)(base.Tables["SendOrderDetail"]));
-            if ((initTable == true)) {
-                if ((this.tableSendOrderDetail != null)) {
-                    this.tableSendOrderDetail.InitVars();
-                }
-            }
-            this.tableSendOrderFooter = ((SendOrderFooterDataTable)(base.Tables["SendOrderFooter"]));
-            if ((initTable == true)) {
-                if ((this.tableSendOrderFooter != null)) {
-                    this.tableSendOrderFooter.InitVars();
-                }
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -254,27 +206,11 @@ namespace SPW.UI.Web.Reports {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSendOrderHeader = new SendOrderHeaderDataTable();
             base.Tables.Add(this.tableSendOrderHeader);
-            this.tableSendOrderDetail = new SendOrderDetailDataTable();
-            base.Tables.Add(this.tableSendOrderDetail);
-            this.tableSendOrderFooter = new SendOrderFooterDataTable();
-            base.Tables.Add(this.tableSendOrderFooter);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeSendOrderHeader() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSendOrderDetail() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSendOrderFooter() {
             return false;
         }
         
@@ -336,12 +272,6 @@ namespace SPW.UI.Web.Reports {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SendOrderHeaderRowChangeEventHandler(object sender, SendOrderHeaderRowChangeEvent e);
         
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void SendOrderDetailRowChangeEventHandler(object sender, SendOrderDetailRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void SendOrderFooterRowChangeEventHandler(object sender, SendOrderFooterRowChangeEvent e);
-        
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
@@ -364,6 +294,22 @@ namespace SPW.UI.Web.Reports {
             private global::System.Data.DataColumn columnSTORE_CODE;
             
             private global::System.Data.DataColumn columnVEHICLE_REG;
+            
+            private global::System.Data.DataColumn columnSEQ;
+            
+            private global::System.Data.DataColumn columnNAME;
+            
+            private global::System.Data.DataColumn columnQTY;
+            
+            private global::System.Data.DataColumn columnPACKAGE;
+            
+            private global::System.Data.DataColumn columnWEIGHT;
+            
+            private global::System.Data.DataColumn columnSUM_WEIGHT;
+            
+            private global::System.Data.DataColumn columnSUM_WEIGHT_TH;
+            
+            private global::System.Data.DataColumn columnSUM_WEIGHT_NUMBER;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -464,6 +410,70 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SEQColumn {
+                get {
+                    return this.columnSEQ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NAMEColumn {
+                get {
+                    return this.columnNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn QTYColumn {
+                get {
+                    return this.columnQTY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PACKAGEColumn {
+                get {
+                    return this.columnPACKAGE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WEIGHTColumn {
+                get {
+                    return this.columnWEIGHT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SUM_WEIGHTColumn {
+                get {
+                    return this.columnSUM_WEIGHT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SUM_WEIGHT_THColumn {
+                get {
+                    return this.columnSUM_WEIGHT_TH;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SUM_WEIGHT_NUMBERColumn {
+                get {
+                    return this.columnSUM_WEIGHT_NUMBER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -499,7 +509,23 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderHeaderRow AddSendOrderHeaderRow(string STORE_NAME, string STORE_ADDR, string STORE_TEL, string ORDER_DATE, string SEND_DATE, string ZONE_NAME, string STORE_CODE, string VEHICLE_REG) {
+            public SendOrderHeaderRow AddSendOrderHeaderRow(
+                        string STORE_NAME, 
+                        string STORE_ADDR, 
+                        string STORE_TEL, 
+                        string ORDER_DATE, 
+                        string SEND_DATE, 
+                        string ZONE_NAME, 
+                        string STORE_CODE, 
+                        string VEHICLE_REG, 
+                        string SEQ, 
+                        string NAME, 
+                        string QTY, 
+                        string PACKAGE, 
+                        string WEIGHT, 
+                        string SUM_WEIGHT, 
+                        string SUM_WEIGHT_TH, 
+                        string SUM_WEIGHT_NUMBER) {
                 SendOrderHeaderRow rowSendOrderHeaderRow = ((SendOrderHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STORE_NAME,
@@ -509,7 +535,15 @@ namespace SPW.UI.Web.Reports {
                         SEND_DATE,
                         ZONE_NAME,
                         STORE_CODE,
-                        VEHICLE_REG};
+                        VEHICLE_REG,
+                        SEQ,
+                        NAME,
+                        QTY,
+                        PACKAGE,
+                        WEIGHT,
+                        SUM_WEIGHT,
+                        SUM_WEIGHT_TH,
+                        SUM_WEIGHT_NUMBER};
                 rowSendOrderHeaderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSendOrderHeaderRow);
                 return rowSendOrderHeaderRow;
@@ -540,6 +574,14 @@ namespace SPW.UI.Web.Reports {
                 this.columnZONE_NAME = base.Columns["ZONE_NAME"];
                 this.columnSTORE_CODE = base.Columns["STORE_CODE"];
                 this.columnVEHICLE_REG = base.Columns["VEHICLE_REG"];
+                this.columnSEQ = base.Columns["SEQ"];
+                this.columnNAME = base.Columns["NAME"];
+                this.columnQTY = base.Columns["QTY"];
+                this.columnPACKAGE = base.Columns["PACKAGE"];
+                this.columnWEIGHT = base.Columns["WEIGHT"];
+                this.columnSUM_WEIGHT = base.Columns["SUM_WEIGHT"];
+                this.columnSUM_WEIGHT_TH = base.Columns["SUM_WEIGHT_TH"];
+                this.columnSUM_WEIGHT_NUMBER = base.Columns["SUM_WEIGHT_NUMBER"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -561,6 +603,22 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnSTORE_CODE);
                 this.columnVEHICLE_REG = new global::System.Data.DataColumn("VEHICLE_REG", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVEHICLE_REG);
+                this.columnSEQ = new global::System.Data.DataColumn("SEQ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSEQ);
+                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNAME);
+                this.columnQTY = new global::System.Data.DataColumn("QTY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQTY);
+                this.columnPACKAGE = new global::System.Data.DataColumn("PACKAGE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPACKAGE);
+                this.columnWEIGHT = new global::System.Data.DataColumn("WEIGHT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWEIGHT);
+                this.columnSUM_WEIGHT = new global::System.Data.DataColumn("SUM_WEIGHT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUM_WEIGHT);
+                this.columnSUM_WEIGHT_TH = new global::System.Data.DataColumn("SUM_WEIGHT_TH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUM_WEIGHT_TH);
+                this.columnSUM_WEIGHT_NUMBER = new global::System.Data.DataColumn("SUM_WEIGHT_NUMBER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUM_WEIGHT_NUMBER);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -647,584 +705,6 @@ namespace SPW.UI.Web.Reports {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SendOrderHeaderDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SendOrderDetailDataTable : global::System.Data.TypedTableBase<SendOrderDetailRow> {
-            
-            private global::System.Data.DataColumn columnSEQ;
-            
-            private global::System.Data.DataColumn columnNAME;
-            
-            private global::System.Data.DataColumn columnQTY;
-            
-            private global::System.Data.DataColumn columnPACKAGE;
-            
-            private global::System.Data.DataColumn columnWEIGHT;
-            
-            private global::System.Data.DataColumn columnSUM_WEIGHT;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailDataTable() {
-                this.TableName = "SendOrderDetail";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SendOrderDetailDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected SendOrderDetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SEQColumn {
-                get {
-                    return this.columnSEQ;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NAMEColumn {
-                get {
-                    return this.columnNAME;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QTYColumn {
-                get {
-                    return this.columnQTY;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PACKAGEColumn {
-                get {
-                    return this.columnPACKAGE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WEIGHTColumn {
-                get {
-                    return this.columnWEIGHT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SUM_WEIGHTColumn {
-                get {
-                    return this.columnSUM_WEIGHT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailRow this[int index] {
-                get {
-                    return ((SendOrderDetailRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderDetailRowChangeEventHandler SendOrderDetailRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderDetailRowChangeEventHandler SendOrderDetailRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderDetailRowChangeEventHandler SendOrderDetailRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderDetailRowChangeEventHandler SendOrderDetailRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSendOrderDetailRow(SendOrderDetailRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailRow AddSendOrderDetailRow(string SEQ, string NAME, string QTY, string PACKAGE, string WEIGHT, string SUM_WEIGHT) {
-                SendOrderDetailRow rowSendOrderDetailRow = ((SendOrderDetailRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        SEQ,
-                        NAME,
-                        QTY,
-                        PACKAGE,
-                        WEIGHT,
-                        SUM_WEIGHT};
-                rowSendOrderDetailRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSendOrderDetailRow);
-                return rowSendOrderDetailRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SendOrderDetailDataTable cln = ((SendOrderDetailDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SendOrderDetailDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnSEQ = base.Columns["SEQ"];
-                this.columnNAME = base.Columns["NAME"];
-                this.columnQTY = base.Columns["QTY"];
-                this.columnPACKAGE = base.Columns["PACKAGE"];
-                this.columnWEIGHT = base.Columns["WEIGHT"];
-                this.columnSUM_WEIGHT = base.Columns["SUM_WEIGHT"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnSEQ = new global::System.Data.DataColumn("SEQ", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSEQ);
-                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNAME);
-                this.columnQTY = new global::System.Data.DataColumn("QTY", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQTY);
-                this.columnPACKAGE = new global::System.Data.DataColumn("PACKAGE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPACKAGE);
-                this.columnWEIGHT = new global::System.Data.DataColumn("WEIGHT", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWEIGHT);
-                this.columnSUM_WEIGHT = new global::System.Data.DataColumn("SUM_WEIGHT", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSUM_WEIGHT);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailRow NewSendOrderDetailRow() {
-                return ((SendOrderDetailRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SendOrderDetailRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SendOrderDetailRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SendOrderDetailRowChanged != null)) {
-                    this.SendOrderDetailRowChanged(this, new SendOrderDetailRowChangeEvent(((SendOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SendOrderDetailRowChanging != null)) {
-                    this.SendOrderDetailRowChanging(this, new SendOrderDetailRowChangeEvent(((SendOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SendOrderDetailRowDeleted != null)) {
-                    this.SendOrderDetailRowDeleted(this, new SendOrderDetailRowChangeEvent(((SendOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SendOrderDetailRowDeleting != null)) {
-                    this.SendOrderDetailRowDeleting(this, new SendOrderDetailRowChangeEvent(((SendOrderDetailRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSendOrderDetailRow(SendOrderDetailRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SendOrderReportData ds = new SendOrderReportData();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SendOrderDetailDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SendOrderFooterDataTable : global::System.Data.TypedTableBase<SendOrderFooterRow> {
-            
-            private global::System.Data.DataColumn columnSUM_WEIGHT_TH;
-            
-            private global::System.Data.DataColumn columnSUM_WEIGHT_NUMBER;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterDataTable() {
-                this.TableName = "SendOrderFooter";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SendOrderFooterDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected SendOrderFooterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SUM_WEIGHT_THColumn {
-                get {
-                    return this.columnSUM_WEIGHT_TH;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SUM_WEIGHT_NUMBERColumn {
-                get {
-                    return this.columnSUM_WEIGHT_NUMBER;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterRow this[int index] {
-                get {
-                    return ((SendOrderFooterRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderFooterRowChangeEventHandler SendOrderFooterRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderFooterRowChangeEventHandler SendOrderFooterRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderFooterRowChangeEventHandler SendOrderFooterRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SendOrderFooterRowChangeEventHandler SendOrderFooterRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSendOrderFooterRow(SendOrderFooterRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterRow AddSendOrderFooterRow(string SUM_WEIGHT_TH, string SUM_WEIGHT_NUMBER) {
-                SendOrderFooterRow rowSendOrderFooterRow = ((SendOrderFooterRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        SUM_WEIGHT_TH,
-                        SUM_WEIGHT_NUMBER};
-                rowSendOrderFooterRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSendOrderFooterRow);
-                return rowSendOrderFooterRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SendOrderFooterDataTable cln = ((SendOrderFooterDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SendOrderFooterDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnSUM_WEIGHT_TH = base.Columns["SUM_WEIGHT_TH"];
-                this.columnSUM_WEIGHT_NUMBER = base.Columns["SUM_WEIGHT_NUMBER"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnSUM_WEIGHT_TH = new global::System.Data.DataColumn("SUM_WEIGHT_TH", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSUM_WEIGHT_TH);
-                this.columnSUM_WEIGHT_NUMBER = new global::System.Data.DataColumn("SUM_WEIGHT_NUMBER", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSUM_WEIGHT_NUMBER);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterRow NewSendOrderFooterRow() {
-                return ((SendOrderFooterRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SendOrderFooterRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SendOrderFooterRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SendOrderFooterRowChanged != null)) {
-                    this.SendOrderFooterRowChanged(this, new SendOrderFooterRowChangeEvent(((SendOrderFooterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SendOrderFooterRowChanging != null)) {
-                    this.SendOrderFooterRowChanging(this, new SendOrderFooterRowChangeEvent(((SendOrderFooterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SendOrderFooterRowDeleted != null)) {
-                    this.SendOrderFooterRowDeleted(this, new SendOrderFooterRowChangeEvent(((SendOrderFooterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SendOrderFooterRowDeleting != null)) {
-                    this.SendOrderFooterRowDeleting(this, new SendOrderFooterRowChangeEvent(((SendOrderFooterRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSendOrderFooterRow(SendOrderFooterRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SendOrderReportData ds = new SendOrderReportData();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SendOrderFooterDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1409,6 +889,134 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SEQ {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.SEQColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SEQ\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.SEQColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NAME\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string QTY {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.QTYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QTY\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.QTYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PACKAGE {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.PACKAGEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PACKAGE\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.PACKAGEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WEIGHT {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.WEIGHTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'WEIGHT\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.WEIGHTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SUM_WEIGHT {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.SUM_WEIGHTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.SUM_WEIGHTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SUM_WEIGHT_TH {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.SUM_WEIGHT_THColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT_TH\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.SUM_WEIGHT_THColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SUM_WEIGHT_NUMBER {
+                get {
+                    try {
+                        return ((string)(this[this.tableSendOrderHeader.SUM_WEIGHT_NUMBERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT_NUMBER\' in table \'SendOrderHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSendOrderHeader.SUM_WEIGHT_NUMBERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSTORE_NAMENull() {
                 return this.IsNull(this.tableSendOrderHeader.STORE_NAMEColumn);
             }
@@ -1502,259 +1110,101 @@ namespace SPW.UI.Web.Reports {
             public void SetVEHICLE_REGNull() {
                 this[this.tableSendOrderHeader.VEHICLE_REGColumn] = global::System.Convert.DBNull;
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SendOrderDetailRow : global::System.Data.DataRow {
-            
-            private SendOrderDetailDataTable tableSendOrderDetail;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SendOrderDetailRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSendOrderDetail = ((SendOrderDetailDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SEQ {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.SEQColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SEQ\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.SEQColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NAME {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.NAMEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NAME\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.NAMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QTY {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.QTYColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QTY\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.QTYColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string PACKAGE {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.PACKAGEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PACKAGE\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.PACKAGEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string WEIGHT {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.WEIGHTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'WEIGHT\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.WEIGHTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SUM_WEIGHT {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderDetail.SUM_WEIGHTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT\' in table \'SendOrderDetail\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderDetail.SUM_WEIGHTColumn] = value;
-                }
-            }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSEQNull() {
-                return this.IsNull(this.tableSendOrderDetail.SEQColumn);
+                return this.IsNull(this.tableSendOrderHeader.SEQColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSEQNull() {
-                this[this.tableSendOrderDetail.SEQColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.SEQColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNAMENull() {
-                return this.IsNull(this.tableSendOrderDetail.NAMEColumn);
+                return this.IsNull(this.tableSendOrderHeader.NAMEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNAMENull() {
-                this[this.tableSendOrderDetail.NAMEColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.NAMEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsQTYNull() {
-                return this.IsNull(this.tableSendOrderDetail.QTYColumn);
+                return this.IsNull(this.tableSendOrderHeader.QTYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetQTYNull() {
-                this[this.tableSendOrderDetail.QTYColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.QTYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPACKAGENull() {
-                return this.IsNull(this.tableSendOrderDetail.PACKAGEColumn);
+                return this.IsNull(this.tableSendOrderHeader.PACKAGEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPACKAGENull() {
-                this[this.tableSendOrderDetail.PACKAGEColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.PACKAGEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsWEIGHTNull() {
-                return this.IsNull(this.tableSendOrderDetail.WEIGHTColumn);
+                return this.IsNull(this.tableSendOrderHeader.WEIGHTColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetWEIGHTNull() {
-                this[this.tableSendOrderDetail.WEIGHTColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.WEIGHTColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSUM_WEIGHTNull() {
-                return this.IsNull(this.tableSendOrderDetail.SUM_WEIGHTColumn);
+                return this.IsNull(this.tableSendOrderHeader.SUM_WEIGHTColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSUM_WEIGHTNull() {
-                this[this.tableSendOrderDetail.SUM_WEIGHTColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SendOrderFooterRow : global::System.Data.DataRow {
-            
-            private SendOrderFooterDataTable tableSendOrderFooter;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SendOrderFooterRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSendOrderFooter = ((SendOrderFooterDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SUM_WEIGHT_TH {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderFooter.SUM_WEIGHT_THColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT_TH\' in table \'SendOrderFooter\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderFooter.SUM_WEIGHT_THColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SUM_WEIGHT_NUMBER {
-                get {
-                    try {
-                        return ((string)(this[this.tableSendOrderFooter.SUM_WEIGHT_NUMBERColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SUM_WEIGHT_NUMBER\' in table \'SendOrderFooter\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSendOrderFooter.SUM_WEIGHT_NUMBERColumn] = value;
-                }
+                this[this.tableSendOrderHeader.SUM_WEIGHTColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSUM_WEIGHT_THNull() {
-                return this.IsNull(this.tableSendOrderFooter.SUM_WEIGHT_THColumn);
+                return this.IsNull(this.tableSendOrderHeader.SUM_WEIGHT_THColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSUM_WEIGHT_THNull() {
-                this[this.tableSendOrderFooter.SUM_WEIGHT_THColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.SUM_WEIGHT_THColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSUM_WEIGHT_NUMBERNull() {
-                return this.IsNull(this.tableSendOrderFooter.SUM_WEIGHT_NUMBERColumn);
+                return this.IsNull(this.tableSendOrderHeader.SUM_WEIGHT_NUMBERColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSUM_WEIGHT_NUMBERNull() {
-                this[this.tableSendOrderFooter.SUM_WEIGHT_NUMBERColumn] = global::System.Convert.DBNull;
+                this[this.tableSendOrderHeader.SUM_WEIGHT_NUMBERColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1778,74 +1228,6 @@ namespace SPW.UI.Web.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SendOrderHeaderRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class SendOrderDetailRowChangeEvent : global::System.EventArgs {
-            
-            private SendOrderDetailRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailRowChangeEvent(SendOrderDetailRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderDetailRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class SendOrderFooterRowChangeEvent : global::System.EventArgs {
-            
-            private SendOrderFooterRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterRowChangeEvent(SendOrderFooterRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SendOrderFooterRow Row {
                 get {
                     return this.eventRow;
                 }

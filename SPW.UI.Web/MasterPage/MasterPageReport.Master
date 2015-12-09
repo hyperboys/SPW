@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageReport.master.cs" Inherits="SPW.UI.Web.MasterPage.MasterPageReport" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SPW Management System</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<script type="text/javascript">
+    function cancelBack() {
+        if ((event.keyCode == 8 ||
+           (event.keyCode == 37 && event.altKey) ||
+           (event.keyCode == 39 && event.altKey))
+            &&
+           (event.srcElement.form == null || event.srcElement.isTextEdit == false)
+          ) {
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
+    }
+</script>
+<body onkeydown="cancelBack()">
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

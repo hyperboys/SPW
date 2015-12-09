@@ -8,110 +8,70 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class DepartmentService
+    public class DepartmentService : ServiceBase, IDataService<DEPARTMENT>, IService 
     {
-        private DEPARTMENT _item = new DEPARTMENT();
-        private List<DEPARTMENT> _lstItem = new List<DEPARTMENT>();
-
-        public DepartmentService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public DepartmentService(DEPARTMENT item)
-        {
-            _item = item;
-        }
-
-        public DepartmentService(List<DEPARTMENT> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<DEPARTMENT> GetALL()
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.DEPARTMENT.Where(x => x.SYE_DEL == true).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<DEPARTMENT> GetALL(DEPARTMENT item)
+        #region IDataService<DELIVERY_ORDER> Members
+
+        public void Add(DEPARTMENT obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.DEPARTMENT.Where(x => x.DEPARTMENT_CODE.Contains(item.DEPARTMENT_CODE)).ToList();
-                return list;
-            }
+            this.Datacontext.DEPARTMENT.Add(obj);
+            this.Datacontext.SaveChanges();
+        }
+
+        public void AddList(List<DEPARTMENT> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(DEPARTMENT obj)
+        {
+            var item = this.Datacontext.DEPARTMENT.Where(x => x.DEPARTMENT_ID == obj.DEPARTMENT_ID).FirstOrDefault();
+            item.DEPARTMENT_CODE = obj.DEPARTMENT_CODE;
+            item.DEPARTMENT_NAME = obj.DEPARTMENT_NAME;
+            item.UPDATE_DATE = obj.UPDATE_DATE;
+            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<DEPARTMENT> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DEPARTMENT Select()
+        {
+            throw new NotImplementedException();
         }
 
         public DEPARTMENT Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.DEPARTMENT.Where(x => x.DEPARTMENT_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.DEPARTMENT.Where(x => x.DEPARTMENT_ID == ID).FirstOrDefault();
         }
 
-        public void Add()
+        public List<DEPARTMENT> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                ctx.DEPARTMENT.Add(_item);
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.DEPARTMENT.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public void AddList()
+        public List<DEPARTMENT> GetAll(DEPARTMENT item)
         {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.DEPARTMENT.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.DEPARTMENT.Where(x => x.DEPARTMENT_CODE.ToUpper().Contains(item.DEPARTMENT_CODE.ToUpper())).ToList();
         }
 
-        public void Edit()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                var obj = ctx.DEPARTMENT.Where(x => x.DEPARTMENT_ID == _item.DEPARTMENT_ID).FirstOrDefault();
-                obj.DEPARTMENT_CODE = _item.DEPARTMENT_CODE;
-                obj.DEPARTMENT_NAME = _item.DEPARTMENT_NAME;
-                obj.UPDATE_DATE = _item.UPDATE_DATE;
-                obj.UPDATE_EMPLOYEE_ID = _item.UPDATE_EMPLOYEE_ID;
-                ctx.SaveChanges();
-            }
-        }
-
-        public void EditList()
-        {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Update)
-                    {
-                        var obj = ctx.DEPARTMENT.Where(x => x.DEPARTMENT_ID == item.DEPARTMENT_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            obj.DEPARTMENT_CODE = item.DEPARTMENT_CODE;
-                            obj.DEPARTMENT_NAME = item.DEPARTMENT_NAME;
-                            obj.UPDATE_DATE = item.UPDATE_DATE;
-                            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                        }
-                    }
-                }
-                ctx.SaveChanges();
-            }
-        }
+        #endregion
     }
 }

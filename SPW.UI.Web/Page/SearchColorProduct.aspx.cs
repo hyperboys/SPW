@@ -11,7 +11,8 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchColorProduct : System.Web.UI.Page
     {
-        private COLOR _color;
+        private DataServiceEngine _dataServiceEngine;
+        private ColorService cmdColor;
         public List<COLOR> DataSouce
         {
             get
@@ -29,24 +30,48 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        private void BlindGrid()
+        private void ReloadPageEngine()
         {
-            gridColor.DataSource = DataSouce;
-            gridColor.DataBind();
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            cmdColor = (ColorService)_dataServiceEngine.GetDataService(typeof(ColorService));
+        }
+
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                CreatePageEngine();
                 InitialData();
+            }
+            else
+            {
+                ReloadPageEngine();
             }
         }
 
         private void InitialData()
         {
-            var cmd = new ColorService();
-            DataSouce = cmd.GetALL();
+            DataSouce = cmdColor.GetAll();
             gridColor.DataSource = DataSouce;
             gridColor.DataBind();
         }
@@ -58,22 +83,41 @@ namespace SPW.UI.Web.Page
 
         private void SearchGrid()
         {
-            gridColor.DataSource = DataSouce.Where(x => x.COLOR_SUBNAME.Contains(txtColorTypeSubName.Text)
-                && x.COLOR_NAME.Contains(txtColorTypeName.Text)).ToList();
+            if (txtColorTypeSubName.Text == "" && txtColorTypeName.Text == "")
+            {
+                gridColor.DataSource = DataSouce;
+            }
+            else if (txtColorTypeSubName.Text != "" && txtColorTypeName.Text == "") 
+            {
+                gridColor.DataSource = DataSouce.Where(x => x.COLOR_SUBNAME.ToUpper().Contains(txtColorTypeSubName.Text.ToUpper())).ToList();
+            }
+            else if (txtColorTypeSubName.Text == "" && txtColorTypeName.Text != "")
+            {
+                gridColor.DataSource = DataSouce.Where(x => x.COLOR_NAME.ToUpper().Contains(txtColorTypeName.Text.ToUpper())).ToList();
+            }
+            else
+            {
+                gridColor.DataSource = DataSouce.Where(x => x.COLOR_SUBNAME.ToUpper().Contains(txtColorTypeSubName.Text.ToUpper())
+                   && x.COLOR_NAME.ToUpper().Contains(txtColorTypeName.Text.ToUpper())).ToList();
+            }
+           
             gridColor.DataBind();
         }
 
         protected void gridColor_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["colorId"] = gridColor.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageColorProduct.aspx?id=" + gridColor.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridColor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridColor.PageIndex = e.NewPageIndex;
             gridColor.DataBind();
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.RedirectPermanent("ManageColorProduct.aspx");
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -83,73 +127,33 @@ namespace SPW.UI.Web.Page
             SearchGrid();
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
+        protected void gridColor_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            ViewState["colorId"] = null;
-            InitialDataPopup();
-            this.popup.Show();
-        }
-
-        protected void gridCategory_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                int NumCells = e.Row.Cells.Count;
-                for (int i = 0; i < NumCells - 1; i++)
+                foreach (ImageButton button in e.Row.Cells[3].Controls.OfType<ImageButton>())
                 {
-                    e.Row.Cells[i].HorizontalAlign = HorizontalAlign.Center;
+                    if (button.CommandName == "Delete")
+                    {
+                        button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                    }
                 }
             }
         }
 
-        private void InitialDataPopup()
+        protected void gridColor_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            if (ViewState["colorId"] != null)
+            try
             {
-                var cmd = new ColorService();
-                _color = cmd.Select(Convert.ToInt32(ViewState["colorId"].ToString()));
-                if (_color != null)
-                {
-                    popTxtColorTypeName.Text = _color.COLOR_NAME;
-                    popTxtColorTypeSubName.Text = _color.COLOR_SUBNAME;
-                    flag.Text = "Edit";
-                }
+                cmdColor.Delete(Convert.ToInt32(gridColor.DataKeys[e.RowIndex].Values[0].ToString()));
             }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new COLOR();
-            obj.COLOR_NAME = popTxtColorTypeName.Text;
-            obj.COLOR_SUBNAME = popTxtColorTypeSubName.Text;
-            var cmd = new ColorService(obj);
-            if (flag.Text.Equals("Add"))
+            catch
             {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
+                string script = "alert(\"ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้\");";
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                                      "ServerControlScript", script, true);
             }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.COLOR_ID = Convert.ToInt32(ViewState["colorId"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-            ViewState["colorId"] = null;
-            Response.Redirect("SearchColorProduct.aspx");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["colorId"] = null;
-            Response.Redirect("SearchColorProduct.aspx");
+            InitialData();
         }
     }
 }

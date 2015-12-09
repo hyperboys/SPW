@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="Order.aspx.cs" Inherits="SPW.UI.Web.Page.Order" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="Order.aspx.cs" Inherits="SPW.UI.Web.Page.Order" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
@@ -8,108 +9,138 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
-        .right
-        {
+        .right {
             text-align: right;
         }
 
-        .auto-style5
-        {
+        .auto-style5 {
             width: 13px;
         }
 
-        .auto-style10
-        {
+        .auto-style10 {
             width: 67px;
         }
+
+        .row {
+            margin-top: 5px;
+        }
     </style>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            ข้อมูลสั่งสินค้า        
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form">
-                        <div class="form-group">
-                            <table style="width: 724px; height: 80px;">
-                                <tr>
-                                    <td class="auto-style10">ภาค</td>
-                                    <td style="text-align: center" class="auto-style5">:</td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlSector" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" OnSelectedIndexChanged="ddlSector_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td></td>
-                                    <td>จังหวัด</td>
-                                    <td style="text-align: center" class="auto-style5">:</td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" Enabled="False" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="True">
-                                            <asp:ListItem Value ="0">กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td style="text-align: center" class="auto-style5"></td>
-                                    <td>
-                                         <asp:Button ID="btnSerch" runat="server" Text="ค้นหา" class="btn btn-primary" OnClick="btnSerch_Click" Width="95px"/>
-                                    </td>
-                                </tr>
-                                 <tr>
-                                    <td class="auto-style10">
-                                        <asp:Label ID="lblRoad" runat="server" Text="ถนน" Visible="False"></asp:Label></td>
-                                    <td style="text-align: center" class="auto-style5"><asp:Label ID="lblComma" runat="server" Text=":" Visible="False"></asp:Label></td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlRoad" class="form-control" runat="server" Height="35px" Width="200px" Visible="False">
-                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                     <td></td>
-                                    <td></td>
-                                    <td style="text-align: center" class="auto-style5"></td>
-                                    <td></td>
-                                    <td style="text-align: center" class="auto-style5"></td>
-                                    <td></td>
-                                </tr>
-                            </table>
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    สั่งสินค้า        
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form">
+                                <div class="form-group">
+                                    <%--first row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">รหัสร้านค้า</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Width="200px" placeholder="รหัสร้านค้า"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2">ชื่อร้านค้า</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Width="200px" placeholder="ชื่อร้านค้า"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <%--second row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">ภาค</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlSector" class="form-control" runat="server" Height="35px" Width="200px" OnSelectedIndexChanged="ddlSector_SelectedIndexChanged1" AutoPostBack="True" CssClass="form-control" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2">จังหวัด</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="True" CssClass="form-control" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <%--third row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">ถนน</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlRoad" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control" Enabled="False" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2">
+                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" Height="30px" Width="70px" OnClick="btnSearch_Click" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <asp:GridView ID="gdvStore" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                        DataKeyNames="STORE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า" OnRowDataBound="gdvStore_RowDataBound" Visible="False">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="No" ItemStyle-Width="50px">
+                                <ItemTemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="ร้านค้า" HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" HeaderStyle-Height="35px">
+                                <ItemTemplate>
+                                    <asp:Table ID="Table1" runat="server" ItemStyle-HorizontalAlign="Left" HorizontalAlign="Left">
+                                        <asp:TableRow Width="640px">
+                                            <asp:TableCell Width="640px">
+                                                <b>
+                                                    <asp:HyperLink ID="NAME" runat="server">HyperLink</asp:HyperLink></b>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow Width="640px">
+                                            <asp:TableCell Width="640px">
+                                                <asp:Label ID="ADDRESS" runat="server" Text="Label"></asp:Label>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                        <asp:TableRow Width="640px">
+                                            <asp:TableCell Width="640px">
+                                                <asp:Label ID="TEL" runat="server" Text="Label"></asp:Label>
+                                            </asp:TableCell>
+                                        </asp:TableRow>
+                                    </asp:Table>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="รายละเอียด">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbtnDetail" runat="server">
+                                    <div class='glyphicon glyphicon-list'></div>
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                        <PagerSettings Mode="NumericFirstLast" />
+                    </asp:GridView>
+                    <div style="margin-top:10px;">
+                        <asp:PlaceHolder ID="PlaceHolder1" runat="server" Visible="false"></asp:PlaceHolder>
+                    </div>
                 </div>
-                <!-- /.col-lg-6 (nested) -->
             </div>
-            <!-- /.row (nested) -->
-            <div class="panel panel-primary">
-                <asp:GridView ID="gridStore" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="STORE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
-                    OnRowEditing="gridProduct_EditCommand" OnPageIndexChanging="gridProduct_PageIndexChanging"
-                    Style="text-align: center" CssClass="grid" Visible="False">
-                    <AlternatingRowStyle BackColor="White" />
-                    <Columns>
-                        <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="ดูข้อมล"
-                            ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="10%"></ItemStyle>
-                        </asp:CommandField>
-                        <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้านค้า" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="45%"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="STORE_NAME" HeaderText="ชื่อร้านค้า" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="45%"></ItemStyle>
-                        </asp:BoundField>
-                    </Columns>
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                    <PagerSettings Mode="NumericFirstLast" />
-                </asp:GridView>
-            </div>
-        </div>
-        <!-- /.panel-body -->
-    </div>
-    <!-- /.panel -->
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

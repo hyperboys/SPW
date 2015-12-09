@@ -6038,7 +6038,7 @@ jQuery.each({
 	};
 });
 
-function getAll( elem ) {
+function GetAll( elem ) {
 	if ( "getElementsByTagName" in elem ) {
 		return elem.getElementsByTagName( "*" );
 
@@ -6084,8 +6084,8 @@ jQuery.extend({
 
 			// Using Sizzle here is crazy slow, so we use getElementsByTagName
 			// instead
-			srcElements = getAll( elem );
-			destElements = getAll( clone );
+			srcElements = GetAll( elem );
+			destElements = GetAll( clone );
 
 			// Weird iteration because IE will replace the length property
 			// with an element if you are cloning the body and one of the
@@ -6103,8 +6103,8 @@ jQuery.extend({
 			cloneCopyEvent( elem, clone );
 
 			if ( deepDataAndEvents ) {
-				srcElements = getAll( elem );
-				destElements = getAll( clone );
+				srcElements = GetAll( elem );
+				destElements = GetAll( clone );
 
 				for ( i = 0; srcElements[i]; ++i ) {
 					cloneCopyEvent( srcElements[i], destElements[i] );
@@ -7119,7 +7119,7 @@ jQuery.extend({
 				},
 
 				// Raw string
-				getAllResponseHeaders: function() {
+				GetAllResponseHeaders: function() {
 					return state === 2 ? responseHeadersString : null;
 				},
 
@@ -7985,7 +7985,7 @@ if ( jQuery.support.ajax ) {
 									}
 								} else {
 									status = xhr.status;
-									responseHeaders = xhr.getAllResponseHeaders();
+									responseHeaders = xhr.GetAllResponseHeaders();
 									responses = {};
 									xml = xhr.responseXML;
 

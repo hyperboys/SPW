@@ -10,5 +10,19 @@ namespace SPW.Model
     public partial class STORE
     {
         public ActionEnum Action;
+        public decimal _TOTAL;
+        public decimal TOTAL
+        {
+            get { return _TOTAL; }
+            set { _TOTAL = value; }
+        }
+
+        public decimal _WEIGHT;
+        public decimal WEIGHT
+        {
+            get { return _WEIGHT; }
+            set { _WEIGHT = value; }
+        }
+      
     }
 }

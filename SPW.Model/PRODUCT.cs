@@ -16,10 +16,14 @@ namespace SPW.Model
     {
         public PRODUCT()
         {
+            this.DELIVERY_INDEX_DETAIL = new HashSet<DELIVERY_INDEX_DETAIL>();
             this.DELIVERY_ORDER_DETAIL = new HashSet<DELIVERY_ORDER_DETAIL>();
             this.ORDER_DETAIL = new HashSet<ORDER_DETAIL>();
             this.PRODUCT_PRICELIST = new HashSet<PRODUCT_PRICELIST>();
             this.PRODUCT_PROMOTION = new HashSet<PRODUCT_PROMOTION>();
+            this.STOCK_PRODUCT_STOCK = new HashSet<STOCK_PRODUCT_STOCK>();
+            this.STOCK_PRODUCT_TRANS = new HashSet<STOCK_PRODUCT_TRANS>();
+            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
         }
     
         public int PRODUCT_ID { get; set; }
@@ -40,11 +44,17 @@ namespace SPW.Model
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+        public int STOCK_TYPE_ID { get; set; }
     
         public virtual CATEGORY CATEGORY { get; set; }
+        public virtual ICollection<DELIVERY_INDEX_DETAIL> DELIVERY_INDEX_DETAIL { get; set; }
         public virtual ICollection<DELIVERY_ORDER_DETAIL> DELIVERY_ORDER_DETAIL { get; set; }
         public virtual ICollection<ORDER_DETAIL> ORDER_DETAIL { get; set; }
         public virtual ICollection<PRODUCT_PRICELIST> PRODUCT_PRICELIST { get; set; }
         public virtual ICollection<PRODUCT_PROMOTION> PRODUCT_PROMOTION { get; set; }
+        public virtual STOCK_TYPE STOCK_TYPE { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
     }
 }

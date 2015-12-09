@@ -11,7 +11,8 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchDepartment : System.Web.UI.Page
     {
-        private DEPARTMENT _department;
+        private DataServiceEngine _dataServiceEngine;
+        private DepartmentService cmdDepartmant;
         public List<DEPARTMENT> DataSouce
         {
             get
@@ -25,24 +26,48 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        private void BlindGrid()
+        private void ReloadPageEngine()
         {
-            gridDepartment.DataSource = DataSouce;
-            gridDepartment.DataBind();
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            cmdDepartmant = (DepartmentService)_dataServiceEngine.GetDataService(typeof(DepartmentService));
+        }
+
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                CreatePageEngine();
                 InitialData();
+            }
+            else
+            {
+                ReloadPageEngine();
             }
         }
 
         private void InitialData()
         {
-            var cmd = new DepartmentService();
-            DataSouce = cmd.GetALL();
+            DataSouce = cmdDepartmant.GetAll();
             gridDepartment.DataSource = DataSouce;
             gridDepartment.DataBind();
         }
@@ -67,9 +92,7 @@ namespace SPW.UI.Web.Page
 
         protected void gridDepartment_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            ViewState["depId"] = gridDepartment.DataKeys[e.NewEditIndex].Values[0].ToString();
-            InitialDataPopup();
-            this.popup.Show();
+            Response.RedirectPermanent("ManageDepartment.aspx?id=" + gridDepartment.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridDepartment_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -86,59 +109,7 @@ namespace SPW.UI.Web.Page
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            ViewState["depId"] = null;
-            InitialDataPopup();
-            this.popup.Show();
-        }
-
-        private void InitialDataPopup()
-        {
-            if (ViewState["depId"] != null)
-            {
-                var cmd = new DepartmentService();
-                _department = cmd.Select(Convert.ToInt32(ViewState["depId"].ToString()));
-                if (_department != null)
-                {
-                    popTxtDepartmentCode.Text = _department.DEPARTMENT_CODE;
-                    txtDepartmentName.Text = _department.DEPARTMENT_NAME;
-                    flag.Text = "Edit";
-                }
-            }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            var obj = new DEPARTMENT();
-            obj.DEPARTMENT_CODE = popTxtDepartmentCode.Text;
-            obj.DEPARTMENT_NAME = txtDepartmentName.Text;
-            var cmd = new DepartmentService(obj);
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = 0;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Add();
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.DEPARTMENT_ID = Convert.ToInt32(ViewState["depId"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = 0;
-                obj.SYE_DEL = true;
-                cmd.Edit();
-            }
-            ViewState["depId"] = null;
-            Response.Redirect("SearchDepartment.aspx");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            ViewState["depId"] = null;
-            Response.Redirect("SearchDepartment.aspx");
+            Response.RedirectPermanent("ManageDepartment.aspx");
         }
     }
 }

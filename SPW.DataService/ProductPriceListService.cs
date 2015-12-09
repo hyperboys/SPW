@@ -8,76 +8,97 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ProductPriceListService
+    public class ProductPriceListService : ServiceBase, IDataService<PRODUCT_PRICELIST>, IService 
     {
-        private PRODUCT_PRICELIST _item = new PRODUCT_PRICELIST();
-        private List<PRODUCT_PRICELIST> _lstItem = new List<PRODUCT_PRICELIST>();
-
-        public ProductPriceListService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ProductPriceListService(PRODUCT_PRICELIST item)
-        {
-            _item = item;
-        }
-
-        public ProductPriceListService(List<PRODUCT_PRICELIST> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<PRODUCT_PRICELIST> GetALL(int productID)
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.PRODUCT_PRICELIST.Where(x => x.SYE_DEL == true && x.PRODUCT_ID == productID).OrderBy(x => x.ZONE_ID).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<PRODUCT_PRICELIST> GetALLInclude()
+        #region IDataService<PRODUCT_PRICELIST> Members
+
+        public void Add(PRODUCT_PRICELIST obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT_PRICELIST.Include("PRODUCT").Where(x => x.SYE_DEL == true).ToList();
-                return list;
-            }
+            this.Datacontext.PRODUCT_PRICELIST.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public List<PRODUCT_PRICELIST> Select(int ID)
+        public void AddList(List<PRODUCT_PRICELIST> obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT_PRICELIST.Include("ZONE").Where(x => x.PRODUCT_ID == ID).ToList();
-                return list;
-            }
+            throw new NotImplementedException();
         }
 
-        public void AddUpdateList()
+        public void AddUpdateList(List<PRODUCT_PRICELIST> _lstItem)
         {
-            using (var ctx = new SPWEntities())
+            foreach (var item in _lstItem)
             {
-                foreach (var item in _lstItem)
+                if (item.Action == ActionEnum.Create)
                 {
-                    if (item.Action == ActionEnum.Create)
+                    this.Datacontext.PRODUCT_PRICELIST.Add(item);
+                }
+                else if (item.Action == ActionEnum.Update)
+                {
+                    var obj = this.Datacontext.PRODUCT_PRICELIST.Where(x => x.PRODUCT_ID == item.PRODUCT_ID && x.ZONE_ID == item.ZONE_ID).FirstOrDefault();
+                    if (obj != null)
                     {
-                        ctx.PRODUCT_PRICELIST.Add(item);
-                    }
-                    else if (item.Action == ActionEnum.Update)
-                    {
-                        var obj = ctx.PRODUCT_PRICELIST.Where(x => x.PRODUCT_ID == item.PRODUCT_ID && x.ZONE_ID == item.ZONE_ID).FirstOrDefault();
-                        if (obj != null)
-                        {
-                            obj.PRODUCT_PRICE = item.PRODUCT_PRICE;
-                            obj.UPDATE_DATE = item.UPDATE_DATE;
-                            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                        }
+                        obj.PRODUCT_PRICE = item.PRODUCT_PRICE;
+                        obj.UPDATE_DATE = item.UPDATE_DATE;
+                        obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
                     }
                 }
-                ctx.SaveChanges();
             }
+            this.Datacontext.SaveChanges();
         }
+
+        public void Edit(PRODUCT_PRICELIST obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditList(List<PRODUCT_PRICELIST> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PRODUCT_PRICELIST Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PRODUCT_PRICELIST Select(int ID)
+        {
+            return this.Datacontext.PRODUCT_PRICELIST.Where(x => x.PRODUCT_PRICELIST_ID == ID).FirstOrDefault();
+        }
+
+        //public List<PRODUCT_PRICELIST> GetAll(int ID)
+        //{
+        //    return this.Datacontext.PRODUCT_PRICELIST.Include("ZONE").Where(x => x.PRODUCT_ID == ID).ToList();
+        //}
+
+        public List<PRODUCT_PRICELIST> GetAll()
+        {
+            return this.Datacontext.PRODUCT_PRICELIST.Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<PRODUCT_PRICELIST> GetAll(int productID)
+        {
+            return this.Datacontext.PRODUCT_PRICELIST.Include("ZONE").Where(x => x.SYE_DEL == false && x.PRODUCT_ID == productID).OrderBy(x => x.ZONE_ID).ToList();
+        }
+
+        public List<PRODUCT_PRICELIST> GetAllInclude()
+        {
+            return this.Datacontext.PRODUCT_PRICELIST.Include("PRODUCT").Where(x => x.SYE_DEL == false).ToList();
+        }
+        #endregion
+    
     }
 }

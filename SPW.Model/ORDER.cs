@@ -16,16 +16,16 @@ namespace SPW.Model
     {
         public ORDER()
         {
-            this.DELIVERY_ORDER = new HashSet<DELIVERY_ORDER>();
             this.ORDER_DETAIL = new HashSet<ORDER_DETAIL>();
+            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
         }
     
         public int ORDER_ID { get; set; }
         public string ORDER_CODE { get; set; }
         public Nullable<System.DateTime> ORDER_DATE { get; set; }
         public int STORE_ID { get; set; }
+        public int ORDER_SEND_ROUND { get; set; }
         public Nullable<decimal> ORDER_TOTAL { get; set; }
-        public string ORDER_APPROVE { get; set; }
         public string ORDER_STEP { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
@@ -33,8 +33,8 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ICollection<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
         public virtual ICollection<ORDER_DETAIL> ORDER_DETAIL { get; set; }
         public virtual STORE STORE { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
     }
 }

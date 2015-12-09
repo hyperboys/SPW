@@ -15,7 +15,7 @@
     <!-- Custom CSS -->
     <link href="../CSS/sb-admin-2.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/custom.css" rel="stylesheet" type="text/css" />
-
+    <link href="../CSS/cssUpdateProgress.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom Fonts -->
     <link href="../CSS/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,20 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<script type="text/javascript">
+    function cancelBack() {
+        if ((event.keyCode == 8 ||
+           (event.keyCode == 37 && event.altKey) ||
+           (event.keyCode == 39 && event.altKey))
+            &&
+           (event.srcElement.form == null || event.srcElement.isTextEdit == false)
+          ) {
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
+    }
+</script>
+<body onkeydown="cancelBack()">
     <form id="form1" runat="server">
         <div id="wrapper">
 
@@ -76,10 +89,10 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li class="active" runat="server" id="MainAdmin" visible="false">
-                                <a href="../Page/MainAdmin.aspx">หน้าหลัก</a>
+                                <a href="../Page/MainAdmin.aspx"><i class="fa fa-home fa-fw"></i>&nbsp;หน้าหลัก</a>
                             </li>
                             <li runat="server" id="SystemData" visible="false">
-                                <a href="#">ข้อมูลระบบ<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;ข้อมูลระบบ<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="../Page/SearchEmployee.aspx">ข้อมูลพนักงาน</a>
@@ -98,10 +111,10 @@
                             </li>
 
                             <li runat="server" id="StandardData" visible="false">
-                                <a href="#">ข้อมูลพื้นฐาน<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-cubes fa-fw"></i>&nbsp;ข้อมูลพื้นฐาน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="../Page/SearchTracery.aspx">ข้อมูลลวดลายสินค้า</a>
+                                        <a href="../Page/SearchColorType.aspx">ข้อมูลลวดลายสินค้า</a>
                                     </li>
                                     <li>
                                         <a href="../Page/SearchColorProduct.aspx">ข้อมูลสีของสินค้า</a>
@@ -125,19 +138,34 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li runat="server" id="OrderData" visible="false">
-                                <a href="#">การสั่งซื้อสินค้า<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-truck fa-fw"></i>&nbsp;การสั่งซื้อสินค้า<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="../Page/Order.aspx">สั่งซื้อสินค้า</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/InternalOrder.aspx">สั่งพิมพ์ใบ Order ภายใน</a>
+                                        <a href="../Page/ManageOrderHQ.aspx">จัดการใบสั่งซื้อ</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/SurveyOrder.aspx">พิมพ์ใบขึ้นของ</a>
+                                        <a href="../Page/ManageOrderHQPrint.aspx">พิมพ์ใบสั่งซื้อภายใน</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/Shipping.aspx">จัดของ</a>
+                                        <a href="../Page/ManageSendOrder.aspx">จัดการใบขึ้นของ</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/ManageOrderDelivery.aspx">ตรวจสอบใบขึ้นของ</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li runat="server" id="Report" visible="false">
+                                <a href="#"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;รายงาน<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../Page/ReportSaleVolume.aspx">รายงานสรุปยอดขายรายสินค้า</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/ReportMonthlySale.aspx">รายงานสรุปยอดขายแต่ละเดือน</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

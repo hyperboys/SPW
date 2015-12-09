@@ -20,19 +20,24 @@ namespace SPW.Model
         }
     
         public int DELORDER_ID { get; set; }
-        public int ORDER_ID { get; set; }
+        public int DELIND_ID { get; set; }
         public string DELORDER_CODE { get; set; }
         public Nullable<System.DateTime> DELORDER_DATE { get; set; }
+        public Nullable<int> DELORDER_SEQ_NO { get; set; }
+        public int STORE_ID { get; set; }
+        public int VEHICLE_ID { get; set; }
+        public Nullable<decimal> DELORDER_PRICE_TOTAL { get; set; }
+        public Nullable<decimal> DELORDER_WEIGHT_TOTAL { get; set; }
         public string DELORDER_STEP { get; set; }
-        public Nullable<int> VEHICLE_ID { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual VEHICLE VEHICLE { get; set; }
+        public virtual DELIVERY_INDEX DELIVERY_INDEX { get; set; }
         public virtual ICollection<DELIVERY_ORDER_DETAIL> DELIVERY_ORDER_DETAIL { get; set; }
-        public virtual ORDER ORDER { get; set; }
+        public virtual STORE STORE { get; set; }
+        public virtual VEHICLE VEHICLE { get; set; }
     }
 }

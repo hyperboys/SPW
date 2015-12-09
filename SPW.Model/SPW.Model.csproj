@@ -46,7 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACCOUNT_MAST.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="ActionEnum.cs" />
+    <Compile Include="AP_VEHICLE_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASSET_TYPE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="CATEGORY.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -59,6 +68,9 @@
     <Compile Include="CustomModel\CATEGORY.cs" />
     <Compile Include="CustomModel\COLOR_TYPE.cs" />
     <Compile Include="CustomModel\COLOR.cs" />
+    <Compile Include="CustomModel\DELIVERY_INDEX.cs" />
+    <Compile Include="CustomModel\DELIVERY_INDEX_DETAIL.cs" />
+    <Compile Include="CustomModel\STOCK_TYPE.cs" />
     <Compile Include="CustomModel\ZONE_DETAIL.cs" />
     <Compile Include="CustomModel\ROLE_FUNCTION.cs" />
     <Compile Include="CustomModel\SUB_FUNCTION.cs" />
@@ -81,6 +93,12 @@
     <Compile Include="CustomModel\EMPLOYEE.cs" />
     <Compile Include="CustomModel\PRODUCT.cs" />
     <Compile Include="CustomModel\STORE.cs" />
+    <Compile Include="DELIVERY_INDEX.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DELIVERY_INDEX_DETAIL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="DELIVERY_ORDER.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -101,6 +119,12 @@
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="ORDER_DETAIL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAYIN_APPROVER.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAYIN_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="PRODUCT.cs">
@@ -134,6 +158,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="STOCK_PRODUCT_STOCK.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK_PRODUCT_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK_PRODUCT_WITHDRAW_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK_TYPE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="STORE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -144,6 +180,9 @@
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="VEHICLE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VENDOR.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="ZONE.cs">

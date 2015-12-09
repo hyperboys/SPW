@@ -5010,7 +5010,7 @@ function cloneCopyEvent( src, dest ) {
 	}
 }
 
-function getAll( context, tag ) {
+function GetAll( context, tag ) {
 	var ret = context.getElementsByTagName ? context.getElementsByTagName( tag || "*" ) :
 			context.querySelectorAll ? context.querySelectorAll( tag || "*" ) :
 			[];
@@ -5044,9 +5044,9 @@ jQuery.extend({
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
 				!jQuery.isXMLDoc( elem ) ) {
 
-			// We eschew Sizzle here for performance reasons: http://jsperf.com/getall-vs-sizzle/2
-			destElements = getAll( clone );
-			srcElements = getAll( elem );
+			// We eschew Sizzle here for performance reasons: http://jsperf.com/GetAll-vs-sizzle/2
+			destElements = GetAll( clone );
+			srcElements = GetAll( elem );
 
 			for ( i = 0, l = srcElements.length; i < l; i++ ) {
 				fixInput( srcElements[ i ], destElements[ i ] );
@@ -5056,8 +5056,8 @@ jQuery.extend({
 		// Copy the events from the original to the clone
 		if ( dataAndEvents ) {
 			if ( deepDataAndEvents ) {
-				srcElements = srcElements || getAll( elem );
-				destElements = destElements || getAll( clone );
+				srcElements = srcElements || GetAll( elem );
+				destElements = destElements || GetAll( clone );
 
 				for ( i = 0, l = srcElements.length; i < l; i++ ) {
 					cloneCopyEvent( srcElements[ i ], destElements[ i ] );
@@ -5068,9 +5068,9 @@ jQuery.extend({
 		}
 
 		// Preserve script evaluation history
-		destElements = getAll( clone, "script" );
+		destElements = GetAll( clone, "script" );
 		if ( destElements.length > 0 ) {
-			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+			setGlobalEval( destElements, !inPage && GetAll( elem, "script" ) );
 		}
 
 		// Return the cloned set
@@ -5142,7 +5142,7 @@ jQuery.extend({
 			contains = jQuery.contains( elem.ownerDocument, elem );
 
 			// Append to fragment
-			tmp = getAll( fragment.appendChild( elem ), "script" );
+			tmp = GetAll( fragment.appendChild( elem ), "script" );
 
 			// Preserve script evaluation history
 			if ( contains ) {
@@ -5250,12 +5250,12 @@ jQuery.fn.extend({
 
 		for ( ; (elem = elems[i]) != null; i++ ) {
 			if ( !keepData && elem.nodeType === 1 ) {
-				jQuery.cleanData( getAll( elem ) );
+				jQuery.cleanData( GetAll( elem ) );
 			}
 
 			if ( elem.parentNode ) {
 				if ( keepData && jQuery.contains( elem.ownerDocument, elem ) ) {
-					setGlobalEval( getAll( elem, "script" ) );
+					setGlobalEval( GetAll( elem, "script" ) );
 				}
 				elem.parentNode.removeChild( elem );
 			}
@@ -5272,7 +5272,7 @@ jQuery.fn.extend({
 			if ( elem.nodeType === 1 ) {
 
 				// Prevent memory leaks
-				jQuery.cleanData( getAll( elem, false ) );
+				jQuery.cleanData( GetAll( elem, false ) );
 
 				// Remove any remaining nodes
 				elem.textContent = "";
@@ -5313,7 +5313,7 @@ jQuery.fn.extend({
 
 						// Remove element nodes and prevent memory leaks
 						if ( elem.nodeType === 1 ) {
-							jQuery.cleanData( getAll( elem, false ) );
+							jQuery.cleanData( GetAll( elem, false ) );
 							elem.innerHTML = value;
 						}
 					}
@@ -5337,7 +5337,7 @@ jQuery.fn.extend({
 		this.domManip( arguments, function( elem ) {
 			arg = this.parentNode;
 
-			jQuery.cleanData( getAll( this ) );
+			jQuery.cleanData( GetAll( this ) );
 
 			if ( arg ) {
 				arg.replaceChild( elem, this );
@@ -5387,7 +5387,7 @@ jQuery.fn.extend({
 			}
 
 			if ( first ) {
-				scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+				scripts = jQuery.map( GetAll( fragment, "script" ), disableScript );
 				hasScripts = scripts.length;
 
 				// Use the original fragment for the last item instead of the first because it can end up
@@ -5402,7 +5402,7 @@ jQuery.fn.extend({
 						if ( hasScripts ) {
 							// Support: QtWebKit
 							// jQuery.merge because push.apply(_, arraylike) throws
-							jQuery.merge( scripts, getAll( node, "script" ) );
+							jQuery.merge( scripts, GetAll( node, "script" ) );
 						}
 					}
 
@@ -7962,7 +7962,7 @@ jQuery.extend({
 				},
 
 				// Raw string
-				getAllResponseHeaders: function() {
+				GetAllResponseHeaders: function() {
 					return state === 2 ? responseHeadersString : null;
 				},
 
@@ -8606,7 +8606,7 @@ jQuery.ajaxTransport(function( options ) {
 									typeof xhr.responseText === "string" ? {
 										text: xhr.responseText
 									} : undefined,
-									xhr.getAllResponseHeaders()
+									xhr.GetAllResponseHeaders()
 								);
 							}
 						}

@@ -8,105 +8,100 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class ProductPromotionService
+    public class ProductPromotionService : ServiceBase, IDataService<PRODUCT_PROMOTION>, IService 
     {
-        private PRODUCT_PROMOTION _item = new PRODUCT_PROMOTION();
-        private List<PRODUCT_PROMOTION> _lstItem = new List<PRODUCT_PROMOTION>();
-
-        public ProductPromotionService()
+        #region IService Members
+        public DAL.SPWEntities Datacontext
         {
-
-        }
-
-        public ProductPromotionService(PRODUCT_PROMOTION item)
-        {
-            _item = item;
-        }
-
-        public ProductPromotionService(List<PRODUCT_PROMOTION> lstItem)
-        {
-            _lstItem = lstItem;
-        }
-
-        public List<PRODUCT_PROMOTION> GetALL(int productID)
-        {
-            using (var ctx = new SPWEntities())
+            get
             {
-                var list = ctx.PRODUCT_PROMOTION.Where(x => x.SYE_DEL == true && x.PRODUCT_ID == productID).OrderBy(x => x.ZONE_ID).ToList();
-                return list;
+                return this._Datacontext;
+            }
+            set
+            {
+                this._Datacontext = value;
             }
         }
+        #endregion
 
-        public List<PRODUCT_PROMOTION> GetALLInclude(int productID)
+        #region IDataService<CATEGORY> Members
+
+        public void Add(PRODUCT_PROMOTION obj)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT_PROMOTION.Include("PRODUCT").Where(x => x.SYE_DEL == true && x.PRODUCT_ID == productID).ToList();
-                return list;
-            }
+            this.Datacontext.PRODUCT_PROMOTION.Add(obj);
+            this.Datacontext.SaveChanges();
         }
 
-        public PRODUCT_PROMOTION SelectByProductZone(int productID, int zoneId)
+        public void AddList(List<PRODUCT_PROMOTION> obj)
         {
-            using (var ctx = new SPWEntities())
+            foreach (var item in obj)
             {
-                var list = ctx.PRODUCT_PROMOTION.Include("PRODUCT").Where(x => x.SYE_DEL == true && x.PRODUCT_ID == productID && x.ZONE_ID == zoneId).FirstOrDefault();
-                return list;
+                if (item.Action == ActionEnum.Create)
+                {
+                    this.Datacontext.PRODUCT_PROMOTION.Add(item);
+                }
             }
+            this.Datacontext.SaveChanges();
         }
 
-        public List<PRODUCT_PROMOTION> GetALLIncludeZone(int productID)
+        public void Edit(PRODUCT_PROMOTION obj)
         {
-            using (var ctx = new SPWEntities())
+            if (obj.Action == ActionEnum.Update)
             {
-                var list = ctx.PRODUCT_PROMOTION.Include("ZONE").Where(x => x.SYE_DEL == true && x.PRODUCT_ID == productID).ToList();
-                return list;
+                var item = this.Datacontext.PRODUCT_PROMOTION.Where(x => x.PROMOTION_ID == obj.PROMOTION_ID).FirstOrDefault();
+                if (item != null)
+                {
+                    item.PRODUCT_CONDITION_QTY = obj.PRODUCT_CONDITION_QTY;
+                    item.PRODUCT_FREE_QTY = obj.PRODUCT_FREE_QTY;
+                    item.ZONE_ID = obj.ZONE_ID;
+                    item.UPDATE_DATE = obj.UPDATE_DATE;
+                    item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+                }
             }
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditList(List<PRODUCT_PROMOTION> obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PRODUCT_PROMOTION Select()
+        {
+            throw new NotImplementedException();
         }
 
         public PRODUCT_PROMOTION Select(int ID)
         {
-            using (var ctx = new SPWEntities())
-            {
-                var list = ctx.PRODUCT_PROMOTION.Include("ZONE").Where(x => x.PROMOTION_ID == ID).FirstOrDefault();
-                return list;
-            }
+            return this.Datacontext.PRODUCT_PROMOTION.Include("ZONE").Where(x => x.PROMOTION_ID == ID).FirstOrDefault();
         }
 
-
-        public void AddList()
+        public PRODUCT_PROMOTION SelectByProductZone(int productID, int zoneId)
         {
-            using (var ctx = new SPWEntities())
-            {
-                foreach (var item in _lstItem)
-                {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        ctx.PRODUCT_PROMOTION.Add(item);
-                    }
-                }
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.PRODUCT_PROMOTION.Include("PRODUCT").Where(x => x.SYE_DEL == false && x.PRODUCT_ID == productID && x.ZONE_ID == zoneId).FirstOrDefault();
         }
 
-        public void Edit(PRODUCT_PROMOTION item)
+        public List<PRODUCT_PROMOTION> GetAll()
         {
-            using (var ctx = new SPWEntities())
-            {
-                if (item.Action == ActionEnum.Update)
-                {
-                    var obj = ctx.PRODUCT_PROMOTION.Where(x => x.PROMOTION_ID == item.PROMOTION_ID).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        obj.PRODUCT_CONDITION_QTY = item.PRODUCT_CONDITION_QTY;
-                        obj.PRODUCT_FREE_QTY = item.PRODUCT_FREE_QTY;
-                        obj.ZONE_ID = item.ZONE_ID;
-                        obj.UPDATE_DATE = item.UPDATE_DATE;
-                        obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
-                    }
-                }
-                ctx.SaveChanges();
-            }
+            return this.Datacontext.PRODUCT_PROMOTION.Where(x => x.SYE_DEL == false).ToList();
         }
+
+        public List<PRODUCT_PROMOTION> GetAll(int productID)
+        {
+            return this.Datacontext.PRODUCT_PROMOTION.Where(x => x.SYE_DEL == false && x.PRODUCT_ID == productID).OrderBy(x => x.ZONE_ID).ToList();
+        }
+
+        public List<PRODUCT_PROMOTION> GetAllInclude(int productID)
+        {
+            return this.Datacontext.PRODUCT_PROMOTION.Include("PRODUCT").Where(x => x.SYE_DEL == false && x.PRODUCT_ID == productID).ToList();
+        }
+
+
+        public List<PRODUCT_PROMOTION> GetAllIncludeZone(int productID)
+        {
+            return this.Datacontext.PRODUCT_PROMOTION.Include("ZONE").Where(x => x.SYE_DEL == false && x.PRODUCT_ID == productID).ToList();
+        }
+        #endregion
+    
     }
 }

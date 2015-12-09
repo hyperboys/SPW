@@ -14,6 +14,11 @@ namespace SPW.Model
     
     public partial class ZONE_DETAIL
     {
+        public ZONE_DETAIL()
+        {
+            this.STORE = new HashSet<STORE>();
+        }
+    
         public int ZONE_DETAIL_ID { get; set; }
         public Nullable<int> ZONE_ID { get; set; }
         public Nullable<int> EMPLOYEE_ID { get; set; }
@@ -24,6 +29,7 @@ namespace SPW.Model
         public Nullable<bool> SYE_DEL { get; set; }
     
         public virtual EMPLOYEE EMPLOYEE { get; set; }
+        public virtual ICollection<STORE> STORE { get; set; }
         public virtual ZONE ZONE { get; set; }
     }
 }

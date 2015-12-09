@@ -66,9 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.col-lg-6 (nested) -->
             </div>
-            <!-- /.row (nested) -->
             <div class="panel panel-primary">
                 <asp:GridView ID="gridUsername" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                     DataKeyNames="USER_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลผู้ใช้งาน"
@@ -101,75 +99,7 @@
                 </asp:GridView>
             </div>
         </div>
-        <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-
-    <asp:Panel ID="Panel1" runat="server" Visible="True">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                ข้อมูลผู้ใช้งาน             
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div role="form">
-                            <div class="form-group">
-                                <table style="width: 630px; height: 80px;">
-                                    <tr>
-                                        <td>ชื่อผู้ใช้งาน</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                            <asp:TextBox ID="popTxtUsername" class="form-control" runat="server" Height="30px" Width="125px"></asp:TextBox>
-                                        </td>
-                                        <td >รหัสหัสผู้ใช้งาน</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                            <asp:TextBox ID="popTxtPassword" class="form-control" runat="server" Height="30px" Width="125px" TextMode="Password"></asp:TextBox>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <asp:Button ID="btnSave" runat="server" Text="บันทึก" class="btn btn-primary" OnClick="btnSave_Click" />
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Role</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                             <asp:DropDownList ID="dllRole" class="form-control" runat="server" Height="35px" Width="145px">
-                                            </asp:DropDownList>
-                                        </td>
-                                        <td>พนักงาน</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                             <asp:DropDownList ID="dllEmp" class="form-control" runat="server" Height="35px" Width="145px">
-                                            </asp:DropDownList>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                           
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                           
-                                        </td>
-                                    </tr>
-                                </table>
-                                <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </asp:Panel>
-    <asp:LinkButton ID="lnkFake" runat="server"></asp:LinkButton>
-    <ajax:ModalPopupExtender ID="popup" runat="server" BackgroundCssClass="modalBackground" DropShadow="false" PopupControlID="Panel1" TargetControlID="lnkFake" Enabled="True">
-    </ajax:ModalPopupExtender>
 </asp:Content>

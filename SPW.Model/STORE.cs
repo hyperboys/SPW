@@ -16,7 +16,9 @@ namespace SPW.Model
     {
         public STORE()
         {
+            this.DELIVERY_ORDER = new HashSet<DELIVERY_ORDER>();
             this.ORDER = new HashSet<ORDER>();
+            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
         }
     
         public int STORE_ID { get; set; }
@@ -33,6 +35,7 @@ namespace SPW.Model
         public int PROVINCE_ID { get; set; }
         public int SECTOR_ID { get; set; }
         public Nullable<int> ZONE_ID { get; set; }
+        public Nullable<int> ZONE_DETAIL_ID { get; set; }
         public Nullable<int> ROAD_ID { get; set; }
         public string STORE_POSTCODE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
@@ -41,10 +44,13 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
+        public virtual ICollection<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
         public virtual ICollection<ORDER> ORDER { get; set; }
         public virtual PROVINCE PROVINCE { get; set; }
         public virtual ROAD ROAD { get; set; }
         public virtual SECTOR SECTOR { get; set; }
+        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
         public virtual ZONE ZONE { get; set; }
+        public virtual ZONE_DETAIL ZONE_DETAIL { get; set; }
     }
 }

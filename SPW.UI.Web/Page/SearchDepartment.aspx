@@ -7,29 +7,26 @@
     <h1 class="page-header">แผนก</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <style type="text/css">
-        .auto-style1
-        {
+        .auto-style1 {
             width: 18px;
         }
 
-        .right
-        {
+        .right {
             text-align: right;
         }
 
-        .auto-style2
-        {
+        .auto-style2 {
             width: 160px;
         }
 
-        .auto-style3
-        {
+        .auto-style3 {
             width: 103px;
         }
 
-        .grid td, .grid th
-        {
+        .grid td, .grid th {
             text-align: center;
         }
     </style>
@@ -104,50 +101,5 @@
         <!-- /.panel-body -->
     </div>
     <!-- /.panel -->
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
 
-    <asp:Panel ID="Panel1" runat="server" Visible="True">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                ข้อมูลแผนก             
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div role="form">
-                            <div class="form-group">
-                                <table style="width: 630px; height: 80px;">
-                                    <tr>
-                                        <td>รหัสแผนก</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                            <asp:TextBox ID="popTxtDepartmentCode" class="form-control" runat="server" Height="30px" Width="125px"></asp:TextBox>
-                                        </td>
-                                        <td >ชื่อแผนก</td>
-                                        <td class="auto-style1" style="text-align: center">:</td>
-                                        <td>
-                                            <asp:TextBox ID="txtDepartmentName" class="form-control" runat="server" Height="30px" Width="125px"></asp:TextBox>
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <asp:Button ID="btnSave" runat="server" Text="บันทึก" class="btn btn-primary" OnClick="btnSave_Click" />
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
-                                        </td>
-                                    </tr>
-                                </table>
-                                <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </asp:Panel>
-    <asp:LinkButton ID="lnkFake" runat="server"></asp:LinkButton>
-    <ajax:ModalPopupExtender ID="popup" runat="server" BackgroundCssClass="modalBackground" DropShadow="false" PopupControlID="Panel1" TargetControlID="lnkFake" Enabled="True">
-    </ajax:ModalPopupExtender>
 </asp:Content>
