@@ -107,20 +107,20 @@
                             OnRowEditing="gridProduct_EditCommand" OnRowDeleting="gridProduct_RowDeleting">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:TemplateField HeaderText="No" ItemStyle-Width="50px">
+                                <asp:TemplateField HeaderText="No" ItemStyle-Width="3%">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="40%"></ItemStyle>
+                                <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="30%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="17%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="Qty" runat="server" class="form-control" OnTextChanged="Qty_TextChanged" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="3"></asp:TextBox>
+                                        <asp:TextBox ID="Qty" runat="server" class="form-control" OnTextChanged="Qty_TextChanged" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="4"></asp:TextBox>
                                          <script type="text/javascript">
                                              var specialKeys = new Array();
                                              specialKeys.push(8); //Backspace
@@ -133,9 +133,9 @@
                                         </script>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="จำนวนฟรี" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="จำนวนฟรี" ItemStyle-Width="17%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="QtyFree" runat="server" class="form-control" OnTextChanged="QtyFree_TextChanged" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="3"></asp:TextBox>
+                                        <asp:TextBox ID="QtyFree" runat="server" class="form-control" OnTextChanged="QtyFree_TextChanged" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="4"></asp:TextBox>
                                         <script type="text/javascript">
                                             var specialKeys = new Array();
                                             specialKeys.push(8); //Backspace
@@ -148,16 +148,16 @@
                                         </script>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="10%"></ItemStyle>
+                                <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:CommandField HeaderText="รายละเอียด" ControlStyle-CssClass="glyphicon glyphicon-list"
-                                    ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center" CancelText="" DeleteText="" EditText="" InsertText="" NewText="" SelectText="" UpdateText="">
+                                    ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="3%" HeaderStyle-HorizontalAlign="Center" CancelText="" DeleteText="" EditText="" InsertText="" NewText="" SelectText="" UpdateText="">
                                     <ControlStyle CssClass="glyphicon glyphicon-list" />
                                     <HeaderStyle HorizontalAlign="Center" />
-                                    <ItemStyle Width="10%"></ItemStyle>
+                                    <ItemStyle Width="3%"></ItemStyle>
                                 </asp:CommandField>
-                                <asp:TemplateField HeaderText="ยกเลิก">
+                                <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="3%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
                                     <div class='glyphicon glyphicon-remove'></div>

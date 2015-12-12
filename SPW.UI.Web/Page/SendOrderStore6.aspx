@@ -62,23 +62,23 @@
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="PRODUCT.PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
+                       <asp:BoundField DataField="PRODUCT.PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="30%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="PRODUCT_SENT_QTY" HeaderText="จำนวน" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="PRODUCT_SENT_QTY" HeaderText="จำนวน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="PRODUCT_WEIGHT" HeaderText="น้ำหนักต่อหน่วย" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="PRODUCT_WEIGHT" HeaderText="น้ำหนักต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="10%"></ItemStyle>
+                            <ItemStyle Width="20%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="PRODUCT_WEIGHT_TOTAL" HeaderText="น้ำหนักรวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="10%"></ItemStyle>
+                        <asp:BoundField DataField="PRODUCT_WEIGHT_TOTAL" HeaderText="น้ำหนักรวม" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="15%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
