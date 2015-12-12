@@ -362,12 +362,22 @@ namespace SPW.UI.Web.Page
 
             foreach (DELIVERY_ORDER item in listItem)
             {
+                foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
+                {
+                    item.STORE = cmdStore.SelectInclude(item.STORE_ID);
+                }
+            }
+
+            listItem = listItem.OrderBy(x => x.STORE.STORE_CODE).ToList();
+
+            foreach (DELIVERY_ORDER item in listItem)
+            {
                 seq = 1;
                 sumWeight = 0;
                 foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
                 {
                     DataRow drSendOrderHeader = SendOrderHeader.NewRow();
-                    item.STORE = cmdStore.SelectInclude(item.STORE_ID);
+                    //item.STORE = cmdStore.SelectInclude(item.STORE_ID);
                     drSendOrderHeader["STORE_NAME"] = item.STORE.STORE_NAME;
                     drSendOrderHeader["STORE_ADDR"] = item.STORE.STORE_ADDR1 + " ถ." + item.STORE.STORE_STREET + " ต." + item.STORE.STORE_SUBDISTRICT + " อ." + item.STORE.STORE_DISTRICT + " จ." + item.STORE.PROVINCE.PROVINCE_NAME + " " + item.STORE.STORE_POSTCODE;
                     drSendOrderHeader["STORE_TEL"] = item.STORE.STORE_TEL1;

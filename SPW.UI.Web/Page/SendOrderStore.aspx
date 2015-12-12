@@ -103,10 +103,10 @@
                                 <asp:BoundField DataField="WEIGHT" HeaderText="น้ำหนัก" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="15%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="TOTAL" HeaderText="ราคา" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="15%"></ItemStyle>
+                                <asp:BoundField DataField="TOTAL" HeaderText="ราคา" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="check" runat="server" />
                                     </ItemTemplate>

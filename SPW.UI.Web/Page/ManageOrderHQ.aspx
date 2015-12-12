@@ -123,20 +123,34 @@
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:TemplateField HeaderText="ลำดับ">
+                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                     <ItemStyle BorderStyle="Solid" />
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="ORDER_DATE" HeaderText="วันที่สั่งซื้อ" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px"></asp:BoundField>
-                                <asp:BoundField DataField="SECTOR_NAME" HeaderText="ภาค"></asp:BoundField>
-                                <asp:BoundField DataField="PROVINCE_NAME" HeaderText="จังหวัด"></asp:BoundField>
-                                <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้าน"></asp:BoundField>
-                                <asp:BoundField DataField="STORE_NAME" HeaderText="ชื่อร้าน"></asp:BoundField>
-                                <asp:BoundField DataField="ORDER_ID" HeaderText="รหัสสั่งซื้อ"></asp:BoundField>
-                                <asp:BoundField DataField="ORDER_TOTAL" HeaderText="ราคา"></asp:BoundField>
-                                <asp:TemplateField HeaderText="รายละเอียด">
+                                <asp:BoundField DataField="ORDER_DATE" HeaderText="วันที่สั่งซื้อ" ItemStyle-Width="10%" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="SECTOR_NAME" HeaderText="ภาค" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="PROVINCE_NAME" HeaderText="จังหวัด" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้าน" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="STORE_NAME" HeaderText="ชื่อร้าน" ItemStyle-Width="15%">
+                                    <ItemStyle Width="15%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="ORDER_ID" HeaderText="รหัสสั่งซื้อ" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="ORDER_TOTAL" HeaderText="ราคา" ItemStyle-Width="15%">
+                                    <ItemStyle Width="15%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDetail" runat="server" target="_blank">
                                             <div class='glyphicon glyphicon-list'></div>
@@ -144,14 +158,14 @@
                                         <asp:HiddenField ID="hfORDER_STEP" runat="server" Value='<%# Bind("ORDER_STEP") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="แก้ไข">
+                                <asp:TemplateField HeaderText="แก้ไข" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnEdit" runat="server" PostBackUrl="~/Page/ManageOrderHQDetail.aspx">
                                             <div class='glyphicon glyphicon-edit'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ยกเลิก">
+                                <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete">
                                             <div class='glyphicon glyphicon-remove'></div>

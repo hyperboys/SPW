@@ -112,20 +112,25 @@
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="40%"></ItemStyle>
+                                 <asp:TemplateField HeaderText="No" ItemStyle-Width="3%">
+                                    <ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                               <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="30%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="15%"></ItemStyle>
+                                <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="13%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PRODUCT_QTY" HeaderText="จำนวน" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="15%"></ItemStyle>
+                                <asp:BoundField DataField="PRODUCT_QTY" HeaderText="จำนวน" ItemStyle-Width="17%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="17%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="QTYFree" HeaderText="จำนวนฟรี" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="15%"></ItemStyle>
+                                <asp:BoundField DataField="QTYFree" HeaderText="จำนวนฟรี" ItemStyle-Width="17%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="17%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="15%"></ItemStyle>
+                                <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />

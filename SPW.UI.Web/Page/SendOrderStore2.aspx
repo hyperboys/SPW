@@ -52,14 +52,14 @@
                     Style="text-align: center" CssClass="grid" OnRowCommand="grideInOrder_RowCommand">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="SECTOR_NAME" HeaderText="ภาค" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="15%"></ItemStyle>
+                        <asp:BoundField DataField="SECTOR_NAME" HeaderText="ภาค" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="PROVINCE_NAME" HeaderText="จังหวัด" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="15%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้านค้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
+                        <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้านค้า" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="15%"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="STORE_NAME" HeaderText="ชื่อร้านค้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="20%"></ItemStyle>
@@ -67,10 +67,10 @@
                         <asp:BoundField DataField="WEIGHT" HeaderText="น้ำหนัก" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="15%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="TOTAL" HeaderText="ราคา" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="15%"></ItemStyle>
+                        <asp:BoundField DataField="TOTAL" HeaderText="ราคา" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="20%"></ItemStyle>
                         </asp:BoundField>
-                         <asp:TemplateField HeaderText = "ยกเลิก">
+                         <asp:TemplateField HeaderText = "ยกเลิก" ItemStyle-Width="5%">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lbtnDelete" runat="server" OnClientClick="return confirm();"  AlternateText="Yes" CommandName ="DelStore" CommandArgument="<%#((GridViewRow)Container).RowIndex%>">
                                     <div class='glyphicon glyphicon-remove'></div>

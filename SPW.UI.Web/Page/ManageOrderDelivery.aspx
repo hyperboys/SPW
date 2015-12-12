@@ -110,22 +110,28 @@
                             Style="text-align: center" CssClass="grid" OnRowCommand="gdvManageOrderHQ_RowCommand">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Height="30px">
+                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                     <ItemStyle BorderStyle="Solid" />
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="DELIND_CODE" HeaderText="เลขใบแปะหน้า"></asp:BoundField>
-                                <asp:BoundField DataField="DELIND_DATE" DataFormatString="{0:dd/MM/yy}" HeaderText="วันที่ทำรายการ"></asp:BoundField>
-                                <asp:BoundField DataField="VEHICLE.VEHICLE_REGNO" HeaderText="รถ"></asp:BoundField>
-                                <asp:BoundField HeaderText="ราคารวม" DataField="TOTAL_PRICE" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                <asp:BoundField DataField="DELIND_CODE" HeaderText="เลขใบแปะหน้า" ItemStyle-Width="10%">
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="น้ำหนักรวม" DataField="TOTAL_WEIGHT" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                <asp:BoundField DataField="DELIND_DATE" DataFormatString="{0:dd/MM/yy}" ItemStyle-Width="10%" HeaderText="วันที่ทำรายการ">
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="ตรวจสอบ">
+                                <asp:BoundField DataField="VEHICLE.VEHICLE_REGNO" HeaderText="รถ" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="ราคารวม" DataField="TOTAL_PRICE" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="15%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="น้ำหนักรวม" DataField="TOTAL_WEIGHT" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="15%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDetail" runat="server" CommandArgument="<%#((GridViewRow)Container).RowIndex%>" CommandName="ViewDeliveryOrder">
                                     <div class='glyphicon glyphicon-search'></div>

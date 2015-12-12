@@ -94,28 +94,38 @@
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>            
-                        <asp:TemplateField HeaderText = "ลำดับ" ItemStyle-Height="30px">
+                        <asp:TemplateField HeaderText = "ลำดับ" ItemStyle-Width="3%">
                             <ItemTemplate>
                                 <%# Container.DataItemIndex + 1 %>
                             </ItemTemplate>
                             <ItemStyle BorderStyle="Solid" />
                         </asp:TemplateField>     
-                        <asp:BoundField DataField="ORDER_CODE" HeaderText="รหัสใบสั่งซื้อ" ItemStyle-Width="200px"></asp:BoundField>       
-                        <asp:BoundField DataField="PRODUCT.PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="200px"></asp:BoundField>
-                        <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาหน่วย"></asp:BoundField>
-                        <asp:TemplateField HeaderText = "จำนวน (สั่ง)" ItemStyle-Height="30px">
+                        <asp:BoundField DataField="ORDER_CODE" HeaderText="รหัสใบสั่งซื้อ" ItemStyle-Width="10%">
+                              <ItemStyle Width="10%"></ItemStyle>
+                        </asp:BoundField>       
+                        <asp:BoundField DataField="PRODUCT.PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="20%">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาหน่วย"  ItemStyle-Width="15%">
+                            <ItemStyle Width="15%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:TemplateField HeaderText = "จำนวน (สั่ง)" ItemStyle-Width="15%">
                             <ItemTemplate>
                                 <%#String.Format("{0}",((Int32)Eval("PRODUCT_SENT_REMAIN"))+((Int32)Eval("PRODUCT_SENT_QTY")))%>
                             </ItemTemplate>
                             <ItemStyle BorderStyle="Solid" />
+                             <ItemStyle Width="15%"></ItemStyle>
                         </asp:TemplateField>     
-                        <asp:TemplateField HeaderText = "จำนวน (ส่ง)">
+                        <asp:TemplateField HeaderText = "จำนวน (ส่ง)" ItemStyle-Width="15%">
                             <ItemTemplate>
                                     <asp:TextBox ID="txtQty" class="form-control" ReadOnly ='<%#ISEnabled()%>' runat="server" Height="30px" placeholder="จำนวน" Text ='<%#Eval("PRODUCT_SENT_QTY")%>'></asp:TextBox>
                                  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtQty" ErrorMessage="Digit Only and Not MoreThan Send Qty" ForeColor="Red" Operator="LessThanEqual" SetFocusOnError="True" Type="Integer" ValueToCompare='<%#String.Format("{0}",((Int32)Eval("PRODUCT_SENT_REMAIN"))+((Int32)Eval("PRODUCT_SENT_QTY")))%>'></asp:CompareValidator>                            
-                            </ItemTemplate>                            
+                            </ItemTemplate>
+                              <ItemStyle Width="15%"></ItemStyle>                            
                         </asp:TemplateField>
-                        <asp:BoundField DataField="PRODUCT_SENT_PRICE_TOTAL" HeaderText="ราคารวม"></asp:BoundField>
+                        <asp:BoundField DataField="PRODUCT_SENT_PRICE_TOTAL" HeaderText="ราคารวม"  ItemStyle-Width="20%">
+                            <ItemStyle Width="20%"></ItemStyle>  
+                        </asp:BoundField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
