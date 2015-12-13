@@ -18,6 +18,7 @@ namespace SPW.Model
         public string PRODUCT_CODE { get; set; }
         public int COLOR_ID { get; set; }
         public int COLOR_TYPE_ID { get; set; }
+        public int STOCK_MINIMUM { get; set; }
         public Nullable<int> STOCK_REMAIN { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }

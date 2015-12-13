@@ -19,6 +19,7 @@ namespace SPW.Model
         public string BANK_NAME { get; set; }
         public string BANK_SH_NAME { get; set; }
         public System.DateTime PAYIN_DATE { get; set; }
+        public int PAYIN_SEQ_NO { get; set; }
         public int CHQ_SEQ_NO { get; set; }
         public string CHQ_NO { get; set; }
         public string CHQ_BANK { get; set; }
