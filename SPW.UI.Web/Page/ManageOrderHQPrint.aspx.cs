@@ -116,7 +116,7 @@ namespace SPW.UI.Web.Page
             listStore = _storeService.GetAllIncludeOrder().Where(x => x.ORDER.Where(y => y.ORDER_STEP == "11" || y.ORDER_STEP == "20").FirstOrDefault() != null).ToList();
             listStore = listStore.Where(x =>
                 x.ORDER.Any(y => isBetweenDate((DateTime)y.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))) &&
-                x.STORE_CODE == (txtStoreCode.Text == "" ? x.STORE_CODE:txtStoreCode.Text) &&
+                x.STORE_CODE.ToUpper() == (txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper()) &&
                 x.PROVINCE_ID == (ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))).Distinct().ToList();
 
             List<InOrderForPrint> listInOrder = new List<InOrderForPrint>();
@@ -179,20 +179,23 @@ namespace SPW.UI.Web.Page
 
                     foreach (ORDER_DETAIL od in item.OrderDetails)
                     {
-                        LineForPrint linePrintItem = new LineForPrint();
-                        linePrintItem.line1 = "";
-                        if (od.IS_FREE == "F")
+                        if ((od.PRODUCT_QTY - od.PRODUCT_SEND_QTY) > 0)
                         {
-                            linePrintItem.line2 = "แถม " + od.ColorDesc;
+                            LineForPrint linePrintItem = new LineForPrint();
+                            linePrintItem.line1 = "";
+                            if (od.IS_FREE == "F")
+                            {
+                                linePrintItem.line2 = "แถม " + od.ColorDesc;
+                            }
+                            else
+                            {
+                                linePrintItem.line2 = od.PRODUCT.PRODUCT_NAME + " " + od.ColorDesc;
+                            }
+                            linePrintItem.line3 = (od.PRODUCT_QTY - od.PRODUCT_SEND_QTY).ToString();
+                            linePrintItem.line4 = "";
+                            linePrintItem.line5 = od.PRODUCT_PRICE.ToString();
+                            lstLine.Add(linePrintItem);
                         }
-                        else
-                        {
-                            linePrintItem.line2 = od.PRODUCT.PRODUCT_NAME + " " + od.ColorDesc;
-                        }
-                        linePrintItem.line3 = (od.PRODUCT_QTY - od.PRODUCT_SEND_QTY).ToString();
-                        linePrintItem.line4 = "";
-                        linePrintItem.line5 = od.PRODUCT_PRICE.ToString();
-                        lstLine.Add(linePrintItem);
                     }
                     tmpList.LineForPrint.AddRange(lstLine);
                     lstHead.Add(tmpList);
