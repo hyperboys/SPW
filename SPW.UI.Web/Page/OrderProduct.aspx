@@ -322,7 +322,7 @@
                                                 <td class="auto-style48">จำนวน</td>
                                                 <td class="auto-style43" style="text-align: center">:</td>
                                                 <td class="auto-style45">
-                                                    <asp:TextBox ID="txtQty" runat="server" class="form-control" Height="28px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="125px" MaxLength="3"></asp:TextBox>
+                                                    <asp:TextBox ID="txtQty" runat="server" class="form-control" Height="28px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="125px" MaxLength="4"></asp:TextBox>
                                                     <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
                                                     <script type="text/javascript">
                                                         var specialKeys = new Array();

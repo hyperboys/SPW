@@ -74,6 +74,7 @@ namespace SPW.UI.Web.Page
                         if (objOrder != null)
                         {
                             item.ORDER_CODE = objOrder.ORDER_CODE;
+                            item.ORDER_DETAIL.ColorDesc = item.PRODUCT.PRODUCT_NAME + " " + item.ORDER_DETAIL.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + item.ORDER_DETAIL.COLOR.COLOR_SUBNAME;
                         }
                     }
                 }
@@ -87,6 +88,7 @@ namespace SPW.UI.Web.Page
                         {
                             item.PRODUCT = objDelOrderDetail.PRODUCT;
                             item.ORDER_DETAIL = objDelOrderDetail.ORDER_DETAIL;
+                            item.ORDER_DETAIL.ColorDesc = item.PRODUCT.PRODUCT_NAME + " " + item.ORDER_DETAIL.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + item.ORDER_DETAIL.COLOR.COLOR_SUBNAME;
                         }
                     }                  
                     List<ORDER> OrderItems = GetOrderFromDeliveryOrder(objDelOrder.DELORDER_ID);
@@ -96,6 +98,7 @@ namespace SPW.UI.Web.Page
                         if (objOrder != null)
                         {
                             item.ORDER_CODE = objOrder.ORDER_CODE;
+                            item.ORDER_DETAIL.ColorDesc = item.PRODUCT.PRODUCT_NAME + " " + item.ORDER_DETAIL.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + item.ORDER_DETAIL.COLOR.COLOR_SUBNAME;
                         }
                     }
                 }

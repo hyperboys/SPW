@@ -271,7 +271,8 @@ namespace SPW.UI.Web.Page
                 TextBox txtQtyFree = (TextBox)e.Row.FindControl("QtyFree");
                 txtQtyFree.Text = lstOrderDetail[e.Row.RowIndex].QTYFree.ToString();
                 lstOrderDetail[e.Row.RowIndex].PRODUCT_PRICE_TOTAL = Convert.ToDecimal(lstOrderDetail[e.Row.RowIndex].PRODUCT_PRICE) * Convert.ToDecimal(txtQty.Text);
-
+                Label lblTotal = (Label)e.Row.FindControl("lblTotal");
+                lblTotal.Text = lstOrderDetail[e.Row.RowIndex].PRODUCT_PRICE_TOTAL.ToString();
                 foreach (LinkButton button in e.Row.Cells[7].Controls.OfType<LinkButton>())
                 {
                     if (button.CommandName == "Delete")
@@ -287,21 +288,28 @@ namespace SPW.UI.Web.Page
             int i = 0;
             int sumQty = 0;
             decimal sumPrice = 0;
+            int index = -1;
             foreach (ORDER_DETAIL item in lstOrderDetail)
             {
                 item.PRODUCT_QTY = Convert.ToInt32(((TextBox)(gridProduct.Rows[i].FindControl("Qty"))).Text == "" ? "0" : ((TextBox)(gridProduct.Rows[i].FindControl("Qty"))).Text);
                 item.PRODUCT_QTY = item.PRODUCT_QTY < 0 ? 0 : item.PRODUCT_QTY;
                 item.PRODUCT_SEND_REMAIN = item.PRODUCT_QTY;
-                item.PRODUCT_PRICE_TOTAL = Convert.ToDecimal(item.PRODUCT_PRICE * item.PRODUCT_QTY);
+                if (item.PRODUCT_PRICE_TOTAL != Convert.ToDecimal(item.PRODUCT_PRICE * item.PRODUCT_QTY))
+                {
+                    item.PRODUCT_PRICE_TOTAL = Convert.ToDecimal(item.PRODUCT_PRICE * item.PRODUCT_QTY);
+                    index = i;
+                }
+                ((Label)(gridProduct.Rows[i].FindControl("lblTotal"))).Text = item.PRODUCT_PRICE_TOTAL.ToString();
                 sumQty += item.PRODUCT_QTY.Value;
                 sumPrice += item.PRODUCT_PRICE_TOTAL.Value;
                 i++;
             }
             this.sumQty.Text = sumQty.ToString();
             this.sumPrice.Text = sumPrice.ToString();
-
-            gridProduct.DataSource = lstOrderDetail;
-            gridProduct.DataBind();
+            ((TextBox)(gridProduct.Rows[index].FindControl("QtyFree"))).Focus();
+            //gridProduct.DataSource = lstOrderDetail;
+            //gridProduct.DataBind();
+            //((TextBox)sender).Focus();
         }
 
         protected void QtyFree_TextChanged(object sender, EventArgs e)
@@ -316,8 +324,10 @@ namespace SPW.UI.Web.Page
                 i++;
             }
             this.sumQtyFree.Text = sumQtyFree.ToString();
-            gridProduct.DataSource = lstOrderDetail;
-            gridProduct.DataBind();
+            //gridProduct.DataSource = lstOrderDetail;
+            //gridProduct.DataBind();
+
+            //((TextBox)sender).Focus();
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
@@ -336,6 +346,11 @@ namespace SPW.UI.Web.Page
             {
                 Response.RedirectPermanent("OrderProductDetail.aspx");
             }
+        }
+
+        protected void Qty_Disposed(object sender, EventArgs e)
+        {
+
         }
     }
 }
