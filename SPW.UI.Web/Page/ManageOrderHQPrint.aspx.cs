@@ -132,18 +132,21 @@ namespace SPW.UI.Web.Page
                     inOrder.Order = tmpOrder;
                     foreach (ORDER_DETAIL tmpOD in _orderDetailService.GetAllIncludeByOrder(tmpOrder.ORDER_ID).ToList())
                     {
-                        if (inOrder.OrderDetails.Where(x => x.PRODUCT_ID == tmpOD.PRODUCT_ID && x.IS_FREE == tmpOD.IS_FREE).FirstOrDefault() != null)
+                        if (tmpOD.PRODUCT_SEND_REMAIN.Value > 0)
                         {
-                            ORDER_DETAIL odItem = inOrder.OrderDetails.Where(x => x.PRODUCT_ID == tmpOD.PRODUCT_ID
-                                && x.IS_FREE == tmpOD.IS_FREE).FirstOrDefault();
-                            odItem.PRODUCT_QTY += tmpOD.PRODUCT_QTY;
-                            odItem.ColorDesc += tmpOD.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + tmpOD.COLOR.COLOR_SUBNAME + " " + tmpOD.PRODUCT_QTY + " ";
-                            odItem.PRODUCT_SEND_QTY += tmpOD.PRODUCT_SEND_QTY;
-                        }
-                        else
-                        {
-                            tmpOD.ColorDesc += tmpOD.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + tmpOD.COLOR.COLOR_SUBNAME + " " + tmpOD.PRODUCT_QTY + " ";
-                            inOrder.OrderDetails.Add(tmpOD);
+                            if (inOrder.OrderDetails.Where(x => x.PRODUCT_ID == tmpOD.PRODUCT_ID && x.IS_FREE == tmpOD.IS_FREE).FirstOrDefault() != null)
+                            {
+                                ORDER_DETAIL odItem = inOrder.OrderDetails.Where(x => x.PRODUCT_ID == tmpOD.PRODUCT_ID
+                                    && x.IS_FREE == tmpOD.IS_FREE).FirstOrDefault();
+                                odItem.PRODUCT_QTY += tmpOD.PRODUCT_QTY;
+                                odItem.ColorDesc += tmpOD.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + tmpOD.COLOR.COLOR_SUBNAME + " " + tmpOD.PRODUCT_SEND_REMAIN + " ";
+                                odItem.PRODUCT_SEND_QTY += tmpOD.PRODUCT_SEND_QTY;
+                            }
+                            else
+                            {
+                                tmpOD.ColorDesc += tmpOD.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + tmpOD.COLOR.COLOR_SUBNAME + " " + tmpOD.PRODUCT_SEND_REMAIN + " ";
+                                inOrder.OrderDetails.Add(tmpOD);
+                            }
                         }
                     }
                 }
