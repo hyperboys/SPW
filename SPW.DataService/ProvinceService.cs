@@ -59,7 +59,7 @@ namespace SPW.DataService
 
         public List<PROVINCE> GetAll()
         {
-            return this.Datacontext.PROVINCE.Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.PROVINCE.Where(x => x.SYE_DEL == false).OrderBy(y=>y.PROVINCE_NAME).ToList();
         }
         #endregion
     

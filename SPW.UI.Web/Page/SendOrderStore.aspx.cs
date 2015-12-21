@@ -76,15 +76,12 @@ namespace SPW.UI.Web.Page
             SearchGrid();
         }
 
-        private void SearchGrid()// Edit for Filter
+        private void SearchGrid()
         {
-            //if (txtStoreCode.Text.Trim() != "" || txtStoreName.Text.Trim() != "")
-            //{
-                List<STORE> StoreList = cmdStore.GetAllByCondition(txtStoreCode.Text, txtStoreName.Text);
-                FillData(StoreList);
-                ddlProvince.SelectedIndex = 0;
-                ddlStore.SelectedIndex = 0;
-            //}
+            List<STORE> StoreList = cmdStore.GetAllByCondition(txtStoreCode.Text, txtStoreName.Text);
+            FillData(StoreList);
+            ddlProvince.SelectedIndex = 0;
+            ddlStore.SelectedIndex = 0;
         }
 
         private void PrepareDefaultScreen()
@@ -121,7 +118,7 @@ namespace SPW.UI.Web.Page
             PrepareSelectedScreen();
         }
 
-        private void PrepareSelectedScreen() 
+        private void PrepareSelectedScreen()
         {
             List<ORDER> OrderSelected;
             if (Session["OrderSelected"] != null)
@@ -137,10 +134,10 @@ namespace SPW.UI.Web.Page
                         cb.Checked = OrderSelected.Any(x => x.STORE_ID == StoreID);
                     }
                 }
-            }         
+            }
         }
 
-        private List<OrderDisplay> ManageDisplayItems(List<ORDER> OrderItems) 
+        private List<OrderDisplay> ManageDisplayItems(List<ORDER> OrderItems)
         {
             List<OrderDisplay> OrderDispItems = new List<OrderDisplay>();
             foreach (var item in OrderItems)
@@ -186,7 +183,7 @@ namespace SPW.UI.Web.Page
             ddlProvince.DataValueField = "PROVINCE_ID";
             ddlProvince.DataBind();
         }
-       
+
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
             int ProvinceSelected = Convert.ToInt32(ddlProvince.SelectedValue);
@@ -240,7 +237,7 @@ namespace SPW.UI.Web.Page
                     {
                         OrderSelected.RemoveAll(x => x.STORE_ID == StoreID);
                     }
-                }                
+                }
             }
             Session["OrderSelected"] = OrderSelected;
             if (OrderSelected.Count > 0)
