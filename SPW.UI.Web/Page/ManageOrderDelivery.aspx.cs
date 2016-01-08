@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using System.Drawing;
 
 namespace SPW.UI.Web.Page
 {
@@ -40,6 +41,7 @@ namespace SPW.UI.Web.Page
                 CreateFilterPageSelected(cmdDelIndex.GetAllCount());
                 ClearFilter();
                 BindData();
+                PrepreConfirmStatusDisplay();
                 PrepareSearchScreen();
             }
             else
@@ -302,6 +304,19 @@ namespace SPW.UI.Web.Page
             Session["OrderSelected"] = null;
             Session["VehicleSelected"] = null;
             Response.RedirectPermanent("~/Page/SendOrderStore.aspx");
+        }
+
+        private void PrepreConfirmStatusDisplay()
+        {
+            foreach (GridViewRow item in gdvManageOrderHQ.Rows)
+            {
+                int indexID = (int)gdvManageOrderHQ.DataKeys[item.RowIndex].Value;
+                DELIVERY_INDEX objDelivery = cmdDelIndex.Select(indexID);
+                if (objDelivery != null && !objDelivery.ISDELETE)
+                {
+                    item.BackColor = Color.LightGreen;
+                }
+            }
         }
     }
 }

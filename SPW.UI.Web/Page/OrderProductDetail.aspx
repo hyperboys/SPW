@@ -135,7 +135,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวนฟรี" ItemStyle-Width="17%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="QtyFree" runat="server" class="form-control" OnTextChanged="QtyFree_TextChanged" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="4"></asp:TextBox>
+                                        <asp:TextBox ID="QtyFree" runat="server" class="form-control" OnTextChanged="QtyFree_TextChanged" OnDisposed="Qty_Disposed" AutoPostBack="true" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" MaxLength="4"></asp:TextBox>
                                         <script type="text/javascript">
                                             var specialKeys = new Array();
                                             specialKeys.push(8); //Backspace
@@ -148,9 +148,14 @@
                                         </script>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTotal" runat="server" Text="xxx"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                               <%-- <asp:BoundField DataField="PRODUCT_PRICE_TOTAL" HeaderText="ราคารวม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="20%"></ItemStyle>
-                                </asp:BoundField>
+                                </asp:BoundField>--%>
                                 <asp:CommandField HeaderText="รายละเอียด" ControlStyle-CssClass="glyphicon glyphicon-list"
                                     ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="3%" HeaderStyle-HorizontalAlign="Center" CancelText="" DeleteText="" EditText="" InsertText="" NewText="" SelectText="" UpdateText="">
                                     <ControlStyle CssClass="glyphicon glyphicon-list" />

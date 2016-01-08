@@ -139,6 +139,7 @@ namespace SPW.UI.Web.Page
                              x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
                              y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
                              order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
+                             !order.ORDER_STEP.Equals("50") &&
                              isBetweenDate((DateTime)order.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))
                          select new DATAGRID
                          {

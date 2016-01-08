@@ -272,7 +272,7 @@ namespace SPW.UI.Web.Page
                 }
             }
 
-            listItem = listItem.OrderBy(x => x.STORE.STORE_CODE).ToList();
+            listItem = listItem.OrderBy(x => x.STORE.STORE_CODE).ThenBy(y => y.STORE.PROVINCE_ID).ToList();
 
             foreach (DELIVERY_ORDER item in listItem)
             {
