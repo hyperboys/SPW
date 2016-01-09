@@ -162,7 +162,7 @@
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="ราคาต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblMMM" runat="server" Style="height: 35px;" Text='<%# Eval("PRODUCT_PRICE") %>'></asp:Label>
+                                        <asp:Label ID="lblPRODUCT_PRICE" runat="server" Style="height: 35px;" Text='<%# Eval("PRODUCT_PRICE") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">

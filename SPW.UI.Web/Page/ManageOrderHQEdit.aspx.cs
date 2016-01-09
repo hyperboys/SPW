@@ -174,6 +174,8 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                decimal oTotal = 0;
+                int orderID = 0;
                 List<DATAGRID> query = new List<DATAGRID>();
                 foreach (GridViewRow row in gdvManageOrderHQDetail.Rows)
                 {
@@ -187,6 +189,7 @@ namespace SPW.UI.Web.Page
                         data.COLOR_NAME = ((DropDownList)row.FindControl("ddlCOLOR_NAME")).SelectedItem.Value;
                         data.COLOR_TYPE_NAME = ((DropDownList)row.FindControl("ddlCOLOR_TYPE_NAME")).SelectedItem.Value;
                         data.PRODUCT_WEIGHT = decimal.Parse(row.Cells[4].Text);
+                        data.PRODUCT_PRICE = decimal.Parse(((Label)row.FindControl("lblPRODUCT_PRICE")).Text);
                         data.PRODUCT_SEND_REMAIN_QTY = int.Parse(((HiddenField)row.FindControl("hfRemainQty")).Value);
                         data.PRODUCT_SEND_REMAIN_FLEE = int.Parse(((HiddenField)row.FindControl("hfRemainFlee")).Value);
                         int oQty = int.Parse(((HiddenField)row.FindControl("hfOldQty")).Value);
@@ -224,6 +227,8 @@ namespace SPW.UI.Web.Page
                                     {
                                         i.PRODUCT_QTY = j.PRODUCT_QTY;
                                         i.PRODUCT_SEND_REMAIN = j.PRODUCT_SEND_REMAIN_QTY;
+                                        orderID = j.ORDER_ID;
+                                        oTotal += (decimal)(j.PRODUCT_QTY * j.PRODUCT_PRICE);
                                     }
                                     else
                                     {
@@ -238,6 +243,7 @@ namespace SPW.UI.Web.Page
                     });
 
                 _orderDetailService.EditOrderDetailList(listOrderDetail);
+                _orderService.EditOrderTotal(orderID, oTotal);
                 return true;
             }
             catch (Exception ex)
