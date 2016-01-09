@@ -65,12 +65,19 @@
     <Compile Include="COLOR_TYPE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomModel\AP_VEHICLE_TRANS.cs" />
+    <Compile Include="CustomModel\ASSET_TYPE.cs" />
     <Compile Include="CustomModel\CATEGORY.cs" />
     <Compile Include="CustomModel\COLOR_TYPE.cs" />
     <Compile Include="CustomModel\COLOR.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX_DETAIL.cs" />
+    <Compile Include="CustomModel\DELIVERY_ORDER_LOG.cs" />
+    <Compile Include="CustomModel\PRODUCT_DETAIL.cs" />
+    <Compile Include="CustomModel\STOCK_PRODUCT_STOCK.cs" />
+    <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
+    <Compile Include="CustomModel\VENDOR.cs" />
     <Compile Include="CustomModel\ZONE_DETAIL.cs" />
     <Compile Include="CustomModel\ROLE_FUNCTION.cs" />
     <Compile Include="CustomModel\SUB_FUNCTION.cs" />
