@@ -46,6 +46,13 @@ namespace SPW.DataService
             this.Datacontext.SaveChanges();
         }
 
+        public void EditOrderTotal(int ORDER_ID,decimal ORDER_TOTAL)
+        {
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == ORDER_ID).FirstOrDefault();
+            item.ORDER_TOTAL = ORDER_TOTAL;
+            this.Datacontext.SaveChanges();
+        }
+
         public void EditList(List<ORDER> objList)
         {
             foreach (var item in objList)

@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APVehicleTransService.cs" />
+    <Compile Include="AssetTypeService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
     <Compile Include="DataServiceController\DataServiceBase.cs" />
@@ -57,6 +59,11 @@
     <Compile Include="FunctionService.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="DataServiceController\ServiceBase.cs" />
+    <Compile Include="StockProductService.cs" />
+    <Compile Include="StockTransService.cs" />
+    <Compile Include="StockTypeService.cs" />
+    <Compile Include="SupplierService.cs" />
+    <Compile Include="TraceryService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="VehicleService.cs" />
     <Compile Include="ColorTypeService.cs" />
