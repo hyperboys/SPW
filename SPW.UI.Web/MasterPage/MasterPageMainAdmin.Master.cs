@@ -42,6 +42,14 @@ namespace SPW.UI.Web.MasterPage
                                 {
                                     this.Report.Visible = true;
                                 } break;
+                            case "6":
+                                {
+                                    this.Stock.Visible = true;
+                                } break;
+                            case "7":
+                                {
+                                    this.Asset.Visible = true;
+                                } break;
                         }
                     }
                 }

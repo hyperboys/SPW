@@ -158,6 +158,9 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ManageInvoice.aspx" />
+    <Content Include="Page\ManageStock.aspx" />
+    <Content Include="Page\ManageSupplier.aspx" />
     <Content Include="Page\ReportMonthlySale.aspx" />
     <Content Include="Page\ReportSaleVolume.aspx" />
     <Content Include="Page\ManageOrderDelivery.aspx" />
@@ -186,6 +189,8 @@
     <Content Include="Page\ManageCategory.aspx" />
     <Content Include="Page\OrderProductDetail.aspx" />
     <Content Include="Page\SearchRole.aspx" />
+    <Content Include="Page\SearchSupplier.aspx" />
+    <Content Include="Page\SearchTracery.aspx" />
     <Content Include="Page\SearchUser.aspx" />
     <Content Include="Page\SearchColorProduct.aspx" />
     <Content Include="Page\SearchColorType.aspx" />
@@ -205,6 +210,7 @@
     <Content Include="Page\MainAdmin.aspx" />
     <Content Include="Page\SearchDepartment.aspx" />
     <Content Include="Page\SearchEmployee.aspx" />
+    <Content Include="Page\StockIn.aspx" />
     <Content Include="Reports\MonthlySale.aspx" />
     <Content Include="Reports\SaleVolume.aspx" />
     <Content Include="Reports\InOrder.aspx" />
@@ -241,6 +247,27 @@
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageInvoice.aspx.cs">
+      <DependentUpon>ManageInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageInvoice.aspx.designer.cs">
+      <DependentUpon>ManageInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageStock.aspx.cs">
+      <DependentUpon>ManageStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageStock.aspx.designer.cs">
+      <DependentUpon>ManageStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageSupplier.aspx.cs">
+      <DependentUpon>ManageSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageSupplier.aspx.designer.cs">
+      <DependentUpon>ManageSupplier.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ReportMonthlySale.aspx.cs">
       <DependentUpon>ReportMonthlySale.aspx</DependentUpon>
@@ -438,6 +465,20 @@
     <Compile Include="Page\SearchRole.aspx.designer.cs">
       <DependentUpon>SearchRole.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\SearchSupplier.aspx.cs">
+      <DependentUpon>SearchSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchSupplier.aspx.designer.cs">
+      <DependentUpon>SearchSupplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchTracery.aspx.cs">
+      <DependentUpon>SearchTracery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchTracery.aspx.designer.cs">
+      <DependentUpon>SearchTracery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\SearchUser.aspx.cs">
       <DependentUpon>SearchUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -570,6 +611,13 @@
     </Compile>
     <Compile Include="Page\SearchEmployee.aspx.designer.cs">
       <DependentUpon>SearchEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\StockIn.aspx.cs">
+      <DependentUpon>StockIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\StockIn.aspx.designer.cs">
+      <DependentUpon>StockIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\MonthlySale.aspx.cs">
