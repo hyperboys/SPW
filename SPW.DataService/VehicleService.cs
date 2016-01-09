@@ -86,6 +86,11 @@ namespace SPW.DataService
             this.Datacontext.SaveChanges();
         }
 
+        public String GetVehicleCode(int VEHICLE_ID)
+        {
+            return this.Datacontext.VEHICLE.Where(x => x.SYE_DEL == false && x.VEHICLE_ID == VEHICLE_ID).FirstOrDefault().VEHICLE_CODE;
+        }
+
 
         #endregion
     }

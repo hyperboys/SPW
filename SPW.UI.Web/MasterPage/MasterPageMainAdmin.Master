@@ -134,6 +134,9 @@
                                     <li>
                                         <a href="../Page/SearchVehicle.aspx">ข้อมูลรถบรรทุก</a>
                                     </li>
+                                    <li>
+                                        <a href="../Page/SearchSupplier.aspx">ข้อมูลซัพพลายเออร์</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -166,6 +169,24 @@
                                     </li>
                                     <li>
                                         <a href="../Page/ReportMonthlySale.aspx">รายงานสรุปยอดขายแต่ละเดือน</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li runat="server" id="Stock" visible="true">
+                                <a href="#"><i class="fa fa-archive fa-fw"></i>&nbsp;คลัง<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../Page/ManageStock.aspx">ปรับยอดสินค้าคงเหลือในคลัง</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li runat="server" id="asset" visible="true">
+                                <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;ทรัพย์สิน<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../Page/ManageInvoice.aspx">ทำรายการส่งซ่อม</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
