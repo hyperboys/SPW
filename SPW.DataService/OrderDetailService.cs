@@ -44,9 +44,15 @@ namespace SPW.DataService
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
             this.Datacontext.SaveChanges();
         }
+
         public void EditOrderDetailCancel(int ORDER_DETAIL_ID)
         {
             var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
+            var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.COLOR_ID == item.COLOR_ID
+                && x.COLOR_TYPE_ID == item.COLOR_TYPE_ID && x.PRODUCT_ID == item.PRODUCT_ID
+                && x.IS_FREE == "F").FirstOrDefault();
+            itemFree.UPDATE_DATE = DateTime.Now;
+            itemFree.SYE_DEL = true; 
             item.UPDATE_DATE = DateTime.Now;
             item.SYE_DEL = true;
             this.Datacontext.SaveChanges();

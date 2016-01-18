@@ -25,7 +25,7 @@ namespace SPW.UI.Web.Page
             public string STORE_CODE { get; set; }
             public string STORE_NAME { get; set; }
             public Nullable<decimal> ORDER_TOTAL { get; set; }
-            public string ORDER_STEP { get; set; }            
+            public string ORDER_STEP { get; set; }
         }
         private class DROPDOWN
         {
@@ -131,28 +131,27 @@ namespace SPW.UI.Web.Page
             List<ORDER> listOrder = _orderService.GetStoreInOrder();
 
             List<DATAGRID> query = (from order in listOrder
-                         join province in listProvince on order.STORE.PROVINCE_ID equals province.PROVINCE_ID into joinA
-                         from x in joinA.DefaultIfEmpty()
-                         join sector in listSector on x.SECTOR_ID equals sector.SECTOR_ID into joinB
-                         from y in joinB.DefaultIfEmpty()
-                         where order.STORE_ID.Equals((ddlStore.SelectedValue == "0" ? order.STORE_ID : int.Parse(ddlStore.SelectedValue))) &&
-                             x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
-                             y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
-                             order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
-                             (order.ORDER_STEP.Equals("10") || order.ORDER_STEP.Equals("11")) &&
-                             isBetweenDate((DateTime)order.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))
-                         select new DATAGRID
-                         {
-                             ORDER_ID = order.ORDER_ID,
-                             ORDER_CODE = order.ORDER_CODE,
-                             ORDER_DATE = order.ORDER_DATE,
-                             SECTOR_NAME = y.SECTOR_NAME,
-                             PROVINCE_NAME = x.PROVINCE_NAME,
-                             STORE_CODE = order.STORE.STORE_CODE,
-                             STORE_NAME = order.STORE.STORE_NAME,
-                             ORDER_TOTAL = order.ORDER_TOTAL,
-                             ORDER_STEP = order.ORDER_STEP
-                         }).ToList();
+                                    join province in listProvince on order.STORE.PROVINCE_ID equals province.PROVINCE_ID into joinA
+                                    from x in joinA.DefaultIfEmpty()
+                                    join sector in listSector on x.SECTOR_ID equals sector.SECTOR_ID into joinB
+                                    from y in joinB.DefaultIfEmpty()
+                                    where order.STORE_ID.Equals((ddlStore.SelectedValue == "0" ? order.STORE_ID : int.Parse(ddlStore.SelectedValue))) &&
+                                        x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
+                                        y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
+                                        order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
+                                        isBetweenDate((DateTime)order.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))
+                                    select new DATAGRID
+                                    {
+                                        ORDER_ID = order.ORDER_ID,
+                                        ORDER_CODE = order.ORDER_CODE,
+                                        ORDER_DATE = order.ORDER_DATE,
+                                        SECTOR_NAME = y.SECTOR_NAME,
+                                        PROVINCE_NAME = x.PROVINCE_NAME,
+                                        STORE_CODE = order.STORE.STORE_CODE,
+                                        STORE_NAME = order.STORE.STORE_NAME,
+                                        ORDER_TOTAL = order.ORDER_TOTAL,
+                                        ORDER_STEP = order.ORDER_STEP
+                                    }).ToList();
             Session["DATAGRID"] = query;
             gdvManageOrderHQ.DataSource = null;
             gdvManageOrderHQ.DataSource = query;
@@ -289,6 +288,10 @@ namespace SPW.UI.Web.Page
                 if (hfORDER_STEP.Value == "11")
                     e.Row.BackColor = Color.LightGreen;
 
+                if (hfORDER_STEP.Value != "10" && hfORDER_STEP.Value != "11")
+                {
+                    e.Row.BackColor = Color.Moccasin;
+                }
             }
         }
         #endregion

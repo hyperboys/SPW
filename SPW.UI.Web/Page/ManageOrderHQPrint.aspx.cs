@@ -167,14 +167,16 @@ namespace SPW.UI.Web.Page
                     tmpList.LineForPrint = new List<LineForPrint>();
                     LineForPrint linePrint = new LineForPrint();
                     linePrint.line1 = ConvertDateToThai(item.Order.ORDER_DATE.Value);
-                    if (item.Store.PROVINCE_ID == 1)
-                    {
-                        linePrint.line2 = item.Store.STORE_NAME + " (" + item.Store.STORE_CODE.Substring(item.Store.STORE_CODE.Length - 3, 3) + " )";
-                    }
-                    else
-                    {
-                        linePrint.line2 = item.Store.STORE_CODE + " " + item.Store.STORE_NAME;
-                    }
+                    //if (item.Store.PROVINCE_ID == 1)
+                    //{
+                    //    linePrint.line2 = item.Store.STORE_NAME + " (" + item.Store.STORE_CODE.Substring(item.Store.STORE_CODE.Length - 3, 3) + " )";
+                    //}
+                    //else
+                    //{
+                    //    linePrint.line2 = item.Store.STORE_CODE + " " + item.Store.STORE_NAME;
+                    //}
+                    linePrint.line2 = item.Store.STORE_NAME + " " + item.Store.STORE_CODE;
+
                     linePrint.line3 = "จำนวน";
                     linePrint.line4 = "";
                     linePrint.line5 = "ราคาต่อชิ้น";

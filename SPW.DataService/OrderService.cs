@@ -127,7 +127,7 @@ namespace SPW.DataService
 
         public List<ORDER> GetStoreInOrder()
         {
-            return this.Datacontext.ORDER.Include("STORE").Where(x => x.SYE_DEL == false && x.ORDER_STEP != "30" && x.ORDER_STEP != "40" && x.ORDER_STEP != "50" && x.ORDER_STEP != "12").ToList();
+            return this.Datacontext.ORDER.Include("STORE").Where(x => x.SYE_DEL == false && x.ORDER_STEP != "50" && x.ORDER_STEP != "12").ToList();
         }
 
         public List<ORDER> GetAllIncludeByStore(int ID)
