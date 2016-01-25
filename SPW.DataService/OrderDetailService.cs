@@ -48,9 +48,7 @@ namespace SPW.DataService
         public void EditOrderDetailCancel(int ORDER_DETAIL_ID)
         {
             var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
-            var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.COLOR_ID == item.COLOR_ID
-                && x.COLOR_TYPE_ID == item.COLOR_TYPE_ID && x.PRODUCT_ID == item.PRODUCT_ID
-                && x.IS_FREE == "F").FirstOrDefault();
+            var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_ID == item.ORDER_ID && x.PRODUCT_SEQ == item.PRODUCT_SEQ && x.IS_FREE == "F").FirstOrDefault();
             itemFree.UPDATE_DATE = DateTime.Now;
             itemFree.SYE_DEL = true; 
             item.UPDATE_DATE = DateTime.Now;
@@ -149,6 +147,11 @@ namespace SPW.DataService
                 }
             }
             this._Datacontext.SaveChanges();
+        }
+
+        public int GetSumRemain(int ID)
+        {
+            return (int)this.Datacontext.ORDER_DETAIL.Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).Sum(e => e.PRODUCT_SEND_REMAIN);
         }
         #endregion
     }

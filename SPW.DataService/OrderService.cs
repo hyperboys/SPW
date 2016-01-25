@@ -86,6 +86,15 @@ namespace SPW.DataService
             this.Datacontext.SaveChanges();
         }
 
+        public void EditOrderStepHQApproveFinish(int EditSysDel)
+        {
+            var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == EditSysDel).FirstOrDefault();
+            item.ORDER_STEP = "50"; //HQ Approve
+            item.UPDATE_DATE = DateTime.Now;
+            //item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            this.Datacontext.SaveChanges();
+        }
+
         public void EditSysDel(int EditSysDel)
         {
             var item = this.Datacontext.ORDER.Where(x => x.ORDER_ID == EditSysDel).FirstOrDefault();
