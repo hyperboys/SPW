@@ -4,7 +4,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
     <script type="text/javascript">
         function check_change_qty(e) {
-            var multi = parseFloat($("#" + e.id).closest('tr').find("[id*='lblMMM']").text());
+            var multi = parseFloat($("#" + e.id).closest('tr').find("[id*='lblPRODUCT_PRICE']").text());
             var old = parseInt($("#" + e.id).closest('tr').find("[id*='hfQty']").val(), 10);
             var add = parseInt($("#" + e.id).val(), 10);
             var lblSumQty = parseInt($('#<%= lblSumQty.ClientID %>').text(), 10);
@@ -167,7 +167,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("PRODUCT_QTY") %>' OnChange="check_change_qty(this)"></asp:TextBox>
+                                        <asp:TextBox ID="txtQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("PRODUCT_SEND_REMAIN_QTY") %>' OnChange="check_change_qty(this)"></asp:TextBox>
                                         <asp:HiddenField ID="hfQty" runat="server" Value='<%# Bind("PRODUCT_QTY") %>' />
                                         <asp:HiddenField ID="hfOldQty" runat="server" Value='<%# Bind("PRODUCT_QTY") %>' />
                                         <asp:HiddenField ID="hfRemainQty" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_QTY") %>' />
@@ -180,7 +180,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ฟรี" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtFleeQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("FLEE") %>' OnChange="check_change_flee(this)"></asp:TextBox>
+                                        <asp:TextBox ID="txtFleeQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("PRODUCT_SEND_REMAIN_FLEE") %>' OnChange="check_change_flee(this)"></asp:TextBox>
                                         <asp:HiddenField ID="hfFleeQty" runat="server" Value='<%# Bind("FLEE") %>' />
                                         <asp:HiddenField ID="hfOldFlee" runat="server" Value='<%# Bind("FLEE") %>' />
                                         <asp:HiddenField ID="hfRemainFlee" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_FLEE") %>' />

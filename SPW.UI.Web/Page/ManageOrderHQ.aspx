@@ -108,6 +108,18 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-md-2">
+                                        </div>
+                                    </div>
+                                    <%--forth row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">รหัสร้าน</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
                                             <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
                                         </div>
                                     </div>

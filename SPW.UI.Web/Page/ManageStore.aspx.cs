@@ -34,6 +34,8 @@ namespace SPW.UI.Web.Page
             }
         }
 
+
+
         private void InitialDataService()
         {
             cmdStore = (StoreService)_dataServiceEngine.GetDataService(typeof(StoreService));
@@ -131,7 +133,7 @@ namespace SPW.UI.Web.Page
         {
             USER userItem = Session["user"] as USER;
             var obj = new STORE();
-            obj.PROVINCE_ID = Convert.ToInt32(ddlProvince.SelectedValue);
+            obj.PROVINCE_ID = Convert.ToInt32(Session["index"].ToString());
             obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
             obj.STORE_ADDR1 = txtAddress.Text;
             obj.STORE_CODE = popTxtStoreCode.Text;
@@ -185,6 +187,11 @@ namespace SPW.UI.Web.Page
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.RedirectPermanent("SearchStore.aspx");
+        }
+
+        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["index"] = ddlProvince.SelectedValue.ToString();
         }
     }
 }

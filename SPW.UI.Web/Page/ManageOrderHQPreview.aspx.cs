@@ -172,7 +172,10 @@ namespace SPW.UI.Web.Page
         }
         void SetOrderStep(int ORDER_ID)
         {
-            _orderService.EditOrderStepHQApprove(ORDER_ID);
+            if (_orderDetailService.GetSumRemain(ORDER_ID) != 0)
+                _orderService.EditOrderStepHQApprove(ORDER_ID);
+            else
+                _orderService.EditOrderStepHQApproveFinish(ORDER_ID);
         }
         #endregion
 

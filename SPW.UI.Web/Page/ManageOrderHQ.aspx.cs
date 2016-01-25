@@ -129,14 +129,18 @@ namespace SPW.UI.Web.Page
             List<SECTOR> listSector = (List<SECTOR>)ViewState["listSector"];
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
             List<ORDER> listOrder = _orderService.GetStoreInOrder();
+            List<STORE> listStore = _storeService.GetAll();
 
             List<DATAGRID> query = (from order in listOrder
                                     join province in listProvince on order.STORE.PROVINCE_ID equals province.PROVINCE_ID into joinA
                                     from x in joinA.DefaultIfEmpty()
                                     join sector in listSector on x.SECTOR_ID equals sector.SECTOR_ID into joinB
                                     from y in joinB.DefaultIfEmpty()
+                                    join store in listStore on order.STORE.STORE_ID equals store.STORE_ID into joinC
+                                    from z in joinC.DefaultIfEmpty()
                                     where order.STORE_ID.Equals((ddlStore.SelectedValue == "0" ? order.STORE_ID : int.Parse(ddlStore.SelectedValue))) &&
                                         x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
+                                        z.STORE_CODE.Equals((txtStoreCode.Text == "" ? z.STORE_CODE : txtStoreCode.Text)) &&
                                         y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
                                         order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
                                         isBetweenDate((DateTime)order.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))

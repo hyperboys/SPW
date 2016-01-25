@@ -154,9 +154,12 @@ namespace SPW.UI.Web.Page
                             PRODUCT_SEND_REMAIN_FLEE = j.PRODUCT_SEND_REMAIN_FLEE
                         };
                         query.Add(data);
-                        sumQty = sumQty + (int)data.PRODUCT_QTY;
-                        sumFlee = sumFlee + (int)data.FLEE;
-                        totalPrice = totalPrice + (decimal)data.PRODUCT_PRICE_TOTAL;
+                        if (data.PRODUCT_SEND_REMAIN_QTY > 0 || data.PRODUCT_SEND_REMAIN_FLEE > 0)
+                        {
+                            sumQty = sumQty + (int)data.PRODUCT_SEND_REMAIN_QTY;
+                            sumFlee = sumFlee + (int)data.PRODUCT_SEND_REMAIN_FLEE;
+                            totalPrice = totalPrice + (decimal)data.PRODUCT_PRICE_TOTAL;
+                        }
                     }
                 });
             });
@@ -194,6 +197,8 @@ namespace SPW.UI.Web.Page
                         data.PRODUCT_SEND_REMAIN_FLEE = int.Parse(((HiddenField)row.FindControl("hfRemainFlee")).Value);
                         int oQty = int.Parse(((HiddenField)row.FindControl("hfOldQty")).Value);
                         int oFlee = int.Parse(((HiddenField)row.FindControl("hfOldFlee")).Value);
+                        data.PRODUCT_QTY = data.PRODUCT_QTY + (oQty - data.PRODUCT_SEND_REMAIN_QTY);
+                        data.FLEE = data.FLEE + (oFlee - data.PRODUCT_SEND_REMAIN_FLEE);
                         if (oQty != data.PRODUCT_SEND_REMAIN_QTY || oFlee != data.PRODUCT_SEND_REMAIN_FLEE)
                         {
                             if (data.PRODUCT_QTY < oQty - data.PRODUCT_SEND_REMAIN_QTY || data.FLEE < oFlee - data.PRODUCT_SEND_REMAIN_FLEE)

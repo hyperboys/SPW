@@ -108,7 +108,7 @@
                                     <td class="auto-style20">จังหวัด</td>
                                     <td style="text-align: center" class="auto-style5">:</td>
                                     <td class="auto-style15">
-                                        <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" Enabled="False" SelectedValue='<%# Eval("Key") %>'>
+                                        <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" Enabled="False" SelectedValue='<%# Eval("Key") %>' AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged">
                                             <asp:ListItem>กรุณาเลือก</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
@@ -245,7 +245,7 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Button ID="btnSave" ValidationGroup="group" runat="server" Text="บึนทึก" class="btn btn-primary" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" ValidationGroup="group" runat="server" Text="บันทึก" class="btn btn-primary" OnClick="btnSave_Click" />
                         </td>
                         <td>&nbsp;&nbsp;</td>
                         <td>
