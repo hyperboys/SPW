@@ -195,7 +195,7 @@ namespace SPW.UI.Web.Page
                             }
                             else
                             {
-                                tmp.ColorDesc += ", แถม " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                                tmp.ColorDesc += ", แถม " + od.PRODUCT.PRODUCT_NAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
 
                             }
                             tmp.PRODUCT_SENT_QTY += od.PRODUCT_SENT_QTY;
@@ -209,7 +209,7 @@ namespace SPW.UI.Web.Page
                             }
                             else
                             {
-                                tmp.ColorDesc = "แถม " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                                tmp.ColorDesc = "แถม " + od.PRODUCT.PRODUCT_NAME + " " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
                             }
                             listOrder2.Add(tmp);
                         }
@@ -255,7 +255,7 @@ namespace SPW.UI.Web.Page
                             }
                             else
                             {
-                                tmp.ColorDesc = "แถม " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
+                                tmp.ColorDesc = "แถม " + od.PRODUCT.PRODUCT_NAME + " " + od.COLOR_TYPE.COLOR_TYPE_SUBNAME + " " + od.COLOR.COLOR_SUBNAME + " " + od.PRODUCT_SENT_QTY;
                             }
                             listOrder2.Add(tmp);
                         }

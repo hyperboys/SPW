@@ -190,7 +190,7 @@ namespace SPW.UI.Web.Page
                             linePrintItem.line1 = "";
                             if (od.IS_FREE == "F")
                             {
-                                linePrintItem.line2 = "แถม " + od.ColorDesc;
+                                linePrintItem.line2 =  "แถม " + od.PRODUCT.PRODUCT_NAME + " " + od.ColorDesc;
                             }
                             else
                             {
