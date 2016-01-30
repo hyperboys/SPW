@@ -314,8 +314,13 @@ namespace SPW.UI.Web.Page
         }
         protected void gdvManageOrderHQDetail_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            int ORDER_ID = Convert.ToInt32(Request.QueryString["ORDER_ID"]);
             int ORDER_DETAIL_ID = int.Parse(gdvManageOrderHQDetail.DataKeys[e.RowIndex].Value.ToString());
-            _orderDetailService.EditOrderDetailCancel(ORDER_DETAIL_ID);
+            if (_orderDetailService.IsSend(ORDER_ID))
+                _orderDetailService.EditOrderDetailCancelBySend(ORDER_DETAIL_ID);
+            else
+                _orderDetailService.EditOrderDetailCancel(ORDER_DETAIL_ID);
+
             BindGridview();
         }
         #endregion

@@ -4,25 +4,25 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
     <script type="text/javascript">
         function check_change_qty(e) {
-            var multi = parseFloat($("#" + e.id).closest('tr').find("[id*='lblPRODUCT_PRICE']").text());
-            var old = parseInt($("#" + e.id).closest('tr').find("[id*='hfQty']").val(), 10);
+            var multi = parseFloat($("#" + e.id).closest('tr').find("[id*='lblPRODUCT_PRICE']").text()).toFixed(1);
+            var old = parseInt($("#" + e.id).closest('tr').find("[id*='hfRemainQty']").val(), 10);
             var add = parseInt($("#" + e.id).val(), 10);
             var lblSumQty = parseInt($('#<%= lblSumQty.ClientID %>').text(), 10);
             var lblTotalPrice = parseFloat($('#<%= lblTotalPrice.ClientID %>').text());
             if (add >= 0) {
                 $("#" + e.id).closest('tr').find("[id*='lblPRODUCT_PRICE_TOTAL']").text(multi * add);
-                $('#<%= lblSumQty.ClientID %>').text(lblSumQty + (add - old));
+                $('#<%= lblSumQty.ClientID %>').text(lblSumQty + (add - old)); 
                 $('#<%= lblTotalPrice.ClientID %>').text(lblTotalPrice + ((add - old) * multi));
-                $("#" + e.id).closest('tr').find("[id*='hfQty']").val(add);
+                $("#" + e.id).closest('tr').find("[id*='hfRemainQty']").val(add);
             }
         }
         function check_change_flee(e) {
-            var old = parseInt($("#" + e.id).closest('tr').find("[id*='hfFleeQty']").val(), 10);
+            var old = parseInt($("#" + e.id).closest('tr').find("[id*='hfRemainFlee']").val(), 10);
             var add = parseInt($("#" + e.id).val(), 10);
             var lblFlee = parseInt($('#<%= lblFlee.ClientID %>').text(), 10);
             if (add >= 0) {
                 $('#<%= lblFlee.ClientID %>').text(lblFlee + (add - old));
-                $("#" + e.id).closest('tr').find("[id*='hfFleeQty']").val(add);
+                $("#" + e.id).closest('tr').find("[id*='hfRemainFlee']").val(add);
             }
         }
     </script>

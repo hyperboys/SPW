@@ -50,9 +50,20 @@ namespace SPW.DataService
             var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
             var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_ID == item.ORDER_ID && x.PRODUCT_SEQ == item.PRODUCT_SEQ && x.IS_FREE == "F").FirstOrDefault();
             itemFree.UPDATE_DATE = DateTime.Now;
-            itemFree.SYE_DEL = true; 
+            itemFree.SYE_DEL = true;
             item.UPDATE_DATE = DateTime.Now;
             item.SYE_DEL = true;
+            this.Datacontext.SaveChanges();
+        }
+
+        public void EditOrderDetailCancelBySend(int ORDER_DETAIL_ID)
+        {
+            var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
+            var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_ID == item.ORDER_ID && x.PRODUCT_SEQ == item.PRODUCT_SEQ && x.IS_FREE == "F").FirstOrDefault();
+            itemFree.UPDATE_DATE = DateTime.Now;
+            itemFree.SYE_DEL = null;
+            item.UPDATE_DATE = DateTime.Now;
+            item.SYE_DEL = null;
             this.Datacontext.SaveChanges();
         }
 
@@ -152,6 +163,16 @@ namespace SPW.DataService
         public int GetSumRemain(int ID)
         {
             return (int)this.Datacontext.ORDER_DETAIL.Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).Sum(e => e.PRODUCT_SEND_REMAIN);
+        }
+
+        public bool IsSend(int ID)
+        {
+            bool returnValue = false;
+            int sumRemain = (int)this.Datacontext.ORDER_DETAIL.Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).Sum(e => e.PRODUCT_SEND_REMAIN);
+            int sumQty = (int)this.Datacontext.ORDER_DETAIL.Where(x => x.SYE_DEL == false && x.ORDER_ID == ID).Sum(e => e.PRODUCT_QTY);
+            returnValue = (sumRemain < sumQty ? true : false);
+
+            return returnValue;
         }
         #endregion
     }
