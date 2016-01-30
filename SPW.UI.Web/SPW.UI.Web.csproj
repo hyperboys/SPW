@@ -161,6 +161,7 @@
     <Content Include="Page\ManageInvoice.aspx" />
     <Content Include="Page\ManageStock.aspx" />
     <Content Include="Page\ManageSupplier.aspx" />
+    <Content Include="Page\PayInSlip.aspx" />
     <Content Include="Page\ReportMonthlySale.aspx" />
     <Content Include="Page\ReportSaleVolume.aspx" />
     <Content Include="Page\ManageOrderDelivery.aspx" />
@@ -268,6 +269,13 @@
     </Compile>
     <Compile Include="Page\ManageSupplier.aspx.designer.cs">
       <DependentUpon>ManageSupplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PayInSlip.aspx.cs">
+      <DependentUpon>PayInSlip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PayInSlip.aspx.designer.cs">
+      <DependentUpon>PayInSlip.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ReportMonthlySale.aspx.cs">
       <DependentUpon>ReportMonthlySale.aspx</DependentUpon>

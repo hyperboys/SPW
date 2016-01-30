@@ -43,6 +43,7 @@ namespace SPW.UI.Web.Page
         private OrderService _orderService;
         private ProvinceService _provinceService;
         private OrderDetailService _orderDetailService;
+        private DeliveryOrderService _deliveryOrderService;
 
         private void InitialPage()
         {
@@ -77,6 +78,7 @@ namespace SPW.UI.Web.Page
             _orderService = (OrderService)_dataServiceEngine.GetDataService(typeof(OrderService));
             _orderDetailService = (OrderDetailService)_dataServiceEngine.GetDataService(typeof(OrderDetailService));
             _provinceService = (ProvinceService)_dataServiceEngine.GetDataService(typeof(ProvinceService));
+            _deliveryOrderService = (DeliveryOrderService)_dataServiceEngine.GetDataService(typeof(DeliveryOrderService));
         }
 
         private void ReloadDatasource()
@@ -152,7 +154,7 @@ namespace SPW.UI.Web.Page
                 }
                 listInOrder.Add(inOrder);
             }
-
+            
             if (tmpListOrder.Count > 0)
             {
                 InOrderReportData ds = new InOrderReportData();
@@ -166,28 +168,37 @@ namespace SPW.UI.Web.Page
                     ListOfLineForPrint tmpList = new ListOfLineForPrint();
                     tmpList.LineForPrint = new List<LineForPrint>();
                     LineForPrint linePrint = new LineForPrint();
-                    linePrint.line1 = ConvertDateToThai(item.Order.ORDER_DATE.Value);
-                    //if (item.Store.PROVINCE_ID == 1)
-                    //{
-                    //    linePrint.line2 = item.Store.STORE_NAME + " (" + item.Store.STORE_CODE.Substring(item.Store.STORE_CODE.Length - 3, 3) + " )";
-                    //}
-                    //else
-                    //{
-                    //    linePrint.line2 = item.Store.STORE_CODE + " " + item.Store.STORE_NAME;
-                    //}
+                    DELIVERY_ORDER DELIVERY_ORDER = _deliveryOrderService.GetDate(item.Order.STORE_ID);
+                    if (DELIVERY_ORDER == null)
+                    {
+                        linePrint.line1 = ConvertDateToThai(item.Order.ORDER_DATE.Value);
+                    }
+                    else 
+                    {
+                        linePrint.line1 = ConvertDateToThai(DELIVERY_ORDER.DELORDER_DATE.Value);
+                    }
                     linePrint.line2 = item.Store.STORE_NAME + " " + item.Store.STORE_CODE;
-
                     linePrint.line3 = "จำนวน";
                     linePrint.line4 = "";
                     linePrint.line5 = "ราคาต่อชิ้น";
                     lstLine.Add(linePrint);
 
+                    DateTime tmpDate = new DateTime();
                     foreach (ORDER_DETAIL od in item.OrderDetails)
                     {
                         if ((od.PRODUCT_QTY - od.PRODUCT_SEND_QTY) > 0)
                         {
                             LineForPrint linePrintItem = new LineForPrint();
-                            linePrintItem.line1 = "";
+                            if (tmpDate == od.ORDER.ORDER_DATE.Value) 
+                            {
+                                linePrintItem.line1 = "";
+                            }
+                            else 
+                            {
+                                tmpDate = od.ORDER.ORDER_DATE.Value;
+                                linePrintItem.line1 = ConvertDateToThai(od.ORDER.ORDER_DATE.Value);
+                            }
+                            
                             if (od.IS_FREE == "F")
                             {
                                 linePrintItem.line2 =  "แถม " + od.PRODUCT.PRODUCT_NAME + " " + od.ColorDesc;

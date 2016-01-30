@@ -83,6 +83,11 @@ namespace SPW.DataService
             return this._Datacontext.DELIVERY_ORDER.Where(x => x.CREATE_DATE == date.Date).Count();
         }
 
+        public DELIVERY_ORDER GetDate(int storeId)
+        {
+            return this._Datacontext.DELIVERY_ORDER.Where(x => x.STORE_ID == storeId).OrderByDescending(x => x.DELORDER_DATE).FirstOrDefault();
+        }
+
         public List<DELIVERY_ORDER> GetAllByFilter(int PageIndex, int PageLimit)
         {
             return this.Datacontext.DELIVERY_ORDER.Include("VEHICLE").Where(x => x.SYE_DEL == false).OrderBy(x=> x.CREATE_DATE).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
