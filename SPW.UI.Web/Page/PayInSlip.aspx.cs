@@ -19,7 +19,7 @@ namespace SPW.UI.Web.Page
             {
                 //ReloadPageEngine();
             }
-            lblDateTime.Text = DateTime.Now.ToShortDateString();
+            lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
         }
     }
 }

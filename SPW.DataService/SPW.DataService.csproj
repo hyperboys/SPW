@@ -47,6 +47,7 @@
     <Compile Include="AssetTypeService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
+    <Compile Include="AccountMastService.cs" />
     <Compile Include="DataServiceController\DataServiceBase.cs" />
     <Compile Include="DataServiceController\DataServiceEngine.cs" />
     <Compile Include="DataServiceController\IDataService.cs" />

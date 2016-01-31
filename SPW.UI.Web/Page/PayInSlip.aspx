@@ -33,11 +33,6 @@
             text-align: center;
         }
 
-        .auto-style4
-        {
-            width: 108px;
-        }
-
         .auto-style5
         {
             width: 147px;
@@ -45,7 +40,7 @@
 
         .auto-style12
         {
-            width: 229px;
+            width: 199px;
         }
 
         .auto-style13
@@ -64,37 +59,77 @@
                 <div class="col-lg-6">
                     <div class="form">
                         <div class="form-group">
-                            <table style="width: 835px; height: 80px;">
-                                <tr>
-                                    <td class="auto-style5">
-                                        
-                                    </td>
-                                    <td class="auto-style1" style="text-align: center"></td>
-                                    <td class="auto-style2">
-                                        <asp:RadioButton ID="RadioButton1" runat="server" Text="ธ.ทหารไทย" TextAlign="Right" />
-                                    </td>
-                                    <td class="auto-style13">
-
-                                    </td>
-                                    <td class="auto-style12">
-                                        <asp:RadioButton ID="RadioButton2" runat="server" Text="ธ.กรุงศรีอยุธยา"  TextAlign="Right" />
-                                    </td>
-                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td class="auto-style2">
-                                        <asp:Label ID="lblDateTime" runat="server" Text="xxxx"></asp:Label>
-                                    </td>
-                                    <td class="auto-style4"></td>
-                                </tr>
+                            <table style="width: 835px; height: 116px;">
                                 <tr>
                                     <td class="auto-style5"></td>
                                     <td class="auto-style1" style="text-align: center"></td>
                                     <td class="auto-style2">
-                                        &nbsp;</td>
+                                        <asp:RadioButton ID="RadioButton1" runat="server" Text=" ธ.ทหารไทย" TextAlign="Right" GroupName="bankGroup" Width="150px" />
+                                    </td>
+                                    <td class="auto-style13"></td>
+                                    <td class="auto-style12">
+                                        <asp:RadioButton ID="RadioButton2" runat="server" Text=" ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" />
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td class="auto-style2">
+                                        <asp:Label ID="lblDateTime" runat="server" Text="วันที่ " Style="font-weight: 700"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style5">เลือกบัญชี
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control">
+                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                        </asp:DropDownList></td>
+                                    <td class="auto-style13"></td>
+                                    <td class="auto-style12">ชื่อบัญชี</td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style5">เลขที่เช็ค
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="txtCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                    </td>
                                     <td class="auto-style13"></td>
                                     <td class="auto-style12"></td>
                                     <td class="auto-style1" style="text-align: center"></td>
                                     <td class="auto-style2"></td>
-                                    <td class="auto-style4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style5">ธนาคาาร (เช็ค)
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="txtBankCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                    </td>
+                                    <td class="auto-style13"></td>
+                                    <td class="auto-style12">สาขา (เช็ค)</td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="auto-style5">จำนวนเงิน
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="TextBox1" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                    </td>
+                                    <td class="auto-style13"></td>
+                                    <td class="auto-style12">สาขา (เช็ค)</td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style2">
+                                        <asp:TextBox ID="TextBox2" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                    </td>
                                 </tr>
                             </table>
                             <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
