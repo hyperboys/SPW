@@ -33,19 +33,29 @@
             width: 147px;
         }
 
-        .auto-style12 {
-            width: 199px;
-        }
-
         .auto-style13 {
             width: 60px;
         }
+
         .auto-style14 {
             width: 79px;
             font-weight: 700;
         }
+
         .auto-style16 {
             width: 510px;
+        }
+
+        .auto-style17 {
+            width: 100px;
+        }
+
+        .auto-style18 {
+            width: 91px;
+        }
+
+        .auto-style19 {
+            width: 134px;
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -59,36 +69,39 @@
                 <div class="col-lg-6">
                     <div class="form">
                         <div class="form-group">
-                            <table style="width: 835px; height: 222px;">
+                            <table style="width: 768px;">
                                 <tr>
-                                    <td class="auto-style5"></td>
-                                    <td class="auto-style1" style="text-align: center"></td>
-                                    <td class="auto-style2">
-                                        <asp:RadioButton ID="RadioButton1" runat="server" Text=" ธ.ทหารไทย" TextAlign="Right" GroupName="bankGroup" Width="150px" />
-                                    </td>
-                                    <td class="auto-style13"></td>
-                                    <td class="auto-style12">
-                                        <asp:RadioButton ID="RadioButton2" runat="server" Text=" ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" />
-                                    </td>
-                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td class="auto-style17">เลือกบัญชี</td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style18">
+                                        <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="395px" CssClass="form-control" OnSelectedIndexChanged="ddlAccountMast_SelectedIndexChanged" AutoPostBack="True">
+                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                        </asp:DropDownList></td>
+                                    <td class="auto-style1"></td>
                                     <td class="auto-style2">
                                         <asp:Label ID="lblDateTime" runat="server" Text="วันที่ " Style="font-weight: 700"></asp:Label>
                                     </td>
                                 </tr>
+                            </table>
+                            <table style="width: 768px; height: 222px;">
                                 <tr>
-                                    <td class="auto-style5">เลือกบัญชี
+                                    <td class="auto-style5">ชื่อธนาคาร
                                     </td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
-                                        <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control">
-                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList></td>
-                                    <td class="auto-style13"></td>
-                                    <td class="auto-style12">ชื่อบัญชี</td>
+                                        <asp:TextBox ID="txtAccountBank" class="form-control" runat="server" Height="35px" Width="229px" Enabled="false" BackColor="White"></asp:TextBox>
+                                    </td>
+                                    <td class="auto-style13">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="กรุณาเลือกชื่อธนาคาร"
+                                            ValidationGroup="group" ControlToValidate="txtAccountBank" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator></td>
+                                    <td class="auto-style19">ชื่อบัญชี</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
-                                        <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
+                                        <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Height="35px" Width="210px" Enabled="false" BackColor="White"></asp:TextBox>
                                     </td>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณาเลือกชื่อบัญชี"
+                                            ValidationGroup="group" ControlToValidate="txtAccountName" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style5">เลขที่เช็ค
@@ -97,8 +110,10 @@
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
                                     </td>
-                                    <td class="auto-style13"></td>
-                                    <td class="auto-style12"></td>
+                                    <td class="auto-style13">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="กรุณาเลือกเลขที่เช็ค"
+                                            ValidationGroup="group" ControlToValidate="txtCheck" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator></td>
+                                    <td class="auto-style19"></td>
                                     <td class="auto-style1" style="text-align: center"></td>
                                     <td class="auto-style2"></td>
                                 </tr>
@@ -109,11 +124,18 @@
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtBankCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
                                     </td>
-                                    <td class="auto-style13"></td>
-                                    <td class="auto-style12">สาขา (เช็ค)</td>
+                                    <td class="auto-style13">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="กรุณากรอกธนาคาาร(เช็ค)"
+                                            ValidationGroup="group" ControlToValidate="txtBankCheck" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                    </td>
+                                    <td class="auto-style19">สาขา (เช็ค)</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                    </td>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="กรุณากรอกสาขา(เช็ค)"
+                                            ValidationGroup="group" ControlToValidate="txtBranceCheck" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -123,9 +145,12 @@
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtAmount" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
                                     </td>
-                                    <td class="auto-style13"></td>
-                                    <td class="auto-style12">
-                                        <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="ตกลง" Height="30px" Width="100px" /></td>
+                                    <td class="auto-style13">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="กรุณากรอกจำนวนเงิน"
+                                            ValidationGroup="group" ControlToValidate="txtAmount" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                    </td>
+                                    <td class="auto-style19">
+                                        <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="ตกลง" Height="30px" Width="100px" ValidationGroup="group" /></td>
                                     <td class="auto-style1" style="text-align: center"></td>
                                     <td class="auto-style2"></td>
                                 </tr>
@@ -140,7 +165,7 @@
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                         <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="5%"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
@@ -170,12 +195,12 @@
                 <table style="width: 835px; height: 30px;">
                     <tr>
                         <td class="auto-style16">
-                            <asp:Label ID="lblAmount" runat="server" Text="0" style="font-weight: 700"></asp:Label>
+                            <asp:Label ID="lblAmount" runat="server" Text="0" Style="font-weight: 700"></asp:Label>
                         </td>
                         <td></td>
                         <td class="auto-style14">รวม</td>
                         <td>
-                            <asp:Label ID="lblNumAmount" runat="server" Text="Label" style="font-weight: 700"></asp:Label>
+                            <asp:Label ID="lblNumAmount" runat="server" Text="Label" Style="font-weight: 700"></asp:Label>
                         </td>
                     </tr>
                 </table>

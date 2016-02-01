@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SPW.DataService;
+using SPW.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,25 +11,6 @@ namespace SPW.UI.Web.Page
 {
     public partial class PayInSlip : System.Web.UI.Page
     {
-        private double totalAmount;
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
-            lblAmount.Text = ThaiBaht(totalAmount.ToString());
-            lblNumAmount.Text = totalAmount.ToString() + " บาท";
-            if (!Page.IsPostBack)
-            {
-                grdBank.DataSource = null;
-                grdBank.DataBind();
-            }
-            else
-            {
-                
-            }
-            
-        }
-
-
         private string ThaiBaht(string txt)
         {
             string bahtTxt, n, bahtTH = "";
@@ -86,5 +69,80 @@ namespace SPW.UI.Web.Page
             }
             return bahtTH;
         }
+        private double totalAmount;
+        private AccountMastService _accountMastService;
+        private DataServiceEngine _dataServiceEngine;
+
+        private void ReloadPageEngine()
+        {
+            if (Session["DataServiceEngine"] != null)
+            {
+                _dataServiceEngine = (DataServiceEngine)Session["DataServiceEngine"];
+                InitialDataService();
+            }
+            else
+            {
+                CreatePageEngine();
+            }
+        }
+
+        private void InitialDataService()
+        {
+            _accountMastService = (AccountMastService)_dataServiceEngine.GetDataService(typeof(AccountMastService));
+        }
+
+        private void CreatePageEngine()
+        {
+            _dataServiceEngine = new DataServiceEngine();
+            Session["DataServiceEngine"] = _dataServiceEngine;
+            InitialDataService();
+        }
+
+        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
+            lblAmount.Text = ThaiBaht(totalAmount.ToString());
+            lblNumAmount.Text = totalAmount.ToString() + " บาท";
+            if (!Page.IsPostBack)
+            {
+                CreatePageEngine();
+                InitialData();
+                grdBank.DataSource = null;
+                grdBank.DataBind();
+            }
+            else
+            {
+                ReloadPageEngine();
+            }
+        }
+
+        private void InitialData()
+        {
+            var list = _accountMastService.GetAll();
+            foreach (var item in list)
+            {
+                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_NAME + " " + item.BANK_SH_NAME + " " + item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+            }
+        }
+
+        protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!ddlAccountMast.SelectedValue.Equals("0"))
+            {
+                ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
+                txtAccountName.Text = accountMast.ACCOUNT_NAME;
+                txtAccountBank.Text = accountMast.BANK_NAME;
+            }
+            else 
+            {
+                txtAccountName.Text = string.Empty;
+                txtAccountBank.Text = string.Empty;
+            }
+        }
+
+       
+
+     
     }
 }
