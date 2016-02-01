@@ -13,39 +13,39 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
-        .auto-style1
-        {
+        .auto-style1 {
             width: 18px;
         }
 
-        .right
-        {
+        .right {
             text-align: right;
         }
 
-        .auto-style2
-        {
+        .auto-style2 {
             width: 160px;
         }
 
-        .grid td, .grid th
-        {
+        .grid td, .grid th {
             text-align: center;
         }
 
-        .auto-style5
-        {
+        .auto-style5 {
             width: 147px;
         }
 
-        .auto-style12
-        {
+        .auto-style12 {
             width: 199px;
         }
 
-        .auto-style13
-        {
+        .auto-style13 {
             width: 60px;
+        }
+        .auto-style14 {
+            width: 79px;
+            font-weight: 700;
+        }
+        .auto-style16 {
+            width: 510px;
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -124,33 +124,32 @@
                                         <asp:TextBox ID="txtAmount" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
                                     </td>
                                     <td class="auto-style13"></td>
-                                    <td class="auto-style12"><asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="ตกลง" Height="30px" Width="100px" /></td>
+                                    <td class="auto-style12">
+                                        <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="ตกลง" Height="30px" Width="100px" /></td>
                                     <td class="auto-style1" style="text-align: center"></td>
-                                    <td class="auto-style2">
-                                        
-                                    </td>
+                                    <td class="auto-style2"></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="margin-top:20px;">
+            <div style="margin-top: 20px;">
                 <asp:GridView ID="grdBank" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                     DataKeyNames="" PageSize="20" Width="100%" EmptyDataText="ยังไม่ได้เพิ่มธนาคาร" PageIndex="10"
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="CHECKNO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                         <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="5%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="25%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="BANK" HeaderText="ธนาคาร" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="25%"></ItemStyle>
+                        <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร / สาขา" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="45%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="BANCHE" HeaderText="สาขา" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="25%"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="AMT" HeaderText="จำนวนเงิน" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="25%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>
@@ -166,6 +165,20 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     <PagerSettings Mode="NumericFirstLast" />
                 </asp:GridView>
+            </div>
+            <div style="margin-top: 10px;">
+                <table style="width: 835px; height: 30px;">
+                    <tr>
+                        <td class="auto-style16">
+                            <asp:Label ID="lblAmount" runat="server" Text="0" style="font-weight: 700"></asp:Label>
+                        </td>
+                        <td></td>
+                        <td class="auto-style14">รวม</td>
+                        <td>
+                            <asp:Label ID="lblNumAmount" runat="server" Text="Label" style="font-weight: 700"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"
