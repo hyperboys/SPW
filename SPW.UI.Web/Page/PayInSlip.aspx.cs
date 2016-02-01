@@ -14,6 +14,8 @@ namespace SPW.UI.Web.Page
             if (!Page.IsPostBack)
             {
                 //InitialPage();
+                grdBank.DataSource = null;
+                grdBank.DataBind();
             }
             else
             {

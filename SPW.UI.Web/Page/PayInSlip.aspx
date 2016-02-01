@@ -59,7 +59,7 @@
                 <div class="col-lg-6">
                     <div class="form">
                         <div class="form-group">
-                            <table style="width: 835px; height: 116px;">
+                            <table style="width: 835px; height: 222px;">
                                 <tr>
                                     <td class="auto-style5"></td>
                                     <td class="auto-style1" style="text-align: center"></td>
@@ -114,7 +114,6 @@
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -122,20 +121,51 @@
                                     </td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
-                                        <asp:TextBox ID="TextBox1" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                        <asp:TextBox ID="txtAmount" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
                                     </td>
                                     <td class="auto-style13"></td>
-                                    <td class="auto-style12">สาขา (เช็ค)</td>
-                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td class="auto-style12"><asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="ตกลง" Height="30px" Width="100px" /></td>
+                                    <td class="auto-style1" style="text-align: center"></td>
                                     <td class="auto-style2">
-                                        <asp:TextBox ID="TextBox2" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                        
                                     </td>
                                 </tr>
                             </table>
-                            <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div style="margin-top:20px;">
+                <asp:GridView ID="grdBank" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="" PageSize="20" Width="100%" EmptyDataText="ยังไม่ได้เพิ่มธนาคาร" PageIndex="10"
+                    Style="text-align: center" CssClass="grid">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="CHECKNO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="25%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="BANK" HeaderText="ธนาคาร" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="25%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="BANCHE" HeaderText="สาขา" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="25%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="AMT" HeaderText="จำนวนเงิน" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="25%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
             </div>
             <div>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"

@@ -170,6 +170,9 @@
                                     <li>
                                         <a href="../Page/ReportMonthlySale.aspx">รายงานสรุปยอดขายแต่ละเดือน</a>
                                     </li>
+                                     <li>
+                                        <a href="../Page/PayInSlip.aspx">PayInSlip</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

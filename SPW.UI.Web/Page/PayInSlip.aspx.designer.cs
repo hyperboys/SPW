@@ -112,31 +112,31 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.TextBox txtBranceCheck;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtAmount;
         
         /// <summary>
-        /// TextBox2 control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// flag control.
+        /// grdBank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label flag;
+        protected global::System.Web.UI.WebControls.GridView grdBank;
         
         /// <summary>
         /// ValidationSummary1 control.
