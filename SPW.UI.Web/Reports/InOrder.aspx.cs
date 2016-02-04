@@ -11,6 +11,7 @@ namespace SPW.UI.Web.Reports
 {
     public partial class InOrder : System.Web.UI.Page
     {
+        InOrderReport objRpt = new InOrderReport();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -20,12 +21,19 @@ namespace SPW.UI.Web.Reports
                 ds = Session["DataToReport"] as InOrderReportData;
             }
 
-            InOrderReport objRpt = new InOrderReport();
+            
             objRpt.SetDataSource(ds);
 
             this.CrystalReportViewer1.ReportSource = objRpt;
             this.CrystalReportViewer1.RefreshReport();
 
         }
+
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            objRpt.Close();
+            objRpt.Dispose();
+        }
+
     }
 }

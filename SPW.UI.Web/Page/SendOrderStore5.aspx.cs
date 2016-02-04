@@ -188,13 +188,19 @@ namespace SPW.UI.Web.Page
             DELIVERY_INDEX objDEl = cmdDeliveryOrderIndex.Select(delID);
             SendOrderReportData ds = new SendOrderReportData();
             DataTable SendOrderHeader = ds.Tables["SendOrderHeader"];
+            List<DELIVERY_ORDER> listItem = new List<DELIVERY_ORDER>();
 
             List<DELIVERY_ORDER_DETAIL> listOrder = new List<DELIVERY_ORDER_DETAIL>();
-
             objDEl.DELIVERY_ORDER = objDEl.DELIVERY_ORDER.OrderBy(x => x.STORE_ID).ToList();
             foreach (DELIVERY_ORDER item in objDEl.DELIVERY_ORDER)
             {
                 item.DELIVERY_ORDER_DETAIL = cmdDeliveryOrderDetail.GetAllIncludeByDeliveryOrder(item.DELORDER_ID);
+                DELIVERY_ORDER tmpStore = listItem.Where(x => x.STORE_ID == item.STORE_ID).FirstOrDefault();
+                if (tmpStore == null)
+                {
+                    listItem.Add(item);
+                }
+
                 foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
                 {
                     DELIVERY_ORDER_DETAIL tmp = listOrder.Where(x => x.PRODUCT_ID == od.PRODUCT_ID && x.COLOR_TYPE_ID == od.COLOR_TYPE_ID && x.COLOR_ID == od.COLOR_ID).FirstOrDefault();
@@ -209,6 +215,45 @@ namespace SPW.UI.Web.Page
                     }
                 }
             }
+
+            #region รายการร้านค้าทั้งหหมด
+            foreach (DELIVERY_ORDER item in listItem)
+            {
+                foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
+                {
+                    item.STORE = cmdStore.SelectInclude(item.STORE_ID);
+                }
+            }
+
+            int seq = 1;
+            foreach (DELIVERY_ORDER DOrder in listItem)
+            {
+                DataRow drSendOrderHeader = SendOrderHeader.NewRow();
+                drSendOrderHeader["STORE_NAME"] = "";
+                drSendOrderHeader["STORE_ADDR"] = "";
+                drSendOrderHeader["STORE_TEL"] = "";
+                drSendOrderHeader["STORE_CODE"] = "- รายการร้านค้าทั้งหมด";
+                drSendOrderHeader["ORDER_DATE"] = DateTime.Now.ToShortDateString();
+                drSendOrderHeader["SEND_DATE"] = DateTime.Now.ToShortDateString();
+                drSendOrderHeader["ZONE_NAME"] = "";
+                drSendOrderHeader["VEHICLE_REG"] = txtVehicle.Text;
+
+                drSendOrderHeader["SEQ"] = seq.ToString();
+                drSendOrderHeader["NAME"] = DOrder.STORE.STORE_NAME + " " + DOrder.STORE.STORE_CODE;
+                drSendOrderHeader["QTY"] = "";
+                drSendOrderHeader["PACKAGE"] = "";
+                drSendOrderHeader["WEIGHT"] = "";
+                drSendOrderHeader["SUM_WEIGHT"] = "";
+
+                seq++;
+                drSendOrderHeader["SUM_WEIGHT_TH"] = "";
+                drSendOrderHeader["SUM_WEIGHT_NUMBER"] = "";
+                SendOrderHeader.Rows.Add(drSendOrderHeader);
+            }
+            #endregion
+
+
+            #region รายการสินค้าทั้งหมด
             List<DELIVERY_ORDER_DETAIL> listOrder2 = new List<DELIVERY_ORDER_DETAIL>();
             foreach (DELIVERY_ORDER_DETAIL od in listOrder)
             {
@@ -226,7 +271,7 @@ namespace SPW.UI.Web.Page
                 }
             }
 
-            int seq = 1;
+            seq = 1;
             decimal sumWeight = 0;
             foreach (DELIVERY_ORDER_DETAIL od in listOrder2)
             {
@@ -234,7 +279,7 @@ namespace SPW.UI.Web.Page
                 drSendOrderHeader["STORE_NAME"] = "";
                 drSendOrderHeader["STORE_ADDR"] = "";
                 drSendOrderHeader["STORE_TEL"] = "";
-                drSendOrderHeader["STORE_CODE"] = "";
+                drSendOrderHeader["STORE_CODE"] = "- รายการสินค้าทั้งหมด";
                 drSendOrderHeader["ORDER_DATE"] = DateTime.Now.ToShortDateString();
                 drSendOrderHeader["SEND_DATE"] = DateTime.Now.ToShortDateString();
                 drSendOrderHeader["ZONE_NAME"] = "";
@@ -252,8 +297,10 @@ namespace SPW.UI.Web.Page
                 drSendOrderHeader["SUM_WEIGHT_NUMBER"] = sumWeight.ToString();
                 SendOrderHeader.Rows.Add(drSendOrderHeader);
             }
+            #endregion
 
-            List<DELIVERY_ORDER> listItem = new List<DELIVERY_ORDER>();
+            #region รายการตามร้านค้า
+            listItem = new List<DELIVERY_ORDER>();
             foreach (DELIVERY_ORDER item in objDEl.DELIVERY_ORDER)
             {
                 DELIVERY_ORDER tmpStore = listItem.Where(x => x.STORE_ID == item.STORE_ID).FirstOrDefault();
@@ -368,7 +415,7 @@ namespace SPW.UI.Web.Page
                 }
             }
 
-            listItem = listItem.OrderBy(x => x.STORE.STORE_CODE).ThenBy(y=>y.STORE.PROVINCE_ID).ToList();
+            listItem = listItem.OrderBy(x => x.STORE.STORE_CODE).ThenBy(y => y.STORE.PROVINCE_ID).ToList();
 
             foreach (DELIVERY_ORDER item in listItem)
             {
@@ -377,7 +424,6 @@ namespace SPW.UI.Web.Page
                 foreach (DELIVERY_ORDER_DETAIL od in item.DELIVERY_ORDER_DETAIL)
                 {
                     DataRow drSendOrderHeader = SendOrderHeader.NewRow();
-                    //item.STORE = cmdStore.SelectInclude(item.STORE_ID);
                     drSendOrderHeader["STORE_NAME"] = item.STORE.STORE_NAME;
                     drSendOrderHeader["STORE_ADDR"] = item.STORE.STORE_ADDR1 + " ถ." + item.STORE.STORE_STREET + " ต." + item.STORE.STORE_SUBDISTRICT + " อ." + item.STORE.STORE_DISTRICT + " จ." + item.STORE.PROVINCE.PROVINCE_NAME + " " + item.STORE.STORE_POSTCODE;
                     drSendOrderHeader["STORE_TEL"] = item.STORE.STORE_TEL1;
@@ -405,6 +451,7 @@ namespace SPW.UI.Web.Page
                     SendOrderHeader.Rows.Add(drSendOrderHeader);
                 }
             }
+            #endregion
 
             Session["SendOrderReportData"] = ds;
             Response.RedirectPermanent("../Reports/SendOrder.aspx");

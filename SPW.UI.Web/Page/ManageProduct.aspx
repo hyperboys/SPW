@@ -87,7 +87,18 @@
                                     <td>จำนวน</td>
                                     <td style="text-align: center" class="auto-style1">:</td>
                                     <td>
-                                        <asp:TextBox ID="txtPacking" class="form-control" runat="server" Height="30px" Width="200px"></asp:TextBox>
+                                        <asp:TextBox ID="txtPacking" runat="server" class="form-control" Height="30px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="200px"></asp:TextBox>
+                                                    <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                                    <script type="text/javascript">
+                                                        var specialKeys = new Array();
+                                                        specialKeys.push(8); //Backspace
+                                                        function IsNumeric(e) {
+                                                            var keyCode = e.which ? e.which : e.keyCode
+                                                            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                            document.getElementById("error").style.display = ret ? "none" : "inline";
+                                                            return ret;
+                                                        }
+                                                    </script>
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="กรุณากรอกจำนวน"
@@ -117,7 +128,18 @@
                                     <td>น้ำหนัก</td>
                                     <td style="text-align: center" class="auto-style1">:</td>
                                     <td>
-                                        <asp:TextBox ID="txtWeight" class="form-control" runat="server" Height="30px" Width="200px"></asp:TextBox>
+                                        <asp:TextBox ID="txtWeight" runat="server" class="form-control" Height="30px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="200px"></asp:TextBox>
+                                                    <span id="Span1" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                                    <script type="text/javascript">
+                                                        var specialKeys = new Array();
+                                                        specialKeys.push(8); //Backspace
+                                                        function IsNumeric(e) {
+                                                            var keyCode = e.which ? e.which : e.keyCode
+                                                            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                            document.getElementById("error").style.display = ret ? "none" : "inline";
+                                                            return ret;
+                                                        }
+                                                    </script>
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="กรุณากรอกน้ำหนัก"

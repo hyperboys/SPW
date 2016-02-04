@@ -11,6 +11,8 @@ namespace SPW.UI.Web.Reports
 {
     public partial class SendOrder : System.Web.UI.Page
     {
+        SendOrderReport objRpt = new SendOrderReport();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SendOrderReportData ds = new SendOrderReportData();
@@ -18,12 +20,16 @@ namespace SPW.UI.Web.Reports
             {
                 ds = Session["SendOrderReportData"] as SendOrderReportData;
             }
-
-            SendOrderReport objRpt = new SendOrderReport();
+            
             objRpt.SetDataSource(ds);
-
             this.CrystalReportViewer1.ReportSource = objRpt;
             this.CrystalReportViewer1.RefreshReport();
+        }
+
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            objRpt.Close();
+            objRpt.Dispose();
         }
     }
 }
