@@ -110,6 +110,8 @@ namespace SPW.UI.Web.Page
             ddlStatus.Items.Insert(2, new ListItem("สำเร็จ", "11"));
             ddlStatus.Items.Insert(3, new ListItem("ไม่สำเร็จ", "10"));
 
+            ddlStatus.SelectedValue = "10";
+
             List<SECTOR> listSector = (List<SECTOR>)ViewState["listSector"];
             listSector.ForEach(item => ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString())));
 
@@ -123,12 +125,14 @@ namespace SPW.UI.Web.Page
             //    gdvManageOrderHQ.DataSource = (List<DATAGRID>)Session["DATAGRID"];
             //    gdvManageOrderHQ.DataBind();
             //}
+            BindGridview();
         }
+
         private void BindGridview()
         {
             List<SECTOR> listSector = (List<SECTOR>)ViewState["listSector"];
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
-            List<ORDER> listOrder = _orderService.GetStoreInOrder();
+            List<ORDER> listOrder = _orderService.GetStoreInOrder().OrderBy(x=>x.ORDER_STEP).ThenBy(y=>y.ORDER_DATE).ToList();
             List<STORE> listStore = _storeService.GetAll();
 
             List<DATAGRID> query = (from order in listOrder
@@ -157,7 +161,7 @@ namespace SPW.UI.Web.Page
                                         ORDER_STEP = order.ORDER_STEP
                                     }).ToList();
             Session["DATAGRID"] = query;
-            gdvManageOrderHQ.DataSource = null;
+            //gdvManageOrderHQ.DataSource = null;
             gdvManageOrderHQ.DataSource = query;
             gdvManageOrderHQ.DataBind();
         }

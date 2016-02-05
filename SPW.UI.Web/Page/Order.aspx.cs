@@ -89,12 +89,6 @@ namespace SPW.UI.Web.Page
             USER user = Session["user"] as USER;
             if (user == null) Response.RedirectPermanent("MainAdmin.aspx");
 
-            if (Session["lstOrderDetail"] != null)
-            {
-
-              
-            }
-
             foreach (ZONE_DETAIL zoneId in cmdZoneDetailService.GetAllByUser(user.EMPLOYEE_ID))
             {
                 List<STORE> tmp = cmdStoreService.GetAll().Where(x => x.ZONE_ID == zoneId.ZONE_ID).ToList();
@@ -119,9 +113,10 @@ namespace SPW.UI.Web.Page
                 ddlRoad.Items.Add(new ListItem(item, item));
             }
 
-            gdvStore.DataSource = null;
-            gdvStore.DataBind();
+            //gdvStore.DataSource = null;
+            //gdvStore.DataBind();
 
+            SearchStore();
             CreateFilterControl();
         }
 
@@ -164,6 +159,11 @@ namespace SPW.UI.Web.Page
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchStore();
+        }
+
+        private void SearchStore()
         {
             if (ddlProvince.Enabled && ddlProvince.SelectedValue != "0")
             {
@@ -277,7 +277,7 @@ namespace SPW.UI.Web.Page
                 DataSouce = cmdStoreService.GetAllByFilterConditionDropdown((string)ParamItems[0], (string)ParamItems[1], (int)ParamItems[2], (string)ParamItems[3], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount);
                 CreateFilterPageSelected(SourceItemCount);
                 UpdatePageControl((int)ViewState["PageIndex"]);
-                
+
             }
             else if (Session[this.GetType().Name + "Filter"] != null)
             {
