@@ -760,6 +760,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPW.Common\SPW.Common.csproj">
+      <Project>{43fa88dd-1337-4fcc-b2a1-72757b6eaa9b}</Project>
+      <Name>SPW.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPW.DAL\SPW.DAL.csproj">
       <Project>{fe70015a-20a7-4eda-ad1e-04c614f1a5f8}</Project>
       <Name>SPW.DAL</Name>

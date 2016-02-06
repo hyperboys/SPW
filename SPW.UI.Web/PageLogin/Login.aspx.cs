@@ -8,6 +8,8 @@ using SPW.DataService;
 using SPW.Model;
 using SPW.UI.Web.Page;
 using System.Web.SessionState;
+using SPW.Common;
+
 
 namespace SPW.UI.Web.PageLogin
 {
@@ -23,10 +25,12 @@ namespace SPW.UI.Web.PageLogin
             {
                 Session.Clear();
                 InitialPage();
+                DebugLog.WriteLog("!Page.IsPostBack");
             }
             else
             {
                 ReloadPageEngine();
+                DebugLog.WriteLog("Page.IsPostBack");
             }
         }
 

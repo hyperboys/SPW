@@ -29,8 +29,15 @@ namespace SPW.DataService
 
         public void Add(ACCOUNT_MAST obj)
         {
-            this.Datacontext.ACCOUNT_MAST.Add(obj);
-            this.Datacontext.SaveChanges();
+            try
+            {
+                this.Datacontext.ACCOUNT_MAST.Add(obj);
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex) 
+            {
+            
+            }
         }
 
         public void AddList(List<ACCOUNT_MAST> obj)
@@ -40,14 +47,21 @@ namespace SPW.DataService
 
         public void Edit(ACCOUNT_MAST obj)
         {
-            var item = this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == obj.ACCOUNT_ID).FirstOrDefault();
-            item.ACCOUNT_NAME = obj.ACCOUNT_NAME;
-            item.BANK_NAME = obj.BANK_NAME;
-            item.BANK_SH_NAME = obj.BANK_SH_NAME;
-            item.PAYIN_FORMAT = obj.PAYIN_FORMAT;
-            item.UPDATE_DATE = obj.UPDATE_DATE;
-            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
-            this.Datacontext.SaveChanges();
+            try
+            {
+                var item = this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == obj.ACCOUNT_ID).FirstOrDefault();
+                item.ACCOUNT_NAME = obj.ACCOUNT_NAME;
+                item.BANK_NAME = obj.BANK_NAME;
+                item.BANK_SH_NAME = obj.BANK_SH_NAME;
+                item.PAYIN_FORMAT = obj.PAYIN_FORMAT;
+                item.UPDATE_DATE = obj.UPDATE_DATE;
+                item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex) 
+            {
+            
+            }
         }
 
         public void EditList(List<ACCOUNT_MAST> obj)
