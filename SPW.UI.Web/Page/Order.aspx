@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="Order.aspx.cs" Inherits="SPW.UI.Web.Page.Order" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
+    CodeBehind="Order.aspx.cs" Inherits="SPW.UI.Web.Page.Order" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -8,6 +9,7 @@
     <h1 class="page-header">สั่งสินค้า</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+
     <style type="text/css">
         .right {
             text-align: right;
@@ -28,6 +30,95 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+
+    <link rel="stylesheet" href='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
+    <script type="text/javascript" src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="http://cdn.rawgit.com/bassjobsen/Bootstrap-3-Typeahead/master/bootstrap3-typeahead.min.js"></script>
+    <link rel="Stylesheet" href="https://twitter.github.io/typeahead.js/css/examples.css" />
+
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=txtStoreCode]').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+                , source: function (request, response) {
+                    $.ajax({
+                        url: '<%=ResolveUrl("Order.aspx/SearchTxtStoreCode") %>',
+                        data: "{ 'STORE_CODE': '" + request + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            items = [];
+                            map = {};
+                            $.each(data.d, function (i, item) {
+                                var id = item;
+                                var name = item;
+                                map[name] = { id: id, name: name };
+                                items.push(name);
+                            });
+                            response(items);
+                            $(".dropdown-menu").css("height", "auto");
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                updater: function (item) {
+                    $('[id*=hfStoreCode').val(map[item].id);
+                    return item;
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=txtStoreName]').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+                , source: function (request, response) {
+                    $.ajax({
+                        url: '<%=ResolveUrl("Order.aspx/SearchTxtStoreName") %>',
+                        data: "{ 'STORE_NAME': '" + request + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            items = [];
+                            map = {};
+                            $.each(data.d, function (i, item) {
+                                var id = item;
+                                var name = item;
+                                map[name] = { id: id, name: name };
+                                items.push(name);
+                            });
+                            response(items);
+                            $(".dropdown-menu").css("height", "auto");
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                updater: function (item) {
+                    $('[id*=hfStoreName]').val(map[item].id);
+                    return item;
+                }
+            });
+        });
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="panel panel-primary">
@@ -43,11 +134,13 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสร้านค้า</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Width="200px" placeholder="รหัสร้านค้า"></asp:TextBox>
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" autocomplete="off" Width="200px" placeholder="รหัสร้านค้า"></asp:TextBox>
+                                            <asp:HiddenField ID="hfStoreCode" runat="server" />
                                         </div>
                                         <div class="col-md-2">ชื่อร้านค้า</div>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Width="200px" placeholder="ชื่อร้านค้า"></asp:TextBox>
+                                             <asp:HiddenField ID="hfStoreName" runat="server" />
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -136,7 +229,7 @@
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                         <PagerSettings Mode="NumericFirstLast" />
                     </asp:GridView>
-                    <div style="margin-top:10px;">
+                    <div style="margin-top: 10px;">
                         <asp:PlaceHolder ID="PlaceHolder1" runat="server" Visible="false"></asp:PlaceHolder>
                     </div>
                 </div>

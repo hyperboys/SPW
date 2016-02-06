@@ -128,7 +128,7 @@ namespace SPW.UI.Web.Page
                 InOrderForPrint inOrder = new InOrderForPrint();
                 inOrder.Store = tmp;
                 inOrder.OrderDetails = new List<ORDER_DETAIL>();
-                tmpListOrder = _orderService.GetAllIncludeByStore(tmp.STORE_ID);
+                tmpListOrder = _orderService.GetAllIncludeByStore(tmp.STORE_ID).Where(x => x.ORDER_STEP == "11" || x.ORDER_STEP == "20").ToList();
                 foreach (ORDER tmpOrder in tmpListOrder)
                 {
                     inOrder.Order = tmpOrder;

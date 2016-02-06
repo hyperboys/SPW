@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.Model;
 using SPW.DataService;
+using SPW.DAL;
+using System.Web.Services;
 
 namespace SPW.UI.Web.Page
 {
@@ -259,6 +261,18 @@ namespace SPW.UI.Web.Page
                 ddlRoad.SelectedValue = "0";
                 ddlRoad.Enabled = false;
             }
+        }
+
+        [WebMethod]
+        public static string[] SearchTxtStoreCode(string STORE_CODE)
+        {
+            return SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", STORE_CODE).ToArray(); 
+        }
+
+        [WebMethod]
+        public static string[] SearchTxtStoreName(string STORE_NAME)
+        {
+            return SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", STORE_NAME).ToArray();
         }
 
         #region FilterControl

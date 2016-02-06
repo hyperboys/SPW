@@ -125,6 +125,9 @@
                                 <asp:BoundField DataField="VEHICLE.VEHICLE_REGNO" HeaderText="รถ" ItemStyle-Width="10%">
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:BoundField>
+                                <asp:BoundField DataField="PROVINCE_NAME" HeaderText="จังหัวด" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
+                                </asp:BoundField>
                                 <asp:BoundField HeaderText="ราคารวม" DataField="TOTAL_PRICE" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="15%"></ItemStyle>
                                 </asp:BoundField>

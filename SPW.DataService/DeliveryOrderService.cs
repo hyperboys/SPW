@@ -93,6 +93,11 @@ namespace SPW.DataService
             return this.Datacontext.DELIVERY_ORDER.Include("VEHICLE").Where(x => x.SYE_DEL == false).OrderBy(x=> x.CREATE_DATE).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
         }
 
+        public List<DELIVERY_ORDER> GetAllForDeliveryIndex(int DELID)
+        {
+            return this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.SYE_DEL == false && x.DELIND_ID == DELID).ToList();
+        }
+
         public List<DELIVERY_ORDER> GetAllByFilterCondition(string DelOrderCode, int VehicleID,DateTime? BeginDate,DateTime? EndDate, int PageIndex, int PageLimit,ref int ItemsCount)
         {
             List<DELIVERY_ORDER> SourceItems = GetAll();

@@ -41,13 +41,14 @@ namespace SPW.UI.Web.Page
                 CreateFilterPageSelected(cmdDelIndex.GetAllCount());
                 ClearFilter();
                 BindData();
-                PrepreConfirmStatusDisplay();
+                //PrepreConfirmStatusDisplay();
                 PrepareSearchScreen();
             }
             else
             {
                 ReloadPageEngine();
                 CreateFilterControl();
+                PrepreConfirmStatusDisplay();
             }
         }
 
@@ -138,6 +139,8 @@ namespace SPW.UI.Web.Page
                 gdvManageOrderHQ.DataBind();
                 PrepareButtonFilterDisplay();
             }
+
+            PrepreConfirmStatusDisplay();
         }
 
         private void CreateFilterControl()

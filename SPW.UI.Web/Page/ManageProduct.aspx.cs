@@ -145,7 +145,7 @@ namespace SPW.UI.Web.Page
             {
                 _product = cmdProductService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
                 popTxtProductCode.Text = _product.PRODUCT_CODE;
-                popTxtProductCode.Enabled = false;
+                //popTxtProductCode.Enabled = false;
                 poptxtProductName.Text = _product.PRODUCT_NAME;
                 txtPacking.Text = _product.PRODUCT_PACKING_QTY.ToString();
                 txtWeight.Text = _product.PRODUCT_WEIGHT.ToString();

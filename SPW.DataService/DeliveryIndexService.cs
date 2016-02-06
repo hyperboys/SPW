@@ -59,7 +59,14 @@ namespace SPW.DataService
 
         public List<DELIVERY_INDEX> GetAllByFilter(int PageIndex, int PageLimit)
         {
-            return this.Datacontext.DELIVERY_INDEX.Include("DELIVERY_ORDER").Include("VEHICLE").Where(x => x.SYE_DEL == false).OrderBy(x => x.CREATE_DATE).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+            List<DELIVERY_INDEX> SourceItems = this.Datacontext.DELIVERY_INDEX.Include("DELIVERY_ORDER").Include("VEHICLE").Where(x => x.SYE_DEL == false).OrderBy(x => x.CREATE_DATE).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+            foreach (DELIVERY_INDEX tmp in SourceItems)
+            {
+                List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.SYE_DEL == false).ToList();
+                List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
+                tmp.PROVINCE_NAME = getProvinceName(listPovinceID);
+            }
+            return SourceItems;
         }
 
         public List<DELIVERY_INDEX> GetAllByFilterCondition(string DelOrderCode, int VehicleID, DateTime? BeginDate, DateTime? EndDate, int PageIndex, int PageLimit, ref int ItemsCount)
@@ -78,8 +85,26 @@ namespace SPW.DataService
                 System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
                 SourceItems = SourceItems.Where(x => x.CREATE_DATE.Value.Date >= BeginDate.Value.Date && x.CREATE_DATE.Value.Date <= EndDate.Value.Date).ToList();
             }
+
+            foreach (DELIVERY_INDEX tmp in SourceItems) 
+            {
+                List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.SYE_DEL == false).ToList();
+                List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
+                tmp.PROVINCE_NAME = getProvinceName(listPovinceID);
+            }
+
             ItemsCount = SourceItems.Count();
             return SourceItems.Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+        }
+
+        public string getProvinceName(List<int> listPovinceID) 
+        {
+            string province = "";
+            foreach (int index in listPovinceID)
+            {
+                province += this.Datacontext.PROVINCE.Where(x => x.PROVINCE_ID == index).FirstOrDefault().PROVINCE_NAME + " ";
+            }
+            return province;
         }
 
         public void Delete(int IndexID)

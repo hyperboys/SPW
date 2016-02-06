@@ -6,30 +6,38 @@ using System.Threading.Tasks;
 
 namespace SPW.Model
 {
-     [Serializable]
+    [Serializable]
     public partial class DELIVERY_INDEX
     {
-         public decimal TOTAL_WEIGHT
-         {
-             get
-             {
-                 return (decimal)this.DELIVERY_INDEX_DETAIL.Sum(x => x.PRODUCT_WEIGHT_TOTAL);
-             }           
-         }
-         public decimal TOTAL_PRICE 
-         {
-             get
-             {
-                 return (decimal)this.DELIVERY_INDEX_DETAIL.Sum(x => x.PRODUCT_PRICE_TOTAL);
-             }
-         }
+        public decimal TOTAL_WEIGHT
+        {
+            get
+            {
+                return (decimal)this.DELIVERY_INDEX_DETAIL.Sum(x => x.PRODUCT_WEIGHT_TOTAL);
+            }
+        }
+        public decimal TOTAL_PRICE
+        {
+            get
+            {
+                return (decimal)this.DELIVERY_INDEX_DETAIL.Sum(x => x.PRODUCT_PRICE_TOTAL);
+            }
+        }
 
-         public bool ISDELETE
-         {
-             get
-             {
-                 return !(this.DELIVERY_ORDER.All(x => x.DELORDER_STEP == "50"));
-             }
-         }
+        public bool ISDELETE
+        {
+            get
+            {
+                return !(this.DELIVERY_ORDER.All(x => x.DELORDER_STEP == "50"));
+            }
+        }
+
+        public string _provinceName = string.Empty;
+        public string PROVINCE_NAME
+        {
+            get { return _provinceName; }
+            set { _provinceName = value; }
+        }
+
     }
 }

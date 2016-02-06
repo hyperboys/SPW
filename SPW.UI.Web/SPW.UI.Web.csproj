@@ -157,6 +157,11 @@
     <Content Include="JQuery\metisMenu.min.js" />
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
+    <Content Include="JQuery\Search\jquery-1.8.0.js" />
+    <Content Include="JQuery\Search\jquery-ui.css" />
+    <Content Include="JQuery\Search\jquery-ui.js" />
+    <Content Include="JQuery\Search\jquery-ui.min.js" />
+    <Content Include="JQuery\Search\jquery.min.js" />
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ManageInvoice.aspx" />
     <Content Include="Page\ManageStock.aspx" />
@@ -799,6 +804,7 @@
       <LastGenOutput>SendOrderReport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

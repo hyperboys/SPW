@@ -51,7 +51,7 @@
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณากรอกรหัสสินค้า"
-                                               ValidationGroup="group" ControlToValidate="popTxtProductCode" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                            ValidationGroup="group" ControlToValidate="popTxtProductCode" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                     <td class="auto-style11"></td>
                                     <td>ชื่อสินค้า</td>
@@ -61,7 +61,7 @@
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="กรุณากรอกชื่อสินค้า"
-                                               ValidationGroup="group" ControlToValidate="poptxtProductName" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                            ValidationGroup="group" ControlToValidate="poptxtProductName" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -88,21 +88,21 @@
                                     <td style="text-align: center" class="auto-style1">:</td>
                                     <td>
                                         <asp:TextBox ID="txtPacking" runat="server" class="form-control" Height="30px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="200px"></asp:TextBox>
-                                                    <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
-                                                    <script type="text/javascript">
-                                                        var specialKeys = new Array();
-                                                        specialKeys.push(8); //Backspace
-                                                        function IsNumeric(e) {
-                                                            var keyCode = e.which ? e.which : e.keyCode
-                                                            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                                            document.getElementById("error").style.display = ret ? "none" : "inline";
-                                                            return ret;
-                                                        }
-                                                    </script>
+                                        <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                        <script type="text/javascript">
+                                            var specialKeys = new Array();
+                                            specialKeys.push(8); //Backspace
+                                            function IsNumeric(e) {
+                                                var keyCode = e.which ? e.which : e.keyCode
+                                                var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                document.getElementById("error").style.display = ret ? "none" : "inline";
+                                                return ret;
+                                            }
+                                        </script>
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="กรุณากรอกจำนวน"
-                                               ValidationGroup="group" ControlToValidate="txtPacking" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                            ValidationGroup="group" ControlToValidate="txtPacking" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                     <td class="auto-style11"></td>
                                     <td></td>
@@ -129,21 +129,21 @@
                                     <td style="text-align: center" class="auto-style1">:</td>
                                     <td>
                                         <asp:TextBox ID="txtWeight" runat="server" class="form-control" Height="30px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="200px"></asp:TextBox>
-                                                    <span id="Span1" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
-                                                    <script type="text/javascript">
-                                                        var specialKeys = new Array();
-                                                        specialKeys.push(8); //Backspace
-                                                        function IsNumeric(e) {
-                                                            var keyCode = e.which ? e.which : e.keyCode
-                                                            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                                            document.getElementById("error").style.display = ret ? "none" : "inline";
-                                                            return ret;
-                                                        }
-                                                    </script>
+                                        <span id="Span1" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                        <script type="text/javascript">
+                                            var specialKeys = new Array();
+                                            specialKeys.push(8); //Backspace
+                                            function IsNumeric(e) {
+                                                var keyCode = e.which ? e.which : e.keyCode
+                                                var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                document.getElementById("error").style.display = ret ? "none" : "inline";
+                                                return ret;
+                                            }
+                                        </script>
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="กรุณากรอกน้ำหนัก"
-                                               ValidationGroup="group" ControlToValidate="txtWeight" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                            ValidationGroup="group" ControlToValidate="txtWeight" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                     <td class="auto-style11"></td>
                                     <td>หน่วย</td>
@@ -171,7 +171,7 @@
                     </div>
                     <div>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"
-                               ValidationGroup="group" ShowMessageBox="True" ShowSummary="False" />
+                            ValidationGroup="group" ShowMessageBox="True" ShowSummary="False" />
                     </div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Button ID="btnSave" runat="server" Text="บันทึก"  ValidationGroup="group" class="btn btn-primary" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="บันทึก" ValidationGroup="group" class="btn btn-primary" OnClick="btnSave_Click" />
                         </td>
                         <td>&nbsp;&nbsp;</td>
                         <td>
