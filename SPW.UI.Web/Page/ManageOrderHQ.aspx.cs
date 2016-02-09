@@ -144,7 +144,7 @@ namespace SPW.UI.Web.Page
                                     from z in joinC.DefaultIfEmpty()
                                     where order.STORE_ID.Equals((ddlStore.SelectedValue == "0" ? order.STORE_ID : int.Parse(ddlStore.SelectedValue))) &&
                                         x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
-                                        z.STORE_CODE.Equals((txtStoreCode.Text == "" ? z.STORE_CODE : txtStoreCode.Text)) &&
+                                        z.STORE_CODE.ToUpper().Contains((txtStoreCode.Text.ToUpper() == "" ? z.STORE_CODE.ToUpper() : txtStoreCode.Text.ToUpper())) &&
                                         y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
                                         order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
                                         isBetweenDate((DateTime)order.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)order.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))
