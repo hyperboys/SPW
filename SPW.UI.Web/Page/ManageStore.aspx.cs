@@ -127,13 +127,17 @@ namespace SPW.UI.Web.Page
             {
                 ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString()));
             }
+            Session["index"] = ddlProvince.SelectedValue.ToString();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
             var obj = new STORE();
-            obj.PROVINCE_ID = Convert.ToInt32(Session["index"].ToString());
+            if (Session["index"] != null)
+            {
+                obj.PROVINCE_ID = Convert.ToInt32(Session["index"].ToString());
+            }
             obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
             obj.STORE_ADDR1 = txtAddress.Text;
             obj.STORE_CODE = popTxtStoreCode.Text;
@@ -167,6 +171,11 @@ namespace SPW.UI.Web.Page
             }
             else
             {
+                if (obj.PROVINCE_ID == 0)
+                {
+                    _store = cmdStore.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                    obj.PROVINCE_ID = _store.PROVINCE_ID;
+                }
                 obj.ZONE_DETAIL = cmdStore.Select(Convert.ToInt32(Request.QueryString["id"].ToString())).ZONE_DETAIL;
                 obj.ZONE_DETAIL.EMPLOYEE_ID = Convert.ToInt32(ddlSell.SelectedValue);
                 obj.Action = ActionEnum.Update;
