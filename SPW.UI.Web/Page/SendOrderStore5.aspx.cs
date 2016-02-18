@@ -239,11 +239,11 @@ namespace SPW.UI.Web.Page
                 drSendOrderHeader["VEHICLE_REG"] = txtVehicle.Text;
 
                 drSendOrderHeader["SEQ"] = seq.ToString();
-                drSendOrderHeader["NAME"] = DOrder.STORE.STORE_NAME + " " + DOrder.STORE.STORE_CODE;
+                drSendOrderHeader["NAME"] = DOrder.STORE.STORE_NAME + " " + DOrder.STORE.STORE_CODE ;
                 drSendOrderHeader["QTY"] = "";
-                drSendOrderHeader["PACKAGE"] = "";
+                drSendOrderHeader["PACKAGE"] = " ต." + DOrder.STORE.STORE_SUBDISTRICT ;
                 drSendOrderHeader["WEIGHT"] = "";
-                drSendOrderHeader["SUM_WEIGHT"] = "";
+                drSendOrderHeader["SUM_WEIGHT"] = " อ." + DOrder.STORE.STORE_DISTRICT;
 
                 seq++;
                 drSendOrderHeader["SUM_WEIGHT_TH"] = "";
@@ -251,7 +251,6 @@ namespace SPW.UI.Web.Page
                 SendOrderHeader.Rows.Add(drSendOrderHeader);
             }
             #endregion
-
 
             #region รายการสินค้าทั้งหมด
             List<DELIVERY_ORDER_DETAIL> listOrder2 = new List<DELIVERY_ORDER_DETAIL>();
