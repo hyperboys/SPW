@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.DataService
 {
-    public class AssetTypeService : ServiceBase, IDataService<ASSET_TYPE>, IService 
+    public class AssetTypeService : ServiceBase, IDataService<ASSET_TYPE>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -28,8 +29,15 @@ namespace SPW.DataService
 
         public void Add(ASSET_TYPE obj)
         {
-            this.Datacontext.ASSET_TYPE.Add(obj);
-            this.Datacontext.SaveChanges();
+            try
+            {
+                this.Datacontext.ASSET_TYPE.Add(obj);
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         public void AddList(List<ASSET_TYPE> obj)
@@ -39,11 +47,18 @@ namespace SPW.DataService
 
         public void Edit(ASSET_TYPE obj)
         {
-            var item = this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_ID == obj.ASSET_TYPE_ID).FirstOrDefault();
-            item.ASSET_TYPE_NAME = obj.ASSET_TYPE_NAME;
-            item.UPDATE_DATE = obj.UPDATE_DATE;
-            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
-            this.Datacontext.SaveChanges();
+            try
+            {
+                var item = this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_ID == obj.ASSET_TYPE_ID).FirstOrDefault();
+                item.ASSET_TYPE_NAME = obj.ASSET_TYPE_NAME;
+                item.UPDATE_DATE = obj.UPDATE_DATE;
+                item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         public void EditList(List<ASSET_TYPE> obj)
@@ -58,12 +73,28 @@ namespace SPW.DataService
 
         public ASSET_TYPE Select(int ID)
         {
-            return this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_ID == ID).FirstOrDefault();
+            try
+            {
+                return this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_ID == ID).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
         }
 
         public ASSET_TYPE Select(string username)
         {
-            return this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_NAME.ToUpper() == username.ToUpper()).FirstOrDefault();
+            try
+            {
+                return this.Datacontext.ASSET_TYPE.Where(x => x.ASSET_TYPE_NAME.ToUpper() == username.ToUpper()).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
         }
 
         public ASSET_TYPE SelectIncludeEmployee(int ID)
@@ -78,7 +109,7 @@ namespace SPW.DataService
 
         public ASSET_TYPE SelectInclude(string username, string password)
         {
-            return this.Datacontext.ASSET_TYPE.Include("EMPLOYEE").Include("ROLE").Where(x => x.ASSET_TYPE_NAME == username ).FirstOrDefault();
+            return this.Datacontext.ASSET_TYPE.Include("EMPLOYEE").Include("ROLE").Where(x => x.ASSET_TYPE_NAME == username).FirstOrDefault();
         }
 
         public List<ASSET_TYPE> GetAll()
@@ -97,6 +128,6 @@ namespace SPW.DataService
         }
 
         #endregion
-   
+
     }
 }

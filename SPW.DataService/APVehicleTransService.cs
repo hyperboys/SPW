@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.DataService
 {
@@ -26,23 +27,37 @@ namespace SPW.DataService
 
         public void Add(AP_VEHICLE_TRANS item)
         {
-            if (item.Action == ActionEnum.Create)
+            try
             {
-                Datacontext.AP_VEHICLE_TRANS.Add(item);
-                Datacontext.SaveChanges();
+                if (item.Action == ActionEnum.Create)
+                {
+                    Datacontext.AP_VEHICLE_TRANS.Add(item);
+                    Datacontext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
             }
         }
 
         public void AddList(List<AP_VEHICLE_TRANS> lstItem)
         {
-            foreach (var item in lstItem)
+            try
             {
-                if (item.Action == ActionEnum.Create)
+                foreach (var item in lstItem)
                 {
-                    Datacontext.AP_VEHICLE_TRANS.Add(item);
+                    if (item.Action == ActionEnum.Create)
+                    {
+                        Datacontext.AP_VEHICLE_TRANS.Add(item);
+                    }
                 }
+                Datacontext.SaveChanges();
             }
-            Datacontext.SaveChanges();
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         public void Edit(AP_VEHICLE_TRANS item)
@@ -62,11 +77,27 @@ namespace SPW.DataService
 
         public List<AP_VEHICLE_TRANS> GetAll()
         {
-            return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList();
+            try
+            {
+                return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
         }
         public int GetNextTransID()
         {
-            return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList().Count + 1;
-        } 
+            try
+            {
+                return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList().Count + 1;
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return 0;
+            }
+        }
     }
 }

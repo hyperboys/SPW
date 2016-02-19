@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.DataService
 {
-    public class AccountMastService : ServiceBase, IDataService<ACCOUNT_MAST>, IService 
+    public class AccountMastService : ServiceBase, IDataService<ACCOUNT_MAST>, IService
     {
 
         #region IService Members
@@ -34,9 +35,9 @@ namespace SPW.DataService
                 this.Datacontext.ACCOUNT_MAST.Add(obj);
                 this.Datacontext.SaveChanges();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-            
+                DebugLog.WriteLog(ex.ToString());
             }
         }
 
@@ -58,9 +59,9 @@ namespace SPW.DataService
                 item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
                 this.Datacontext.SaveChanges();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-            
+                DebugLog.WriteLog(ex.ToString());
             }
         }
 
@@ -76,22 +77,44 @@ namespace SPW.DataService
 
         public ACCOUNT_MAST Select(string ID)
         {
-            return this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == ID).FirstOrDefault();
+            try
+            {
+                return this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == ID).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
         }
 
         public List<ACCOUNT_MAST> GetAll()
         {
-            return this.Datacontext.ACCOUNT_MAST.Where(x => x.SYE_DEL == false).ToList();
+            try
+            {
+                return this.Datacontext.ACCOUNT_MAST.Where(x => x.SYE_DEL == false).ToList();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
         }
 
         public void Delete(string ID)
         {
-            var obj = this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == ID).FirstOrDefault();
-            //obj.SYE_DEL = true;
-            this.Datacontext.ACCOUNT_MAST.Remove(obj);
-            this.Datacontext.SaveChanges();
+            try
+            {
+                var obj = this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == ID).FirstOrDefault();
+                this.Datacontext.ACCOUNT_MAST.Remove(obj);
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
         #endregion
-    
+
     }
 }

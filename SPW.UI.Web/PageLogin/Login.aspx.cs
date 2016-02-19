@@ -25,12 +25,10 @@ namespace SPW.UI.Web.PageLogin
             {
                 Session.Clear();
                 InitialPage();
-                DebugLog.WriteLog("!Page.IsPostBack");
             }
             else
             {
                 ReloadPageEngine();
-                DebugLog.WriteLog("Page.IsPostBack");
             }
         }
 
