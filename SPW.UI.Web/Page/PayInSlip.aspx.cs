@@ -1,4 +1,5 @@
-﻿using SPW.DataService;
+﻿using SPW.Common;
+using SPW.DataService;
 using SPW.Model;
 using System;
 using System.Collections.Generic;
@@ -132,17 +133,85 @@ namespace SPW.UI.Web.Page
             {
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 txtAccountName.Text = accountMast.ACCOUNT_NAME;
-                txtAccountBank.Text = accountMast.BANK_NAME;
             }
             else 
             {
                 txtAccountName.Text = string.Empty;
-                txtAccountBank.Text = string.Empty;
             }
         }
 
-       
+        protected void rbBankThai_CheckedChanged(object sender, EventArgs e)
+        {
+            ddlAccountMast.Items.Clear();
+            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+            txtAccountName.Text = string.Empty;
+            var list = _accountMastService.GetAllBank(1);
+            foreach (var item in list)
+            {
+                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+            }
+        }
 
-     
+        protected void rbBankKrungThai_CheckedChanged(object sender, EventArgs e)
+        {
+            ddlAccountMast.Items.Clear();
+            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+            txtAccountName.Text = string.Empty;
+            var list = _accountMastService.GetAllBank(2);
+            foreach (var item in list)
+            {
+                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN"] == null)
+                {
+                    Session["PAYIN"] = lstPayIn;
+                }
+                else 
+                {
+                    lstPayIn =  Session["PAYIN"] as List<PAYIN_TRANS>;
+                }
+
+                PAYIN_TRANS tmpItem = new PAYIN_TRANS();
+                tmpItem.CHQ_AMOUNT = Convert.ToDecimal(txtAmount.Text);
+                tmpItem.CHQ_BANK = txtBankCheck.Text;
+                tmpItem.CHQ_NO = txtCheck.Text;
+                tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
+                lstPayIn.Add(tmpItem);
+                grdBank.DataSource = lstPayIn;
+                grdBank.DataBind();
+
+                decimal tmpTotalAmt = 0;
+                foreach (PAYIN_TRANS pt in lstPayIn) 
+                {
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
+                }
+
+                lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") +" บาท";
+                lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
+
+                ClearScreen();
+            }
+            catch (Exception ex) 
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        private void ClearScreen() 
+        {
+            ddlAccountMast.SelectedIndex = 0;
+            txtAccountName.Text = "";
+            txtAmount.Text = "";
+            txtBankCheck.Text = "";
+            txtBranceCheck.Text = "";
+            txtCheck.Text = "";
+        }
     }
 }
