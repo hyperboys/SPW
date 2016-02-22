@@ -20,7 +20,7 @@ namespace SPW.UI.Web.Page
             catch { amount = 0; }
             bahtTxt = amount.ToString("####.00");
             string[] num = { "ศูนย์", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า", "สิบ" };
-            string[] rank = { "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
+            string[] rank = { "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน","สิบ","ร้อย","พัน" };
             string[] temp = bahtTxt.Split('.');
             string intVal = temp[0];
             string decVal = temp[1];
@@ -40,7 +40,38 @@ namespace SPW.UI.Web.Page
                         else if ((i == (intVal.Length - 2)) && (n == "1"))
                             bahtTH += "";
                         else
-                            bahtTH += num[Convert.ToInt32(n)];
+                        {
+                            if (((intVal.Length - i) - 1) > 6)
+                            {
+                                if (n == "1")
+                                {
+                                    bahtTH += "";
+                                }
+                                else if (n == "2")
+                                {
+                                    bahtTH += "ยี่";
+                                }
+                                else
+                                {
+                                    bahtTH += num[Convert.ToInt32(n)];
+                                }
+                            }
+                            else if (((intVal.Length - i) - 1) > 5)
+                            {
+                                if (n == "1")
+                                {
+                                    bahtTH += "เอ็ด";
+                                }
+                                else
+                                {
+                                    bahtTH += num[Convert.ToInt32(n)];
+                                }
+                            }
+                            else
+                            {
+                                bahtTH += num[Convert.ToInt32(n)];
+                            }
+                        }
                         bahtTH += rank[(intVal.Length - i) - 1];
                     }
                 }
@@ -111,6 +142,7 @@ namespace SPW.UI.Web.Page
                 InitialData();
                 grdBank.DataSource = null;
                 grdBank.DataBind();
+                Session["PAYIN"] = null;
             }
             else
             {
@@ -138,6 +170,8 @@ namespace SPW.UI.Web.Page
             {
                 txtAccountName.Text = string.Empty;
             }
+
+            SumAmt();
         }
 
         protected void rbBankThai_CheckedChanged(object sender, EventArgs e)
@@ -150,6 +184,8 @@ namespace SPW.UI.Web.Page
             {
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
+
+            SumAmt();
         }
 
         protected void rbBankKrungThai_CheckedChanged(object sender, EventArgs e)
@@ -162,6 +198,8 @@ namespace SPW.UI.Web.Page
             {
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
+
+            SumAmt();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -187,21 +225,35 @@ namespace SPW.UI.Web.Page
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
 
-                decimal tmpTotalAmt = 0;
-                foreach (PAYIN_TRANS pt in lstPayIn) 
-                {
-                    tmpTotalAmt += pt.CHQ_AMOUNT;
-                }
-
-                lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") +" บาท";
-                lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
-
+                SumAmt();
                 ClearScreen();
             }
             catch (Exception ex) 
             {
                 DebugLog.WriteLog(ex.ToString());
             }
+        }
+
+        private void SumAmt() 
+        {
+            List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+            if (Session["PAYIN"] == null)
+            {
+                Session["PAYIN"] = lstPayIn;
+            }
+            else
+            {
+                lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+            }
+
+            decimal tmpTotalAmt = 0;
+            foreach (PAYIN_TRANS pt in lstPayIn)
+            {
+                tmpTotalAmt += pt.CHQ_AMOUNT;
+            }
+
+            lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") + " บาท";
+            lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
         }
 
         private void ClearScreen() 

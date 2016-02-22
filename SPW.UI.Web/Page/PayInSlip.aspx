@@ -42,7 +42,7 @@
         }
 
         .auto-style14 {
-            width: 79px;
+            width: 43px;
             font-weight: 700;
         }
 
@@ -96,7 +96,10 @@
                                     <td class="auto-style2">
                                         <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Height="35px" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAccountName"
+                                            ErrorMessage="กรุณาเลือกบัญชี" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style5">เลขที่เช็ค
@@ -140,7 +143,7 @@
                                     </td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td class="auto-style2">
-                                        <asp:TextBox ID="txtAmount" class="form-control" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                        <asp:TextBox ID="txtAmount" class="form-control" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" runat="server" Height="35px" Width="200px" MaxLength="8"></asp:TextBox>
                                         <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
                                         <script type="text/javascript">
                                             var specialKeys = new Array();
@@ -183,7 +186,7 @@
                         <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="45%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" DataFormatString="#,#.00#" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" DataFormatString="{0:N2}" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="25%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>
