@@ -103,6 +103,7 @@ namespace SPW.UI.Web.Page
         }
         private double totalAmount;
         private AccountMastService _accountMastService;
+        private PayInTranService _payInTranService;
         private DataServiceEngine _dataServiceEngine;
 
         private void ReloadPageEngine()
@@ -121,6 +122,7 @@ namespace SPW.UI.Web.Page
         private void InitialDataService()
         {
             _accountMastService = (AccountMastService)_dataServiceEngine.GetDataService(typeof(AccountMastService));
+            _payInTranService = (PayInTranService)_dataServiceEngine.GetDataService(typeof(PayInTranService));
         }
 
         private void CreatePageEngine()
@@ -152,11 +154,22 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            var list = _accountMastService.GetAll();
+            //var list = _accountMastService.GetAll();
+            //foreach (var item in list)
+            //{
+            //    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_NAME + " " + item.BANK_SH_NAME + " " + item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+            //}
+
+            ddlAccountMast.Items.Clear();
+            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+            txtAccountName.Text = string.Empty;
+            var list = _accountMastService.GetAllBank(1);
             foreach (var item in list)
             {
-                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_NAME + " " + item.BANK_SH_NAME + " " + item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
+
+            SumAmt();
         }
 
         protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
@@ -227,6 +240,10 @@ namespace SPW.UI.Web.Page
 
                 SumAmt();
                 ClearScreen();
+                btnSave.Visible = true;
+                ddlAccountMast.Enabled = false;
+                rbBankKrungThai.Enabled = false;
+                rbBankThai.Enabled = false;
             }
             catch (Exception ex) 
             {
@@ -258,12 +275,60 @@ namespace SPW.UI.Web.Page
 
         private void ClearScreen() 
         {
-            ddlAccountMast.SelectedIndex = 0;
-            txtAccountName.Text = "";
             txtAmount.Text = "";
             txtBankCheck.Text = "";
             txtBranceCheck.Text = "";
             txtCheck.Text = "";
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                USER userItem = Session["user"] as USER;
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN"] == null)
+                {
+                    Session["PAYIN"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+                }
+
+
+                decimal tmpTotalAmt = 0;
+                foreach (PAYIN_TRANS pt in lstPayIn)
+                {
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
+                }
+
+                ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
+                foreach (PAYIN_TRANS tmpItem in lstPayIn) 
+                {
+                    tmpItem.ACCOUNT_ID = accountMast.ACCOUNT_ID;
+                    tmpItem.ACCOUNT_NAME = accountMast.ACCOUNT_NAME;
+                    tmpItem.BANK_NAME = accountMast.BANK_NAME;
+                    tmpItem.BANK_SH_NAME = accountMast.BANK_SH_NAME;
+                    tmpItem.CREATE_DATE = DateTime.Now;
+                    tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    tmpItem.PAYIN_APPROVE_ID = 1;
+                    tmpItem.PAYIN_SEQ_NO = _payInTranService.GetCount() + 1;
+                    tmpItem.PAYIN_DATE = DateTime.Now;
+                    tmpItem.PAYIN_TOTAL_AMOUNT = tmpTotalAmt;
+                    tmpItem.SYE_DEL = false;
+                    tmpItem.UPDATE_DATE = DateTime.Now;
+                    tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                }
+
+                _payInTranService.AddList(lstPayIn);
+                Session["PAYIN"] = null;
+                Response.Redirect("PayInSlip.aspx");
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
     }
 }

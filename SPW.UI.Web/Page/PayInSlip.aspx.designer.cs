@@ -40,6 +40,15 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// rbBankThai control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
         /// grdBank control.
         /// </summary>
         /// <remarks>
@@ -209,5 +227,14 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
+        /// btnSave_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender btnSave_ConfirmButtonExtender;
     }
 }

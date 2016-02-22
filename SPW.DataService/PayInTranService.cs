@@ -86,6 +86,19 @@ namespace SPW.DataService
         {
             throw new NotImplementedException();
         }
+
+        public int GetCount()
+        {
+            try
+            {
+                return this.Datacontext.PAYIN_TRANS.Count();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return 0;
+            }
+        }
         #endregion
 
     }
