@@ -101,6 +101,19 @@ namespace SPW.DataService
             }
         }
 
+        public List<ACCOUNT_MAST> GetAllBank(int payInType)
+        {
+            try
+            {
+                return this.Datacontext.ACCOUNT_MAST.Where(x => x.SYE_DEL == false && x.PAYIN_FORMAT == payInType).ToList();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
+        }
+
         public void Delete(string ID)
         {
             try
