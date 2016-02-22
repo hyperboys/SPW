@@ -18,7 +18,7 @@ namespace SPW.Common
                 Directory.CreateDirectory(path);
             }
 
-            string logName = path + "log" + date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + ".txt";
+            string logName = path + "\\log" + date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + ".txt";
             if (!File.Exists(logName))
             {
                 StreamWriter sw = File.CreateText(logName);
