@@ -646,6 +646,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MonthlySaleData.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\PayInSlip.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayInSlip.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\SaleVolume.aspx.cs">
       <DependentUpon>SaleVolume.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -735,6 +740,17 @@
     </None>
     <Content Include="Reports\MonthlySaleData.xss">
       <DependentUpon>MonthlySaleData.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\PayInSlip.xsc">
+      <DependentUpon>PayInSlip.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\PayInSlip.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PayInSlip.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\PayInSlip.xss">
+      <DependentUpon>PayInSlip.xsd</DependentUpon>
     </Content>
     <None Include="Reports\SaleVolumeData.xsd">
       <SubType>Designer</SubType>

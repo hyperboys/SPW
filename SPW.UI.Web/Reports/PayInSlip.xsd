@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PayInSlip" targetNamespace="http://tempuri.org/PayInSlip.xsd" xmlns:mstns="http://tempuri.org/PayInSlip.xsd" xmlns="http://tempuri.org/PayInSlip.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PayInSlip" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PayInSlip" msprop:Generator_UserDSName="PayInSlip">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MAIN" msprop:Generator_TableClassName="MAINDataTable" msprop:Generator_TableVarName="tableMAIN" msprop:Generator_TablePropName="MAIN" msprop:Generator_RowDeletingName="MAINRowDeleting" msprop:Generator_RowChangingName="MAINRowChanging" msprop:Generator_RowEvHandlerName="MAINRowChangeEventHandler" msprop:Generator_RowDeletedName="MAINRowDeleted" msprop:Generator_UserTableName="MAIN" msprop:Generator_RowChangedName="MAINRowChanged" msprop:Generator_RowEvArgName="MAINRowChangeEvent" msprop:Generator_RowClassName="MAINRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ACCOUNT_NAME" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NAME" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NAME" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NAMEColumn" msprop:Generator_UserColumnName="ACCOUNT_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="ACCOUNT_NO" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NO" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NO" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NOColumn" msprop:Generator_UserColumnName="ACCOUNT_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="AMOUNT_NUM" msprop:Generator_ColumnVarNameInTable="columnAMOUNT_NUM" msprop:Generator_ColumnPropNameInRow="AMOUNT_NUM" msprop:Generator_ColumnPropNameInTable="AMOUNT_NUMColumn" msprop:Generator_UserColumnName="AMOUNT_NUM" type="xs:string" minOccurs="0" />
+              <xs:element name="AMOUNT_CHAR" msprop:Generator_ColumnVarNameInTable="columnAMOUNT_CHAR" msprop:Generator_ColumnPropNameInRow="AMOUNT_CHAR" msprop:Generator_ColumnPropNameInTable="AMOUNT_CHARColumn" msprop:Generator_UserColumnName="AMOUNT_CHAR" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPOSIT" msprop:Generator_ColumnVarNameInTable="columnDEPOSIT" msprop:Generator_ColumnPropNameInRow="DEPOSIT" msprop:Generator_ColumnPropNameInTable="DEPOSITColumn" msprop:Generator_UserColumnName="DEPOSIT" type="xs:string" minOccurs="0" />
+              <xs:element name="TEL" msprop:Generator_ColumnVarNameInTable="columnTEL" msprop:Generator_ColumnPropNameInRow="TEL" msprop:Generator_ColumnPropNameInTable="TELColumn" msprop:Generator_UserColumnName="TEL" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SUB" msprop:Generator_TableClassName="SUBDataTable" msprop:Generator_TableVarName="tableSUB" msprop:Generator_TablePropName="SUB" msprop:Generator_RowDeletingName="SUBRowDeleting" msprop:Generator_RowChangingName="SUBRowChanging" msprop:Generator_RowEvHandlerName="SUBRowChangeEventHandler" msprop:Generator_RowDeletedName="SUBRowDeleted" msprop:Generator_UserTableName="SUB" msprop:Generator_RowChangedName="SUBRowChanged" msprop:Generator_RowEvArgName="SUBRowChangeEvent" msprop:Generator_RowClassName="SUBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CHECK_NO" msprop:Generator_ColumnVarNameInTable="columnCHECK_NO" msprop:Generator_ColumnPropNameInRow="CHECK_NO" msprop:Generator_ColumnPropNameInTable="CHECK_NOColumn" msprop:Generator_UserColumnName="CHECK_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="CHECK_BANK" msprop:Generator_ColumnVarNameInTable="columnCHECK_BANK" msprop:Generator_ColumnPropNameInRow="CHECK_BANK" msprop:Generator_ColumnPropNameInTable="CHECK_BANKColumn" msprop:Generator_UserColumnName="CHECK_BANK" type="xs:string" minOccurs="0" />
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
