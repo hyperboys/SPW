@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CrystalDecisions.CrystalReports.Engine;
+using SPW.Common;
 
 namespace SPW.UI.Web.Reports
 {
@@ -15,15 +16,22 @@ namespace SPW.UI.Web.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SendOrderReportData ds = new SendOrderReportData();
-            if (Session["SendOrderReportData"] != null)
+            try
             {
-                ds = Session["SendOrderReportData"] as SendOrderReportData;
+                SendOrderReportData ds = new SendOrderReportData();
+                if (Session["SendOrderReportData"] != null)
+                {
+                    ds = Session["SendOrderReportData"] as SendOrderReportData;
+                }
+
+                objRpt.SetDataSource(ds);
+                this.CrystalReportViewer1.ReportSource = objRpt;
+                this.CrystalReportViewer1.RefreshReport();
             }
-            
-            objRpt.SetDataSource(ds);
-            this.CrystalReportViewer1.ReportSource = objRpt;
-            this.CrystalReportViewer1.RefreshReport();
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         protected void Page_Unload(object sender, EventArgs e)
