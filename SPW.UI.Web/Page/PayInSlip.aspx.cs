@@ -1,8 +1,10 @@
 ﻿using SPW.Common;
 using SPW.DataService;
 using SPW.Model;
+using SPW.UI.Web.Reports;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -154,12 +156,6 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            //var list = _accountMastService.GetAll();
-            //foreach (var item in list)
-            //{
-            //    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_NAME + " " + item.BANK_SH_NAME + " " + item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
-            //}
-
             ddlAccountMast.Items.Clear();
             ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
             txtAccountName.Text = string.Empty;
@@ -168,8 +164,6 @@ namespace SPW.UI.Web.Page
             {
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
-
-            //SumAmt();
         }
 
         protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,8 +177,6 @@ namespace SPW.UI.Web.Page
             {
                 txtAccountName.Text = string.Empty;
             }
-
-            //SumAmt();
         }
 
         protected void rbBankThai_CheckedChanged(object sender, EventArgs e)
@@ -197,8 +189,6 @@ namespace SPW.UI.Web.Page
             {
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
-
-            //SumAmt();
         }
 
         protected void rbBankKrungThai_CheckedChanged(object sender, EventArgs e)
@@ -211,8 +201,6 @@ namespace SPW.UI.Web.Page
             {
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
-
-            //SumAmt();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -244,6 +232,29 @@ namespace SPW.UI.Web.Page
                 ddlAccountMast.Enabled = false;
                 rbBankKrungThai.Enabled = false;
                 rbBankThai.Enabled = false;
+
+                if (rbBankThai.Checked)
+                {
+                    if (lstPayIn.Count() == 3)
+                    {
+                        btnAdd.Enabled = false;
+                    }
+                    else 
+                    {
+                        btnAdd.Enabled = true;
+                    }
+                }
+                else if(rbBankKrungThai.Checked) 
+                {
+                    if (lstPayIn.Count() == 5)
+                    {
+                        btnAdd.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAdd.Enabled = true;
+                    }
+                }
             }
             catch (Exception ex) 
             {
@@ -271,6 +282,26 @@ namespace SPW.UI.Web.Page
 
             lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") + " บาท";
             lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
+        }
+
+        private decimal GetSumAmt()
+        {
+            List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+            if (Session["PAYIN"] == null)
+            {
+                Session["PAYIN"] = lstPayIn;
+            }
+            else
+            {
+                lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+            }
+
+            decimal tmpTotalAmt = 0;
+            foreach (PAYIN_TRANS pt in lstPayIn)
+            {
+                tmpTotalAmt += pt.CHQ_AMOUNT;
+            }
+            return tmpTotalAmt;
         }
 
         private void ClearScreen() 
@@ -321,9 +352,46 @@ namespace SPW.UI.Web.Page
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                 }
 
+                Reports.PayInSlip ds = new Reports.PayInSlip();
+                DataTable payInSlipMain = ds.Tables["MAIN"];
+                DataRow drPayInSlipMain = payInSlipMain.NewRow();
+
+                drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+                drPayInSlipMain["TEL"] = "02-961-6686-7";
+                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString();
+                drPayInSlipMain["AMOUNT_CHAR"] = lblAmount.Text.ToString();
+                drPayInSlipMain["DEPOSIT"] = "SPW";
+                drPayInSlipMain["ACCOUNT_NO1"] = ddlAccountMast.SelectedValue;
+                payInSlipMain.Rows.Add(drPayInSlipMain);
+
+                DataTable payInSlipSub = ds.Tables["SUB"];
+                DataRow drPayInSlipSub = payInSlipSub.NewRow();
+                if (lstPayIn[0] != null)
+                {
+                    drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT;
+                }
+                if (lstPayIn[1] != null)
+                {
+                    drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT;
+                }
+                if (lstPayIn[2] != null)
+                {
+                    drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT;
+                }
+
+                payInSlipSub.Rows.Add(drPayInSlipSub);
+
                 _payInTranService.AddList(lstPayIn);
                 Session["PAYIN"] = null;
-                Response.Redirect("PayInSlip.aspx");
+
+                Session["DataToReport"] = ds;
+                Response.RedirectPermanent("../Reports/PayInSlipTMBReport.aspx");
             }
             catch (Exception ex)
             {

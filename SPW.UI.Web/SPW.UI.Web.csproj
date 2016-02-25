@@ -663,7 +663,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PayInSlipTMB.rpt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\SaleVolume.aspx.cs">
       <DependentUpon>SaleVolume.aspx</DependentUpon>

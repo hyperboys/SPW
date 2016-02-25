@@ -211,12 +211,12 @@
                         <table style="width: 800px; height: 30px;">
                             <tr>
                                 <td class="auto-style16">
-                                    <asp:Label ID="lblAmount" runat="server" Text="0" Style="font-weight: 700"></asp:Label>
+                                    <asp:Label ID="lblAmount" runat="server" Text="ศูนย์บาท" Style="font-weight: 700"></asp:Label>
                                 </td>
                                 <td class="auto-style17"></td>
                                 <td class="auto-style14">รวม</td>
                                 <td>
-                                    <asp:Label ID="lblNumAmount" runat="server" Text="Label" Style="font-weight: 700"></asp:Label>
+                                    <asp:Label ID="lblNumAmount" runat="server" Text="0 บาท" Style="font-weight: 700"></asp:Label>
                                 </td>
                             </tr>
                         </table>
