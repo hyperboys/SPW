@@ -51,7 +51,7 @@
         }
 
         .auto-style17 {
-            width: 115px;
+            width: 95px;
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -72,11 +72,11 @@
                                             <td class="auto-style5"></td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2">
-                                                <asp:RadioButton ID="rbBankThai" runat="server" Text=" ธ.ทหารไทย" TextAlign="Right" GroupName="bankGroup" Width="150px" AutoPostBack="True" OnCheckedChanged="rbBankThai_CheckedChanged" Checked="True" />
+                                                <asp:RadioButton ID="rbBankThai" runat="server" Text="ธ.ทหารไทย" TextAlign="Right" GroupName="bankGroup" Width="170px" AutoPostBack="True" OnCheckedChanged="rbBankThai_CheckedChanged" Checked="True" />
                                             </td>
                                             <td class="auto-style13"></td>
                                             <td class="auto-style12">
-                                                <asp:RadioButton ID="rbBankKrungThai" runat="server" Text=" ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" AutoPostBack="True" OnCheckedChanged="rbBankKrungThai_CheckedChanged" />
+                                                <asp:RadioButton ID="rbBankKrungThai" runat="server" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" AutoPostBack="True" OnCheckedChanged="rbBankKrungThai_CheckedChanged" />
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td class="auto-style2">
@@ -120,7 +120,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="auto-style5">ธนาคาาร(เช็ค)
+                                            <td class="auto-style5">ธนาคาร(เช็ค)
                                             </td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">

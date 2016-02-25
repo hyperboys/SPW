@@ -212,6 +212,7 @@
     <Content Include="Page\SearchDepartment.aspx" />
     <Content Include="Page\SearchEmployee.aspx" />
     <Content Include="Page\StockIn.aspx" />
+    <Content Include="Reports\PayInSlipKSBReport.aspx" />
     <Content Include="Reports\PayInSlipTMBReport.aspx" />
     <Content Include="Reports\MonthlySale.aspx" />
     <Content Include="Reports\SaleVolume.aspx" />
@@ -629,6 +630,19 @@
       <DependentUpon>StockIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\PayInSlipKSB.cs">
+      <DependentUpon>PayInSlipKSB.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\PayInSlipKSBReport.aspx.cs">
+      <DependentUpon>PayInSlipKSBReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\PayInSlipKSBReport.aspx.designer.cs">
+      <DependentUpon>PayInSlipKSBReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\PayInSlipTMBReport.aspx.cs">
       <DependentUpon>PayInSlipTMBReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -812,6 +826,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\PayInSlipKSB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayInSlipKSB.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\MonthlySaleReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MonthlySaleReport.cs</LastGenOutput>

@@ -76,6 +76,10 @@ namespace SPW.UI.Web.Page
                         }
                         bahtTH += rank[(intVal.Length - i) - 1];
                     }
+                    else if((intVal.Length - i) == 7)
+                    {
+                        bahtTH += "ล้าน";
+                    }
                 }
                 if (decVal == "00")
                     bahtTH += "บาท";
@@ -103,7 +107,7 @@ namespace SPW.UI.Web.Page
             }
             return bahtTH;
         }
-        //private double totalAmount;
+
         private AccountMastService _accountMastService;
         private PayInTranService _payInTranService;
         private DataServiceEngine _dataServiceEngine;
@@ -138,8 +142,6 @@ namespace SPW.UI.Web.Page
         protected void Page_Load(object sender, EventArgs e)
         {
             lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
-            //lblAmount.Text = ThaiBaht(totalAmount.ToString());
-            //lblNumAmount.Text = totalAmount.ToString() + " บาท";
             if (!Page.IsPostBack)
             {
                 CreatePageEngine();
@@ -366,23 +368,35 @@ namespace SPW.UI.Web.Page
 
                 DataTable payInSlipSub = ds.Tables["SUB"];
                 DataRow drPayInSlipSub = payInSlipSub.NewRow();
-                if (lstPayIn[0] != null)
+                if (lstPayIn.Count() >= 1)
                 {
                     drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
                     drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT;
                 }
-                if (lstPayIn[1] != null)
+                if (lstPayIn.Count() >= 2)
                 {
                     drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
                     drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT;
                 }
-                if (lstPayIn[2] != null)
+                if (lstPayIn.Count() >= 3)
                 {
                     drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
                     drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT;
+                }
+                if (lstPayIn.Count() >= 4)
+                {
+                    drPayInSlipSub["CHECK_NO4"] = lstPayIn[3].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK4"] = lstPayIn[3].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT;
+                }
+                if (lstPayIn.Count() >= 5)
+                {
+                    drPayInSlipSub["CHECK_NO5"] = lstPayIn[4].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT;
                 }
 
                 payInSlipSub.Rows.Add(drPayInSlipSub);
@@ -391,7 +405,14 @@ namespace SPW.UI.Web.Page
                 Session["PAYIN"] = null;
 
                 Session["DataToReport"] = ds;
-                Response.RedirectPermanent("../Reports/PayInSlipTMBReport.aspx");
+                if (rbBankThai.Checked)
+                {
+                    Response.RedirectPermanent("../Reports/PayInSlipTMBReport.aspx");
+                }
+                else 
+                {
+                    Response.RedirectPermanent("../Reports/PayInSlipKSBReport.aspx");
+                }
             }
             catch (Exception ex)
             {
