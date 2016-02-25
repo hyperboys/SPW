@@ -12,7 +12,7 @@
   <xs:element name="PayInSummaryData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PayInSummaryData" msprop:Generator_UserDSName="PayInSummaryData">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PAYIN" msprop:Generator_TableClassName="PAYINDataTable" msprop:Generator_TableVarName="tablePAYIN" msprop:Generator_TablePropName="PAYIN" msprop:Generator_RowDeletingName="PAYINRowDeleting" msprop:Generator_RowChangingName="PAYINRowChanging" msprop:Generator_RowEvHandlerName="PAYINRowChangeEventHandler" msprop:Generator_RowDeletedName="PAYINRowDeleted" msprop:Generator_UserTableName="PAYIN" msprop:Generator_RowChangedName="PAYINRowChanged" msprop:Generator_RowEvArgName="PAYINRowChangeEvent" msprop:Generator_RowClassName="PAYINRow">
+        <xs:element name="PAYIN" msprop:Generator_TableClassName="PAYINDataTable" msprop:Generator_TableVarName="tablePAYIN" msprop:Generator_RowChangedName="PAYINRowChanged" msprop:Generator_TablePropName="PAYIN" msprop:Generator_RowDeletingName="PAYINRowDeleting" msprop:Generator_RowChangingName="PAYINRowChanging" msprop:Generator_RowEvHandlerName="PAYINRowChangeEventHandler" msprop:Generator_RowDeletedName="PAYINRowDeleted" msprop:Generator_RowClassName="PAYINRow" msprop:Generator_UserTableName="PAYIN" msprop:Generator_RowEvArgName="PAYINRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PAYIN_DATE" msprop:Generator_ColumnVarNameInTable="columnPAYIN_DATE" msprop:Generator_ColumnPropNameInRow="PAYIN_DATE" msprop:Generator_ColumnPropNameInTable="PAYIN_DATEColumn" msprop:Generator_UserColumnName="PAYIN_DATE" type="xs:string" minOccurs="0" />
@@ -20,6 +20,8 @@
               <xs:element name="ACCOUNT_ID" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_ID" msprop:Generator_ColumnPropNameInRow="ACCOUNT_ID" msprop:Generator_ColumnPropNameInTable="ACCOUNT_IDColumn" msprop:Generator_UserColumnName="ACCOUNT_ID" type="xs:string" minOccurs="0" />
               <xs:element name="BANK_NAME" msprop:Generator_ColumnVarNameInTable="columnBANK_NAME" msprop:Generator_ColumnPropNameInRow="BANK_NAME" msprop:Generator_ColumnPropNameInTable="BANK_NAMEColumn" msprop:Generator_UserColumnName="BANK_NAME" type="xs:string" minOccurs="0" />
               <xs:element name="CHQ_AMOUNT" msprop:Generator_ColumnVarNameInTable="columnCHQ_AMOUNT" msprop:Generator_ColumnPropNameInRow="CHQ_AMOUNT" msprop:Generator_ColumnPropNameInTable="CHQ_AMOUNTColumn" msprop:Generator_UserColumnName="CHQ_AMOUNT" type="xs:string" minOccurs="0" />
+              <xs:element name="START_DATE" msprop:Generator_ColumnVarNameInTable="columnSTART_DATE" msprop:Generator_ColumnPropNameInRow="START_DATE" msprop:Generator_ColumnPropNameInTable="START_DATEColumn" msprop:Generator_UserColumnName="START_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="END_DATE" msprop:Generator_ColumnVarNameInTable="columnEND_DATE" msprop:Generator_ColumnPropNameInRow="END_DATE" msprop:Generator_ColumnPropNameInTable="END_DATEColumn" msprop:Generator_UserColumnName="END_DATE" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

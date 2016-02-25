@@ -91,7 +91,7 @@
                         Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
                             <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">

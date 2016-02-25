@@ -145,9 +145,9 @@ namespace SPW.UI.Web.Page
                 drSendOrderHeader["SEQ"] = seq.ToString();
                 drSendOrderHeader["NAME"] = DOrder.STORE.STORE_NAME + " " + DOrder.STORE.STORE_CODE;
                 drSendOrderHeader["QTY"] = "";
-                drSendOrderHeader["PACKAGE"] = " ต." + DOrder.STORE.STORE_SUBDISTRICT;
+                drSendOrderHeader["PACKAGE"] = " อ." + DOrder.STORE.STORE_DISTRICT;
                 drSendOrderHeader["WEIGHT"] = "";
-                drSendOrderHeader["SUM_WEIGHT"] = " อ." + DOrder.STORE.STORE_DISTRICT;
+                drSendOrderHeader["SUM_WEIGHT"] = " จ." + DOrder.STORE.PROVINCE.PROVINCE_NAME;
 
                 seq++;
                 drSendOrderHeader["SUM_WEIGHT_TH"] = "";
