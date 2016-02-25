@@ -17,6 +17,7 @@ namespace SPW.Model
         public VENDOR()
         {
             this.AP_VEHICLE_TRANS = new HashSet<AP_VEHICLE_TRANS>();
+            this.VENDOR_DEAL_CONDITION = new HashSet<VENDOR_DEAL_CONDITION>();
         }
     
         public int VENDOR_ID { get; set; }
@@ -33,6 +34,8 @@ namespace SPW.Model
         public int PROVINCE_ID { get; set; }
         public Nullable<int> ROAD_ID { get; set; }
         public string VENDOR_POSTCODE { get; set; }
+        public string VENDOR_EMAIL { get; set; }
+        public string VENDOR_CONTACT_PERSON { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
@@ -42,5 +45,6 @@ namespace SPW.Model
         public virtual ICollection<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
         public virtual PROVINCE PROVINCE { get; set; }
         public virtual ROAD ROAD { get; set; }
+        public virtual ICollection<VENDOR_DEAL_CONDITION> VENDOR_DEAL_CONDITION { get; set; }
     }
 }

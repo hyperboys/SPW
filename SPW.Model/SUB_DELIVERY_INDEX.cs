@@ -12,33 +12,27 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class VEHICLE
+    public partial class SUB_DELIVERY_INDEX
     {
-        public VEHICLE()
+        public SUB_DELIVERY_INDEX()
         {
-            this.AP_VEHICLE_TRANS = new HashSet<AP_VEHICLE_TRANS>();
-            this.DELIVERY_INDEX = new HashSet<DELIVERY_INDEX>();
-            this.DELIVERY_ORDER = new HashSet<DELIVERY_ORDER>();
-            this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
-            this.SUB_DELIVERY_INDEX = new HashSet<SUB_DELIVERY_INDEX>();
+            this.SUB_DELIVERY_INDEX_DETAIL = new HashSet<SUB_DELIVERY_INDEX_DETAIL>();
             this.SUB_DELIVERY_ORDER = new HashSet<SUB_DELIVERY_ORDER>();
         }
     
+        public int SUB_DELIND_ID { get; set; }
+        public string DELIND_CODE { get; set; }
+        public string DELIND_SUBCODE { get; set; }
+        public Nullable<System.DateTime> DELIND_DATE { get; set; }
         public int VEHICLE_ID { get; set; }
-        public string VEHICLE_CODE { get; set; }
-        public string VEHICLE_REGNO { get; set; }
-        public string VEHICLE_TYPENO { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ICollection<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
-        public virtual ICollection<DELIVERY_INDEX> DELIVERY_INDEX { get; set; }
-        public virtual ICollection<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
-        public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
-        public virtual ICollection<SUB_DELIVERY_INDEX> SUB_DELIVERY_INDEX { get; set; }
+        public virtual ICollection<SUB_DELIVERY_INDEX_DETAIL> SUB_DELIVERY_INDEX_DETAIL { get; set; }
+        public virtual VEHICLE VEHICLE { get; set; }
         public virtual ICollection<SUB_DELIVERY_ORDER> SUB_DELIVERY_ORDER { get; set; }
     }
 }

@@ -56,10 +56,17 @@ namespace SPW.DAL
         public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
         public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
         public DbSet<STORE> STORE { get; set; }
+        public DbSet<STORE_NOTFOUND> STORE_NOTFOUND { get; set; }
+        public DbSet<SUB_DELIVERY_INDEX> SUB_DELIVERY_INDEX { get; set; }
+        public DbSet<SUB_DELIVERY_INDEX_DETAIL> SUB_DELIVERY_INDEX_DETAIL { get; set; }
+        public DbSet<SUB_DELIVERY_ORDER> SUB_DELIVERY_ORDER { get; set; }
+        public DbSet<SUB_DELIVERY_ORDER_DETAIL> SUB_DELIVERY_ORDER_DETAIL { get; set; }
         public DbSet<SUB_FUNCTION> SUB_FUNCTION { get; set; }
+        public DbSet<TRANSPORT_LINE> TRANSPORT_LINE { get; set; }
         public DbSet<USER> USER { get; set; }
         public DbSet<VEHICLE> VEHICLE { get; set; }
         public DbSet<VENDOR> VENDOR { get; set; }
+        public DbSet<VENDOR_DEAL_CONDITION> VENDOR_DEAL_CONDITION { get; set; }
         public DbSet<ZONE> ZONE { get; set; }
         public DbSet<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }

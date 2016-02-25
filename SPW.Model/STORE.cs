@@ -19,6 +19,8 @@ namespace SPW.Model
             this.DELIVERY_ORDER = new HashSet<DELIVERY_ORDER>();
             this.ORDER = new HashSet<ORDER>();
             this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
+            this.SUB_DELIVERY_ORDER = new HashSet<SUB_DELIVERY_ORDER>();
+            this.TRANSPORT_LINE = new HashSet<TRANSPORT_LINE>();
         }
     
         public int STORE_ID { get; set; }
@@ -52,5 +54,7 @@ namespace SPW.Model
         public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
         public virtual ZONE ZONE { get; set; }
         public virtual ZONE_DETAIL ZONE_DETAIL { get; set; }
+        public virtual ICollection<SUB_DELIVERY_ORDER> SUB_DELIVERY_ORDER { get; set; }
+        public virtual ICollection<TRANSPORT_LINE> TRANSPORT_LINE { get; set; }
     }
 }
