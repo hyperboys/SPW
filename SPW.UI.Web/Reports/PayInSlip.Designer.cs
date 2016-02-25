@@ -316,7 +316,7 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnACCOUNT_NAME;
             
-            private global::System.Data.DataColumn columnACCOUNT_NO;
+            private global::System.Data.DataColumn columnTEL;
             
             private global::System.Data.DataColumn columnAMOUNT_NUM;
             
@@ -324,7 +324,25 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnDEPOSIT;
             
-            private global::System.Data.DataColumn columnTEL;
+            private global::System.Data.DataColumn columnACCOUNT_NO1;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO2;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO3;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO4;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO5;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO6;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO7;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO8;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO9;
+            
+            private global::System.Data.DataColumn columnACCOUNT_NO10;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -369,9 +387,9 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ACCOUNT_NOColumn {
+            public global::System.Data.DataColumn TELColumn {
                 get {
-                    return this.columnACCOUNT_NO;
+                    return this.columnTEL;
                 }
             }
             
@@ -401,9 +419,81 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TELColumn {
+            public global::System.Data.DataColumn ACCOUNT_NO1Column {
                 get {
-                    return this.columnTEL;
+                    return this.columnACCOUNT_NO1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO2Column {
+                get {
+                    return this.columnACCOUNT_NO2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO3Column {
+                get {
+                    return this.columnACCOUNT_NO3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO4Column {
+                get {
+                    return this.columnACCOUNT_NO4;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO5Column {
+                get {
+                    return this.columnACCOUNT_NO5;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO6Column {
+                get {
+                    return this.columnACCOUNT_NO6;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO7Column {
+                get {
+                    return this.columnACCOUNT_NO7;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO8Column {
+                get {
+                    return this.columnACCOUNT_NO8;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO9Column {
+                get {
+                    return this.columnACCOUNT_NO9;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCOUNT_NO10Column {
+                get {
+                    return this.columnACCOUNT_NO10;
                 }
             }
             
@@ -444,15 +534,24 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MAINRow AddMAINRow(string ACCOUNT_NAME, string ACCOUNT_NO, string AMOUNT_NUM, string AMOUNT_CHAR, string DEPOSIT, string TEL) {
+            public MAINRow AddMAINRow(string ACCOUNT_NAME, string TEL, string AMOUNT_NUM, string AMOUNT_CHAR, string DEPOSIT, string ACCOUNT_NO1, string ACCOUNT_NO2, string ACCOUNT_NO3, string ACCOUNT_NO4, string ACCOUNT_NO5, string ACCOUNT_NO6, string ACCOUNT_NO7, string ACCOUNT_NO8, string ACCOUNT_NO9, string ACCOUNT_NO10) {
                 MAINRow rowMAINRow = ((MAINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACCOUNT_NAME,
-                        ACCOUNT_NO,
+                        TEL,
                         AMOUNT_NUM,
                         AMOUNT_CHAR,
                         DEPOSIT,
-                        TEL};
+                        ACCOUNT_NO1,
+                        ACCOUNT_NO2,
+                        ACCOUNT_NO3,
+                        ACCOUNT_NO4,
+                        ACCOUNT_NO5,
+                        ACCOUNT_NO6,
+                        ACCOUNT_NO7,
+                        ACCOUNT_NO8,
+                        ACCOUNT_NO9,
+                        ACCOUNT_NO10};
                 rowMAINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMAINRow);
                 return rowMAINRow;
@@ -476,11 +575,20 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnACCOUNT_NAME = base.Columns["ACCOUNT_NAME"];
-                this.columnACCOUNT_NO = base.Columns["ACCOUNT_NO"];
+                this.columnTEL = base.Columns["TEL"];
                 this.columnAMOUNT_NUM = base.Columns["AMOUNT_NUM"];
                 this.columnAMOUNT_CHAR = base.Columns["AMOUNT_CHAR"];
                 this.columnDEPOSIT = base.Columns["DEPOSIT"];
-                this.columnTEL = base.Columns["TEL"];
+                this.columnACCOUNT_NO1 = base.Columns["ACCOUNT_NO1"];
+                this.columnACCOUNT_NO2 = base.Columns["ACCOUNT_NO2"];
+                this.columnACCOUNT_NO3 = base.Columns["ACCOUNT_NO3"];
+                this.columnACCOUNT_NO4 = base.Columns["ACCOUNT_NO4"];
+                this.columnACCOUNT_NO5 = base.Columns["ACCOUNT_NO5"];
+                this.columnACCOUNT_NO6 = base.Columns["ACCOUNT_NO6"];
+                this.columnACCOUNT_NO7 = base.Columns["ACCOUNT_NO7"];
+                this.columnACCOUNT_NO8 = base.Columns["ACCOUNT_NO8"];
+                this.columnACCOUNT_NO9 = base.Columns["ACCOUNT_NO9"];
+                this.columnACCOUNT_NO10 = base.Columns["ACCOUNT_NO10"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,16 +596,34 @@ namespace SPW.UI.Web.Reports {
             private void InitClass() {
                 this.columnACCOUNT_NAME = new global::System.Data.DataColumn("ACCOUNT_NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCOUNT_NAME);
-                this.columnACCOUNT_NO = new global::System.Data.DataColumn("ACCOUNT_NO", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnACCOUNT_NO);
+                this.columnTEL = new global::System.Data.DataColumn("TEL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTEL);
                 this.columnAMOUNT_NUM = new global::System.Data.DataColumn("AMOUNT_NUM", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAMOUNT_NUM);
                 this.columnAMOUNT_CHAR = new global::System.Data.DataColumn("AMOUNT_CHAR", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAMOUNT_CHAR);
                 this.columnDEPOSIT = new global::System.Data.DataColumn("DEPOSIT", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDEPOSIT);
-                this.columnTEL = new global::System.Data.DataColumn("TEL", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTEL);
+                this.columnACCOUNT_NO1 = new global::System.Data.DataColumn("ACCOUNT_NO1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO1);
+                this.columnACCOUNT_NO2 = new global::System.Data.DataColumn("ACCOUNT_NO2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO2);
+                this.columnACCOUNT_NO3 = new global::System.Data.DataColumn("ACCOUNT_NO3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO3);
+                this.columnACCOUNT_NO4 = new global::System.Data.DataColumn("ACCOUNT_NO4", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO4);
+                this.columnACCOUNT_NO5 = new global::System.Data.DataColumn("ACCOUNT_NO5", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO5);
+                this.columnACCOUNT_NO6 = new global::System.Data.DataColumn("ACCOUNT_NO6", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO6);
+                this.columnACCOUNT_NO7 = new global::System.Data.DataColumn("ACCOUNT_NO7", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO7);
+                this.columnACCOUNT_NO8 = new global::System.Data.DataColumn("ACCOUNT_NO8", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO8);
+                this.columnACCOUNT_NO9 = new global::System.Data.DataColumn("ACCOUNT_NO9", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO9);
+                this.columnACCOUNT_NO10 = new global::System.Data.DataColumn("ACCOUNT_NO10", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCOUNT_NO10);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -631,11 +757,35 @@ namespace SPW.UI.Web.Reports {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SUBDataTable : global::System.Data.TypedTableBase<SUBRow> {
             
-            private global::System.Data.DataColumn columnCHECK_NO;
+            private global::System.Data.DataColumn columnCHECK_NO1;
             
-            private global::System.Data.DataColumn columnCHECK_BANK;
+            private global::System.Data.DataColumn columnCHECK_BANK1;
             
-            private global::System.Data.DataColumn columnAMOUNT;
+            private global::System.Data.DataColumn columnAMOUNT1;
+            
+            private global::System.Data.DataColumn columnCHECK_NO2;
+            
+            private global::System.Data.DataColumn columnCHECK_BANK2;
+            
+            private global::System.Data.DataColumn columnAMOUNT2;
+            
+            private global::System.Data.DataColumn columnCHECK_NO3;
+            
+            private global::System.Data.DataColumn columnCHECK_BANK3;
+            
+            private global::System.Data.DataColumn columnAMOUNT3;
+            
+            private global::System.Data.DataColumn columnCHECK_NO4;
+            
+            private global::System.Data.DataColumn columnCHECK_BANK4;
+            
+            private global::System.Data.DataColumn columnAMOUNT4;
+            
+            private global::System.Data.DataColumn columnCHECK_NO5;
+            
+            private global::System.Data.DataColumn columnCHECK_BANK5;
+            
+            private global::System.Data.DataColumn columnAMOUNT5;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -672,25 +822,121 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHECK_NOColumn {
+            public global::System.Data.DataColumn CHECK_NO1Column {
                 get {
-                    return this.columnCHECK_NO;
+                    return this.columnCHECK_NO1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHECK_BANKColumn {
+            public global::System.Data.DataColumn CHECK_BANK1Column {
                 get {
-                    return this.columnCHECK_BANK;
+                    return this.columnCHECK_BANK1;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AMOUNTColumn {
+            public global::System.Data.DataColumn AMOUNT1Column {
                 get {
-                    return this.columnAMOUNT;
+                    return this.columnAMOUNT1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_NO2Column {
+                get {
+                    return this.columnCHECK_NO2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_BANK2Column {
+                get {
+                    return this.columnCHECK_BANK2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNT2Column {
+                get {
+                    return this.columnAMOUNT2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_NO3Column {
+                get {
+                    return this.columnCHECK_NO3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_BANK3Column {
+                get {
+                    return this.columnCHECK_BANK3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNT3Column {
+                get {
+                    return this.columnAMOUNT3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_NO4Column {
+                get {
+                    return this.columnCHECK_NO4;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_BANK4Column {
+                get {
+                    return this.columnCHECK_BANK4;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNT4Column {
+                get {
+                    return this.columnAMOUNT4;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_NO5Column {
+                get {
+                    return this.columnCHECK_NO5;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_BANK5Column {
+                get {
+                    return this.columnCHECK_BANK5;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNT5Column {
+                get {
+                    return this.columnAMOUNT5;
                 }
             }
             
@@ -731,12 +977,24 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SUBRow AddSUBRow(string CHECK_NO, string CHECK_BANK, string AMOUNT) {
+            public SUBRow AddSUBRow(string CHECK_NO1, string CHECK_BANK1, string AMOUNT1, string CHECK_NO2, string CHECK_BANK2, string AMOUNT2, string CHECK_NO3, string CHECK_BANK3, string AMOUNT3, string CHECK_NO4, string CHECK_BANK4, string AMOUNT4, string CHECK_NO5, string CHECK_BANK5, string AMOUNT5) {
                 SUBRow rowSUBRow = ((SUBRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        CHECK_NO,
-                        CHECK_BANK,
-                        AMOUNT};
+                        CHECK_NO1,
+                        CHECK_BANK1,
+                        AMOUNT1,
+                        CHECK_NO2,
+                        CHECK_BANK2,
+                        AMOUNT2,
+                        CHECK_NO3,
+                        CHECK_BANK3,
+                        AMOUNT3,
+                        CHECK_NO4,
+                        CHECK_BANK4,
+                        AMOUNT4,
+                        CHECK_NO5,
+                        CHECK_BANK5,
+                        AMOUNT5};
                 rowSUBRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSUBRow);
                 return rowSUBRow;
@@ -759,20 +1017,56 @@ namespace SPW.UI.Web.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCHECK_NO = base.Columns["CHECK_NO"];
-                this.columnCHECK_BANK = base.Columns["CHECK_BANK"];
-                this.columnAMOUNT = base.Columns["AMOUNT"];
+                this.columnCHECK_NO1 = base.Columns["CHECK_NO1"];
+                this.columnCHECK_BANK1 = base.Columns["CHECK_BANK1"];
+                this.columnAMOUNT1 = base.Columns["AMOUNT1"];
+                this.columnCHECK_NO2 = base.Columns["CHECK_NO2"];
+                this.columnCHECK_BANK2 = base.Columns["CHECK_BANK2"];
+                this.columnAMOUNT2 = base.Columns["AMOUNT2"];
+                this.columnCHECK_NO3 = base.Columns["CHECK_NO3"];
+                this.columnCHECK_BANK3 = base.Columns["CHECK_BANK3"];
+                this.columnAMOUNT3 = base.Columns["AMOUNT3"];
+                this.columnCHECK_NO4 = base.Columns["CHECK_NO4"];
+                this.columnCHECK_BANK4 = base.Columns["CHECK_BANK4"];
+                this.columnAMOUNT4 = base.Columns["AMOUNT4"];
+                this.columnCHECK_NO5 = base.Columns["CHECK_NO5"];
+                this.columnCHECK_BANK5 = base.Columns["CHECK_BANK5"];
+                this.columnAMOUNT5 = base.Columns["AMOUNT5"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCHECK_NO = new global::System.Data.DataColumn("CHECK_NO", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHECK_NO);
-                this.columnCHECK_BANK = new global::System.Data.DataColumn("CHECK_BANK", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHECK_BANK);
-                this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMOUNT);
+                this.columnCHECK_NO1 = new global::System.Data.DataColumn("CHECK_NO1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO1);
+                this.columnCHECK_BANK1 = new global::System.Data.DataColumn("CHECK_BANK1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK1);
+                this.columnAMOUNT1 = new global::System.Data.DataColumn("AMOUNT1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT1);
+                this.columnCHECK_NO2 = new global::System.Data.DataColumn("CHECK_NO2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO2);
+                this.columnCHECK_BANK2 = new global::System.Data.DataColumn("CHECK_BANK2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK2);
+                this.columnAMOUNT2 = new global::System.Data.DataColumn("AMOUNT2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT2);
+                this.columnCHECK_NO3 = new global::System.Data.DataColumn("CHECK_NO3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO3);
+                this.columnCHECK_BANK3 = new global::System.Data.DataColumn("CHECK_BANK3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK3);
+                this.columnAMOUNT3 = new global::System.Data.DataColumn("AMOUNT3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT3);
+                this.columnCHECK_NO4 = new global::System.Data.DataColumn("CHECK_NO4", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO4);
+                this.columnCHECK_BANK4 = new global::System.Data.DataColumn("CHECK_BANK4", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK4);
+                this.columnAMOUNT4 = new global::System.Data.DataColumn("AMOUNT4", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT4);
+                this.columnCHECK_NO5 = new global::System.Data.DataColumn("CHECK_NO5", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO5);
+                this.columnCHECK_BANK5 = new global::System.Data.DataColumn("CHECK_BANK5", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK5);
+                this.columnAMOUNT5 = new global::System.Data.DataColumn("AMOUNT5", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT5);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -931,17 +1225,17 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ACCOUNT_NO {
+            public string TEL {
                 get {
                     try {
-                        return ((string)(this[this.tableMAIN.ACCOUNT_NOColumn]));
+                        return ((string)(this[this.tableMAIN.TELColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO\' in table \'MAIN\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TEL\' in table \'MAIN\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMAIN.ACCOUNT_NOColumn] = value;
+                    this[this.tableMAIN.TELColumn] = value;
                 }
             }
             
@@ -995,17 +1289,161 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TEL {
+            public string ACCOUNT_NO1 {
                 get {
                     try {
-                        return ((string)(this[this.tableMAIN.TELColumn]));
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TEL\' in table \'MAIN\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO1\' in table \'MAIN\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMAIN.TELColumn] = value;
+                    this[this.tableMAIN.ACCOUNT_NO1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO2\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO3\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO4 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO4Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO4\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO4Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO5 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO5Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO5\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO5Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO6 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO6Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO6\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO6Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO7 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO7Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO7\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO7Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO8 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO8Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO8\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO8Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO9 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO9Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO9\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO9Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ACCOUNT_NO10 {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.ACCOUNT_NO10Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCOUNT_NO10\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.ACCOUNT_NO10Column] = value;
                 }
             }
             
@@ -1023,14 +1461,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsACCOUNT_NONull() {
-                return this.IsNull(this.tableMAIN.ACCOUNT_NOColumn);
+            public bool IsTELNull() {
+                return this.IsNull(this.tableMAIN.TELColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetACCOUNT_NONull() {
-                this[this.tableMAIN.ACCOUNT_NOColumn] = global::System.Convert.DBNull;
+            public void SetTELNull() {
+                this[this.tableMAIN.TELColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1071,14 +1509,122 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTELNull() {
-                return this.IsNull(this.tableMAIN.TELColumn);
+            public bool IsACCOUNT_NO1Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTELNull() {
-                this[this.tableMAIN.TELColumn] = global::System.Convert.DBNull;
+            public void SetACCOUNT_NO1Null() {
+                this[this.tableMAIN.ACCOUNT_NO1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO2Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO2Null() {
+                this[this.tableMAIN.ACCOUNT_NO2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO3Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO3Null() {
+                this[this.tableMAIN.ACCOUNT_NO3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO4Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO4Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO4Null() {
+                this[this.tableMAIN.ACCOUNT_NO4Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO5Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO5Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO5Null() {
+                this[this.tableMAIN.ACCOUNT_NO5Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO6Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO6Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO6Null() {
+                this[this.tableMAIN.ACCOUNT_NO6Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO7Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO7Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO7Null() {
+                this[this.tableMAIN.ACCOUNT_NO7Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO8Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO8Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO8Null() {
+                this[this.tableMAIN.ACCOUNT_NO8Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO9Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO9Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO9Null() {
+                this[this.tableMAIN.ACCOUNT_NO9Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCOUNT_NO10Null() {
+                return this.IsNull(this.tableMAIN.ACCOUNT_NO10Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCOUNT_NO10Null() {
+                this[this.tableMAIN.ACCOUNT_NO10Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1098,86 +1644,422 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CHECK_NO {
+            public string CHECK_NO1 {
                 get {
                     try {
-                        return ((string)(this[this.tableSUB.CHECK_NOColumn]));
+                        return ((string)(this[this.tableSUB.CHECK_NO1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO\' in table \'SUB\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO1\' in table \'SUB\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSUB.CHECK_NOColumn] = value;
+                    this[this.tableSUB.CHECK_NO1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CHECK_BANK {
+            public string CHECK_BANK1 {
                 get {
                     try {
-                        return ((string)(this[this.tableSUB.CHECK_BANKColumn]));
+                        return ((string)(this[this.tableSUB.CHECK_BANK1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK\' in table \'SUB\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK1\' in table \'SUB\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSUB.CHECK_BANKColumn] = value;
+                    this[this.tableSUB.CHECK_BANK1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AMOUNT {
+            public string AMOUNT1 {
                 get {
                     try {
-                        return ((string)(this[this.tableSUB.AMOUNTColumn]));
+                        return ((string)(this[this.tableSUB.AMOUNT1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT\' in table \'SUB\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT1\' in table \'SUB\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSUB.AMOUNTColumn] = value;
+                    this[this.tableSUB.AMOUNT1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCHECK_NONull() {
-                return this.IsNull(this.tableSUB.CHECK_NOColumn);
+            public string CHECK_NO2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_NO2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO2\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_NO2Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCHECK_NONull() {
-                this[this.tableSUB.CHECK_NOColumn] = global::System.Convert.DBNull;
+            public string CHECK_BANK2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_BANK2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK2\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_BANK2Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCHECK_BANKNull() {
-                return this.IsNull(this.tableSUB.CHECK_BANKColumn);
+            public string AMOUNT2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.AMOUNT2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT2\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.AMOUNT2Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCHECK_BANKNull() {
-                this[this.tableSUB.CHECK_BANKColumn] = global::System.Convert.DBNull;
+            public string CHECK_NO3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_NO3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO3\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_NO3Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAMOUNTNull() {
-                return this.IsNull(this.tableSUB.AMOUNTColumn);
+            public string CHECK_BANK3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_BANK3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK3\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_BANK3Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAMOUNTNull() {
-                this[this.tableSUB.AMOUNTColumn] = global::System.Convert.DBNull;
+            public string AMOUNT3 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.AMOUNT3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT3\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.AMOUNT3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_NO4 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_NO4Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO4\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_NO4Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_BANK4 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_BANK4Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK4\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_BANK4Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AMOUNT4 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.AMOUNT4Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT4\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.AMOUNT4Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_NO5 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_NO5Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO5\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_NO5Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_BANK5 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.CHECK_BANK5Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK5\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.CHECK_BANK5Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AMOUNT5 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUB.AMOUNT5Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT5\' in table \'SUB\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUB.AMOUNT5Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NO1Null() {
+                return this.IsNull(this.tableSUB.CHECK_NO1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NO1Null() {
+                this[this.tableSUB.CHECK_NO1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANK1Null() {
+                return this.IsNull(this.tableSUB.CHECK_BANK1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANK1Null() {
+                this[this.tableSUB.CHECK_BANK1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNT1Null() {
+                return this.IsNull(this.tableSUB.AMOUNT1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNT1Null() {
+                this[this.tableSUB.AMOUNT1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NO2Null() {
+                return this.IsNull(this.tableSUB.CHECK_NO2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NO2Null() {
+                this[this.tableSUB.CHECK_NO2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANK2Null() {
+                return this.IsNull(this.tableSUB.CHECK_BANK2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANK2Null() {
+                this[this.tableSUB.CHECK_BANK2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNT2Null() {
+                return this.IsNull(this.tableSUB.AMOUNT2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNT2Null() {
+                this[this.tableSUB.AMOUNT2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NO3Null() {
+                return this.IsNull(this.tableSUB.CHECK_NO3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NO3Null() {
+                this[this.tableSUB.CHECK_NO3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANK3Null() {
+                return this.IsNull(this.tableSUB.CHECK_BANK3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANK3Null() {
+                this[this.tableSUB.CHECK_BANK3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNT3Null() {
+                return this.IsNull(this.tableSUB.AMOUNT3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNT3Null() {
+                this[this.tableSUB.AMOUNT3Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NO4Null() {
+                return this.IsNull(this.tableSUB.CHECK_NO4Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NO4Null() {
+                this[this.tableSUB.CHECK_NO4Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANK4Null() {
+                return this.IsNull(this.tableSUB.CHECK_BANK4Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANK4Null() {
+                this[this.tableSUB.CHECK_BANK4Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNT4Null() {
+                return this.IsNull(this.tableSUB.AMOUNT4Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNT4Null() {
+                this[this.tableSUB.AMOUNT4Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NO5Null() {
+                return this.IsNull(this.tableSUB.CHECK_NO5Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NO5Null() {
+                this[this.tableSUB.CHECK_NO5Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANK5Null() {
+                return this.IsNull(this.tableSUB.CHECK_BANK5Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANK5Null() {
+                this[this.tableSUB.CHECK_BANK5Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNT5Null() {
+                return this.IsNull(this.tableSUB.AMOUNT5Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNT5Null() {
+                this[this.tableSUB.AMOUNT5Column] = global::System.Convert.DBNull;
             }
         }
         

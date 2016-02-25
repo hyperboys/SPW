@@ -101,7 +101,7 @@ namespace SPW.UI.Web.Page
             }
             return bahtTH;
         }
-        private double totalAmount;
+        //private double totalAmount;
         private AccountMastService _accountMastService;
         private PayInTranService _payInTranService;
         private DataServiceEngine _dataServiceEngine;
@@ -136,8 +136,8 @@ namespace SPW.UI.Web.Page
         protected void Page_Load(object sender, EventArgs e)
         {
             lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
-            lblAmount.Text = ThaiBaht(totalAmount.ToString());
-            lblNumAmount.Text = totalAmount.ToString() + " บาท";
+            //lblAmount.Text = ThaiBaht(totalAmount.ToString());
+            //lblNumAmount.Text = totalAmount.ToString() + " บาท";
             if (!Page.IsPostBack)
             {
                 CreatePageEngine();
@@ -169,7 +169,7 @@ namespace SPW.UI.Web.Page
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
 
-            SumAmt();
+            //SumAmt();
         }
 
         protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,7 +184,7 @@ namespace SPW.UI.Web.Page
                 txtAccountName.Text = string.Empty;
             }
 
-            SumAmt();
+            //SumAmt();
         }
 
         protected void rbBankThai_CheckedChanged(object sender, EventArgs e)
@@ -198,7 +198,7 @@ namespace SPW.UI.Web.Page
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
 
-            SumAmt();
+            //SumAmt();
         }
 
         protected void rbBankKrungThai_CheckedChanged(object sender, EventArgs e)
@@ -212,7 +212,7 @@ namespace SPW.UI.Web.Page
                 ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
             }
 
-            SumAmt();
+            //SumAmt();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)

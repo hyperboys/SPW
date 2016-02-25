@@ -212,6 +212,7 @@
     <Content Include="Page\SearchDepartment.aspx" />
     <Content Include="Page\SearchEmployee.aspx" />
     <Content Include="Page\StockIn.aspx" />
+    <Content Include="Reports\PayInSlipTMBReport.aspx" />
     <Content Include="Reports\MonthlySale.aspx" />
     <Content Include="Reports\SaleVolume.aspx" />
     <Content Include="Reports\InOrder.aspx" />
@@ -628,6 +629,13 @@
       <DependentUpon>StockIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\PayInSlipTMBReport.aspx.cs">
+      <DependentUpon>PayInSlipTMBReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\PayInSlipTMBReport.aspx.designer.cs">
+      <DependentUpon>PayInSlipTMBReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\MonthlySale.aspx.cs">
       <DependentUpon>MonthlySale.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -650,6 +658,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PayInSlip.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PayInSlipTMB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayInSlipTMB.rpt</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\SaleVolume.aspx.cs">
       <DependentUpon>SaleVolume.aspx</DependentUpon>
@@ -805,6 +819,10 @@
     <EmbeddedResource Include="Reports\InOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PayInSlipTMB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayInSlipTMB.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SaleVolumeReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
