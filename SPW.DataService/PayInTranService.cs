@@ -79,7 +79,12 @@ namespace SPW.DataService
 
         public List<PAYIN_TRANS> GetAll()
         {
-            throw new NotImplementedException();
+            return this.Datacontext.PAYIN_TRANS.ToList();
+        }
+
+        public List<PAYIN_TRANS> GetAllCondition(DateTime startDate,DateTime endDate)
+        {
+            return this.Datacontext.PAYIN_TRANS.Where(x => x.PAYIN_DATE >= startDate && x.PAYIN_DATE <= endDate).ToList();
         }
 
         public void Delete(string ID)

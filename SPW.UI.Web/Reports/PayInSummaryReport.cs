@@ -16,14 +16,14 @@ namespace SPW.UI.Web.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class InOrderReport : ReportClass {
+    public class PayInSummaryReport : ReportClass {
         
-        public InOrderReport() {
+        public PayInSummaryReport() {
         }
         
         public override string ResourceName {
             get {
-                return "InOrderReport.rpt";
+                return "PayInSummaryReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace SPW.UI.Web.Reports {
         
         public override string FullResourceName {
             get {
-                return "SPW.UI.Web.Reports.InOrderReport.rpt";
+                return "SPW.UI.Web.Reports.PayInSummaryReport.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace SPW.UI.Web.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedInOrderReport : Component, ICachedReport {
+    public class CachedPayInSummaryReport : Component, ICachedReport {
         
-        public CachedInOrderReport() {
+        public CachedPayInSummaryReport() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace SPW.UI.Web.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            InOrderReport rpt = new InOrderReport();
+            PayInSummaryReport rpt = new PayInSummaryReport();
             rpt.Site = this.Site;
             return rpt;
         }

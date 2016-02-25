@@ -179,6 +179,10 @@
                                      <li>
                                         <a href="../Page/PayInSlip.aspx">PayInSlip</a>
                                     </li>
+                                     <li>
+                                        <a href="../Page/ReportPayInSummary.aspx">รายงานสรุปการนำเข้าเช็ค</a>
+                                    </li>
+                                    
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
