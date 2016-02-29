@@ -129,8 +129,6 @@
                                         <div class="col-md-2">รหัสร้านค้า</div>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtStoreCode" runat="server" class="form-control" data-provide="typeahead" data-items="5" autocomplete="off" Width="200px" placeholder="รหัสร้านค้า"></asp:TextBox>
-                                            <%--<asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Width="200px" placeholder="รหัสร้านค้า"></asp:TextBox>
-                                            <asp:HiddenField ID="hfStoreCode" runat="server" />--%>
                                         </div>
                                         <div class="col-md-2">ชื่อร้านค้า</div>
                                         <div class="col-md-3">

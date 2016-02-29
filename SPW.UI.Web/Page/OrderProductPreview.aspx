@@ -14,56 +14,46 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
-        .right
-        {
+        .right {
             text-align: right;
         }
 
-        .grid td, .grid th
-        {
+        .grid td, .grid th {
             text-align: center;
         }
 
-        .auto-style11
-        {
+        .auto-style11 {
             width: 5px;
         }
 
-        .auto-style12
-        {
+        .auto-style12 {
             width: 81px;
         }
 
-        .auto-style13
-        {
+        .auto-style13 {
             width: 429px;
         }
 
-        .auto-style17
-        {
+        .auto-style17 {
             width: 81px;
             height: 48px;
         }
 
-        .auto-style18
-        {
+        .auto-style18 {
             width: 5px;
             height: 48px;
         }
 
-        .auto-style19
-        {
+        .auto-style19 {
             width: 429px;
             height: 48px;
         }
 
-        .auto-style20
-        {
+        .auto-style20 {
             height: 40px;
         }
 
-        .auto-style21
-        {
+        .auto-style21 {
             height: 48px;
         }
     </style>
@@ -112,12 +102,12 @@
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                 <asp:TemplateField HeaderText="No" ItemStyle-Width="3%">
+                                <asp:TemplateField HeaderText="No" ItemStyle-Width="3%">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                               <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
+                                <asp:BoundField DataField="ProductName" HeaderText="ชื่อสินค้า" ItemStyle-Width="30%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="30%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="PRODUCT_PRICE" HeaderText="ราคาต่อหน่วย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">

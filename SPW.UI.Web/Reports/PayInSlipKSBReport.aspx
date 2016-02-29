@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageReport.Master"
     AutoEventWireup="true" CodeBehind="PayInSlipKSBReport.aspx.cs" Inherits="SPW.UI.Web.Reports.PayInSlipKSBReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

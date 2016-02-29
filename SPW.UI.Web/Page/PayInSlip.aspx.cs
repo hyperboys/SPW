@@ -24,7 +24,7 @@ namespace SPW.UI.Web.Page
             catch { amount = 0; }
             bahtTxt = amount.ToString("####.00");
             string[] num = { "ศูนย์", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า", "สิบ" };
-            string[] rank = { "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน","สิบ","ร้อย","พัน" };
+            string[] rank = { "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน", "สิบ", "ร้อย", "พัน" };
             string[] temp = bahtTxt.Split('.');
             string intVal = temp[0];
             string decVal = temp[1];
@@ -78,7 +78,7 @@ namespace SPW.UI.Web.Page
                         }
                         bahtTH += rank[(intVal.Length - i) - 1];
                     }
-                    else if((intVal.Length - i) == 7)
+                    else if ((intVal.Length - i) == 7)
                     {
                         bahtTH += "ล้าน";
                     }
@@ -142,17 +142,19 @@ namespace SPW.UI.Web.Page
             InitialDataService();
         }
 
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblDateTime.Text = "วันที่ " + DateTime.Now.ToShortDateString();
+            txtStartDate.Text = DateTime.Now.ToShortDateString();
             if (!Page.IsPostBack)
             {
                 CreatePageEngine();
                 InitialData();
                 grdBank.DataSource = null;
                 grdBank.DataBind();
+                AutoCompleteStoreName();
                 Session["PAYIN"] = null;
+                Session["PAYIN_PRINT"] = null;
             }
             else
             {
@@ -179,7 +181,7 @@ namespace SPW.UI.Web.Page
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 txtAccountName.Text = accountMast.ACCOUNT_NAME;
             }
-            else 
+            else
             {
                 txtAccountName.Text = string.Empty;
             }
@@ -212,7 +214,7 @@ namespace SPW.UI.Web.Page
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 DebugLog.WriteLog("btnAdd_Click Start");
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
@@ -220,17 +222,17 @@ namespace SPW.UI.Web.Page
                 {
                     Session["PAYIN"] = lstPayIn;
                 }
-                else 
+                else
                 {
-                    lstPayIn =  Session["PAYIN"] as List<PAYIN_TRANS>;
+                    lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
                 }
 
                 PAYIN_TRANS tmpItem = new PAYIN_TRANS();
                 tmpItem.CHQ_AMOUNT = Convert.ToDecimal(txtAmount.Text);
                 tmpItem.CHQ_BANK = txtBankCheck.Text;
                 tmpItem.CHQ_BR_BANK = txtBranceCheck.Text;
-                //tmpItem.STORE_ID_PAID = _storeService.GetStoreID(txtStoreCode.Text);
-                //tmpItem.STORE_NAME_PAID = txtStoreCode.Text;
+                tmpItem.STORE_ID_PAID = _storeService.GetStoreID(txtStoreName.Text);
+                tmpItem.STORE_NAME_PAID = txtStoreName.Text;
                 tmpItem.CHQ_NO = txtCheck.Text;
                 tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
                 lstPayIn.Add(tmpItem);
@@ -250,12 +252,12 @@ namespace SPW.UI.Web.Page
                     {
                         btnAdd.Enabled = false;
                     }
-                    else 
+                    else
                     {
                         btnAdd.Enabled = true;
                     }
                 }
-                else if(rbBankKrungThai.Checked) 
+                else if (rbBankKrungThai.Checked)
                 {
                     if (lstPayIn.Count() == 5)
                     {
@@ -269,13 +271,13 @@ namespace SPW.UI.Web.Page
 
                 DebugLog.WriteLog("btnAdd_Click Stop");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
             }
         }
 
-        private void SumAmt() 
+        private void SumAmt()
         {
             List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
             if (Session["PAYIN"] == null)
@@ -300,13 +302,20 @@ namespace SPW.UI.Web.Page
         private decimal GetSumAmt()
         {
             List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
-            if (Session["PAYIN"] == null)
+            if (Session["PAYIN_PRINT"] == null)
             {
-                Session["PAYIN"] = lstPayIn;
+                if (Session["PAYIN"] == null)
+                {
+                    Session["PAYIN"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+                }
             }
-            else
+            else 
             {
-                lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+                lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
             }
 
             decimal tmpTotalAmt = 0;
@@ -317,12 +326,13 @@ namespace SPW.UI.Web.Page
             return tmpTotalAmt;
         }
 
-        private void ClearScreen() 
+        private void ClearScreen()
         {
             txtAmount.Text = "";
             txtBankCheck.Text = "";
             txtBranceCheck.Text = "";
             txtCheck.Text = "";
+            txtStoreName.Text = "";
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -341,6 +351,7 @@ namespace SPW.UI.Web.Page
                 }
 
 
+
                 decimal tmpTotalAmt = 0;
                 foreach (PAYIN_TRANS pt in lstPayIn)
                 {
@@ -348,7 +359,7 @@ namespace SPW.UI.Web.Page
                 }
 
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
-                foreach (PAYIN_TRANS tmpItem in lstPayIn) 
+                foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
                     tmpItem.ACCOUNT_ID = accountMast.ACCOUNT_ID;
                     tmpItem.ACCOUNT_NAME = accountMast.ACCOUNT_NAME;
@@ -367,37 +378,91 @@ namespace SPW.UI.Web.Page
                     tmpItem.PAYIN_TYPE_PRINT = "";
                 }
 
-                Reports.PayInSlip ds = new Reports.PayInSlip();
-                DataTable payInSlipMain = ds.Tables["MAIN"];
-                DataRow drPayInSlipMain = payInSlipMain.NewRow();
+                _payInTranService.AddList(lstPayIn);
+                Session["PAYIN_PRINT"] = lstPayIn;
+                Session["PAYIN"] = null;
 
-                drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
-                drPayInSlipMain["TEL"] = "02-961-6686-7";
-                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                drPayInSlipMain["AMOUNT_CHAR"] = lblAmount.Text.ToString();
-                drPayInSlipMain["DEPOSIT"] = "SPW";
-                string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
-                string account = "";
-                foreach (string item in tmpAccount)
-                {
-                    account += item;
-                }
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnPrint1.Visible = true;
+                //btnPrint2.Visible = true;
 
-                drPayInSlipMain["ACCOUNT_NO1"] = account[0];
-                drPayInSlipMain["ACCOUNT_NO2"] = account[1];
-                drPayInSlipMain["ACCOUNT_NO3"] = account[2];
-                drPayInSlipMain["ACCOUNT_NO4"] = account[3];
-                drPayInSlipMain["ACCOUNT_NO5"] = account[4];
-                drPayInSlipMain["ACCOUNT_NO6"] = account[5];
-                drPayInSlipMain["ACCOUNT_NO7"] = account[6];
-                drPayInSlipMain["ACCOUNT_NO8"] = account[7];
-                drPayInSlipMain["ACCOUNT_NO9"] = account[8];
-                drPayInSlipMain["ACCOUNT_NO10"] = account[9];
-                drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
-                payInSlipMain.Rows.Add(drPayInSlipMain);
+                alert.Visible = true;
+                grdBank.Columns[4].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
 
-                DataTable payInSlipSub = ds.Tables["SUB"];
-                DataRow drPayInSlipSub = payInSlipSub.NewRow();
+        private void AutoCompleteStoreName()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreName.Attributes.Add("data-source", str);
+        }
+
+        protected void btnPrint1_Click(object sender, EventArgs e)
+        {
+            List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+            if (Session["PAYIN_PRINT"] == null)
+            {
+                Session["PAYIN_PRINT"] = lstPayIn;
+            }
+            else
+            {
+                lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
+            }
+
+            decimal tmpTotalAmt = 0;
+            foreach (PAYIN_TRANS pt in lstPayIn)
+            {
+                tmpTotalAmt += pt.CHQ_AMOUNT;
+            }
+
+            Reports.PayInSlip ds = new Reports.PayInSlip();
+            DataTable payInSlipMain = ds.Tables["MAIN"];
+            DataRow drPayInSlipMain = payInSlipMain.NewRow();
+
+            drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+            drPayInSlipMain["TEL"] = "02-961-6686-7";
+            drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
+            drPayInSlipMain["AMOUNT_CHAR"] = lblAmount.Text.ToString();
+            drPayInSlipMain["DEPOSIT"] = "SPW";
+            string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
+            string account = "";
+            foreach (string item in tmpAccount)
+            {
+                account += item;
+            }
+
+            drPayInSlipMain["ACCOUNT_NO1"] = account[0];
+            drPayInSlipMain["ACCOUNT_NO2"] = account[1];
+            drPayInSlipMain["ACCOUNT_NO3"] = account[2];
+            drPayInSlipMain["ACCOUNT_NO4"] = account[3];
+            drPayInSlipMain["ACCOUNT_NO5"] = account[4];
+            drPayInSlipMain["ACCOUNT_NO6"] = account[5];
+            drPayInSlipMain["ACCOUNT_NO7"] = account[6];
+            drPayInSlipMain["ACCOUNT_NO8"] = account[7];
+            drPayInSlipMain["ACCOUNT_NO9"] = account[8];
+            drPayInSlipMain["ACCOUNT_NO10"] = account[9];
+            drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
+            payInSlipMain.Rows.Add(drPayInSlipMain);
+
+            DataTable payInSlipSub = ds.Tables["SUB"];
+            DataRow drPayInSlipSub = payInSlipSub.NewRow();
+            if (lstPayIn.Count() <= 5)
+            {
                 if (lstPayIn.Count() >= 1)
                 {
                     drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
@@ -428,21 +493,41 @@ namespace SPW.UI.Web.Page
                     drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
                     drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
                 }
+            }
 
-                payInSlipSub.Rows.Add(drPayInSlipSub);
+            payInSlipSub.Rows.Add(drPayInSlipSub);
+            Session["DataToReport"] = ds;
+            if (rbBankThai.Checked)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipTMBReport.aspx');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
+            }
+        }
 
-                _payInTranService.AddList(lstPayIn);
-                Session["PAYIN"] = null;
+        protected void btnPrint2_Click(object sender, EventArgs e)
+        {
 
-                Session["DataToReport"] = ds;
-                if (rbBankThai.Checked)
+        }
+
+        protected void grdBank_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN"] == null)
                 {
-                    Response.RedirectPermanent("../Reports/PayInSlipTMBReport.aspx");
+                    Session["PAYIN"] = lstPayIn;
                 }
-                else 
+                else
                 {
-                    Response.RedirectPermanent("../Reports/PayInSlipKSBReport.aspx");
+                    lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
                 }
+                lstPayIn.RemoveAt(e.RowIndex);
+                SumAmt();
+                grdBank.DataBind();
             }
             catch (Exception ex)
             {
@@ -450,10 +535,18 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        //[System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()] 
-        //public static string[] SearchTxtStoreCode(string STORE_CODE)
-        //{
-        //    return SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", STORE_CODE).ToArray();
-        //}
+        protected void grdBank_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                foreach (LinkButton button in e.Row.Cells[4].Controls.OfType<LinkButton>())
+                {
+                    if (button.CommandName == "Delete")
+                    {
+                        button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                    }
+                }
+            }
+        }
     }
 }

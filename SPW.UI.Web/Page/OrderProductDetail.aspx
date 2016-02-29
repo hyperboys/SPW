@@ -249,7 +249,7 @@
                                 <td>&nbsp;</td>
                                 <td>&nbsp;&nbsp;</td>
                                 <td>
-                                    <asp:Button ID="btnSave" runat="server" Text="ยืนยันการสั่งซื้อ" class="btn btn-primary" Height="30px" Width="125px" PostBackUrl="~/Page/OrderProductDetailSummary.aspx" />
+                                    <asp:Button ID="btnSave" runat="server" Text="ยืนยันการสั่งซื้อ" class="btn btn-primary" Height="30px" Width="125px" PostBackUrl="~/Page/OrderProductDetailSummary.aspx" OnClick="btnSave_Click" />
 
                                 </td>
                             </tr>

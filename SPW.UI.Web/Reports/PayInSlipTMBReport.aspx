@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="PayInSlipTMBReport.aspx.cs" Inherits="SPW.UI.Web.Reports.PayInSlipTMBReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageReport.Master" AutoEventWireup="true" CodeBehind="PayInSlipTMBReport.aspx.cs" Inherits="SPW.UI.Web.Reports.PayInSlipTMBReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
-    <%--<script type="text/javascript" src="/crystalreportviewers13/js/crviewer/crv.js"></script>--%>
+    <script type="text/javascript" src="/crystalreportviewers13/js/crviewer/crv.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">ใบฝากเงินธนาคารทหารไทย จำกัด (หมาชน)</h1>

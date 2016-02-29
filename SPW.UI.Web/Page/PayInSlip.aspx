@@ -3,6 +3,24 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+    <script type="text/javascript" src="../JQuery/bootstrap-datepicker.js"></script>
+    <link href="../CSS/datepicker.css" rel="stylesheet" type="text/css" />
+      <script type="text/javascript">
+          $(document).ready(function () {
+              Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+              function EndRequestHandler(sender, args) {
+                  $('.datetimepicker').datepicker({
+                      format: 'dd/mm/yyyy'
+                  });
+              }
+          });
+          $(function () {
+              $('.datetimepicker').datepicker({
+                  format: 'dd/mm/yyyy'
+              });
+          });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
@@ -56,46 +74,6 @@
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <%--<script type="text/javascript">
-        $(function () {
-            $('[id*=txtStoreCode]').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-                , source: function (request, response) {
-                    $.ajax({
-                        url: '<%=ResolveUrl("PayInSlip.aspx/SearchTxtStoreCode") %>',
-                        data: "{ 'STORE_CODE': '" + request + "'}",
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            items = [];
-                            map = {};
-                            $.each(data.d, function (i, item) {
-                                var id = item;
-                                var name = item;
-                                map[name] = { id: id, name: name };
-                                items.push(name);
-                            });
-                            response(items);
-                            $(".dropdown-menu").css("height", "auto");
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                updater: function (item) {
-                    $('[id*=hfStoreCode').val(map[item].id);
-                    return item;
-                }
-            });
-        });
-    </script>--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="panel panel-primary">
@@ -120,7 +98,13 @@
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td class="auto-style2">
-                                                <asp:Label ID="lblDateTime" runat="server" Text="วันที่ " Style="font-weight: 700"></asp:Label>
+                                                <asp:Label ID="lblDateTime" runat="server" Text="วันที่ "></asp:Label>
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -154,13 +138,10 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCheck"
                                                     ErrorMessage="กรุณากรอกเลขที่เช็ค" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
-                                            <td class="auto-style12"><%--ชื่อร้านค้า--%></td>
-                                            <td class="auto-style1" style="text-align: center"><%--:--%></td>
+                                            <td class="auto-style12">ชื่อร้านค้า</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-<%--                                                <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" autocomplete="off" Width="200px" placeholder="ชื่อร้านค้า"></asp:TextBox>
-                                                <asp:HiddenField ID="hfStoreCode" runat="server" />--%>
-                                                <%--<asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
-                                            --%>
+                                                <asp:TextBox ID="txtStoreName" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off" Width="200px"></asp:TextBox>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -208,10 +189,13 @@
                                                     ErrorMessage="กรุณากรอกจำนวนเงิน" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
                                             <td class="auto-style12">
-                                                <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="ตกลง" Height="30px" Width="100px" OnClick="btnAdd_Click" /></td>
+                                                <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="ตกลง" Height="30px" Width="100px" OnClick="btnAdd_Click" />
+                                                <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
+                                            </td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2">
-                                                <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก&พิมพ์" Height="30px" Width="100px" OnClick="btnSave_Click" Visible="False" />
+                                                <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="100px" OnClick="btnSave_Click" Visible="False" />
+                                                <asp:Button ID="btnPrint2" class="btn btn-primary" runat="server" Text="พิมพ์ Paper" Height="30px" Width="100px" Visible="False" OnClick="btnPrint2_Click" />
                                             </td>
                                             <td></td>
                                         </tr>
@@ -223,7 +207,7 @@
                     <div style="margin-top: 20px;">
                         <asp:GridView ID="grdBank" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                             DataKeyNames="" PageSize="20" Width="800px" EmptyDataText="ยังไม่ได้เพิ่มธนาคาร" PageIndex="10"
-                            Style="text-align: center" CssClass="grid">
+                            Style="text-align: center" CssClass="grid" OnRowDeleting="grdBank_RowDeleting" OnRowDataBound="grdBank_RowDataBound">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
@@ -238,6 +222,13 @@
                                 <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" DataFormatString="{0:N2}" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
+                                  <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="3%">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
+                                    <div class='glyphicon glyphicon-remove'></div>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
