@@ -23,8 +23,12 @@ namespace SPW.Model
         public int CHQ_SEQ_NO { get; set; }
         public string CHQ_NO { get; set; }
         public string CHQ_BANK { get; set; }
+        public string CHQ_BR_BANK { get; set; }
+        public Nullable<int> STORE_ID_PAID { get; set; }
+        public string STORE_NAME_PAID { get; set; }
         public decimal CHQ_AMOUNT { get; set; }
         public decimal PAYIN_TOTAL_AMOUNT { get; set; }
+        public string PAYIN_TYPE_PRINT { get; set; }
         public int PAYIN_APPROVE_ID { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }

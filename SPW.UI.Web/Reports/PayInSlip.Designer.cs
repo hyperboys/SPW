@@ -344,6 +344,8 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnACCOUNT_NO10;
             
+            private global::System.Data.DataColumn columnCHECK_COUNT;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MAINDataTable() {
@@ -499,6 +501,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_COUNTColumn {
+                get {
+                    return this.columnCHECK_COUNT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -534,7 +544,23 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MAINRow AddMAINRow(string ACCOUNT_NAME, string TEL, string AMOUNT_NUM, string AMOUNT_CHAR, string DEPOSIT, string ACCOUNT_NO1, string ACCOUNT_NO2, string ACCOUNT_NO3, string ACCOUNT_NO4, string ACCOUNT_NO5, string ACCOUNT_NO6, string ACCOUNT_NO7, string ACCOUNT_NO8, string ACCOUNT_NO9, string ACCOUNT_NO10) {
+            public MAINRow AddMAINRow(
+                        string ACCOUNT_NAME, 
+                        string TEL, 
+                        string AMOUNT_NUM, 
+                        string AMOUNT_CHAR, 
+                        string DEPOSIT, 
+                        string ACCOUNT_NO1, 
+                        string ACCOUNT_NO2, 
+                        string ACCOUNT_NO3, 
+                        string ACCOUNT_NO4, 
+                        string ACCOUNT_NO5, 
+                        string ACCOUNT_NO6, 
+                        string ACCOUNT_NO7, 
+                        string ACCOUNT_NO8, 
+                        string ACCOUNT_NO9, 
+                        string ACCOUNT_NO10, 
+                        string CHECK_COUNT) {
                 MAINRow rowMAINRow = ((MAINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACCOUNT_NAME,
@@ -551,7 +577,8 @@ namespace SPW.UI.Web.Reports {
                         ACCOUNT_NO7,
                         ACCOUNT_NO8,
                         ACCOUNT_NO9,
-                        ACCOUNT_NO10};
+                        ACCOUNT_NO10,
+                        CHECK_COUNT};
                 rowMAINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMAINRow);
                 return rowMAINRow;
@@ -589,6 +616,7 @@ namespace SPW.UI.Web.Reports {
                 this.columnACCOUNT_NO8 = base.Columns["ACCOUNT_NO8"];
                 this.columnACCOUNT_NO9 = base.Columns["ACCOUNT_NO9"];
                 this.columnACCOUNT_NO10 = base.Columns["ACCOUNT_NO10"];
+                this.columnCHECK_COUNT = base.Columns["CHECK_COUNT"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -624,6 +652,8 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnACCOUNT_NO9);
                 this.columnACCOUNT_NO10 = new global::System.Data.DataColumn("ACCOUNT_NO10", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCOUNT_NO10);
+                this.columnCHECK_COUNT = new global::System.Data.DataColumn("CHECK_COUNT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_COUNT);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1449,6 +1479,22 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_COUNT {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.CHECK_COUNTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_COUNT\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.CHECK_COUNTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsACCOUNT_NAMENull() {
                 return this.IsNull(this.tableMAIN.ACCOUNT_NAMEColumn);
             }
@@ -1625,6 +1671,18 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetACCOUNT_NO10Null() {
                 this[this.tableMAIN.ACCOUNT_NO10Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_COUNTNull() {
+                return this.IsNull(this.tableMAIN.CHECK_COUNTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_COUNTNull() {
+                this[this.tableMAIN.CHECK_COUNTColumn] = global::System.Convert.DBNull;
             }
         }
         

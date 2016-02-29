@@ -56,6 +56,46 @@
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <%--<script type="text/javascript">
+        $(function () {
+            $('[id*=txtStoreCode]').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+                , source: function (request, response) {
+                    $.ajax({
+                        url: '<%=ResolveUrl("PayInSlip.aspx/SearchTxtStoreCode") %>',
+                        data: "{ 'STORE_CODE': '" + request + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            items = [];
+                            map = {};
+                            $.each(data.d, function (i, item) {
+                                var id = item;
+                                var name = item;
+                                map[name] = { id: id, name: name };
+                                items.push(name);
+                            });
+                            response(items);
+                            $(".dropdown-menu").css("height", "auto");
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                updater: function (item) {
+                    $('[id*=hfStoreCode').val(map[item].id);
+                    return item;
+                }
+            });
+        });
+    </script>--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="panel panel-primary">
@@ -114,9 +154,14 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCheck"
                                                     ErrorMessage="กรุณากรอกเลขที่เช็ค" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
-                                            <td class="auto-style12"></td>
-                                            <td class="auto-style1" style="text-align: center"></td>
-                                            <td class="auto-style2"></td>
+                                            <td class="auto-style12"><%--ชื่อร้านค้า--%></td>
+                                            <td class="auto-style1" style="text-align: center"><%--:--%></td>
+                                            <td class="auto-style2">
+<%--                                                <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" autocomplete="off" Width="200px" placeholder="ชื่อร้านค้า"></asp:TextBox>
+                                                <asp:HiddenField ID="hfStoreCode" runat="server" />--%>
+                                                <%--<asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" Width="200px"></asp:TextBox>
+                                            --%>
+                                            </td>
                                             <td></td>
                                         </tr>
                                         <tr>

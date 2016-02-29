@@ -8,6 +8,7 @@ using SPW.Model;
 using SPW.DataService;
 using SPW.DAL;
 using System.Web.Services;
+using System.Web.Script.Services;
 
 namespace SPW.UI.Web.Page
 {
@@ -37,8 +38,6 @@ namespace SPW.UI.Web.Page
             }
         }
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -49,6 +48,9 @@ namespace SPW.UI.Web.Page
                 //CreateFilterPageSelected(cmdStoreService.GetAllCount());
                 ClearFilter();
                 InitialPage();
+
+                AutoCompleteStoreName();
+                AutoCompleteStoreCode();
             }
             else
             {
@@ -114,9 +116,6 @@ namespace SPW.UI.Web.Page
             {
                 ddlRoad.Items.Add(new ListItem(item, item));
             }
-
-            //gdvStore.DataSource = null;
-            //gdvStore.DataBind();
 
             SearchStore();
             CreateFilterControl();
@@ -263,17 +262,51 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        [WebMethod]
-        public static string[] SearchTxtStoreCode(string STORE_CODE)
+        private void AutoCompleteStoreCode()
         {
-            return SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", STORE_CODE).ToArray(); 
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreCode.Attributes.Add("data-source", str);
         }
 
-        [WebMethod]
-        public static string[] SearchTxtStoreName(string STORE_NAME)
+        private void AutoCompleteStoreName()
         {
-            return SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", STORE_NAME).ToArray();
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreName.Attributes.Add("data-source", str);
         }
+
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public static string[] SearchTxtStoreCode(string STORE_CODE)
+        //{
+        //    return SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", STORE_CODE).ToArray(); 
+        //}
+
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public static string[] SearchTxtStoreName(string STORE_NAME)
+        //{
+        //    return SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", STORE_NAME).ToArray();
+        //}
 
         #region FilterControl
         private void ClearFilter()

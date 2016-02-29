@@ -1,4 +1,5 @@
 ﻿using SPW.Common;
+using SPW.DAL;
 using SPW.DataService;
 using SPW.Model;
 using SPW.UI.Web.Reports;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -110,6 +112,7 @@ namespace SPW.UI.Web.Page
 
         private AccountMastService _accountMastService;
         private PayInTranService _payInTranService;
+        private StoreService _storeService;
         private DataServiceEngine _dataServiceEngine;
 
         private void ReloadPageEngine()
@@ -129,6 +132,7 @@ namespace SPW.UI.Web.Page
         {
             _accountMastService = (AccountMastService)_dataServiceEngine.GetDataService(typeof(AccountMastService));
             _payInTranService = (PayInTranService)_dataServiceEngine.GetDataService(typeof(PayInTranService));
+            _storeService = (StoreService)_dataServiceEngine.GetDataService(typeof(StoreService));
         }
 
         private void CreatePageEngine()
@@ -179,6 +183,7 @@ namespace SPW.UI.Web.Page
             {
                 txtAccountName.Text = string.Empty;
             }
+
         }
 
         protected void rbBankThai_CheckedChanged(object sender, EventArgs e)
@@ -209,6 +214,7 @@ namespace SPW.UI.Web.Page
         {
             try 
             {
+                DebugLog.WriteLog("btnAdd_Click Start");
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
                 {
@@ -222,6 +228,9 @@ namespace SPW.UI.Web.Page
                 PAYIN_TRANS tmpItem = new PAYIN_TRANS();
                 tmpItem.CHQ_AMOUNT = Convert.ToDecimal(txtAmount.Text);
                 tmpItem.CHQ_BANK = txtBankCheck.Text;
+                tmpItem.CHQ_BR_BANK = txtBranceCheck.Text;
+                //tmpItem.STORE_ID_PAID = _storeService.GetStoreID(txtStoreCode.Text);
+                //tmpItem.STORE_NAME_PAID = txtStoreCode.Text;
                 tmpItem.CHQ_NO = txtCheck.Text;
                 tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
                 lstPayIn.Add(tmpItem);
@@ -257,6 +266,8 @@ namespace SPW.UI.Web.Page
                         btnAdd.Enabled = true;
                     }
                 }
+
+                DebugLog.WriteLog("btnAdd_Click Stop");
             }
             catch (Exception ex) 
             {
@@ -352,6 +363,8 @@ namespace SPW.UI.Web.Page
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+
+                    tmpItem.PAYIN_TYPE_PRINT = "";
                 }
 
                 Reports.PayInSlip ds = new Reports.PayInSlip();
@@ -360,10 +373,27 @@ namespace SPW.UI.Web.Page
 
                 drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                 drPayInSlipMain["TEL"] = "02-961-6686-7";
-                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString();
+                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                 drPayInSlipMain["AMOUNT_CHAR"] = lblAmount.Text.ToString();
                 drPayInSlipMain["DEPOSIT"] = "SPW";
-                drPayInSlipMain["ACCOUNT_NO1"] = ddlAccountMast.SelectedValue;
+                string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
+                string account = "";
+                foreach (string item in tmpAccount)
+                {
+                    account += item;
+                }
+
+                drPayInSlipMain["ACCOUNT_NO1"] = account[0];
+                drPayInSlipMain["ACCOUNT_NO2"] = account[1];
+                drPayInSlipMain["ACCOUNT_NO3"] = account[2];
+                drPayInSlipMain["ACCOUNT_NO4"] = account[3];
+                drPayInSlipMain["ACCOUNT_NO5"] = account[4];
+                drPayInSlipMain["ACCOUNT_NO6"] = account[5];
+                drPayInSlipMain["ACCOUNT_NO7"] = account[6];
+                drPayInSlipMain["ACCOUNT_NO8"] = account[7];
+                drPayInSlipMain["ACCOUNT_NO9"] = account[8];
+                drPayInSlipMain["ACCOUNT_NO10"] = account[9];
+                drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
                 payInSlipMain.Rows.Add(drPayInSlipMain);
 
                 DataTable payInSlipSub = ds.Tables["SUB"];
@@ -372,31 +402,31 @@ namespace SPW.UI.Web.Page
                 {
                     drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT;
+                    drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT.ToString("#,#.00#");
                 }
                 if (lstPayIn.Count() >= 2)
                 {
                     drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT;
+                    drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT.ToString("#,#.00#");
                 }
                 if (lstPayIn.Count() >= 3)
                 {
                     drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT;
+                    drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT.ToString("#,#.00#");
                 }
                 if (lstPayIn.Count() >= 4)
                 {
                     drPayInSlipSub["CHECK_NO4"] = lstPayIn[3].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK4"] = lstPayIn[3].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT;
+                    drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT.ToString("#,#.00#");
                 }
                 if (lstPayIn.Count() >= 5)
                 {
                     drPayInSlipSub["CHECK_NO5"] = lstPayIn[4].CHQ_NO;
                     drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT;
+                    drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
                 }
 
                 payInSlipSub.Rows.Add(drPayInSlipSub);
@@ -419,5 +449,11 @@ namespace SPW.UI.Web.Page
                 DebugLog.WriteLog(ex.ToString());
             }
         }
+
+        //[System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()] 
+        //public static string[] SearchTxtStoreCode(string STORE_CODE)
+        //{
+        //    return SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", STORE_CODE).ToArray();
+        //}
     }
 }
