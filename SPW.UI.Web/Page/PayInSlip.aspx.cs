@@ -416,7 +416,7 @@ namespace SPW.UI.Web.Page
 
         private void AutoCompleteBankName()
         {
-            List<string> nameList = SearchAutoCompleteDataService.Search("PAYIN_TRANS", "CHQ_BANK", "CHQ_BANK", "");
+            List<string> nameList = SearchAutoCompleteDataService.SearchGroupBy("PAYIN_TRANS", "CHQ_BANK", "CHQ_BANK", "", "CHQ_BANK");
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
@@ -432,7 +432,7 @@ namespace SPW.UI.Web.Page
 
         private void AutoCompleteBranceName()
         {
-            List<string> nameList = SearchAutoCompleteDataService.Search("PAYIN_TRANS", "CHQ_BR_BANK", "CHQ_BR_BANK", "");
+            List<string> nameList = SearchAutoCompleteDataService.SearchGroupBy("PAYIN_TRANS", "CHQ_BR_BANK", "CHQ_BR_BANK", "","CHQ_BR_BANK");
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
