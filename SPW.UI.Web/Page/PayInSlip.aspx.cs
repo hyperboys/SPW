@@ -153,6 +153,8 @@ namespace SPW.UI.Web.Page
                 grdBank.DataSource = null;
                 grdBank.DataBind();
                 AutoCompleteStoreName();
+                AutoCompleteBranceName();
+                AutoCompleteBankName();
                 Session["PAYIN"] = null;
                 Session["PAYIN_PRINT"] = null;
             }
@@ -410,6 +412,38 @@ namespace SPW.UI.Web.Page
             }
             str = "[" + str + "]";
             txtStoreName.Attributes.Add("data-source", str);
+        }
+
+        private void AutoCompleteBankName()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("PAYIN_TRANS", "CHQ_BANK", "CHQ_BANK", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtBankCheck.Attributes.Add("data-source", str);
+        }
+
+        private void AutoCompleteBranceName()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("PAYIN_TRANS", "CHQ_BR_BANK", "CHQ_BR_BANK", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtBranceCheck.Attributes.Add("data-source", str);
         }
 
         protected void btnPrint1_Click(object sender, EventArgs e)
