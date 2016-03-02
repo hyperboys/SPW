@@ -101,9 +101,9 @@
                                                 <asp:Label ID="lblDateTime" runat="server" Text="วันที่ "></asp:Label>
                                                 <div class='input-group date' id='datetimepicker1'>
                                                     <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
-                                                    <span class="input-group-addon">
+                                                   <%-- <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
+                                                    </span>--%>
                                                 </div>
                                             </td>
                                             <td></td>
