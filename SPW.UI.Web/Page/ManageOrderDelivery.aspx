@@ -97,7 +97,17 @@
                                             <asp:TextBox ID="txtVehicle" class="form-control" runat="server" Height="35px" placeholder="เลขที่ใบแปะหน้า"></asp:TextBox>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-md-2">สถานะ</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True">
+                                                <asp:ListItem Value="30">ไม่สำเร็จ</asp:ListItem>
+                                                <asp:ListItem Value="50">สำเร็จ</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3"></div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.col-lg-6 (nested) -->

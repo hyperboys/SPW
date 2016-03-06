@@ -8,7 +8,7 @@ using SPW.DAL;
 
 namespace SPW.DataService
 {
-    public class DeliveryIndexService : ServiceBase, IDataService<DELIVERY_INDEX>, IService 
+    public class DeliveryIndexService : ServiceBase, IDataService<DELIVERY_INDEX>, IService
     {
         #region IDataService<DELIVERY_INDEX> Members
 
@@ -52,7 +52,7 @@ namespace SPW.DataService
             return GetAll().Count();
         }
 
-        public int GetID(DateTime date) 
+        public int GetID(DateTime date)
         {
             return this._Datacontext.DELIVERY_INDEX.Where(x => x.CREATE_DATE == date.Date).Count();
         }
@@ -63,6 +63,19 @@ namespace SPW.DataService
             foreach (DELIVERY_INDEX tmp in SourceItems)
             {
                 List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.SYE_DEL == false).ToList();
+                List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
+                tmp.PROVINCE_NAME = getProvinceName(listPovinceID);
+            }
+            return SourceItems;
+        }
+
+        public List<DELIVERY_INDEX> GetAllByFilter(int PageIndex, int PageLimit, string status)
+        {
+            List<DELIVERY_INDEX> SourceItems = this.Datacontext.DELIVERY_INDEX.Include("DELIVERY_ORDER").Include("VEHICLE").Where(x => x.SYE_DEL == false).OrderBy(x => x.CREATE_DATE).ToList();
+            SourceItems = SourceItems.Where(x => x.ISDELETE == (status == "30" ? true : false)).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+            foreach (DELIVERY_INDEX tmp in SourceItems)
+            {
+                List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.DELORDER_STEP == status && x.SYE_DEL == false).ToList();
                 List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
                 tmp.PROVINCE_NAME = getProvinceName(listPovinceID);
             }
@@ -86,7 +99,7 @@ namespace SPW.DataService
                 SourceItems = SourceItems.Where(x => x.CREATE_DATE.Value.Date >= BeginDate.Value.Date && x.CREATE_DATE.Value.Date <= EndDate.Value.Date).ToList();
             }
 
-            foreach (DELIVERY_INDEX tmp in SourceItems) 
+            foreach (DELIVERY_INDEX tmp in SourceItems)
             {
                 List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.SYE_DEL == false).ToList();
                 List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
@@ -97,7 +110,35 @@ namespace SPW.DataService
             return SourceItems.Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
         }
 
-        public string getProvinceName(List<int> listPovinceID) 
+        public List<DELIVERY_INDEX> GetAllByFilterCondition(string DelOrderCode, int VehicleID, DateTime? BeginDate, DateTime? EndDate, int PageIndex, int PageLimit, ref int ItemsCount, string status)
+        {
+            List<DELIVERY_INDEX> SourceItems = GetAll().Where(x => x.ISDELETE == (status == "30" ? true : false)).ToList();
+            if (DelOrderCode.Trim() != "")
+            {
+                SourceItems = SourceItems.Where(x => x.DELIND_CODE.ToUpper().Contains(DelOrderCode.ToUpper())).ToList();
+            }
+            if (VehicleID > 0)
+            {
+                SourceItems = SourceItems.Where(x => x.VEHICLE_ID == VehicleID).ToList();
+            }
+            if (BeginDate != null && EndDate != null)
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+                SourceItems = SourceItems.Where(x => x.CREATE_DATE.Value.Date >= BeginDate.Value.Date && x.CREATE_DATE.Value.Date <= EndDate.Value.Date).ToList();
+            }
+
+            foreach (DELIVERY_INDEX tmp in SourceItems)
+            {
+                List<DELIVERY_ORDER> dlo = this.Datacontext.DELIVERY_ORDER.Include("STORE").Where(x => x.DELIND_ID == tmp.DELIND_ID && x.DELORDER_STEP == status && x.SYE_DEL == false).ToList();
+                List<int> listPovinceID = dlo.Select(x => x.STORE.PROVINCE_ID).ToList().Distinct().ToList();
+                tmp.PROVINCE_NAME = getProvinceName(listPovinceID);
+            }
+
+            ItemsCount = SourceItems.Count();
+            return SourceItems.Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+        }
+
+        public string getProvinceName(List<int> listPovinceID)
         {
             string province = "";
             foreach (int index in listPovinceID)
@@ -124,7 +165,7 @@ namespace SPW.DataService
 
         #endregion
 
-        public void ConfirmDelOrderIndex(List<DELIVERY_ORDER> DelOrderItems,int delIndexId,int UpdateID)
+        public void ConfirmDelOrderIndex(List<DELIVERY_ORDER> DelOrderItems, int delIndexId, int UpdateID)
         {
             DELIVERY_INDEX objdelIndex = Select(delIndexId);
             if (objdelIndex != null)
@@ -155,7 +196,7 @@ namespace SPW.DataService
                 //Update DeliveryOrder
                 foreach (var delOrder in DelOrderItems)
                 {
-                    DELIVERY_ORDER objDelOrderUpdate = (new DeliveryOrderService() { Datacontext = this._Datacontext}).Select(delOrder.DELORDER_ID);
+                    DELIVERY_ORDER objDelOrderUpdate = (new DeliveryOrderService() { Datacontext = this._Datacontext }).Select(delOrder.DELORDER_ID);
                     if (objDelOrderUpdate != null)
                     {
                         foreach (var Details in objDelOrderUpdate.DELIVERY_ORDER_DETAIL)
