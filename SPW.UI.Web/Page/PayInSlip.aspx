@@ -156,15 +156,15 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtBankCheck"
                                                     ErrorMessage="กรุณากรอกธนาคาาร(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
-                                            <td class="auto-style12">สาขา(เช็ค)</td>
-                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style12"><%--สาขา(เช็ค)--%></td>
+                                            <td class="auto-style1" style="text-align: center"><%--:--%></td>
                                             <td class="auto-style2">
-                                                <asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off"  Height="35px" Width="200px"></asp:TextBox>
-                                            </td>
+                                                <%--<asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off"  Height="35px" Width="200px"></asp:TextBox>
+                                            --%></td>
                                             <td>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBranceCheck"
+                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBranceCheck"
                                                     ErrorMessage="กรุณากรอกสาขา(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
-                                            </td>
+                                            --%></td>
                                         </tr>
                                         <tr>
                                             <td class="auto-style5">จำนวนเงิน

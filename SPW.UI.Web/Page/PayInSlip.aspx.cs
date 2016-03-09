@@ -232,7 +232,7 @@ namespace SPW.UI.Web.Page
                 PAYIN_TRANS tmpItem = new PAYIN_TRANS();
                 tmpItem.CHQ_AMOUNT = Convert.ToDecimal(txtAmount.Text);
                 tmpItem.CHQ_BANK = txtBankCheck.Text;
-                tmpItem.CHQ_BR_BANK = txtBranceCheck.Text;
+                tmpItem.CHQ_BR_BANK = "";
                 tmpItem.STORE_ID_PAID = _storeService.GetStoreID(txtStoreName.Text);
                 tmpItem.STORE_NAME_PAID = txtStoreName.Text;
                 tmpItem.CHQ_NO = txtCheck.Text;
@@ -332,7 +332,7 @@ namespace SPW.UI.Web.Page
         {
             txtAmount.Text = "";
             txtBankCheck.Text = "";
-            txtBranceCheck.Text = "";
+            //txtBranceCheck.Text = "";
             txtCheck.Text = "";
             txtStoreName.Text = "";
         }
@@ -471,7 +471,7 @@ namespace SPW.UI.Web.Page
             drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
             drPayInSlipMain["TEL"] = "02-961-6686-7";
             drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-            drPayInSlipMain["AMOUNT_CHAR"] = lblAmount.Text.ToString();
+            drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
             drPayInSlipMain["DEPOSIT"] = "SPW";
             string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
             string account = "";
