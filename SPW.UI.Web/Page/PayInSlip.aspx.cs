@@ -473,6 +473,7 @@ namespace SPW.UI.Web.Page
             drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
             drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
             drPayInSlipMain["DEPOSIT"] = "SPW";
+            drPayInSlipMain["DATE"] = txtStartDate.Text;
             string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
             string account = "";
             foreach (string item in tmpAccount)
