@@ -383,6 +383,8 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnACCOUNT_NO;
             
+            private global::System.Data.DataColumn columnDATE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MAINDataTable() {
@@ -554,6 +556,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DATEColumn {
+                get {
+                    return this.columnDATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -606,7 +616,8 @@ namespace SPW.UI.Web.Reports {
                         string ACCOUNT_NO9, 
                         string ACCOUNT_NO10, 
                         string CHECK_COUNT, 
-                        string ACCOUNT_NO) {
+                        string ACCOUNT_NO, 
+                        string DATE) {
                 MAINRow rowMAINRow = ((MAINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACCOUNT_NAME,
@@ -625,7 +636,8 @@ namespace SPW.UI.Web.Reports {
                         ACCOUNT_NO9,
                         ACCOUNT_NO10,
                         CHECK_COUNT,
-                        ACCOUNT_NO};
+                        ACCOUNT_NO,
+                        DATE};
                 rowMAINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMAINRow);
                 return rowMAINRow;
@@ -665,6 +677,7 @@ namespace SPW.UI.Web.Reports {
                 this.columnACCOUNT_NO10 = base.Columns["ACCOUNT_NO10"];
                 this.columnCHECK_COUNT = base.Columns["CHECK_COUNT"];
                 this.columnACCOUNT_NO = base.Columns["ACCOUNT_NO"];
+                this.columnDATE = base.Columns["DATE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -704,6 +717,8 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnCHECK_COUNT);
                 this.columnACCOUNT_NO = new global::System.Data.DataColumn("ACCOUNT_NO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCOUNT_NO);
+                this.columnDATE = new global::System.Data.DataColumn("DATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1794,6 +1809,22 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.DATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DATE\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsACCOUNT_NAMENull() {
                 return this.IsNull(this.tableMAIN.ACCOUNT_NAMEColumn);
             }
@@ -1994,6 +2025,18 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetACCOUNT_NONull() {
                 this[this.tableMAIN.ACCOUNT_NOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDATENull() {
+                return this.IsNull(this.tableMAIN.DATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDATENull() {
+                this[this.tableMAIN.DATEColumn] = global::System.Convert.DBNull;
             }
         }
         

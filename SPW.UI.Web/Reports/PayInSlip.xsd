@@ -12,7 +12,7 @@
   <xs:element name="PayInSlip" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PayInSlip" msprop:Generator_UserDSName="PayInSlip">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="MAIN" msprop:Generator_TableClassName="MAINDataTable" msprop:Generator_TableVarName="tableMAIN" msprop:Generator_TablePropName="MAIN" msprop:Generator_RowDeletingName="MAINRowDeleting" msprop:Generator_RowChangingName="MAINRowChanging" msprop:Generator_RowEvHandlerName="MAINRowChangeEventHandler" msprop:Generator_RowDeletedName="MAINRowDeleted" msprop:Generator_UserTableName="MAIN" msprop:Generator_RowChangedName="MAINRowChanged" msprop:Generator_RowEvArgName="MAINRowChangeEvent" msprop:Generator_RowClassName="MAINRow">
+        <xs:element name="MAIN" msprop:Generator_TableClassName="MAINDataTable" msprop:Generator_TableVarName="tableMAIN" msprop:Generator_RowChangedName="MAINRowChanged" msprop:Generator_TablePropName="MAIN" msprop:Generator_RowDeletingName="MAINRowDeleting" msprop:Generator_RowChangingName="MAINRowChanging" msprop:Generator_RowEvHandlerName="MAINRowChangeEventHandler" msprop:Generator_RowDeletedName="MAINRowDeleted" msprop:Generator_RowClassName="MAINRow" msprop:Generator_UserTableName="MAIN" msprop:Generator_RowEvArgName="MAINRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ACCOUNT_NAME" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NAME" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NAME" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NAMEColumn" msprop:Generator_UserColumnName="ACCOUNT_NAME" type="xs:string" minOccurs="0" />
@@ -32,10 +32,11 @@
               <xs:element name="ACCOUNT_NO10" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NO10" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NO10" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NO10Column" msprop:Generator_UserColumnName="ACCOUNT_NO10" type="xs:string" minOccurs="0" />
               <xs:element name="CHECK_COUNT" msprop:Generator_ColumnVarNameInTable="columnCHECK_COUNT" msprop:Generator_ColumnPropNameInRow="CHECK_COUNT" msprop:Generator_ColumnPropNameInTable="CHECK_COUNTColumn" msprop:Generator_UserColumnName="CHECK_COUNT" type="xs:string" minOccurs="0" />
               <xs:element name="ACCOUNT_NO" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NO" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NO" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NOColumn" msprop:Generator_UserColumnName="ACCOUNT_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SUB" msprop:Generator_TableClassName="SUBDataTable" msprop:Generator_TableVarName="tableSUB" msprop:Generator_TablePropName="SUB" msprop:Generator_RowDeletingName="SUBRowDeleting" msprop:Generator_RowChangingName="SUBRowChanging" msprop:Generator_RowEvHandlerName="SUBRowChangeEventHandler" msprop:Generator_RowDeletedName="SUBRowDeleted" msprop:Generator_UserTableName="SUB" msprop:Generator_RowChangedName="SUBRowChanged" msprop:Generator_RowEvArgName="SUBRowChangeEvent" msprop:Generator_RowClassName="SUBRow">
+        <xs:element name="SUB" msprop:Generator_TableClassName="SUBDataTable" msprop:Generator_TableVarName="tableSUB" msprop:Generator_RowChangedName="SUBRowChanged" msprop:Generator_TablePropName="SUB" msprop:Generator_RowDeletingName="SUBRowDeleting" msprop:Generator_RowChangingName="SUBRowChanging" msprop:Generator_RowEvHandlerName="SUBRowChangeEventHandler" msprop:Generator_RowDeletedName="SUBRowDeleted" msprop:Generator_RowClassName="SUBRow" msprop:Generator_UserTableName="SUB" msprop:Generator_RowEvArgName="SUBRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CHECK_NO1" msprop:Generator_ColumnVarNameInTable="columnCHECK_NO1" msprop:Generator_ColumnPropNameInRow="CHECK_NO1" msprop:Generator_ColumnPropNameInTable="CHECK_NO1Column" msprop:Generator_UserColumnName="CHECK_NO1" type="xs:string" minOccurs="0" />
@@ -56,7 +57,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SUM_PAPER" msprop:Generator_TableClassName="SUM_PAPERDataTable" msprop:Generator_TableVarName="tableSUM_PAPER" msprop:Generator_TablePropName="SUM_PAPER" msprop:Generator_RowDeletingName="SUM_PAPERRowDeleting" msprop:Generator_RowChangingName="SUM_PAPERRowChanging" msprop:Generator_RowEvHandlerName="SUM_PAPERRowChangeEventHandler" msprop:Generator_RowDeletedName="SUM_PAPERRowDeleted" msprop:Generator_UserTableName="SUM_PAPER" msprop:Generator_RowChangedName="SUM_PAPERRowChanged" msprop:Generator_RowEvArgName="SUM_PAPERRowChangeEvent" msprop:Generator_RowClassName="SUM_PAPERRow">
+        <xs:element name="SUM_PAPER" msprop:Generator_TableClassName="SUM_PAPERDataTable" msprop:Generator_TableVarName="tableSUM_PAPER" msprop:Generator_RowChangedName="SUM_PAPERRowChanged" msprop:Generator_TablePropName="SUM_PAPER" msprop:Generator_RowDeletingName="SUM_PAPERRowDeleting" msprop:Generator_RowChangingName="SUM_PAPERRowChanging" msprop:Generator_RowEvHandlerName="SUM_PAPERRowChangeEventHandler" msprop:Generator_RowDeletedName="SUM_PAPERRowDeleted" msprop:Generator_RowClassName="SUM_PAPERRow" msprop:Generator_UserTableName="SUM_PAPER" msprop:Generator_RowEvArgName="SUM_PAPERRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
