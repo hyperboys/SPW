@@ -218,7 +218,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                DebugLog.WriteLog("btnAdd_Click Start");
+                //DebugLog.WriteLog("btnAdd_Click Start");
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
                 {
@@ -248,30 +248,32 @@ namespace SPW.UI.Web.Page
                 rbBankKrungThai.Enabled = false;
                 rbBankThai.Enabled = false;
 
-                if (rbBankThai.Checked)
-                {
-                    if (lstPayIn.Count() == 3)
-                    {
-                        btnAdd.Enabled = false;
-                    }
-                    else
-                    {
-                        btnAdd.Enabled = true;
-                    }
-                }
-                else if (rbBankKrungThai.Checked)
-                {
-                    if (lstPayIn.Count() == 5)
-                    {
-                        btnAdd.Enabled = false;
-                    }
-                    else
-                    {
-                        btnAdd.Enabled = true;
-                    }
-                }
+                #region Check PayIn Old
+                //if (rbBankThai.Checked)
+                //{
+                //    if (lstPayIn.Count() == 3)
+                //    {
+                //        btnAdd.Enabled = false;
+                //    }
+                //    else
+                //    {
+                //        btnAdd.Enabled = true;
+                //    }
+                //}
+                //else if (rbBankKrungThai.Checked)
+                //{
+                //    if (lstPayIn.Count() == 5)
+                //    {
+                //        btnAdd.Enabled = false;
+                //    }
+                //    else
+                //    {
+                //        btnAdd.Enabled = true;
+                //    }
+                //}
+                #endregion
 
-                DebugLog.WriteLog("btnAdd_Click Stop");
+                //DebugLog.WriteLog("btnAdd_Click Stop");
             }
             catch (Exception ex)
             {

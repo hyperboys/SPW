@@ -91,16 +91,19 @@
                         Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+                            <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="ACCOUNT_ID" HeaderText="เลขที่บัญชีที่นำเข้า" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="15%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="BANK_NAME" HeaderText="ธนาคารที่นำเข้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                                <ItemStyle Width="20%"></ItemStyle>
+                             <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="15%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="ACCOUNT_ID" HeaderText="เลขที่บัญชีที่นำเข้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                                <ItemStyle Width="20%"></ItemStyle>
-                            </asp:BoundField>
-                            <asp:BoundField DataField="BANK_NAME" HeaderText="ธนาคาร" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร/สาขา เช็ค" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
                             <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">

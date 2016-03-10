@@ -293,6 +293,8 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnEND_DATE;
             
+            private global::System.Data.DataColumn columnCHQ_BANK;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PAYINDataTable() {
@@ -384,6 +386,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHQ_BANKColumn {
+                get {
+                    return this.columnCHQ_BANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PAYINRow AddPAYINRow(string PAYIN_DATE, string CHQ_NO, string ACCOUNT_ID, string BANK_NAME, string CHQ_AMOUNT, string START_DATE, string END_DATE) {
+            public PAYINRow AddPAYINRow(string PAYIN_DATE, string CHQ_NO, string ACCOUNT_ID, string BANK_NAME, string CHQ_AMOUNT, string START_DATE, string END_DATE, string CHQ_BANK) {
                 PAYINRow rowPAYINRow = ((PAYINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PAYIN_DATE,
@@ -428,7 +438,8 @@ namespace SPW.UI.Web.Reports {
                         BANK_NAME,
                         CHQ_AMOUNT,
                         START_DATE,
-                        END_DATE};
+                        END_DATE,
+                        CHQ_BANK};
                 rowPAYINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPAYINRow);
                 return rowPAYINRow;
@@ -458,6 +469,7 @@ namespace SPW.UI.Web.Reports {
                 this.columnCHQ_AMOUNT = base.Columns["CHQ_AMOUNT"];
                 this.columnSTART_DATE = base.Columns["START_DATE"];
                 this.columnEND_DATE = base.Columns["END_DATE"];
+                this.columnCHQ_BANK = base.Columns["CHQ_BANK"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -477,6 +489,8 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnSTART_DATE);
                 this.columnEND_DATE = new global::System.Data.DataColumn("END_DATE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEND_DATE);
+                this.columnCHQ_BANK = new global::System.Data.DataColumn("CHQ_BANK", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHQ_BANK);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -731,6 +745,22 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHQ_BANK {
+                get {
+                    try {
+                        return ((string)(this[this.tablePAYIN.CHQ_BANKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHQ_BANK\' in table \'PAYIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePAYIN.CHQ_BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPAYIN_DATENull() {
                 return this.IsNull(this.tablePAYIN.PAYIN_DATEColumn);
             }
@@ -811,6 +841,18 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEND_DATENull() {
                 this[this.tablePAYIN.END_DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHQ_BANKNull() {
+                return this.IsNull(this.tablePAYIN.CHQ_BANKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHQ_BANKNull() {
+                this[this.tablePAYIN.CHQ_BANKColumn] = global::System.Convert.DBNull;
             }
         }
         

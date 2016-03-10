@@ -122,6 +122,7 @@ namespace SPW.UI.Web.Page
                     drpayInSummaryData["ACCOUNT_ID"] = item.ACCOUNT_ID;
                     drpayInSummaryData["BANK_NAME"] = item.BANK_NAME;
                     drpayInSummaryData["CHQ_AMOUNT"] = item.CHQ_AMOUNT.ToString("#,###.00");
+                    drpayInSummaryData["CHQ_BANK"] = item.CHQ_BANK;
                     drpayInSummaryData["START_DATE"] = ((PAYIN_TRANS)lstPayin.OrderBy(x => x.PAYIN_DATE).FirstOrDefault()).PAYIN_DATE.ToString("dd/MM/yyyy");
                     drpayInSummaryData["END_DATE"] = ((PAYIN_TRANS)lstPayin.OrderByDescending(x => x.PAYIN_DATE).FirstOrDefault()).PAYIN_DATE.ToString("dd/MM/yyyy");
                     payInSummaryData.Rows.Add(drpayInSummaryData);

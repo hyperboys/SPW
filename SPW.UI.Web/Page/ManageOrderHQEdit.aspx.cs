@@ -187,35 +187,42 @@ namespace SPW.UI.Web.Page
                         DATAGRID data = new DATAGRID();
                         data.ORDER_ID = int.Parse(Request.QueryString["ORDER_ID"]);
                         data.PRODUCT_SEQ = int.Parse(((HiddenField)row.FindControl("hfPRODUCT_SEQ")).Value);
-                        data.PRODUCT_QTY = int.Parse(((TextBox)row.FindControl("txtQty")).Text == "" ? "0" :((TextBox)row.FindControl("txtQty")).Text);
-                        data.FLEE = int.Parse(((TextBox)row.FindControl("txtFleeQty")).Text == "" ? "0" : ((TextBox)row.FindControl("txtFleeQty")).Text);
                         data.COLOR_NAME = ((DropDownList)row.FindControl("ddlCOLOR_NAME")).SelectedItem.Value;
                         data.COLOR_TYPE_NAME = ((DropDownList)row.FindControl("ddlCOLOR_TYPE_NAME")).SelectedItem.Value;
                         data.PRODUCT_WEIGHT = decimal.Parse(row.Cells[4].Text);
                         data.PRODUCT_PRICE = decimal.Parse(((Label)row.FindControl("lblPRODUCT_PRICE")).Text);
                         data.PRODUCT_SEND_REMAIN_QTY = int.Parse(((HiddenField)row.FindControl("hfRemainQty")).Value);
                         data.PRODUCT_SEND_REMAIN_FLEE = int.Parse(((HiddenField)row.FindControl("hfRemainFlee")).Value);
+                        //แปลงจาก remain เป็น qty เพื่อให้ logic เหมือนเดิม
                         int oQty = int.Parse(((HiddenField)row.FindControl("hfOldQty")).Value);
                         int oFlee = int.Parse(((HiddenField)row.FindControl("hfOldFlee")).Value);
-                        data.PRODUCT_QTY = data.PRODUCT_QTY + (oQty - data.PRODUCT_SEND_REMAIN_QTY);
-                        data.FLEE = data.FLEE + (oFlee - data.PRODUCT_SEND_REMAIN_FLEE);
+                        int PRODUCT_QTY = int.Parse(((TextBox)row.FindControl("txtQty")).Text == "" ? "0" : ((TextBox)row.FindControl("txtQty")).Text);
+                        int FLEE = int.Parse(((TextBox)row.FindControl("txtFleeQty")).Text == "" ? "0" : ((TextBox)row.FindControl("txtFleeQty")).Text);
+                        int convertQty = (int)(PRODUCT_QTY + (oQty - data.PRODUCT_SEND_REMAIN_QTY));
+                        int convertFlee = (int)(FLEE + (oFlee - data.PRODUCT_SEND_REMAIN_FLEE));
+                        //แปลง input remain -> qty
+                        int oRQty = int.Parse(((HiddenField)row.FindControl("hfOldRemainQty")).Value);
+                        int oRFlee = int.Parse(((HiddenField)row.FindControl("hfOldRemainFlee")).Value);
+                        data.PRODUCT_QTY = oQty + (PRODUCT_QTY - oRQty);
+                        data.FLEE = oFlee + (FLEE - oRFlee);
+
                         if (oQty != data.PRODUCT_SEND_REMAIN_QTY || oFlee != data.PRODUCT_SEND_REMAIN_FLEE)
                         {
-                            if (data.PRODUCT_QTY < oQty - data.PRODUCT_SEND_REMAIN_QTY || data.FLEE < oFlee - data.PRODUCT_SEND_REMAIN_FLEE)
+                            if (convertQty < oQty - data.PRODUCT_SEND_REMAIN_QTY || convertFlee < oFlee - data.PRODUCT_SEND_REMAIN_FLEE)
                             {
                                 return false;
                             }
                             else
                             {
-                                data.PRODUCT_SEND_REMAIN_QTY = data.PRODUCT_SEND_REMAIN_QTY + data.PRODUCT_QTY - oQty;
-                                data.PRODUCT_SEND_REMAIN_FLEE = data.PRODUCT_SEND_REMAIN_FLEE + data.FLEE - oFlee;
+                                data.PRODUCT_SEND_REMAIN_QTY = data.PRODUCT_SEND_REMAIN_QTY + convertQty - oQty;
+                                data.PRODUCT_SEND_REMAIN_FLEE = data.PRODUCT_SEND_REMAIN_FLEE + convertFlee - oFlee;
                                 query.Add(data);
                             }
                         }
                         else
                         {
-                            data.PRODUCT_SEND_REMAIN_QTY = data.PRODUCT_SEND_REMAIN_QTY + data.PRODUCT_QTY - oQty;
-                            data.PRODUCT_SEND_REMAIN_FLEE = data.PRODUCT_SEND_REMAIN_FLEE + data.FLEE - oFlee;
+                            data.PRODUCT_SEND_REMAIN_QTY = data.PRODUCT_SEND_REMAIN_QTY + convertQty - oQty;
+                            data.PRODUCT_SEND_REMAIN_FLEE = data.PRODUCT_SEND_REMAIN_FLEE + convertFlee - oFlee;
                             query.Add(data);
                         }
                     }

@@ -98,34 +98,47 @@
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td class="auto-style2">
-                                                <asp:Label ID="lblDateTime" runat="server" Text="วันที่ "></asp:Label>
-                                                <div class='input-group date' id='datetimepicker1'>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="auto-style5">
+                                                เลือกบัญชี
+                                            </td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style2">
+                                                 <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAccountMast_SelectedIndexChanged">
+                                                    <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td class="auto-style13"></td>
+                                            <td class="auto-style12">วันที่</td>
+                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                            <td class="auto-style2">
+                                                
+                                                <div class='input-group date' id='Div1'>
                                                     <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
-                                                   <%-- <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>--%>
                                                 </div>
                                             </td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="auto-style5">เลือกบัญชี
-                                            </td>
-                                            <td class="auto-style1" style="text-align: center">:</td>
-                                            <td class="auto-style2">
-                                                <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAccountMast_SelectedIndexChanged">
-                                                    <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                                </asp:DropDownList></td>
-                                            <td class="auto-style13"></td>
-                                            <td class="auto-style12">ชื่อบัญชี</td>
+                                            <td class="auto-style5">
+                                                ชื่อบัญชี</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
                                                 <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Height="35px" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
-                                            </td>
-                                            <td>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAccountName"
+                                               </td>
+                                            <td class="auto-style13">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAccountName"
                                                     ErrorMessage="กรุณาเลือกบัญชี" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
+                                            <td class="auto-style12">สาขา</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style2">
+                                                <asp:TextBox ID="txtBranceName" class="form-control" runat="server" Height="35px" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
+                                            </td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td class="auto-style5">เลขที่เช็ค

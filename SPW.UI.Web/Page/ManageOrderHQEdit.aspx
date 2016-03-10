@@ -168,7 +168,7 @@
                                 <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("PRODUCT_SEND_REMAIN_QTY") %>' OnChange="check_change_qty(this)"></asp:TextBox>
-                                        <asp:HiddenField ID="hfQty" runat="server" Value='<%# Bind("PRODUCT_QTY") %>' />
+                                        <asp:HiddenField ID="hfOldRemainQty" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_QTY") %>' />
                                         <asp:HiddenField ID="hfOldQty" runat="server" Value='<%# Bind("PRODUCT_QTY") %>' />
                                         <asp:HiddenField ID="hfRemainQty" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_QTY") %>' />
                                     </ItemTemplate>
@@ -181,7 +181,7 @@
                                 <asp:TemplateField HeaderText="ฟรี" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtFleeQty" runat="server" class="form-control" Style="height: 35px;" Text='<%# Eval("PRODUCT_SEND_REMAIN_FLEE") %>' OnChange="check_change_flee(this)"></asp:TextBox>
-                                        <asp:HiddenField ID="hfFleeQty" runat="server" Value='<%# Bind("FLEE") %>' />
+                                        <asp:HiddenField ID="hfOldRemainFlee" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_FLEE") %>' />
                                         <asp:HiddenField ID="hfOldFlee" runat="server" Value='<%# Bind("FLEE") %>' />
                                         <asp:HiddenField ID="hfRemainFlee" runat="server" Value='<%# Bind("PRODUCT_SEND_REMAIN_FLEE") %>' />
                                     </ItemTemplate>

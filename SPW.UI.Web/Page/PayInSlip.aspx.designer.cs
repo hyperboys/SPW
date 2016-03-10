@@ -67,13 +67,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.RadioButton rbBankKrungThai;
         
         /// <summary>
-        /// lblDateTime control.
+        /// ddlAccountMast control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateTime;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountMast;
         
         /// <summary>
         /// txtStartDate control.
@@ -85,15 +85,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
         
         /// <summary>
-        /// ddlAccountMast control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAccountMast;
-        
-        /// <summary>
         /// txtAccountName control.
         /// </summary>
         /// <remarks>
@@ -103,13 +94,22 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.TextBox txtAccountName;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// txtBranceName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBranceName;
         
         /// <summary>
         /// txtCheck control.
