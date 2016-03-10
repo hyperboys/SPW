@@ -16,10 +16,11 @@ namespace SPW.Model
     {
         public int VENDOR_ID { get; set; }
         public int VENDEAL_SEQ_NO { get; set; }
-        public string VENDEAL_TYPE_CODE { get; set; }
-        public int VENDEAL_TYPE_VALUE { get; set; }
+        public string VENDEAL_DESC { get; set; }
         public string VENDEAL_PRE_COND_TYPE { get; set; }
         public Nullable<int> VENDEAL_PRE_COND_VALUE { get; set; }
+        public string VENDEAL_TYPE_CODE { get; set; }
+        public int VENDEAL_TYPE_VALUE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }

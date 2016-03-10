@@ -33,6 +33,7 @@
               <xs:element name="CHECK_COUNT" msprop:Generator_ColumnVarNameInTable="columnCHECK_COUNT" msprop:Generator_ColumnPropNameInRow="CHECK_COUNT" msprop:Generator_ColumnPropNameInTable="CHECK_COUNTColumn" msprop:Generator_UserColumnName="CHECK_COUNT" type="xs:string" minOccurs="0" />
               <xs:element name="ACCOUNT_NO" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NO" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NO" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NOColumn" msprop:Generator_UserColumnName="ACCOUNT_NO" type="xs:string" minOccurs="0" />
               <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="BANK" msprop:Generator_ColumnVarNameInTable="columnBANK" msprop:Generator_ColumnPropNameInRow="BANK" msprop:Generator_ColumnPropNameInTable="BANKColumn" msprop:Generator_UserColumnName="BANK" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -59,6 +60,15 @@
         </xs:element>
         <xs:element name="SUM_PAPER" msprop:Generator_TableClassName="SUM_PAPERDataTable" msprop:Generator_TableVarName="tableSUM_PAPER" msprop:Generator_RowChangedName="SUM_PAPERRowChanged" msprop:Generator_TablePropName="SUM_PAPER" msprop:Generator_RowDeletingName="SUM_PAPERRowDeleting" msprop:Generator_RowChangingName="SUM_PAPERRowChanging" msprop:Generator_RowEvHandlerName="SUM_PAPERRowChangeEventHandler" msprop:Generator_RowDeletedName="SUM_PAPERRowDeleted" msprop:Generator_RowClassName="SUM_PAPERRow" msprop:Generator_UserTableName="SUM_PAPER" msprop:Generator_RowEvArgName="SUM_PAPERRowChangeEvent">
           <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SEQ" msprop:Generator_ColumnVarNameInTable="columnSEQ" msprop:Generator_ColumnPropNameInRow="SEQ" msprop:Generator_ColumnPropNameInTable="SEQColumn" msprop:Generator_UserColumnName="SEQ" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="CHECK_NO" msprop:Generator_ColumnVarNameInTable="columnCHECK_NO" msprop:Generator_ColumnPropNameInRow="CHECK_NO" msprop:Generator_ColumnPropNameInTable="CHECK_NOColumn" msprop:Generator_UserColumnName="CHECK_NO" type="xs:string" minOccurs="0" />
+              <xs:element name="CHECK_BANK" msprop:Generator_ColumnVarNameInTable="columnCHECK_BANK" msprop:Generator_ColumnPropNameInRow="CHECK_BANK" msprop:Generator_ColumnPropNameInTable="CHECK_BANKColumn" msprop:Generator_UserColumnName="CHECK_BANK" type="xs:string" minOccurs="0" />
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:string" minOccurs="0" />
+              <xs:element name="STORE_NAME" msprop:Generator_ColumnVarNameInTable="columnSTORE_NAME" msprop:Generator_ColumnPropNameInRow="STORE_NAME" msprop:Generator_ColumnPropNameInTable="STORE_NAMEColumn" msprop:Generator_UserColumnName="STORE_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="STORE_ID" msprop:Generator_ColumnVarNameInTable="columnSTORE_ID" msprop:Generator_ColumnPropNameInRow="STORE_ID" msprop:Generator_ColumnPropNameInTable="STORE_IDColumn" msprop:Generator_UserColumnName="STORE_ID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>

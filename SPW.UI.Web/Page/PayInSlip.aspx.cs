@@ -182,10 +182,12 @@ namespace SPW.UI.Web.Page
             {
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 txtAccountName.Text = accountMast.ACCOUNT_NAME;
+                txtBranceName.Text = accountMast.BANK_BRH_NAME;
             }
             else
             {
                 txtAccountName.Text = string.Empty;
+                txtBranceName.Text = string.Empty;
             }
 
         }
@@ -476,6 +478,7 @@ namespace SPW.UI.Web.Page
             drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
             drPayInSlipMain["DEPOSIT"] = "SPW";
             drPayInSlipMain["DATE"] = txtStartDate.Text;
+            drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
             string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
             string account = "";
             foreach (string item in tmpAccount)
@@ -531,7 +534,6 @@ namespace SPW.UI.Web.Page
                     drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
                 }
             }
-
             payInSlipSub.Rows.Add(drPayInSlipSub);
             Session["DataToReport"] = ds;
             if (rbBankThai.Checked)

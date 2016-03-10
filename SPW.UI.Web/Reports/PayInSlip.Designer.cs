@@ -385,6 +385,8 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnDATE;
             
+            private global::System.Data.DataColumn columnBANK;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MAINDataTable() {
@@ -564,6 +566,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BANKColumn {
+                get {
+                    return this.columnBANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -617,7 +627,8 @@ namespace SPW.UI.Web.Reports {
                         string ACCOUNT_NO10, 
                         string CHECK_COUNT, 
                         string ACCOUNT_NO, 
-                        string DATE) {
+                        string DATE, 
+                        string BANK) {
                 MAINRow rowMAINRow = ((MAINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACCOUNT_NAME,
@@ -637,7 +648,8 @@ namespace SPW.UI.Web.Reports {
                         ACCOUNT_NO10,
                         CHECK_COUNT,
                         ACCOUNT_NO,
-                        DATE};
+                        DATE,
+                        BANK};
                 rowMAINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMAINRow);
                 return rowMAINRow;
@@ -678,6 +690,7 @@ namespace SPW.UI.Web.Reports {
                 this.columnCHECK_COUNT = base.Columns["CHECK_COUNT"];
                 this.columnACCOUNT_NO = base.Columns["ACCOUNT_NO"];
                 this.columnDATE = base.Columns["DATE"];
+                this.columnBANK = base.Columns["BANK"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -719,6 +732,8 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnACCOUNT_NO);
                 this.columnDATE = new global::System.Data.DataColumn("DATE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDATE);
+                this.columnBANK = new global::System.Data.DataColumn("BANK", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBANK);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1295,6 +1310,20 @@ namespace SPW.UI.Web.Reports {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SUM_PAPERDataTable : global::System.Data.TypedTableBase<SUM_PAPERRow> {
             
+            private global::System.Data.DataColumn columnSEQ;
+            
+            private global::System.Data.DataColumn columnDATE;
+            
+            private global::System.Data.DataColumn columnCHECK_NO;
+            
+            private global::System.Data.DataColumn columnCHECK_BANK;
+            
+            private global::System.Data.DataColumn columnAMOUNT;
+            
+            private global::System.Data.DataColumn columnSTORE_NAME;
+            
+            private global::System.Data.DataColumn columnSTORE_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SUM_PAPERDataTable() {
@@ -1326,6 +1355,62 @@ namespace SPW.UI.Web.Reports {
             protected SUM_PAPERDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SEQColumn {
+                get {
+                    return this.columnSEQ;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DATEColumn {
+                get {
+                    return this.columnDATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_NOColumn {
+                get {
+                    return this.columnCHECK_NO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHECK_BANKColumn {
+                get {
+                    return this.columnCHECK_BANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AMOUNTColumn {
+                get {
+                    return this.columnAMOUNT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn STORE_NAMEColumn {
+                get {
+                    return this.columnSTORE_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn STORE_IDColumn {
+                get {
+                    return this.columnSTORE_ID;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1365,9 +1450,16 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SUM_PAPERRow AddSUM_PAPERRow() {
+            public SUM_PAPERRow AddSUM_PAPERRow(string SEQ, string DATE, string CHECK_NO, string CHECK_BANK, string AMOUNT, string STORE_NAME, string STORE_ID) {
                 SUM_PAPERRow rowSUM_PAPERRow = ((SUM_PAPERRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
+                object[] columnValuesArray = new object[] {
+                        SEQ,
+                        DATE,
+                        CHECK_NO,
+                        CHECK_BANK,
+                        AMOUNT,
+                        STORE_NAME,
+                        STORE_ID};
                 rowSUM_PAPERRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSUM_PAPERRow);
                 return rowSUM_PAPERRow;
@@ -1390,11 +1482,32 @@ namespace SPW.UI.Web.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnSEQ = base.Columns["SEQ"];
+                this.columnDATE = base.Columns["DATE"];
+                this.columnCHECK_NO = base.Columns["CHECK_NO"];
+                this.columnCHECK_BANK = base.Columns["CHECK_BANK"];
+                this.columnAMOUNT = base.Columns["AMOUNT"];
+                this.columnSTORE_NAME = base.Columns["STORE_NAME"];
+                this.columnSTORE_ID = base.Columns["STORE_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnSEQ = new global::System.Data.DataColumn("SEQ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSEQ);
+                this.columnDATE = new global::System.Data.DataColumn("DATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE);
+                this.columnCHECK_NO = new global::System.Data.DataColumn("CHECK_NO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_NO);
+                this.columnCHECK_BANK = new global::System.Data.DataColumn("CHECK_BANK", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECK_BANK);
+                this.columnAMOUNT = new global::System.Data.DataColumn("AMOUNT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMOUNT);
+                this.columnSTORE_NAME = new global::System.Data.DataColumn("STORE_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSTORE_NAME);
+                this.columnSTORE_ID = new global::System.Data.DataColumn("STORE_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSTORE_ID);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1825,6 +1938,22 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BANK {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.BANKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BANK\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsACCOUNT_NAMENull() {
                 return this.IsNull(this.tableMAIN.ACCOUNT_NAMEColumn);
             }
@@ -2037,6 +2166,18 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDATENull() {
                 this[this.tableMAIN.DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBANKNull() {
+                return this.IsNull(this.tableMAIN.BANKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBANKNull() {
+                this[this.tableMAIN.BANKColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2487,6 +2628,202 @@ namespace SPW.UI.Web.Reports {
             internal SUM_PAPERRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableSUM_PAPER = ((SUM_PAPERDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SEQ {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.SEQColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SEQ\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.SEQColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.DATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DATE\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.DATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_NO {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.CHECK_NOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_NO\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.CHECK_NOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHECK_BANK {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.CHECK_BANKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECK_BANK\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.CHECK_BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AMOUNT {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.AMOUNTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMOUNT\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.AMOUNTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string STORE_NAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.STORE_NAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'STORE_NAME\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.STORE_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string STORE_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tableSUM_PAPER.STORE_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'STORE_ID\' in table \'SUM_PAPER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSUM_PAPER.STORE_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSEQNull() {
+                return this.IsNull(this.tableSUM_PAPER.SEQColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSEQNull() {
+                this[this.tableSUM_PAPER.SEQColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDATENull() {
+                return this.IsNull(this.tableSUM_PAPER.DATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDATENull() {
+                this[this.tableSUM_PAPER.DATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_NONull() {
+                return this.IsNull(this.tableSUM_PAPER.CHECK_NOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_NONull() {
+                this[this.tableSUM_PAPER.CHECK_NOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCHECK_BANKNull() {
+                return this.IsNull(this.tableSUM_PAPER.CHECK_BANKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCHECK_BANKNull() {
+                this[this.tableSUM_PAPER.CHECK_BANKColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAMOUNTNull() {
+                return this.IsNull(this.tableSUM_PAPER.AMOUNTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAMOUNTNull() {
+                this[this.tableSUM_PAPER.AMOUNTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSTORE_NAMENull() {
+                return this.IsNull(this.tableSUM_PAPER.STORE_NAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSTORE_NAMENull() {
+                this[this.tableSUM_PAPER.STORE_NAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSTORE_IDNull() {
+                return this.IsNull(this.tableSUM_PAPER.STORE_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSTORE_IDNull() {
+                this[this.tableSUM_PAPER.STORE_IDColumn] = global::System.Convert.DBNull;
             }
         }
         

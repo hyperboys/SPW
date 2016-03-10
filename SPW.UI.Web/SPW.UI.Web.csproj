@@ -213,6 +213,7 @@
     <Content Include="Page\SearchDepartment.aspx" />
     <Content Include="Page\SearchEmployee.aspx" />
     <Content Include="Page\StockIn.aspx" />
+    <Content Include="Reports\PayInSlipPaper.aspx" />
     <Content Include="Reports\PayInSummary.aspx" />
     <Content Include="Reports\PayInSlipKSBReport.aspx" />
     <Content Include="Reports\PayInSlipTMBReport.aspx" />
@@ -639,6 +640,19 @@
       <DependentUpon>StockIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\PayInSlipPaper.aspx.cs">
+      <DependentUpon>PayInSlipPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\PayInSlipPaper.aspx.designer.cs">
+      <DependentUpon>PayInSlipPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PayInSlipPaperReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayInSlipPaperReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\PayInSummary.aspx.cs">
       <DependentUpon>PayInSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -875,6 +889,10 @@
     <EmbeddedResource Include="Reports\InOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PayInSlipPaperReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayInSlipPaperReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PayInSlipTMB.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

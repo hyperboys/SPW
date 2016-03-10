@@ -23,6 +23,7 @@ namespace SPW.Model
         public string ACCOUNT_NAME { get; set; }
         public string BANK_NAME { get; set; }
         public string BANK_SH_NAME { get; set; }
+        public string BANK_BRH_NAME { get; set; }
         public int PAYIN_FORMAT { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }

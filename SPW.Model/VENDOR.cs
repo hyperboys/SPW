@@ -36,6 +36,10 @@ namespace SPW.Model
         public string VENDOR_POSTCODE { get; set; }
         public string VENDOR_EMAIL { get; set; }
         public string VENDOR_CONTACT_PERSON { get; set; }
+        public string VENDOR_CREDIT_INTERVAL { get; set; }
+        public int VENDOR_CREDIT_VALUE { get; set; }
+        public string VAT_TYPE { get; set; }
+        public int VAT_RATE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }

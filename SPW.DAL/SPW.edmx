@@ -359,6 +359,7 @@
           <Property Name="ACCOUNT_NAME" Type="nvarchar" Nullable="false" MaxLength="75" />
           <Property Name="BANK_NAME" Type="nvarchar" Nullable="false" MaxLength="75" />
           <Property Name="BANK_SH_NAME" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="BANK_BRH_NAME" Type="nvarchar" MaxLength="75" />
           <Property Name="PAYIN_FORMAT" Type="int" Nullable="false" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
@@ -1047,8 +1048,12 @@
           <Property Name="PROVINCE_ID" Type="int" Nullable="false" />
           <Property Name="ROAD_ID" Type="int" />
           <Property Name="VENDOR_POSTCODE" Type="nvarchar" MaxLength="50" />
-          <Property Name="VENDOR_EMAIL" Type="nvarchar" MaxLength="75" />
-          <Property Name="VENDOR_CONTACT_PERSON" Type="nvarchar" MaxLength="75" />
+          <Property Name="VENDOR_EMAIL" Type="nvarchar" MaxLength="120" />
+          <Property Name="VENDOR_CONTACT_PERSON" Type="nvarchar" MaxLength="120" />
+          <Property Name="VENDOR_CREDIT_INTERVAL" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="VENDOR_CREDIT_VALUE" Type="int" Nullable="false" />
+          <Property Name="VAT_TYPE" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="VAT_RATE" Type="int" Nullable="false" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -1062,10 +1067,11 @@
           </Key>
           <Property Name="VENDOR_ID" Type="int" Nullable="false" />
           <Property Name="VENDEAL_SEQ_NO" Type="int" Nullable="false" />
-          <Property Name="VENDEAL_TYPE_CODE" Type="nvarchar" Nullable="false" MaxLength="10" />
-          <Property Name="VENDEAL_TYPE_VALUE" Type="int" Nullable="false" />
+          <Property Name="VENDEAL_DESC" Type="nvarchar" Nullable="false" MaxLength="120" />
           <Property Name="VENDEAL_PRE_COND_TYPE" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="VENDEAL_PRE_COND_VALUE" Type="int" />
+          <Property Name="VENDEAL_TYPE_CODE" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="VENDEAL_TYPE_VALUE" Type="int" Nullable="false" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -2339,6 +2345,7 @@
           <Property Type="String" Name="ACCOUNT_NAME" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BANK_NAME" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BANK_SH_NAME" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BANK_BRH_NAME" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="PAYIN_FORMAT" Nullable="false" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
@@ -3160,8 +3167,12 @@
           <Property Type="Int32" Name="PROVINCE_ID" Nullable="false" />
           <Property Type="Int32" Name="ROAD_ID" />
           <Property Type="String" Name="VENDOR_POSTCODE" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="VENDOR_EMAIL" MaxLength="75" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="VENDOR_CONTACT_PERSON" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VENDOR_EMAIL" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VENDOR_CONTACT_PERSON" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VENDOR_CREDIT_INTERVAL" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VENDOR_CREDIT_VALUE" Nullable="false" />
+          <Property Type="String" Name="VAT_TYPE" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VAT_RATE" Nullable="false" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
@@ -3179,10 +3190,11 @@
           </Key>
           <Property Type="Int32" Name="VENDOR_ID" Nullable="false" />
           <Property Type="Int32" Name="VENDEAL_SEQ_NO" Nullable="false" />
-          <Property Type="String" Name="VENDEAL_TYPE_CODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="VENDEAL_TYPE_VALUE" Nullable="false" />
+          <Property Type="String" Name="VENDEAL_DESC" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="VENDEAL_PRE_COND_TYPE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="VENDEAL_PRE_COND_VALUE" />
+          <Property Type="String" Name="VENDEAL_TYPE_CODE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VENDEAL_TYPE_VALUE" Nullable="false" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
           <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
@@ -4126,6 +4138,7 @@
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
                 <ScalarProperty Name="PAYIN_FORMAT" ColumnName="PAYIN_FORMAT" />
+                <ScalarProperty Name="BANK_BRH_NAME" ColumnName="BANK_BRH_NAME" />
                 <ScalarProperty Name="BANK_SH_NAME" ColumnName="BANK_SH_NAME" />
                 <ScalarProperty Name="BANK_NAME" ColumnName="BANK_NAME" />
                 <ScalarProperty Name="ACCOUNT_NAME" ColumnName="ACCOUNT_NAME" />
@@ -4833,6 +4846,10 @@
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="VAT_RATE" ColumnName="VAT_RATE" />
+                <ScalarProperty Name="VAT_TYPE" ColumnName="VAT_TYPE" />
+                <ScalarProperty Name="VENDOR_CREDIT_VALUE" ColumnName="VENDOR_CREDIT_VALUE" />
+                <ScalarProperty Name="VENDOR_CREDIT_INTERVAL" ColumnName="VENDOR_CREDIT_INTERVAL" />
                 <ScalarProperty Name="VENDOR_CONTACT_PERSON" ColumnName="VENDOR_CONTACT_PERSON" />
                 <ScalarProperty Name="VENDOR_EMAIL" ColumnName="VENDOR_EMAIL" />
                 <ScalarProperty Name="VENDOR_POSTCODE" ColumnName="VENDOR_POSTCODE" />
@@ -4860,10 +4877,11 @@
                 <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
-                <ScalarProperty Name="VENDEAL_PRE_COND_VALUE" ColumnName="VENDEAL_PRE_COND_VALUE" />
-                <ScalarProperty Name="VENDEAL_PRE_COND_TYPE" ColumnName="VENDEAL_PRE_COND_TYPE" />
                 <ScalarProperty Name="VENDEAL_TYPE_VALUE" ColumnName="VENDEAL_TYPE_VALUE" />
                 <ScalarProperty Name="VENDEAL_TYPE_CODE" ColumnName="VENDEAL_TYPE_CODE" />
+                <ScalarProperty Name="VENDEAL_PRE_COND_VALUE" ColumnName="VENDEAL_PRE_COND_VALUE" />
+                <ScalarProperty Name="VENDEAL_PRE_COND_TYPE" ColumnName="VENDEAL_PRE_COND_TYPE" />
+                <ScalarProperty Name="VENDEAL_DESC" ColumnName="VENDEAL_DESC" />
                 <ScalarProperty Name="VENDEAL_SEQ_NO" ColumnName="VENDEAL_SEQ_NO" />
                 <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
               </MappingFragment>
@@ -4919,49 +4937,49 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="23">
-        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="11.234753474236817" PointY="10.624598820984643" />
-        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="7.5910344121935935" PointY="16.77776245063998" />
-        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="7.6868279872866481" PointY="24.003265600653023" />
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="7.9771608021003946" PointY="20.422067502710068" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="3.7002469132189857" PointY="29.781700699488493" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="8.99445131839926" PointY="18.845959672166948" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="6.3491550694914327" PointY="17.17885192538558" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="10.04804261124136" PointY="31.112292348925159" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="5.8694665179911372" PointY="10.47773372124775" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="4.3579606341002322" PointY="24.511505525797375" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="2.7522572403551346" PointY="23.423893701016855" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="4.7997180394827" PointY="31.779829099671836" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="0.39218052122377811" PointY="31.169407158703269" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="11.636769862676399" PointY="0.028609290732354527" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="0.78508837930163755" PointY="10.85267225413242" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="4.5255916903380271" PointY="27.623635886061766" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="7.8296398538302814" PointY="13.645185536539735" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="6.0071620652485453" PointY="8.6215449909779913" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="2.1402432425600679" PointY="18.40765441321193" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="11.764184525126678" PointY="14.311301118839207" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="1.899267907207491" PointY="4.6525933168142073" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="7.8034047036447589" PointY="9.901295115193955" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="0.12069946160572556" PointY="13.356951183340025" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="3.3388429299643461" PointY="20.663296351518156" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="4.1992906258438207" PointY="22.53760328448266" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="4.8853922769824942" PointY="7.4757687335255412" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="2.9123588888497833" PointY="14.151984221372747" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="11.228783463700108" PointY="6.5354488969479911" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="11.18450651838654" PointY="20.462929332844414" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="5.8994803977662142" PointY="21.328800807394462" />
-        <EntityTypeShape EntityType="SPWModel.STORE_NOTFOUND" Width="1.5" PointX="9.3644547375684866" PointY="21.243819514868697" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="6.8731869342146386" PointY="31.014652847784877" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="6.6425460719701581" PointY="28.36156762966959" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="11.237595023232323" PointY="3.2858946487707525" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="0.43490740677104672" PointY="18.173235305665635" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="9.5268663882868676" PointY="29.244256301431104" />
-        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="4.1649656203412295" PointY="29.309927238761414" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="7.2925466649665251" PointY="2.6867593241328183" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="0.98055543423656166" PointY="2.8979529900932466" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="11.796736450771213" PointY="19.688863539923386" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_CONDITION" Width="1.5" PointX="8.34968475454938" PointY="10.368089948952241" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="7.8114378581808115" PointY="11.555965726988374" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="11.184359818317164" PointY="4.59247577404253" />
+        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="3.6703805828794747" PointY="29.709968744642087" />
+        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="9.7346585456908947" PointY="28.022178528840737" />
+        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="10.187210048636054" PointY="2.5423402649081965" />
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="4.3747150136040123" PointY="28.743295593533336" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="3.3065322299052649" PointY="15.627142198210184" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="11.371970833918066" PointY="9.3609602792938063" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="0.5373291953174999" PointY="2.5644662839195069" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="2.78029291274971" PointY="13.289236402739416" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="0.78047201260015" PointY="16.0336697027244" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="3.4484286138082054" PointY="3.9375876057602408" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="7.8346018008117575" PointY="0.58007378903221052" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="10.365751051514295" PointY="18.2247136916149" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="5.4386697585874568" PointY="2.5149188202409629" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="5.372389864815581" PointY="8.8887063306238066" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="0.93759102231710734" PointY="2.5810164523222561" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="11.951828889526347" PointY="19.958557004089727" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="10.110431251167521" PointY="15.3498878699494" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="4.9040813282616815" PointY="26.312663895223597" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="9.2396336818298472" PointY="24.656946074523471" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="8.0460476912772521" PointY="27.382693005438284" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="7.1906361725137744" PointY="29.226725174685345" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="0.516881939264425" PointY="31.512438207637722" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="6.5346940395118178" PointY="2.8636216683609512" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="4.8604236211909093" PointY="6.2898649602615579" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="5.24934960028592" PointY="6.9988800766872616" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="10.672358940668572" PointY="7.4987886135926418" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="0.91678808858468575" PointY="8.7863625775959164" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="1.3139520759293586" PointY="9.207607765313055" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="0.77548722772648881" PointY="7.73437576356082" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="5.06964718972782" PointY="24.650974642788515" />
+        <EntityTypeShape EntityType="SPWModel.STORE_NOTFOUND" Width="1.5" PointX="7.5809877345249923" PointY="2.7772003723202277" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="9.8411448252578939" PointY="6.236402827425116" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="5.9083494348024717" PointY="10.366698553025117" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="5.3999288535676566" PointY="18.0829899842306" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="8.0575935282081339" PointY="13.101450538775628" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="7.7438299691974333" PointY="9.4243126257435943" />
+        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="9.9665784472444" PointY="13.813116631383597" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="6.2859591796463166" PointY="23.665546294146004" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="11.700645731622654" PointY="28.129564596400392" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="0.29957359484377022" PointY="11.639497687872265" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_CONDITION" Width="1.5" PointX="8.0826709363994524" PointY="8.03650801257999" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="10.083915273698008" PointY="27.501362649491693" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="2.295522228952275" PointY="24.372755091810951" />
         <AssociationConnector Association="SPWModel.FK_PAYIN_ACCOUNT" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VEHICLE" />
