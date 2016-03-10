@@ -12,7 +12,7 @@ namespace SPW.UI.Web.Reports
 {
     public partial class PayInSlipPaper : System.Web.UI.Page
     {
-        PayInSlipKSB objRpt = new PayInSlipKSB();
+        PayInSlipPaperReport objRpt = new PayInSlipPaperReport();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -23,9 +23,7 @@ namespace SPW.UI.Web.Reports
                     ds = Session["DataToReport"] as PayInSlip;
                 }
 
-
                 objRpt.SetDataSource(ds);
-
                 this.CrystalReportViewer1.ReportSource = objRpt;
                 this.CrystalReportViewer1.RefreshReport();
             }
@@ -40,6 +38,5 @@ namespace SPW.UI.Web.Reports
             objRpt.Close();
             objRpt.Dispose();
         }
-
     }
 }

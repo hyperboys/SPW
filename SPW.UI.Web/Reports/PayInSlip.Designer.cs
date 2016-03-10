@@ -387,6 +387,8 @@ namespace SPW.UI.Web.Reports {
             
             private global::System.Data.DataColumn columnBANK;
             
+            private global::System.Data.DataColumn columnBR_BANK;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MAINDataTable() {
@@ -574,6 +576,14 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BR_BANKColumn {
+                get {
+                    return this.columnBR_BANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -628,7 +638,8 @@ namespace SPW.UI.Web.Reports {
                         string CHECK_COUNT, 
                         string ACCOUNT_NO, 
                         string DATE, 
-                        string BANK) {
+                        string BANK, 
+                        string BR_BANK) {
                 MAINRow rowMAINRow = ((MAINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACCOUNT_NAME,
@@ -649,7 +660,8 @@ namespace SPW.UI.Web.Reports {
                         CHECK_COUNT,
                         ACCOUNT_NO,
                         DATE,
-                        BANK};
+                        BANK,
+                        BR_BANK};
                 rowMAINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMAINRow);
                 return rowMAINRow;
@@ -691,6 +703,7 @@ namespace SPW.UI.Web.Reports {
                 this.columnACCOUNT_NO = base.Columns["ACCOUNT_NO"];
                 this.columnDATE = base.Columns["DATE"];
                 this.columnBANK = base.Columns["BANK"];
+                this.columnBR_BANK = base.Columns["BR_BANK"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -734,6 +747,8 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnDATE);
                 this.columnBANK = new global::System.Data.DataColumn("BANK", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBANK);
+                this.columnBR_BANK = new global::System.Data.DataColumn("BR_BANK", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBR_BANK);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1954,6 +1969,22 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BR_BANK {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAIN.BR_BANKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BR_BANK\' in table \'MAIN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAIN.BR_BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsACCOUNT_NAMENull() {
                 return this.IsNull(this.tableMAIN.ACCOUNT_NAMEColumn);
             }
@@ -2178,6 +2209,18 @@ namespace SPW.UI.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBANKNull() {
                 this[this.tableMAIN.BANKColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBR_BANKNull() {
+                return this.IsNull(this.tableMAIN.BR_BANKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBR_BANKNull() {
+                this[this.tableMAIN.BR_BANKColumn] = global::System.Convert.DBNull;
             }
         }
         

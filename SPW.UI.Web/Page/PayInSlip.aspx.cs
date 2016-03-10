@@ -319,7 +319,7 @@ namespace SPW.UI.Web.Page
                     lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
                 }
             }
-            else 
+            else
             {
                 lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
             }
@@ -356,8 +356,6 @@ namespace SPW.UI.Web.Page
                     lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
                 }
 
-
-
                 decimal tmpTotalAmt = 0;
                 foreach (PAYIN_TRANS pt in lstPayIn)
                 {
@@ -391,7 +389,7 @@ namespace SPW.UI.Web.Page
                 btnAdd.Visible = false;
                 btnSave.Visible = false;
                 btnPrint1.Visible = true;
-                //btnPrint2.Visible = true;
+                btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
 
                 alert.Visible = true;
                 grdBank.Columns[4].Visible = false;
@@ -434,6 +432,7 @@ namespace SPW.UI.Web.Page
             txtBankCheck.Attributes.Add("data-source", str);
         }
 
+        #region
         //private void AutoCompleteBranceName()
         //{
         //    List<string> nameList = SearchAutoCompleteDataService.SearchGroupBy("PAYIN_TRANS", "CHQ_BR_BANK", "CHQ_BR_BANK", "","CHQ_BR_BANK");
@@ -449,106 +448,163 @@ namespace SPW.UI.Web.Page
         //    str = "[" + str + "]";
         //    txtBranceCheck.Attributes.Add("data-source", str);
         //}
+        #endregion
 
         protected void btnPrint1_Click(object sender, EventArgs e)
         {
-            List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
-            if (Session["PAYIN_PRINT"] == null)
+            try
             {
-                Session["PAYIN_PRINT"] = lstPayIn;
-            }
-            else
-            {
-                lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
-            }
-
-            decimal tmpTotalAmt = 0;
-            foreach (PAYIN_TRANS pt in lstPayIn)
-            {
-                tmpTotalAmt += pt.CHQ_AMOUNT;
-            }
-
-            Reports.PayInSlip ds = new Reports.PayInSlip();
-            DataTable payInSlipMain = ds.Tables["MAIN"];
-            DataRow drPayInSlipMain = payInSlipMain.NewRow();
-
-            drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
-            drPayInSlipMain["TEL"] = "02-961-6686-7";
-            drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-            drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
-            drPayInSlipMain["DEPOSIT"] = "SPW";
-            drPayInSlipMain["DATE"] = txtStartDate.Text;
-            drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
-            string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
-            string account = "";
-            foreach (string item in tmpAccount)
-            {
-                account += item;
-            }
-
-            drPayInSlipMain["ACCOUNT_NO1"] = account[0];
-            drPayInSlipMain["ACCOUNT_NO2"] = account[1];
-            drPayInSlipMain["ACCOUNT_NO3"] = account[2];
-            drPayInSlipMain["ACCOUNT_NO4"] = account[3];
-            drPayInSlipMain["ACCOUNT_NO5"] = account[4];
-            drPayInSlipMain["ACCOUNT_NO6"] = account[5];
-            drPayInSlipMain["ACCOUNT_NO7"] = account[6];
-            drPayInSlipMain["ACCOUNT_NO8"] = account[7];
-            drPayInSlipMain["ACCOUNT_NO9"] = account[8];
-            drPayInSlipMain["ACCOUNT_NO10"] = account[9];
-            drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
-            payInSlipMain.Rows.Add(drPayInSlipMain);
-
-            DataTable payInSlipSub = ds.Tables["SUB"];
-            DataRow drPayInSlipSub = payInSlipSub.NewRow();
-            if (lstPayIn.Count() <= 5)
-            {
-                if (lstPayIn.Count() >= 1)
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN_PRINT"] == null)
                 {
-                    drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
-                    drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT.ToString("#,#.00#");
+                    Session["PAYIN_PRINT"] = lstPayIn;
                 }
-                if (lstPayIn.Count() >= 2)
+                else
                 {
-                    drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
-                    drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT.ToString("#,#.00#");
+                    lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
                 }
-                if (lstPayIn.Count() >= 3)
+
+                decimal tmpTotalAmt = 0;
+                foreach (PAYIN_TRANS pt in lstPayIn)
                 {
-                    drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
-                    drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT.ToString("#,#.00#");
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
                 }
-                if (lstPayIn.Count() >= 4)
+
+                Reports.PayInSlip ds = new Reports.PayInSlip();
+                DataTable payInSlipMain = ds.Tables["MAIN"];
+                DataRow drPayInSlipMain = payInSlipMain.NewRow();
+
+                drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+                drPayInSlipMain["TEL"] = "02-961-6686-7";
+                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
+                drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                drPayInSlipMain["DEPOSIT"] = "SPW";
+                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
+                drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
+                string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
+                string account = "";
+                foreach (string item in tmpAccount)
                 {
-                    drPayInSlipSub["CHECK_NO4"] = lstPayIn[3].CHQ_NO;
-                    drPayInSlipSub["CHECK_BANK4"] = lstPayIn[3].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT.ToString("#,#.00#");
+                    account += item;
                 }
-                if (lstPayIn.Count() >= 5)
+
+                drPayInSlipMain["ACCOUNT_NO1"] = account[0];
+                drPayInSlipMain["ACCOUNT_NO2"] = account[1];
+                drPayInSlipMain["ACCOUNT_NO3"] = account[2];
+                drPayInSlipMain["ACCOUNT_NO4"] = account[3];
+                drPayInSlipMain["ACCOUNT_NO5"] = account[4];
+                drPayInSlipMain["ACCOUNT_NO6"] = account[5];
+                drPayInSlipMain["ACCOUNT_NO7"] = account[6];
+                drPayInSlipMain["ACCOUNT_NO8"] = account[7];
+                drPayInSlipMain["ACCOUNT_NO9"] = account[8];
+                drPayInSlipMain["ACCOUNT_NO10"] = account[9];
+                drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
+                payInSlipMain.Rows.Add(drPayInSlipMain);
+
+                DataTable payInSlipSub = ds.Tables["SUB"];
+                DataRow drPayInSlipSub = payInSlipSub.NewRow();
+                if (lstPayIn.Count() <= 5)
                 {
-                    drPayInSlipSub["CHECK_NO5"] = lstPayIn[4].CHQ_NO;
-                    drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
-                    drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
+                    if (lstPayIn.Count() >= 1)
+                    {
+                        drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
+                        drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
+                        drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT.ToString("#,#.00#");
+                    }
+                    if (lstPayIn.Count() >= 2)
+                    {
+                        drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
+                        drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
+                        drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT.ToString("#,#.00#");
+                    }
+                    if (lstPayIn.Count() >= 3)
+                    {
+                        drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
+                        drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
+                        drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT.ToString("#,#.00#");
+                    }
+                    if (lstPayIn.Count() >= 4)
+                    {
+                        drPayInSlipSub["CHECK_NO4"] = lstPayIn[3].CHQ_NO;
+                        drPayInSlipSub["CHECK_BANK4"] = lstPayIn[3].CHQ_BANK;
+                        drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT.ToString("#,#.00#");
+                    }
+                    if (lstPayIn.Count() >= 5)
+                    {
+                        drPayInSlipSub["CHECK_NO5"] = lstPayIn[4].CHQ_NO;
+                        drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
+                        drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
+                    }
+                }
+                payInSlipSub.Rows.Add(drPayInSlipSub);
+                Session["DataToReport"] = ds;
+                if (rbBankThai.Checked)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipTMBReport.aspx');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
                 }
             }
-            payInSlipSub.Rows.Add(drPayInSlipSub);
-            Session["DataToReport"] = ds;
-            if (rbBankThai.Checked)
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipTMBReport.aspx');", true);
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
+                DebugLog.WriteLog(ex.ToString());
             }
         }
 
         protected void btnPrint2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN_PRINT"] == null)
+                {
+                    Session["PAYIN_PRINT"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
+                }
 
+                Reports.PayInSlip ds = new Reports.PayInSlip();
+                DataTable payInSlipMain = ds.Tables["MAIN"];
+
+                DataTable payInSlipPaper = ds.Tables["SUM_PAPER"];
+
+                decimal tmpTotalAmt = 0;
+                int i = 1;
+                foreach (PAYIN_TRANS pt in lstPayIn)
+                {
+                    DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
+                    drpayInSlipPaper["SEQ"] = (i++).ToString();
+                    drpayInSlipPaper["DATE"] = txtStartDate.Text;
+                    drpayInSlipPaper["CHECK_NO"] = pt.CHQ_NO.ToString();
+                    drpayInSlipPaper["CHECK_BANK"] = pt.CHQ_BANK.ToString();
+                    drpayInSlipPaper["AMOUNT"] = pt.CHQ_AMOUNT.ToString("#,#.00#"); ;
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
+                    drpayInSlipPaper["STORE_NAME"] = pt.STORE_NAME_PAID;
+                    //drpayInSlipPaper["STORE_ID"] = pt.STORE_ID_PAID;
+                    payInSlipPaper.Rows.Add(drpayInSlipPaper);
+                }
+
+                DataRow drPayInSlipMain = payInSlipMain.NewRow();
+                drPayInSlipMain["ACCOUNT_NO"] = ddlAccountMast.SelectedValue;
+                drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
+                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
+                drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
+                payInSlipMain.Rows.Add(drPayInSlipMain);
+
+                Session["DataToReport"] = ds;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipPaper.aspx');", true);
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         protected void grdBank_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -34,6 +34,7 @@
               <xs:element name="ACCOUNT_NO" msprop:Generator_ColumnVarNameInTable="columnACCOUNT_NO" msprop:Generator_ColumnPropNameInRow="ACCOUNT_NO" msprop:Generator_ColumnPropNameInTable="ACCOUNT_NOColumn" msprop:Generator_UserColumnName="ACCOUNT_NO" type="xs:string" minOccurs="0" />
               <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
               <xs:element name="BANK" msprop:Generator_ColumnVarNameInTable="columnBANK" msprop:Generator_ColumnPropNameInRow="BANK" msprop:Generator_ColumnPropNameInTable="BANKColumn" msprop:Generator_UserColumnName="BANK" type="xs:string" minOccurs="0" />
+              <xs:element name="BR_BANK" msprop:Generator_ColumnVarNameInTable="columnBR_BANK" msprop:Generator_ColumnPropNameInRow="BR_BANK" msprop:Generator_ColumnPropNameInTable="BR_BANKColumn" msprop:Generator_UserColumnName="BR_BANK" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
