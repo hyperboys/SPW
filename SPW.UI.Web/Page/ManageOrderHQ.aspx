@@ -85,25 +85,26 @@
                                                 <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="col-md-2">ร้าน</div>
-                                        <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>
-                                    <%--third row--%>
-                                    <div class="row">
                                         <div class="col-md-2">จังหวัด</div>
                                         <div class="col-md-3">
                                             <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" SelectedValue='<%# Eval("Key") %>'>
                                                 <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="col-md-2">สถานะ</div>
+
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <%--third row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">ร้าน</div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                            <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2">สายจัดรถ</div>
+                                        <div class="col-md-3">
+                                             <asp:DropDownList ID="ddlTranspot" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
                                                 <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
@@ -116,8 +117,11 @@
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-2"></div>
+                                        <div class="col-md-2">สถานะ</div>
                                         <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />

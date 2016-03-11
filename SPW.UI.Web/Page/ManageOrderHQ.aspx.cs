@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.DAL;
 
 namespace SPW.UI.Web.Page
 {
@@ -22,6 +23,7 @@ namespace SPW.UI.Web.Page
             public Nullable<System.DateTime> ORDER_DATE { get; set; }
             public string SECTOR_NAME { get; set; }
             public string PROVINCE_NAME { get; set; }
+            public int STORE_ID { get; set; }
             public string STORE_CODE { get; set; }
             public string STORE_NAME { get; set; }
             public Nullable<decimal> ORDER_TOTAL { get; set; }
@@ -54,6 +56,7 @@ namespace SPW.UI.Web.Page
         private StoreService _storeService;
         private ProvinceService _provinceService;
         private OrderService _orderService;
+        private TransportLineService _transpotService;
 
         private void InitialPage()
         {
@@ -88,6 +91,7 @@ namespace SPW.UI.Web.Page
             _storeService = (StoreService)_dataServiceEngine.GetDataService(typeof(StoreService));
             _provinceService = (ProvinceService)_dataServiceEngine.GetDataService(typeof(ProvinceService));
             _orderService = (OrderService)_dataServiceEngine.GetDataService(typeof(OrderService));
+            _transpotService = (TransportLineService)_dataServiceEngine.GetDataService(typeof(TransportLineService));
         }
 
         private void ReloadDatasource()
@@ -120,11 +124,12 @@ namespace SPW.UI.Web.Page
 
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
             listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
-            //if (Session["DATAGRID"] != null)
-            //{
-            //    gdvManageOrderHQ.DataSource = (List<DATAGRID>)Session["DATAGRID"];
-            //    gdvManageOrderHQ.DataBind();
-            //}
+            SQLUtility sql = new SQLUtility();
+            Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
+            foreach (KeyValuePair<string, string> entry in listTrans)
+            {
+                ddlTranspot.Items.Add(new ListItem(entry.Value, entry.Key));
+            }
             BindGridview();
         }
 
@@ -132,9 +137,9 @@ namespace SPW.UI.Web.Page
         {
             List<SECTOR> listSector = (List<SECTOR>)ViewState["listSector"];
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
-            List<ORDER> listOrder = _orderService.GetStoreInOrder().OrderBy(x=>x.ORDER_STEP).ThenBy(y=>y.ORDER_DATE).ToList();
+            List<ORDER> listOrder = _orderService.GetStoreInOrder().OrderBy(x => x.ORDER_STEP).ThenBy(y => y.ORDER_DATE).ToList();
             List<STORE> listStore = _storeService.GetAll();
-
+            List<int> listTrans = _transpotService.SelectListStoreID(Convert.ToInt32(ddlTranspot.SelectedValue));
             List<DATAGRID> query = (from order in listOrder
                                     join province in listProvince on order.STORE.PROVINCE_ID equals province.PROVINCE_ID into joinA
                                     from x in joinA.DefaultIfEmpty()
@@ -155,11 +160,13 @@ namespace SPW.UI.Web.Page
                                         ORDER_DATE = order.ORDER_DATE,
                                         SECTOR_NAME = y.SECTOR_NAME,
                                         PROVINCE_NAME = x.PROVINCE_NAME,
+                                        STORE_ID = order.STORE_ID,
                                         STORE_CODE = order.STORE.STORE_CODE,
                                         STORE_NAME = order.STORE.STORE_NAME,
                                         ORDER_TOTAL = order.ORDER_TOTAL,
                                         ORDER_STEP = order.ORDER_STEP
-                                    }).ToList();
+                                    }).Where(x => ddlTranspot.SelectedValue != "0" ? listTrans.Contains(x.STORE_ID) : true).ToList();
+
             Session["DATAGRID"] = query;
             //gdvManageOrderHQ.DataSource = null;
             gdvManageOrderHQ.DataSource = query;

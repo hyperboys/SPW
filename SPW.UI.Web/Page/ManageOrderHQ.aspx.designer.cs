@@ -58,15 +58,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.DropDownList ddlSector;
         
         /// <summary>
-        /// ddlStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStore;
-        
-        /// <summary>
         /// ddlProvince control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,22 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
         
         /// <summary>
-        /// ddlStatus control.
+        /// ddlStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStore;
+        
+        /// <summary>
+        /// ddlTranspot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTranspot;
         
         /// <summary>
         /// txtStoreCode control.
@@ -92,6 +92,15 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStoreCode;
+        
+        /// <summary>
+        /// ddlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
         /// btnSearch control.

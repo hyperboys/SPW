@@ -53,6 +53,7 @@
     <Compile Include="DataServiceReport\ReportMonthlySaleDataService.cs" />
     <Compile Include="DataServiceReport\ReportSaleVolumeDataService.cs" />
     <Compile Include="DataServiceReport\SearchAutoComplete.cs" />
+    <Compile Include="DataServiceReport\SQLUtility.cs" />
     <Compile Include="DBBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SPW.Context.cs">
