@@ -47,11 +47,20 @@ namespace SPW.DataService
             }
         }
 
-        public List<TRANSPORT_LINE> Select(int ID)
+        public List<TRANSPORT_LINE> SelectAll(int ID)
         {
             using (var ctx = new SPWEntities())
             {
-                var list = ctx.TRANSPORT_LINE.Where(x => x.TRANS_LINE_ID == ID).ToList();
+                var list = ctx.TRANSPORT_LINE.Include("STORE").Where(x => x.TRANS_LINE_ID == ID).ToList();
+                return list;
+            }
+        }
+
+        public TRANSPORT_LINE Select(int ID)
+        {
+            using (var ctx = new SPWEntities())
+            {
+                var list = ctx.TRANSPORT_LINE.Where(x => x.TRANS_LINE_ID == ID).FirstOrDefault();
                 return list;
             }
         }

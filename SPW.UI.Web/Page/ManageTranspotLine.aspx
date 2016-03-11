@@ -1,11 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
-    CodeBehind="SearchTranspotLine.aspx.cs" Inherits="SPW.UI.Web.Page.SearchTranspotLine" %>
+    CodeBehind="ManageTranspotLine.aspx.cs" Inherits="SPW.UI.Web.Page.ManageTranspotLine" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">สายจัดรถ</h1>
+    <h1 class="page-header">
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchTranspotLine.aspx">สายจัดรถ</asp:HyperLink>
+        -
+        <asp:Label ID="lblName" runat="server" Text="จัดการสายจัดรถ"></asp:Label></h1>
+    <div class="alert alert-info" id="alert" runat="server" visible="false">
+        <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -30,7 +35,7 @@
         <ContentTemplate>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    ข้อมูลสายจัดรถ        
+                    จัดการใบสั่งซื้อ        
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -38,19 +43,27 @@
                             <div class="form">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-2">รหัสร้าน</div>
+                                        <div class="col-md-2">สายจัดรถ</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน"></asp:TextBox>
+                                            <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" Width="228px" Enabled="false" BackColor="White"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-2">สถานะ</div>
+                                        <div class="col-md-2"></div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
-                                                <asp:ListItem Value="0" Selected="True">ใช้งาน</asp:ListItem>
-                                                <asp:ListItem Value="1">ไม่ใช้งาน</asp:ListItem>
-                                            </asp:DropDownList>
                                         </div>
                                         <div class="col-md-2">
-                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">รหัสร้าน</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2">ชื่อร้าน</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="35px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" OnClick="btnAdd_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -61,23 +74,29 @@
                     <!-- /.row (nested) -->
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdTrans" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                            DataKeyNames="TRANS_LINE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสายจัดรถ"
-                            Style="text-align: center" CssClass="grid" OnRowDataBound="grdTrans_RowDataBound">
+                            DataKeyNames="TRANS_LINE_ID,STORE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านในสายจัดรถ"
+                            Style="text-align: center" CssClass="grid" OnRowDeleting="grdTrans_RowDeleting">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                 <asp:TemplateField HeaderText="แก้ไข" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnEdit" runat="server">
-                                            <div class='glyphicon glyphicon-edit'></div>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
+                                    <ItemStyle BorderStyle="Solid" />
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="STORE.STORE_CODE" HeaderText="รหัสร้าน" ItemStyle-Width="30%">
+                                    <ItemStyle Width="30%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="STORE.STORE_NAME" HeaderText="ชื่อร้าน" ItemStyle-Width="50%">
+                                    <ItemStyle Width="50%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="ลบ" ItemStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete">
+                                            <div class='glyphicon glyphicon-remove'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="TRANS_LINE_ID" HeaderText="ลำดับ" ItemStyle-Width="10%" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px">
-                                    <ItemStyle Width="10%"></ItemStyle>
-                                </asp:BoundField>
-                                <asp:BoundField DataField="TRANS_LINE_NAME" HeaderText="สายจัดรถ" ItemStyle-Width="90%">
-                                    <ItemStyle Width="80%"></ItemStyle>
-                                </asp:BoundField>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

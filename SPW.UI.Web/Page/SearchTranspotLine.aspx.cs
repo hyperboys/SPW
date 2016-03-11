@@ -71,7 +71,7 @@ namespace SPW.UI.Web.Page
         private void SearchTranspot()
         {
             SQLUtility sql = new SQLUtility();
-            Dictionary<string, string> listTrans = sql.SelectDistincCondition("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, txtTrans.Text != "" ? "TRANS_LINE_NAME" : "", txtTrans.Text != "" ? txtTrans.Text : "",ddlStatus.SelectedValue);
+            Dictionary<string, string> listTrans = sql.SelectDistincCondition("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, txtTrans.Text != "" ? "TRANS_LINE_NAME" : "", txtTrans.Text != "" ? txtTrans.Text : "", ddlStatus.SelectedValue);
             DataTable dataTrans = new DataTable();
             dataTrans.Columns.Add("TRANS_LINE_ID");
             dataTrans.Columns.Add("TRANS_LINE_NAME");
@@ -95,7 +95,7 @@ namespace SPW.UI.Web.Page
             {
                 string TRANS_LINE_ID = grdTrans.DataKeys[e.Row.RowIndex][0].ToString();
                 LinkButton lbtnEdit = (LinkButton)e.Row.FindControl("lbtnEdit");
-                lbtnEdit.Attributes["href"] = "ManageOrderHQEdit.aspx?TRANS_LINE_ID=" + TRANS_LINE_ID;
+                lbtnEdit.Attributes["href"] = "ManageTranspotLine.aspx?TRANS_LINE_ID=" + TRANS_LINE_ID;
             }
         }
     }

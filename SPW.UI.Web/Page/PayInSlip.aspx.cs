@@ -53,7 +53,7 @@ namespace SPW.UI.Web.Page
                                 }
                                 else if (n == "2")
                                 {
-                                    bahtTH += "ยี่";
+                                    bahtTH += "สอง";
                                 }
                                 else
                                 {
