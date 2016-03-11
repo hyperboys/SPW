@@ -41,12 +41,12 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td>ร้านค้า</td>
+                                    <td>สายจัดรถ</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td>
-                                        <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" EnableTheming="True" OnSelectedIndexChanged="ddlStore_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">เลือกทั้งหมด</asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlTranspot" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td>
@@ -62,11 +62,29 @@
                                         <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" />
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td>ร้านค้า</td>
+                                    <td class="auto-style1" style="text-align: center">:</td>
+                                    <td>
+                                        <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" EnableTheming="True" OnSelectedIndexChanged="ddlStore_SelectedIndexChanged">
+                                            <asp:ListItem Value="0">เลือกทั้งหมด</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td></td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
                                     <td>ชื่อร้าน</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td>
                                         <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="30px" Width="200px" placeholder="ชื่อร้าน" />
                                     </td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                    <td>
+                                        &nbsp;</td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td></td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>

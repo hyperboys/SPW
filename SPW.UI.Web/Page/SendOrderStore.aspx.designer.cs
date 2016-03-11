@@ -31,13 +31,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
         
         /// <summary>
-        /// ddlStore control.
+        /// ddlTranspot control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStore;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTranspot;
         
         /// <summary>
         /// btnSearch control.
@@ -56,6 +56,15 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStoreCode;
+        
+        /// <summary>
+        /// ddlStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStore;
         
         /// <summary>
         /// txtStoreName control.

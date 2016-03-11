@@ -8,6 +8,7 @@ using SPW.Model;
 using SPW.UI.Web.Reports;
 using System.Data;
 using SPW.DataService;
+using SPW.DAL;
 
 namespace SPW.UI.Web.Page
 {
@@ -17,6 +18,8 @@ namespace SPW.UI.Web.Page
         private StoreService cmdStore;
         private ProvinceService cmdProvince;
         private OrderService cmdOrder;
+        private TransportLineService _transpotService;
+
         public List<ORDER> DataSource
         {
             get
@@ -48,6 +51,7 @@ namespace SPW.UI.Web.Page
             cmdStore = (StoreService)_dataServiceEngine.GetDataService(typeof(StoreService));
             cmdProvince = (ProvinceService)_dataServiceEngine.GetDataService(typeof(ProvinceService));
             cmdOrder = (OrderService)_dataServiceEngine.GetDataService(typeof(OrderService));
+            _transpotService = (TransportLineService)_dataServiceEngine.GetDataService(typeof(TransportLineService));
         }
 
         private void CreatePageEngine()
@@ -79,6 +83,11 @@ namespace SPW.UI.Web.Page
         private void SearchGrid()
         {
             List<STORE> StoreList = cmdStore.GetAllByCondition(txtStoreCode.Text, txtStoreName.Text);
+            if (ddlTranspot.SelectedValue != "0")
+            {
+                List<int> listTrans = _transpotService.SelectListStoreID(Convert.ToInt32(ddlTranspot.SelectedValue));
+                StoreList = StoreList.Where(x => listTrans.Contains(x.STORE_ID)).ToList();
+            }
             FillData(StoreList);
             ddlProvince.SelectedIndex = 0;
             ddlStore.SelectedIndex = 0;
@@ -182,6 +191,14 @@ namespace SPW.UI.Web.Page
             ddlProvince.DataTextField = "PROVINCE_NAME";
             ddlProvince.DataValueField = "PROVINCE_ID";
             ddlProvince.DataBind();
+
+
+            SQLUtility sql = new SQLUtility();
+            Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
+            foreach (KeyValuePair<string, string> entry in listTrans)
+            {
+                ddlTranspot.Items.Add(new ListItem(entry.Value, entry.Key));
+            }
         }
 
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
