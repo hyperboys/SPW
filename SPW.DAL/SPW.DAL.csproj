@@ -66,6 +66,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPW.Common\SPW.Common.csproj">
+      <Project>{43fa88dd-1337-4fcc-b2a1-72757b6eaa9b}</Project>
+      <Name>SPW.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPW.Model\SPW.Model.csproj">
       <Project>{26d4a16b-57e2-4007-9406-b2d00004a840}</Project>
       <Name>SPW.Model</Name>

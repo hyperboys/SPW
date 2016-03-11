@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPW.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,7 +22,7 @@ namespace SPW.DAL
                 {
                     sqlQuery += column + ",";
                 }
-                sqlQuery = sqlQuery.Substring(0,sqlQuery.Length - 1);
+                sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
                 sqlQuery += " FROM " + TABLE + " WHERE SYE_DEL = 0 ";
                 if (COLUMN_GROUPBY.Length > 0)
                 {
@@ -49,6 +50,57 @@ namespace SPW.DAL
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
+        }
+
+        public Dictionary<string, string> SelectDistincCondition(string TABLE, string[] COLUMN_RESULT, string[] COLUMN_GROUPBY, string COLUMN_WHERE = "", string TEXT_SEARCH = "",string SYE_DEL = "0")
+        {
+            try
+            {
+                Dictionary<string, string> tmp = new Dictionary<string, string>();
+                DBBase.ConncetDatabase();
+                string sqlQuery = @"SELECT ";
+                foreach (string column in COLUMN_RESULT)
+                {
+                    sqlQuery += column + ",";
+                }
+                sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
+                sqlQuery += " FROM " + TABLE + " WHERE SYE_DEL = " + SYE_DEL;
+
+                if (COLUMN_WHERE != "")
+                {
+                    sqlQuery += " AND " + COLUMN_WHERE + " LIKE '%" + TEXT_SEARCH + "%'  ";
+                }
+
+                if (COLUMN_GROUPBY.Length > 0)
+                {
+                    sqlQuery += "GROUP BY ";
+                    foreach (string groupBy in COLUMN_GROUPBY)
+                    {
+                        sqlQuery += groupBy + ",";
+                    }
+                }
+                sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
+                SqlDataReader dr;
+                SqlCommand command = new SqlCommand(sqlQuery, DBBase.con);
+                dr = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                if (dr.HasRows)
+                {
+                    dt.Load(dr);
+                }
+                DBBase.DisConncetDatabase();
+                foreach (DataRow dtr in dt.Rows)
+                {
+                    tmp.Add(dtr[0].ToString(), dtr[1].ToString());
+                }
+                return tmp;
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
                 return null;
             }
         }
