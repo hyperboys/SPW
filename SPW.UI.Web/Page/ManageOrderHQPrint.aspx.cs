@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.UI.Web.Reports;
+using SPW.DAL;
 
 namespace SPW.UI.Web.Page
 {
@@ -44,6 +45,7 @@ namespace SPW.UI.Web.Page
         private ProvinceService _provinceService;
         private OrderDetailService _orderDetailService;
         private DeliveryOrderService _deliveryOrderService;
+        private TransportLineService _transpotService;
 
         private void InitialPage()
         {
@@ -79,6 +81,7 @@ namespace SPW.UI.Web.Page
             _orderDetailService = (OrderDetailService)_dataServiceEngine.GetDataService(typeof(OrderDetailService));
             _provinceService = (ProvinceService)_dataServiceEngine.GetDataService(typeof(ProvinceService));
             _deliveryOrderService = (DeliveryOrderService)_dataServiceEngine.GetDataService(typeof(DeliveryOrderService));
+            _transpotService = (TransportLineService)_dataServiceEngine.GetDataService(typeof(TransportLineService));
         }
 
         private void ReloadDatasource()
@@ -94,7 +97,15 @@ namespace SPW.UI.Web.Page
         {
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
             listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
+
+            SQLUtility sql = new SQLUtility();
+            Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
+            foreach (KeyValuePair<string, string> entry in listTrans)
+            {
+                ddlTranspot.Items.Add(new ListItem(entry.Value, entry.Key));
+            }
         }
+
         public static bool isBetweenDate(DateTime input, DateTime start, DateTime end)
         {
             return (input >= start && input <= end);
@@ -114,11 +125,13 @@ namespace SPW.UI.Web.Page
         }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
+            List<int> listTrans = _transpotService.SelectListStoreID(Convert.ToInt32(ddlTranspot.SelectedValue));
             List<STORE> listStore = new List<STORE>();
             listStore = _storeService.GetAllIncludeOrder().Where(x => x.ORDER.Where(y => y.ORDER_STEP == "11" || y.ORDER_STEP == "20").FirstOrDefault() != null).ToList();
             listStore = listStore.Where(x =>
                 x.ORDER.Any(y => isBetweenDate((DateTime)y.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))) &&
                 x.STORE_CODE.ToUpper() == (txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper()) &&
+                ddlTranspot.SelectedValue != "0" ? listTrans.Contains(x.STORE_ID) : true &&
                 x.PROVINCE_ID == (ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))).Distinct().ToList();
 
             List<InOrderForPrint> listInOrder = new List<InOrderForPrint>();
