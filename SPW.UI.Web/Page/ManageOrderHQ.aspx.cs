@@ -38,17 +38,6 @@ namespace SPW.UI.Web.Page
             public string SECTOR_NAME { get; set; }
             public int SECTOR_ID { get; set; }
         }
-        //public List<DATAGRID> DataSouce
-        //{
-        //    get
-        //    {
-        //        return (List<DATAGRID>)ViewState["DATAGRID"];
-        //    }
-        //    set
-        //    {
-        //        ViewState["DATAGRID"] = value;
-        //    }
-        //}
         #endregion
 
         #region Sevice control
@@ -63,6 +52,7 @@ namespace SPW.UI.Web.Page
             CreatePageEngine();
             ReloadDatasource();
             InitialData();
+            AutoCompleteStoreName();
         }
 
         private void ReloadPageEngine()
@@ -119,8 +109,8 @@ namespace SPW.UI.Web.Page
             List<SECTOR> listSector = (List<SECTOR>)ViewState["listSector"];
             listSector.ForEach(item => ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString())));
 
-            List<STORE> listStore = (List<STORE>)ViewState["listStore"];
-            listStore.ForEach(item => ddlStore.Items.Add(new ListItem(item.STORE_NAME, item.STORE_ID.ToString())));
+            //List<STORE> listStore = (List<STORE>)ViewState["listStore"];
+            //listStore.ForEach(item => ddlStore.Items.Add(new ListItem(item.STORE_NAME, item.STORE_ID.ToString())));
 
             List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
             listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
@@ -147,7 +137,7 @@ namespace SPW.UI.Web.Page
                                     from y in joinB.DefaultIfEmpty()
                                     join store in listStore on order.STORE.STORE_ID equals store.STORE_ID into joinC
                                     from z in joinC.DefaultIfEmpty()
-                                    where order.STORE_ID.Equals((ddlStore.SelectedValue == "0" ? order.STORE_ID : int.Parse(ddlStore.SelectedValue))) &&
+                                    where order.STORE.STORE_NAME.ToUpper().Equals((txtStoreName.Text == "" ? order.STORE.STORE_NAME : txtStoreName.Text.ToUpper())) &&
                                         x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
                                         z.STORE_CODE.ToUpper().Contains((txtStoreCode.Text.ToUpper() == "" ? z.STORE_CODE.ToUpper() : txtStoreCode.Text.ToUpper())) &&
                                         y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
@@ -244,6 +234,7 @@ namespace SPW.UI.Web.Page
             _orderService.EditOrderStepCancel(ORDER_ID);
             BindGridview();
         }
+
         protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<DROPDOWN> query = GetDropdownChanged(int.Parse(ddlSector.SelectedValue));
@@ -258,35 +249,24 @@ namespace SPW.UI.Web.Page
                     ddlProvince.Items.Add(new ListItem(item.Key.PROVINCE_NAME, item.Key.PROVINCE_ID.ToString()));
                 }
             }
-
-            var s = query.Select(j => new { j.STORE_NAME, j.STORE_ID }).ToList().GroupBy(k => new { k.STORE_NAME, k.STORE_ID }).ToList();
-            if (s.Count > 0)
-            {
-                ddlStore.Items.Clear();
-                ddlStore.Items.Insert(0, new ListItem("กรุณาเลือก", "0"));
-                foreach (var item in s)
-                {
-                    ddlStore.Items.Add(new ListItem(item.Key.STORE_NAME, item.Key.STORE_ID.ToString()));
-                }
-            }
-
         }
 
-        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+        private void AutoCompleteStoreName()
         {
-            List<DROPDOWN> query = GetDropdownChanged(int.Parse(ddlSector.SelectedValue), int.Parse(ddlProvince.SelectedValue));
-
-            var s = query.Select(j => new { j.STORE_NAME, j.STORE_ID }).ToList().GroupBy(k => new { k.STORE_NAME, k.STORE_ID }).ToList();
-            if (s.Count > 0)
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
             {
-                ddlStore.Items.Clear();
-                ddlStore.Items.Insert(0, new ListItem("กรุณาเลือก", "0"));
-                foreach (var item in s)
-                {
-                    ddlStore.Items.Add(new ListItem(item.Key.STORE_NAME, item.Key.STORE_ID.ToString()));
-                }
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
             }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreName.Attributes.Add("data-source", str);
         }
+
         protected void gdvManageOrderHQ_RowDataBound(Object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

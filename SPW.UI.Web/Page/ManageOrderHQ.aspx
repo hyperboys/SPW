@@ -96,11 +96,9 @@
                                     </div>
                                     <%--third row--%>
                                     <div class="row">
-                                        <div class="col-md-2">ร้าน</div>
+                                        <div class="col-md-2">ชื่อร้าน</div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="35px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">สายจัดรถ</div>
                                         <div class="col-md-3">
