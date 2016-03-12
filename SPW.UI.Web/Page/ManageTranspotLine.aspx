@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสร้าน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off" OnTextChanged="txtStoreCode_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">ชื่อร้าน</div>
                                         <div class="col-md-3">
@@ -75,7 +75,7 @@
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdTrans" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                             DataKeyNames="TRANS_LINE_ID,STORE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านในสายจัดรถ"
-                            Style="text-align: center" CssClass="grid" OnRowDeleting="grdTrans_RowDeleting">
+                            Style="text-align: center" CssClass="grid" OnRowDeleting="grdTrans_RowDeleting" OnRowDataBound="grdTrans_RowDataBound">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="10%">
@@ -90,10 +90,10 @@
                                 <asp:BoundField DataField="STORE.STORE_NAME" HeaderText="ชื่อร้าน" ItemStyle-Width="50%">
                                     <ItemStyle Width="50%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="ลบ" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete">
-                                            <div class='glyphicon glyphicon-remove'></div>
+                                        <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
+                                    <div class='glyphicon glyphicon-remove'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>

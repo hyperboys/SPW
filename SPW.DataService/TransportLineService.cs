@@ -65,6 +65,16 @@ namespace SPW.DataService
             }
         }
 
+        public void Delete(int TRANS_LINE_ID, int STORE_ID)
+        {
+            using (var ctx = new SPWEntities())
+            {
+                TRANSPORT_LINE item = ctx.TRANSPORT_LINE.Where(x => x.TRANS_LINE_ID == TRANS_LINE_ID && x.STORE_ID == STORE_ID).FirstOrDefault();
+                ctx.TRANSPORT_LINE.Remove(item);
+                ctx.SaveChanges();
+            }
+        }
+
         public List<int> SelectListStoreID(int ID)
         {
             using (var ctx = new SPWEntities())

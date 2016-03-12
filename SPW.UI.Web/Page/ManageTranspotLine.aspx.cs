@@ -115,9 +115,15 @@ namespace SPW.UI.Web.Page
 
         }
 
-        protected void txtStoreCode_TextChanged(object sender, EventArgs e)
+        protected void grdTrans_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            foreach (LinkButton button in e.Row.Cells[3].Controls.OfType<LinkButton>())
+            {
+                if (button.CommandName == "Delete")
+                {
+                    button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                }
+            }
         }
     }
 }
