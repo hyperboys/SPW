@@ -389,7 +389,15 @@ namespace SPW.UI.Web.Page
                 btnAdd.Visible = false;
                 btnSave.Visible = false;
                 btnPrint1.Visible = true;
-                btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
+
+                if (rbBankThai.Checked)
+                {
+                    btnPrint2.Visible = lstPayIn.Count() > 3 ? true : false;
+                }
+                else 
+                {
+                    btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
+                }
 
                 alert.Visible = true;
                 grdBank.Columns[4].Visible = false;
@@ -570,7 +578,7 @@ namespace SPW.UI.Web.Page
 
                 Reports.PayInSlip ds = new Reports.PayInSlip();
                 DataTable payInSlipMain = ds.Tables["MAIN"];
-
+              
                 DataTable payInSlipPaper = ds.Tables["SUM_PAPER"];
 
                 decimal tmpTotalAmt = 0;
@@ -596,6 +604,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["DATE"] = txtStartDate.Text;
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
+                drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
                 payInSlipMain.Rows.Add(drPayInSlipMain);
 
                 Session["DataToReport"] = ds;

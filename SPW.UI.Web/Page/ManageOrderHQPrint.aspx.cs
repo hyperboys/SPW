@@ -131,8 +131,12 @@ namespace SPW.UI.Web.Page
             listStore = listStore.Where(x =>
                 x.ORDER.Any(y => isBetweenDate((DateTime)y.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))) &&
                 x.STORE_CODE.ToUpper() == (txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper()) &&
-                ddlTranspot.SelectedValue != "0" ? listTrans.Contains(x.STORE_ID) : true &&
                 x.PROVINCE_ID == (ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))).Distinct().ToList();
+
+            if (ddlTranspot.SelectedValue != "0") 
+            {
+                listStore = listStore.Where(x => listTrans.Contains(x.STORE_ID)).ToList();
+            }
 
             List<InOrderForPrint> listInOrder = new List<InOrderForPrint>();
             List<ORDER> tmpListOrder = new List<ORDER>();
