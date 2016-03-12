@@ -5,7 +5,7 @@
     <%--<script type="text/javascript" src="/crystalreportviewers13/js/crviewer/crv.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">ใบฝากเงินธนาคารทหารไทย จำกัด (หมาชน)</h1>
+    <h1 class="page-header">ใบฝากเงินธนาคารทหารไทย จำกัด (มหาชน)</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server"
