@@ -157,6 +157,15 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
+        /// btnPrintX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrintX;
+        
+        /// <summary>
         /// txtAmount control.
         /// </summary>
         /// <remarks>

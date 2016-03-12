@@ -114,5 +114,10 @@ namespace SPW.UI.Web.Page
         {
 
         }
+
+        protected void txtStoreCode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

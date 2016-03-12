@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสร้าน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off" OnTextChanged="txtStoreCode_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">ชื่อร้าน</div>
                                         <div class="col-md-3">

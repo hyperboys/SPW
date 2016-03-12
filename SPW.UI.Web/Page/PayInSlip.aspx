@@ -169,15 +169,13 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtBankCheck"
                                                     ErrorMessage="กรุณากรอกธนาคาาร(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
-                                            <td class="auto-style12"><%--สาขา(เช็ค)--%></td>
-                                            <td class="auto-style1" style="text-align: center"><%--:--%></td>
-                                            <td class="auto-style2">
-                                                <%--<asp:TextBox ID="txtBranceCheck" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off"  Height="35px" Width="200px"></asp:TextBox>
-                                            --%></td>
-                                            <td>
-                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBranceCheck"
-                                                    ErrorMessage="กรุณากรอกสาขา(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
-                                            --%></td>
+                                            <td class="auto-style12">
+                                                PayIn Format PayIn
+                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
+                                            </td>
+                                            <td class="auto-style1" style="text-align: center"></td>
+                                            <td class="auto-style2"></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td class="auto-style5">จำนวนเงิน
@@ -203,6 +201,7 @@
                                             </td>
                                             <td class="auto-style12">
                                                 <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="ตกลง" Height="30px" Width="100px" OnClick="btnAdd_Click" />
+                                                PayIn Format Paper
                                                 <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
@@ -229,13 +228,13 @@
                                 <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร" ItemStyle-Width="45%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="45%"></ItemStyle>
+                                <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                                    <ItemStyle Width="40%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" DataFormatString="{0:N2}" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
-                                  <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="3%">
+                                  <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="8%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
                                     <div class='glyphicon glyphicon-remove'></div>

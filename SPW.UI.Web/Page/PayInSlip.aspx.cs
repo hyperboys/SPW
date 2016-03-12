@@ -53,7 +53,7 @@ namespace SPW.UI.Web.Page
                                 }
                                 else if (n == "2")
                                 {
-                                    bahtTH += "สอง";
+                                    bahtTH += "ยี่";
                                 }
                                 else
                                 {
@@ -389,15 +389,17 @@ namespace SPW.UI.Web.Page
                 btnAdd.Visible = false;
                 btnSave.Visible = false;
                 btnPrint1.Visible = true;
+                btnPrintX.Visible = true;
+                btnPrint2.Visible = true;
 
-                if (rbBankThai.Checked)
-                {
-                    btnPrint2.Visible = lstPayIn.Count() > 3 ? true : false;
-                }
-                else 
-                {
-                    btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
-                }
+                //if (rbBankThai.Checked)
+                //{
+                //    btnPrint2.Visible = lstPayIn.Count() > 3 ? true : false;
+                //}
+                //else 
+                //{
+                //    btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
+                //}
 
                 alert.Visible = true;
                 grdBank.Columns[4].Visible = false;
@@ -459,6 +461,113 @@ namespace SPW.UI.Web.Page
         #endregion
 
         protected void btnPrint1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN_PRINT"] == null)
+                {
+                    Session["PAYIN_PRINT"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
+                }
+
+                decimal tmpTotalAmt = 0;
+                foreach (PAYIN_TRANS pt in lstPayIn)
+                {
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
+                }
+
+                Reports.PayInSlip ds = new Reports.PayInSlip();
+                DataTable payInSlipMain = ds.Tables["MAIN"];
+                DataRow drPayInSlipMain = payInSlipMain.NewRow();
+
+                drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+                drPayInSlipMain["TEL"] = "02-961-6686-7";
+                drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
+                drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                drPayInSlipMain["DEPOSIT"] = "SPW";
+                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
+                drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
+                string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
+                string account = "";
+                foreach (string item in tmpAccount)
+                {
+                    account += item;
+                }
+
+                drPayInSlipMain["ACCOUNT_NO1"] = account[0];
+                drPayInSlipMain["ACCOUNT_NO2"] = account[1];
+                drPayInSlipMain["ACCOUNT_NO3"] = account[2];
+                drPayInSlipMain["ACCOUNT_NO4"] = account[3];
+                drPayInSlipMain["ACCOUNT_NO5"] = account[4];
+                drPayInSlipMain["ACCOUNT_NO6"] = account[5];
+                drPayInSlipMain["ACCOUNT_NO7"] = account[6];
+                drPayInSlipMain["ACCOUNT_NO8"] = account[7];
+                drPayInSlipMain["ACCOUNT_NO9"] = account[8];
+                drPayInSlipMain["ACCOUNT_NO10"] = account[9];
+                drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
+                payInSlipMain.Rows.Add(drPayInSlipMain);
+
+                #region
+                //DataTable payInSlipSub = ds.Tables["SUB"];
+                //DataRow drPayInSlipSub = payInSlipSub.NewRow();
+                //if (lstPayIn.Count() <= 5)
+                //{
+                //    if (lstPayIn.Count() >= 1)
+                //    {
+                //        drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
+                //        drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
+                //        drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT.ToString("#,#.00#");
+                //    }
+                //    if (lstPayIn.Count() >= 2)
+                //    {
+                //        drPayInSlipSub["CHECK_NO2"] = lstPayIn[1].CHQ_NO;
+                //        drPayInSlipSub["CHECK_BANK2"] = lstPayIn[1].CHQ_BANK;
+                //        drPayInSlipSub["AMOUNT2"] = lstPayIn[1].CHQ_AMOUNT.ToString("#,#.00#");
+                //    }
+                //    if (lstPayIn.Count() >= 3)
+                //    {
+                //        drPayInSlipSub["CHECK_NO3"] = lstPayIn[2].CHQ_NO;
+                //        drPayInSlipSub["CHECK_BANK3"] = lstPayIn[2].CHQ_BANK;
+                //        drPayInSlipSub["AMOUNT3"] = lstPayIn[2].CHQ_AMOUNT.ToString("#,#.00#");
+                //    }
+                //    if (lstPayIn.Count() >= 4)
+                //    {
+                //        drPayInSlipSub["CHECK_NO4"] = lstPayIn[3].CHQ_NO;
+                //        drPayInSlipSub["CHECK_BANK4"] = lstPayIn[3].CHQ_BANK;
+                //        drPayInSlipSub["AMOUNT4"] = lstPayIn[3].CHQ_AMOUNT.ToString("#,#.00#");
+                //    }
+                //    if (lstPayIn.Count() >= 5)
+                //    {
+                //        drPayInSlipSub["CHECK_NO5"] = lstPayIn[4].CHQ_NO;
+                //        drPayInSlipSub["CHECK_BANK5"] = lstPayIn[4].CHQ_BANK;
+                //        drPayInSlipSub["AMOUNT5"] = lstPayIn[4].CHQ_AMOUNT.ToString("#,#.00#");
+                //    }
+                //}
+                //payInSlipSub.Rows.Add(drPayInSlipSub);
+                #endregion
+
+                Session["DataToReport"] = ds;
+                if (rbBankThai.Checked)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipTMBReport.aspx');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        protected void btnPrintX_Click(object sender, EventArgs e)
         {
             try
             {
