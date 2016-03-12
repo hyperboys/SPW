@@ -53,6 +53,7 @@ namespace SPW.UI.Web.Page
             ReloadDatasource();
             InitialData();
             AutoCompleteStoreName();
+            AutoCompleteProvince();
         }
 
         private void ReloadPageEngine()
@@ -112,8 +113,9 @@ namespace SPW.UI.Web.Page
             //List<STORE> listStore = (List<STORE>)ViewState["listStore"];
             //listStore.ForEach(item => ddlStore.Items.Add(new ListItem(item.STORE_NAME, item.STORE_ID.ToString())));
 
-            List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
-            listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
+            //List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
+            //listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
+            
             SQLUtility sql = new SQLUtility();
             Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
             foreach (KeyValuePair<string, string> entry in listTrans)
@@ -138,7 +140,7 @@ namespace SPW.UI.Web.Page
                                     join store in listStore on order.STORE.STORE_ID equals store.STORE_ID into joinC
                                     from z in joinC.DefaultIfEmpty()
                                     where order.STORE.STORE_NAME.ToUpper().Equals((txtStoreName.Text == "" ? order.STORE.STORE_NAME : txtStoreName.Text.ToUpper())) &&
-                                        x.PROVINCE_ID.Equals((ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))) &&
+                                        x.PROVINCE_NAME.Equals((txtProvince.Text == "" ? x.PROVINCE_NAME : txtProvince.Text)) &&
                                         z.STORE_CODE.ToUpper().Contains((txtStoreCode.Text.ToUpper() == "" ? z.STORE_CODE.ToUpper() : txtStoreCode.Text.ToUpper())) &&
                                         y.SECTOR_ID.Equals((ddlSector.SelectedValue == "0" ? y.SECTOR_ID : int.Parse(ddlSector.SelectedValue))) &&
                                         order.ORDER_STEP.Equals((ddlStatus.SelectedValue == "0" ? order.ORDER_STEP : ddlStatus.SelectedValue)) &&
@@ -238,17 +240,6 @@ namespace SPW.UI.Web.Page
         protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<DROPDOWN> query = GetDropdownChanged(int.Parse(ddlSector.SelectedValue));
-
-            var p = query.Select(j => new { j.PROVINCE_NAME, j.PROVINCE_ID }).ToList().GroupBy(k => new { k.PROVINCE_NAME, k.PROVINCE_ID }).ToList();
-            if (p.Count > 0)
-            {
-                ddlProvince.Items.Clear();
-                ddlProvince.Items.Insert(0, new ListItem("กรุณาเลือก", "0"));
-                foreach (var item in p)
-                {
-                    ddlProvince.Items.Add(new ListItem(item.Key.PROVINCE_NAME, item.Key.PROVINCE_ID.ToString()));
-                }
-            }
         }
 
         private void AutoCompleteStoreName()
@@ -265,6 +256,22 @@ namespace SPW.UI.Web.Page
             }
             str = "[" + str + "]";
             txtStoreName.Attributes.Add("data-source", str);
+        }
+
+        private void AutoCompleteProvince()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("PROVINCE", "PROVINCE_NAME", "PROVINCE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtProvince.Attributes.Add("data-source", str);
         }
 
         protected void gdvManageOrderHQ_RowDataBound(Object sender, GridViewRowEventArgs e)
