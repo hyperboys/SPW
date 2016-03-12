@@ -220,7 +220,6 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                //DebugLog.WriteLog("btnAdd_Click Start");
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
                 {
@@ -274,8 +273,6 @@ namespace SPW.UI.Web.Page
                 //    }
                 //}
                 #endregion
-
-                //DebugLog.WriteLog("btnAdd_Click Stop");
             }
             catch (Exception ex)
             {
@@ -391,7 +388,8 @@ namespace SPW.UI.Web.Page
                 btnPrint1.Visible = true;
                 btnPrintX.Visible = true;
                 btnPrint2.Visible = true;
-
+                lbl1.Visible = true;
+                lbl2.Visible = true;
                 //if (rbBankThai.Checked)
                 //{
                 //    btnPrint2.Visible = lstPayIn.Count() > 3 ? true : false;

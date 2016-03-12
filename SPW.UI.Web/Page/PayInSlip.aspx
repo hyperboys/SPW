@@ -170,8 +170,9 @@
                                                     ErrorMessage="กรุณากรอกธนาคาาร(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
                                             <td class="auto-style12">
-                                                PayIn Format PayIn
-                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
+                                                <asp:Label ID="lbl1" runat="server" Text="Format PayIn" Visible="false"></asp:Label>
+                                                
+                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrintX_Click"/>
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2"></td>
@@ -201,7 +202,7 @@
                                             </td>
                                             <td class="auto-style12">
                                                 <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="ตกลง" Height="30px" Width="100px" OnClick="btnAdd_Click" />
-                                                PayIn Format Paper
+                                                <asp:Label ID="lbl2" runat="server" Text="Format Paper" Visible="false"></asp:Label>
                                                 <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
