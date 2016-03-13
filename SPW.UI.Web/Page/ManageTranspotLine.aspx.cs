@@ -1,4 +1,5 @@
-﻿using SPW.DAL;
+﻿using SPW.Common;
+using SPW.DAL;
 using SPW.DataService;
 using SPW.Model;
 using System;
@@ -71,11 +72,67 @@ namespace SPW.UI.Web.Page
                 grdTrans.DataSource = listItem;
                 grdTrans.DataBind();
             }
+            else 
+            {
+                txtTrans.Enabled = true;
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                STORE store = null;
+                store = _storeService.Select(txtStoreCode.Text, txtStoreName.Text);
+                if (store == null)
+                {
+                    string script = "alert(\"ข้อมูลร้านค้าไม่ถูกต้อง\");";
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                                          "ServerControlScript", script, true);
+                    txtStoreCode.Focus();
+                    return;
+                }
+                else 
+                {
+                    TRANSPORT_LINE tmp = _transpotService.CheckStoreID(store.STORE_ID);
+                    if (tmp != null)
+                    {
+                        string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp .TRANS_LINE_NAME + "แล้ว\");";
+                        ScriptManager.RegisterStartupScript(this, GetType(),
+                                              "ServerControlScript", script, true);
+                        txtStoreCode.Focus();
+                        return;
+                    }
+                }
 
+                USER userItem = Session["user"] as USER;
+                TRANSPORT_LINE item = new TRANSPORT_LINE();
+                item.SYE_DEL = false;
+                item.STORE_ID = store.STORE_ID;
+                item.CREATE_DATE = DateTime.Now;
+                item.CREATE_EMPLOYEE_ID = userItem.USER_ID;
+                item.UPDATE_DATE = DateTime.Now;
+                item.UPDATE_EMPLOYEE_ID = userItem.USER_ID;
+                if (Request.QueryString["TRANS_LINE_ID"] != null)
+                {
+                    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Request.QueryString["TRANS_LINE_ID"].ToString()));
+                    item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
+                    item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
+                }
+                else 
+                {
+                    item.TRANS_LINE_ID = _transpotService.GetCount();
+                    item.TRANS_LINE_NAME = txtTrans.Text;
+                }
+                _transpotService.Add(item);
+                txtStoreCode.Text = "";
+                txtStoreName.Text = "";
+                InitialData();
+            }
+            catch (Exception ex) 
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         private void AutoCompleteStoreName()
@@ -112,7 +169,15 @@ namespace SPW.UI.Web.Page
 
         protected void grdTrans_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            try
+            {
+                _transpotService.Delete(Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[0].ToString()), Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[1].ToString()));
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+            InitialData();
         }
 
         protected void grdTrans_RowDataBound(object sender, GridViewRowEventArgs e)

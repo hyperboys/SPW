@@ -132,8 +132,6 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-
-
                 cmdProduct.Delete(Convert.ToInt32(gridProduct.DataKeys[e.RowIndex].Values[0].ToString()));
             }
             catch(Exception ex)

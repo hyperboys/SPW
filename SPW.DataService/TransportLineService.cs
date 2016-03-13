@@ -65,6 +65,23 @@ namespace SPW.DataService
             }
         }
 
+        public TRANSPORT_LINE CheckStoreID(int ID)
+        {
+            using (var ctx = new SPWEntities())
+            {
+                var list = ctx.TRANSPORT_LINE.Where(x => x.STORE_ID == ID).FirstOrDefault();
+                return list;
+            }
+        }
+
+        public int GetCount()
+        {
+            using (var ctx = new SPWEntities())
+            {
+                 return ctx.TRANSPORT_LINE.Where(x => x.SYE_DEL == false).Count();
+            }
+        }
+
         public void Delete(int TRANS_LINE_ID, int STORE_ID)
         {
             using (var ctx = new SPWEntities())
@@ -86,7 +103,11 @@ namespace SPW.DataService
 
         public void Add(TRANSPORT_LINE obj)
         {
-            throw new NotImplementedException();
+            using (var ctx = new SPWEntities())
+            {
+                ctx.TRANSPORT_LINE.Add(obj);
+                ctx.SaveChanges();
+            }
         }
 
         public void AddList(List<TRANSPORT_LINE> obj)

@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class StoreService : ServiceBase, IDataService<STORE>, IService 
+    public class StoreService : ServiceBase, IDataService<STORE>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -84,6 +84,18 @@ namespace SPW.DataService
             return this.Datacontext.STORE.Include("ZONE").Include("ZONE_DETAIL").Where(x => x.STORE_ID == ID).FirstOrDefault();
         }
 
+        public STORE Select(string code, string name)
+        {
+            if (code != "")
+            {
+                return this.Datacontext.STORE.Where(x => x.STORE_CODE == code).FirstOrDefault();
+            }
+            else
+            {
+                return this.Datacontext.STORE.Where(x => x.STORE_NAME == name).FirstOrDefault();
+            }
+        }
+
         public STORE SelectInclude(int ID)
         {
             return this.Datacontext.STORE.Include("ORDER").Include("ZONE").Include("PROVINCE").Where(x => x.STORE_ID == ID).FirstOrDefault();
@@ -119,7 +131,7 @@ namespace SPW.DataService
             return this.Datacontext.STORE.Where(x => x.PROVINCE.PROVINCE_NAME == "กรุงเทพมหานคร").Select(y => y.STORE_STREET).Distinct().ToList();
         }
 
- 		public List<STORE> GetAllIncludeNotCompleteOrder()
+        public List<STORE> GetAllIncludeNotCompleteOrder()
         {
             // Not Complete Status 12,30,50
             return this.Datacontext.STORE.Include("ORDER").Where(x => x.ORDER.Count > 0 && x.ORDER.Any(y => y.ORDER_STEP != "12" && y.ORDER_STEP != "30" && y.ORDER_STEP != "50")).ToList();
