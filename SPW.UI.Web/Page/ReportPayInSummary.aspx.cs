@@ -54,14 +54,10 @@ namespace SPW.UI.Web.Page
             {
                 ReloadPageEngine();
             }
-
         }
 
         private void PrepareObjectScreen()
         {
-            USER user = Session["user"] as USER;
-            if (user == null) Response.RedirectPermanent("MainAdmin.aspx");
-
             Session["ListPayin"] = _payInTranService.GetAll().OrderBy(x => x.PAYIN_DATE).ToList();
             gridProduct.DataSource = Session["ListPayin"] as List<PAYIN_TRANS>;
             gridProduct.DataBind();
@@ -103,7 +99,7 @@ namespace SPW.UI.Web.Page
                 string tmpDate = "";
                 List<PAYIN_TRANS> lstPayin = Session["ListPayin"] as List<PAYIN_TRANS>;
                 lstPayin = lstPayin.OrderBy(x => x.PAYIN_DATE).ToList();
-                
+
                 Reports.PayInSummaryData ds = new Reports.PayInSummaryData();
                 DataTable payInSummaryData = ds.Tables["PAYIN"];
                 foreach (PAYIN_TRANS item in lstPayin)

@@ -390,14 +390,6 @@ namespace SPW.UI.Web.Page
                 btnPrint2.Visible = true;
                 lbl1.Visible = true;
                 lbl2.Visible = true;
-                //if (rbBankThai.Checked)
-                //{
-                //    btnPrint2.Visible = lstPayIn.Count() > 3 ? true : false;
-                //}
-                //else 
-                //{
-                //    btnPrint2.Visible = lstPayIn.Count() > 5 ? true : false;
-                //}
 
                 alert.Visible = true;
                 grdBank.Columns[4].Visible = false;
@@ -412,32 +404,38 @@ namespace SPW.UI.Web.Page
         {
             List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", "");
             string str = "";
-            for (int i = 0; i < nameList.Count; i++)
+            if (nameList != null)
             {
-                str = str + '"' + nameList[i].ToString() + '"' + ',';
+                for (int i = 0; i < nameList.Count; i++)
+                {
+                    str = str + '"' + nameList[i].ToString() + '"' + ',';
+                }
+                if (str != "")
+                {
+                    str = str.Remove(str.Length - 1);
+                }
+                str = "[" + str + "]";
+                txtStoreName.Attributes.Add("data-source", str);
             }
-            if (str != "")
-            {
-                str = str.Remove(str.Length - 1);
-            }
-            str = "[" + str + "]";
-            txtStoreName.Attributes.Add("data-source", str);
         }
 
         private void AutoCompleteBankName()
         {
             List<string> nameList = SearchAutoCompleteDataService.SearchGroupBy("PAYIN_TRANS", "CHQ_BANK", "CHQ_BANK", "", "CHQ_BANK");
             string str = "";
-            for (int i = 0; i < nameList.Count; i++)
+            if (nameList != null)
             {
-                str = str + '"' + nameList[i].ToString() + '"' + ',';
+                for (int i = 0; i < nameList.Count; i++)
+                {
+                    str = str + '"' + nameList[i].ToString() + '"' + ',';
+                }
+                if (str != "")
+                {
+                    str = str.Remove(str.Length - 1);
+                }
+                str = "[" + str + "]";
+                txtBankCheck.Attributes.Add("data-source", str);
             }
-            if (str != "")
-            {
-                str = str.Remove(str.Length - 1);
-            }
-            str = "[" + str + "]";
-            txtBankCheck.Attributes.Add("data-source", str);
         }
 
         #region
@@ -737,7 +735,9 @@ namespace SPW.UI.Web.Page
                     lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
                 }
                 lstPayIn.RemoveAt(e.RowIndex);
+                Session["PAYIN"] = lstPayIn;
                 SumAmt();
+                grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
             }
             catch (Exception ex)
