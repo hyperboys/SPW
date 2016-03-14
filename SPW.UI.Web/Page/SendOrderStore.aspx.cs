@@ -70,6 +70,9 @@ namespace SPW.UI.Web.Page
                 PrepareDefaultScreen();
                 AutoCompleteStoreName();
                 AutoCompleteStoreCode();
+                List<PROVINCE> list = cmdProvince.GetAll().Skip(77).ToList();
+                grdProvince.DataSource = list;
+                grdProvince.DataBind();
             }
             else
             {
