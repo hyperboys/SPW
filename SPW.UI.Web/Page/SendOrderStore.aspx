@@ -45,8 +45,8 @@
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td>
                                         <asp:DropDownList ID="ddlTranspot" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                        </asp:DropDownList>
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td>
@@ -56,18 +56,14 @@
                                     <td></td>
                                 </tr>
                                 <tr>
+                                    <td></td>
+                                    <td class="auto-style1" style="text-align: center"></td>
+                                    <td></td>
+                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td>รหัสร้าน</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td>
-                                        <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" />
-                                    </td>
-                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td>ร้านค้า</td>
-                                    <td class="auto-style1" style="text-align: center">:</td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlStore" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" EnableTheming="True" OnSelectedIndexChanged="ddlStore_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">เลือกทั้งหมด</asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" data-provide="typeahead" data-items="5" autocomplete="off"/>
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td></td>
@@ -75,16 +71,15 @@
                                     <td></td>
                                 </tr>
                                 <tr>
+                                    <td></td>
+                                    <td class="auto-style1" style="text-align: center"></td>
+                                    <td></td>
+                                    <td class="auto-style1" style="text-align: center"></td>
                                     <td>ชื่อร้าน</td>
                                     <td class="auto-style1" style="text-align: center">:</td>
                                     <td>
-                                        <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="30px" Width="200px" placeholder="ชื่อร้าน" />
+                                        <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="30px" Width="200px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"/>
                                     </td>
-                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td>
-                                        &nbsp;</td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                     <td></td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>

@@ -68,6 +68,8 @@ namespace SPW.UI.Web.Page
                 CreatePageEngine();
                 PrepareSearchScreen();
                 PrepareDefaultScreen();
+                AutoCompleteStoreName();
+                AutoCompleteStoreCode();
             }
             else
             {
@@ -88,9 +90,13 @@ namespace SPW.UI.Web.Page
                 List<int> listTrans = _transpotService.SelectListStoreID(Convert.ToInt32(ddlTranspot.SelectedValue));
                 StoreList = StoreList.Where(x => listTrans.Contains(x.STORE_ID)).ToList();
             }
+            if (ddlProvince.SelectedValue != "0") 
+            {
+                StoreList = StoreList.Where(x => x.PROVINCE_ID == Convert.ToInt32(ddlProvince.SelectedValue)).ToList();
+            }
+
             FillData(StoreList);
             ddlProvince.SelectedIndex = 0;
-            ddlStore.SelectedIndex = 0;
         }
 
         private void PrepareDefaultScreen()
@@ -177,14 +183,6 @@ namespace SPW.UI.Web.Page
 
         private void PrepareSearchScreen()
         {
-            List<STORE> StoreItems = cmdStore.GetAllIncludeNotCompleteOrder();
-            StoreItems.Insert(0, new STORE() { STORE_NAME = "กรุณาเลือกร้าน", STORE_ID = 0 });
-            ddlStore.DataSource = StoreItems;
-            ddlStore.DataTextField = "STORE_NAME";
-            ddlStore.DataValueField = "STORE_ID";
-            ddlStore.DataBind();
-
-
             List<PROVINCE> ProvinceItems = cmdProvince.GetAll();
             ProvinceItems.Insert(0, new PROVINCE() { PROVINCE_NAME = "กรุณาเลือกจังหวัด", PROVINCE_ID = 0 });
             ddlProvince.DataSource = ProvinceItems;
@@ -207,18 +205,6 @@ namespace SPW.UI.Web.Page
             if (ProvinceSelected > 0)
             {
                 List<STORE> StoreList = cmdStore.GetAllByProvinceID(ProvinceSelected);
-                FillData(StoreList);
-                txtStoreCode.Text = "";
-                txtStoreName.Text = "";
-            }
-        }
-
-        protected void ddlStore_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int StoreSelected = Convert.ToInt32(ddlStore.SelectedValue);
-            if (StoreSelected > 0)
-            {
-                List<STORE> StoreList = cmdStore.GetAllByStoreID(StoreSelected);
                 FillData(StoreList);
                 txtStoreCode.Text = "";
                 txtStoreName.Text = "";
@@ -267,8 +253,41 @@ namespace SPW.UI.Web.Page
             }
         }
 
+        private void AutoCompleteStoreName()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_NAME", "STORE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreName.Attributes.Add("data-source", str);
+        }
+
+        private void AutoCompleteStoreCode()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreCode.Attributes.Add("data-source", str);
+        }
     }
 }
+
+
 
 public class OrderDisplay
 {
