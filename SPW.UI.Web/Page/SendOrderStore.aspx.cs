@@ -9,6 +9,7 @@ using SPW.UI.Web.Reports;
 using System.Data;
 using SPW.DataService;
 using SPW.DAL;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -286,6 +287,18 @@ namespace SPW.UI.Web.Page
             }
             str = "[" + str + "]";
             txtStoreCode.Attributes.Add("data-source", str);
+        }
+
+        protected void grdProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) 
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
     }
 }
