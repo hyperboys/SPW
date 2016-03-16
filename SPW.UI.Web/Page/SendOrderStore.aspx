@@ -85,7 +85,7 @@
                                         <tr>
                                             <td class="auto-style2">
                                                 <asp:GridView ID="grdProvince" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                                                    DataKeyNames="PROVINCE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
+                                                    DataKeyNames="PROVINCE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลจังหวัด"
                                                     Style="text-align: center" CssClass="grid" OnRowDeleting="grdProvince_RowDeleting">
                                                     <AlternatingRowStyle BackColor="White" />
                                                     <Columns>

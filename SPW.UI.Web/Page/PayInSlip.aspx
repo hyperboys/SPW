@@ -5,29 +5,26 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
     <script type="text/javascript" src="../JQuery/bootstrap-datepicker.js"></script>
     <link href="../CSS/datepicker.css" rel="stylesheet" type="text/css" />
-      <script type="text/javascript">
-          $(document).ready(function () {
-              Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
 
-              function EndRequestHandler(sender, args) {
-                  $('.datetimepicker').datepicker({
-                      format: 'dd/mm/yyyy'
-                  });
-              }
-          });
-          $(function () {
-              $('.datetimepicker').datepicker({
-                  format: 'dd/mm/yyyy'
-              });
-          });
+            function EndRequestHandler(sender, args) {
+                $('.datetimepicker').datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+            }
+        });
+        $(function () {
+            $('.datetimepicker').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
         <asp:Label ID="lblName" runat="server" Text="PayIn Slip"></asp:Label></h1>
-    <div class="alert alert-info" id="alert" runat="server" visible="false">
-        <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
-    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -76,6 +73,14 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+            <div class="alert alert-success" id="alert" runat="server" visible="false">
+                <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
+            </div>
+            <div class="alert alert-danger" id="danger" runat="server" visible="false">
+                <strong>
+                    <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
+                </strong>
+            </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     จัดการใบ Payin
@@ -97,17 +102,15 @@
                                                 <asp:RadioButton ID="rbBankKrungThai" runat="server" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" AutoPostBack="True" OnCheckedChanged="rbBankKrungThai_CheckedChanged" />
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                            <td class="auto-style2">
-                                            </td>
+                                            <td class="auto-style2"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="auto-style5">
-                                                เลือกบัญชี
+                                            <td class="auto-style5">เลือกบัญชี
                                             </td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-                                                 <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAccountMast_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlAccountMast" class="form-control" runat="server" Height="35px" Width="200px" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAccountMast_SelectedIndexChanged">
                                                     <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                                 </asp:DropDownList>
                                             </td>
@@ -115,7 +118,7 @@
                                             <td class="auto-style12">วันที่</td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td class="auto-style2">
-                                                
+
                                                 <div class='input-group date' id='Div1'>
                                                     <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
                                                 </div>
@@ -123,12 +126,11 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="auto-style5">
-                                                ชื่อบัญชี</td>
+                                            <td class="auto-style5">ชื่อบัญชี</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
                                                 <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Height="35px" Width="200px" Enabled="false" BackColor="White"></asp:TextBox>
-                                               </td>
+                                            </td>
                                             <td class="auto-style13">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAccountName"
                                                     ErrorMessage="กรุณาเลือกบัญชี" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
@@ -163,7 +165,7 @@
                                             </td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-                                                <asp:TextBox ID="txtBankCheck" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off"  Height="35px" Width="200px"></asp:TextBox>
+                                                <asp:TextBox ID="txtBankCheck" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off" Height="35px" Width="200px"></asp:TextBox>
                                             </td>
                                             <td class="auto-style13">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtBankCheck"
@@ -171,8 +173,8 @@
                                             </td>
                                             <td class="auto-style12">
                                                 <asp:Label ID="lbl1" runat="server" Text="Format PayIn" Visible="false"></asp:Label>
-                                                
-                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrintX_Click"/>
+
+                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrintX_Click" />
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2"></td>
@@ -203,7 +205,7 @@
                                             <td class="auto-style12">
                                                 <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="ตกลง" Height="30px" Width="100px" OnClick="btnAdd_Click" />
                                                 <asp:Label ID="lbl2" runat="server" Text="Format Paper" Visible="false"></asp:Label>
-                                                <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click"/>
+                                                <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click" />
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2">
@@ -235,7 +237,7 @@
                                 <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" DataFormatString="{0:N2}" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
-                                  <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="8%">
+                                <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="8%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
                                     <div class='glyphicon glyphicon-remove'></div>

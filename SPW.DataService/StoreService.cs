@@ -111,9 +111,9 @@ namespace SPW.DataService
             return this.Datacontext.STORE.Where(x => x.STORE_CODE.ToUpper().Contains(item.STORE_CODE.ToUpper())).ToList();
         }
 
-        public int GetStoreID(string store_name)
+        public STORE GetStoreID(string store_name)
         {
-            return this.Datacontext.STORE.Where(x => x.STORE_NAME == store_name).FirstOrDefault().STORE_ID;
+            return this.Datacontext.STORE.Where(x => x.STORE_NAME == store_name).FirstOrDefault();
         }
 
         public List<STORE> GetAll(int SectorID, int ProvinceID)

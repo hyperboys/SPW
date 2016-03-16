@@ -62,7 +62,7 @@ namespace SPW.UI.Web.Page
             InitialDataService();
         }
 
-        protected void Page_Load(object sender, EventArgs e)// Edit for Filter
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
@@ -71,8 +71,7 @@ namespace SPW.UI.Web.Page
                 PrepareDefaultScreen();
                 AutoCompleteStoreName();
                 AutoCompleteStoreCode();
-                List<PROVINCE> list = cmdProvince.GetAll().Skip(77).ToList();
-                grdProvince.DataSource = list;
+                grdProvince.DataSource = null;
                 grdProvince.DataBind();
             }
             else
