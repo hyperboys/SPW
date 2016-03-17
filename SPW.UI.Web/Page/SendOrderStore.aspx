@@ -61,9 +61,7 @@
                                             <td>จังหวัด</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td>
-                                                <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged">
-                                                    <asp:ListItem Value="0">เลือกทั้งหมด</asp:ListItem>
-                                                </asp:DropDownList>
+                                                
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td>สายจัดรถ</td>
