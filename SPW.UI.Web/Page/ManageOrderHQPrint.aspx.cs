@@ -52,6 +52,7 @@ namespace SPW.UI.Web.Page
             CreatePageEngine();
             ReloadDatasource();
             InitialData();
+            AutoCompleteProvince();
         }
 
         private void ReloadPageEngine()
@@ -95,9 +96,6 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
-            listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
-
             SQLUtility sql = new SQLUtility();
             Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
             foreach (KeyValuePair<string, string> entry in listTrans)
@@ -131,7 +129,7 @@ namespace SPW.UI.Web.Page
             listStore = listStore.Where(x =>
                 x.ORDER.Any(y => isBetweenDate((DateTime)y.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))) &&
                 x.STORE_CODE.ToUpper() == (txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper()) &&
-                x.PROVINCE_ID == (ddlProvince.SelectedValue == "0" ? x.PROVINCE_ID : int.Parse(ddlProvince.SelectedValue))).Distinct().ToList();
+                x.PROVINCE.PROVINCE_NAME.Contains(txtProvince.Text)).Distinct().ToList();
 
             if (ddlTranspot.SelectedValue != "0") 
             {
@@ -329,5 +327,21 @@ namespace SPW.UI.Web.Page
             }
             return dateThai;
         }
+
+        private void AutoCompleteProvince()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("PROVINCE", "PROVINCE_NAME", "PROVINCE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtProvince.Attributes.Add("data-source", str);
+        }     
     }
 }

@@ -81,9 +81,7 @@
                                     <div class="row">
                                         <div class="col-md-2">จังหวัด</div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True" SelectedValue='<%# Eval("Key") %>'>
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="35px" placeholder="จังหวัด" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">สายจัดรถ</div>
                                         <div class="col-md-3">
