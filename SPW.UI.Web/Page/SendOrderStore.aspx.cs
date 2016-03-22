@@ -71,8 +71,9 @@ namespace SPW.UI.Web.Page
                 PrepareDefaultScreen();
                 AutoCompleteStoreName();
                 AutoCompleteStoreCode();
-                grdProvince.DataSource = null;
-                grdProvince.DataBind();
+                AutoCompleteProvince();
+                //grdProvince.DataSource = null;
+                //grdProvince.DataBind();
             }
             else
             {
@@ -93,13 +94,16 @@ namespace SPW.UI.Web.Page
                 List<int> listTrans = _transpotService.SelectListStoreID(Convert.ToInt32(ddlTranspot.SelectedValue));
                 StoreList = StoreList.Where(x => listTrans.Contains(x.STORE_ID)).ToList();
             }
-            if (ddlProvince.SelectedValue != "0") 
-            {
-                StoreList = StoreList.Where(x => x.PROVINCE_ID == Convert.ToInt32(ddlProvince.SelectedValue)).ToList();
-            }
+
+            StoreList = StoreList.Where(x => x.PROVINCE.PROVINCE_NAME.Contains(txtProvince.Text)).ToList();
+
+            //if (ddlProvince.SelectedValue != "0")
+            //{
+            //    StoreList = StoreList.Where(x => x.PROVINCE_ID == Convert.ToInt32(ddlProvince.SelectedValue)).ToList();
+            //}
 
             FillData(StoreList);
-            ddlProvince.SelectedIndex = 0;
+            //ddlProvince.SelectedIndex = 0;
         }
 
         private void PrepareDefaultScreen()
@@ -186,12 +190,12 @@ namespace SPW.UI.Web.Page
 
         private void PrepareSearchScreen()
         {
-            List<PROVINCE> ProvinceItems = cmdProvince.GetAll();
-            ProvinceItems.Insert(0, new PROVINCE() { PROVINCE_NAME = "กรุณาเลือกจังหวัด", PROVINCE_ID = 0 });
-            ddlProvince.DataSource = ProvinceItems;
-            ddlProvince.DataTextField = "PROVINCE_NAME";
-            ddlProvince.DataValueField = "PROVINCE_ID";
-            ddlProvince.DataBind();
+            //List<PROVINCE> ProvinceItems = cmdProvince.GetAll();
+            //ProvinceItems.Insert(0, new PROVINCE() { PROVINCE_NAME = "กรุณาเลือกจังหวัด", PROVINCE_ID = 0 });
+            //ddlProvince.DataSource = ProvinceItems;
+            //ddlProvince.DataTextField = "PROVINCE_NAME";
+            //ddlProvince.DataValueField = "PROVINCE_ID";
+            //ddlProvince.DataBind();
 
 
             SQLUtility sql = new SQLUtility();
@@ -204,14 +208,14 @@ namespace SPW.UI.Web.Page
 
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ProvinceSelected = Convert.ToInt32(ddlProvince.SelectedValue);
-            if (ProvinceSelected > 0)
-            {
-                List<STORE> StoreList = cmdStore.GetAllByProvinceID(ProvinceSelected);
-                FillData(StoreList);
-                txtStoreCode.Text = "";
-                txtStoreName.Text = "";
-            }
+            //int ProvinceSelected = Convert.ToInt32(ddlProvince.SelectedValue);
+            //if (ProvinceSelected > 0)
+            //{
+            //    List<STORE> StoreList = cmdStore.GetAllByProvinceID(ProvinceSelected);
+            //    FillData(StoreList);
+            //    txtStoreCode.Text = "";
+            //    txtStoreName.Text = "";
+            //}
         }
 
         protected void btnNextStep_Click(object sender, EventArgs e)
@@ -288,17 +292,50 @@ namespace SPW.UI.Web.Page
             txtStoreCode.Attributes.Add("data-source", str);
         }
 
-        protected void grdProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        private void AutoCompleteProvince()
         {
-            try
+            List<string> nameList = SearchAutoCompleteDataService.Search("PROVINCE", "PROVINCE_NAME", "PROVINCE_NAME", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
             {
-
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
             }
-            catch (Exception ex) 
+            if (str != "")
             {
-                DebugLog.WriteLog(ex.ToString());
+                str = str.Remove(str.Length - 1);
             }
+            str = "[" + str + "]";
+            txtProvince.Attributes.Add("data-source", str);
         }
+
+        //protected void grdProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DebugLog.WriteLog(ex.ToString());
+        //    }
+        //}
+
+        //protected void txtProvince_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (txtProvince.Text != "")
+        //        {
+        //            grdProvince.DataSource = cmdProvince.GetAllLike(txtProvince.Text);
+        //            grdProvince.DataBind();
+        //            txtProvince.Focus();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DebugLog.WriteLog(ex.ToString());
+        //    }
+        //}
     }
 }
 
