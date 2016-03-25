@@ -223,15 +223,17 @@ namespace SPW.UI.Web.Page
                 STORE itemStore = _storeService.GetStoreID(txtStoreName.Text);
                 if (itemStore == null)
                 {
-                    lblError.Text = "ข้อมูลรหัสร้านผิด";
-                    danger.Visible = true;
-                    return;
+                    itemStore = new STORE();
+                    itemStore.STORE_ID = 0;
+                    //lblError.Text = "ข้อมูลรหัสร้านผิด";
+                    //danger.Visible = true;
+                    //return;
                 }
-                else 
-                {
-                    lblError.Text = "";
-                    danger.Visible = false;
-                }
+                //else
+                //{
+                //    lblError.Text = "";
+                //    danger.Visible = false;
+                //}
 
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
