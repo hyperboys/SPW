@@ -5,7 +5,8 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">เลือกร้านค้า</h1>
+    <h1 class="page-header">เลือกร้านค้า
+    </h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
@@ -33,21 +34,17 @@
         .auto-style5 {
             width: 16px;
         }
+
         .auto-style6 {
             width: 58px;
         }
+
         .auto-style7 {
             width: 58px;
             height: 14px;
         }
+
         .auto-style8 {
-            height: 14px;
-        }
-        .auto-style9 {
-            width: 67px;
-        }
-        .auto-style10 {
-            width: 67px;
             height: 14px;
         }
     </style>
@@ -55,8 +52,12 @@
     <script type="text/javascript">
         function RefreshUpdatePanel() {
             __doPostBack('<%= txtProvince.ClientID %>', '');
-    };
-</script>
+        }
+        function SetDelay() {
+            setTimeout("RefreshUpdatePanel()", 200);
+            this.value = this.value;
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="panel panel-primary">
@@ -73,8 +74,9 @@
                                             <td>จังหวัด</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td>
-                                                <%--<asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="30px" Width="200px" placeholder="จังหวัด" OnTextChanged="txtProvince_TextChanged" AutoPostBack="True" onkeyup="RefreshUpdatePanel();"/>--%>
-                                                <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="30px" Width="200px" placeholder="จังหวัด" data-provide="typeahead" data-items="5" autocomplete="off"/>
+
+                                                <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="30px" Width="200px" placeholder="จังหวัด" AutoPostBack="true" OnTextChanged="txtProvince_TextChanged" onkeyup="SetDelay();" onfocus="this.value = this.value;" />
+                                                <%--<asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="30px" Width="200px" placeholder="จังหวัด" data-provide="typeahead" data-items="5" autocomplete="off" OnTextChanged="txtProvince_TextChanged" />--%>
                                             </td>
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td>สายจัดรถ</td>
@@ -91,24 +93,90 @@
                                             <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td></td>
                                         </tr>
+                                    </table>
+                                    <table style="width: 748px; margin-top: 11px;">
                                         <tr>
-                                            <td>รหัสร้าน</td>
-                                            <td class="auto-style1" style="text-align: center">:</td>
-                                            <td>
-                                                <%--<asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="30px" Width="200px" placeholder="จังหวัด" OnTextChanged="txtProvince_TextChanged" AutoPostBack="True" onkeyup="RefreshUpdatePanel();"/>--%>
-                                                <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" data-provide="typeahead" data-items="5" autocomplete="off"/>
+                                            <td class="auto-style2">
+                                                <asp:GridView ID="grdProvince" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                                                    DataKeyNames="PROVINCE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลจังหวัด"
+                                                    Style="text-align: center" CssClass="grid" OnRowDeleting="grdProvince_RowDeleting">
+                                                    <AlternatingRowStyle BackColor="White" />
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="check" runat="server" AutoPostBack="true" OnCheckedChanged="chkview_CheckedChanged" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="No" ItemStyle-Width="10%">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1 %>
+                                                            </ItemTemplate>
+                                                            <ItemStyle Width="10" />
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="PROVINCE_NAME" HeaderText="จังหวัด" ItemStyle-Width="75%" ItemStyle-HorizontalAlign="Center">
+                                                            <ItemStyle Width="75%"></ItemStyle>
+                                                        </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="15%">
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" CausesValidation="False">
+                                                                    <div class='glyphicon glyphicon-remove'></div>
+                                                                </asp:LinkButton>
+                                                            </ItemTemplate>
+                                                            <ItemStyle Width="15%" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                    <EditRowStyle BackColor="#2461BF" />
+                                                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                                                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                                                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                                    <PagerSettings Mode="NumericFirstLast" />
+                                                </asp:GridView>
                                             </td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                            <td>ชื่อร้าน</td>
-                                            <td class="auto-style1" style="text-align: center">:</td>
-                                            <td>
-                                                <asp:TextBox ID="txtStoreName" runat="server" autocomplete="off" class="form-control" data-items="5" data-provide="typeahead" Height="30px" placeholder="ชื่อร้าน" Width="200px" />
+                                            <td class="auto-style5"></td>
+                                            <td class="auto-style4">
+                                                <table>
+                                                    <tr>
+                                                        <td class="auto-style6">รหัสร้าน</td>
+                                                        <td class="auto-style1" style="text-align: center">:</td>
+                                                        <td>
+                                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" data-provide="typeahead" data-items="5" autocomplete="off" />
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="auto-style7"></td>
+                                                        <td class="auto-style8"></td>
+                                                        <td class="auto-style8"></td>
+                                                        <td class="auto-style8"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="auto-style6">ชื่อร้าน</td>
+                                                        <td class="auto-style1" style="text-align: center">:</td>
+                                                        <td>
+                                                            <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="30px" Width="200px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off" />
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="auto-style6">&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="auto-style6">&nbsp;</td>
+                                                        <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
                                             </td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                            <td>
-                                                &nbsp;</td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                            <td></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -183,8 +251,8 @@
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
-             <%--<asp:AsyncPostBackTrigger ControlID="txtProvince"/>--%>
-             <%--<asp:AsyncPostBackTrigger ControlID="txtProvince" EventName="TextChanged" />--%>
+            <%--<asp:AsyncPostBackTrigger ControlID="txtProvince"/>--%>
+            <asp:AsyncPostBackTrigger ControlID="txtProvince" EventName="TextChanged" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

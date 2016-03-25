@@ -110,8 +110,7 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสร้าน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน"></asp:TextBox>
-                                        </div>
+                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="30px" Width="200px" placeholder="รหัสร้านค้า" data-provide="typeahead" data-items="5" autocomplete="off"/></div>
                                         <div class="col-md-2">สถานะ</div>
                                         <div class="col-md-3">
                                             <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>

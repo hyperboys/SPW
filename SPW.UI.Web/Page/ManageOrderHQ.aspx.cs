@@ -54,6 +54,7 @@ namespace SPW.UI.Web.Page
             InitialData();
             AutoCompleteStoreName();
             AutoCompleteProvince();
+            AutoCompleteStoreCode();
         }
 
         private void ReloadPageEngine()
@@ -240,6 +241,22 @@ namespace SPW.UI.Web.Page
         protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<DROPDOWN> query = GetDropdownChanged(int.Parse(ddlSector.SelectedValue));
+        }
+
+        private void AutoCompleteStoreCode()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("STORE", "STORE_CODE", "STORE_CODE", "");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtStoreCode.Attributes.Add("data-source", str);
         }
 
         private void AutoCompleteStoreName()

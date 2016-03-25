@@ -57,6 +57,18 @@ namespace SPW.DataService
             return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_ID == ID).FirstOrDefault();
         }
 
+        public int GetID(string provinceName)
+        {
+            return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_NAME == provinceName).FirstOrDefault().PROVINCE_ID;
+        }
+
+
+        public List<PROVINCE> GetAllLike(string provinceName) 
+        {
+            List<PROVINCE> list = this.Datacontext.PROVINCE.Where(x => x.SYE_DEL == false && x.PROVINCE_NAME.Contains(provinceName)).OrderBy(y => y.PROVINCE_NAME).ToList();
+            return list.Count() > 5 ? list.Skip(list.Count() - 5).ToList() : list;
+        }
+
         public List<PROVINCE> GetAll()
         {
             return this.Datacontext.PROVINCE.Where(x => x.SYE_DEL == false).OrderBy(y=>y.PROVINCE_NAME).ToList();

@@ -103,7 +103,7 @@ namespace SPW.DataService
 
         public List<STORE> GetAll()
         {
-            return this.Datacontext.STORE.Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.STORE.Include("PROVINCE").Where(x => x.SYE_DEL == false).ToList();
         }
 
         public List<STORE> GetAll(STORE item)
@@ -123,7 +123,7 @@ namespace SPW.DataService
 
         public List<STORE> GetAllIncludeOrder()
         {
-            return this.Datacontext.STORE.Include("ORDER").ToList();
+            return this.Datacontext.STORE.Include("ORDER").Include("PROVINCE").ToList();
         }
 
         public List<string> GetAllStreet()

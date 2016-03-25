@@ -34,6 +34,23 @@ namespace SPW.UI.Web.Page
             }
         }
 
+        public List<PROVINCE> listProvince
+        {
+            get
+            {
+                if (ViewState["listProvince"] == null)
+                {
+                    ViewState["listProvince"] = new List<PROVINCE>();
+                }
+                var list = (List<PROVINCE>)ViewState["listProvince"];
+                return list;
+            }
+            set
+            {
+                ViewState["listProvince"] = value;
+            }
+        }
+
         private void ReloadPageEngine()
         {
             if (Session["DataServiceEngine"] != null)
@@ -71,9 +88,6 @@ namespace SPW.UI.Web.Page
                 PrepareDefaultScreen();
                 AutoCompleteStoreName();
                 AutoCompleteStoreCode();
-                AutoCompleteProvince();
-                //grdProvince.DataSource = null;
-                //grdProvince.DataBind();
             }
             else
             {
@@ -95,7 +109,11 @@ namespace SPW.UI.Web.Page
                 StoreList = StoreList.Where(x => listTrans.Contains(x.STORE_ID)).ToList();
             }
 
-            StoreList = StoreList.Where(x => x.PROVINCE.PROVINCE_NAME.Contains(txtProvince.Text)).ToList();
+            if (listProvince.Count() > 0)
+            {
+                List<int> listTrans = listProvince.Select(x => x.PROVINCE_ID).ToList();
+                StoreList = StoreList.Where(x => listTrans.Contains(x.PROVINCE_ID)).ToList();
+            }
 
             //if (ddlProvince.SelectedValue != "0")
             //{
@@ -308,34 +326,88 @@ namespace SPW.UI.Web.Page
             txtProvince.Attributes.Add("data-source", str);
         }
 
-        //protected void grdProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    try
-        //    {
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        DebugLog.WriteLog(ex.ToString());
-        //    }
-        //}
+        private void textChange()
+        {
 
-        //protected void txtProvince_TextChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (txtProvince.Text != "")
-        //        {
-        //            grdProvince.DataSource = cmdProvince.GetAllLike(txtProvince.Text);
-        //            grdProvince.DataBind();
-        //            txtProvince.Focus();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        DebugLog.WriteLog(ex.ToString());
-        //    }
-        //}
+            if (txtProvince.Text != "")
+            {
+                List<PROVINCE> tmpToGrid = new List<PROVINCE>();
+                List<PROVINCE> tmpListProvince = cmdProvince.GetAllLike(txtProvince.Text);
+                if (tmpListProvince != null && tmpListProvince.Count > 0 && listProvince.Count() > 0)
+                {
+                    if (tmpListProvince.Count() == 5)
+                    {
+                        tmpListProvince = tmpListProvince.Skip(listProvince.Count()).ToList();
+                    }
+                    tmpToGrid.AddRange(listProvince);
+                    tmpToGrid.AddRange(tmpListProvince);
+                }
+                else if (tmpListProvince.Count > 0)
+                {
+                    tmpToGrid.AddRange(tmpListProvince);
+                }
+                else if (listProvince.Count > 0)
+                {
+                    tmpToGrid.AddRange(listProvince);
+                }
+                grdProvince.DataSource = tmpToGrid;
+                grdProvince.DataBind();
+                for (int index = 0; index < listProvince.Count(); index++)
+                {
+                    if (listProvince[index].PROVINCE_NAME == grdProvince.Rows[index].Cells[2].Text)
+                    {
+                        CheckBox checkBox = (CheckBox)grdProvince.Rows[index].FindControl("check");
+                        checkBox.Checked = true;
+                    }
+                    else 
+                    {
+                        CheckBox checkBox = (CheckBox)grdProvince.Rows[index].FindControl("check");
+                        checkBox.Checked = false;
+                    }
+                }
+                txtProvince.Focus();
+            }
+        }
+
+        protected void txtProvince_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                textChange();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        protected void grdProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                listProvince.RemoveAll(x => x.PROVINCE_NAME == grdProvince.Rows[e.RowIndex].Cells[2].Text);
+                textChange();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        protected void chkview_CheckedChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = ((GridViewRow)((CheckBox)sender).NamingContainer);
+            int index = row.RowIndex;
+            CheckBox checkBox = (CheckBox)grdProvince.Rows[index].FindControl("check");
+            if (checkBox.Checked)
+            {
+                PROVINCE temp = new PROVINCE();
+                temp.PROVINCE_NAME = grdProvince.Rows[index].Cells[2].Text;
+                temp.PROVINCE_ID = cmdProvince.GetID(temp.PROVINCE_NAME);
+                listProvince.Add(temp);
+            }
+        }
     }
 }
 
