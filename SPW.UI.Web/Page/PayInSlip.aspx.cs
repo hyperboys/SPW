@@ -167,11 +167,20 @@ namespace SPW.UI.Web.Page
         {
             if (Request.QueryString["id"] != null)
             {
-                List<PAYIN_TRANS> tmp = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
-                grdBank.DataSource = tmp;
+                List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
-                Session["PAYIN_PRINT"] = tmp;
+                Session["PAYIN_PRINT"] = lstPayIn;
                 Session["PAYIN"] = null;
+
+                decimal tmpTotalAmt = 0;
+                foreach (PAYIN_TRANS pt in lstPayIn)
+                {
+                    tmpTotalAmt += pt.CHQ_AMOUNT;
+                }
+
+                lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") + " บาท";
+                lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
 
                 btnAdd.Visible = false;
                 btnSave.Visible = false;

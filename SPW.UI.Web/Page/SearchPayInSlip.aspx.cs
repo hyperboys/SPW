@@ -71,14 +71,14 @@ namespace SPW.UI.Web.Page
 
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(txtStartDate.Text) && x.PAYIN_DATE <= Convert.ToDateTime(txtStartDate.Text)).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(convertToDateThai(txtStartDate.Text)) && x.PAYIN_DATE <= Convert.ToDateTime(convertToDateThai(txtEndDate.Text))).ToList();
             }
             else if (txtStartDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text)).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(convertToDateThai(txtStartDate.Text))).ToList();
             }
 
-            grdPayIn.DataSource = DataSouce;
+            grdPayIn.DataSource = DataSouce.OrderBy(x=>x.PAYIN_DATE);
             grdPayIn.DataBind();
         }
 
@@ -163,6 +163,21 @@ namespace SPW.UI.Web.Page
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
                 lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + DataSouce[e.Row.RowIndex].PAYIN_SEQ_NO;
             }
+        }
+
+        private string convertToDateThai(string date)
+        {
+            if (date != "")
+            {
+                string[] tmp = date.Split('/');
+
+                return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+            }
+            else
+            {
+                return date;
+            }
+
         }
         #endregion
     }
