@@ -150,8 +150,7 @@ namespace SPW.UI.Web.Page
             {
                 CreatePageEngine();
                 InitialData();
-                grdBank.DataSource = null;
-                grdBank.DataBind();
+
                 AutoCompleteStoreName();
                 //AutoCompleteBranceName();
                 AutoCompleteBankName();
@@ -166,13 +165,38 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            ddlAccountMast.Items.Clear();
-            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
-            txtAccountName.Text = string.Empty;
-            var list = _accountMastService.GetAllBank(1);
-            foreach (var item in list)
+            if (Request.QueryString["id"] != null)
             {
-                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+                List<PAYIN_TRANS> tmp = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                grdBank.DataSource = tmp;
+                grdBank.DataBind();
+                Session["PAYIN_PRINT"] = tmp;
+                Session["PAYIN"] = null;
+
+                btnAdd.Visible = false;
+                btnSave.Visible = false;
+                btnPrint1.Visible = true;
+                btnPrintX.Visible = true;
+                btnPrint2.Visible = true;
+                lbl1.Visible = true;
+                lbl2.Visible = true;
+                ddlAccountMast.Enabled = false;
+                rbBankKrungThai.Enabled = false;
+                rbBankThai.Enabled = false;
+                grdBank.Columns[4].Visible = false;
+            }
+            else
+            {
+                grdBank.DataSource = null;
+                grdBank.DataBind();
+                ddlAccountMast.Items.Clear();
+                ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+                txtAccountName.Text = string.Empty;
+                var list = _accountMastService.GetAllBank(1);
+                foreach (var item in list)
+                {
+                    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+                }
             }
         }
 

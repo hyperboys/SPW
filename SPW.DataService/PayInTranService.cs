@@ -72,9 +72,9 @@ namespace SPW.DataService
             throw new NotImplementedException();
         }
 
-        public PAYIN_TRANS Select(string ID)
+        public List<PAYIN_TRANS> Select(int ID)
         {
-            throw new NotImplementedException();
+            return this.Datacontext.PAYIN_TRANS.Where(x => x.PAYIN_SEQ_NO == ID).ToList();
         }
 
         public List<PAYIN_TRANS> GetAll()
