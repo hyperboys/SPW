@@ -154,8 +154,7 @@ namespace SPW.UI.Web.Page
                 AutoCompleteStoreName();
                 //AutoCompleteBranceName();
                 AutoCompleteBankName();
-                Session["PAYIN"] = null;
-                Session["PAYIN_PRINT"] = null;
+
             }
             else
             {
@@ -165,6 +164,15 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
+            ddlAccountMast.Items.Clear();
+            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+            txtAccountName.Text = string.Empty;
+            var list = _accountMastService.GetAllBank(1);
+            foreach (var item in list)
+            {
+                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+            }
+
             if (Request.QueryString["id"] != null)
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
@@ -178,10 +186,19 @@ namespace SPW.UI.Web.Page
                 {
                     tmpTotalAmt += pt.CHQ_AMOUNT;
                 }
+                if (lstPayIn[0].BANK_SH_NAME.Equals("TMB"))
+                {
+                    rbBankThai.Checked = true;
+
+                }
+                else
+                {
+                    rbBankKrungThai.Checked = true;
+                }
 
                 lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") + " บาท";
                 lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
-
+                ddlAccountMast.SelectedValue = lstPayIn[0].ACCOUNT_ID;
                 btnAdd.Visible = false;
                 btnSave.Visible = false;
                 btnPrint1.Visible = true;
@@ -193,23 +210,18 @@ namespace SPW.UI.Web.Page
                 rbBankKrungThai.Enabled = false;
                 rbBankThai.Enabled = false;
                 grdBank.Columns[4].Visible = false;
+                dropdown();
             }
             else
             {
+                Session["PAYIN"] = null;
+                Session["PAYIN_PRINT"] = null;
                 grdBank.DataSource = null;
                 grdBank.DataBind();
-                ddlAccountMast.Items.Clear();
-                ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
-                txtAccountName.Text = string.Empty;
-                var list = _accountMastService.GetAllBank(1);
-                foreach (var item in list)
-                {
-                    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
-                }
             }
         }
 
-        protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
+        private void dropdown()
         {
             if (!ddlAccountMast.SelectedValue.Equals("0"))
             {
@@ -222,7 +234,11 @@ namespace SPW.UI.Web.Page
                 txtAccountName.Text = string.Empty;
                 txtBranceName.Text = string.Empty;
             }
+        }
 
+        protected void ddlAccountMast_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dropdown();
         }
 
         protected void rbBankThai_CheckedChanged(object sender, EventArgs e)

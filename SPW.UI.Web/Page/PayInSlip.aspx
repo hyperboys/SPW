@@ -24,7 +24,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
-        <asp:Label ID="lblName" runat="server" Text="PayIn Slip"></asp:Label></h1>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPayInSlip.aspx">PayIn Slip</asp:HyperLink>
+        -
+        <asp:Label ID="lblName" runat="server" Text="จัดการใบ PayIn"></asp:Label></h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
