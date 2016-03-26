@@ -103,7 +103,7 @@
                     <!-- /.row (nested) -->
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdPayIn" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" OnRowDataBound="gdvManageOrderHQ_RowDataBound"
-                            DataKeyNames="ACCOUNT_ID,PAYIN_DATE,PAYIN_SEQ_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล PayIn"
+                            DataKeyNames="PAYIN_SEQ_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล PayIn"
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>

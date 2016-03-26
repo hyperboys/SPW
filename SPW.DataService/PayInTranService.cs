@@ -82,7 +82,13 @@ namespace SPW.DataService
             return this.Datacontext.PAYIN_TRANS.ToList();
         }
 
-        public List<PAYIN_TRANS> GetAllCondition(DateTime startDate,DateTime endDate)
+        public List<PAYIN_TRANS> GetAllDistince()
+        {
+            return this.Datacontext.PAYIN_TRANS.ToList();
+        }
+
+
+        public List<PAYIN_TRANS> GetAllCondition(DateTime startDate, DateTime endDate)
         {
             return this.Datacontext.PAYIN_TRANS.Where(x => x.PAYIN_DATE >= startDate && x.PAYIN_DATE <= endDate).ToList();
         }

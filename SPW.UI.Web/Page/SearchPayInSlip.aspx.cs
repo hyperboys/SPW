@@ -14,6 +14,16 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchPayInSlip : System.Web.UI.Page
     {
+        private class DATAGRID
+        {
+            public string ACCOUNT_ID { get; set; }
+            public string ACCOUNT_NAME { get; set; }
+            public int PAYIN_SEQ_NO { get; set; }
+            public string BANK_NAME { get; set; }
+            public DateTime PAYIN_DATE { get; set; }
+            public decimal PAYIN_TOTAL_AMOUNT { get; set; }
+        }
+
         #region Declare variable
         private DataServiceEngine _dataServiceEngine;
         #endregion
@@ -78,7 +88,25 @@ namespace SPW.UI.Web.Page
                 DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(convertToDateThai(txtStartDate.Text))).ToList();
             }
 
-            grdPayIn.DataSource = DataSouce.OrderBy(x=>x.PAYIN_DATE);
+            DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ToList();
+            List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
+            {
+                ACCOUNT_ID = x.ACCOUNT_ID,
+                ACCOUNT_NAME = x.ACCOUNT_NAME,
+                PAYIN_SEQ_NO = x.PAYIN_SEQ_NO,
+                BANK_NAME = x.BANK_NAME,
+                PAYIN_DATE = x.PAYIN_DATE,
+                PAYIN_TOTAL_AMOUNT = x.PAYIN_TOTAL_AMOUNT
+            }).ToList();
+
+            var tmpDatagrid = tmp.GroupBy(x => x.PAYIN_SEQ_NO).ToList();
+            List<DATAGRID> data = new List<DATAGRID>();
+            foreach (var item in tmpDatagrid)
+            {
+                data.Add(item.ElementAt(0));
+            }
+            
+            grdPayIn.DataSource = data;
             grdPayIn.DataBind();
         }
 
