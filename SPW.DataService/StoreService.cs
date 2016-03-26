@@ -81,7 +81,7 @@ namespace SPW.DataService
 
         public STORE Select(int ID)
         {
-            return this.Datacontext.STORE.Include("ZONE").Include("ZONE_DETAIL").Where(x => x.STORE_ID == ID).FirstOrDefault();
+            return this.Datacontext.STORE.Include("PROVINCE").Include("ZONE").Include("ZONE_DETAIL").Where(x => x.STORE_ID == ID).FirstOrDefault();
         }
 
         public STORE Select(string code, string name)

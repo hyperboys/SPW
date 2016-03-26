@@ -116,7 +116,7 @@ namespace SPW.UI.Web.Page
 
             //List<PROVINCE> listProvince = (List<PROVINCE>)ViewState["listProvince"];
             //listProvince.ForEach(item => ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString())));
-            
+
             SQLUtility sql = new SQLUtility();
             Dictionary<string, string> listTrans = sql.SelectDistinc("TRANSPORT_LINE", new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" }, new string[] { "TRANS_LINE_ID", "TRANS_LINE_NAME" });
             foreach (KeyValuePair<string, string> entry in listTrans)

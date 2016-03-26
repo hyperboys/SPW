@@ -54,6 +54,7 @@
         .auto-style22 {
             width: 126px;
         }
+
         .auto-style23 {
             width: 9px;
         }
@@ -108,11 +109,12 @@
                                     <td class="auto-style20">จังหวัด</td>
                                     <td style="text-align: center" class="auto-style5">:</td>
                                     <td class="auto-style15">
-                                        <asp:DropDownList ID="ddlProvince" class="form-control" runat="server" Height="35px" Width="200px" Enabled="False" SelectedValue='<%# Eval("Key") %>' AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged">
-                                            <asp:ListItem>กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="35px" placeholder="จังหวัด" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="กรุณากรอกจังหวัด"
+                                            ValidationGroup="group" ControlToValidate="txtProvince" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                    </td>
                                     <td></td>
                                 </tr>
                                 <tr>

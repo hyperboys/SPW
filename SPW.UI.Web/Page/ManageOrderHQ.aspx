@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="col-md-2">จังหวัด</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="35px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txtProvince" class="form-control" runat="server" Height="35px" placeholder="จังหวัด" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>

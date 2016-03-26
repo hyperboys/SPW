@@ -57,6 +57,11 @@ namespace SPW.DataService
             return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_ID == ID).FirstOrDefault();
         }
 
+        public PROVINCE Select(string name)
+        {
+            return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_NAME == name).FirstOrDefault();
+        }
+
         public int GetID(string provinceName)
         {
             return this.Datacontext.PROVINCE.Where(x => x.PROVINCE_NAME == provinceName).FirstOrDefault().PROVINCE_ID;

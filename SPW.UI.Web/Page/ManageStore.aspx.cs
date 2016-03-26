@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.DAL;
 
 namespace SPW.UI.Web.Page
 {
@@ -19,7 +20,7 @@ namespace SPW.UI.Web.Page
         private RoadService cmdRoad;
         private ZoneService cmdZone;
         private EmployeeService cmdEmp;
-        private ZoneDetailService cmdZoneDetail; 
+        private ZoneDetailService cmdZoneDetail;
 
         private void ReloadPageEngine()
         {
@@ -33,8 +34,6 @@ namespace SPW.UI.Web.Page
                 CreatePageEngine();
             }
         }
-
-
 
         private void InitialDataService()
         {
@@ -75,21 +74,14 @@ namespace SPW.UI.Web.Page
                 ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString()));
             }
 
-            foreach (var item in cmdEmp.GetAllInclude().Where(x=>x.DEPARTMENT.DEPARTMENT_NAME == "Sale").ToList())
+            foreach (var item in cmdEmp.GetAllInclude().Where(x => x.DEPARTMENT.DEPARTMENT_NAME == "Sale").ToList())
             {
                 ddlSell.Items.Add(new ListItem((item.EMPLOYEE_NAME + " " + item.EMPLOYEE_SURNAME), item.EMPLOYEE_ID.ToString()));
             }
 
-            ViewState["listProvince"] = cmdProvice.GetAll();
-            foreach (var item in (List<PROVINCE>)ViewState["listProvince"])
+            foreach (var item in cmdZone.GetAll())
             {
-                ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString()));
-            }
-
-            var listZone = cmdZone.GetAll();
-            foreach (var item in listZone)
-            {
-                ddlZone.Items.Add(new ListItem(item.ZONE_NAME, item.ZONE_ID.ToString()));
+                ddlZone.Items.Add(new ListItem((item.ZONE_NAME), item.ZONE_ID.ToString()));
             }
 
             if (Request.QueryString["id"] != null)
@@ -108,36 +100,42 @@ namespace SPW.UI.Web.Page
                     txtTel2.Text = _store.STORE_TEL2;
                     txtTumbon.Text = _store.STORE_SUBDISTRICT;
                     ddlSector.SelectedValue = _store.SECTOR_ID.ToString();
-                    ddlProvince.SelectedValue = _store.PROVINCE_ID.ToString();
-                    ddlProvince.Enabled = true;
+                    txtProvince.Text = _store.PROVINCE.PROVINCE_NAME;
                     ddlZone.SelectedValue = _store.ZONE_ID.ToString();
                     ddlSell.SelectedValue = _store.ZONE_DETAIL.EMPLOYEE_ID.ToString();
                     txtRoad.Text = _store.STORE_STREET;
                     flag.Text = "Edit";
+                    AutoCompleteProvince(ddlSector.SelectedValue);
+                }
+                else 
+                {
+                    AutoCompleteProvince();
                 }
             }
         }
 
-        protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
+        private void AutoCompleteProvince(string ID = "")
         {
-            if (!ddlProvince.Enabled) 
-                ddlProvince.Enabled = true;
-            ddlProvince.Items.Clear();
-            foreach (var item in ((List<PROVINCE>)ViewState["listProvince"]).Where(x => x.SECTOR_ID == Convert.ToInt32(ddlSector.SelectedValue)))
+            List<string> nameList = SearchAutoCompleteDataService.SearchCondition("PROVINCE", "PROVINCE_NAME", "PROVINCE_NAME", "", "SECTOR_ID", ID);
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
             {
-                ddlProvince.Items.Add(new ListItem(item.PROVINCE_NAME, item.PROVINCE_ID.ToString()));
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
             }
-            Session["index"] = ddlProvince.SelectedValue.ToString();
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtProvince.Attributes.Add("data-source", str);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
             var obj = new STORE();
-            if (Session["index"] != null)
-            {
-                obj.PROVINCE_ID = Convert.ToInt32(Session["index"].ToString());
-            }
+
+            obj.PROVINCE_ID = cmdProvice.Select(txtProvince.Text).PROVINCE_ID;
             obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
             obj.STORE_ADDR1 = txtAddress.Text;
             obj.STORE_CODE = popTxtStoreCode.Text;
@@ -198,9 +196,9 @@ namespace SPW.UI.Web.Page
             Response.RedirectPermanent("SearchStore.aspx");
         }
 
-        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlSector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["index"] = ddlProvince.SelectedValue.ToString();
+            AutoCompleteProvince(ddlSector.SelectedValue);
         }
     }
 }
