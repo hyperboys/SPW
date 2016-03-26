@@ -180,7 +180,7 @@
                                         <a href="../Page/ReportMonthlySale.aspx">รายงานสรุปยอดขายแต่ละเดือน</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/PayInSlip.aspx">PayInSlip</a>
+                                        <a href="../Page/SearchPayInSlip.aspx">PayInSlip</a>
                                     </li>
                                     <li>
                                         <a href="../Page/ReportPayInSummary.aspx">รายงานสรุปการนำเข้าเช็ค</a>
