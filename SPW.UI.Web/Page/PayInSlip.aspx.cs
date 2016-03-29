@@ -145,12 +145,12 @@ namespace SPW.UI.Web.Page
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtStartDate.Text = DateTime.Now.ToShortDateString();
+           
             if (!Page.IsPostBack)
             {
+                txtStartDate.Text = DateTime.Now.ToShortDateString();
                 CreatePageEngine();
                 InitialData();
-
                 AutoCompleteStoreName();
                 //AutoCompleteBranceName();
                 AutoCompleteBankName();
@@ -411,7 +411,7 @@ namespace SPW.UI.Web.Page
                     tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_APPROVE_ID = 1;
                     tmpItem.PAYIN_SEQ_NO = _payInTranService.GetCount() + 1;
-                    tmpItem.PAYIN_DATE = DateTime.Now;
+                    tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text);
                     tmpItem.PAYIN_TOTAL_AMOUNT = tmpTotalAmt;
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
