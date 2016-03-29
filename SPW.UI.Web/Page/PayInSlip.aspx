@@ -187,16 +187,17 @@
                                             </td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-                                                <asp:TextBox ID="txtAmount" class="form-control" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" runat="server" Height="35px" Width="200px" MaxLength="8"></asp:TextBox>
-                                                <span id="error" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                                <asp:TextBox ID="txtAmount" class="form-control" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" runat="server" Height="35px" Width="200px" MaxLength="10"></asp:TextBox>
+                                                <span id="error" style="color: Red; display: none">*กรุณกรอกเป็นจำนวนเงิน</span>
                                                 <script type="text/javascript">
                                                     var specialKeys = new Array();
                                                     specialKeys.push(8); //Backspace
                                                     function IsNumeric(e) {
                                                         var keyCode = e.which ? e.which : e.keyCode
-                                                        var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                                        document.getElementById("error").style.display = ret ? "none" : "inline";
-                                                        return ret;
+                                                        var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
+                                                        //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                        document.getElementById("error").style.display = ret ? "inline" : "none";
+                                                        return !ret;
                                                     }
                                                 </script>
                                             </td>

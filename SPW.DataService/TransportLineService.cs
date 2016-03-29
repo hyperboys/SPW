@@ -78,7 +78,7 @@ namespace SPW.DataService
         {
             using (var ctx = new SPWEntities())
             {
-                 return ctx.TRANSPORT_LINE.Where(x => x.SYE_DEL == false).Count();
+                 return ctx.TRANSPORT_LINE.Where(x => x.SYE_DEL == false).Select(y=>y.TRANS_LINE_ID).Distinct().Count();
             }
         }
 

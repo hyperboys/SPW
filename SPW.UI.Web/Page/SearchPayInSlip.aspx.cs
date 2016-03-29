@@ -105,7 +105,7 @@ namespace SPW.UI.Web.Page
             {
                 data.Add(item.ElementAt(0));
             }
-            
+
             grdPayIn.DataSource = data;
             grdPayIn.DataBind();
         }
@@ -115,7 +115,6 @@ namespace SPW.UI.Web.Page
             return (input >= start && input <= end);
         }
         #endregion
-
 
         public List<PAYIN_TRANS> DataSouce
         {
@@ -189,7 +188,7 @@ namespace SPW.UI.Web.Page
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
-                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + DataSouce[e.Row.RowIndex].PAYIN_SEQ_NO;
+                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Value.ToString();
             }
         }
 

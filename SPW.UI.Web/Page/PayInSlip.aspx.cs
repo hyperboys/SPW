@@ -180,6 +180,14 @@ namespace SPW.UI.Web.Page
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
                 Session["PAYIN"] = null;
+                txtStartDate.Text = lstPayIn[0].PAYIN_DATE.ToShortDateString();
+                txtStartDate.Enabled = false;
+                txtAmount.Enabled = false;
+                txtAccountName.Enabled = false;
+                txtBankCheck.Enabled = false;
+                txtBranceName.Enabled = false;
+                txtCheck.Enabled = false;
+                txtStoreName.Enabled = false;
 
                 decimal tmpTotalAmt = 0;
                 foreach (PAYIN_TRANS pt in lstPayIn)
@@ -211,6 +219,7 @@ namespace SPW.UI.Web.Page
                 rbBankThai.Enabled = false;
                 grdBank.Columns[4].Visible = false;
                 dropdown();
+
             }
             else
             {

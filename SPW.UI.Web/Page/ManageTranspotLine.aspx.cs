@@ -72,7 +72,14 @@ namespace SPW.UI.Web.Page
                 grdTrans.DataSource = listItem;
                 grdTrans.DataBind();
             }
-            else 
+            else if (Session["TRANS_LINE_ID"] != null)
+            {
+                List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
+                txtTrans.Text = listItem[0].TRANS_LINE_NAME;
+                grdTrans.DataSource = listItem;
+                grdTrans.DataBind();
+            }
+            else
             {
                 txtTrans.Enabled = true;
             }
@@ -92,12 +99,12 @@ namespace SPW.UI.Web.Page
                     txtStoreCode.Focus();
                     return;
                 }
-                else 
+                else
                 {
                     TRANSPORT_LINE tmp = _transpotService.CheckStoreID(store.STORE_ID);
                     if (tmp != null)
                     {
-                        string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp .TRANS_LINE_NAME + "แล้ว\");";
+                        string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + "แล้ว\");";
                         ScriptManager.RegisterStartupScript(this, GetType(),
                                               "ServerControlScript", script, true);
                         txtStoreCode.Focus();
@@ -119,17 +126,25 @@ namespace SPW.UI.Web.Page
                     item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
                     item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
                 }
-                else 
+                else if (Session["TRANS_LINE_ID"] != null)
                 {
-                    item.TRANS_LINE_ID = _transpotService.GetCount();
+                    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
+                    item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
+                    item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
+                }
+                else
+                {
+                    item.TRANS_LINE_ID = _transpotService.GetCount() + 1;
+                    Session["TRANS_LINE_ID"] = item.TRANS_LINE_ID.ToString();
                     item.TRANS_LINE_NAME = txtTrans.Text;
                 }
                 _transpotService.Add(item);
                 txtStoreCode.Text = "";
                 txtStoreName.Text = "";
-                InitialData();
+                txtTrans.Enabled = false;
+                BindData();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
             }

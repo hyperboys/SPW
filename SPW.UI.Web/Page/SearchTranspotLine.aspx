@@ -38,19 +38,22 @@
                             <div class="form">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-2">รหัสร้าน</div>
+                                        <div class="col-md-2">สายจัดรถ</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน"></asp:TextBox>
+                                            <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" placeholder="สายจัดรถ"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-2">สถานะ</div>
+                                        <%--<div class="col-md-2">สถานะ</div>
                                         <div class="col-md-3">
                                             <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
                                                 <asp:ListItem Value="0" Selected="True">ใช้งาน</asp:ListItem>
                                                 <asp:ListItem Value="1">ไม่ใช้งาน</asp:ListItem>
                                             </asp:DropDownList>
-                                        </div>
+                                        </div>--%>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageTranspotLine.aspx" />
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +68,7 @@
                             Style="text-align: center" CssClass="grid" OnRowDataBound="grdTrans_RowDataBound">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                 <asp:TemplateField HeaderText="แก้ไข" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="แก้ไข" ItemStyle-Width="10%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnEdit" runat="server">
                                             <div class='glyphicon glyphicon-edit'></div>
