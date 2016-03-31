@@ -87,7 +87,7 @@ namespace SPW.UI.Web.Page
                     bahtTH += "บาท";
                 else
                 {
-                    bahtTH += "จุด";
+                    bahtTH += "บาท";
                     for (int i = 0; i < decVal.Length; i++)
                     {
                         n = decVal.Substring(i, 1);
@@ -104,7 +104,7 @@ namespace SPW.UI.Web.Page
                             bahtTH += rank[(decVal.Length - i) - 1];
                         }
                     }
-                    bahtTH += "บาท";
+                    bahtTH += "สตางค์";
                 }
             }
             return bahtTH;
@@ -145,7 +145,7 @@ namespace SPW.UI.Web.Page
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (!Page.IsPostBack)
             {
                 txtStartDate.Text = DateTime.Now.ToShortDateString();
@@ -164,14 +164,7 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            ddlAccountMast.Items.Clear();
-            ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
-            txtAccountName.Text = string.Empty;
-            var list = _accountMastService.GetAllBank(1);
-            foreach (var item in list)
-            {
-                ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
-            }
+
 
             if (Request.QueryString["id"] != null)
             {
@@ -197,11 +190,21 @@ namespace SPW.UI.Web.Page
                 if (lstPayIn[0].BANK_SH_NAME.Equals("TMB"))
                 {
                     rbBankThai.Checked = true;
-
+                    rbBankKrungThai.Checked = false;
                 }
                 else
                 {
                     rbBankKrungThai.Checked = true;
+                    rbBankThai.Checked = false;
+                }
+
+                ddlAccountMast.Items.Clear();
+                ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+                txtAccountName.Text = string.Empty;
+                var list = _accountMastService.GetAllBank(rbBankThai.Checked ? 1 : 2);
+                foreach (var item in list)
+                {
+                    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
                 }
 
                 lblNumAmount.Text = tmpTotalAmt.ToString("#,#.00#") + " บาท";
@@ -223,6 +226,14 @@ namespace SPW.UI.Web.Page
             }
             else
             {
+                ddlAccountMast.Items.Clear();
+                ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+                txtAccountName.Text = string.Empty;
+                var list = _accountMastService.GetAllBank(1);
+                foreach (var item in list)
+                {
+                    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+                }
                 Session["PAYIN"] = null;
                 Session["PAYIN_PRINT"] = null;
                 grdBank.DataSource = null;
