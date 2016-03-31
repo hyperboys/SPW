@@ -62,9 +62,20 @@ namespace SPW.UI.Web.Page
                             }
                             else if (((intVal.Length - i) - 1) > 5)
                             {
-                                if (n == "1")
+                                if (n == "1" && intVal.Length > 7)
                                 {
                                     bahtTH += "เอ็ด";
+                                }
+                                else
+                                {
+                                    bahtTH += num[Convert.ToInt32(n)];
+                                }
+                            }
+                            else if (((intVal.Length - i) - 1) > 6)
+                            {
+                                if (n == "2")
+                                {
+                                    bahtTH += "ยี่";
                                 }
                                 else
                                 {
