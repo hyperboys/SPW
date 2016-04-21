@@ -11,6 +11,10 @@
     <div class="alert alert-info" id="alert" runat="server" visible="false">
         <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
     </div>
+    <div class="alert alert-warning" id="warning" runat="server" visible="false">
+        <strong>
+            <asp:Label ID="lblWarning" runat="server" Text=""></asp:Label></strong>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -31,47 +35,49 @@
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    จัดการสายจัดรถ        
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-2">สายจัดรถ</div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" Width="228px" Enabled="false" BackColor="White"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-3">
-                                        </div>
-                                        <div class="col-md-2">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2">รหัสร้าน</div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-2">ชื่อร้าน</div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="35px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" OnClick="btnAdd_Click" />
-                                        </div>
-                                    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            จัดการสายจัดรถ        
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2">สายจัดรถ</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" Width="228px" Enabled="false" BackColor="White"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">รหัสร้าน</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2">ชื่อร้าน</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtStoreName" class="form-control" runat="server" Height="35px" placeholder="ชื่อร้าน" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" OnClick="btnAdd_Click" />
                                 </div>
                             </div>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+            </div>
+            <!-- /.row (nested) -->
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdTrans" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                             DataKeyNames="TRANS_LINE_ID,STORE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านในสายจัดรถ"
@@ -111,11 +117,32 @@
                             <PagerSettings Mode="NumericFirstLast" />
                         </asp:GridView>
                     </div>
-                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.col-lg-6 (nested) -->
             </div>
-            <!-- /.panel -->
-        </ContentTemplate>
-    </asp:UpdatePanel>
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+
 </asp:Content>

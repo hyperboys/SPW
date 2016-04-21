@@ -22,9 +22,11 @@ namespace SPW.UI.Web.Page
             if (!Page.IsPostBack)
             {
                 CreatePageEngine();
+                Session["listItem"] = new List<TRANSPORT_LINE>();
                 InitialData();
                 AutoCompleteStoreName();
                 AutoCompleteStoreCode();
+
             }
             else
             {
@@ -65,16 +67,23 @@ namespace SPW.UI.Web.Page
 
         private void BindData()
         {
-            if (Request.QueryString["TRANS_LINE_ID"] != null)
+            if (Request.QueryString["TRANS_LINE_ID"] != null && ((List<TRANSPORT_LINE>)Session["listItem"]).Count() == 0)
             {
                 List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Request.QueryString["TRANS_LINE_ID"].ToString()));
                 txtTrans.Text = listItem[0].TRANS_LINE_NAME;
                 grdTrans.DataSource = listItem;
                 grdTrans.DataBind();
             }
-            else if (Session["TRANS_LINE_ID"] != null)
+            //else if (Session["TRANS_LINE_ID"] != null)
+            //{
+            //    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
+            //    txtTrans.Text = listItem[0].TRANS_LINE_NAME;
+            //    grdTrans.DataSource = listItem;
+            //    grdTrans.DataBind();
+            //}
+            else if (((List<TRANSPORT_LINE>)Session["listItem"]).Count() > 0)
             {
-                List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
+                List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
                 txtTrans.Text = listItem[0].TRANS_LINE_NAME;
                 grdTrans.DataSource = listItem;
                 grdTrans.DataBind();
@@ -93,9 +102,11 @@ namespace SPW.UI.Web.Page
                 store = _storeService.Select(txtStoreCode.Text, txtStoreName.Text);
                 if (store == null)
                 {
-                    string script = "alert(\"ข้อมูลร้านค้าไม่ถูกต้อง\");";
-                    ScriptManager.RegisterStartupScript(this, GetType(),
-                                          "ServerControlScript", script, true);
+                    //string script = "alert(\"ข้อมูลร้านค้าไม่ถูกต้อง\");";
+                    //ScriptManager.RegisterStartupScript(this, GetType(),
+                    //                      "ServerControlScript", script, true);
+                    lblWarning.Text = "ข้อมูลร้านค้าไม่ถูกต้อง";
+                    warning.Visible = true;
                     txtStoreCode.Focus();
                     return;
                 }
@@ -104,41 +115,46 @@ namespace SPW.UI.Web.Page
                     TRANSPORT_LINE tmp = _transpotService.CheckStoreID(store.STORE_ID);
                     if (tmp != null)
                     {
-                        string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + "แล้ว\");";
-                        ScriptManager.RegisterStartupScript(this, GetType(),
-                                              "ServerControlScript", script, true);
+                        //string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + "แล้ว\");";
+                        //ScriptManager.RegisterStartupScript(this, GetType(),
+                        //                      "ServerControlScript", script, true);
+                        lblWarning.Text = "ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + " แล้ว";
+                        warning.Visible = true;
                         txtStoreCode.Focus();
                         return;
                     }
                 }
 
                 USER userItem = Session["user"] as USER;
+                List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
                 TRANSPORT_LINE item = new TRANSPORT_LINE();
                 item.SYE_DEL = false;
-                item.STORE_ID = store.STORE_ID;
+                item.STORE = store;
                 item.CREATE_DATE = DateTime.Now;
                 item.CREATE_EMPLOYEE_ID = userItem.USER_ID;
                 item.UPDATE_DATE = DateTime.Now;
                 item.UPDATE_EMPLOYEE_ID = userItem.USER_ID;
-                if (Request.QueryString["TRANS_LINE_ID"] != null)
+                if (Request.QueryString["TRANS_LINE_ID"] != null && ((List<TRANSPORT_LINE>)Session["listItem"]).Count() == 0)
                 {
-                    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Request.QueryString["TRANS_LINE_ID"].ToString()));
+                    listItem = _transpotService.SelectAll(Convert.ToInt32(Request.QueryString["TRANS_LINE_ID"].ToString()));
                     item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
                     item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
+
                 }
-                else if (Session["TRANS_LINE_ID"] != null)
-                {
-                    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
-                    item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
-                    item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
-                }
+                //else if (Session["TRANS_LINE_ID"] != null)
+                //{
+                //    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
+                //    item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
+                //    item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
+                //}
                 else
                 {
                     item.TRANS_LINE_ID = _transpotService.GetCount() + 1;
-                    Session["TRANS_LINE_ID"] = item.TRANS_LINE_ID.ToString();
                     item.TRANS_LINE_NAME = txtTrans.Text;
                 }
-                _transpotService.Add(item);
+
+                listItem.Add(item);
+                Session["listItem"] = listItem;
                 txtStoreCode.Text = "";
                 txtStoreName.Text = "";
                 txtTrans.Enabled = false;
@@ -203,6 +219,32 @@ namespace SPW.UI.Web.Page
                 {
                     button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
                 }
+            }
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
+                foreach (TRANSPORT_LINE item in listItem)
+                {
+                    if (_transpotService.CheckStoreID(item.STORE.STORE_ID) == null) 
+                    {
+                        item.STORE_ID = item.STORE.STORE_ID;
+                        item.STORE = null;
+                        _transpotService.Add(item);
+                    }
+                }
+
+
+                Session["listItem"] = null;
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchTranspotLine.aspx");
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
             }
         }
     }
