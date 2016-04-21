@@ -329,11 +329,12 @@ namespace SPW.UI.Web.Page
                 tmpItem.CHQ_AMOUNT = Convert.ToDecimal(txtAmount.Text);
                 tmpItem.CHQ_BANK = txtBankCheck.Text;
                 tmpItem.CHQ_BR_BANK = "";
-
                 tmpItem.STORE_ID_PAID = itemStore.STORE_ID;
                 tmpItem.STORE_NAME_PAID = txtStoreName.Text;
                 tmpItem.CHQ_NO = txtCheck.Text;
                 tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
+                tmpItem.UPDATE_DATE = DateTime.Now;
+                tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text.ToString());
                 lstPayIn.Add(tmpItem);
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
@@ -442,7 +443,7 @@ namespace SPW.UI.Web.Page
                     tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_APPROVE_ID = 1;
                     tmpItem.PAYIN_SEQ_NO = _payInTranService.GetCount() + 1;
-                    tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text);
+                    //tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text);
                     tmpItem.PAYIN_TOTAL_AMOUNT = tmpTotalAmt;
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
@@ -706,7 +707,7 @@ namespace SPW.UI.Web.Page
                 {
                     DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
                     drpayInSlipPaper["SEQ"] = (i++).ToString();
-                    drpayInSlipPaper["DATE"] = txtStartDate.Text;
+                    drpayInSlipPaper["DATE"] = pt.PAYIN_DATE.ToShortDateString();
                     drpayInSlipPaper["CHECK_NO"] = pt.CHQ_NO.ToString();
                     drpayInSlipPaper["CHECK_BANK"] = pt.CHQ_BANK.ToString();
                     drpayInSlipPaper["AMOUNT"] = pt.CHQ_AMOUNT.ToString("#,#.00#"); ;

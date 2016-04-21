@@ -35,7 +35,7 @@
         <ContentTemplate>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    จัดการใบสั่งซื้อ        
+                    จัดการสายจัดรถ        
                 </div>
                 <div class="panel-body">
                     <div class="row">
