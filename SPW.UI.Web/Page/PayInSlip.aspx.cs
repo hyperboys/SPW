@@ -703,6 +703,7 @@ namespace SPW.UI.Web.Page
 
                 decimal tmpTotalAmt = 0;
                 int i = 1;
+                lstPayIn = lstPayIn.OrderBy(x => x.CHQ_SEQ_NO).ToList();
                 foreach (PAYIN_TRANS pt in lstPayIn)
                 {
                     DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
