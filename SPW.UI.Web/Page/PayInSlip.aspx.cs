@@ -539,7 +539,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                 drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
-                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
@@ -607,7 +607,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                 drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
-                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
@@ -720,7 +720,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["ACCOUNT_NO"] = ddlAccountMast.SelectedValue;
                 drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                drPayInSlipMain["DATE"] = txtStartDate.Text;
+                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
