@@ -18,21 +18,37 @@ namespace SPW.DAL
                 Dictionary<string, string> tmp = new Dictionary<string, string>();
                 DBBase.ConncetDatabase();
                 string sqlQuery = @"SELECT ";
-                foreach (string column in COLUMN_RESULT)
+                if (COLUMN_RESULT.Count() > 1)
                 {
-                    sqlQuery += column + ",";
+                    foreach (string column in COLUMN_RESULT)
+                    {
+                        sqlQuery += column + ",";
+                    }
                 }
+                else
+                {
+                    sqlQuery += COLUMN_RESULT[0] + " ";
+                }
+
                 sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
                 sqlQuery += " FROM " + TABLE + " WHERE SYE_DEL = 0 ";
                 if (COLUMN_GROUPBY.Length > 0)
                 {
                     sqlQuery += "GROUP BY ";
-                    foreach (string groupBy in COLUMN_GROUPBY)
+                    if (COLUMN_GROUPBY.Length > 1)
                     {
-                        sqlQuery += groupBy + ",";
+                        foreach (string groupBy in COLUMN_GROUPBY)
+                        {
+                            sqlQuery += groupBy + ",";
+                        }
+                        sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
+                    }
+                    else
+                    {
+                        sqlQuery += COLUMN_GROUPBY[0] + "";
                     }
                 }
-                sqlQuery = sqlQuery.Substring(0, sqlQuery.Length - 1);
+
                 SqlDataReader dr;
                 SqlCommand command = new SqlCommand(sqlQuery, DBBase.con);
                 dr = command.ExecuteReader();
@@ -44,7 +60,14 @@ namespace SPW.DAL
                 DBBase.DisConncetDatabase();
                 foreach (DataRow dtr in dt.Rows)
                 {
-                    tmp.Add(dtr[0].ToString(), dtr[1].ToString());
+                    if (COLUMN_RESULT.Count() > 1)
+                    {
+                        tmp.Add(dtr[0].ToString(), dtr[1].ToString());
+                    }
+                    else
+                    {
+                        tmp.Add(dtr[0].ToString(), "");
+                    }
                 }
                 return tmp;
             }
@@ -55,7 +78,7 @@ namespace SPW.DAL
             }
         }
 
-        public Dictionary<string, string> SelectDistincCondition(string TABLE, string[] COLUMN_RESULT, string[] COLUMN_GROUPBY, string COLUMN_WHERE = "", string TEXT_SEARCH = "",string SYE_DEL = "0")
+        public Dictionary<string, string> SelectDistincCondition(string TABLE, string[] COLUMN_RESULT, string[] COLUMN_GROUPBY, string COLUMN_WHERE = "", string TEXT_SEARCH = "", string SYE_DEL = "0")
         {
             try
             {
@@ -102,6 +125,67 @@ namespace SPW.DAL
             {
                 DebugLog.WriteLog(ex.ToString());
                 return null;
+            }
+        }
+
+        public int GetCount(string sql)
+        {
+            try
+            {
+                SqlDataReader dr;
+                DBBase.ConncetDatabase();
+                SqlCommand command = new SqlCommand(sql, DBBase.con);
+                dr = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                if (dr.HasRows)
+                {
+                    dt.Load(dr);
+                }
+                DBBase.DisConncetDatabase();
+                return Convert.ToInt32(dt.Rows[0][0].ToString());
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return 0;
+            }
+        }
+
+        public decimal GetAmount(string sql)
+        {
+            try
+            {
+                SqlDataReader dr;
+                DBBase.ConncetDatabase();
+                SqlCommand command = new SqlCommand(sql, DBBase.con);
+                dr = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                if (dr.HasRows)
+                {
+                    dt.Load(dr);
+                }
+                DBBase.DisConncetDatabase();
+                return Convert.ToDecimal(dt.Rows[0][0].ToString());
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return 0;
+            }
+        }
+
+        public void SumAmount(string sql)
+        {
+            try
+            {
+                DBBase.ConncetDatabase();
+                SqlCommand command = new SqlCommand(sql, DBBase.con);
+                command.ExecuteNonQuery();
+                DBBase.DisConncetDatabase();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
             }
         }
     }

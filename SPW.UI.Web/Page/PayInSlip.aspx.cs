@@ -6,6 +6,7 @@ using SPW.UI.Web.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -159,13 +160,15 @@ namespace SPW.UI.Web.Page
 
             if (!Page.IsPostBack)
             {
-                txtStartDate.Text = DateTime.Now.ToShortDateString();
+                //txtStartDate.Text = DateTime.Now.ToShortDateString();
+                string date = DateTime.Now.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
+                txtDatePayIn.Text = date;
+                txtStartDate.Text = date;
                 CreatePageEngine();
                 InitialData();
                 AutoCompleteStoreName();
                 //AutoCompleteBranceName();
                 AutoCompleteBankName();
-
             }
             else
             {
@@ -175,8 +178,6 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-
-
             if (Request.QueryString["id"] != null)
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
@@ -222,7 +223,7 @@ namespace SPW.UI.Web.Page
                 lblAmount.Text = ThaiBaht(tmpTotalAmt.ToString());
                 ddlAccountMast.SelectedValue = lstPayIn[0].ACCOUNT_ID;
                 btnAdd.Visible = false;
-                btnSave.Visible = false;
+                //btnSave.Visible = false;
                 btnPrint1.Visible = true;
                 btnPrintX.Visible = true;
                 btnPrint2.Visible = true;
@@ -233,10 +234,15 @@ namespace SPW.UI.Web.Page
                 rbBankThai.Enabled = false;
                 grdBank.Columns[4].Visible = false;
                 dropdown();
-
+                txtPayInSeq.Enabled = false;
+                txtPageSeq.Enabled = false;
             }
             else
             {
+                SQLUtility sql = new SQLUtility();
+                int count = sql.GetCount("SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                txtPayInSeq.Text = (count + 1).ToString();
+                txtPageSeq.Text = "1";
                 ddlAccountMast.Items.Clear();
                 ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
                 txtAccountName.Text = string.Empty;
@@ -300,20 +306,12 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                STORE itemStore = _storeService.GetStoreID(txtStoreName.Text);
+                STORE itemStore = txtStoreName.Text != "" ? _storeService.GetStoreID(txtStoreName.Text) : null;
                 if (itemStore == null)
                 {
                     itemStore = new STORE();
                     itemStore.STORE_ID = 0;
-                    //lblError.Text = "ข้อมูลรหัสร้านผิด";
-                    //danger.Visible = true;
-                    //return;
                 }
-                //else
-                //{
-                //    lblError.Text = "";
-                //    danger.Visible = false;
-                //}
 
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
@@ -334,17 +332,30 @@ namespace SPW.UI.Web.Page
                 tmpItem.CHQ_NO = txtCheck.Text;
                 tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
                 tmpItem.UPDATE_DATE = DateTime.Now;
-                tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text.ToString());
+                //tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text.ToString());
+                tmpItem.PAYIN_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 lstPayIn.Add(tmpItem);
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
 
                 SumAmt();
                 ClearScreen();
-                btnSave.Visible = true;
+                //btnSave.Visible = true;
+                btnPrint1.Visible = true;
+                btnPrint2.Visible = true;
+                btnPrintX.Visible = true;
+                //btnPrintY.Visible = true;
+                lbl1.Visible = true;
+                lbl2.Visible = true;
+
                 ddlAccountMast.Enabled = false;
                 rbBankKrungThai.Enabled = false;
                 rbBankThai.Enabled = false;
+
+                //if (lstPayIn.Count == 25) 
+                //{
+                //    btnAdd.Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -411,7 +422,7 @@ namespace SPW.UI.Web.Page
             txtStoreName.Text = "";
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        private void Save(bool isSplit = false)
         {
             try
             {
@@ -433,6 +444,9 @@ namespace SPW.UI.Web.Page
                 }
 
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
+                SQLUtility sql = new SQLUtility();
+                int count = sql.GetCount("SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
                 foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
                     tmpItem.ACCOUNT_ID = accountMast.ACCOUNT_ID;
@@ -442,34 +456,57 @@ namespace SPW.UI.Web.Page
                     tmpItem.CREATE_DATE = DateTime.Now;
                     tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_APPROVE_ID = 1;
-                    tmpItem.PAYIN_SEQ_NO = _payInTranService.GetCount() + 1;
-                    //tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text);
-                    tmpItem.PAYIN_TOTAL_AMOUNT = tmpTotalAmt;
+                    tmpItem.PAYIN_SEQ_NO = payInSeq;
+                    tmpItem.PAYIN_TOTAL_AMOUNT = txtPageSeq.Text == "1" ? tmpTotalAmt : sql.GetAmount("SELECT SUM(CHQ_AMOUNT) FROM [SPW].[dbo].[PAYIN_TRANS] WHERE PAYIN_SEQ_NO = " + txtPayInSeq.Text) + tmpTotalAmt;
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_TYPE_PRINT = "";
+
+                    if (txtPageSeq.Text != "1")
+                    {
+                        tmpItem.CHQ_SEQ_NO += ((Convert.ToInt32(txtPageSeq.Text) - 1) * 25);
+                    }
+
+                    if (isSplit)
+                    {
+                        _payInTranService.Add(tmpItem);
+                    }
+                }
+                if (!isSplit)
+                {
+                    _payInTranService.AddList(lstPayIn);
                 }
 
-                _payInTranService.AddList(lstPayIn);
+                sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
+
                 Session["PAYIN_PRINT"] = lstPayIn;
                 Session["PAYIN"] = null;
 
-                btnAdd.Visible = false;
-                btnSave.Visible = false;
-                btnPrint1.Visible = true;
-                btnPrintX.Visible = true;
-                btnPrint2.Visible = true;
+                //btnAdd.Visible = false;
+                //btnSave.Visible = false;
+                //btnCancel.Visible = false;
+                //btnPrint1.Visible = true;
+                //btnPrintX.Visible = true;
+                //btnPrint2.Visible = true;
                 lbl1.Visible = true;
                 lbl2.Visible = true;
 
-                alert.Visible = true;
-                grdBank.Columns[4].Visible = false;
+                //alert.Visible = true;
+                //grdBank.Columns[4].Visible = false;
+                Session["PAYIN"] = null;
+                grdBank.DataSource = null;
+                grdBank.DataBind();
             }
             catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
             }
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            Save();
         }
 
         private void AutoCompleteStoreName()
@@ -514,6 +551,11 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                if (Session["PAYIN"] != null)
+                {
+                    Save();
+                }
+
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN_PRINT"] == null)
                 {
@@ -539,7 +581,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                 drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
-                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
+                drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
@@ -582,6 +624,10 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                if (Session["PAYIN"] != null)
+                {
+                    Save();
+                }
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN_PRINT"] == null)
                 {
@@ -607,7 +653,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                 drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
-                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
+                drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
@@ -686,6 +732,10 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                if (Session["PAYIN"] != null)
+                {
+                    Save();
+                }
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN_PRINT"] == null)
                 {
@@ -721,7 +771,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["ACCOUNT_NO"] = ddlAccountMast.SelectedValue;
                 drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                drPayInSlipMain["DATE"] = txtDatePayIn.Text;
+                drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                 drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                 drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
@@ -774,6 +824,149 @@ namespace SPW.UI.Web.Page
                     }
                 }
             }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["PAYIN"] = null;
+                Response.RedirectPermanent("PayInSlip.aspx");
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        private void LoopPrint(int count)
+        {
+            try
+            {
+                if (Session["PAYIN"] != null)
+                {
+                    Save(true);
+                }
+
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN_PRINT"] == null)
+                {
+                    Session["PAYIN_PRINT"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
+                }
+
+                if (lstPayIn.Count > 0)
+                {
+                    PAYIN_TRANS pt = lstPayIn[count];
+                    decimal tmpTotalAmt = pt.CHQ_AMOUNT;
+                    Reports.PayInSlip ds = new Reports.PayInSlip();
+                    DataTable payInSlipMain = ds.Tables["MAIN"];
+                    DataRow drPayInSlipMain = payInSlipMain.NewRow();
+
+                    drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
+                    drPayInSlipMain["TEL"] = "02-961-6686-7";
+                    drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
+                    drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                    drPayInSlipMain["DEPOSIT"] = "SPW";
+                    drPayInSlipMain["DATE"] = txtDatePayIn.Text;
+                    drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
+                    drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
+                    string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
+                    string account = "";
+                    foreach (string item in tmpAccount)
+                    {
+                        account += item;
+                    }
+
+                    drPayInSlipMain["ACCOUNT_NO1"] = account[0];
+                    drPayInSlipMain["ACCOUNT_NO2"] = account[1];
+                    drPayInSlipMain["ACCOUNT_NO3"] = account[2];
+                    drPayInSlipMain["ACCOUNT_NO4"] = account[3];
+                    drPayInSlipMain["ACCOUNT_NO5"] = account[4];
+                    drPayInSlipMain["ACCOUNT_NO6"] = account[5];
+                    drPayInSlipMain["ACCOUNT_NO7"] = account[6];
+                    drPayInSlipMain["ACCOUNT_NO8"] = account[7];
+                    drPayInSlipMain["ACCOUNT_NO9"] = account[8];
+                    drPayInSlipMain["ACCOUNT_NO10"] = account[9];
+                    drPayInSlipMain["CHECK_COUNT"] = lstPayIn.Count().ToString();
+                    payInSlipMain.Rows.Add(drPayInSlipMain);
+
+                    DataTable payInSlipSub = ds.Tables["SUB"];
+                    DataRow drPayInSlipSub = payInSlipSub.NewRow();
+
+                    drPayInSlipSub["CHECK_NO1"] = lstPayIn[0].CHQ_NO;
+                    drPayInSlipSub["CHECK_BANK1"] = lstPayIn[0].CHQ_BANK;
+                    drPayInSlipSub["AMOUNT1"] = lstPayIn[0].CHQ_AMOUNT.ToString("#,#.00#");
+
+                    payInSlipSub.Rows.Add(drPayInSlipSub);
+                    Session["DataToReport"] = ds;
+                    if (rbBankThai.Checked)
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipTMBReport.aspx');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+            finally
+            {
+                count -= 1;
+                if (count >= 0)
+                {
+                    LoopPrint(count);
+                }
+            }
+        }
+
+        protected void btnPrintY_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["PAYIN"] != null)
+                {
+                    Save(true);
+                }
+
+                List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
+                if (Session["PAYIN_PRINT"] == null)
+                {
+                    Session["PAYIN_PRINT"] = lstPayIn;
+                }
+                else
+                {
+                    lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
+                }
+
+                LoopPrint(lstPayIn.Count - 1);
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        private string convertToDateThai(string date)
+        {
+            if (date != "")
+            {
+                string[] tmp = date.Split('/');
+
+                return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+            }
+            else
+            {
+                return date;
+            }
+
         }
     }
 }

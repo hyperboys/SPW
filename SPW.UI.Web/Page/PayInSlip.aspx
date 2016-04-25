@@ -30,55 +30,86 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
-        .auto-style1
-        {
+        .auto-style1 {
             width: 18px;
         }
 
-        .right
-        {
+        .right {
             text-align: right;
         }
 
-        .auto-style2
-        {
+        .auto-style2 {
             width: 160px;
         }
 
-        .grid td, .grid th
-        {
+        .grid td, .grid th {
             text-align: center;
         }
 
-        .auto-style5
-        {
+        .auto-style5 {
             width: 147px;
         }
 
-        .auto-style12
-        {
+        .auto-style12 {
             width: 195px;
         }
 
-        .auto-style13
-        {
+        .auto-style13 {
             width: 60px;
         }
 
-        .auto-style14
-        {
+        .auto-style14 {
             width: 43px;
             font-weight: 700;
         }
 
-        .auto-style16
-        {
+        .auto-style16 {
             width: 510px;
         }
 
-        .auto-style17
-        {
+        .auto-style17 {
             width: 95px;
+        }
+
+        .auto-style23 {
+            width: 98px;
+        }
+
+        .auto-style24 {
+            width: 16px;
+        }
+
+        .auto-style25 {
+            width: 147px;
+            height: 38px;
+        }
+
+        .auto-style26 {
+            width: 18px;
+            height: 38px;
+        }
+
+        .auto-style27 {
+            width: 160px;
+            height: 38px;
+        }
+
+        .auto-style28 {
+            width: 60px;
+            height: 38px;
+        }
+
+        .auto-style29 {
+            width: 195px;
+            height: 38px;
+        }
+
+        .auto-style30 {
+            height: 38px;
+        }
+
+        .auto-style31 {
+            width: 118px;
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -104,30 +135,37 @@
                                 <div class="form-group">
                                     <table style="width: 800px; height: 222px;">
                                         <tr>
-                                            <td class="auto-style5"></td>
-                                            <td class="auto-style1" style="text-align: center"></td>
-                                            <td class="auto-style2">
-                                                <asp:RadioButton ID="rbBankThai" runat="server" Text="ธ.ทหารไทย" TextAlign="Right" GroupName="bankGroup" Width="170px" AutoPostBack="True" OnCheckedChanged="rbBankThai_CheckedChanged" Checked="True" />
+                                            <td class="auto-style25">
+                                                <asp:RadioButton ID="rbBankThai" runat="server" AutoPostBack="True" Checked="True" GroupName="bankGroup" OnCheckedChanged="rbBankThai_CheckedChanged" Text="ธ.ทหารไทย" TextAlign="Right" Width="170px" />
                                             </td>
-                                            <td class="auto-style13"></td>
-                                            <td class="auto-style12">
-                                                <asp:RadioButton ID="rbBankKrungThai" runat="server" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" GroupName="bankGroup" Width="150px" AutoPostBack="True" OnCheckedChanged="rbBankKrungThai_CheckedChanged" />
+                                            <td class="auto-style26" style="text-align: center"></td>
+                                            <td class="auto-style27">
+
+                                                <asp:RadioButton ID="rbBankKrungThai" runat="server" AutoPostBack="True" GroupName="bankGroup" OnCheckedChanged="rbBankKrungThai_CheckedChanged" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" Width="150px" />
+
                                             </td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                            <td class="auto-style2"></td>
-                                            <td></td>
+                                            <td class="auto-style28"></td>
+                                            <td class="auto-style29">วันที่สำหรับใบ PayIn</td>
+                                            <td class="auto-style26" style="text-align: center">:</td>
+                                            <td class="auto-style27">
+                                                <div class='input-group date' id='Div2'>
+
+                                                    <asp:TextBox ID="txtDatePayIn" runat="server" class="form-control datetimepicker" Height="35px" placeholder="วันที่สำหรับใบ PayIn"></asp:TextBox>
+                                                </div>
+                                            </td>
+                                            <td class="auto-style30"></td>
                                         </tr>
                                         <tr>
-                                            <td class="auto-style5"></td>
+                                            <td class="auto-style5">ลำดับ PayIn</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
-                                            <td class="auto-style2"></td>
-                                            <td class="auto-style13"></td>
-                                            <td class="auto-style12">วันที่สำหรับใบ PayIn</td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
                                             <td class="auto-style2">
-                                                <div class='input-group date' id='Div2'>
-                                                    <asp:TextBox ID="txtDatePayIn" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
-                                                </div>
+                                                <asp:TextBox ID="txtPayInSeq" runat="server" class="form-control" Height="35px" Width="200px"></asp:TextBox>
+                                            </td>
+                                            <td class="auto-style13"></td>
+                                            <td class="auto-style12">หน้า</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style2">
+                                                <asp:TextBox ID="txtPageSeq" runat="server" class="form-control" Height="35px" Width="200px"></asp:TextBox>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -142,11 +180,10 @@
                                             </td>
                                             <td class="auto-style13"></td>
                                             <td class="auto-style12">วันที่</td>
-                                            <td class="auto-style1" style="text-align: center">&nbsp;</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-
                                                 <div class='input-group date' id='Div1'>
-                                                    <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สั่งซื้อ"></asp:TextBox>
+                                                    <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่เช็ค"></asp:TextBox>
                                                 </div>
                                             </td>
                                             <td></td>
@@ -197,11 +234,7 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtBankCheck"
                                                     ErrorMessage="กรุณากรอกธนาคาาร(เช็ค)" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
-                                            <td class="auto-style12">
-                                                <asp:Label ID="lbl1" runat="server" Text="Format PayIn" Visible="false"></asp:Label>
-
-                                                <asp:Button ID="btnPrintX" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrintX_Click" />
-                                            </td>
+                                            <td class="auto-style12"></td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2"></td>
                                             <td></td>
@@ -230,14 +263,12 @@
                                                     ErrorMessage="กรุณากรอกจำนวนเงิน" Style="color: #FF0000; font-size: large;" ValidationGroup="group">*</asp:RequiredFieldValidator>
                                             </td>
                                             <td class="auto-style12">
-                                                <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="เพิ่ม" Height="30px" Width="100px" OnClick="btnAdd_Click" />
-                                                <asp:Label ID="lbl2" runat="server" Text="Format Paper" Visible="false"></asp:Label>
-                                                <asp:Button ID="btnPrint1" class="btn btn-primary" runat="server" Text="พิมพ์ PayIn" Height="30px" Width="100px" Visible="False" OnClick="btnPrint1_Click" />
+                                                <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" ValidationGroup="group" Text="เพิ่ม" Height="30px" Width="80px" OnClick="btnAdd_Click" />
+
                                             </td>
                                             <td class="auto-style1" style="text-align: center"></td>
                                             <td class="auto-style2">
-                                                <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="100px" OnClick="btnSave_Click" Visible="False" />
-                                                <asp:Button ID="btnPrint2" class="btn btn-primary" runat="server" Text="พิมพ์ Paper" Height="30px" Width="100px" Visible="False" OnClick="btnPrint2_Click" />
+                                                <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Height="30px" OnClick="btnCancel_Click" Text="ยกเลิก" Width="80px" />
                                             </td>
                                             <td></td>
                                         </tr>
@@ -246,7 +277,47 @@
                             </div>
                         </div>
                     </div>
-                    <div style="margin-top: 45px;">
+                    <div style="margin-top: 20px;">
+                        <table id="T1" runat="server" style="width: 800px; height: 50px;">
+                            <tr>
+                                <td class="auto-style23">
+                                    <asp:Label ID="lbl1" runat="server" Text="Format PayIn" Visible="false"></asp:Label>
+                                </td>
+                                <td class="auto-style24"></td>
+                                <td class="auto-style31">
+                                    <asp:Button ID="btnPrintX" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrintX_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
+                                </td>
+                                <td></td>
+                                <td>
+                                    <%--<asp:Button ID="btnPrintY" runat="server" class="btn btn-primary" Height="30px" Text="พิมพ์แยก PayIn" Visible="False" Width="130px" OnClick="btnPrintY_Click" />--%>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr style="width:10px;">
+                                <td class="auto-style23">&nbsp;</td>
+                                <td class="auto-style24">&nbsp;</td>
+                                <td class="auto-style31">&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style23">
+                                    <asp:Label ID="lbl2" runat="server" Text="Format Paper" Visible="false"></asp:Label>
+                                </td>
+                                <td class="auto-style24"></td>
+                                <td class="auto-style31">
+                                    <asp:Button ID="btnPrint1" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrint1_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
+                                </td>
+                                <td></td>
+                                <td>
+                                    <asp:Button ID="btnPrint2" class="btn btn-primary" runat="server" Text="พิมพ์ Paper" Height="30px" Width="130px" Visible="False" OnClick="btnPrint2_Click" />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-top: 25px;">
                         <asp:GridView ID="grdBank" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                             DataKeyNames="" PageSize="20" Width="800px" EmptyDataText="ยังไม่ได้เพิ่มธนาคาร" PageIndex="10"
                             Style="text-align: center" CssClass="grid" OnRowDeleting="grdBank_RowDeleting" OnRowDataBound="grdBank_RowDataBound">
@@ -299,32 +370,28 @@
                             </tr>
                         </table>
                     </div>
-                    <div style="margin-top: 40px;">
+                    <%-- <div style="margin-top: 20px;">
                         <table style="width: 800px; height: 50px;">
                             <tr>
-                                <td class="auto-style5"></td>
-                                <td class="auto-style1" style="text-align: center"></td>
-                                <td class="auto-style2"></td>
-                                <td class="auto-style13"></td>
-                                <td class="auto-style12"></td>
-                                <td class="auto-style1" style="text-align: center"></td>
-                                <td class="auto-style2">
-                                    <asp:Button ID="Button3" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="100px" OnClick="btnSave_Click" Visible="False" />
+                                <td class="auto-style21"></td>
+                                <td class="auto-style19">
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="80px" OnClick="btnSave_Click" Visible="False" />
                                 </td>
+                                <td class="auto-style20"></td>
+                                <td class="auto-style19">&nbsp;</td>
                                 <td></td>
                             </tr>
                         </table>
-                    </div>
-
+                    </div>--%>
                     <div>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"
                             ValidationGroup="group" ShowMessageBox="True" ShowSummary="False" />
                     </div>
                 </div>
             </div>
-            <ajax:ConfirmButtonExtender ID="btnSave_ConfirmButtonExtender" runat="server"
+            <%--<ajax:ConfirmButtonExtender ID="btnSave_ConfirmButtonExtender" runat="server"
                 ConfirmText="ต้องการจะพิมพ์หรือไม่" Enabled="True" TargetControlID="btnSave">
-            </ajax:ConfirmButtonExtender>
+            </ajax:ConfirmButtonExtender>--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

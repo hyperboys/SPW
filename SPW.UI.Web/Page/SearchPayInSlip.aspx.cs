@@ -88,6 +88,15 @@ namespace SPW.UI.Web.Page
                 DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(convertToDateThai(txtStartDate.Text))).ToList();
             }
 
+            //if (txtStartDate.Text != "" && txtEndDate.Text != "")
+            //{
+            //    DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(txtStartDate.Text) && x.PAYIN_DATE <= Convert.ToDateTime(txtEndDate.Text)).ToList();
+            //}
+            //else if (txtStartDate.Text != "")
+            //{
+            //    DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text)).ToList();
+            //}
+
             DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ToList();
             List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
             {
@@ -98,7 +107,7 @@ namespace SPW.UI.Web.Page
                 PAYIN_DATE = x.PAYIN_DATE,
                 PAYIN_TOTAL_AMOUNT = x.PAYIN_TOTAL_AMOUNT
             }).ToList();
-
+            
             var tmpDatagrid = tmp.GroupBy(x => x.PAYIN_SEQ_NO).ToList();
             List<DATAGRID> data = new List<DATAGRID>();
             foreach (var item in tmpDatagrid)
@@ -197,8 +206,14 @@ namespace SPW.UI.Web.Page
             if (date != "")
             {
                 string[] tmp = date.Split('/');
-
-                return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+                if (Convert.ToInt32(tmp[2]) < 2500)
+                {
+                    return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+                }
+                else
+                {
+                    return date;
+                }
             }
             else
             {
