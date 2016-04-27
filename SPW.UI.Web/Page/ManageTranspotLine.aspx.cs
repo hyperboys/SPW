@@ -149,7 +149,7 @@ namespace SPW.UI.Web.Page
                 //}
                 else
                 {
-                    item.TRANS_LINE_ID = _transpotService.GetCount() + 1;
+                    item.TRANS_LINE_ID = _transpotService.GetCountX() + 1;
                     item.TRANS_LINE_NAME = txtTrans.Text;
                 }
 

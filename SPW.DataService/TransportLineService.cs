@@ -82,6 +82,14 @@ namespace SPW.DataService
             }
         }
 
+        public int GetCountX()
+        {
+            using (var ctx = new SPWEntities())
+            {
+                return ctx.TRANSPORT_LINE.Where(x => x.SYE_DEL == false).OrderByDescending(y => y.TRANS_LINE_ID).FirstOrDefault().TRANS_LINE_ID;
+            }
+        }
+
         public void Delete(int TRANS_LINE_ID, int STORE_ID)
         {
             using (var ctx = new SPWEntities())
