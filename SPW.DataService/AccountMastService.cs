@@ -114,8 +114,8 @@ namespace SPW.DataService
                 }
                 else
                 {
-                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x => (x.SYE_DEL == false) && x.ACCOUNT_ID.Contains(accountNo)
-                         || x.ACCOUNT_NAME.ToUpper().Contains(accountName.ToUpper()) && (x.PAYIN_FORMAT == type)).ToList();
+                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x => (x.SYE_DEL == false) && (x.ACCOUNT_ID.Contains(accountNo)
+                         || x.ACCOUNT_NAME.ToUpper().Contains(accountName.ToUpper())) && (x.PAYIN_FORMAT == type)).ToList();
                 }
 
                 return listItem;

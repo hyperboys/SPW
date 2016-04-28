@@ -44,16 +44,16 @@
                                     <div class="row">
                                         <div class="col-md-2">ธนาคาร</div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="ddlType" class="form-control" runat="server" Height="35px" Width="200px">
+                                            <asp:DropDownList ID="ddlType" class="form-control" runat="server" Height="35px">
                                                 <asp:ListItem Value="0" Selected="True">ทั้งหมด</asp:ListItem>
                                                 <asp:ListItem Value="1">ธ.ทหารไทย จำกัด(มหาชน)</asp:ListItem>
                                                 <asp:ListItem Value="2">ธ.กรุงศรีอยุธยา จำกัด (มหาชน) </asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-md-2">
-                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
-                                        </div>
+                                            </div>
                                         <div class="col-md-3">
+                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
                                             <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageAccountMast.aspx" />
                                         </div>
                                     </div>
