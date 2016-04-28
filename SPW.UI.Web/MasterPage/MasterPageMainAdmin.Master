@@ -146,6 +146,9 @@
                                     <li>
                                         <a href="../Page/SearchTranspotLine.aspx">ข้อมูลสายจัดรถ</a>
                                     </li>
+                                    <li>
+                                        <a href="../Page/SearchAccountMast.aspx">ข้อมูลบัญชี</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
