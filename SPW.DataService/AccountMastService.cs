@@ -41,6 +41,25 @@ namespace SPW.DataService
             }
         }
 
+        public void Update(ACCOUNT_MAST obj)
+        {
+            try
+            {
+                if (this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == obj.ACCOUNT_ID).FirstOrDefault() == null)
+                {
+                    Add(obj);
+                }
+                else
+                {
+                    Edit(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
         public void AddList(List<ACCOUNT_MAST> obj)
         {
             throw new NotImplementedException();
@@ -109,7 +128,7 @@ namespace SPW.DataService
                 List<ACCOUNT_MAST> listItem = new List<ACCOUNT_MAST>();
                 if (type == 0)
                 {
-                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x =>(x.SYE_DEL == false) && x.ACCOUNT_ID.Contains(accountNo)
+                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x => (x.SYE_DEL == false) && x.ACCOUNT_ID.Contains(accountNo)
                          || x.ACCOUNT_NAME.ToUpper().Contains(accountName.ToUpper())).ToList();
                 }
                 else

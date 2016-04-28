@@ -89,7 +89,7 @@ namespace SPW.UI.Web.Page
             {
                 string ACCOUNT_ID = grdTrans.DataKeys[e.Row.RowIndex][0].ToString();
                 LinkButton lbtnEdit = (LinkButton)e.Row.FindControl("lbtnEdit");
-                lbtnEdit.Attributes["href"] = "ManageAccountMast.aspx?ACCOUNT_ID=" + ACCOUNT_ID;
+                lbtnEdit.Attributes["href"] = "ManageAccountMast.aspx?id=" + ACCOUNT_ID;
             }
         }
     }
