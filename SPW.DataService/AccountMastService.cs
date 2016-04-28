@@ -53,6 +53,7 @@ namespace SPW.DataService
                 var item = this.Datacontext.ACCOUNT_MAST.Where(x => x.ACCOUNT_ID == obj.ACCOUNT_ID).FirstOrDefault();
                 item.ACCOUNT_NAME = obj.ACCOUNT_NAME;
                 item.BANK_NAME = obj.BANK_NAME;
+                item.BANK_BRH_NAME = obj.BANK_BRH_NAME;
                 item.BANK_SH_NAME = obj.BANK_SH_NAME;
                 item.PAYIN_FORMAT = obj.PAYIN_FORMAT;
                 item.UPDATE_DATE = obj.UPDATE_DATE;
@@ -93,6 +94,31 @@ namespace SPW.DataService
             try
             {
                 return this.Datacontext.ACCOUNT_MAST.Where(x => x.SYE_DEL == false).ToList();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
+        }
+
+        public List<ACCOUNT_MAST> GetAllCondition(string accountNo, string accountName, int type = 0)
+        {
+            try
+            {
+                List<ACCOUNT_MAST> listItem = new List<ACCOUNT_MAST>();
+                if (type == 0)
+                {
+                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x =>(x.SYE_DEL == false) && x.ACCOUNT_ID.Contains(accountNo)
+                         || x.ACCOUNT_NAME.ToUpper().Contains(accountName.ToUpper())).ToList();
+                }
+                else
+                {
+                    listItem = this.Datacontext.ACCOUNT_MAST.Where(x => (x.SYE_DEL == false) && x.ACCOUNT_ID.Contains(accountNo)
+                         || x.ACCOUNT_NAME.ToUpper().Contains(accountName.ToUpper()) && (x.PAYIN_FORMAT == type)).ToList();
+                }
+
+                return listItem;
             }
             catch (Exception ex)
             {
