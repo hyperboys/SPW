@@ -74,14 +74,7 @@ namespace SPW.UI.Web.Page
                 grdTrans.DataSource = listItem;
                 grdTrans.DataBind();
             }
-            //else if (Session["TRANS_LINE_ID"] != null)
-            //{
-            //    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
-            //    txtTrans.Text = listItem[0].TRANS_LINE_NAME;
-            //    grdTrans.DataSource = listItem;
-            //    grdTrans.DataBind();
-            //}
-            else if (((List<TRANSPORT_LINE>)Session["listItem"]).Count() > 0)
+            else if (Session["listItem"] != null && ((List<TRANSPORT_LINE>)Session["listItem"]).Count() > 0)
             {
                 List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
                 txtTrans.Text = listItem[0].TRANS_LINE_NAME;
@@ -102,9 +95,6 @@ namespace SPW.UI.Web.Page
                 store = _storeService.Select(txtStoreCode.Text, txtStoreName.Text);
                 if (store == null)
                 {
-                    //string script = "alert(\"ข้อมูลร้านค้าไม่ถูกต้อง\");";
-                    //ScriptManager.RegisterStartupScript(this, GetType(),
-                    //                      "ServerControlScript", script, true);
                     lblWarning.Text = "ข้อมูลร้านค้าไม่ถูกต้อง";
                     warning.Visible = true;
                     txtStoreCode.Focus();
@@ -115,9 +105,6 @@ namespace SPW.UI.Web.Page
                     TRANSPORT_LINE tmp = _transpotService.CheckStoreID(store.STORE_ID);
                     if (tmp != null)
                     {
-                        //string script = "alert(\"ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + "แล้ว\");";
-                        //ScriptManager.RegisterStartupScript(this, GetType(),
-                        //                      "ServerControlScript", script, true);
                         lblWarning.Text = "ข้อมูลร้านค้านี้อยู่ในสายจัดรถ " + tmp.TRANS_LINE_NAME + " แล้ว";
                         warning.Visible = true;
                         txtStoreCode.Focus();
@@ -141,12 +128,6 @@ namespace SPW.UI.Web.Page
                     item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
 
                 }
-                //else if (Session["TRANS_LINE_ID"] != null)
-                //{
-                //    List<TRANSPORT_LINE> listItem = _transpotService.SelectAll(Convert.ToInt32(Session["TRANS_LINE_ID"].ToString()));
-                //    item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
-                //    item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
-                //}
                 else
                 {
                     item.TRANS_LINE_ID = _transpotService.GetCountX() + 1;
