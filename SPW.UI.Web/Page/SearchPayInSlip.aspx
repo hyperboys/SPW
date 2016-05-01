@@ -87,9 +87,9 @@
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtAccountNo" class="form-control" runat="server" Height="35px" placeholder="เลขที่บัญชี" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
-                                        <div class="col-md-2">ชื่อบัญชี</div>
+                                        <div class="col-md-2">เลขที่เช็ค</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtAccountName" class="form-control" runat="server" Height="35px" placeholder="ชื่อบัญชี" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txtCheckNo" class="form-control" runat="server" Height="35px" placeholder="ชื่อบัญชี" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/PayInSlip.aspx" />
@@ -119,13 +119,13 @@
                                 <asp:BoundField DataField="ACCOUNT_NAME" HeaderText="ชื่อบัญชี" ItemStyle-Width="20%">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="BANK_NAME" HeaderText="ชื่อธนาคาร" ItemStyle-Width="20%">
+                                <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="20%">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="20%" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PAYIN_TOTAL_AMOUNT" HeaderText="จำนวนเงิน" ItemStyle-Width="20%">
+                                <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" ItemStyle-Width="20%">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">

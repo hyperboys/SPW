@@ -14,15 +14,15 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchPayInSlip : System.Web.UI.Page
     {
-        private class DATAGRID
-        {
-            public string ACCOUNT_ID { get; set; }
-            public string ACCOUNT_NAME { get; set; }
-            public int PAYIN_SEQ_NO { get; set; }
-            public string BANK_NAME { get; set; }
-            public DateTime PAYIN_DATE { get; set; }
-            public decimal PAYIN_TOTAL_AMOUNT { get; set; }
-        }
+        //private class DATAGRID
+        //{
+        //    public string ACCOUNT_ID { get; set; }
+        //    public string ACCOUNT_NAME { get; set; }
+        //    public int PAYIN_SEQ_NO { get; set; }
+        //    public string BANK_NAME { get; set; }
+        //    public DateTime PAYIN_DATE { get; set; }
+        //    public decimal PAYIN_TOTAL_AMOUNT { get; set; }
+        //}
 
         #region Declare variable
         private DataServiceEngine _dataServiceEngine;
@@ -77,7 +77,7 @@ namespace SPW.UI.Web.Page
 
         private void BindGridview()
         {
-            DataSouce = _payInTranService.GetAll().Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.ACCOUNT_NAME.Contains(txtAccountName.Text)).ToList();
+            DataSouce = _payInTranService.GetAll().Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
 
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
@@ -98,24 +98,25 @@ namespace SPW.UI.Web.Page
             //}
 
             DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ToList();
-            List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
-            {
-                ACCOUNT_ID = x.ACCOUNT_ID,
-                ACCOUNT_NAME = x.ACCOUNT_NAME,
-                PAYIN_SEQ_NO = x.PAYIN_SEQ_NO,
-                BANK_NAME = x.BANK_NAME,
-                PAYIN_DATE = x.PAYIN_DATE,
-                PAYIN_TOTAL_AMOUNT = x.PAYIN_TOTAL_AMOUNT
-            }).ToList();
-            
-            var tmpDatagrid = tmp.GroupBy(x => x.PAYIN_SEQ_NO).ToList();
-            List<DATAGRID> data = new List<DATAGRID>();
-            foreach (var item in tmpDatagrid)
-            {
-                data.Add(item.ElementAt(0));
-            }
+            //List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
+            //{
+            //    ACCOUNT_ID = x.ACCOUNT_ID,
+            //    ACCOUNT_NAME = x.ACCOUNT_NAME,
+            //    PAYIN_SEQ_NO = x.PAYIN_SEQ_NO,
+            //    BANK_NAME = x.BANK_NAME,
+            //    PAYIN_DATE = x.PAYIN_DATE,
+            //    PAYIN_TOTAL_AMOUNT = x.PAYIN_TOTAL_AMOUNT
+            //}).ToList();
 
-            grdPayIn.DataSource = data;
+            //var tmpDatagrid = tmp.GroupBy(x => x.PAYIN_SEQ_NO).ToList();
+            //List<DATAGRID> data = new List<DATAGRID>();
+            //foreach (var item in tmpDatagrid)
+            //{
+            //    data.Add(item.ElementAt(0));
+            //}
+
+            //grdPayIn.DataSource = data;
+            grdPayIn.DataSource = DataSouce;
             grdPayIn.DataBind();
         }
 
@@ -178,7 +179,7 @@ namespace SPW.UI.Web.Page
 
         private void AutoCompletetxtAccountName()
         {
-            List<string> nameList = SearchAutoCompleteDataService.Search("ACCOUNT_MAST", "ACCOUNT_NAME", "ACCOUNT_NAME", "");
+            List<string> nameList = SearchAutoCompleteDataService.Search("PAYIN_TRANS", "CHQ_NO", "CHQ_NO", "");
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
@@ -189,7 +190,7 @@ namespace SPW.UI.Web.Page
                 str = str.Remove(str.Length - 1);
             }
             str = "[" + str + "]";
-            txtAccountName.Attributes.Add("data-source", str);
+            txtCheckNo.Attributes.Add("data-source", str);
         }
 
         protected void gdvManageOrderHQ_RowDataBound(Object sender, GridViewRowEventArgs e)
