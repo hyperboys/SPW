@@ -141,6 +141,10 @@ namespace SPW.DAL
                 {
                     dt.Load(dr);
                 }
+                else 
+                {
+                    return 0;
+                }
                 DBBase.DisConncetDatabase();
                 return Convert.ToInt32(dt.Rows[0][0].ToString());
             }

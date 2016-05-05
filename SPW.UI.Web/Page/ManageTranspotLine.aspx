@@ -50,6 +50,8 @@
                                 <div class="col-md-2">สายจัดรถ</div>
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtTrans" class="form-control" runat="server" Height="35px" Width="228px" Enabled="false" BackColor="White"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณาระบุสายจัดรถ"
+                                            ValidationGroup="group" ControlToValidate="txtTrans" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-3">
@@ -131,7 +133,7 @@
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click" />
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" ValidationGroup="group" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click" />
                                 </div>
                             </div>
                         </div>

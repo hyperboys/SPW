@@ -91,6 +91,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                warning.Visible = false;
                 STORE store = null;
                 store = _storeService.Select(txtStoreCode.Text, txtStoreName.Text);
                 if (store == null)
@@ -112,8 +113,16 @@ namespace SPW.UI.Web.Page
                     }
                 }
 
+
                 USER userItem = Session["user"] as USER;
                 List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
+                if (listItem.Where(x => x.STORE.STORE_ID == store.STORE_ID).FirstOrDefault() != null)
+                {
+                    lblWarning.Text = "ข้อมูลร้านค้านี้อยู่ในตารางนี้แล้ว";
+                    warning.Visible = true;
+                    txtStoreCode.Focus();
+                    return;
+                }
                 TRANSPORT_LINE item = new TRANSPORT_LINE();
                 item.SYE_DEL = false;
                 item.STORE = store;
@@ -126,7 +135,6 @@ namespace SPW.UI.Web.Page
                     listItem = _transpotService.SelectAll(Convert.ToInt32(Request.QueryString["TRANS_LINE_ID"].ToString()));
                     item.TRANS_LINE_ID = listItem[0].TRANS_LINE_ID;
                     item.TRANS_LINE_NAME = listItem[0].TRANS_LINE_NAME;
-
                 }
                 else
                 {
@@ -138,7 +146,7 @@ namespace SPW.UI.Web.Page
                 Session["listItem"] = listItem;
                 txtStoreCode.Text = "";
                 txtStoreName.Text = "";
-                txtTrans.Enabled = false;
+                //txtTrans.Enabled = false;
                 BindData();
             }
             catch (Exception ex)
@@ -183,12 +191,33 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                _transpotService.Delete(Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[0].ToString()), Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[1].ToString()));
+                if (Request.QueryString["TRANS_LINE_ID"] != null)
+                {
+                    List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
+                    if (listItem[e.RowIndex].STORE_ID != 0)
+                    {
+                        _transpotService.Delete(Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[0].ToString()), Convert.ToInt32(grdTrans.DataKeys[e.RowIndex].Values[1].ToString()));
+                        listItem.RemoveAt(e.RowIndex);
+                        Session["listItem"] = listItem;
+                    }
+                    else
+                    {
+                        listItem.RemoveAt(e.RowIndex);
+                        Session["listItem"] = listItem;
+                    }
+                }
+                else
+                {
+                    List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
+                    listItem.RemoveAt(e.RowIndex);
+                    Session["listItem"] = listItem;
+                }
             }
             catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
             }
+
             InitialData();
         }
 
@@ -210,15 +239,16 @@ namespace SPW.UI.Web.Page
                 List<TRANSPORT_LINE> listItem = Session["listItem"] as List<TRANSPORT_LINE>;
                 foreach (TRANSPORT_LINE item in listItem)
                 {
-                    if (_transpotService.CheckStoreID(item.STORE.STORE_ID) == null) 
+                    if (_transpotService.CheckStoreID(item.STORE.STORE_ID) == null)
                     {
                         item.STORE_ID = item.STORE.STORE_ID;
+                        item.TRANS_LINE_NAME = txtTrans.Text;
                         item.STORE = null;
                         _transpotService.Add(item);
                     }
                 }
 
-
+                txtTrans.Enabled = false;
                 Session["listItem"] = null;
                 alert.Visible = true;
                 Response.AppendHeader("Refresh", "2; url=SearchTranspotLine.aspx");

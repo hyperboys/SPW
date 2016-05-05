@@ -33,6 +33,8 @@ namespace SPW.UI.Web.Page
 
         private void InitialPage()
         {
+            txtStartDate.Text = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            txtEndDate.Text = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             CreatePageEngine();
             ReloadDatasource();
             InitialData();
@@ -97,7 +99,7 @@ namespace SPW.UI.Web.Page
             //    DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text)).ToList();
             //}
 
-            DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ToList();
+            DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
             //List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
             //{
             //    ACCOUNT_ID = x.ACCOUNT_ID,
@@ -198,7 +200,7 @@ namespace SPW.UI.Web.Page
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
-                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Value.ToString();
+                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[0].ToString();
             }
         }
 

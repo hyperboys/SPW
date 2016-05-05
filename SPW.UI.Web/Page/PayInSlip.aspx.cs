@@ -181,11 +181,14 @@ namespace SPW.UI.Web.Page
             if (Request.QueryString["id"] != null)
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                lstPayIn = lstPayIn.Where(x => x.PAYIN_DATE == lstPayIn[0].PAYIN_DATE).ToList();
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
                 Session["PAYIN"] = null;
-                txtStartDate.Text = lstPayIn[0].PAYIN_DATE.ToShortDateString();
+                //txtStartDate.Text = lstPayIn[0].PAYIN_DATE.ToShortDateString();
+                txtDatePayIn.Text = lstPayIn[0].PAYIN_DATE.ToString("dd/MM/yyyy");
+                txtDatePayIn.Enabled = false;
                 txtStartDate.Enabled = false;
                 txtAmount.Enabled = false;
                 txtAccountName.Enabled = false;
@@ -240,7 +243,7 @@ namespace SPW.UI.Web.Page
             else
             {
                 SQLUtility sql = new SQLUtility();
-                int count = sql.GetCount("SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = GETDATE() GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
                 txtPayInSeq.Text = (count + 1).ToString();
                 txtPageSeq.Text = "1";
                 ddlAccountMast.Items.Clear();
@@ -333,7 +336,8 @@ namespace SPW.UI.Web.Page
                 tmpItem.CHQ_SEQ_NO = lstPayIn.Count() + 1;
                 tmpItem.UPDATE_DATE = DateTime.Now;
                 //tmpItem.PAYIN_DATE = Convert.ToDateTime(txtStartDate.Text.ToString());
-                tmpItem.PAYIN_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                tmpItem.CHQ_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
                 lstPayIn.Add(tmpItem);
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
@@ -445,7 +449,7 @@ namespace SPW.UI.Web.Page
 
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 SQLUtility sql = new SQLUtility();
-                int count = sql.GetCount("SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = GETDATE() GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
                 int payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
                 foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
@@ -462,7 +466,8 @@ namespace SPW.UI.Web.Page
                     tmpItem.UPDATE_DATE = DateTime.Now;
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_TYPE_PRINT = "";
-
+                    tmpItem.PAYIN_DATE = DateTime.ParseExact(txtDatePayIn.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    
                     if (txtPageSeq.Text != "1")
                     {
                         tmpItem.CHQ_SEQ_NO += ((Convert.ToInt32(txtPageSeq.Text) - 1) * 25);
@@ -497,6 +502,7 @@ namespace SPW.UI.Web.Page
                 Session["PAYIN"] = null;
                 grdBank.DataSource = null;
                 grdBank.DataBind();
+                SumAmt();
             }
             catch (Exception ex)
             {
@@ -758,7 +764,7 @@ namespace SPW.UI.Web.Page
                 {
                     DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
                     drpayInSlipPaper["SEQ"] = (i++).ToString();
-                    drpayInSlipPaper["DATE"] = pt.PAYIN_DATE.ToShortDateString();
+                    drpayInSlipPaper["DATE"] = convertToDateThai(pt.CHQ_DATE.ToString("dd/MM/yyyy"));
                     drpayInSlipPaper["CHECK_NO"] = pt.CHQ_NO.ToString();
                     drpayInSlipPaper["CHECK_BANK"] = pt.CHQ_BANK.ToString();
                     drpayInSlipPaper["AMOUNT"] = pt.CHQ_AMOUNT.ToString("#,#.00#"); ;
@@ -871,7 +877,7 @@ namespace SPW.UI.Web.Page
                     drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
                     drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
                     drPayInSlipMain["DEPOSIT"] = "SPW";
-                    drPayInSlipMain["DATE"] = txtDatePayIn.Text;
+                    drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                     drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
                     drPayInSlipMain["BR_BANK"] = txtBranceName.Text;
                     string[] tmpAccount = ddlAccountMast.SelectedValue.Split('-');
@@ -959,8 +965,14 @@ namespace SPW.UI.Web.Page
             if (date != "")
             {
                 string[] tmp = date.Split('/');
-
-                return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+                if (Convert.ToInt32(tmp[2]) < 2500)
+                {
+                    return tmp[0] + "/" + tmp[1] + "/" + (Convert.ToInt32(tmp[2]) + 543);
+                }
+                else
+                {
+                    return date;
+                }
             }
             else
             {

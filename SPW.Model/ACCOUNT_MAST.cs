@@ -14,11 +14,6 @@ namespace SPW.Model
     
     public partial class ACCOUNT_MAST
     {
-        public ACCOUNT_MAST()
-        {
-            this.PAYIN_TRANS = new HashSet<PAYIN_TRANS>();
-        }
-    
         public string ACCOUNT_ID { get; set; }
         public string ACCOUNT_NAME { get; set; }
         public string BANK_NAME { get; set; }
@@ -30,7 +25,5 @@ namespace SPW.Model
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
-    
-        public virtual ICollection<PAYIN_TRANS> PAYIN_TRANS { get; set; }
     }
 }

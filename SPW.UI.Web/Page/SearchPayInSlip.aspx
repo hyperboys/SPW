@@ -122,7 +122,7 @@
                                 <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="20%">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PAYIN_DATE" HeaderText="วันที่" ItemStyle-Width="20%" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px">
+                                <asp:BoundField DataField="CHQ_DATE" HeaderText="วันที่เช็ค" ItemStyle-Width="20%" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-Height="30px">
                                     <ItemStyle Width="20%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="CHQ_AMOUNT" HeaderText="จำนวนเงิน" ItemStyle-Width="20%">
