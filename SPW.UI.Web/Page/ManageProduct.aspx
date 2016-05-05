@@ -129,17 +129,18 @@
                                     <td style="text-align: center" class="auto-style1">:</td>
                                     <td>
                                         <asp:TextBox ID="txtWeight" runat="server" class="form-control" Height="30px" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" Width="200px"></asp:TextBox>
-                                        <span id="Span1" style="color: Red; display: none">* กรุณากรอก (0 - 9)</span>
+                                        <span id="Span1" style="color: Red; display: none">*กรุณกรอกเป็นตัวเลข</span>
                                         <script type="text/javascript">
                                             var specialKeys = new Array();
                                             specialKeys.push(8); //Backspace
                                             function IsNumeric(e) {
                                                 var keyCode = e.which ? e.which : e.keyCode
-                                                var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                                document.getElementById("error").style.display = ret ? "none" : "inline";
-                                                return ret;
+                                                var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
+                                                //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                                document.getElementById("error").style.display = ret ? "inline" : "none";
+                                                return !ret;
                                             }
-                                        </script>
+                                                </script>
                                     </td>
                                     <td>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="กรุณากรอกน้ำหนัก"
