@@ -18,6 +18,7 @@ namespace SPW.UI.Web.Page
         private DeliveryOrderService cmdDelOrder;
         private OrderService cmdOrder;
         private OrderDetailService cmdOrderDetails;
+        private StockProductService cmdStockProductService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,6 +53,7 @@ namespace SPW.UI.Web.Page
             cmdDelOrderDetails = (DeliveryOrderDetailService)_dataServiceEngine.GetDataService(typeof(DeliveryOrderDetailService));
             cmdOrderDetails = (OrderDetailService)_dataServiceEngine.GetDataService(typeof(OrderDetailService));
             cmdOrder = (OrderService)_dataServiceEngine.GetDataService(typeof(OrderService));
+            cmdStockProductService = (StockProductService)_dataServiceEngine.GetDataService(typeof(StockProductService));
         }
 
         private void CreatePageEngine()
@@ -74,7 +76,7 @@ namespace SPW.UI.Web.Page
                 UpdateDefaultScreen(ref DetailItems);
                 gdvManageOrderHQ.DataSource = DetailItems;
                 gdvManageOrderHQ.DataBind();
-                lb_Vehicle.Text = "ทะเบียนรถยนต์ : " + objDEl.VEHICLE.VEHICLE_REGNO.ToString();              
+                lb_Vehicle.Text = "ทะเบียนรถยนต์ : " + objDEl.VEHICLE.VEHICLE_REGNO.ToString();
                 PrepreConfirmStatusDisplay();
             }
             else
@@ -83,7 +85,7 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        private void UpdateDefaultScreen(ref List<DELIVERY_ORDER> DelOrderItems) 
+        private void UpdateDefaultScreen(ref List<DELIVERY_ORDER> DelOrderItems)
         {
             List<DELIVERY_ORDER> DelOrderValidateItems;
             if (Session["DelOrderSelectedValidate"] != null)
@@ -111,13 +113,14 @@ namespace SPW.UI.Web.Page
                         }
                     }
                     objDelOrderUpdate.Status = true;
-                    objDelOrderUpdate.DELORDER_PRICE_TOTAL = objDelOrderUpdate.DELIVERY_ORDER_DETAIL.Where(x=> x.IS_FREE == "N").Sum(x => x.PRODUCT_SENT_PRICE_TOTAL);
+                    objDelOrderUpdate.DELORDER_PRICE_TOTAL = objDelOrderUpdate.DELIVERY_ORDER_DETAIL.Where(x => x.IS_FREE == "N").Sum(x => x.PRODUCT_SENT_PRICE_TOTAL);
                     objDelOrderUpdate.DELORDER_WEIGHT_TOTAL = objDelOrderUpdate.DELIVERY_ORDER_DETAIL.Sum(x => x.PRODUCT_SENT_WEIGHT_TOTAL);
-                }              
+                }
             }
             btnConfirmDelOrderIndex.Visible = (bool)Session["DelEdit"];
             btnConfirmDelOrderIndex.Enabled = DelOrderItems.All(x => x.Status != null && (bool)x.Status);
         }
+
         private void PrepreConfirmStatusDisplay()
         {
             if (Session["DelOrderIndexSelected"] != null && Session["DelOrderSelected"] != null)
@@ -216,12 +219,27 @@ namespace SPW.UI.Web.Page
                 {
                     USER objUser = Session["user"] != null ? (USER)Session["user"] : null;
                     //Update DeliveryOrderIndex
-                    cmdDeliveryOrderIndex.ConfirmDelOrderIndex(DetailItems, objDEl.DELIND_ID,objUser.EMPLOYEE_ID);
+                    cmdDeliveryOrderIndex.ConfirmDelOrderIndex(DetailItems, objDEl.DELIND_ID, objUser.EMPLOYEE_ID);
                     //Update DeliveryOrder
                     //cmdDelOrder.ConfirmDelOrder(DetailItems);
                     //Update Order
                     //cmdOrderDetails.ConfirmOrder(DetailItems);
                     //Update OrderStatus
+
+                    //ตัด Stock
+                    foreach (DELIVERY_ORDER item in DetailItems)
+                    {
+                        foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
+                        {
+                            STOCK_PRODUCT_STOCK tmp = new STOCK_PRODUCT_STOCK();
+                            tmp.PRODUCT_ID = item2.PRODUCT_ID;
+                            tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
+                            tmp.UPDATE_DATE = DateTime.Now;
+                            tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                            cmdStockProductService.CutStock(tmp);
+                        }
+                    }
+
                     UpdateOrderCompleteStatus(DetailItems);
                     //Clear Session
                     Session["DelOrderIndexSelected"] = null;
@@ -236,7 +254,6 @@ namespace SPW.UI.Web.Page
                 }
 
             }
-           
         }
     }
 }

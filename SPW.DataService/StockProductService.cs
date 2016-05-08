@@ -51,6 +51,18 @@ namespace SPW.DataService
             Datacontext.SaveChanges();
         }
 
+        public void CutStock(STOCK_PRODUCT_STOCK item)
+        {
+            STOCK_PRODUCT_STOCK obj = Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_ID == item.PRODUCT_ID).FirstOrDefault();
+            if (obj != null)
+            {
+                obj.STOCK_REMAIN -= item.STOCK_REMAIN;
+                obj.UPDATE_DATE = item.UPDATE_DATE;
+                obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                Datacontext.SaveChanges();
+            }
+        }
+
         public void EditList(List<STOCK_PRODUCT_STOCK> lstItem)
         {
             foreach (var item in lstItem)
@@ -78,6 +90,11 @@ namespace SPW.DataService
         public STOCK_PRODUCT_STOCK Select(int ID)
         {
             return Datacontext.STOCK_PRODUCT_STOCK.Include("COLOR").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
+        }
+
+        public int SelectForCutStock(int ID)
+        {
+            return Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_ID == ID).FirstOrDefault().STOCK_REMAIN.Value;
         }
 
         public List<STOCK_PRODUCT_STOCK> GetAll()
