@@ -19,6 +19,8 @@ namespace SPW.UI.Web.Page
         private OrderService cmdOrder;
         private OrderDetailService cmdOrderDetails;
         private StockProductService cmdStockProductService;
+        private StockTransService cmdStockTransService;
+        private ProductService cmdProductService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,6 +56,8 @@ namespace SPW.UI.Web.Page
             cmdOrderDetails = (OrderDetailService)_dataServiceEngine.GetDataService(typeof(OrderDetailService));
             cmdOrder = (OrderService)_dataServiceEngine.GetDataService(typeof(OrderService));
             cmdStockProductService = (StockProductService)_dataServiceEngine.GetDataService(typeof(StockProductService));
+            cmdStockTransService = (StockTransService)_dataServiceEngine.GetDataService(typeof(StockTransService));
+            cmdProductService = (ProductService)_dataServiceEngine.GetDataService(typeof(ProductService));
         }
 
         private void CreatePageEngine()
@@ -231,12 +235,32 @@ namespace SPW.UI.Web.Page
                     {
                         foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
                         {
+                            int stockAfter = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
                             STOCK_PRODUCT_STOCK tmp = new STOCK_PRODUCT_STOCK();
                             tmp.PRODUCT_ID = item2.PRODUCT_ID;
                             tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
                             tmp.UPDATE_DATE = DateTime.Now;
                             tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
                             cmdStockProductService.CutStock(tmp);
+
+                            STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
+                            tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                            tmpTrans.COLOR_ID = item2.COLOR_ID;
+                            tmpTrans.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
+                            tmpTrans.CREATE_DATE = DateTime.Now;
+                            tmpTrans.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                            tmpTrans.PRODUCT_ID = item2.PRODUCT_ID;
+                            tmpTrans.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
+                            tmpTrans.STOCK_AFTER = stockAfter;
+                            tmpTrans.STOCK_BEFORE = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
+                            tmpTrans.SYE_DEL = false;
+                            tmpTrans.SYS_TIME = DateTime.Now.TimeOfDay;
+                            tmpTrans.TRANS_DATE = DateTime.Now;
+                            tmpTrans.TRANS_QTY = item2.PRODUCT_SENT_QTY;
+                            tmpTrans.TRANS_TYPE = "OUT";
+                            tmpTrans.UPDATE_DATE = DateTime.Now;
+                            tmpTrans.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                            cmdStockTransService.Add(tmpTrans);
                         }
                     }
 
