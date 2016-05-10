@@ -79,8 +79,12 @@ namespace SPW.UI.Web.Page
 
         private void BindGridview()
         {
-            DataSouce = _payInTranService.GetAll().Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
-
+            DataSouce = _payInTranService.GetAll();
+            if(DataSouce != null)
+            {
+                DataSouce.Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
+            }
+                
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
                 DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(convertToDateThai(txtStartDate.Text)) && x.PAYIN_DATE <= Convert.ToDateTime(convertToDateThai(txtEndDate.Text))).ToList();
@@ -200,7 +204,7 @@ namespace SPW.UI.Web.Page
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
-                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[0].ToString();
+                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[0].ToString() + "&date=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[1].ToString();
             }
         }
 

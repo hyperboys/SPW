@@ -79,7 +79,7 @@ namespace SPW.DataService
 
         public List<PAYIN_TRANS> GetAll()
         {
-            return this.Datacontext.PAYIN_TRANS.ToList();
+            return this.Datacontext.PAYIN_TRANS.Count() > 0 ? this.Datacontext.PAYIN_TRANS.ToList() : null;
         }
 
         public List<PAYIN_TRANS> GetAllDistince()

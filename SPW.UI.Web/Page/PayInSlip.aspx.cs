@@ -181,7 +181,7 @@ namespace SPW.UI.Web.Page
             if (Request.QueryString["id"] != null)
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
-                lstPayIn = lstPayIn.Where(x => x.PAYIN_DATE == lstPayIn[0].PAYIN_DATE).ToList();
+                lstPayIn = lstPayIn.Where(x => x.PAYIN_DATE == Convert.ToDateTime(Request.QueryString["date"].ToString())).ToList();
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
