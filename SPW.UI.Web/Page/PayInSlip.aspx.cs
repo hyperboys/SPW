@@ -182,6 +182,7 @@ namespace SPW.UI.Web.Page
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
                 lstPayIn = lstPayIn.Where(x => x.PAYIN_DATE == Convert.ToDateTime(Request.QueryString["date"].ToString())).ToList();
+                lstPayIn = lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
@@ -243,7 +244,7 @@ namespace SPW.UI.Web.Page
             else
             {
                 SQLUtility sql = new SQLUtility();
-                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = GETDATE() GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = CONVERT(char(10), GetDate(),126) GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
                 txtPayInSeq.Text = (count + 1).ToString();
                 txtPageSeq.Text = "1";
                 ddlAccountMast.Items.Clear();
@@ -449,7 +450,7 @@ namespace SPW.UI.Web.Page
 
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 SQLUtility sql = new SQLUtility();
-                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = GETDATE() GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = CONVERT(char(10), GetDate(),126) GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
                 int payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
                 foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
@@ -585,7 +586,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                 drPayInSlipMain["TEL"] = "02-961-6686-7";
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                drPayInSlipMain["AMOUNT_CHAR"] = "(" + ThaiBaht(GetSumAmt().ToString()) + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
                 drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
@@ -657,7 +658,7 @@ namespace SPW.UI.Web.Page
                 drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                 drPayInSlipMain["TEL"] = "02-961-6686-7";
                 drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                drPayInSlipMain["AMOUNT_CHAR"] = "(" + ThaiBaht(GetSumAmt().ToString()) + "ถ้วน)";
                 drPayInSlipMain["DEPOSIT"] = "SPW";
                 drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                 drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
@@ -875,7 +876,7 @@ namespace SPW.UI.Web.Page
                     drPayInSlipMain["ACCOUNT_NAME"] = txtAccountName.Text;
                     drPayInSlipMain["TEL"] = "02-961-6686-7";
                     drPayInSlipMain["AMOUNT_NUM"] = GetSumAmt().ToString("#,#.00#");
-                    drPayInSlipMain["AMOUNT_CHAR"] = "(" + lblAmount.Text.ToString() + "ถ้วน)";
+                    drPayInSlipMain["AMOUNT_CHAR"] = "(" + ThaiBaht(GetSumAmt().ToString()) + "ถ้วน)";
                     drPayInSlipMain["DEPOSIT"] = "SPW";
                     drPayInSlipMain["DATE"] = convertToDateThai(txtDatePayIn.Text);
                     drPayInSlipMain["BANK"] = rbBankThai.Checked ? "ทหารไทย" : "กรุงศรีอยุธยา";
