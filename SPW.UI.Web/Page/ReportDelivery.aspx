@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
-    CodeBehind="ReportMonthlySale.aspx.cs" Inherits="SPW.UI.Web.Page.ReportMonthlySale" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master"
+    AutoEventWireup="true" CodeBehind="ReportDelivery.aspx.cs" Inherits="SPW.UI.Web.Page.ReportDelivery" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -72,12 +72,24 @@
                                                 </div>
                                             </td>
                                             <td></td>
+                                            <td class="col-md-3"></td>
+                                            <td style="width: 5px"></td>
+                                            <td class="col-md-3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-2">รหัสสั่งซื้อสินค้า</td>
                                             <td class="col-md-3">
-                                                <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" Height="30px" Width="70px" OnClick="btnSearch_Click" />
+                                                <asp:TextBox ID="txtOrderCode" class="form-control" runat="server" Height="35px" placeholder="รหัสสั่งซื้อสินค้า"></asp:TextBox>
                                             </td>
+                                            <td class="col-md-2">รหัสสินค้า</td>
+                                            <td class="col-md-3">
+                                                <asp:TextBox ID="txtProductCode" class="form-control" runat="server" Height="35px" placeholder="รหัสสินค้า"></asp:TextBox>
+                                            </td>
+                                            <td></td>
+                                            <td class="col-md-3"></td>
                                             <td style="width: 5px"></td>
                                             <td class="col-md-3">
-                                                <asp:Button ID="btnPrint" class="btn btn-primary" runat="server" Text="พิมพ์" Height="30px" Width="70px" OnClick="btnPrint_Click" />
+                                                <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" Height="30px" Width="70px" OnClick="btnSearch_Click" />
 
                                             </td>
                                         </tr>
@@ -87,21 +99,36 @@
                         </div>
                     </div>
                     <asp:GridView ID="gridProduct" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                        DataKeyNames="" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า" PageIndex="10"
+                        DataKeyNames="" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลการสั่งซื้อสินค้า" PageIndex="10"
                         Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="EMPLOYEE_NAME" HeaderText="เซลล์" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
-                                <ItemStyle Width="40%"></ItemStyle>
+                            <asp:BoundField DataField="ORDER_CODE" HeaderText="รหัสสั่งซื้อสินค้า" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="TOTAL" HeaderText="ขาย" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="ORDER_DATE" HeaderText="วันที่สั่งสินค้า" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="STORE_CODE" HeaderText="รหัสร้านค้า" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="DEBT" HeaderText="ลดหนี้ (CN)" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                                <ItemStyle Width="20%"></ItemStyle>
+                            <asp:BoundField DataField="COLOR_TYPE_NAME" HeaderText="ลาย" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="BALANCE" HeaderText="ยอดสุทธิ" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                                <ItemStyle Width="20%"></ItemStyle>
+                            <asp:BoundField DataField="COLOR_NAME" HeaderText="สี" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PRODUCT_QTY" HeaderText="ยอดสั่ง" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PRODUCT_SEND_QTY" HeaderText="ยอดส่ง" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PRODUCT_SEND_REMAIN" HeaderText="ยอดสั่งคงเหลือ" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                                <ItemStyle Width="10%"></ItemStyle>
                             </asp:BoundField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />

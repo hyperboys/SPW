@@ -188,7 +188,9 @@
                                     <li>
                                         <a href="../Page/ReportPayInSummary.aspx">รายงานสรุปการนำเข้าเช็ค</a>
                                     </li>
-
+                                       <li>
+                                        <a href="../Page/ReportDelivery.aspx">รายงานยอดการส่งสินค้า</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

@@ -159,6 +159,7 @@
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ManageAccountMast.aspx" />
+    <Content Include="Page\ReportDelivery.aspx" />
     <Content Include="Page\SearchAccountMast.aspx" />
     <Content Include="Page\SearchPayInSlip.aspx" />
     <Content Include="Page\ManageTranspotLine.aspx" />
@@ -265,6 +266,13 @@
     </Compile>
     <Compile Include="Page\ManageAccountMast.aspx.designer.cs">
       <DependentUpon>ManageAccountMast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ReportDelivery.aspx.cs">
+      <DependentUpon>ReportDelivery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ReportDelivery.aspx.designer.cs">
+      <DependentUpon>ReportDelivery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchAccountMast.aspx.cs">
       <DependentUpon>SearchAccountMast.aspx</DependentUpon>

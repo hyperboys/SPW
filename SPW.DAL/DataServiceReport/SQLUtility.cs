@@ -192,5 +192,28 @@ namespace SPW.DAL
                 DebugLog.WriteLog(ex.ToString());
             }
         }
+
+        public DataTable Query(string sqlQuery)
+        {
+            try
+            {
+                DBBase.ConncetDatabase();
+                SqlDataReader dr;
+                SqlCommand command = new SqlCommand(sqlQuery, DBBase.con);
+                dr = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                if (dr.HasRows)
+                {
+                    dt.Load(dr);
+                }
+                DBBase.DisConncetDatabase();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                return null;
+            }
+        }
     }
 }
