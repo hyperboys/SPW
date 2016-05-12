@@ -14,15 +14,6 @@ namespace SPW.UI.Web.Page
 {
     public partial class SearchPayInSlip : System.Web.UI.Page
     {
-        //private class DATAGRID
-        //{
-        //    public string ACCOUNT_ID { get; set; }
-        //    public string ACCOUNT_NAME { get; set; }
-        //    public int PAYIN_SEQ_NO { get; set; }
-        //    public string BANK_NAME { get; set; }
-        //    public DateTime PAYIN_DATE { get; set; }
-        //    public decimal PAYIN_TOTAL_AMOUNT { get; set; }
-        //}
 
         #region Declare variable
         private DataServiceEngine _dataServiceEngine;
@@ -36,7 +27,6 @@ namespace SPW.UI.Web.Page
             txtStartDate.Text = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             txtEndDate.Text = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             CreatePageEngine();
-            ReloadDatasource();
             InitialData();
             AutoCompletetxtAccountName();
             AutoCompletetxtAccountNo();
@@ -67,11 +57,6 @@ namespace SPW.UI.Web.Page
             _payInTranService = (PayInTranService)_dataServiceEngine.GetDataService(typeof(PayInTranService));
         }
 
-        private void ReloadDatasource()
-        {
-
-        }
-
         private void InitialData()
         {
             BindGridview();
@@ -80,6 +65,7 @@ namespace SPW.UI.Web.Page
         private void BindGridview()
         {
             DataSouce = _payInTranService.GetAll();
+
             if(DataSouce != null)
             {
                 DataSouce.Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
@@ -87,41 +73,15 @@ namespace SPW.UI.Web.Page
 
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(txtStartDate.Text, CultureInfo.InvariantCulture) && x.PAYIN_DATE <= Convert.ToDateTime(txtEndDate.Text, CultureInfo.InvariantCulture)).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture) && x.PAYIN_DATE <= DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
             }
             else if (txtStartDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text, CultureInfo.InvariantCulture)).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
             }
 
-            //if (txtStartDate.Text != "" && txtEndDate.Text != "")
-            //{
-            //    DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(txtStartDate.Text) && x.PAYIN_DATE <= Convert.ToDateTime(txtEndDate.Text)).ToList();
-            //}
-            //else if (txtStartDate.Text != "")
-            //{
-            //    DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text)).ToList();
-            //}
-
             DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
-            //List<DATAGRID> tmp = DataSouce.Select(x => new DATAGRID
-            //{
-            //    ACCOUNT_ID = x.ACCOUNT_ID,
-            //    ACCOUNT_NAME = x.ACCOUNT_NAME,
-            //    PAYIN_SEQ_NO = x.PAYIN_SEQ_NO,
-            //    BANK_NAME = x.BANK_NAME,
-            //    PAYIN_DATE = x.PAYIN_DATE,
-            //    PAYIN_TOTAL_AMOUNT = x.PAYIN_TOTAL_AMOUNT
-            //}).ToList();
 
-            //var tmpDatagrid = tmp.GroupBy(x => x.PAYIN_SEQ_NO).ToList();
-            //List<DATAGRID> data = new List<DATAGRID>();
-            //foreach (var item in tmpDatagrid)
-            //{
-            //    data.Add(item.ElementAt(0));
-            //}
-
-            //grdPayIn.DataSource = data;
             grdPayIn.DataSource = DataSouce;
             grdPayIn.DataBind();
         }
