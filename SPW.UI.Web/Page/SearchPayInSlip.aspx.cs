@@ -84,14 +84,14 @@ namespace SPW.UI.Web.Page
             {
                 DataSouce.Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
             }
-                
+
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(convertToDateThai(txtStartDate.Text)) && x.PAYIN_DATE <= Convert.ToDateTime(convertToDateThai(txtEndDate.Text))).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= Convert.ToDateTime(txtStartDate.Text, CultureInfo.InvariantCulture) && x.PAYIN_DATE <= Convert.ToDateTime(txtEndDate.Text, CultureInfo.InvariantCulture)).ToList();
             }
             else if (txtStartDate.Text != "")
             {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(convertToDateThai(txtStartDate.Text))).ToList();
+                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == Convert.ToDateTime(txtStartDate.Text, CultureInfo.InvariantCulture)).ToList();
             }
 
             //if (txtStartDate.Text != "" && txtEndDate.Text != "")
