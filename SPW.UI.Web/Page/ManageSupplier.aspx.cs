@@ -12,6 +12,7 @@ namespace SPW.UI.Web.Page
 {
     public partial class ManageSupplier : System.Web.UI.Page
     {
+        #region Declare variable
         private VENDOR _vendor;
         private DataServiceEngine _dataServiceEngine;
         private SupplierService cmdSupplier;
@@ -22,6 +23,9 @@ namespace SPW.UI.Web.Page
         private EmployeeService cmdEmp;
         private ZoneDetailService cmdZoneDetail;
 
+        #endregion
+        
+        #region Sevice control
         private void ReloadPageEngine()
         {
             if (Session["DataServiceEngine"] != null)
@@ -53,26 +57,10 @@ namespace SPW.UI.Web.Page
             InitialDataService();
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
-            {
-                CreatePageEngine();
-                InitialData();
-            }
-            else
-            {
-                ReloadPageEngine();
-            }
-        }
 
         private void InitialData()
         {
             var list = cmdSector.GetAll();
-            //foreach (var item in list)
-            //{
-            //    ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString()));
-            //}
 
             ViewState["listProvince"] = cmdProvice.GetAll();
             foreach (var item in (List<PROVINCE>)ViewState["listProvince"])
@@ -90,12 +78,17 @@ namespace SPW.UI.Web.Page
                     txtFax.Text = _vendor.VENDOR_FAX;
                     txtMobli.Text = _vendor.VENDOR_MOBILE;
                     txtPostCode.Text = _vendor.VENDOR_POSTCODE;
-                    popTxtStoreCode.Text = _vendor.VENDOR_CODE;
-                    poptxtStoreName.Text = _vendor.VENDOR_NAME;
+                    txtSupplierCode.Text = _vendor.VENDOR_CODE;
+                    txtSupplierName.Text = _vendor.VENDOR_NAME;
                     txtTel1.Text = _vendor.VENDOR_TEL1;
                     txtTel2.Text = _vendor.VENDOR_TEL2;
                     txtTumbon.Text = _vendor.VENDOR_SUBDISTRICT;
-                    //ddlSector.SelectedValue = _vendor.SECTOR_ID.ToString();
+                    txtEmail.Text = _vendor.VENDOR_EMAIL;
+                    txtContact.Text = _vendor.VENDOR_CONTACT_PERSON;
+                    ddlCreditIn.SelectedValue = _vendor.VENDOR_CREDIT_INTERVAL;
+                    txtCreditValue.Text = _vendor.VENDOR_CREDIT_VALUE.ToString();
+                    ddlVatType.SelectedValue = _vendor.VAT_TYPE;
+                    txtVatRate.Text = _vendor.VAT_RATE.ToString();
                     ddlProvince.SelectedValue = _vendor.PROVINCE_ID.ToString();
                     ddlProvince.Enabled = true;
                     txtRoad.Text = _vendor.VENDOR_STREET;
@@ -104,53 +97,101 @@ namespace SPW.UI.Web.Page
                 }
             }
         }
+        #endregion
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        #region Business
+        bool SaveData()
         {
-            USER userItem = Session["user"] as USER;
-            var obj = new VENDOR();
-            obj.PROVINCE_ID = Convert.ToInt32(ddlProvince.SelectedValue);
-            //obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
-            obj.VENDOR_ADDR1 = txtAddress.Text;
-            obj.VENDOR_CODE = popTxtStoreCode.Text;
-            obj.VENDOR_DISTRICT = txtAmpur.Text;
-            obj.VENDOR_FAX = txtFax.Text;
-            obj.VENDOR_MOBILE = txtMobli.Text;
-            obj.VENDOR_NAME = poptxtStoreName.Text;
-            obj.VENDOR_POSTCODE = txtPostCode.Text;
-            obj.VENDOR_STREET = txtRoad.Text;
-            obj.VENDOR_SUBDISTRICT = txtTumbon.Text;
-            obj.VENDOR_TEL1 = txtTel1.Text;
-            obj.VENDOR_TEL2 = txtTel2.Text;
-            if (flag.Text.Equals("Add"))
+            try
             {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdSupplier.Add(obj);
+                USER userItem = Session["user"] as USER;
+                var obj = new VENDOR();
+                obj.PROVINCE_ID = Convert.ToInt32(ddlProvince.SelectedValue);
+                obj.VENDOR_ADDR1 = txtAddress.Text;
+                obj.VENDOR_CODE = txtSupplierCode.Text;
+                obj.VENDOR_DISTRICT = txtAmpur.Text;
+                obj.VENDOR_FAX = txtFax.Text;
+                obj.VENDOR_MOBILE = txtMobli.Text;
+                obj.VENDOR_NAME = txtSupplierName.Text;
+                obj.VENDOR_POSTCODE = txtPostCode.Text;
+                obj.VENDOR_STREET = txtRoad.Text;
+                obj.VENDOR_SUBDISTRICT = txtTumbon.Text;
+                obj.VENDOR_TEL1 = txtTel1.Text;
+                obj.VENDOR_TEL2 = txtTel2.Text;
+                obj.VENDOR_EMAIL = txtEmail.Text;
+                obj.VENDOR_CONTACT_PERSON = txtContact.Text;
+                obj.VENDOR_CREDIT_INTERVAL = ddlCreditIn.SelectedValue;
+                obj.VENDOR_CREDIT_VALUE = (txtCreditValue.Text == "") ? 0 : int.Parse(txtCreditValue.Text.ToString());
+                obj.VAT_TYPE = ddlVatType.SelectedValue;
+                obj.VAT_RATE = decimal.Parse(txtVatRate.Text);
+                if (flag.Text.Equals("Add"))
+                {
+                    if (isNullVendorCode())
+                    {
+                        obj.Action = ActionEnum.Create;
+                        obj.CREATE_DATE = DateTime.Now;
+                        obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        obj.UPDATE_DATE = DateTime.Now;
+                        obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        obj.SYE_DEL = false;
+                        cmdSupplier.Add(obj);
+                    }
+                    else
+                    {
+                        lblError.Text = "**มี Vendor Code ในระบบแล้ว";
+                        return false;
+                    }
+                }
+                else
+                {
+                    obj.Action = ActionEnum.Update;
+                    obj.VENDOR_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.SYE_DEL = false;
+                    cmdSupplier.Edit(obj);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                lblError.Text = e.Message;
+                return false;
+            }
+        }
+
+        bool isNullVendorCode()
+        {
+            return (cmdSupplier.CountVendorCode(txtSupplierCode.Text) == 0 ? true : false);
+        }
+        #endregion
+
+        #region ASP control
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                CreatePageEngine();
+                InitialData();
             }
             else
             {
-                //obj.ZONE_DETAIL = cmdSupplier.Select(Convert.ToInt32(Request.QueryString["id"].ToString())).ZONE_DETAIL;
-                obj.Action = ActionEnum.Update;
-                obj.VENDOR_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                //obj.STORE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdSupplier.Edit(obj);
+                ReloadPageEngine();
             }
-
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchSupplier.aspx");
+        }
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            if (SaveData())
+            {
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchSupplier.aspx");
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.RedirectPermanent("SearchSupplier.aspx");
         }
+        #endregion
     }
 }

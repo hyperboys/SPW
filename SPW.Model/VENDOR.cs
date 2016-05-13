@@ -17,7 +17,10 @@ namespace SPW.Model
         public VENDOR()
         {
             this.AP_VEHICLE_TRANS = new HashSet<AP_VEHICLE_TRANS>();
-            this.VENDOR_DEAL_CONDITION = new HashSet<VENDOR_DEAL_CONDITION>();
+            this.PO_HD_TRANS = new HashSet<PO_HD_TRANS>();
+            this.PR_HD_TRANS = new HashSet<PR_HD_TRANS>();
+            this.RAW_PACK_PRICE_HIST = new HashSet<RAW_PACK_PRICE_HIST>();
+            this.VENDOR_DEAL_DISCOUNT = new HashSet<VENDOR_DEAL_DISCOUNT>();
         }
     
         public int VENDOR_ID { get; set; }
@@ -39,7 +42,7 @@ namespace SPW.Model
         public string VENDOR_CREDIT_INTERVAL { get; set; }
         public int VENDOR_CREDIT_VALUE { get; set; }
         public string VAT_TYPE { get; set; }
-        public int VAT_RATE { get; set; }
+        public decimal VAT_RATE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
@@ -47,8 +50,11 @@ namespace SPW.Model
         public Nullable<bool> SYE_DEL { get; set; }
     
         public virtual ICollection<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
+        public virtual ICollection<PO_HD_TRANS> PO_HD_TRANS { get; set; }
+        public virtual ICollection<PR_HD_TRANS> PR_HD_TRANS { get; set; }
         public virtual PROVINCE PROVINCE { get; set; }
+        public virtual ICollection<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }
         public virtual ROAD ROAD { get; set; }
-        public virtual ICollection<VENDOR_DEAL_CONDITION> VENDOR_DEAL_CONDITION { get; set; }
+        public virtual ICollection<VENDOR_DEAL_DISCOUNT> VENDOR_DEAL_DISCOUNT { get; set; }
     }
 }

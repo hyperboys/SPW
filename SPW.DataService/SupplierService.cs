@@ -60,6 +60,12 @@ namespace SPW.DataService
             item.VENDOR_TEL2 = obj.VENDOR_TEL2;
             item.UPDATE_DATE = obj.UPDATE_DATE;
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            item.VENDOR_EMAIL = obj.VENDOR_EMAIL;
+            item.VENDOR_CONTACT_PERSON = obj.VENDOR_CONTACT_PERSON;
+            item.VENDOR_CREDIT_INTERVAL = obj.VENDOR_CREDIT_INTERVAL;
+            item.VENDOR_CREDIT_VALUE = obj.VENDOR_CREDIT_VALUE;
+            item.VAT_TYPE = obj.VAT_TYPE;
+            item.VAT_RATE = obj.VAT_RATE;
             this.Datacontext.SaveChanges();
         }
 
@@ -85,6 +91,16 @@ namespace SPW.DataService
             return this.Datacontext.VENDOR.Where(x => x.VENDOR_ID == ID).FirstOrDefault();
         }
 
+        public VENDOR Select(string vendorName)
+        {
+            return this.Datacontext.VENDOR.Where(x => x.VENDOR_NAME == vendorName).FirstOrDefault();
+        }
+
+        public VENDOR SelectByVendorCode(string vendorCode)
+        {
+            return this.Datacontext.VENDOR.Where(x => x.VENDOR_CODE == vendorCode).FirstOrDefault();
+        }
+
         public VENDOR SelectInclude(int ID)
         {
             return this.Datacontext.VENDOR.Include("ORDER").Include("PROVINCE").Where(x => x.VENDOR_ID == ID).FirstOrDefault();
@@ -94,7 +110,7 @@ namespace SPW.DataService
         {
             return this.Datacontext.VENDOR.Where(x => x.SYE_DEL == false).ToList();
         }
-        public List<VENDOR> GetAll(string VENDOR_CODE,string VENDOR_NAME)
+        public List<VENDOR> GetAll(string VENDOR_CODE, string VENDOR_NAME)
         {
             return this.Datacontext.VENDOR.Where(x => x.SYE_DEL == false && x.VENDOR_CODE.Contains(VENDOR_CODE) && x.VENDOR_NAME.Contains(VENDOR_NAME)).ToList();
         }
@@ -206,6 +222,10 @@ namespace SPW.DataService
         public int GetVendorID(string VENDOR_CODE)
         {
             return this.Datacontext.VENDOR.Where(x => x.SYE_DEL == false && x.VENDOR_CODE == VENDOR_CODE).FirstOrDefault().VENDOR_ID;
+        }
+        public int CountVendorCode(string VENDOR_CODE)
+        {
+            return this.Datacontext.VENDOR.Where(x => x.SYE_DEL == false && x.VENDOR_CODE == VENDOR_CODE).Count();
         }
         #endregion
 

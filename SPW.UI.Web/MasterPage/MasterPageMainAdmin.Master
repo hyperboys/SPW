@@ -141,13 +141,22 @@
                                         <a href="../Page/SearchVehicle.aspx">ข้อมูลรถบรรทุก</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/SearchSupplier.aspx">ข้อมูลซัพพลายเออร์</a>
-                                    </li>
-                                    <li>
                                         <a href="../Page/SearchTranspotLine.aspx">ข้อมูลสายจัดรถ</a>
                                     </li>
                                     <li>
-                                        <a href="../Page/SearchAccountMast.aspx">ข้อมูลบัญชี</a>
+                                        <a href="../Page/SearchSupplier.aspx">ข้อมูลซัพพลายเออร์</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/SearchRawProduct.aspx">ข้อมูลวัตถุดิบ</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/SearchRawPack.aspx">ข้อมูลขนาดบรรจุภัณฑ์</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/SearchRawType.aspx">ชนิดวัตถุดิบ</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/SearchUnitType.aspx">หน่วยวัด</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -188,9 +197,7 @@
                                     <li>
                                         <a href="../Page/ReportPayInSummary.aspx">รายงานสรุปการนำเข้าเช็ค</a>
                                     </li>
-                                       <li>
-                                        <a href="../Page/ReportDelivery.aspx">รายงานยอดการส่งสินค้า</a>
-                                    </li>
+
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -208,6 +215,18 @@
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="../Page/ManageInvoice.aspx">ทำรายการส่งซ่อม</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li runat="server" id="PO" visible="true">
+                                <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;Purchase Order<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="../Page/SearchPurchaseRequisitionOrder.aspx">Purchase Requisition Order</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/SearchPurchaseOrder.aspx">Purchase Order</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
