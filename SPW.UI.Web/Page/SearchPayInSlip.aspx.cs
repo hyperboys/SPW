@@ -66,22 +66,29 @@ namespace SPW.UI.Web.Page
         {
             DataSouce = _payInTranService.GetAll();
 
-            if(DataSouce != null)
+            if (DataSouce != null)
             {
-                DataSouce.Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text) && x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
-            }
+                if (txtAccountNo.Text != "")
+                {
+                    DataSouce = DataSouce.Where(x => x.ACCOUNT_ID.ToString().Contains(txtAccountNo.Text)).ToList();
+                }
 
-            if (txtStartDate.Text != "" && txtEndDate.Text != "")
-            {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture) && x.PAYIN_DATE <= DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
-            }
-            else if (txtStartDate.Text != "")
-            {
-                DataSouce = DataSouce.Where(x => x.PAYIN_DATE == DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
-            }
+                if(txtCheckNo.Text != "")
+                {
+                    DataSouce = DataSouce.Where(x => x.CHQ_NO.Contains(txtCheckNo.Text)).ToList();
+                }
 
-            DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+                if (txtStartDate.Text != "" && txtEndDate.Text != "")
+                {
+                    DataSouce = DataSouce.Where(x => x.PAYIN_DATE >= DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture) && x.PAYIN_DATE <= DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
+                }
+                else if (txtStartDate.Text != "")
+                {
+                    DataSouce = DataSouce.Where(x => x.PAYIN_DATE == DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
+                }
 
+                DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+            }
             grdPayIn.DataSource = DataSouce;
             grdPayIn.DataBind();
         }

@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-md-2">เลขที่เช็ค</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtCheckNo" class="form-control" runat="server" Height="35px" placeholder="ชื่อบัญชี" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txtCheckNo" class="form-control" runat="server" Height="35px" placeholder="เลขที่เช็ค" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/PayInSlip.aspx" />
