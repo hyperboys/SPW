@@ -186,7 +186,7 @@ namespace SPW.UI.Web.Page
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
-                Session["PAYIN"] = null;
+                Session.Remove("PAYIN");
                 //txtStartDate.Text = lstPayIn[0].PAYIN_DATE.ToShortDateString();
                 txtDatePayIn.Text = lstPayIn[0].PAYIN_DATE.ToString("dd/MM/yyyy");
                 txtDatePayIn.Enabled = false;
@@ -255,8 +255,8 @@ namespace SPW.UI.Web.Page
                 {
                     ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
                 }
-                Session["PAYIN"] = null;
-                Session["PAYIN_PRINT"] = null;
+                Session.Remove("PAYIN");
+                Session.Remove("PAYIN_PRINT");
                 grdBank.DataSource = null;
                 grdBank.DataBind();
             }
@@ -373,11 +373,7 @@ namespace SPW.UI.Web.Page
         private void SumAmt()
         {
             List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
-            if (Session["PAYIN"] == null)
-            {
-                Session["PAYIN"] = lstPayIn;
-            }
-            else
+            if (Session["PAYIN"] != null)
             {
                 lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
             }
@@ -431,6 +427,9 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                lblError.Text = "";
+                danger.Visible = false;
+
                 USER userItem = Session["user"] as USER;
                 List<PAYIN_TRANS> lstPayIn = new List<PAYIN_TRANS>();
                 if (Session["PAYIN"] == null)
@@ -450,7 +449,7 @@ namespace SPW.UI.Web.Page
 
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 SQLUtility sql = new SQLUtility();
-                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = CONVERT(char(10), GetDate(),126) GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = '" + convertToDateUSA(txtDatePayIn.Text) + "' GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
                 int payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
                 foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
@@ -462,7 +461,7 @@ namespace SPW.UI.Web.Page
                     tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_APPROVE_ID = 1;
                     tmpItem.PAYIN_SEQ_NO = payInSeq;
-                    tmpItem.PAYIN_TOTAL_AMOUNT = txtPageSeq.Text == "1" ? tmpTotalAmt : sql.GetAmount("SELECT SUM(CHQ_AMOUNT) FROM [SPW].[dbo].[PAYIN_TRANS] WHERE PAYIN_SEQ_NO = " + txtPayInSeq.Text) + tmpTotalAmt;
+                    tmpItem.PAYIN_TOTAL_AMOUNT = txtPageSeq.Text == "1" ? tmpTotalAmt : sql.GetAmount("SELECT SUM(CHQ_AMOUNT) FROM [SPW].[dbo].[PAYIN_TRANS] WHERE PAYIN_SEQ_NO = " + payInSeq) + tmpTotalAmt;
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
@@ -473,33 +472,33 @@ namespace SPW.UI.Web.Page
                     {
                         tmpItem.CHQ_SEQ_NO += ((Convert.ToInt32(txtPageSeq.Text) - 1) * 25);
                     }
-                    _payInTranService.Add(tmpItem);
+
                 }
 
 
-                sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
+                _payInTranService.AddList(lstPayIn);
+
+                try
+                {
+                    sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
+                }
+                catch (Exception ex)
+                {
+                    DebugLog.WriteLog(ex.ToString());
+                }
 
                 Session["PAYIN_PRINT"] = lstPayIn;
-                Session["PAYIN"] = null;
-
-                //btnAdd.Visible = false;
-                //btnSave.Visible = false;
-                //btnCancel.Visible = false;
-                //btnPrint1.Visible = true;
-                //btnPrintX.Visible = true;
-                //btnPrint2.Visible = true;
                 lbl1.Visible = true;
                 lbl2.Visible = true;
-
-                //alert.Visible = true;
-                //grdBank.Columns[4].Visible = false;
-                Session["PAYIN"] = null;
+                Session.Remove("PAYIN");
                 grdBank.DataSource = null;
                 grdBank.DataBind();
                 SumAmt();
             }
             catch (Exception ex)
             {
+                lblError.Text = "บันทึกข้อมูลไม่สำเร็จ";
+                danger.Visible = true;
                 DebugLog.WriteLog(ex.ToString());
             }
         }
@@ -565,7 +564,7 @@ namespace SPW.UI.Web.Page
         //        sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
 
         //        Session["PAYIN_PRINT"] = lstPayIn;
-        //        Session["PAYIN"] = null;
+        //         Session.Remove("PAYIN");
 
         //        //btnAdd.Visible = false;
         //        //btnSave.Visible = false;
@@ -578,7 +577,7 @@ namespace SPW.UI.Web.Page
 
         //        //alert.Visible = true;
         //        //grdBank.Columns[4].Visible = false;
-        //        Session["PAYIN"] = null;
+        //         Session.Remove("PAYIN");
         //        grdBank.DataSource = null;
         //        grdBank.DataBind();
         //        SumAmt();
@@ -699,6 +698,7 @@ namespace SPW.UI.Web.Page
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
                 }
+                Session["PAYIN_PRINT"] = lstPayIn;
             }
             catch (Exception ex)
             {
@@ -918,7 +918,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                Session["PAYIN"] = null;
+                Session.Remove("PAYIN");
                 Response.RedirectPermanent("PayInSlip.aspx");
             }
             catch (Exception ex)
@@ -1055,6 +1055,21 @@ namespace SPW.UI.Web.Page
                 {
                     return date;
                 }
+            }
+            else
+            {
+                return date;
+            }
+
+        }
+
+        private string convertToDateUSA(string date)
+        {
+            if (date != "")
+            {
+                string[] tmp = date.Split('/');
+
+                return tmp[2] + "-" + tmp[1] + "-" + tmp[0];
             }
             else
             {

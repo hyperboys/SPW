@@ -293,7 +293,7 @@
                                 </td>
                                 <td></td>
                             </tr>
-                            <tr style="width:10px;">
+                            <tr style="width: 10px;">
                                 <td class="auto-style23">&nbsp;</td>
                                 <td class="auto-style24">&nbsp;</td>
                                 <td class="auto-style31">&nbsp;</td>
@@ -323,12 +323,12 @@
                             Style="text-align: center" CssClass="grid" OnRowDeleting="grdBank_RowDeleting" OnRowDataBound="grdBank_RowDataBound">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                   <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
+                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                              <%--  <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
+                                <%--  <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="5%"></ItemStyle>
                                 </asp:BoundField>--%>
                                 <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
