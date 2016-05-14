@@ -87,7 +87,7 @@ namespace SPW.UI.Web.Page
                     DataSouce = DataSouce.Where(x => x.PAYIN_DATE == DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToList();
                 }
 
-                DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+                DataSouce = DataSouce.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_SEQ_NO).ToList();
             }
             grdPayIn.DataSource = DataSouce;
             grdPayIn.DataBind();

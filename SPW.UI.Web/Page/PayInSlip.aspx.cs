@@ -182,7 +182,7 @@ namespace SPW.UI.Web.Page
             {
                 List<PAYIN_TRANS> lstPayIn = _payInTranService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
                 lstPayIn = lstPayIn.Where(x => x.PAYIN_DATE == Convert.ToDateTime(Request.QueryString["date"].ToString()) && x.ACCOUNT_ID == Request.QueryString["accid"].ToString()).ToList();
-                lstPayIn = lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+                lstPayIn = lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_SEQ_NO).ToList();
                 grdBank.DataSource = lstPayIn;
                 grdBank.DataBind();
                 Session["PAYIN_PRINT"] = lstPayIn;
@@ -764,7 +764,7 @@ namespace SPW.UI.Web.Page
 
                 DataTable payInSlipSub = ds.Tables["SUB"];
                 DataRow drPayInSlipSub = payInSlipSub.NewRow();
-                lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+                lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_SEQ_NO).ToList();
                 if (lstPayIn.Count() <= 5)
                 {
                     if (lstPayIn.Count() >= 1)
@@ -840,7 +840,7 @@ namespace SPW.UI.Web.Page
 
                 decimal tmpTotalAmt = 0;
                 int i = 1;
-                lstPayIn = lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_NO).ToList();
+                lstPayIn = lstPayIn.OrderBy(x => x.PAYIN_DATE).ThenBy(x => x.PAYIN_SEQ_NO).ThenBy(x => x.CHQ_SEQ_NO).ToList();
 
                 foreach (PAYIN_TRANS pt in lstPayIn)
                 {
