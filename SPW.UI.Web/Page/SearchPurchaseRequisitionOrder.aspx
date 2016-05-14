@@ -4,7 +4,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">Purchase Requisition Order</h1>
+    <h1 class="page-header">Purchase Requisition Order & Convert Purchase Order</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -23,7 +23,7 @@
         </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Purchase Requisition Order        
+            Purchase Requisition Order & Convert Purchase Order        
         </div>
         <div class="panel-body">
             <div class="row">
@@ -83,10 +83,12 @@
                         <asp:BoundField DataField="VENDOR_ID" HeaderText="รหัสซัพพลายเออร์" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="20%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="PR_HD_STATUS" HeaderText="สถานะ" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
-                        </asp:BoundField>
-                         <asp:TemplateField HeaderText="ลบ" ShowHeader="False">
+                        <asp:TemplateField HeaderText="สถานะ" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <%# (Eval("PR_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PR_HD_STATUS").ToString() == "20") ? "Converted" : "Cancel") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
                         <ItemTemplate>
                             <asp:ImageButton ID="ImageButton1" runat="server"  ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
                                 ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
