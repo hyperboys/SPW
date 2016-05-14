@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -230,38 +231,45 @@ namespace SPW.UI.Web.Page
                     //cmdOrderDetails.ConfirmOrder(DetailItems);
                     //Update OrderStatus
 
-                    //ตัด Stock
-                    foreach (DELIVERY_ORDER item in DetailItems)
+                    try
                     {
-                        foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
+                        //ตัด Stock
+                        foreach (DELIVERY_ORDER item in DetailItems)
                         {
-                            int stockAfter = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
-                            STOCK_PRODUCT_STOCK tmp = new STOCK_PRODUCT_STOCK();
-                            tmp.PRODUCT_ID = item2.PRODUCT_ID;
-                            tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
-                            tmp.UPDATE_DATE = DateTime.Now;
-                            tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                            cmdStockProductService.CutStock(tmp);
+                            foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
+                            {
+                                int stockAfter = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
+                                STOCK_PRODUCT_STOCK tmp = new STOCK_PRODUCT_STOCK();
+                                tmp.PRODUCT_ID = item2.PRODUCT_ID;
+                                tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
+                                tmp.UPDATE_DATE = DateTime.Now;
+                                tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                cmdStockProductService.CutStock(tmp);
 
-                            STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
-                            tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                            tmpTrans.COLOR_ID = item2.COLOR_ID;
-                            tmpTrans.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
-                            tmpTrans.CREATE_DATE = DateTime.Now;
-                            tmpTrans.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                            tmpTrans.PRODUCT_ID = item2.PRODUCT_ID;
-                            tmpTrans.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
-                            tmpTrans.STOCK_AFTER = stockAfter;
-                            tmpTrans.STOCK_BEFORE = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
-                            tmpTrans.SYE_DEL = false;
-                            tmpTrans.SYS_TIME = DateTime.Now.TimeOfDay;
-                            tmpTrans.TRANS_DATE = DateTime.Now;
-                            tmpTrans.TRANS_QTY = item2.PRODUCT_SENT_QTY;
-                            tmpTrans.TRANS_TYPE = "OUT";
-                            tmpTrans.UPDATE_DATE = DateTime.Now;
-                            tmpTrans.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                            cmdStockTransService.Add(tmpTrans);
+                                STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
+                                tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                tmpTrans.COLOR_ID = item2.COLOR_ID;
+                                tmpTrans.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
+                                tmpTrans.CREATE_DATE = DateTime.Now;
+                                tmpTrans.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                tmpTrans.PRODUCT_ID = item2.PRODUCT_ID;
+                                tmpTrans.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
+                                tmpTrans.STOCK_AFTER = stockAfter;
+                                tmpTrans.STOCK_BEFORE = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
+                                tmpTrans.SYE_DEL = false;
+                                tmpTrans.SYS_TIME = DateTime.Now.TimeOfDay;
+                                tmpTrans.TRANS_DATE = DateTime.Now;
+                                tmpTrans.TRANS_QTY = item2.PRODUCT_SENT_QTY;
+                                tmpTrans.TRANS_TYPE = "OUT";
+                                tmpTrans.UPDATE_DATE = DateTime.Now;
+                                tmpTrans.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                cmdStockTransService.Add(tmpTrans);
+                            }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        DebugLog.WriteLog(ex.ToString());
                     }
 
                     UpdateOrderCompleteStatus(DetailItems);

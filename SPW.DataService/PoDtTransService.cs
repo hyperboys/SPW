@@ -39,10 +39,10 @@ namespace SPW.DataService
             {
                 foreach (var item in lstItem)
                 {
-                    if (item.Action == ActionEnum.Create)
-                    {
-                        Datacontext.PO_DT_TRANS.Add(item);
-                    }
+                    //if (item.Action == ActionEnum.Create)
+                    //{
+                    //    Datacontext.PO_DT_TRANS.Add(item);
+                    //}
                 }
                 Datacontext.SaveChanges();
             }

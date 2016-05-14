@@ -162,7 +162,8 @@ namespace SPW.UI.Web.Page
 
         bool isNullVendorCode()
         {
-            return (cmdSupplier.CountVendorCode(txtSupplierCode.Text) == 0 ? true : false);
+            int tmp = cmdSupplier.CountVendorCode(txtSupplierCode.Text);
+            return (tmp == 0 ? true : false);
         }
         #endregion
 

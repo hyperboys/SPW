@@ -164,7 +164,7 @@ namespace SPW.UI.Web.Page
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
-                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[0].ToString() + "&date=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[1].ToString();
+                lbtnDetail.PostBackUrl = "PayInSlip.aspx?id=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[0].ToString() + "&date=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[1].ToString() + "&accid=" + grdPayIn.DataKeys[e.Row.RowIndex].Values[2].ToString();
             }
         }
 

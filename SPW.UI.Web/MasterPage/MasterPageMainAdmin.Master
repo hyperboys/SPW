@@ -197,7 +197,9 @@
                                     <li>
                                         <a href="../Page/ReportPayInSummary.aspx">รายงานสรุปการนำเข้าเช็ค</a>
                                     </li>
-
+                                    <li>
+                                        <a href="../Page/ReportDelivery.aspx">รายงานคงค้างส่ง</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
