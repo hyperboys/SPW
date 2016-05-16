@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SPW.Common;
 
 namespace SPW.DAL
 {
@@ -39,6 +40,7 @@ namespace SPW.DAL
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 return null;
             }
         }

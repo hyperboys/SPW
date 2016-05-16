@@ -83,12 +83,12 @@ namespace SPW.UI.Web.Page
                     txtTel1.Text = _vendor.VENDOR_TEL1;
                     txtTel2.Text = _vendor.VENDOR_TEL2;
                     txtTumbon.Text = _vendor.VENDOR_SUBDISTRICT;
-                    txtEmail.Text = _vendor.VENDOR_EMAIL;
-                    txtContact.Text = _vendor.VENDOR_CONTACT_PERSON;
-                    ddlCreditIn.SelectedValue = _vendor.VENDOR_CREDIT_INTERVAL;
-                    txtCreditValue.Text = _vendor.VENDOR_CREDIT_VALUE.ToString();
-                    ddlVatType.SelectedValue = _vendor.VAT_TYPE;
-                    txtVatRate.Text = _vendor.VAT_RATE.ToString();
+                    //txtEmail.Text = _vendor.VENDOR_EMAIL;
+                    //txtContact.Text = _vendor.VENDOR_CONTACT_PERSON;
+                    //ddlCreditIn.SelectedValue = _vendor.VENDOR_CREDIT_INTERVAL;
+                    //txtCreditValue.Text = _vendor.VENDOR_CREDIT_VALUE.ToString();
+                    //ddlVatType.SelectedValue = _vendor.VAT_TYPE;
+                    //txtVatRate.Text = _vendor.VAT_RATE.ToString();
                     ddlProvince.SelectedValue = _vendor.PROVINCE_ID.ToString();
                     ddlProvince.Enabled = true;
                     txtRoad.Text = _vendor.VENDOR_STREET;
@@ -118,12 +118,12 @@ namespace SPW.UI.Web.Page
                 obj.VENDOR_SUBDISTRICT = txtTumbon.Text;
                 obj.VENDOR_TEL1 = txtTel1.Text;
                 obj.VENDOR_TEL2 = txtTel2.Text;
-                obj.VENDOR_EMAIL = txtEmail.Text;
-                obj.VENDOR_CONTACT_PERSON = txtContact.Text;
-                obj.VENDOR_CREDIT_INTERVAL = ddlCreditIn.SelectedValue;
-                obj.VENDOR_CREDIT_VALUE = (txtCreditValue.Text == "") ? 0 : int.Parse(txtCreditValue.Text.ToString());
-                obj.VAT_TYPE = ddlVatType.SelectedValue;
-                obj.VAT_RATE = decimal.Parse(txtVatRate.Text);
+                //obj.VENDOR_EMAIL = txtEmail.Text;
+                //obj.VENDOR_CONTACT_PERSON = txtContact.Text;
+                //obj.VENDOR_CREDIT_INTERVAL = ddlCreditIn.SelectedValue;
+                //obj.VENDOR_CREDIT_VALUE = (txtCreditValue.Text == "") ? 0 : int.Parse(txtCreditValue.Text.ToString());
+                //obj.VAT_TYPE = ddlVatType.SelectedValue;
+                //obj.VAT_RATE = decimal.Parse(txtVatRate.Text);
                 if (flag.Text.Equals("Add"))
                 {
                     if (isNullVendorCode())

@@ -43,40 +43,29 @@ namespace SPW.DAL
         public DbSet<ORDER_DETAIL> ORDER_DETAIL { get; set; }
         public DbSet<PAYIN_APPROVER> PAYIN_APPROVER { get; set; }
         public DbSet<PAYIN_TRANS> PAYIN_TRANS { get; set; }
-        public DbSet<PO_DT_TRANS> PO_DT_TRANS { get; set; }
-        public DbSet<PO_HD_TRANS> PO_HD_TRANS { get; set; }
-        public DbSet<PR_DT_TRANS> PR_DT_TRANS { get; set; }
-        public DbSet<PR_HD_TRANS> PR_HD_TRANS { get; set; }
         public DbSet<PRODUCT> PRODUCT { get; set; }
         public DbSet<PRODUCT_PRICELIST> PRODUCT_PRICELIST { get; set; }
         public DbSet<PRODUCT_PROMOTION> PRODUCT_PROMOTION { get; set; }
         public DbSet<PROVINCE> PROVINCE { get; set; }
-        public DbSet<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }
-        public DbSet<RAW_PACK_SIZE> RAW_PACK_SIZE { get; set; }
-        public DbSet<RAW_PRODUCT> RAW_PRODUCT { get; set; }
-        public DbSet<RAW_TYPE> RAW_TYPE { get; set; }
         public DbSet<ROAD> ROAD { get; set; }
         public DbSet<ROLE> ROLE { get; set; }
         public DbSet<ROLE_FUNCTION> ROLE_FUNCTION { get; set; }
         public DbSet<SECTOR> SECTOR { get; set; }
-        public DbSet<STOCK_PRODUCT_COLOR> STOCK_PRODUCT_COLOR { get; set; }
         public DbSet<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
         public DbSet<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
         public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
         public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
         public DbSet<STORE> STORE { get; set; }
-        public DbSet<STORE_NOTFOUND> STORE_NOTFOUND { get; set; }
         public DbSet<SUB_DELIVERY_INDEX> SUB_DELIVERY_INDEX { get; set; }
         public DbSet<SUB_DELIVERY_INDEX_DETAIL> SUB_DELIVERY_INDEX_DETAIL { get; set; }
         public DbSet<SUB_DELIVERY_ORDER> SUB_DELIVERY_ORDER { get; set; }
         public DbSet<SUB_DELIVERY_ORDER_DETAIL> SUB_DELIVERY_ORDER_DETAIL { get; set; }
         public DbSet<SUB_FUNCTION> SUB_FUNCTION { get; set; }
         public DbSet<TRANSPORT_LINE> TRANSPORT_LINE { get; set; }
-        public DbSet<UNIT_TYPE> UNIT_TYPE { get; set; }
         public DbSet<USER> USER { get; set; }
         public DbSet<VEHICLE> VEHICLE { get; set; }
         public DbSet<VENDOR> VENDOR { get; set; }
-        public DbSet<VENDOR_DEAL_DISCOUNT> VENDOR_DEAL_DISCOUNT { get; set; }
+        public DbSet<VENDOR_DEAL_CONDITION> VENDOR_DEAL_CONDITION { get; set; }
         public DbSet<ZONE> ZONE { get; set; }
         public DbSet<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }

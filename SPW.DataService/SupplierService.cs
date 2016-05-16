@@ -60,12 +60,12 @@ namespace SPW.DataService
             item.VENDOR_TEL2 = obj.VENDOR_TEL2;
             item.UPDATE_DATE = obj.UPDATE_DATE;
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
-            item.VENDOR_EMAIL = obj.VENDOR_EMAIL;
-            item.VENDOR_CONTACT_PERSON = obj.VENDOR_CONTACT_PERSON;
-            item.VENDOR_CREDIT_INTERVAL = obj.VENDOR_CREDIT_INTERVAL;
-            item.VENDOR_CREDIT_VALUE = obj.VENDOR_CREDIT_VALUE;
-            item.VAT_TYPE = obj.VAT_TYPE;
-            item.VAT_RATE = obj.VAT_RATE;
+            //item.VENDOR_EMAIL = obj.VENDOR_EMAIL;
+            //item.VENDOR_CONTACT_PERSON = obj.VENDOR_CONTACT_PERSON;
+            //item.VENDOR_CREDIT_INTERVAL = obj.VENDOR_CREDIT_INTERVAL;
+            //item.VENDOR_CREDIT_VALUE = obj.VENDOR_CREDIT_VALUE;
+            //item.VAT_TYPE = obj.VAT_TYPE;
+            //item.VAT_RATE = obj.VAT_RATE;
             this.Datacontext.SaveChanges();
         }
 

@@ -221,7 +221,7 @@
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="PO" visible="true">
+                            <%--   <li runat="server" id="PO" visible="true">
                                 <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;Purchase Order<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -232,9 +232,8 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
-                            </li>
+                            </li>--%>
                         </ul>
-
                     </div>
                     <!-- /.sidebar-collapse -->
                 </div>
