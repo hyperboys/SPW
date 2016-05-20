@@ -12,18 +12,20 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class RAW_PACK_PRICE_HIST
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public int VENDOR_ID { get; set; }
+        public int RAW_ID { get; set; }
+        public int RAW_PACK_ID { get; set; }
+        public decimal PACK_PRICE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual RAW_PRODUCT RAW_PRODUCT { get; set; }
+        public virtual RAW_PACK_SIZE RAW_PACK_SIZE { get; set; }
+        public virtual VENDOR VENDOR { get; set; }
     }
 }

@@ -12,18 +12,21 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class RAW_TYPE
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public RAW_TYPE()
+        {
+            this.RAW_PRODUCT = new HashSet<RAW_PRODUCT>();
+        }
+    
+        public int RAW_TYPE_ID { get; set; }
+        public string RAW_TYPE_NAME { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual ICollection<RAW_PRODUCT> RAW_PRODUCT { get; set; }
     }
 }

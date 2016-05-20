@@ -37,7 +37,6 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ACCOUNT_MAST ACCOUNT_MAST { get; set; }
         public virtual PAYIN_APPROVER PAYIN_APPROVER { get; set; }
     }
 }

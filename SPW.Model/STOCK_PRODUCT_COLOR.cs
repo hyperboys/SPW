@@ -12,18 +12,22 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class STOCK_PRODUCT_COLOR
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public int PRODUCT_ID { get; set; }
+        public string PRODUCT_CODE { get; set; }
+        public int COLOR_ID { get; set; }
+        public int COLOR_TYPE_ID { get; set; }
+        public int STOCK_MINIMUM { get; set; }
+        public Nullable<int> STOCK_REMAIN { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual COLOR COLOR { get; set; }
+        public virtual COLOR_TYPE COLOR_TYPE { get; set; }
+        public virtual PRODUCT PRODUCT { get; set; }
     }
 }

@@ -12,18 +12,22 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class VENDOR_DEAL_DISCOUNT
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public int VENDOR_ID { get; set; }
+        public int VENDEAL_SEQ_NO { get; set; }
+        public string VENDEAL_DESC { get; set; }
+        public string VENDEAL_PRE_COND_TYPE { get; set; }
+        public decimal VENDEAL_PRE_COND_VALUE { get; set; }
+        public string VENDEAL_TYPE_CODE { get; set; }
+        public decimal VENDEAL_TYPE_VALUE1 { get; set; }
+        public decimal VENDEAL_TYPE_VALUE2 { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual VENDOR VENDOR { get; set; }
     }
 }

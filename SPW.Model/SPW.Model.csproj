@@ -220,6 +220,9 @@
     <Compile Include="STORE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="STORE_NOTFOUND.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="SUB_DELIVERY_INDEX.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>

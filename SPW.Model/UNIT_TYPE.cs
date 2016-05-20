@@ -12,14 +12,11 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class UNIT_TYPE
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public int UNIT_TYPE_ID { get; set; }
+        public string UNIT_TYPE_NAME { get; set; }
+        public string UNIT_TYPE_SUB_NAME { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
