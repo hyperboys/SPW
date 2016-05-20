@@ -74,12 +74,22 @@
     <Compile Include="CustomModel\DELIVERY_INDEX.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX_DETAIL.cs" />
     <Compile Include="CustomModel\DELIVERY_ORDER_LOG.cs" />
+    <Compile Include="CustomModel\OTHER_PRODUCT.cs" />
     <Compile Include="CustomModel\PAYIN_APPROVER.cs" />
     <Compile Include="CustomModel\PAYIN_TRANS.cs" />
+    <Compile Include="CustomModel\PO_DT_TRANS.cs" />
+    <Compile Include="CustomModel\PO_HD_TRANS.cs" />
     <Compile Include="CustomModel\PRODUCT_DETAIL.cs" />
+    <Compile Include="CustomModel\PR_DT_TRANS.cs" />
+    <Compile Include="CustomModel\PR_HD_TRANS.cs" />
+    <Compile Include="CustomModel\RAW_PACK_SIZE.cs" />
+    <Compile Include="CustomModel\RAW_PRODUCT.cs" />
+    <Compile Include="CustomModel\RAW_TYPE.cs" />
+    <Compile Include="CustomModel\SERVICES_PRODUCT.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
+    <Compile Include="CustomModel\UNIT_TYPE.cs" />
     <Compile Include="CustomModel\VENDOR.cs" />
     <Compile Include="CustomModel\ZONE_DETAIL.cs" />
     <Compile Include="CustomModel\ROLE_FUNCTION.cs" />
@@ -137,6 +147,12 @@
     <Compile Include="PAYIN_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="PO_DT_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PO_HD_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="PRODUCT.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -148,6 +164,24 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PROVINCE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PR_DT_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PR_HD_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RAW_PACK_PRICE_HIST.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RAW_PACK_SIZE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RAW_PRODUCT.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RAW_TYPE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="ROAD.cs">
@@ -167,6 +201,9 @@
       <DependentUpon>SPW.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="STOCK_PRODUCT_COLOR.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STOCK_PRODUCT_STOCK.cs">
       <DependentUpon>SPW.tt</DependentUpon>
@@ -201,6 +238,9 @@
     <Compile Include="TRANSPORT_LINE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="UNIT_TYPE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="USER.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -210,7 +250,7 @@
     <Compile Include="VENDOR.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
-    <Compile Include="VENDOR_DEAL_CONDITION.cs">
+    <Compile Include="VENDOR_DEAL_DISCOUNT.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="ZONE.cs">
