@@ -48,6 +48,13 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
     <Compile Include="AccountMastService.cs" />
+    <Compile Include="PoDtTransService.cs" />
+    <Compile Include="PoHdTransService.cs" />
+    <Compile Include="PrDtTransService.cs" />
+    <Compile Include="PrHdTransService.cs" />
+    <Compile Include="RawPackService.cs" />
+    <Compile Include="RawProductService.cs" />
+    <Compile Include="RawTypeService.cs" />
     <Compile Include="TransportLineService.cs" />
     <Compile Include="PayInTranService.cs" />
     <Compile Include="DataServiceController\DataServiceBase.cs" />
