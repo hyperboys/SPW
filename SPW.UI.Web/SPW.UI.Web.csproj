@@ -158,7 +158,13 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\IssuePurchaseOrders.aspx" />
+    <Content Include="Page\IssuePurchaseRequisitionOrder.aspx" />
     <Content Include="Page\ManageAccountMast.aspx" />
+    <Content Include="Page\ManageRawPack.aspx" />
+    <Content Include="Page\ManageRawProduct.aspx" />
+    <Content Include="Page\ManageRawType.aspx" />
+    <Content Include="Page\ManageUnitType.aspx" />
     <Content Include="Page\ReportDelivery.aspx" />
     <Content Include="Page\SearchAccountMast.aspx" />
     <Content Include="Page\SearchPayInSlip.aspx" />
@@ -195,10 +201,16 @@
     <Content Include="Page\ManageColorProduct.aspx" />
     <Content Include="Page\ManageCategory.aspx" />
     <Content Include="Page\OrderProductDetail.aspx" />
+    <Content Include="Page\SearchPurchaseOrder.aspx" />
+    <Content Include="Page\SearchPurchaseRequisitionOrder.aspx" />
+    <Content Include="Page\SearchRawPack.aspx" />
+    <Content Include="Page\SearchRawProduct.aspx" />
+    <Content Include="Page\SearchRawType.aspx" />
     <Content Include="Page\SearchRole.aspx" />
     <Content Include="Page\SearchSupplier.aspx" />
     <Content Include="Page\SearchTracery.aspx" />
     <Content Include="Page\SearchTranspotLine.aspx" />
+    <Content Include="Page\SearchUnitType.aspx" />
     <Content Include="Page\SearchUser.aspx" />
     <Content Include="Page\SearchColorProduct.aspx" />
     <Content Include="Page\SearchColorType.aspx" />
@@ -260,12 +272,54 @@
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\IssuePurchaseOrders.aspx.cs">
+      <DependentUpon>IssuePurchaseOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\IssuePurchaseOrders.aspx.designer.cs">
+      <DependentUpon>IssuePurchaseOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\IssuePurchaseRequisitionOrder.aspx.cs">
+      <DependentUpon>IssuePurchaseRequisitionOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\IssuePurchaseRequisitionOrder.aspx.designer.cs">
+      <DependentUpon>IssuePurchaseRequisitionOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\ManageAccountMast.aspx.cs">
       <DependentUpon>ManageAccountMast.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Page\ManageAccountMast.aspx.designer.cs">
       <DependentUpon>ManageAccountMast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageRawPack.aspx.cs">
+      <DependentUpon>ManageRawPack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageRawPack.aspx.designer.cs">
+      <DependentUpon>ManageRawPack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageRawProduct.aspx.cs">
+      <DependentUpon>ManageRawProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageRawProduct.aspx.designer.cs">
+      <DependentUpon>ManageRawProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageRawType.aspx.cs">
+      <DependentUpon>ManageRawType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageRawType.aspx.designer.cs">
+      <DependentUpon>ManageRawType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageUnitType.aspx.cs">
+      <DependentUpon>ManageUnitType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageUnitType.aspx.designer.cs">
+      <DependentUpon>ManageUnitType.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ReportDelivery.aspx.cs">
       <DependentUpon>ReportDelivery.aspx</DependentUpon>
@@ -519,6 +573,41 @@
     <Compile Include="Page\OrderProductDetail.aspx.designer.cs">
       <DependentUpon>OrderProductDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\SearchPurchaseOrder.aspx.cs">
+      <DependentUpon>SearchPurchaseOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchPurchaseOrder.aspx.designer.cs">
+      <DependentUpon>SearchPurchaseOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchPurchaseRequisitionOrder.aspx.cs">
+      <DependentUpon>SearchPurchaseRequisitionOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchPurchaseRequisitionOrder.aspx.designer.cs">
+      <DependentUpon>SearchPurchaseRequisitionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchRawPack.aspx.cs">
+      <DependentUpon>SearchRawPack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchRawPack.aspx.designer.cs">
+      <DependentUpon>SearchRawPack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchRawProduct.aspx.cs">
+      <DependentUpon>SearchRawProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchRawProduct.aspx.designer.cs">
+      <DependentUpon>SearchRawProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchRawType.aspx.cs">
+      <DependentUpon>SearchRawType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchRawType.aspx.designer.cs">
+      <DependentUpon>SearchRawType.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\SearchRole.aspx.cs">
       <DependentUpon>SearchRole.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -546,6 +635,13 @@
     </Compile>
     <Compile Include="Page\SearchTranspotLine.aspx.designer.cs">
       <DependentUpon>SearchTranspotLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchUnitType.aspx.cs">
+      <DependentUpon>SearchUnitType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchUnitType.aspx.designer.cs">
+      <DependentUpon>SearchUnitType.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchUser.aspx.cs">
       <DependentUpon>SearchUser.aspx</DependentUpon>
