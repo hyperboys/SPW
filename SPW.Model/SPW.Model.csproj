@@ -86,6 +86,7 @@
     <Compile Include="CustomModel\RAW_PRODUCT.cs" />
     <Compile Include="CustomModel\RAW_TYPE.cs" />
     <Compile Include="CustomModel\SERVICES_PRODUCT.cs" />
+    <Compile Include="CustomModel\STOCK_PRODUCT_COLOR.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
