@@ -55,6 +55,7 @@
     <Compile Include="RawPackService.cs" />
     <Compile Include="RawProductService.cs" />
     <Compile Include="RawTypeService.cs" />
+    <Compile Include="StockProductColorService.cs" />
     <Compile Include="TransportLineService.cs" />
     <Compile Include="PayInTranService.cs" />
     <Compile Include="DataServiceController\DataServiceBase.cs" />
