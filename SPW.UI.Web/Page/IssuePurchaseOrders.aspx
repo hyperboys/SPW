@@ -130,7 +130,7 @@
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                                <asp:TemplateField HeaderText="No" ItemStyle-Width="5%">
+                                <asp:TemplateField HeaderText="No" ItemStyle-Width="5%" ItemStyle-Height="30px" HeaderStyle-Height="30px">
                                     <ItemTemplate>
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
@@ -150,6 +150,11 @@
                                         <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_NAME2 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="คงคลัง" ItemStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <%# ((DATAGRID) Container.DataItem).STOCK_REMAIN %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%">
                                     <ItemTemplate>
                                         <%# ((DATAGRID) Container.DataItem).PO_QTY %>
@@ -167,13 +172,13 @@
                                         </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
+                                <%--<asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit">
                                     <div class='glyphicon glyphicon-search'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

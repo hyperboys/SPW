@@ -21,6 +21,7 @@ namespace SPW.UI.Web.Page
         private PrDtTransService cmdPrDtTrans;
         private PoHdTransService cmdPoHdTrans;
         private PoDtTransService cmdPoDtTrans;
+        private StockRawStockService cmdStockRawStockService;
         
 
         public class DATAGRID
@@ -28,6 +29,7 @@ namespace SPW.UI.Web.Page
             public RAW_PRODUCT RAW_PRODUCT { get; set; }
             public int RAW_ID { get; set; }
             public int RAW_PACK_ID { get; set; }
+            public int STOCK_REMAIN { get; set; }
             public int PO_QTY { get; set; }
         }
         #endregion
@@ -55,6 +57,7 @@ namespace SPW.UI.Web.Page
             cmdPrDtTrans = (PrDtTransService)_dataServiceEngine.GetDataService(typeof(PrDtTransService));
             cmdPoHdTrans = (PoHdTransService)_dataServiceEngine.GetDataService(typeof(PoHdTransService));
             cmdPoDtTrans = (PoDtTransService)_dataServiceEngine.GetDataService(typeof(PoDtTransService));
+            cmdStockRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
         }
 
         private void CreatePageEngine()
@@ -573,6 +576,7 @@ namespace SPW.UI.Web.Page
                         RAW_PRODUCT _rawProduct = (RAW_PRODUCT)ViewState["RAWPRODUCT"];
                         _datagrid.RAW_PRODUCT = _rawProduct;
                         _datagrid.RAW_PACK_ID = int.Parse(ddlPack.SelectedValue);
+                        _datagrid.STOCK_REMAIN = cmdStockRawStockService.GetRemainQty(int.Parse(txtRawCode.Text));
                         _datagrid.PO_QTY = int.Parse(txtQty.Text);
                         _datagrid.RAW_ID = int.Parse(txtRawCode.Text);
 
