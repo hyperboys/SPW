@@ -89,6 +89,8 @@
     <Compile Include="CustomModel\STOCK_PRODUCT_COLOR.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
+    <Compile Include="CustomModel\STOCK_RAW_RECEIVE_TRANS.cs" />
+    <Compile Include="CustomModel\STOCK_RAW_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
     <Compile Include="CustomModel\UNIT_TYPE.cs" />
     <Compile Include="CustomModel\VENDOR.cs" />
@@ -215,13 +217,16 @@
     <Compile Include="STOCK_PRODUCT_WITHDRAW_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="STOCK_RAW_RECEIVE_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK_RAW_STOCK.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="STOCK_TYPE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STORE.cs">
-      <DependentUpon>SPW.tt</DependentUpon>
-    </Compile>
-    <Compile Include="STORE_NOTFOUND.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="SUB_DELIVERY_INDEX.cs">
