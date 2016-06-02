@@ -43,14 +43,10 @@
           <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.Store.STOCK_PRODUCT_STOCK" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_TRANS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_RAW_RECEIVE_TRANS" EntityType="SPWModel.Store.STOCK_RAW_RECEIVE_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_RAW_STOCK" EntityType="SPWModel.Store.STOCK_RAW_STOCK" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.Store.STOCK_TYPE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STORE" EntityType="SPWModel.Store.STORE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="STORE_NOTFOUND" EntityType="SPWModel.Store.STORE_NOTFOUND" store:Type="Tables" store:Schema="dbo" store:Name="STORE_NOTFOUND">
-            <DefiningQuery>SELECT 
-      [STORE_NOTFOUND].[STORE_CODE] AS [STORE_CODE], 
-      [STORE_NOTFOUND].[STORE_NAME] AS [STORE_NAME]
-      FROM [dbo].[STORE_NOTFOUND] AS [STORE_NOTFOUND]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="SUB_DELIVERY_INDEX" EntityType="SPWModel.Store.SUB_DELIVERY_INDEX" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SUB_DELIVERY_INDEX_DETAIL" EntityType="SPWModel.Store.SUB_DELIVERY_INDEX_DETAIL" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SUB_DELIVERY_ORDER" EntityType="SPWModel.Store.SUB_DELIVERY_ORDER" store:Type="Tables" Schema="dbo" />
@@ -295,6 +291,18 @@
           <AssociationSet Name="FK_STOCK_PRODUCT_WD_VEHICLE" Association="SPWModel.Store.FK_STOCK_PRODUCT_WD_VEHICLE">
             <End Role="VEHICLE" EntitySet="VEHICLE" />
             <End Role="STOCK_PRODUCT_WITHDRAW_TRANS" EntitySet="STOCK_PRODUCT_WITHDRAW_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_RECEIVE_TRANS_PO" Association="SPWModel.Store.FK_STOCK_RAW_RECEIVE_TRANS_PO">
+            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
+            <End Role="STOCK_RAW_RECEIVE_TRANS" EntitySet="STOCK_RAW_RECEIVE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_RECEIVE_TRANS_RAW" Association="SPWModel.Store.FK_STOCK_RAW_RECEIVE_TRANS_RAW">
+            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
+            <End Role="STOCK_RAW_RECEIVE_TRANS" EntitySet="STOCK_RAW_RECEIVE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_STOCK_RAW" Association="SPWModel.Store.FK_STOCK_RAW_STOCK_RAW">
+            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
+            <End Role="STOCK_RAW_STOCK" EntitySet="STOCK_RAW_STOCK" />
           </AssociationSet>
           <AssociationSet Name="FK_STORE_PROVINCE" Association="SPWModel.Store.FK_STORE_PROVINCE">
             <End Role="PROVINCE" EntitySet="PROVINCE" />
@@ -1082,6 +1090,42 @@
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
         </EntityType>
+        <EntityType Name="STOCK_RAW_RECEIVE_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Name="TRANS_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RAW_ID" Type="int" Nullable="false" />
+          <Property Name="TRANS_DATE" Type="date" Nullable="false" />
+          <Property Name="TRANS_TYPE" Type="nvarchar" MaxLength="5" />
+          <Property Name="PO_BK_NO" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="PO_RN_NO" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="PO_YY" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="VENDOR_ID" Type="int" Nullable="false" />
+          <Property Name="STOCK_BEFORE" Type="int" />
+          <Property Name="TRANS_QTY" Type="int" />
+          <Property Name="STOCK_AFTER" Type="int" />
+          <Property Name="APPROVE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYS_TIME" Type="time" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOCK_RAW_STOCK">
+          <Key>
+            <PropertyRef Name="RAW_ID" />
+          </Key>
+          <Property Name="RAW_ID" Type="int" Nullable="false" />
+          <Property Name="RAW_MINIMUM" Type="int" Nullable="false" />
+          <Property Name="RAW_REMAIN" Type="int" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
         <EntityType Name="STOCK_TYPE">
           <Key>
             <PropertyRef Name="STOCK_TYPE_ID" />
@@ -1120,16 +1164,6 @@
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
           <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYE_DEL" Type="bit" />
-        </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'SPW.dbo.STORE_NOTFOUND' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="STORE_NOTFOUND">
-          <Key>
-            <PropertyRef Name="STORE_CODE" />
-          </Key>
-          <Property Name="STORE_CODE" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="STORE_NAME" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SUB_DELIVERY_INDEX">
           <Key>
@@ -2065,6 +2099,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_RAW_RECEIVE_TRANS_PO">
+          <End Role="PO_HD_TRANS" Type="SPWModel.Store.PO_HD_TRANS" Multiplicity="1" />
+          <End Role="STOCK_RAW_RECEIVE_TRANS" Type="SPWModel.Store.STOCK_RAW_RECEIVE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PO_HD_TRANS">
+              <PropertyRef Name="PO_BK_NO" />
+              <PropertyRef Name="PO_RN_NO" />
+              <PropertyRef Name="PO_YY" />
+              <PropertyRef Name="VENDOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_RECEIVE_TRANS">
+              <PropertyRef Name="PO_BK_NO" />
+              <PropertyRef Name="PO_RN_NO" />
+              <PropertyRef Name="PO_YY" />
+              <PropertyRef Name="VENDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_RAW_RECEIVE_TRANS_RAW">
+          <End Role="RAW_PRODUCT" Type="SPWModel.Store.RAW_PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_RAW_RECEIVE_TRANS" Type="SPWModel.Store.STOCK_RAW_RECEIVE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RAW_PRODUCT">
+              <PropertyRef Name="RAW_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_RECEIVE_TRANS">
+              <PropertyRef Name="RAW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_RAW_STOCK_RAW">
+          <End Role="RAW_PRODUCT" Type="SPWModel.Store.RAW_PRODUCT" Multiplicity="1" />
+          <End Role="STOCK_RAW_STOCK" Type="SPWModel.Store.STOCK_RAW_STOCK" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RAW_PRODUCT">
+              <PropertyRef Name="RAW_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_STOCK">
+              <PropertyRef Name="RAW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORE_PROVINCE">
           <End Role="PROVINCE" Type="SPWModel.Store.PROVINCE" Multiplicity="1" />
           <End Role="STORE" Type="SPWModel.Store.STORE" Multiplicity="*" />
@@ -2431,9 +2507,10 @@
           <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.STOCK_PRODUCT_STOCK" />
           <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.STOCK_PRODUCT_TRANS" />
           <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" />
+          <EntitySet Name="STOCK_RAW_RECEIVE_TRANS" EntityType="SPWModel.STOCK_RAW_RECEIVE_TRANS" />
+          <EntitySet Name="STOCK_RAW_STOCK" EntityType="SPWModel.STOCK_RAW_STOCK" />
           <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.STOCK_TYPE" />
           <EntitySet Name="STORE" EntityType="SPWModel.STORE" />
-          <EntitySet Name="STORE_NOTFOUND" EntityType="SPWModel.STORE_NOTFOUND" />
           <EntitySet Name="SUB_DELIVERY_INDEX" EntityType="SPWModel.SUB_DELIVERY_INDEX" />
           <EntitySet Name="SUB_DELIVERY_INDEX_DETAIL" EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" />
           <EntitySet Name="SUB_DELIVERY_ORDER" EntityType="SPWModel.SUB_DELIVERY_ORDER" />
@@ -2627,6 +2704,10 @@
             <End Role="VENDOR" EntitySet="VENDOR" />
             <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_RECEIVE_TRANS_PO" Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO">
+            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
+            <End Role="STOCK_RAW_RECEIVE_TRANS" EntitySet="STOCK_RAW_RECEIVE_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_DT_RAW" Association="SPWModel.FK_DT_RAW">
             <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
             <End Role="PR_DT_TRANS" EntitySet="PR_DT_TRANS" />
@@ -2710,6 +2791,14 @@
           <AssociationSet Name="FK_RAW_RAWTYPE" Association="SPWModel.FK_RAW_RAWTYPE">
             <End Role="RAW_TYPE" EntitySet="RAW_TYPE" />
             <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_RECEIVE_TRANS_RAW" Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_RAW">
+            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
+            <End Role="STOCK_RAW_RECEIVE_TRANS" EntitySet="STOCK_RAW_RECEIVE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_RAW_STOCK_RAW" Association="SPWModel.FK_STOCK_RAW_STOCK_RAW">
+            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
+            <End Role="STOCK_RAW_STOCK" EntitySet="STOCK_RAW_STOCK" />
           </AssociationSet>
           <AssociationSet Name="FK_STORE_ROAD" Association="SPWModel.FK_STORE_ROAD">
             <End Role="ROAD" EntitySet="ROAD" />
@@ -3205,6 +3294,7 @@
           <Property Type="Boolean" Name="SYE_DEL" />
           <NavigationProperty Name="PR_HD_TRANS" Relationship="SPWModel.FK_HD_PR_IND" FromRole="PO_HD_TRANS" ToRole="PR_HD_TRANS" />
           <NavigationProperty Name="VENDOR" Relationship="SPWModel.FK_POHD_VENDOR" FromRole="PO_HD_TRANS" ToRole="VENDOR" />
+          <NavigationProperty Name="STOCK_RAW_RECEIVE_TRANS" Relationship="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO" FromRole="PO_HD_TRANS" ToRole="STOCK_RAW_RECEIVE_TRANS" />
         </EntityType>
         <EntityType Name="PR_DT_TRANS">
           <Key>
@@ -3415,6 +3505,8 @@
           <NavigationProperty Name="PR_DT_TRANS" Relationship="SPWModel.FK_DT_RAW" FromRole="RAW_PRODUCT" ToRole="PR_DT_TRANS" />
           <NavigationProperty Name="RAW_PACK_PRICE_HIST" Relationship="SPWModel.FK_RAW_PRICE_HIST_RAW" FromRole="RAW_PRODUCT" ToRole="RAW_PACK_PRICE_HIST" />
           <NavigationProperty Name="RAW_TYPE" Relationship="SPWModel.FK_RAW_RAWTYPE" FromRole="RAW_PRODUCT" ToRole="RAW_TYPE" />
+          <NavigationProperty Name="STOCK_RAW_RECEIVE_TRANS" Relationship="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_RAW" FromRole="RAW_PRODUCT" ToRole="STOCK_RAW_RECEIVE_TRANS" />
+          <NavigationProperty Name="STOCK_RAW_STOCK" Relationship="SPWModel.FK_STOCK_RAW_STOCK_RAW" FromRole="RAW_PRODUCT" ToRole="STOCK_RAW_STOCK" />
         </EntityType>
         <EntityType Name="RAW_TYPE">
           <Key>
@@ -3583,6 +3675,45 @@
           <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_STORE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="STORE" />
           <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="VEHICLE" />
         </EntityType>
+        <EntityType Name="STOCK_RAW_RECEIVE_TRANS">
+          <Key>
+            <PropertyRef Name="TRANS_ID" />
+          </Key>
+          <Property Type="Int32" Name="TRANS_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RAW_ID" Nullable="false" />
+          <Property Type="DateTime" Name="TRANS_DATE" Nullable="false" Precision="0" />
+          <Property Type="String" Name="TRANS_TYPE" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PO_BK_NO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PO_RN_NO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PO_YY" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VENDOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="STOCK_BEFORE" />
+          <Property Type="Int32" Name="TRANS_QTY" />
+          <Property Type="Int32" Name="STOCK_AFTER" />
+          <Property Type="Int32" Name="APPROVE_EMPLOYEE_ID" />
+          <Property Type="Time" Name="SYS_TIME" Precision="7" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PO_HD_TRANS" Relationship="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO" FromRole="STOCK_RAW_RECEIVE_TRANS" ToRole="PO_HD_TRANS" />
+          <NavigationProperty Name="RAW_PRODUCT" Relationship="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_RAW" FromRole="STOCK_RAW_RECEIVE_TRANS" ToRole="RAW_PRODUCT" />
+        </EntityType>
+        <EntityType Name="STOCK_RAW_STOCK">
+          <Key>
+            <PropertyRef Name="RAW_ID" />
+          </Key>
+          <Property Type="Int32" Name="RAW_ID" Nullable="false" />
+          <Property Type="Int32" Name="RAW_MINIMUM" Nullable="false" />
+          <Property Type="Int32" Name="RAW_REMAIN" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="RAW_PRODUCT" Relationship="SPWModel.FK_STOCK_RAW_STOCK_RAW" FromRole="STOCK_RAW_STOCK" ToRole="RAW_PRODUCT" />
+        </EntityType>
         <EntityType Name="STOCK_TYPE">
           <Key>
             <PropertyRef Name="STOCK_TYPE_ID" />
@@ -3632,13 +3763,6 @@
           <NavigationProperty Name="ZONE_DETAIL" Relationship="SPWModel.FK_STORE_ZONE_DETAIL" FromRole="STORE" ToRole="ZONE_DETAIL" />
           <NavigationProperty Name="SUB_DELIVERY_ORDER" Relationship="SPWModel.FK_SUB_DELIVERY_ORDER_STORE" FromRole="STORE" ToRole="SUB_DELIVERY_ORDER" />
           <NavigationProperty Name="TRANSPORT_LINE" Relationship="SPWModel.FK_TRANS_LINE_STORE" FromRole="STORE" ToRole="TRANSPORT_LINE" />
-        </EntityType>
-        <EntityType Name="STORE_NOTFOUND">
-          <Key>
-            <PropertyRef Name="STORE_CODE" />
-          </Key>
-          <Property Type="String" Name="STORE_CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="STORE_NAME" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SUB_DELIVERY_INDEX">
           <Key>
@@ -4459,6 +4583,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_RAW_RECEIVE_TRANS_PO">
+          <End Type="SPWModel.PO_HD_TRANS" Role="PO_HD_TRANS" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_RAW_RECEIVE_TRANS" Role="STOCK_RAW_RECEIVE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PO_HD_TRANS">
+              <PropertyRef Name="PO_BK_NO" />
+              <PropertyRef Name="PO_RN_NO" />
+              <PropertyRef Name="PO_YY" />
+              <PropertyRef Name="VENDOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_RECEIVE_TRANS">
+              <PropertyRef Name="PO_BK_NO" />
+              <PropertyRef Name="PO_RN_NO" />
+              <PropertyRef Name="PO_YY" />
+              <PropertyRef Name="VENDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DT_RAW">
           <End Type="SPWModel.RAW_PRODUCT" Role="RAW_PRODUCT" Multiplicity="1" />
           <End Type="SPWModel.PR_DT_TRANS" Role="PR_DT_TRANS" Multiplicity="*" />
@@ -4708,6 +4850,30 @@
             </Principal>
             <Dependent Role="RAW_PRODUCT">
               <PropertyRef Name="RAW_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_RAW_RECEIVE_TRANS_RAW">
+          <End Type="SPWModel.RAW_PRODUCT" Role="RAW_PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_RAW_RECEIVE_TRANS" Role="STOCK_RAW_RECEIVE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RAW_PRODUCT">
+              <PropertyRef Name="RAW_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_RECEIVE_TRANS">
+              <PropertyRef Name="RAW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_RAW_STOCK_RAW">
+          <End Type="SPWModel.RAW_PRODUCT" Role="RAW_PRODUCT" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_RAW_STOCK" Role="STOCK_RAW_STOCK" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RAW_PRODUCT">
+              <PropertyRef Name="RAW_ID" />
+            </Principal>
+            <Dependent Role="STOCK_RAW_STOCK">
+              <PropertyRef Name="RAW_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5638,6 +5804,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_RAW_RECEIVE_TRANS">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_RAW_RECEIVE_TRANS">
+              <MappingFragment StoreEntitySet="STOCK_RAW_RECEIVE_TRANS">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SYS_TIME" ColumnName="SYS_TIME" />
+                <ScalarProperty Name="APPROVE_EMPLOYEE_ID" ColumnName="APPROVE_EMPLOYEE_ID" />
+                <ScalarProperty Name="STOCK_AFTER" ColumnName="STOCK_AFTER" />
+                <ScalarProperty Name="TRANS_QTY" ColumnName="TRANS_QTY" />
+                <ScalarProperty Name="STOCK_BEFORE" ColumnName="STOCK_BEFORE" />
+                <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+                <ScalarProperty Name="PO_YY" ColumnName="PO_YY" />
+                <ScalarProperty Name="PO_RN_NO" ColumnName="PO_RN_NO" />
+                <ScalarProperty Name="PO_BK_NO" ColumnName="PO_BK_NO" />
+                <ScalarProperty Name="TRANS_TYPE" ColumnName="TRANS_TYPE" />
+                <ScalarProperty Name="TRANS_DATE" ColumnName="TRANS_DATE" />
+                <ScalarProperty Name="RAW_ID" ColumnName="RAW_ID" />
+                <ScalarProperty Name="TRANS_ID" ColumnName="TRANS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_RAW_STOCK">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_RAW_STOCK">
+              <MappingFragment StoreEntitySet="STOCK_RAW_STOCK">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="RAW_REMAIN" ColumnName="RAW_REMAIN" />
+                <ScalarProperty Name="RAW_MINIMUM" ColumnName="RAW_MINIMUM" />
+                <ScalarProperty Name="RAW_ID" ColumnName="RAW_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="STOCK_TYPE">
             <EntityTypeMapping TypeName="SPWModel.STOCK_TYPE">
               <MappingFragment StoreEntitySet="STOCK_TYPE">
@@ -5676,14 +5880,6 @@
                 <ScalarProperty Name="STORE_NAME" ColumnName="STORE_NAME" />
                 <ScalarProperty Name="STORE_CODE" ColumnName="STORE_CODE" />
                 <ScalarProperty Name="STORE_ID" ColumnName="STORE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STORE_NOTFOUND">
-            <EntityTypeMapping TypeName="SPWModel.STORE_NOTFOUND">
-              <MappingFragment StoreEntitySet="STORE_NOTFOUND">
-                <ScalarProperty Name="STORE_NAME" ColumnName="STORE_NAME" />
-                <ScalarProperty Name="STORE_CODE" ColumnName="STORE_CODE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5952,59 +6148,60 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="23">
-        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="8.5745474400811581" PointY="20.659507448160792" />
-        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="4.10999341127928" PointY="28.182463331232995" />
-        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="1.8187587381427917" PointY="20.453859353649364" />
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="5.9721396965776288" PointY="7.95051029694756" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="3.466137893249345" PointY="16.564055316412848" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="0.10596196358369756" PointY="28.131149036870873" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="11.639165639709292" PointY="22.55182581700004" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="8.2597813216316425" PointY="26.064163726784365" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="10.339143560425912" PointY="16.206686325467512" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="11.931687299130338" PointY="9.68768212650329" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="6.7903052004009048" PointY="23.278982530943576" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="7.1030970397885405" PointY="13.711308098263716" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="6.556007598785687" PointY="20.517057502883048" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="4.7397601794170967" PointY="23.080271791238463" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="6.1834520521496668" PointY="16.92106663478588" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="7.426564300165774" PointY="1.5403480387946349" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="10.656930298850373" PointY="28.001375077292963" />
-        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="9.3869950721911142" PointY="24.972983193105545" />
-        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="3.3862926547351724" PointY="23.396582837866891" />
-        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="8.9496470284413761" PointY="17.336162098374292" />
-        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="11.356004543302582" PointY="17.303298585723759" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="3.42567956979651" PointY="6.21471193722203" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="7.7292065768173" PointY="5.0210939073102052" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="0.13892247348042319" PointY="0.22825464616914032" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="7.144621491033873" PointY="16.437039591575527" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="5.8811191124287987" PointY="19.077292972745976" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="11.139632161306047" PointY="16.253812350450929" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="1.7239409618656807" PointY="31.586477309272848" />
-        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="0.644218253271756" PointY="29.248674331814364" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="4.0124161504266862" PointY="16.332965798831061" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="2.9304370782014155" PointY="24.84543406630188" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="8.7979893092056685" PointY="24.321967747212373" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="10.784956443489042" PointY="30.742217197428559" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="11.892250589976204" PointY="3.0363999619318172" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="11.069939609183901" PointY="29.053100331245503" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="6.387768742808964" PointY="4.1744666566022053" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="9.12786034360894" PointY="14.48167069930661" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="4.2768762541361509" PointY="0.80418194867865278" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="5.3039388793073314" PointY="12.726880168880745" />
-        <EntityTypeShape EntityType="SPWModel.STORE_NOTFOUND" Width="1.5" PointX="9.4125339600315936" PointY="12.46159302278496" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="7.5549740901007194" PointY="12.41110583227645" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="1.510480430680551" PointY="0.052165880823585149" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="0.46428087561590636" PointY="0.72687849436275587" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="1.437998353241942" PointY="12.164668446483402" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="8.77657469211918" PointY="25.445509549903456" />
-        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="8.720650444142823" PointY="11.781439414146096" />
-        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="4.7613024137733984" PointY="7.53275961034594" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="3.5706237086889443" PointY="5.4372447158383412" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="9.6907476604407421" PointY="16.813177772244988" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="3.5455605329692177" PointY="21.869000340750908" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="1.9906596252651232" PointY="29.334059967349312" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="1.0156558831295259" PointY="21.999223644844825" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="11.776121104031859" PointY="11.508517643207926" />
+        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="8.0977823511221363" PointY="8.0791131444643778" />
+        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="2.0397431394270358" PointY="30.013422994880667" />
+        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="0.85967932681538139" PointY="10.884055470528107" />
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="11.318948836680011" PointY="26.149695363896758" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="3.0200771796610564" PointY="8.8191157322465976" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="5.184431346684895" PointY="3.8251188713242854" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="2.3917216334453419" PointY="25.60919366479348" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="0.68548036771150322" PointY="15.825889311649785" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="10.284898576459336" PointY="2.0721200118177197" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="1.4758109121936425" PointY="12.943179494209206" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="2.5433613874685772" PointY="21.282565216199757" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="4.9088328280061635" PointY="21.030259410399132" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="6.9182764882772592" PointY="3.7041308897101" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="2.9855219903334609" PointY="19.685114020335075" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="10.48561921831482" PointY="19.346892574497915" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="2.0012148888787324" PointY="16.21171887973869" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="0.15114083520655558" PointY="28.587240306933989" />
+        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="7.4199941230099622" PointY="17.743238442457859" />
+        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="2.9949179026274559" PointY="5.3621569449837123" />
+        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="2.02211549413489" PointY="2.4559994202367958" />
+        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="5.6843985997533419" PointY="29.187031774403078" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="5.6430341646275641" PointY="6.51777911489726" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="0.19669402027348709" PointY="3.5134419070153693" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="2.0676178848685778" PointY="7.3888958875969495" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="5.5775842916116041" PointY="4.9229235672033038" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="3.5860185490856038" PointY="9.4869783564875725" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="7.8712290468957411" PointY="26.225351330929133" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="11.859954496780389" PointY="0.31152105345927228" />
+        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="10.120834601167978" PointY="16.409055628072963" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="4.3367571348029923" PointY="30.588347315130918" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="1.0959988111145789" PointY="10.498749544144957" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="11.320516543146463" PointY="20.706646571264905" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="1.3059535107137419" PointY="29.613431378087697" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="1.2832787415400513" PointY="9.7906840489202569" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="2.1834535012875933" PointY="16.084709204772818" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="2.9397905892412135" PointY="22.064239258907847" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="10.754929510296755" PointY="1.4794963456129173" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_RECEIVE_TRANS" Width="1.5" PointX="11.16929371057511" PointY="9.595265258846462" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="2.3379277914473451" PointY="6.5724417597858427" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="7.6896532586261888" PointY="14.93529539505732" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="11.321431198772709" PointY="0.57249608662561335" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="1.8043334660140489" PointY="23.038727681636217" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="3.6690661663511142" PointY="27.84959468052238" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="10.208165533006268" PointY="6.1776908962883477" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="10.860260618319856" PointY="19.475129941233959" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="8.53287981475372" PointY="23.577392112266921" />
+        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="9.6740517195658988" PointY="6.8039606692287888" />
+        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="11.82500097147422" PointY="4.6596467218639548" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="11.62462037225469" PointY="26.341444534408602" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="1.1382136573727306" PointY="2.91108600930827" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="0.03426197359071205" PointY="27.722963644062617" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="0.587382456561263" PointY="30.788848906191461" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="10.906305748460024" PointY="19.498476871987094" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="4.8026873733860853" PointY="19.510447779442391" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VEHICLE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VENDOR" />
@@ -6050,6 +6247,7 @@
         <AssociationConnector Association="SPWModel.FK_PODT_RAWPACK" />
         <AssociationConnector Association="SPWModel.FK_HD_PR_IND" />
         <AssociationConnector Association="SPWModel.FK_POHD_VENDOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO" />
         <AssociationConnector Association="SPWModel.FK_DT_RAW" />
         <AssociationConnector Association="SPWModel.FK_DT_RAWPACK" />
         <AssociationConnector Association="SPWModel.FK_HD_VENDOR" />
@@ -6071,6 +6269,8 @@
         <AssociationConnector Association="SPWModel.FK_RAW_PRICE_HIST_RAWPACK" />
         <AssociationConnector Association="SPWModel.FK_RAW_PRICE_HIST_VENDOR" />
         <AssociationConnector Association="SPWModel.FK_RAW_RAWTYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_RAW" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_RAW_STOCK_RAW" />
         <AssociationConnector Association="SPWModel.FK_STORE_ROAD" />
         <AssociationConnector Association="SPWModel.FK_VENDOR_ROAD" />
         <AssociationConnector Association="SPWModel.FK_ROLE_FUNCTION_ROLE" />
