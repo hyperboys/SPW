@@ -89,5 +89,9 @@ namespace SPW.DataService
         {
             return Datacontext.STOCK_RAW_STOCK.Where(x => x.RAW_ID == item.RAW_ID).ToList();
         }
+        public int GetRemainQty(int RAW_ID)
+        {
+            return (int)Datacontext.STOCK_RAW_STOCK.Where(x => x.RAW_ID == RAW_ID).FirstOrDefault().RAW_REMAIN;
+        }
     }
 }
