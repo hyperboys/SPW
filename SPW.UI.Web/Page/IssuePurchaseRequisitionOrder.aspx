@@ -127,7 +127,7 @@
                     <!-- /.row (nested) -->                    
                     <div class="panel panel-primary">
                         <asp:GridView ID="gdvPR" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" 
-                            DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" OnRowDeleting="gdvPR_RowDeleting"
+                            DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" OnRowDeleting="gdvPR_RowDeleting" OnRowEditing="gdvPR_RowEditing"
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
@@ -165,6 +165,13 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete">
                                     <div class='glyphicon glyphicon-remove'></div>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit">
+                                    <div class='glyphicon glyphicon-search'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>

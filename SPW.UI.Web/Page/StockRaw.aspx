@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" CodeBehind="StockIn.aspx.cs" Inherits="SPW.UI.Web.Page.StockIn" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="StockRaw.aspx.cs" Inherits="SPW.UI.Web.Page.StockRaw" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
@@ -15,7 +15,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">ปรับยอดสินค้าคงเหลือในคลังสินค้า</h1>
+    <h1 class="page-header">ปรับยอดสินค้าคงเหลือในคลังวัตถุดิบ</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -49,7 +49,7 @@
         <ContentTemplate>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            ปรับยอดสินค้าคงเหลือในคลังสินค้า        
+            ปรับยอดสินค้าคงเหลือในคลังวัตถุดิบ
         </div>
         <div class="panel-body">
             <div class="row">
@@ -95,39 +95,34 @@
             <!-- /.row (nested) -->
             <div class="panel panel-primary">
                 <asp:Panel ID="PanelSet" runat="server">
-                    <asp:GridView ID="gridStockInSet" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                        DataKeyNames="PRODUCT_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า"
+                    <asp:GridView ID="gridStockRawSet" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                        DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า"
                         Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="20%">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPRODUCT_CODE" runat="server" Text='<%# Bind("PRODUCT_CODE") %>'></asp:Label>
-                                    <asp:HiddenField ID="hfCOLOR_ID" runat="server" Value='<%# Bind("COLOR_ID") %>' />
-                                    <asp:HiddenField ID="hfCOLOR_TYPE_ID" runat="server" Value='<%# Bind("COLOR_TYPE_ID") %>' />
+                                    <asp:Label ID="lblRAW_ID" runat="server" Text='<%# Bind("RAW_ID") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="20%">
+                            <asp:BoundField DataField="RAW_NAME1" HeaderText="ชื่อสินค้า1" ItemStyle-Width="20%">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="COLOR_NAME" HeaderText="สี" ItemStyle-Width="15%">
-                                <ItemStyle Width="15%"></ItemStyle>
-                            </asp:BoundField>
-                            <asp:BoundField DataField="COLOR_TYPE_NAME" HeaderText="ลวดลาย" ItemStyle-Width="10%">
-                                <ItemStyle Width="10%"></ItemStyle>
+                            <asp:BoundField DataField="RAW_NAME2" HeaderText="ชื่อสินค้า2" ItemStyle-Width="20%">
+                                <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="ยอดคงเหลือ" ItemStyle-Width="25%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtSTOCK_REMAIN" class="form-control" runat="server" Text='<%# Bind("STOCK_REMAIN") %>'></asp:TextBox>
-                                    <asp:HiddenField ID="hfSTOCK_REMAIN" runat="server" Value='<%# Bind("STOCK_REMAIN") %>' />
+                                    <asp:TextBox ID="txtRAW_REMAIN" class="form-control" runat="server" Text='<%# Bind("RAW_REMAIN") %>'></asp:TextBox>
+                                    <asp:HiddenField ID="hfRAW_REMAIN" runat="server" Value='<%# Bind("RAW_REMAIN") %>' />
                                 </ItemTemplate>
                                 <ItemStyle Width="25%"></ItemStyle>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Safety Stock" ItemStyle-Width="10%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtSTOCK_MINIMUM" class="form-control" runat="server" Text='<%# Bind("STOCK_MINIMUM") %>'></asp:TextBox>
-                                    <asp:HiddenField ID="hfSTOCK_MINIMUM" runat="server" Value='<%# Bind("STOCK_MINIMUM") %>' />
+                                    <asp:TextBox ID="txtRAW_MINIMUM" class="form-control" runat="server" Text='<%# Bind("RAW_MINIMUM") %>'></asp:TextBox>
+                                    <asp:HiddenField ID="hfRAW_MINIMUM" runat="server" Value='<%# Bind("RAW_MINIMUM") %>' />
                                 </ItemTemplate>
                                 <ItemStyle Width="10%"></ItemStyle>
                             </asp:TemplateField>
@@ -146,31 +141,26 @@
                     </asp:GridView>
                 </asp:Panel>
                 <asp:Panel ID="PanelAdd" runat="server">
-                    <asp:GridView ID="gridStockInAdd" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                        DataKeyNames="PRODUCT_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า"
+                    <asp:GridView ID="gridStockRawAdd" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                        DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า"
                         Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="15%">
+                            <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="20%">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPRODUCT_CODE" runat="server" Text='<%# Bind("PRODUCT_CODE") %>'></asp:Label>
-                                    <asp:HiddenField ID="hfCOLOR_ID" runat="server" Value='<%# Bind("COLOR_ID") %>' />
-                                    <asp:HiddenField ID="hfCOLOR_TYPE_ID" runat="server" Value='<%# Bind("COLOR_TYPE_ID") %>' />
+                                    <asp:Label ID="lblRAW_ID" runat="server" Text='<%# Bind("RAW_ID") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle Width="15%"></ItemStyle>
+                                <ItemStyle Width="20%"></ItemStyle>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="PRODUCT_NAME" HeaderText="ชื่อสินค้า" ItemStyle-Width="20%">
+                            <asp:BoundField DataField="RAW_NAME1" HeaderText="ชื่อสินค้า1" ItemStyle-Width="20%">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="COLOR_NAME" HeaderText="สี" ItemStyle-Width="10%">
-                                <ItemStyle Width="15%"></ItemStyle>
-                            </asp:BoundField>
-                            <asp:BoundField DataField="COLOR_TYPE_NAME" HeaderText="ลวดลาย" ItemStyle-Width="10%">
-                                <ItemStyle Width="10%"></ItemStyle>
+                            <asp:BoundField DataField="RAW_NAME2" HeaderText="ชื่อสินค้า2" ItemStyle-Width="20%">
+                                <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="ยอดสุทธิ(เดิม)" ItemStyle-Width="15%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtOLD_STOCK_REMAIN" class="form-control" runat="server" Text='<%# Bind("STOCK_REMAIN") %>' disabled="disabled"></asp:TextBox>
+                                    <asp:TextBox ID="txtOLD_STOCK_REMAIN" class="form-control" runat="server" Text='<%# Bind("RAW_REMAIN") %>' disabled="disabled"></asp:TextBox>
                                 </ItemTemplate>
                                 <ItemStyle Width="15%"></ItemStyle>
                             </asp:TemplateField>
@@ -182,15 +172,15 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="ยอดสุทธิ(ใหม่)" ItemStyle-Width="15%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtSTOCK_REMAIN" class="form-control" runat="server" Text='<%# Bind("STOCK_REMAIN") %>' disabled="disabled"></asp:TextBox>
-                                    <asp:HiddenField ID="hfSTOCK_REMAIN" runat="server" Value='<%# Bind("STOCK_REMAIN") %>' />
+                                    <asp:TextBox ID="txtSTOCK_REMAIN" class="form-control" runat="server" Text='<%# Bind("RAW_REMAIN") %>' disabled="disabled"></asp:TextBox>
+                                    <asp:HiddenField ID="hfSTOCK_REMAIN" runat="server" Value='<%# Bind("RAW_REMAIN") %>' />
                                 </ItemTemplate>
                                 <ItemStyle Width="15%"></ItemStyle>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Safety Stock" ItemStyle-Width="10%" Visible="false">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtSTOCK_MINIMUM" class="form-control" runat="server" Text='<%# Bind("STOCK_MINIMUM") %>'></asp:TextBox>
-                                    <asp:HiddenField ID="hfSTOCK_MINIMUM" runat="server" Value='<%# Bind("STOCK_MINIMUM") %>' />
+                                    <asp:TextBox ID="txtSTOCK_MINIMUM" class="form-control" runat="server" Text='<%# Bind("RAW_MINIMUM") %>'></asp:TextBox>
+                                    <asp:HiddenField ID="hfSTOCK_MINIMUM" runat="server" Value='<%# Bind("RAW_MINIMUM") %>' />
                                 </ItemTemplate>
                                 <ItemStyle Width="10%"></ItemStyle>
                             </asp:TemplateField>

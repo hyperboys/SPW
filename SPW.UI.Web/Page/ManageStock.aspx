@@ -45,9 +45,9 @@
       </div>
       <div class="col-sm-6">
         <div class="card card-block">
-          <h3 class="card-title">คลังวัตถุดิบ <span class="label label-pill label-danger">Incomplete</span></h3>
+          <h3 class="card-title">คลังวัตถุดิบ <%--<span class="label label-pill label-danger">Incomplete</span>--%></h3>
           <p class="card-text">The matter from which a thing is or can be made..</p>
-          <a href="#" class="btn btn-primary disabled">Go</a>
+          <a href="StockRaw.aspx" class="btn btn-primary">Go</a>
         </div>
       </div>
     </div>

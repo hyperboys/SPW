@@ -468,6 +468,10 @@ namespace SPW.UI.Web.Page
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrder.aspx");
         }
+        protected void gdvPO_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            lblError.Text = "555";
+        }
 
         #endregion
     }

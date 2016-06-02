@@ -638,6 +638,10 @@ namespace SPW.UI.Web.Page
             gdvPR.DataSource = (List<DATAGRID>)Session["LISTDATAGRID"];
             gdvPR.DataBind();
         }
+        protected void gdvPR_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            lblError.Text = "555";
+        }
         #endregion
     }
 }
