@@ -91,7 +91,15 @@ namespace SPW.DataService
         }
         public int GetRemainQty(int RAW_ID)
         {
-            return (int)Datacontext.STOCK_RAW_STOCK.Where(x => x.RAW_ID == RAW_ID).FirstOrDefault().RAW_REMAIN;
+            STOCK_RAW_STOCK _STOCK_RAW_STOCK = Datacontext.STOCK_RAW_STOCK.Where(x => x.RAW_ID == RAW_ID).FirstOrDefault();
+            if (_STOCK_RAW_STOCK != null)
+            {
+                return (int)_STOCK_RAW_STOCK.RAW_REMAIN;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
