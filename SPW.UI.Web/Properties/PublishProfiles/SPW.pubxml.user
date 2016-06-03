@@ -21,16 +21,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2016 12:08:04</publishTime>
     </File>
     <File Include="bin/SPW.DAL.dll">
-      <publishTime>05/20/2016 12:08:05</publishTime>
+      <publishTime>06/02/2016 21:59:44</publishTime>
     </File>
     <File Include="bin/SPW.DataService.dll">
-      <publishTime>05/20/2016 12:08:05</publishTime>
+      <publishTime>06/02/2016 21:59:44</publishTime>
     </File>
     <File Include="bin/SPW.Model.dll">
-      <publishTime>05/20/2016 12:08:04</publishTime>
+      <publishTime>06/02/2016 21:59:42</publishTime>
     </File>
     <File Include="bin/SPW.UI.Web.dll">
-      <publishTime>05/20/2016 12:08:07</publishTime>
+      <publishTime>06/02/2016 21:59:46</publishTime>
     </File>
     <File Include="CSS/bootstrap-theme.css">
       <publishTime>05/20/2016 11:01:32</publishTime>
@@ -159,10 +159,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/19/2015 08:43:38</publishTime>
     </File>
     <File Include="Page/IssuePurchaseOrders.aspx">
-      <publishTime>05/13/2016 21:38:50</publishTime>
+      <publishTime>06/02/2016 21:51:34</publishTime>
     </File>
     <File Include="Page/IssuePurchaseRequisitionOrder.aspx">
-      <publishTime>05/13/2016 23:43:49</publishTime>
+      <publishTime>06/02/2016 21:50:59</publishTime>
     </File>
     <File Include="Page/MainAdmin.aspx">
       <publishTime>05/20/2016 11:01:33</publishTime>
@@ -237,7 +237,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2016 11:01:34</publishTime>
     </File>
     <File Include="Page/ManageStock.aspx">
-      <publishTime>05/20/2016 11:01:33</publishTime>
+      <publishTime>05/31/2016 23:05:21</publishTime>
     </File>
     <File Include="Page/ManageStore.aspx">
       <publishTime>05/20/2016 11:01:35</publishTime>
@@ -276,7 +276,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2016 11:01:35</publishTime>
     </File>
     <File Include="Page/PayInSlip.aspx">
-      <publishTime>05/20/2016 11:01:35</publishTime>
+      <publishTime>06/02/2016 21:11:39</publishTime>
     </File>
     <File Include="Page/ReportDelivery.aspx">
       <publishTime>05/20/2016 11:01:33</publishTime>
@@ -378,7 +378,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/19/2015 10:10:11</publishTime>
     </File>
     <File Include="Page/StockIn.aspx">
-      <publishTime>05/20/2016 11:01:33</publishTime>
+      <publishTime>05/31/2016 23:20:52</publishTime>
+    </File>
+    <File Include="Page/StockRaw.aspx">
+      <publishTime>06/01/2016 22:38:34</publishTime>
     </File>
     <File Include="Page/SurveyOrder.aspx">
       <publishTime>09/19/2015 10:09:34</publishTime>
@@ -447,7 +450,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2016 11:01:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/20/2016 12:10:46</publishTime>
+      <publishTime>06/02/2016 21:59:46</publishTime>
     </File>
   </ItemGroup>
 </Project>
