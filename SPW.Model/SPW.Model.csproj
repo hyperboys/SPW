@@ -71,6 +71,7 @@
     <Compile Include="CustomModel\CATEGORY.cs" />
     <Compile Include="CustomModel\COLOR_TYPE.cs" />
     <Compile Include="CustomModel\COLOR.cs" />
+    <Compile Include="CustomModel\STOCK_PRODUCT_WITHDRAW_TRANS.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX_DETAIL.cs" />
     <Compile Include="CustomModel\DELIVERY_ORDER_LOG.cs" />

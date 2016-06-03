@@ -14,6 +14,11 @@ namespace SPW.Model
     
     public partial class SUB_FUNCTION
     {
+        public SUB_FUNCTION()
+        {
+            this.ROLE_FUNCTION = new HashSet<ROLE_FUNCTION>();
+        }
+    
         public int SUB_FUNCTION_ID { get; set; }
         public int FUNCTION_ID { get; set; }
         public string SUB_FUNCTION_NAME { get; set; }
@@ -25,5 +30,6 @@ namespace SPW.Model
         public Nullable<bool> SYE_DEL { get; set; }
     
         public virtual FUNCTION FUNCTION { get; set; }
+        public virtual ICollection<ROLE_FUNCTION> ROLE_FUNCTION { get; set; }
     }
 }

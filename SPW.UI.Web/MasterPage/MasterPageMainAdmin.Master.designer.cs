@@ -49,6 +49,15 @@ namespace SPW.UI.Web.MasterPage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SystemData;
         
         /// <summary>
+        /// listSystem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listSystem;
+        
+        /// <summary>
         /// StandardData control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace SPW.UI.Web.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StandardData;
+        
+        /// <summary>
+        /// listStandard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listStandard;
         
         /// <summary>
         /// OrderData control.
@@ -67,6 +85,15 @@ namespace SPW.UI.Web.MasterPage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl OrderData;
         
         /// <summary>
+        /// listOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listOrder;
+        
+        /// <summary>
         /// Report control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace SPW.UI.Web.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Report;
+        
+        /// <summary>
+        /// listReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listReport;
         
         /// <summary>
         /// Stock control.
@@ -85,6 +121,15 @@ namespace SPW.UI.Web.MasterPage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Stock;
         
         /// <summary>
+        /// listStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listStock;
+        
+        /// <summary>
         /// Asset control.
         /// </summary>
         /// <remarks>
@@ -92,6 +137,15 @@ namespace SPW.UI.Web.MasterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Asset;
+        
+        /// <summary>
+        /// listInvoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listInvoice;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

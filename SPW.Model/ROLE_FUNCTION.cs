@@ -14,8 +14,8 @@ namespace SPW.Model
     
     public partial class ROLE_FUNCTION
     {
-        public int ROLE_FUNCTION_ID { get; set; }
         public int ROLE_ID { get; set; }
+        public int SUB_FUNCTION_ID { get; set; }
         public int FUNCTION_ID { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
@@ -25,5 +25,6 @@ namespace SPW.Model
     
         public virtual FUNCTION FUNCTION { get; set; }
         public virtual ROLE ROLE { get; set; }
+        public virtual SUB_FUNCTION SUB_FUNCTION { get; set; }
     }
 }

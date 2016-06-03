@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class FunctionService : ServiceBase, IDataService<FUNCTION>, IService 
+    public class SubFunctionService : ServiceBase, IDataService<SUB_FUNCTION>, IService 
     {
 
         #region IService Members
@@ -27,54 +27,54 @@ namespace SPW.DataService
 
         #region IDataService<EMPLOYEE> Members
 
-        public void Add(FUNCTION obj)
+        public void Add(SUB_FUNCTION obj)
         {
-            this.Datacontext.FUNCTION.Add(obj);
+            this.Datacontext.SUB_FUNCTION.Add(obj);
             this.Datacontext.SaveChanges();
         }
 
-        public void AddList(List<FUNCTION> obj)
+        public void AddList(List<SUB_FUNCTION> obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(FUNCTION obj)
+        public void Edit(SUB_FUNCTION obj)
         {
-            var item = this.Datacontext.FUNCTION.Where(x => x.FUNCTION_ID == obj.FUNCTION_ID).FirstOrDefault();
-            item.FUNCTION_NAME = obj.FUNCTION_NAME;
+            var item = this.Datacontext.SUB_FUNCTION.Where(x => x.FUNCTION_ID == obj.FUNCTION_ID).FirstOrDefault();
+            //item.FUNCTION_NAME = obj.FUNCTION_NAME;
             item.UPDATE_DATE = obj.UPDATE_DATE;
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
             this.Datacontext.SaveChanges();
         }
 
-        public void EditList(List<FUNCTION> obj)
+        public void EditList(List<SUB_FUNCTION> obj)
         {
             throw new NotImplementedException();
         }
 
-        public FUNCTION Select()
+        public SUB_FUNCTION Select()
         {
             throw new NotImplementedException();
         }
 
-        public FUNCTION Select(int ID)
+        public SUB_FUNCTION Select(int ID)
         {
-            return this.Datacontext.FUNCTION.Include("SUB_FUNCTION").Where(x => x.FUNCTION_ID == ID).FirstOrDefault();
+            return this.Datacontext.SUB_FUNCTION.Where(x => x.SUB_FUNCTION_ID == ID).FirstOrDefault();
         }
 
-        public List<FUNCTION> GetAll()
+        public List<SUB_FUNCTION> GetAll()
         {
-            return this.Datacontext.FUNCTION.Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.SUB_FUNCTION.Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public List<FUNCTION> GetAllInclude()
+        public List<SUB_FUNCTION> GetAllInclude()
         {
-            return this.Datacontext.FUNCTION.Include("SUB_FUNCTION").Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.SUB_FUNCTION.Include("SUB_FUNCTION").Where(x => x.SYE_DEL == false).ToList();
         }
 
-        public List<FUNCTION> GetAll(string name)
+        public List<SUB_FUNCTION> GetAll(int ID)
         {
-            return this.Datacontext.FUNCTION.Where(x => x.FUNCTION_NAME.ToUpper().Contains(name.ToUpper())).ToList();
+            return this.Datacontext.SUB_FUNCTION.Where(x => x.FUNCTION_ID == ID).ToList();
         }
 
         #endregion

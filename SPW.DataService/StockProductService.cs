@@ -92,9 +92,9 @@ namespace SPW.DataService
             return Datacontext.STOCK_PRODUCT_STOCK.Include("COLOR").Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
         }
 
-        public int SelectForCutStock(int ID)
+        public STOCK_PRODUCT_STOCK SelectForCutStock(int ID)
         {
-            return Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_ID == ID).FirstOrDefault().STOCK_REMAIN.Value;
+            return Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_ID == ID).FirstOrDefault();
         }
 
         public List<STOCK_PRODUCT_STOCK> GetAll()

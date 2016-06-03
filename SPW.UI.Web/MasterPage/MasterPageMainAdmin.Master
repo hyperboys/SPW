@@ -94,13 +94,13 @@
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
-                            <li class="active" runat="server" id="MainAdmin" visible="false">
+                            <li class="active" runat="server" id="MainAdmin" visible="true">
                                 <a href="../Page/MainAdmin.aspx"><i class="fa fa-home fa-fw"></i>&nbsp;หน้าหลัก</a>
                             </li>
-                            <li runat="server" id="SystemData" visible="false">
+                            <li runat="server" id="SystemData" visible="true">
                                 <a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;ข้อมูลระบบ<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%--<li>
                                         <a href="../Page/SearchEmployee.aspx">ข้อมูลพนักงาน</a>
                                     </li>
                                     <li>
@@ -111,15 +111,22 @@
                                     </li>
                                     <li>
                                         <a href="../Page/SearchRole.aspx">ข้อมูล Role</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listSystem" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
 
-                            <li runat="server" id="StandardData" visible="false">
+                            <li runat="server" id="StandardData" visible="true">
                                 <a href="#"><i class="fa fa-cubes fa-fw"></i>&nbsp;ข้อมูลพื้นฐาน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%--<li>
                                         <a href="../Page/SearchColorType.aspx">ข้อมูลลวดลายสินค้า</a>
                                     </li>
                                     <li>
@@ -157,14 +164,21 @@
                                     </li>
                                     <li>
                                         <a href="../Page/SearchUnitType.aspx">หน่วยวัด</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listStandard" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="OrderData" visible="false">
+                            <li runat="server" id="OrderData" visible="true">
                                 <a href="#"><i class="fa fa-truck fa-fw"></i>&nbsp;การสั่งซื้อสินค้า<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%--                                    <li>
                                         <a href="../Page/Order.aspx">สั่งซื้อสินค้า</a>
                                     </li>
                                     <li>
@@ -178,14 +192,21 @@
                                     </li>
                                     <li>
                                         <a href="../Page/ManageOrderDelivery.aspx">ตรวจสอบใบขึ้นของ</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listOrder" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="Report" visible="false">
+                            <li runat="server" id="Report" visible="true">
                                 <a href="#"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;รายงาน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%-- <li>
                                         <a href="../Page/ReportSaleVolume.aspx">รายงานสรุปยอดขายรายสินค้า</a>
                                     </li>
                                     <li>
@@ -199,25 +220,46 @@
                                     </li>
                                     <li>
                                         <a href="../Page/ReportDelivery.aspx">รายงานคงค้างส่ง</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listReport" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="Stock" visible="false">
+                            <li runat="server" id="Stock" visible="true">
                                 <a href="#"><i class="fa fa-archive fa-fw"></i>&nbsp;คลัง<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%--<li>
                                         <a href="../Page/ManageStock.aspx">ปรับยอดสินค้าคงเหลือในคลัง</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listStock" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="Asset" visible="false">
+                            <li runat="server" id="Asset" visible="true">
                                 <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;ทรัพย์สิน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                    <%--<li>
                                         <a href="../Page/ManageInvoice.aspx">ทำรายการส่งซ่อม</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listInvoice" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

@@ -61,7 +61,8 @@ namespace SPW.DataService
 
         public ROLE_FUNCTION Select(int ID)
         {
-            return this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
+            //return this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
+            return null;
         }
 
         public List<ROLE_FUNCTION> GetAll()
@@ -81,9 +82,9 @@ namespace SPW.DataService
 
         public void Delete(int ID)
         {
-            var obj = this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
-            obj.SYE_DEL = true;
-            this.Datacontext.SaveChanges();
+            //var obj = this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
+            //obj.SYE_DEL = true;
+            //this.Datacontext.SaveChanges();
         }
 
         #endregion

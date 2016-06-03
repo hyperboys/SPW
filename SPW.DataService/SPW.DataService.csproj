@@ -48,6 +48,8 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
     <Compile Include="AccountMastService.cs" />
+    <Compile Include="StockProductWithdrawService.cs" />
+    <Compile Include="SubFunctionService.cs" />
     <Compile Include="PoDtTransService.cs" />
     <Compile Include="PoHdTransService.cs" />
     <Compile Include="PrDtTransService.cs" />
