@@ -71,7 +71,7 @@
                                         <div class="col-md-2">รหัสผู้จำหน่าย</div>
                                         <div class="col-md-3">
                                             <div class="form-group has-success has-feedback">
-                                                <asp:TextBox ID="txtVendorCode" class="form-control" runat="server" Height="35px" BackColor="#949494"></asp:TextBox>
+                                                <asp:TextBox ID="txtVendorCode" class="form-control" runat="server" Height="35px" BackColor="LightGray"></asp:TextBox>
                                                 <span class="glyphicon glyphicon-ok form-control-feedback" id="spVendorCode" runat="server" visible="false"></span>
                                             </div>
                                             <asp:HiddenField ID="isFoundVendorCode" runat="server"/>
@@ -88,7 +88,7 @@
                                         <div class="col-md-2">รหัสสินค้า</div>
                                         <div class="col-md-3">
                                             <div class="form-group has-success has-feedback">
-                                                <asp:TextBox ID="txtRawCode" class="form-control" runat="server" Height="35px" BackColor="#949494"></asp:TextBox>
+                                                <asp:TextBox ID="txtRawCode" class="form-control" runat="server" Height="35px" BackColor="LightGray"></asp:TextBox>
                                                 <span class="glyphicon glyphicon-ok form-control-feedback" id="spRawCode" runat="server" visible="false"></span>
                                             </div>
                                             <asp:HiddenField ID="isFoundRawCode" runat="server"/>
@@ -103,14 +103,24 @@
                                                 <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                    <%--sixth row--%>
+                                    <div class="row">
                                         <div class="col-md-2">จำนวน</div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <asp:TextBox ID="txtQty" class="form-control" runat="server" Height="35px" placeholder="จำนวน"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-2">คงคลัง</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtStockRemain" class="form-control" runat="server" Height="35px"  BackColor="LightGray"></asp:TextBox>
                                         </div>
                                         <div class="col-md-1">
                                         </div>
                                     </div>
-                                    <%--sixth row--%>
+                                    <%--seven row--%>
                                     <div class="row">
                                         <div class="col-md-10">
                                             <asp:Label ID="lblError" runat="server" forecolor="Red"/>

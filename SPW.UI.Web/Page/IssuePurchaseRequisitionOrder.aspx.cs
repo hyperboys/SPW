@@ -523,6 +523,7 @@ namespace SPW.UI.Web.Page
                 {
                     isFoundVendorCode.Value = "true";
                     spRawCode.Visible = true;
+                    txtStockRemain.Text = cmdStockRawStockService.GetRemainQty(int.Parse(txtRawCode.Text)).ToString();
                 }
                 else
                 {
@@ -534,6 +535,8 @@ namespace SPW.UI.Web.Page
             {
                 isFoundVendorCode.Value = "false";
                 spRawCode.Visible = false;
+                txtRawCode.Text = string.Empty;
+                txtStockRemain.Text = string.Empty;
             }
                 
         }
