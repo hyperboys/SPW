@@ -251,6 +251,20 @@ namespace SPW.UI.Web.Page
                                     tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
                                     cmdStockProductService.CutStock(tmp);
                                 }
+                                else 
+                                {
+                                    tmp = new STOCK_PRODUCT_STOCK();
+                                    tmp.CREATE_DATE = DateTime.Now;
+                                    tmp.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmp.PRODUCT_CODE = item2.PRODUCT.PRODUCT_CODE;
+                                    tmp.STOCK_BEFORE = 0;
+                                    tmp.STOCK_MINIMUM = 0;
+                                    tmp.SYE_DEL = false;
+                                    tmp.STOCK_REMAIN = 0 - item2.PRODUCT_SENT_QTY;
+                                    tmp.UPDATE_DATE = DateTime.Now;
+                                    tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    cmdStockProductService.CutStock(tmp);
+                                }
 
                                 STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
                                 tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
