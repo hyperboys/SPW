@@ -263,18 +263,25 @@
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <%--   <li runat="server" id="PO" visible="true">
+                            <li runat="server" id="PO" visible="true">
                                 <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;Purchase Order<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                  <%--<li>
                                         <a href="../Page/SearchPurchaseRequisitionOrder.aspx">Purchase Requisition Order</a>
                                     </li>
                                     <li>
                                         <a href="../Page/SearchPurchaseOrder.aspx">Purchase Order</a>
-                                    </li>
+                                    </li>--%>
+                                    <asp:ListView ID="listPO" runat="server">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:ListView>
                                 </ul>
                                 <!-- /.nav-second-level -->
-                            </li>--%>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->

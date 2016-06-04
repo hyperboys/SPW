@@ -74,6 +74,11 @@ namespace SPW.UI.Web.MasterPage
                     //  ทรัพย์สิน
                     listInvoice.DataSource = _subFunctionService.GetAll(7).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 7 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listInvoice.DataBind();
+
+                    //  Purchase Order
+                    listPO.DataSource = _subFunctionService.GetAll(8).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 8 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listPO.DataBind();
+                    
                 }
                 catch
                 {
