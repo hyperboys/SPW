@@ -29,8 +29,5 @@ namespace SPW.Model
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
-    
-        public virtual RAW_PRODUCT RAW_PRODUCT { get; set; }
-        public virtual RAW_PACK_SIZE RAW_PACK_SIZE { get; set; }
     }
 }

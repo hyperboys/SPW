@@ -136,10 +136,6 @@
             <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
           </AssociationSet>
-          <AssociationSet Name="FK_HD_PR_IND" Association="SPWModel.Store.FK_HD_PR_IND">
-            <End Role="PR_HD_TRANS" EntitySet="PR_HD_TRANS" />
-            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
-          </AssociationSet>
           <AssociationSet Name="FK_HD_VENDOR" Association="SPWModel.Store.FK_HD_VENDOR">
             <End Role="VENDOR" EntitySet="VENDOR" />
             <End Role="PR_HD_TRANS" EntitySet="PR_HD_TRANS" />
@@ -164,21 +160,13 @@
             <End Role="STORE" EntitySet="STORE" />
             <End Role="ORDER" EntitySet="ORDER" />
           </AssociationSet>
+          <AssociationSet Name="FK_PAYIN_ACCOUNT" Association="SPWModel.Store.FK_PAYIN_ACCOUNT">
+            <End Role="ACCOUNT_MAST" EntitySet="ACCOUNT_MAST" />
+            <End Role="PAYIN_TRANS" EntitySet="PAYIN_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_PAYIN_APPROVE" Association="SPWModel.Store.FK_PAYIN_APPROVE">
             <End Role="PAYIN_APPROVER" EntitySet="PAYIN_APPROVER" />
             <End Role="PAYIN_TRANS" EntitySet="PAYIN_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PODT_RAW" Association="SPWModel.Store.FK_PODT_RAW">
-            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
-            <End Role="PO_DT_TRANS" EntitySet="PO_DT_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PODT_RAWPACK" Association="SPWModel.Store.FK_PODT_RAWPACK">
-            <End Role="RAW_PACK_SIZE" EntitySet="RAW_PACK_SIZE" />
-            <End Role="PO_DT_TRANS" EntitySet="PO_DT_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_POHD_VENDOR" Association="SPWModel.Store.FK_POHD_VENDOR">
-            <End Role="VENDOR" EntitySet="VENDOR" />
-            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="SPWModel.Store.FK_PRODUCT_CATEGORY">
             <End Role="CATEGORY" EntitySet="CATEGORY" />
@@ -240,6 +228,10 @@
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="ROLE1" EntitySet="ROLE" />
           </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR" Association="SPWModel.Store.FK_STOCK_PRODUCT_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
           <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_COLOR" Association="SPWModel.Store.FK_STOCK_PRODUCT_COLOR_COLOR">
             <End Role="COLOR" EntitySet="COLOR" />
             <End Role="STOCK_PRODUCT_COLOR" EntitySet="STOCK_PRODUCT_COLOR" />
@@ -252,7 +244,11 @@
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="STOCK_PRODUCT_COLOR" EntitySet="STOCK_PRODUCT_COLOR" />
           </AssociationSet>
-          <AssociationSet Name="FK_STOCK_PRODUCT_STOCK_PRODUCT" Association="SPWModel.Store.FK_STOCK_PRODUCT_STOCK_PRODUCT">
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_TYPE" Association="SPWModel.Store.FK_STOCK_PRODUCT_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_PRODUCT" Association="SPWModel.Store.FK_STOCK_PRODUCT_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
           </AssociationSet>
@@ -703,7 +699,7 @@
           <Property Name="PAYIN_SEQ_NO" Type="int" Nullable="false" />
           <Property Name="CHQ_SEQ_NO" Type="int" Nullable="false" />
           <Property Name="CHQ_NO" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="CHQ_DATE" Type="date" />
+          <Property Name="CHQ_DATE" Type="date" Nullable="false" />
           <Property Name="CHQ_BANK" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CHQ_BR_BANK" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="STORE_ID_PAID" Type="int" />
@@ -906,7 +902,7 @@
             <PropertyRef Name="RAW_ID" />
             <PropertyRef Name="RAW_PACK_ID" />
           </Key>
-          <Property Name="VENDOR_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VENDOR_ID" Type="int" Nullable="false" />
           <Property Name="RAW_ID" Type="int" Nullable="false" />
           <Property Name="RAW_PACK_ID" Type="int" Nullable="false" />
           <Property Name="PACK_PRICE" Type="decimal" Nullable="false" Scale="2" />
@@ -1032,9 +1028,13 @@
         <EntityType Name="STOCK_PRODUCT_STOCK">
           <Key>
             <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="COLOR_ID" />
+            <PropertyRef Name="COLOR_TYPE_ID" />
           </Key>
           <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
           <Property Name="PRODUCT_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLOR_ID" Type="int" Nullable="false" />
+          <Property Name="COLOR_TYPE_ID" Type="int" Nullable="false" />
           <Property Name="STOCK_MINIMUM" Type="int" Nullable="false" />
           <Property Name="STOCK_REMAIN" Type="int" />
           <Property Name="CREATE_DATE" Type="date" />
@@ -1631,24 +1631,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HD_PR_IND">
-          <End Role="PR_HD_TRANS" Type="SPWModel.Store.PR_HD_TRANS" Multiplicity="1" />
-          <End Role="PO_HD_TRANS" Type="SPWModel.Store.PO_HD_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PR_HD_TRANS">
-              <PropertyRef Name="PR_BK_NO" />
-              <PropertyRef Name="PR_RN_NO" />
-              <PropertyRef Name="PR_YY" />
-              <PropertyRef Name="VENDOR_ID" />
-            </Principal>
-            <Dependent Role="PO_HD_TRANS">
-              <PropertyRef Name="PR_BK_NO" />
-              <PropertyRef Name="PR_RN_NO" />
-              <PropertyRef Name="PR_YY" />
-              <PropertyRef Name="VENDOR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HD_VENDOR">
           <End Role="VENDOR" Type="SPWModel.Store.VENDOR" Multiplicity="1" />
           <End Role="PR_HD_TRANS" Type="SPWModel.Store.PR_HD_TRANS" Multiplicity="*" />
@@ -1721,6 +1703,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PAYIN_ACCOUNT">
+          <End Role="ACCOUNT_MAST" Type="SPWModel.Store.ACCOUNT_MAST" Multiplicity="1" />
+          <End Role="PAYIN_TRANS" Type="SPWModel.Store.PAYIN_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT_MAST">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="PAYIN_TRANS">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PAYIN_APPROVE">
           <End Role="PAYIN_APPROVER" Type="SPWModel.Store.PAYIN_APPROVER" Multiplicity="1" />
           <End Role="PAYIN_TRANS" Type="SPWModel.Store.PAYIN_TRANS" Multiplicity="*" />
@@ -1730,42 +1724,6 @@
             </Principal>
             <Dependent Role="PAYIN_TRANS">
               <PropertyRef Name="PAYIN_APPROVE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PODT_RAW">
-          <End Role="RAW_PRODUCT" Type="SPWModel.Store.RAW_PRODUCT" Multiplicity="1" />
-          <End Role="PO_DT_TRANS" Type="SPWModel.Store.PO_DT_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RAW_PRODUCT">
-              <PropertyRef Name="RAW_ID" />
-            </Principal>
-            <Dependent Role="PO_DT_TRANS">
-              <PropertyRef Name="RAW_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PODT_RAWPACK">
-          <End Role="RAW_PACK_SIZE" Type="SPWModel.Store.RAW_PACK_SIZE" Multiplicity="1" />
-          <End Role="PO_DT_TRANS" Type="SPWModel.Store.PO_DT_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RAW_PACK_SIZE">
-              <PropertyRef Name="RAW_PACK_ID" />
-            </Principal>
-            <Dependent Role="PO_DT_TRANS">
-              <PropertyRef Name="RAW_PACK_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_POHD_VENDOR">
-          <End Role="VENDOR" Type="SPWModel.Store.VENDOR" Multiplicity="1" />
-          <End Role="PO_HD_TRANS" Type="SPWModel.Store.PO_HD_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VENDOR">
-              <PropertyRef Name="VENDOR_ID" />
-            </Principal>
-            <Dependent Role="PO_HD_TRANS">
-              <PropertyRef Name="VENDOR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1949,6 +1907,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR">
+          <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STOCK_PRODUCT_COLOR_COLOR">
           <End Role="COLOR" Type="SPWModel.Store.COLOR" Multiplicity="1" />
           <End Role="STOCK_PRODUCT_COLOR" Type="SPWModel.Store.STOCK_PRODUCT_COLOR" Multiplicity="*" />
@@ -1985,9 +1955,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STOCK_PRODUCT_STOCK_PRODUCT">
+        <Association Name="FK_STOCK_PRODUCT_COLOR_TYPE">
+          <End Role="COLOR_TYPE" Type="SPWModel.Store.COLOR_TYPE" Multiplicity="1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_PRODUCT">
           <End Role="PRODUCT" Type="SPWModel.Store.PRODUCT" Multiplicity="1" />
-          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="0..1" />
+          <End Role="STOCK_PRODUCT_STOCK" Type="SPWModel.Store.STOCK_PRODUCT_STOCK" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PRODUCT">
               <PropertyRef Name="PRODUCT_ID" />
@@ -2483,6 +2465,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'SPW.dbo.ORDER_SUSPECT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="ORDER_SUSPECT">
+        <Property Name="ORDER_ID" Type="int" />
+        <Property Name="PRODUCT_SEQ" Type="int" />
+      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -2542,6 +2531,10 @@
           <EntitySet Name="VENDOR_DEAL_DISCOUNT" EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" />
           <EntitySet Name="ZONE" EntityType="SPWModel.ZONE" />
           <EntitySet Name="ZONE_DETAIL" EntityType="SPWModel.ZONE_DETAIL" />
+          <AssociationSet Name="FK_PAYIN_ACCOUNT" Association="SPWModel.FK_PAYIN_ACCOUNT">
+            <End Role="ACCOUNT_MAST" EntitySet="ACCOUNT_MAST" />
+            <End Role="PAYIN_TRANS" EntitySet="PAYIN_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_AP_VEHICLE_ASSET_TYPE" Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE">
             <End Role="ASSET_TYPE" EntitySet="ASSET_TYPE" />
             <End Role="AP_VEHICLE_TRANS" EntitySet="AP_VEHICLE_TRANS" />
@@ -2569,6 +2562,10 @@
           <AssociationSet Name="FK_ORDER_DETAIL_COLOR" Association="SPWModel.FK_ORDER_DETAIL_COLOR">
             <End Role="COLOR" EntitySet="COLOR" />
             <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR" Association="SPWModel.FK_STOCK_PRODUCT_COLOR">
+            <End Role="COLOR" EntitySet="COLOR" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
           </AssociationSet>
           <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_COLOR" Association="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR">
             <End Role="COLOR" EntitySet="COLOR" />
@@ -2605,6 +2602,10 @@
           <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR_TYPE">
             <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
             <End Role="STOCK_PRODUCT_COLOR" EntitySet="STOCK_PRODUCT_COLOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STOCK_PRODUCT_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE">
+            <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
+            <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
           </AssociationSet>
           <AssociationSet Name="FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE">
             <End Role="COLOR_TYPE" EntitySet="COLOR_TYPE" />
@@ -2706,22 +2707,6 @@
             <End Role="PAYIN_APPROVER" EntitySet="PAYIN_APPROVER" />
             <End Role="PAYIN_TRANS" EntitySet="PAYIN_TRANS" />
           </AssociationSet>
-          <AssociationSet Name="FK_PODT_RAW" Association="SPWModel.FK_PODT_RAW">
-            <End Role="RAW_PRODUCT" EntitySet="RAW_PRODUCT" />
-            <End Role="PO_DT_TRANS" EntitySet="PO_DT_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PODT_RAWPACK" Association="SPWModel.FK_PODT_RAWPACK">
-            <End Role="RAW_PACK_SIZE" EntitySet="RAW_PACK_SIZE" />
-            <End Role="PO_DT_TRANS" EntitySet="PO_DT_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HD_PR_IND" Association="SPWModel.FK_HD_PR_IND">
-            <End Role="PR_HD_TRANS" EntitySet="PR_HD_TRANS" />
-            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_POHD_VENDOR" Association="SPWModel.FK_POHD_VENDOR">
-            <End Role="VENDOR" EntitySet="VENDOR" />
-            <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
-          </AssociationSet>
           <AssociationSet Name="FK_STOCK_RAW_RECEIVE_TRANS_PO" Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO">
             <End Role="PO_HD_TRANS" EntitySet="PO_HD_TRANS" />
             <End Role="STOCK_RAW_RECEIVE_TRANS" EntitySet="STOCK_RAW_RECEIVE_TRANS" />
@@ -2754,7 +2739,7 @@
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="STOCK_PRODUCT_COLOR" EntitySet="STOCK_PRODUCT_COLOR" />
           </AssociationSet>
-          <AssociationSet Name="FK_STOCK_PRODUCT_STOCK_PRODUCT" Association="SPWModel.FK_STOCK_PRODUCT_STOCK_PRODUCT">
+          <AssociationSet Name="FK_STOCK_PRODUCT_PRODUCT" Association="SPWModel.FK_STOCK_PRODUCT_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="STOCK_PRODUCT_STOCK" EntitySet="STOCK_PRODUCT_STOCK" />
           </AssociationSet>
@@ -2914,6 +2899,7 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="PAYIN_TRANS" Relationship="SPWModel.FK_PAYIN_ACCOUNT" FromRole="ACCOUNT_MAST" ToRole="PAYIN_TRANS" />
         </EntityType>
         <EntityType Name="AP_VEHICLE_TRANS">
           <Key>
@@ -2984,6 +2970,7 @@
           <NavigationProperty Name="DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR" FromRole="COLOR" ToRole="DELIVERY_INDEX_DETAIL" />
           <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR" FromRole="COLOR" ToRole="DELIVERY_ORDER_DETAIL" />
           <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR" FromRole="COLOR" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_STOCK" />
           <NavigationProperty Name="STOCK_PRODUCT_COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_COLOR" />
           <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_TRANS" />
           <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR" FromRole="COLOR" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
@@ -3006,6 +2993,7 @@
           <NavigationProperty Name="DELIVERY_ORDER_DETAIL" Relationship="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="DELIVERY_ORDER_DETAIL" />
           <NavigationProperty Name="ORDER_DETAIL" Relationship="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="ORDER_DETAIL" />
           <NavigationProperty Name="STOCK_PRODUCT_COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_COLOR" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_STOCK" />
           <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_TRANS" />
           <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
           <NavigationProperty Name="SUB_DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_SUB_DELIVERY_INDEX_DETAIL_COLOR_TYPE" FromRole="COLOR_TYPE" ToRole="SUB_DELIVERY_INDEX_DETAIL" />
@@ -3239,7 +3227,7 @@
           <Property Type="Int32" Name="PAYIN_SEQ_NO" Nullable="false" />
           <Property Type="Int32" Name="CHQ_SEQ_NO" Nullable="false" />
           <Property Type="String" Name="CHQ_NO" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="CHQ_DATE" Precision="0" />
+          <Property Type="DateTime" Name="CHQ_DATE" Nullable="false" Precision="0" />
           <Property Type="String" Name="CHQ_BANK" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CHQ_BR_BANK" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="STORE_ID_PAID" />
@@ -3253,6 +3241,7 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="ACCOUNT_MAST" Relationship="SPWModel.FK_PAYIN_ACCOUNT" FromRole="PAYIN_TRANS" ToRole="ACCOUNT_MAST" />
           <NavigationProperty Name="PAYIN_APPROVER" Relationship="SPWModel.FK_PAYIN_APPROVE" FromRole="PAYIN_TRANS" ToRole="PAYIN_APPROVER" />
         </EntityType>
         <EntityType Name="PO_DT_TRANS">
@@ -3278,8 +3267,6 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="RAW_PRODUCT" Relationship="SPWModel.FK_PODT_RAW" FromRole="PO_DT_TRANS" ToRole="RAW_PRODUCT" />
-          <NavigationProperty Name="RAW_PACK_SIZE" Relationship="SPWModel.FK_PODT_RAWPACK" FromRole="PO_DT_TRANS" ToRole="RAW_PACK_SIZE" />
         </EntityType>
         <EntityType Name="PO_HD_TRANS">
           <Key>
@@ -3314,8 +3301,6 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="PR_HD_TRANS" Relationship="SPWModel.FK_HD_PR_IND" FromRole="PO_HD_TRANS" ToRole="PR_HD_TRANS" />
-          <NavigationProperty Name="VENDOR" Relationship="SPWModel.FK_POHD_VENDOR" FromRole="PO_HD_TRANS" ToRole="VENDOR" />
           <NavigationProperty Name="STOCK_RAW_RECEIVE_TRANS" Relationship="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO" FromRole="PO_HD_TRANS" ToRole="STOCK_RAW_RECEIVE_TRANS" />
         </EntityType>
         <EntityType Name="PR_DT_TRANS">
@@ -3373,7 +3358,6 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="PO_HD_TRANS" Relationship="SPWModel.FK_HD_PR_IND" FromRole="PR_HD_TRANS" ToRole="PO_HD_TRANS" />
           <NavigationProperty Name="VENDOR" Relationship="SPWModel.FK_HD_VENDOR" FromRole="PR_HD_TRANS" ToRole="VENDOR" />
         </EntityType>
         <EntityType Name="PRODUCT">
@@ -3407,7 +3391,7 @@
           <NavigationProperty Name="PRODUCT_PROMOTION" Relationship="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCT_PROMOTION" />
           <NavigationProperty Name="STOCK_TYPE" Relationship="SPWModel.FK_PRODUCT_STOCK_TYPE" FromRole="PRODUCT" ToRole="STOCK_TYPE" />
           <NavigationProperty Name="STOCK_PRODUCT_COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_PROD" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_COLOR" />
-          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_STOCK_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_STOCK" />
+          <NavigationProperty Name="STOCK_PRODUCT_STOCK" Relationship="SPWModel.FK_STOCK_PRODUCT_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_STOCK" />
           <NavigationProperty Name="STOCK_PRODUCT_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_TRANS" />
           <NavigationProperty Name="STOCK_PRODUCT_WITHDRAW_TRANS" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" FromRole="PRODUCT" ToRole="STOCK_PRODUCT_WITHDRAW_TRANS" />
           <NavigationProperty Name="SUB_DELIVERY_INDEX_DETAIL" Relationship="SPWModel.FK_SUB_DELIVERY_INDEX_DETAIL_PRODUCT" FromRole="PRODUCT" ToRole="SUB_DELIVERY_INDEX_DETAIL" />
@@ -3472,7 +3456,7 @@
             <PropertyRef Name="RAW_ID" />
             <PropertyRef Name="RAW_PACK_ID" />
           </Key>
-          <Property Type="Int32" Name="VENDOR_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="VENDOR_ID" Nullable="false" />
           <Property Type="Int32" Name="RAW_ID" Nullable="false" />
           <Property Type="Int32" Name="RAW_PACK_ID" Nullable="false" />
           <Property Type="Decimal" Name="PACK_PRICE" Nullable="false" Precision="18" Scale="2" />
@@ -3500,7 +3484,6 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="PO_DT_TRANS" Relationship="SPWModel.FK_PODT_RAWPACK" FromRole="RAW_PACK_SIZE" ToRole="PO_DT_TRANS" />
           <NavigationProperty Name="PR_DT_TRANS" Relationship="SPWModel.FK_DT_RAWPACK" FromRole="RAW_PACK_SIZE" ToRole="PR_DT_TRANS" />
           <NavigationProperty Name="RAW_PACK_PRICE_HIST" Relationship="SPWModel.FK_RAW_PRICE_HIST_RAWPACK" FromRole="RAW_PACK_SIZE" ToRole="RAW_PACK_PRICE_HIST" />
         </EntityType>
@@ -3523,7 +3506,6 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="PO_DT_TRANS" Relationship="SPWModel.FK_PODT_RAW" FromRole="RAW_PRODUCT" ToRole="PO_DT_TRANS" />
           <NavigationProperty Name="PR_DT_TRANS" Relationship="SPWModel.FK_DT_RAW" FromRole="RAW_PRODUCT" ToRole="PR_DT_TRANS" />
           <NavigationProperty Name="RAW_PACK_PRICE_HIST" Relationship="SPWModel.FK_RAW_PRICE_HIST_RAW" FromRole="RAW_PRODUCT" ToRole="RAW_PACK_PRICE_HIST" />
           <NavigationProperty Name="RAW_TYPE" Relationship="SPWModel.FK_RAW_RAWTYPE" FromRole="RAW_PRODUCT" ToRole="RAW_TYPE" />
@@ -3625,9 +3607,13 @@
         <EntityType Name="STOCK_PRODUCT_STOCK">
           <Key>
             <PropertyRef Name="PRODUCT_ID" />
+            <PropertyRef Name="COLOR_ID" />
+            <PropertyRef Name="COLOR_TYPE_ID" />
           </Key>
           <Property Type="Int32" Name="PRODUCT_ID" Nullable="false" />
           <Property Type="String" Name="PRODUCT_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="COLOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="COLOR_TYPE_ID" Nullable="false" />
           <Property Type="Int32" Name="STOCK_MINIMUM" Nullable="false" />
           <Property Type="Int32" Name="STOCK_REMAIN" />
           <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
@@ -3635,7 +3621,9 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
-          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_STOCK_PRODUCT" FromRole="STOCK_PRODUCT_STOCK" ToRole="PRODUCT" />
+          <NavigationProperty Name="COLOR" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR" FromRole="STOCK_PRODUCT_STOCK" ToRole="COLOR" />
+          <NavigationProperty Name="COLOR_TYPE" Relationship="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" FromRole="STOCK_PRODUCT_STOCK" ToRole="COLOR_TYPE" />
+          <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_PRODUCT" FromRole="STOCK_PRODUCT_STOCK" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="STOCK_PRODUCT_TRANS">
           <Key>
@@ -4003,7 +3991,6 @@
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
           <NavigationProperty Name="AP_VEHICLE_TRANS" Relationship="SPWModel.FK_AP_VEHICLE_VENDOR" FromRole="VENDOR" ToRole="AP_VEHICLE_TRANS" />
-          <NavigationProperty Name="PO_HD_TRANS" Relationship="SPWModel.FK_POHD_VENDOR" FromRole="VENDOR" ToRole="PO_HD_TRANS" />
           <NavigationProperty Name="PR_HD_TRANS" Relationship="SPWModel.FK_HD_VENDOR" FromRole="VENDOR" ToRole="PR_HD_TRANS" />
           <NavigationProperty Name="PROVINCE" Relationship="SPWModel.FK_VENDOR_PROVINCE" FromRole="VENDOR" ToRole="PROVINCE" />
           <NavigationProperty Name="RAW_PACK_PRICE_HIST" Relationship="SPWModel.FK_RAW_PRICE_HIST_VENDOR" FromRole="VENDOR" ToRole="RAW_PACK_PRICE_HIST" />
@@ -4063,6 +4050,18 @@
           <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STORE_ZONE_DETAIL" FromRole="ZONE_DETAIL" ToRole="STORE" />
           <NavigationProperty Name="ZONE" Relationship="SPWModel.FK_ZONE_DETAIL_ZONE" FromRole="ZONE_DETAIL" ToRole="ZONE" />
         </EntityType>
+        <Association Name="FK_PAYIN_ACCOUNT">
+          <End Type="SPWModel.ACCOUNT_MAST" Role="ACCOUNT_MAST" Multiplicity="1" />
+          <End Type="SPWModel.PAYIN_TRANS" Role="PAYIN_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT_MAST">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="PAYIN_TRANS">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AP_VEHICLE_ASSET_TYPE">
           <End Type="SPWModel.ASSET_TYPE" Role="ASSET_TYPE" Multiplicity="1" />
           <End Type="SPWModel.AP_VEHICLE_TRANS" Role="AP_VEHICLE_TRANS" Multiplicity="*" />
@@ -4143,6 +4142,18 @@
               <PropertyRef Name="COLOR_ID" />
             </Principal>
             <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="COLOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR">
+          <End Type="SPWModel.COLOR" Role="COLOR" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR">
+              <PropertyRef Name="COLOR_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
               <PropertyRef Name="COLOR_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4251,6 +4262,18 @@
               <PropertyRef Name="COLOR_TYPE_ID" />
             </Principal>
             <Dependent Role="STOCK_PRODUCT_COLOR">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STOCK_PRODUCT_COLOR_TYPE">
+          <End Type="SPWModel.COLOR_TYPE" Role="COLOR_TYPE" Multiplicity="1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COLOR_TYPE">
+              <PropertyRef Name="COLOR_TYPE_ID" />
+            </Principal>
+            <Dependent Role="STOCK_PRODUCT_STOCK">
               <PropertyRef Name="COLOR_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4555,60 +4578,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PODT_RAW">
-          <End Type="SPWModel.RAW_PRODUCT" Role="RAW_PRODUCT" Multiplicity="1" />
-          <End Type="SPWModel.PO_DT_TRANS" Role="PO_DT_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RAW_PRODUCT">
-              <PropertyRef Name="RAW_ID" />
-            </Principal>
-            <Dependent Role="PO_DT_TRANS">
-              <PropertyRef Name="RAW_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PODT_RAWPACK">
-          <End Type="SPWModel.RAW_PACK_SIZE" Role="RAW_PACK_SIZE" Multiplicity="1" />
-          <End Type="SPWModel.PO_DT_TRANS" Role="PO_DT_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RAW_PACK_SIZE">
-              <PropertyRef Name="RAW_PACK_ID" />
-            </Principal>
-            <Dependent Role="PO_DT_TRANS">
-              <PropertyRef Name="RAW_PACK_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HD_PR_IND">
-          <End Type="SPWModel.PR_HD_TRANS" Role="PR_HD_TRANS" Multiplicity="1" />
-          <End Type="SPWModel.PO_HD_TRANS" Role="PO_HD_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PR_HD_TRANS">
-              <PropertyRef Name="PR_BK_NO" />
-              <PropertyRef Name="PR_RN_NO" />
-              <PropertyRef Name="PR_YY" />
-              <PropertyRef Name="VENDOR_ID" />
-            </Principal>
-            <Dependent Role="PO_HD_TRANS">
-              <PropertyRef Name="PR_BK_NO" />
-              <PropertyRef Name="PR_RN_NO" />
-              <PropertyRef Name="PR_YY" />
-              <PropertyRef Name="VENDOR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_POHD_VENDOR">
-          <End Type="SPWModel.VENDOR" Role="VENDOR" Multiplicity="1" />
-          <End Type="SPWModel.PO_HD_TRANS" Role="PO_HD_TRANS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VENDOR">
-              <PropertyRef Name="VENDOR_ID" />
-            </Principal>
-            <Dependent Role="PO_HD_TRANS">
-              <PropertyRef Name="VENDOR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_STOCK_RAW_RECEIVE_TRANS_PO">
           <End Type="SPWModel.PO_HD_TRANS" Role="PO_HD_TRANS" Multiplicity="1" />
           <End Type="SPWModel.STOCK_RAW_RECEIVE_TRANS" Role="STOCK_RAW_RECEIVE_TRANS" Multiplicity="*" />
@@ -4711,9 +4680,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STOCK_PRODUCT_STOCK_PRODUCT">
+        <Association Name="FK_STOCK_PRODUCT_PRODUCT">
           <End Type="SPWModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
-          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="0..1" />
+          <End Type="SPWModel.STOCK_PRODUCT_STOCK" Role="STOCK_PRODUCT_STOCK" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PRODUCT">
               <PropertyRef Name="PRODUCT_ID" />
@@ -5782,6 +5751,8 @@
                 <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
                 <ScalarProperty Name="STOCK_REMAIN" ColumnName="STOCK_REMAIN" />
                 <ScalarProperty Name="STOCK_MINIMUM" ColumnName="STOCK_MINIMUM" />
+                <ScalarProperty Name="COLOR_TYPE_ID" ColumnName="COLOR_TYPE_ID" />
+                <ScalarProperty Name="COLOR_ID" ColumnName="COLOR_ID" />
                 <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
               </MappingFragment>
@@ -6185,61 +6156,62 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="23">
-        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="5.3672773062099131" PointY="16.784357570476995" />
-        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="1.2553499216471566" PointY="1.9088778653689091" />
-        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="9.5266077115790022" PointY="4.1054981370016455" />
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="6.0849546594940849" PointY="28.151451109047724" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="1.4865308019735528" PointY="9.6696366563763636" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="11.429070213543749" PointY="26.275082078890449" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="5.81913615661633" PointY="3.8147674518706127" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="10.451249978715206" PointY="26.164805186057837" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="11.587118798674606" PointY="8.085265312383541" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="1.2226352864981793" PointY="5.9427805570619094" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="9.5177489116404885" PointY="5.5074484522954785" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="8.7434316578989062" PointY="14.51473877509811" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="10.778255927738853" PointY="28.604545666186393" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="11.999843772500681" PointY="19.678934955819944" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="3.4977651440993718" PointY="10.394133364033948" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="3.0876423712296606" PointY="27.64613710141095" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="9.4927848714835878" PointY="25.016179081525738" />
-        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="6.6692147230120433" PointY="4.8389019392611932" />
-        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="3.0211007720889063" PointY="0.58174219754605661" />
-        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="8.9126980625617769" PointY="6.289159494586829" />
-        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="8.9865038269136583" PointY="20.467364693278149" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="1.0213283863949256" PointY="11.694798087559081" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="0.92399570947699039" PointY="28.824869169306414" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="1.6664043262910118" PointY="19.861703092167946" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="9.80973187732032" PointY="30.24425873078604" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="8.5804915225973772" PointY="6.9636773797514273" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="0.28424170253995884" PointY="18.964529299626374" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="2.90582444095324" PointY="8.805291030930956" />
-        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="9.5507024310299666" PointY="20.832861015960976" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="1.9375732717744882" PointY="28.799741564690947" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="1.5397180288749366" PointY="28.547610802830945" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="7.0590290217935241" PointY="25.569948774562192" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="0.53847137491147556" PointY="2.8313834680390468" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="0.36037090810033068" PointY="22.501517336117811" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="6.7613230714394357" PointY="23.031098003979352" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="6.7907011726827831" PointY="30.317241265586222" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="6.11927642958205" PointY="28.971201269408315" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_RECEIVE_TRANS" Width="1.5" PointX="5.2420388819845574" PointY="4.913299071096489" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="1.0439647832158789" PointY="11.621019666838004" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="4.5190313311848005" PointY="31.917146637997192" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="9.060300298528885" PointY="12.1378803011672" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="9.5698687311121589" PointY="11.083114986812284" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="7.3173084889153532" PointY="1.2700356101943346" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="10.083059710489149" PointY="6.3495636909965256" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="6.4752427146189113" PointY="8.97928156376783" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="4.26388579619298" PointY="19.22340770960944" />
-        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="10.280580052305282" PointY="26.967453268807127" />
-        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="0.81871678159512429" PointY="27.416399402272141" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="0.61623273818578228" PointY="9.1535935891576088" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="3.8470779079231794" PointY="31.632605090566262" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="10.448955030389573" PointY="13.942227533991554" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="0.68681558812354482" PointY="3.128187002208171" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="4.5508958513619824" PointY="24.564069461340118" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="8.4921025878247356" PointY="3.7867766040315742" />
+      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="7.6336879169725282" PointY="6.6112207652121882" />
+        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="1.9970095651210331" PointY="20.226382667304193" />
+        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="10.993762665890978" PointY="23.152598093800524" />
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="6.6328138833087" PointY="12.31397989965695" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="6.2292870926807113" PointY="14.108093625916212" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="4.634576754940011" PointY="9.1078176242801447" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="1.6698021542605956" PointY="14.792792610261959" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="7.3121266119704238" PointY="16.511541582882192" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="8.5496306850340371" PointY="29.645456238484687" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="0.97158672519567735" PointY="12.155813803968865" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="1.5009218927011463" PointY="0.25849942875024834" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="9.0205832091255971" PointY="13.51404573652616" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="7.4153250285495655" PointY="14.260064519131586" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="5.6692276791060472" PointY="11.975819071743553" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="8.3072961458504651" PointY="29.621174736703363" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="0.33277340807615474" PointY="30.520121454503442" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="5.066791302089948" PointY="30.216877012614571" />
+        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="10.207272050067443" PointY="28.734268708496479" />
+        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="6.46579930487359" PointY="25.833445307721124" />
+        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="5.1842586962432868" PointY="19.375029125891174" />
+        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="8.53939748766804" PointY="6.9271259787153108" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="6.68505552536112" PointY="11.48874961374735" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="6.3920865964107616" PointY="11.731314843395406" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="7.8117239828276084" PointY="24.397440668380558" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="8.9627177067858721" PointY="20.8587502636289" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="0.81882627160233734" PointY="29.300918279821481" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="7.5058114563607656" PointY="2.7691366536399054" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="7.0137810329970813" PointY="20.098001683176495" />
+        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="5.4586245778289735" PointY="23.811313103796593" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="0.16956847168950756" PointY="15.056635923244356" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="3.0129966060691498" PointY="5.7116846170796478" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="8.3104463165208919" PointY="18.9902575104452" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="4.9577617016424247" PointY="13.838749892003252" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="10.348640307015106" PointY="6.2359287320803523" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="7.3400251787807917" PointY="22.764735590091316" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="11.726028788707232" PointY="28.965569852369637" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="5.9327873931884705" PointY="15.215868807963966" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_RECEIVE_TRANS" Width="1.5" PointX="8.0190326888202836" PointY="29.075332401821079" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="5.411881760420223" PointY="12.566138943920908" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="10.675680554786549" PointY="8.0428852327367686" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="9.5358002118467358" PointY="22.720499809235566" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="7.5282144451179613" PointY="1.2940394586390067" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="10.289114254661424" PointY="3.5864774750482651" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="3.9392340890780249" PointY="10.742306818599955" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="4.3175478467333823" PointY="7.1213904503366869" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="5.3167261878572063" PointY="25.430818375866309" />
+        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="9.5179735187059151" PointY="30.76805393340441" />
+        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="4.2526393161400406" PointY="17.060042016701793" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="6.287225925497351" PointY="30.83655722385112" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="11.350519403512831" PointY="3.206814365092113" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="6.0506027592581706" PointY="14.595335222126607" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="1.8090150718619185" PointY="1.1358449613376731" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="8.0960025601536039" PointY="5.2179668719032621" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="5.0550569617445849" PointY="4.7996284089980783" />
+        <AssociationConnector Association="SPWModel.FK_PAYIN_ACCOUNT" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VEHICLE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VENDOR" />
@@ -6247,6 +6219,7 @@
         <AssociationConnector Association="SPWModel.FK_DELIVERY_INDEX_DETAIL_COLOR" />
         <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR" />
         <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_COLOR" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR" />
@@ -6256,6 +6229,7 @@
         <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_COLOR_TYPE" />
         <AssociationConnector Association="SPWModel.FK_ORDER_DETAIL_COLOR_TYPE" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR_COLOR_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR_TYPE" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_COLOR_TYPE" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_COLOR_TYPE" />
         <AssociationConnector Association="SPWModel.FK_SUB_DELIVERY_INDEX_DETAIL_COLOR_TYPE" />
@@ -6281,10 +6255,6 @@
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_ORDER_DTL" />
         <AssociationConnector Association="SPWModel.FK_SUB_DELIVERY_ORDER_DETAIL_ORDERDET" />
         <AssociationConnector Association="SPWModel.FK_PAYIN_APPROVE" />
-        <AssociationConnector Association="SPWModel.FK_PODT_RAW" />
-        <AssociationConnector Association="SPWModel.FK_PODT_RAWPACK" />
-        <AssociationConnector Association="SPWModel.FK_HD_PR_IND" />
-        <AssociationConnector Association="SPWModel.FK_POHD_VENDOR" />
         <AssociationConnector Association="SPWModel.FK_STOCK_RAW_RECEIVE_TRANS_PO" />
         <AssociationConnector Association="SPWModel.FK_DT_RAW" />
         <AssociationConnector Association="SPWModel.FK_DT_RAWPACK" />
@@ -6293,7 +6263,7 @@
         <AssociationConnector Association="SPWModel.FK_PRODUCT_PROMOTION_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_PRODUCT_STOCK_TYPE" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_COLOR_PROD" />
-        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_STOCK_PRODUCT" />
+        <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_TRANS_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_SUB_DELIVERY_INDEX_DETAIL_PRODUCT" />

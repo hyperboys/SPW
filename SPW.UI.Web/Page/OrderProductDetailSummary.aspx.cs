@@ -182,8 +182,33 @@ namespace SPW.UI.Web.Page
                 List<ORDER_DETAIL> tmplstOrderDetail = new List<ORDER_DETAIL>();
                 foreach (ORDER_DETAIL o in lstOrderDetail)
                 {
-                    o.PRODUCT_SEQ = i++;
-
+                    //o.PRODUCT_SEQ = i++;
+                    ORDER_DETAIL x = new ORDER_DETAIL();
+                    x.PRODUCT_ID = o.PRODUCT_ID;
+                    x.COLOR_TYPE_ID = o.COLOR_TYPE_ID;
+                    x.COLOR_ID = o.COLOR_ID;
+                    x.PRODUCT_PRICE = o.PRODUCT_PRICE;
+                    x.PRODUCT_QTY = o.PRODUCT_QTY;
+                    x.PRODUCT_SEND_REMAIN = o.PRODUCT_SEND_REMAIN;
+                    x.PRODUCT_SEND_QTY = 0;
+                    x.PRODUCT_SEND_ROUND = 0;
+                    x.PRODUCT_SEQ = i++;
+                    x.PRODUCT_SEND_COMPLETE = o.PRODUCT_SEND_COMPLETE;
+                    x.PRODUCT_WEIGHT = o.PRODUCT_WEIGHT;
+                    x.PRODUCT_WEIGHT_TOTAL = Convert.ToDecimal(o.PRODUCT_QTY * o.PRODUCT_WEIGHT);
+                    x.PRODUCT_PRICE_TOTAL = Convert.ToDecimal(o.PRODUCT_QTY * o.PRODUCT_PRICE);
+                    x.IS_FREE = "N";
+                    x.CREATE_DATE = o.CREATE_DATE;
+                    x.CREATE_EMPLOYEE_ID = o.CREATE_EMPLOYEE_ID;
+                    x.UPDATE_DATE = o.UPDATE_DATE;
+                    x.UPDATE_EMPLOYEE_ID = o.UPDATE_EMPLOYEE_ID;
+                    x.SYE_DEL = false;
+                    tmplstOrderDetail.Add(x);
+                }
+                i = 1;
+                foreach (ORDER_DETAIL o in lstOrderDetail)
+                {
+                    //o.PRODUCT_SEQ = i++;
                     ORDER_DETAIL x = new ORDER_DETAIL();
                     x.PRODUCT_ID = o.PRODUCT_ID;
                     x.COLOR_TYPE_ID = o.COLOR_TYPE_ID;
@@ -193,7 +218,7 @@ namespace SPW.UI.Web.Page
                     x.PRODUCT_SEND_REMAIN = o.QTYFree;
                     x.PRODUCT_SEND_QTY = 0;
                     x.PRODUCT_SEND_ROUND = 0;
-                    x.PRODUCT_SEQ = o.PRODUCT_SEQ;
+                    x.PRODUCT_SEQ = i++;
                     x.PRODUCT_SEND_COMPLETE = o.PRODUCT_SEND_COMPLETE;
                     x.PRODUCT_WEIGHT = o.PRODUCT_WEIGHT;
                     x.PRODUCT_WEIGHT_TOTAL = Convert.ToDecimal(o.PRODUCT_QTY * o.PRODUCT_WEIGHT);
@@ -206,10 +231,10 @@ namespace SPW.UI.Web.Page
                     x.SYE_DEL = false;
                     tmplstOrderDetail.Add(x);
                 }
-                if (tmplstOrderDetail.Count > 0)
-                {
-                    tmplstOrderDetail.AddRange(lstOrderDetail);
-                }
+                //if (tmplstOrderDetail.Count > 0)
+                //{
+                //    tmplstOrderDetail.AddRange(lstOrderDetail);
+                //}
 
                 tmplstOrderDetail = tmplstOrderDetail.OrderBy(x => x.PRODUCT_SEQ).ThenByDescending(y => y.IS_FREE).ToList();
                 //tmplstOrderDetail = tmplstOrderDetail.OrderBy(x => x.PRODUCT_SEQ).ToList();

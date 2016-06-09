@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SPW.Common;
 using SPW.DAL;
 using SPW.Model;
 
@@ -28,8 +29,15 @@ namespace SPW.DataService
 
         public void Add(ORDER obj)
         {
-            this.Datacontext.ORDER.Add(obj);
-            this.Datacontext.SaveChanges();
+            try
+            {
+                this.Datacontext.ORDER.Add(obj);
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         public void AddList(List<ORDER> obj)
