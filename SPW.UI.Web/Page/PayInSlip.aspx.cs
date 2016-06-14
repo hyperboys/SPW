@@ -475,7 +475,6 @@ namespace SPW.UI.Web.Page
 
                 }
 
-
                 _payInTranService.AddList(lstPayIn);
 
                 try
@@ -484,6 +483,7 @@ namespace SPW.UI.Web.Page
                 }
                 catch (Exception ex)
                 {
+                    DebugLog.WriteLog("SQL UPDATE ERROR : " + "UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
                     DebugLog.WriteLog(ex.ToString());
                 }
 

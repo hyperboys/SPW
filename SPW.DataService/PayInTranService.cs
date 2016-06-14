@@ -53,7 +53,9 @@ namespace SPW.DataService
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog("");
                 DebugLog.WriteLog(ex.ToString());
+                throw ex;
             }
         }
 
