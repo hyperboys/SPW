@@ -112,8 +112,8 @@ namespace SPW.UI.Web.Page
             }
             DataSouceRoleFunction.AddRange(DataSouceNewRoleFunction);
 
-            gridFunction.DataSource = DataSouceRoleFunction;
-            gridFunction.DataBind();
+            //gridFunction.DataSource = DataSouceRoleFunction;
+            //gridFunction.DataBind();
 
             InitialDataPopupFunction();
         }
@@ -166,66 +166,66 @@ namespace SPW.UI.Web.Page
 
         private void InitialDataPopupFunction()
         {
-            gridSelectFunction.DataSource = cmdFunctionService.GetAll();
-            gridSelectFunction.DataBind();
+            //gridSelectFunction.DataSource = cmdFunctionService.GetAll();
+            //gridSelectFunction.DataBind();
         }
 
         protected void gridFunction_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            cmdRoleFunctionService.Delete(Convert.ToInt32(gridFunction.DataKeys[e.RowIndex].Values[0].ToString()));
+            //cmdRoleFunctionService.Delete(Convert.ToInt32(gridFunction.DataKeys[e.RowIndex].Values[0].ToString()));
             PrepareObjectScreen();
         }
 
         protected void gridSelectFunction_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gridSelectFunction.PageIndex = e.NewPageIndex;
-            gridSelectFunction.DataBind();
+            //gridSelectFunction.PageIndex = e.NewPageIndex;
+            //gridSelectFunction.DataBind();
         }
 
         protected void btnAddFunction_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            List<ROLE_FUNCTION> list = new List<ROLE_FUNCTION>();
+            //USER userItem = Session["user"] as USER;
+            //List<ROLE_FUNCTION> list = new List<ROLE_FUNCTION>();
 
-            for (int i = 0; i < gridSelectFunction.Rows.Count; i++)
-            {
-                if (((CheckBox)gridSelectFunction.Rows[i].Cells[0].FindControl("check")).Checked)
-                {
-                    if (Request.QueryString["id"] != null && DataSouceRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-                    {
-                        ROLE_FUNCTION obj = new ROLE_FUNCTION();
-                        obj.Action = ActionEnum.Create;
-                        obj.ROLE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                        obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
-                        obj.CREATE_DATE = DateTime.Now;
-                        obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        obj.UPDATE_DATE = DateTime.Now;
-                        obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        obj.SYE_DEL = false;
-                        list.Add(obj);
-                    }
-                    else if (DataSouceNewRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-                    {
-                        ROLE_FUNCTION obj = new ROLE_FUNCTION();
-                        obj.Action = ActionEnum.Create;
-                        obj.ROLE_ID = 0;
-                        obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
-                        obj.CREATE_DATE = DateTime.Now;
-                        obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        obj.UPDATE_DATE = DateTime.Now;
-                        obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        obj.SYE_DEL = false;
-                        DataSouceNewRoleFunction.Add(obj);
-                    }
-                }
-            }
+            //for (int i = 0; i < gridSelectFunction.Rows.Count; i++)
+            //{
+            //    if (((CheckBox)gridSelectFunction.Rows[i].Cells[0].FindControl("check")).Checked)
+            //    {
+            //        if (Request.QueryString["id"] != null && DataSouceRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
+            //        {
+            //            ROLE_FUNCTION obj = new ROLE_FUNCTION();
+            //            obj.Action = ActionEnum.Create;
+            //            obj.ROLE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
+            //            obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
+            //            obj.CREATE_DATE = DateTime.Now;
+            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+            //            obj.UPDATE_DATE = DateTime.Now;
+            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+            //            obj.SYE_DEL = false;
+            //            list.Add(obj);
+            //        }
+            //        else if (DataSouceNewRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
+            //        {
+            //            ROLE_FUNCTION obj = new ROLE_FUNCTION();
+            //            obj.Action = ActionEnum.Create;
+            //            obj.ROLE_ID = 0;
+            //            obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
+            //            obj.CREATE_DATE = DateTime.Now;
+            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+            //            obj.UPDATE_DATE = DateTime.Now;
+            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+            //            obj.SYE_DEL = false;
+            //            DataSouceNewRoleFunction.Add(obj);
+            //        }
+            //    }
+            //}
 
-            if (list.Count > 0)
-            {
-                cmdRoleFunctionService.AddList(list);
-            }
+            //if (list.Count > 0)
+            //{
+            //    cmdRoleFunctionService.AddList(list);
+            //}
 
-            PrepareObjectScreen();
+            //PrepareObjectScreen();
         }
 
         protected void btnCancelFunction_Click(object sender, EventArgs e)
