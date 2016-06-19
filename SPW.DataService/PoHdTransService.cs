@@ -80,6 +80,10 @@ namespace SPW.DataService
         {
             return GetAll().Count();
         }
+        public List<PO_HD_TRANS> GetAllByStatusApprove()
+        {
+            return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false && x.PO_HD_STATUS == "20").ToList();
+        }
         public List<PO_HD_TRANS> GetAllByFilter(int PageIndex, int PageLimit)
         {
             return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false).OrderBy(x => x.PO_RN_NO).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
