@@ -279,6 +279,9 @@
                                             </li>
                                         </ItemTemplate>
                                     </asp:ListView>
+                                    <li>
+                                        <a href="../Page/SearchPurchaseOrderReceipts.aspx">Purchase Order Receipts</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
