@@ -126,7 +126,7 @@ namespace SPW.UI.Web.Page
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
-                str = str + '"' + nameList[i].ToString() + '"' + ',';
+                str = str + '"' + nameList[i].ToString().Replace(","," ") + '"' + ',';
             }
             if (str != "")
             {

@@ -1,13 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" CodeBehind="IssuePurchaseRequisitionOrder.aspx.cs" Inherits="SPW.UI.Web.Page.IssuePurchaseRequisitionOrder" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="PurchaseOrderReceipts.aspx.cs" Inherits="SPW.UI.Web.Page.PurchaseOrderReceipts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPurchaseRequisitionOrder.aspx">Purchase Order Requisition & Convert Purchase Order</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPurchaseOrderReceipts.aspx">Search Purchase Order Receipts</asp:HyperLink>
         /
-        <asp:Label ID="lblName" runat="server" Text="Issue Purchase Requisition Order"></asp:Label>
+        <asp:Label ID="lblName" runat="server" Text="Purchase Order Receipts"></asp:Label>
     </h1>
     <div class="alert alert-info" id="alert" runat="server" visible="false">
         <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
@@ -34,7 +34,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Purchase Order Requisition & Convert Purchase Order     
+                Purchase Order Receipts
             </div>
             <div class="panel-body">
                     
@@ -46,9 +46,20 @@
                                 <div class="form-group">
                                     <%--first row--%>
                                     <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="btn-group" role="group" aria-label="First group">
+                                                <asp:Button ID="btnIssue" class="btn" Text="Issue" runat="server" type="button"/>
+                                                <asp:Button ID="btnApprove" class="btn" Text="Approve" runat="server" type="button"/>
+                                                <asp:Button ID="btnFinish" class="btn" Text="Finish" runat="server" type="button"/>
+                                                <asp:Button ID="btnCancel" class="btn" Text="Cancel" runat="server" type="button"/>
+                                                <%--<asp:Button ID="btnIssue" class="btn" Text="I" runat="server" type="button"/>
+                                                <asp:Button ID="btnApprove" class="btn" Text="A" runat="server" type="button"/>
+                                                <asp:Button ID="btnFinish" class="btn" Text="F" runat="server" type="button"/>
+                                                <asp:Button ID="btnCancel" class="btn" Text="C" runat="server" type="button"/>--%>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
                                         <div class="col-md-2"></div>
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-3"></div>
                                         <div class="col-md-1">เลมที่</div>
                                         <div class="col-md-3"><asp:TextBox ID="txtBKNo" class="form-control" runat="server" Height="35px" placeholder="BKYYXXXX"></asp:TextBox></div>
                                     </div>
@@ -65,8 +76,7 @@
                                     <div class="row">
                                         <div class="col-md-2">ชื่อผู้จำหน่าย</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtVendorName" class="form-control" runat="server" Height="35px" placeholder="ชื่อผู้จำหน่าย" data-provide="typeahead" data-items="5"
-                                             AutoPostBack="true" OnTextChanged="txtVendorName_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="txtVendorName" class="form-control" runat="server" Height="35px" placeholder="ชื่อผู้จำหน่าย" data-provide="typeahead" data-items="5"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">รหัสผู้จำหน่าย</div>
                                         <div class="col-md-3">
@@ -78,57 +88,6 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-                                    <%--forth row--%>
-                                    <div class="row">
-                                        <div class="col-md-2">ชื่อสินค้า</div>
-                                        <div class="col-md-3">
-                                                <asp:TextBox ID="txtRawName" class="form-control" runat="server" Height="35px" placeholder="ชื่อสินค้า" data-provide="typeahead" data-items="5" 
-                                                    AutoPostBack="true" OnTextChanged="txtRawName_TextChanged"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-2">รหัสสินค้า</div>
-                                        <div class="col-md-3">
-                                            <div class="form-group has-success has-feedback">
-                                                <asp:TextBox ID="txtRawCode" class="form-control" runat="server" Height="35px" BackColor="LightGray"></asp:TextBox>
-                                                <span class="glyphicon glyphicon-ok form-control-feedback" id="spRawCode" runat="server" visible="false"></span>
-                                            </div>
-                                            <asp:HiddenField ID="isFoundRawCode" runat="server"/>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>
-                                    <%--fifth row--%>
-                                    <div class="row">
-                                        <div class="col-md-2">แพ็ค</div>
-                                        <div class="col-md-3">                                            
-                                            <asp:DropDownList ID="ddlPack" class="form-control" runat="server" Height="35px" Width="200px">
-                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <%--sixth row--%>
-                                    <div class="row">
-                                        <div class="col-md-2">จำนวน</div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txtQty" class="form-control" runat="server" Height="35px" placeholder="จำนวน"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-2">คงคลัง</div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txtStockRemain" class="form-control" runat="server" Height="35px"  BackColor="LightGray"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-1">
-                                        </div>
-                                    </div>
-                                    <%--seven row--%>
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <asp:Label ID="lblError" runat="server" forecolor="Red"/>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" OnClick="btnAdd_Click" />
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +95,7 @@
                     </div>
                     <!-- /.row (nested) -->                    
                     <div class="panel panel-primary">
-                        <asp:GridView ID="gdvPR" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                            DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" OnRowDeleting="gdvPR_RowDeleting" OnRowEditing="gdvPR_RowEditing"
-                            Style="text-align: center" CssClass="grid">
+                        <asp:GridView ID="gdvPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="No" ItemStyle-Width="5%" ItemStyle-Height="30px" HeaderStyle-Height="30px">
@@ -161,14 +118,14 @@
                                         <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_NAME2 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="คงคลัง" ItemStyle-Width="10%">
-                                    <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).STOCK_REMAIN %>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="จำนวนออเดอร์" ItemStyle-Width="10%">
                                     <ItemTemplate>
                                         <%# ((DATAGRID) Container.DataItem).PO_QTY %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="จำนวนที่รับ" ItemStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" ID="txtQtyReceive" class="form-control" style="text-align:center" Text='<%# ((DATAGRID) Container.DataItem).PO_QTY %>' />                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสแพ็ค" ItemStyle-Width="10%">
@@ -217,8 +174,8 @@
                                     <asp:Label ID="lblerror2" runat="server" forecolor="Red"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
-                                    <asp:Button ID="btnConvert" class="btn btn-primary" runat="server" Text="convert" Height="30px" Width="70px" OnClick="btnConvert_Click" Visible="false"/>  
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px"/> 
+                                    <asp:Button ID="btnConvert" class="btn btn-primary" runat="server" Text="convert" Height="30px" Width="70px" Visible="false"/>  
                                     <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>                                         
                                 </div>
                             </div>
