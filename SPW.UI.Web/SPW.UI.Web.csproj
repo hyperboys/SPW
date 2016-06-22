@@ -202,6 +202,7 @@
     <Content Include="Page\ManageCategory.aspx" />
     <Content Include="Page\OrderProductDetail.aspx" />
     <Content Include="Page\SearchPurchaseOrder.aspx" />
+    <Content Include="Page\SearchPurchaseOrderReceipts.aspx" />
     <Content Include="Page\SearchPurchaseRequisitionOrder.aspx" />
     <Content Include="Page\SearchRawPack.aspx" />
     <Content Include="Page\SearchRawProduct.aspx" />
@@ -580,6 +581,12 @@
     </Compile>
     <Compile Include="Page\SearchPurchaseOrder.aspx.designer.cs">
       <DependentUpon>SearchPurchaseOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchPurchaseOrderReceipts.aspx.cs">
+      <DependentUpon>SearchPurchaseOrderReceipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchPurchaseOrderReceipts.aspx.designer.cs">
+      <DependentUpon>SearchPurchaseOrderReceipts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchPurchaseRequisitionOrder.aspx.cs">
       <DependentUpon>SearchPurchaseRequisitionOrder.aspx</DependentUpon>
