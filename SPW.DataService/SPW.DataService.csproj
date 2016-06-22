@@ -48,7 +48,9 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
     <Compile Include="AccountMastService.cs" />
+    <Compile Include="ReceiveRawTransService.cs" />
     <Compile Include="StockProductWithdrawService.cs" />
+    <Compile Include="StockRawTransService.cs" />
     <Compile Include="SubFunctionService.cs" />
     <Compile Include="PoDtTransService.cs" />
     <Compile Include="PoHdTransService.cs" />
@@ -58,7 +60,6 @@
     <Compile Include="RawProductService.cs" />
     <Compile Include="RawTypeService.cs" />
     <Compile Include="StockProductColorService.cs" />
-    <Compile Include="StockRawReceiveTransService.cs" />
     <Compile Include="StockRawStockService.cs" />
     <Compile Include="TransportLineService.cs" />
     <Compile Include="PayInTranService.cs" />
