@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="btn-group" role="group" aria-label="First group">
-                                                <asp:Button ID="btnIssue" class="btn" Text="Issue" runat="server" type="button"/>
+                                                <asp:Button ID="btnActive" class="btn" Text="Active" runat="server" type="button"/>
                                                 <asp:Button ID="btnApprove" class="btn" Text="Approve" runat="server" type="button"/>
                                                 <asp:Button ID="btnFinish" class="btn" Text="Finish" runat="server" type="button"/>
                                                 <asp:Button ID="btnCancel" class="btn" Text="Cancel" runat="server" type="button"/>
@@ -95,7 +95,7 @@
                     </div>
                     <!-- /.row (nested) -->                    
                     <div class="panel panel-primary">
-                        <asp:GridView ID="gdvPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" Style="text-align: center" CssClass="grid">
+                        <asp:GridView ID="gdvREC" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="No" ItemStyle-Width="5%" ItemStyle-Height="30px" HeaderStyle-Height="30px">
@@ -105,7 +105,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="15%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_ID %>
+                                        <asp:Label ID="lblRawID" runat="server" Text='<%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_ID %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อสินค้า(ปกติ)" ItemStyle-Width="15%">
@@ -174,8 +174,7 @@
                                     <asp:Label ID="lblerror2" runat="server" forecolor="Red"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px"/> 
-                                    <asp:Button ID="btnConvert" class="btn btn-primary" runat="server" Text="convert" Height="30px" Width="70px" Visible="false"/>  
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
                                     <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>                                         
                                 </div>
                             </div>

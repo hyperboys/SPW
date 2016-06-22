@@ -126,6 +126,8 @@ namespace SPW.UI.Web.Page
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
+                nameList[i] = nameList[i].Replace("\"", "นิ้ว");
+                nameList[i] = nameList[i].Replace("'", "นิ้ว");
                 str = str + '"' + nameList[i].ToString().Replace(","," ") + '"' + ',';
             }
             if (str != "")
@@ -142,6 +144,8 @@ namespace SPW.UI.Web.Page
             string str = "";
             for (int i = 0; i < nameList.Count; i++)
             {
+                nameList[i] = nameList[i].Replace("\"", "นิ้ว");
+                nameList[i] = nameList[i].Replace("'", "นิ้ว");
                 str = str + '"' + nameList[i].ToString() + '"' + ',';
             }
             if (str != "")

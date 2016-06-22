@@ -58,13 +58,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// btnIssue control.
+        /// btnActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIssue;
+        protected global::System.Web.UI.WebControls.Button btnActive;
         
         /// <summary>
         /// btnApprove control.
@@ -148,13 +148,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.HiddenField isFoundVendorCode;
         
         /// <summary>
-        /// gdvPO control.
+        /// gdvREC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdvPO;
+        protected global::System.Web.UI.WebControls.GridView gdvREC;
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -182,15 +182,6 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
-        /// btnConvert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConvert;
         
         /// <summary>
         /// flag control.

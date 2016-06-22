@@ -20,6 +20,8 @@ namespace SPW.UI.Web.Page
         private PoHdTransService cmdPoHdTrans;
         private PoDtTransService cmdPoDtTrans;
         private StockRawStockService cmdStockRawStockService;
+        private StockRawTransService cmdStockRawTransService;
+        private ReceiveRawTransService cmdReceiveRawTransService;
 
 
         public class DATAGRID
@@ -54,6 +56,8 @@ namespace SPW.UI.Web.Page
             cmdPoHdTrans = (PoHdTransService)_dataServiceEngine.GetDataService(typeof(PoHdTransService));
             cmdPoDtTrans = (PoDtTransService)_dataServiceEngine.GetDataService(typeof(PoDtTransService));
             cmdStockRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
+            cmdStockRawTransService = (StockRawTransService)_dataServiceEngine.GetDataService(typeof(StockRawTransService));
+            cmdReceiveRawTransService = (ReceiveRawTransService)_dataServiceEngine.GetDataService(typeof(ReceiveRawTransService));
         }
 
         private void CreatePageEngine()
@@ -93,12 +97,15 @@ namespace SPW.UI.Web.Page
                         listDataGrid.Add(_datagrid);
                     });
 
-                    gdvPO.DataSource = listDataGrid;
-                    gdvPO.DataBind();
+                    Session["LISTDATAGRID"] = listDataGrid;
+                    gdvREC.DataSource = listDataGrid;
+                    gdvREC.DataBind();
                 }
             }
-
-            ClearSession();
+            else
+            {
+                ClearSession();
+            }
         }
         #endregion
 
@@ -112,71 +119,46 @@ namespace SPW.UI.Web.Page
         {
             return cmdSupplier.Select(VendorName);
         }
-
-        private bool ValidateAllScreenData()
-        {
-            bool returnValue = true;
-            try
-            {
-                if (isFoundVendorCode.Value != "true")
-                {
-                    returnValue = false;
-                    lblerror2.Text = "*ไม่พบรหัสผู้จำหน่าย";
-                }
-                else if (txtVendorName.Text == "" || txtVendorCode.Text == "")
-                {
-                    returnValue = false;
-                    lblerror2.Text = "*กรุณาใส่ชื่อผู้จำหน่าย";
-                }
-                else if (((List<DATAGRID>)Session["LISTDATAGRID"]).Count == 0 || Session["LISTDATAGRID"] == null)
-                {
-                    returnValue = false;
-                    lblerror2.Text = "*ไม่พบรายการสินค้าในระบบ";
-                }
-                else
-                    returnValue = true;
-            }
-            catch (Exception e)
-            {
-                lblerror2.Text = "*พบข้อผิดพลาดระหว่างการตรวจสอบ กรุณาติดต่อเจ้าหน้าที่";
-                return false;
-            }
-            return returnValue;
-        }
-
-        private bool SaveNewData()
+        
+        private bool SaveStockRawTrans()
         {
             try
             {
-                USER userItem = Session["user"] as USER;
-                PO_HD_TRANS _PO_HD_TRANS = new PO_HD_TRANS();
-                VENDOR _VENDOR = cmdSupplier.SelectByVendorCode(txtVendorCode.Text);
-                string PO_BK_NO = (txtBKNo.Text == "") ? GenerateBKNo() : txtBKNo.Text;
-                string PO_RN_NO = (txtRNNo.Text == "") ? GenerateRNNo() : txtRNNo.Text;
-                _PO_HD_TRANS.PO_BK_NO = PO_BK_NO;
-                _PO_HD_TRANS.PO_RN_NO = PO_RN_NO;
-                _PO_HD_TRANS.PO_YY = DateTime.Now.ToString("yy");
-                _PO_HD_TRANS.PO_DATE = DateTime.Now;
-                _PO_HD_TRANS.VENDOR_ID = _VENDOR.VENDOR_ID;
-                _PO_HD_TRANS.VENDOR_CODE = _VENDOR.VENDOR_CODE;
-                _PO_HD_TRANS.VENDOR_NAME = _VENDOR.VENDOR_NAME;
-                _PO_HD_TRANS.VENDOR_TEL1 = _VENDOR.VENDOR_TEL1;
-                _PO_HD_TRANS.VENDOR_TEL2 = _VENDOR.VENDOR_TEL2;
-                _PO_HD_TRANS.VENDOR_MOBILE = _VENDOR.VENDOR_MOBILE;
-                _PO_HD_TRANS.VENDOR_FAX = _VENDOR.VENDOR_FAX;
-                _PO_HD_TRANS.VENDOR_EMAIL = _VENDOR.VENDOR_EMAIL;
-                _PO_HD_TRANS.VENDOR_CONTACT_PERSON = _VENDOR.VENDOR_CONTACT_PERSON;
-                _PO_HD_TRANS.PO_RECEIVE_PERSON = userItem.USER_NAME;
-                _PO_HD_TRANS.VENDOR_CREDIT_INTERVAL = _VENDOR.VENDOR_CREDIT_INTERVAL;
-                _PO_HD_TRANS.VENDOR_CREDIT_VALUE = _VENDOR.VENDOR_CREDIT_VALUE;
-                _PO_HD_TRANS.PO_HD_STATUS = "10";
-                _PO_HD_TRANS.CREATE_DATE = DateTime.Now;
-                _PO_HD_TRANS.UPDATE_DATE = DateTime.Now;
-                _PO_HD_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                _PO_HD_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                _PO_HD_TRANS.SYE_DEL = false;
-                cmdPoHdTrans.Add(_PO_HD_TRANS);
-                if (SaveNewDataGrid(PO_BK_NO, PO_RN_NO))
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                if (listDataGrid.Count > 0)
+                {
+                    PO_HD_TRANS _PO_HD_TRANS = new PO_HD_TRANS();
+                    USER userItem = Session["user"] as USER;
+                    _PO_HD_TRANS = cmdPoHdTrans.Select(txtBKNo.Text, txtRNNo.Text);
+                    listDataGrid.ForEach(e =>
+                    {
+                        STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
+                        _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
+                        _STOCK_RAW_TRANS.RAW_ID = e.RAW_ID;
+                        _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.TRANS_TYPE = "REC";
+                        _STOCK_RAW_TRANS.REF_DOC_TYPE = "PO";
+                        _STOCK_RAW_TRANS.REF_DOC_BKNO = _PO_HD_TRANS.PO_BK_NO;
+                        _STOCK_RAW_TRANS.REF_DOC_RNNO = _PO_HD_TRANS.PO_RN_NO;
+                        _STOCK_RAW_TRANS.REF_DOC_YY = int.Parse(_PO_HD_TRANS.PO_YY);
+                        _STOCK_RAW_TRANS.REF_NO1 = 0;
+                        _STOCK_RAW_TRANS.REF_NO2 = 0;
+                        _STOCK_RAW_TRANS.REF_REMARK1 = "";
+                        _STOCK_RAW_TRANS.REF_REMARK2 = "";
+                        _STOCK_RAW_TRANS.STOCK_BEFORE = cmdStockRawStockService.GetRemainQty(e.RAW_ID);
+                        _STOCK_RAW_TRANS.TRANS_QTY = e.PO_QTY;
+                        _STOCK_RAW_TRANS.STOCK_AFTER = cmdStockRawStockService.GetRemainQty(e.RAW_ID) + e.PO_QTY;
+                        _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = _PO_HD_TRANS.CREATE_EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                        _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.SYE_DEL = false;
+                        cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                    });
+                }
+                if (SaveReceiveRawTrans())
                 {
                     ClearSession();
                     return true;
@@ -190,41 +172,41 @@ namespace SPW.UI.Web.Page
                 return false;
             }
         }
-        private bool SaveNewDataGrid(string PO_BK_NO, string PO_RN_NO)
+        private bool SaveReceiveRawTrans()
         {
             try
             {
-                USER userItem = Session["user"] as USER;
-                List<PO_DT_TRANS> listPoDtTrans = new List<PO_DT_TRANS>();
                 List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
                 if (listDataGrid.Count > 0)
                 {
+                    PO_HD_TRANS _PO_HD_TRANS = cmdPoHdTrans.Select(txtBKNo.Text, txtRNNo.Text);
+                    List<PO_DT_TRANS> LstPO_DT_TRANS = cmdPoDtTrans.Select(txtBKNo.Text, txtRNNo.Text);
+                    USER userItem = Session["user"] as USER;
                     int count = 1;
                     listDataGrid.ForEach(e =>
                     {
-                        PO_DT_TRANS _PO_DT_TRANS = new PO_DT_TRANS();
-                        _PO_DT_TRANS.PO_BK_NO = PO_BK_NO;
-                        _PO_DT_TRANS.PO_RN_NO = PO_RN_NO;
-                        _PO_DT_TRANS.PO_YY = DateTime.Now.ToString("yy");
-                        _PO_DT_TRANS.PO_SEQ_NO = count;
-                        _PO_DT_TRANS.RAW_ID = e.RAW_ID;
-                        _PO_DT_TRANS.RAW_PACK_ID = e.RAW_PACK_ID;
-                        _PO_DT_TRANS.PO_QTY = e.PO_QTY;
-                        _PO_DT_TRANS.REMARK1 = "-";
-                        _PO_DT_TRANS.REMARK2 = "-";
-                        _PO_DT_TRANS.PO_DT_STATUS = "10";
-                        _PO_DT_TRANS.CREATE_DATE = DateTime.Now;
-                        _PO_DT_TRANS.UPDATE_DATE = DateTime.Now;
-                        _PO_DT_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _PO_DT_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _PO_DT_TRANS.SYE_DEL = false;
-                        _PO_DT_TRANS.Action = ActionEnum.Create;
-                        listPoDtTrans.Add(_PO_DT_TRANS);
+                        RECEIVE_RAW_TRANS _RECEIVE_RAW_TRANS = new RECEIVE_RAW_TRANS();
+                        _RECEIVE_RAW_TRANS.RECEIVE_NO = GenerateReceiveNo();
+                        _RECEIVE_RAW_TRANS.RECEIVE_YY = DateTime.Now.ToString("yy");
+                        _RECEIVE_RAW_TRANS.RECEIVE_DATE = DateTime.Now;
+                        _RECEIVE_RAW_TRANS.PO_BK_NO = _PO_HD_TRANS.PO_BK_NO;
+                        _RECEIVE_RAW_TRANS.PO_RN_NO = _PO_HD_TRANS.PO_RN_NO;
+                        _RECEIVE_RAW_TRANS.PO_YY = _PO_HD_TRANS.PO_YY;
+                        _RECEIVE_RAW_TRANS.PO_SEQ_NO = LstPO_DT_TRANS.Where(f => f.RAW_ID == e.RAW_ID).FirstOrDefault().PO_SEQ_NO;
+                        _RECEIVE_RAW_TRANS.RAW_ID = e.RAW_ID;
+                        _RECEIVE_RAW_TRANS.RECEIVE_QTY = e.PO_QTY;
+                        _RECEIVE_RAW_TRANS.RECEIVE_COMPLETE = (LstPO_DT_TRANS.Where(f => f.RAW_ID == e.RAW_ID).FirstOrDefault().PO_QTY == e.PO_QTY) ? "YES" : "NO";
+                        _RECEIVE_RAW_TRANS.APPROVE_EMPLOYEE_ID = LstPO_DT_TRANS.Where(f => f.RAW_ID == e.RAW_ID).FirstOrDefault().CREATE_EMPLOYEE_ID;
+                        _RECEIVE_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                        _RECEIVE_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                        _RECEIVE_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                        _RECEIVE_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _RECEIVE_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _RECEIVE_RAW_TRANS.SYE_DEL = false;
+                        cmdReceiveRawTransService.Add(_RECEIVE_RAW_TRANS);
                         count++;
                     });
                 }
-
-                cmdPoDtTrans.AddList(listPoDtTrans);
                 return true;
             }
             catch (Exception e)
@@ -233,41 +215,20 @@ namespace SPW.UI.Web.Page
                 throw e;
             }
         }
-        private string GenerateBKNo()
+        private string GenerateReceiveNo()
         {
-            string _maxBKNo = cmdPoHdTrans.GetMaxBKNo();
-            string _maxRNNo = cmdPoHdTrans.GetMaxRNNo(_maxBKNo);
+            string _maxBKNo = cmdReceiveRawTransService.GetMaxBKNo();
 
-            if (_maxRNNo == null)
+            if (_maxBKNo == null)
             {
-                _maxBKNo = "BK-PO-" + DateTime.Now.ToString("yy") + "01";
-            }
-            else if (int.Parse(_maxRNNo) < 999)
-            {
-                _maxBKNo = cmdPoHdTrans.GetMaxBKNo();
+                _maxBKNo = "REC-" + DateTime.Now.ToString("yy") + DateTime.Now.ToString("MM") + "-0001";
             }
             else
             {
-                int nextNo = int.Parse(_maxBKNo.Substring(8, 2)) + 1;
-                _maxBKNo = "BK-PO-" + DateTime.Now.ToString("yy") + nextNo.ToString().PadLeft(2, '0');
+                int nextNo = int.Parse(_maxBKNo.Substring(8, 4)) + 1;
+                _maxBKNo = "REC-" + DateTime.Now.ToString("yy") + DateTime.Now.ToString("MM") + "-" + nextNo.ToString().PadLeft(4, '0');
             }
             return _maxBKNo;
-        }
-        private string GenerateRNNo()
-        {
-            string _maxBKNo = cmdPoHdTrans.GetMaxBKNo();
-            string _maxRNNo = cmdPoHdTrans.GetMaxRNNo(_maxBKNo);
-
-            if (_maxRNNo == null || _maxRNNo == "0999")
-            {
-                _maxRNNo = "0001";
-            }
-            else if (int.Parse(_maxRNNo) < 999)
-            {
-                int nextNo = int.Parse(_maxRNNo) + 1;
-                _maxRNNo = nextNo.ToString().PadLeft(4, '0');
-            }
-            return _maxRNNo;
         }
         private void ClearSession()
         {
@@ -279,7 +240,7 @@ namespace SPW.UI.Web.Page
             switch (status)
             {
                 case "10":
-                    btnIssue.CssClass = "btn btn-success";
+                    btnActive.CssClass = "btn btn-success";
                     break;
                 case "20":
                     btnApprove.CssClass = "btn btn-success";
@@ -307,16 +268,34 @@ namespace SPW.UI.Web.Page
                 ReloadPageEngine();
             }
         }
-
-        protected void btnApprove_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            cmdPoHdTrans.UpdateStatusToApprove(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID);
-            cmdPoDtTrans.UpdateStatusToApprove(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID);
+            List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+            List<DATAGRID> listNewData = new List<DATAGRID>();
+            if (listDataGrid != null)
+            {
+                for (int i = 0; i < gdvREC.Rows.Count; i++)
+                {
+                    TextBox txtQtyReceive = (TextBox)gdvREC.Rows[i].FindControl("txtQtyReceive");
+                    Label lblRawID = (Label)gdvREC.Rows[i].FindControl("lblRawID");
+                    DATAGRID _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text)).FirstOrDefault();
+                    _DATAGRID.PO_QTY = int.Parse(txtQtyReceive.Text);
+                    listNewData.Add(_DATAGRID);
+                }
+                Session["LISTDATAGRID"] = listNewData;
+                if (SaveStockRawTrans())
+                {
+                    alert.Visible = true;
+                    Response.AppendHeader("Refresh", "2; url=SearchPurchaseRequisitionOrder.aspx");
+                }
+                else
+                    lblerror2.Text = "*Fail";
+            }
+            else
+                lblerror2.Text = "*Data not found";
 
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrder.aspx");
         }
         #endregion
+
     }
 }
