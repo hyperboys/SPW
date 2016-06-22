@@ -75,10 +75,9 @@
                 </div>
             </div>
             <div class="panel-body">
-                <asp:GridView ID="GridView1" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
-                    OnPageIndexChanging="gridSelectFunction_PageIndexChanging"
-                    Style="text-align: center" CssClass="grid">
+                <asp:GridView ID="fncSystemData" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncSystemData_RowDataBound">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
@@ -86,7 +85,7 @@
                                 <asp:CheckBox ID="check" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="FUNCTION_NAME" HeaderText="ชื่อฟังก์ชัน" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันข้อมูลระบบ" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="90%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>

@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class RoleFunctionService : ServiceBase, IDataService<ROLE_FUNCTION>, IService 
+    public class RoleFunctionService : ServiceBase, IDataService<ROLE_FUNCTION>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -75,9 +75,9 @@ namespace SPW.DataService
             return this.Datacontext.ROLE_FUNCTION.Include("FUNCTION").Where(x => x.ROLE_ID == roleId && x.SYE_DEL == false).ToList();
         }
 
-        public List<ROLE_FUNCTION> SelectByRole(int ID)
+        public List<ROLE_FUNCTION> SelectByRole(int ID, int functionID)
         {
-            return this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_ID == ID).ToList();
+            return this.Datacontext.ROLE_FUNCTION.Include("SUB_FUNCTION").Where(x => x.ROLE_ID == ID && x.FUNCTION_ID == functionID && x.SYE_DEL == false).ToList();
         }
 
         public void Delete(int ID)

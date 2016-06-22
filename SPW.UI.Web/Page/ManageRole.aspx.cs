@@ -16,7 +16,6 @@ namespace SPW.UI.Web.Page
         private RoleFunctionService cmdRoleFunctionService;
         private FunctionService cmdFunctionService;
 
-        private ROLE _item;
         public List<ROLE_FUNCTION> DataSouceRoleFunction
         {
             get
@@ -47,7 +46,7 @@ namespace SPW.UI.Web.Page
             }
         }
 
-       protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
@@ -94,68 +93,13 @@ namespace SPW.UI.Web.Page
 
         private void PrepareObjectScreen()
         {
-            if (Request.QueryString["id"] != null)
-            {
-                _item = cmdRoleService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
-                if (_item != null)
-                {
-                    popTxtRoleCode.Text = _item.ROLE_CODE;
-                    popTxtRoleName.Text = _item.ROLE_NAME;
-                    flag.Text = "Edit";
-                    lblName.Text = popTxtRoleName.Text;
-                }
-                DataSouceRoleFunction = cmdRoleFunctionService.GetAllIncludeFunction(_item.ROLE_ID);
-            }
-            else
-            {
-                DataSouceRoleFunction = new List<ROLE_FUNCTION>();
-            }
-            DataSouceRoleFunction.AddRange(DataSouceNewRoleFunction);
-
-            //gridFunction.DataSource = DataSouceRoleFunction;
-            //gridFunction.DataBind();
-
-            InitialDataPopupFunction();
+            fncSystemData.DataSource = cmdFunctionService.Select(2).SUB_FUNCTION.ToList();
+            fncSystemData.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            var obj = new ROLE();
-            obj.ROLE_CODE = popTxtRoleCode.Text;
-            obj.ROLE_NAME = popTxtRoleName.Text;
-            if (flag.Text.Equals("Add"))
-            {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdRoleService.Add(obj);
-            }
-            else
-            {
-                obj.Action = ActionEnum.Update;
-                obj.ROLE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdRoleService.Edit(obj);
-            }
-            if (DataSouceNewRoleFunction.Count > 0)
-            {
-                foreach (ROLE_FUNCTION item in DataSouceNewRoleFunction)
-                {
-                    item.ROLE_ID = obj.ROLE_ID;
-                }
-                cmdRoleFunctionService.AddList(DataSouceNewRoleFunction);
-            }
 
-            btnSave.Enabled = false;
-            btnSave.Visible = false;
-            btnCancel.Visible = false;
-            alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
         }
 
@@ -164,68 +108,9 @@ namespace SPW.UI.Web.Page
             Response.RedirectPermanent("SearchRole.aspx");
         }
 
-        private void InitialDataPopupFunction()
-        {
-            //gridSelectFunction.DataSource = cmdFunctionService.GetAll();
-            //gridSelectFunction.DataBind();
-        }
-
-        protected void gridFunction_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            //cmdRoleFunctionService.Delete(Convert.ToInt32(gridFunction.DataKeys[e.RowIndex].Values[0].ToString()));
-            PrepareObjectScreen();
-        }
-
-        protected void gridSelectFunction_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            //gridSelectFunction.PageIndex = e.NewPageIndex;
-            //gridSelectFunction.DataBind();
-        }
-
         protected void btnAddFunction_Click(object sender, EventArgs e)
         {
-            //USER userItem = Session["user"] as USER;
-            //List<ROLE_FUNCTION> list = new List<ROLE_FUNCTION>();
 
-            //for (int i = 0; i < gridSelectFunction.Rows.Count; i++)
-            //{
-            //    if (((CheckBox)gridSelectFunction.Rows[i].Cells[0].FindControl("check")).Checked)
-            //    {
-            //        if (Request.QueryString["id"] != null && DataSouceRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-            //        {
-            //            ROLE_FUNCTION obj = new ROLE_FUNCTION();
-            //            obj.Action = ActionEnum.Create;
-            //            obj.ROLE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-            //            obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
-            //            obj.CREATE_DATE = DateTime.Now;
-            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.UPDATE_DATE = DateTime.Now;
-            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.SYE_DEL = false;
-            //            list.Add(obj);
-            //        }
-            //        else if (DataSouceNewRoleFunction.Where(x => x.FUNCTION_ID == Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString())).FirstOrDefault() == null)
-            //        {
-            //            ROLE_FUNCTION obj = new ROLE_FUNCTION();
-            //            obj.Action = ActionEnum.Create;
-            //            obj.ROLE_ID = 0;
-            //            obj.FUNCTION_ID = Convert.ToInt32(gridSelectFunction.DataKeys[i].Value.ToString());
-            //            obj.CREATE_DATE = DateTime.Now;
-            //            obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.UPDATE_DATE = DateTime.Now;
-            //            obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-            //            obj.SYE_DEL = false;
-            //            DataSouceNewRoleFunction.Add(obj);
-            //        }
-            //    }
-            //}
-
-            //if (list.Count > 0)
-            //{
-            //    cmdRoleFunctionService.AddList(list);
-            //}
-
-            //PrepareObjectScreen();
         }
 
         protected void btnCancelFunction_Click(object sender, EventArgs e)
@@ -233,16 +118,23 @@ namespace SPW.UI.Web.Page
             PrepareObjectScreen();
         }
 
-        protected void gridFunction_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void fncSystemData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
             {
-                foreach (ImageButton button in e.Row.Cells[0].Controls.OfType<ImageButton>())
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    if (button.CommandName == "Delete")
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 2);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
                     {
-                        button.Attributes["onclick"] = "if(!confirm('ต้องการจะลบข้อมูลใช่หรือไม่')){ return false; };";
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
                     }
+
                 }
             }
         }
