@@ -16,35 +16,48 @@ namespace SPW.UI.Web.Page
         private RoleFunctionService cmdRoleFunctionService;
         private FunctionService cmdFunctionService;
 
-        public List<ROLE_FUNCTION> DataSouceRoleFunction
+        public ROLE Role
         {
             get
             {
-                var list = (List<ROLE_FUNCTION>)ViewState["listRoleFunction"];
+                var list = (ROLE)ViewState["Role"];
                 return list;
             }
             set
             {
-                ViewState["listRoleFunction"] = value;
+                ViewState["Role"] = value;
             }
         }
 
-        public List<ROLE_FUNCTION> DataSouceNewRoleFunction
-        {
-            get
-            {
-                if (ViewState["listNewRoleFunction"] == null)
-                {
-                    ViewState["listNewRoleFunction"] = new List<ROLE_FUNCTION>();
-                }
-                var list = (List<ROLE_FUNCTION>)ViewState["listNewRoleFunction"];
-                return list;
-            }
-            set
-            {
-                ViewState["listNewRoleFunction"] = value;
-            }
-        }
+        //public List<ROLE_FUNCTION> DataSouceRoleFunction
+        //{
+        //    get
+        //    {
+        //        var list = (List<ROLE_FUNCTION>)ViewState["listRoleFunction"];
+        //        return list;
+        //    }
+        //    set
+        //    {
+        //        ViewState["listRoleFunction"] = value;
+        //    }
+        //}
+
+        //public List<ROLE_FUNCTION> DataSouceNewRoleFunction
+        //{
+        //    get
+        //    {
+        //        if (ViewState["listNewRoleFunction"] == null)
+        //        {
+        //            ViewState["listNewRoleFunction"] = new List<ROLE_FUNCTION>();
+        //        }
+        //        var list = (List<ROLE_FUNCTION>)ViewState["listNewRoleFunction"];
+        //        return list;
+        //    }
+        //    set
+        //    {
+        //        ViewState["listNewRoleFunction"] = value;
+        //    }
+        //}
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -93,6 +106,12 @@ namespace SPW.UI.Web.Page
 
         private void PrepareObjectScreen()
         {
+            if (Request.QueryString["id"] != null)
+            {
+                Role = cmdRoleService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                popTxtRoleCode.Text = Role.ROLE_CODE;
+                popTxtRoleName.Text = Role.ROLE_NAME;
+            }
             fncSystemData.DataSource = cmdFunctionService.Select(2).SUB_FUNCTION.ToList();
             fncSystemData.DataBind();
         }
@@ -106,11 +125,6 @@ namespace SPW.UI.Web.Page
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.RedirectPermanent("SearchRole.aspx");
-        }
-
-        protected void btnAddFunction_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void btnCancelFunction_Click(object sender, EventArgs e)
@@ -134,7 +148,6 @@ namespace SPW.UI.Web.Page
                             t.Checked = true;
                         }
                     }
-
                 }
             }
         }
