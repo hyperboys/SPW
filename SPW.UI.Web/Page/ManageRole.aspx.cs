@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -111,14 +112,35 @@ namespace SPW.UI.Web.Page
                 Role = cmdRoleService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
                 popTxtRoleCode.Text = Role.ROLE_CODE;
                 popTxtRoleName.Text = Role.ROLE_NAME;
+                lblName.Text = Role.ROLE_NAME;
             }
             fncSystemData.DataSource = cmdFunctionService.Select(2).SUB_FUNCTION.ToList();
             fncSystemData.DataBind();
+            fncStandardData.DataSource = cmdFunctionService.Select(3).SUB_FUNCTION.ToList();
+            fncStandardData.DataBind();
+            fncOrderData.DataSource = cmdFunctionService.Select(4).SUB_FUNCTION.ToList();
+            fncOrderData.DataBind();
+            fncReport.DataSource = cmdFunctionService.Select(5).SUB_FUNCTION.ToList();
+            fncReport.DataBind();
+            fncStock.DataSource = cmdFunctionService.Select(6).SUB_FUNCTION.ToList();
+            fncStock.DataBind();
+            fncAsset.DataSource = cmdFunctionService.Select(7).SUB_FUNCTION.ToList();
+            fncAsset.DataBind();
+            fncPO.DataSource = cmdFunctionService.Select(8).SUB_FUNCTION.ToList();
+            fncPO.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
             Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
         }
 
@@ -140,6 +162,128 @@ namespace SPW.UI.Web.Page
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
                     lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 2);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void fncStandardData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 3);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void fncOrderData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 4);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void fncReport_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 5);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void fncStock_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 6);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        protected void fncAsset_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 7);
+                    foreach (ROLE_FUNCTION tmp in lstTmp)
+                    {
+                        if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)
+                        {
+                            CheckBox t = (CheckBox)e.Row.FindControl("check");
+                            t.Checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void fncPO_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            List<ROLE_FUNCTION> lstTmp;
+            if (Request.QueryString["id"] != null)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lstTmp = cmdRoleFunctionService.SelectByRole(Convert.ToInt32(Request.QueryString["id"].ToString()), 8);
                     foreach (ROLE_FUNCTION tmp in lstTmp)
                     {
                         if (e.Row.Cells[1].Text == tmp.SUB_FUNCTION.SUB_FUNCTION_NAME)

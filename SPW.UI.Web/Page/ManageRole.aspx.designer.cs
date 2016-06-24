@@ -112,6 +112,60 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.GridView fncSystemData;
         
         /// <summary>
+        /// fncStandardData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncStandardData;
+        
+        /// <summary>
+        /// fncOrderData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncOrderData;
+        
+        /// <summary>
+        /// fncReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncReport;
+        
+        /// <summary>
+        /// fncStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncStock;
+        
+        /// <summary>
+        /// fncAsset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncAsset;
+        
+        /// <summary>
+        /// fncPO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView fncPO;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

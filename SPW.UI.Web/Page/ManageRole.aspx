@@ -102,6 +102,174 @@
                     <PagerSettings Mode="NumericFirstLast" />
                 </asp:GridView>
             </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncStandardData" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncStandardData_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันข้อมูลพื้นฐาน" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncOrderData" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncOrderData_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันการสั่งซื้อสินค้า" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncReport" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncReport_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันรายงาน" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncStock" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncStock_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันคลัง" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncAsset" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncAsset_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชันทรัพย์สิน" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลฟังก์ชัน"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncPO_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชัน Purchase Order" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
             <div style="margin-top: 20px; float: right;">
                 <table>
                     <tr>
