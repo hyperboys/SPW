@@ -6,151 +6,151 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\isaraboo\Desktop\SPW</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\SARARAT\Desktop\SPW</_PublishTargetUrl>
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>06/06/2016 12:25:02</publishTime>
+      <publishTime>05/29/2016 01:02:42</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>06/06/2016 12:25:29</publishTime>
+      <publishTime>05/29/2016 01:03:17</publishTime>
     </File>
     <File Include="bin/SPW.Common.dll">
-      <publishTime>06/09/2016 09:54:23</publishTime>
+      <publishTime>06/24/2016 12:56:49</publishTime>
     </File>
     <File Include="bin/SPW.DAL.dll">
-      <publishTime>06/09/2016 09:54:30</publishTime>
+      <publishTime>06/24/2016 12:56:51</publishTime>
     </File>
     <File Include="bin/SPW.DataService.dll">
-      <publishTime>06/09/2016 13:05:53</publishTime>
+      <publishTime>06/24/2016 12:56:52</publishTime>
     </File>
     <File Include="bin/SPW.Model.dll">
-      <publishTime>06/09/2016 09:54:24</publishTime>
+      <publishTime>06/24/2016 12:56:49</publishTime>
     </File>
     <File Include="bin/SPW.UI.Web.dll">
-      <publishTime>06/09/2016 13:05:58</publishTime>
+      <publishTime>06/24/2016 12:56:55</publishTime>
     </File>
     <File Include="CSS/bootstrap-theme.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/bootstrap-theme.min.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/bootstrap.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/bootstrap.min.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/cssUpdateProgress.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/custom.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/datepicker.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/font-awesome.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/font-awesome.min.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/metisMenu.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/metisMenu.min.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="CSS/sb-admin-2.css">
-      <publishTime>06/06/2016 12:25:05</publishTime>
+      <publishTime>05/29/2016 01:02:45</publishTime>
     </File>
     <File Include="Fonts/fontawesome-webfont.eot">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/fontawesome-webfont.svg">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/fontawesome-webfont.ttf">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/fontawesome-webfont.woff">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/FontAwesome.otf">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/glyphicons-halflings-regular.eot">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/glyphicons-halflings-regular.svg">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/glyphicons-halflings-regular.woff">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Image/Icon/close.png">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Image/Icon/find.png">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Image/Icon/order.jpg">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="Image/Icon/Product.gif">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="JQuery/bootstrap-datepicker.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="JQuery/bootstrap.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="JQuery/bootstrap.min.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="JQuery/jquery-1.6.4.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:46</publishTime>
     </File>
     <File Include="JQuery/jquery-1.6.4.min.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/jquery.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/jquery.min.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/metisMenu.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/metisMenu.min.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/npm.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="JQuery/sb-admin-2.js">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="MasterPage/MasterPageLogin.Master">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="MasterPage/MasterPageMainAdmin.Master">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>06/04/2016 16:16:00</publishTime>
     </File>
     <File Include="MasterPage/MasterPageReport.Master">
-      <publishTime>06/06/2016 12:25:06</publishTime>
+      <publishTime>05/29/2016 01:02:47</publishTime>
     </File>
     <File Include="Page/DeliveryOrder.aspx">
       <publishTime>09/14/2015 14:02:44</publishTime>
@@ -159,298 +159,298 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/19/2015 08:43:38</publishTime>
     </File>
     <File Include="Page/IssuePurchaseOrders.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>06/04/2016 02:01:26</publishTime>
     </File>
     <File Include="Page/IssuePurchaseRequisitionOrder.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>06/04/2016 02:01:27</publishTime>
     </File>
     <File Include="Page/MainAdmin.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageAccountMast.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageCategory.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageColorProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageColorType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageDepartment.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageEmployee.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageInvoice.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderDelivery.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderDeliveryDetail.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderDeliveryPreview.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderDeliveryProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQ.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQDetail.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQEdit.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQPreview.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQPrint.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageOrderHQSuccess.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:51</publishTime>
     </File>
     <File Include="Page/ManageProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageRawPack.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageRawProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageRawType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageRole.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>06/24/2016 12:05:42</publishTime>
     </File>
     <File Include="Page/ManageSendOrder.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageStock.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>06/04/2016 02:01:27</publishTime>
     </File>
     <File Include="Page/ManageStore.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageSupplier.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageTranspotLine.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:52</publishTime>
     </File>
     <File Include="Page/ManageUnitType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ManageUser.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ManageVehicle.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ManageZone.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/Order.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/OrderProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/OrderProductDetail.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/OrderProductDetailSummary.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/OrderProductPreview.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/PayInSlip.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ReportDelivery.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ReportMonthlySale.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ReportPayInSummary.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/ReportSaleVolume.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchAccountMast.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchCategory.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchColorProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchColorType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchDepartment.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchEmployee.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchPayInSlip.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchPurchaseOrder.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchPurchaseRequisitionOrder.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchRawPack.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchRawProduct.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchRawType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchRole.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchStore.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchSupplier.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchTracery.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchTranspotLine.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchUnitType.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchUser.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchVehicle.aspx">
-      <publishTime>06/06/2016 12:25:08</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SearchZone.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore2.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore3.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore4.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore5.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/SendOrderStore6.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:53</publishTime>
     </File>
     <File Include="Page/Shipping.aspx">
       <publishTime>09/19/2015 10:10:11</publishTime>
     </File>
     <File Include="Page/StockIn.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>06/04/2016 02:01:27</publishTime>
     </File>
     <File Include="Page/StockRaw.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>06/04/2016 02:01:27</publishTime>
     </File>
     <File Include="Page/SurveyOrder.aspx">
       <publishTime>09/19/2015 10:09:34</publishTime>
     </File>
     <File Include="PageLogin/Login.aspx">
-      <publishTime>06/06/2016 12:25:09</publishTime>
+      <publishTime>05/29/2016 01:02:54</publishTime>
     </File>
     <File Include="Reports/InOrder.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:55</publishTime>
     </File>
     <File Include="Reports/InOrderReportData.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/InOrderReportData.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/MonthlySale.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/MonthlySaleData.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/MonthlySaleData.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSlip.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSlip.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSlipKSBReport.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSlipPaper.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSlipTMBReport.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSummary.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSummaryData.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/PayInSummaryData.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SaleVolume.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SaleVolumeData.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SaleVolumeData.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SendOrder.aspx">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SendOrderReportData.xsc">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Reports/SendOrderReportData.xss">
-      <publishTime>06/06/2016 12:25:10</publishTime>
+      <publishTime>05/29/2016 01:02:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/09/2016 09:54:40</publishTime>
+      <publishTime>06/24/2016 12:56:56</publishTime>
     </File>
   </ItemGroup>
 </Project>
