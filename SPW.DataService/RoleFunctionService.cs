@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.DataService
 {
@@ -80,11 +81,22 @@ namespace SPW.DataService
             return this.Datacontext.ROLE_FUNCTION.Include("SUB_FUNCTION").Where(x => x.ROLE_ID == ID && x.FUNCTION_ID == functionID && x.SYE_DEL == false).ToList();
         }
 
-        public void Delete(int ID)
+        public void RemoveAll(int RoleID)
         {
-            //var obj = this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_FUNCTION_ID == ID).FirstOrDefault();
-            //obj.SYE_DEL = true;
-            //this.Datacontext.SaveChanges();
+            try
+            {
+                List<ROLE_FUNCTION> lstRoleFunc = this.Datacontext.ROLE_FUNCTION.Where(x => x.ROLE_ID == RoleID).ToList();
+                foreach (ROLE_FUNCTION rf in lstRoleFunc)
+                {
+                    this.Datacontext.ROLE_FUNCTION.Remove(rf);
+                }
+                this.Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                throw ex;
+            }
         }
 
         #endregion

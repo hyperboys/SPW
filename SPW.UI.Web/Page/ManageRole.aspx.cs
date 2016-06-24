@@ -134,14 +134,165 @@ namespace SPW.UI.Web.Page
         {
             try
             {
+                USER userItem = Session["user"] as USER;
+                ROLE tmpRole = new ROLE();
+                if (Request.QueryString["id"] != null)
+                {
+                    cmdRoleFunctionService.RemoveAll(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                    tmpRole = cmdRoleService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                }
+                else
+                {
+                    tmpRole.CREATE_DATE = DateTime.Now;
+                    tmpRole.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    tmpRole.ROLE_CODE = popTxtRoleCode.Text;
+                    tmpRole.ROLE_NAME = popTxtRoleName.Text;
+                    tmpRole.SYE_DEL = false;
+                    tmpRole.UPDATE_DATE = DateTime.Now;
+                    tmpRole.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    cmdRoleService.Add(tmpRole);
+                }
 
+                List<ROLE_FUNCTION> lstRoleFunc = new List<ROLE_FUNCTION>();
+                foreach (GridViewRow row in fncSystemData.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 2;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncSystemData.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
 
+                foreach (GridViewRow row in fncStandardData.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 3;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncStandardData.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncOrderData.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 4;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncOrderData.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncReport.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 5;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncReport.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncStock.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 6;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncStock.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncAsset.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 7;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncAsset.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncPO.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 8;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncPO.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                if (lstRoleFunc.Count > 0)
+                {
+                    cmdRoleFunctionService.AddList(lstRoleFunc);
+                }
+
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
             }
             catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
             }
-            Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
