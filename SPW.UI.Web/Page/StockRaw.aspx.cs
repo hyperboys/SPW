@@ -32,7 +32,7 @@ namespace SPW.UI.Web.Page
         private StockTypeService _stockTypeService;
         private CategoryService _categoryService;
         private RawProductService _rawProductService;
-        private StockRawReceiveTransService _stockRawReceiveTransService;
+        //private StockRawReceiveTransService _stockRawReceiveTransService;
 
         private void InitialPage()
         {
@@ -67,7 +67,6 @@ namespace SPW.UI.Web.Page
             _stockTypeService = (StockTypeService)_dataServiceEngine.GetDataService(typeof(StockTypeService));
             _categoryService = (CategoryService)_dataServiceEngine.GetDataService(typeof(CategoryService));
             _rawProductService = (RawProductService)_dataServiceEngine.GetDataService(typeof(RawProductService));
-            _stockRawReceiveTransService = (StockRawReceiveTransService)_dataServiceEngine.GetDataService(typeof(StockRawReceiveTransService));
         }
 
         private void ReloadDatasource()
@@ -170,36 +169,36 @@ namespace SPW.UI.Web.Page
 
             return listUpdate;
         }
-        private List<STOCK_RAW_RECEIVE_TRANS> GetUpdateTrans(List<STOCK_RAW_STOCK> listStock, string trans_type)
-        {
-            List<STOCK_RAW_RECEIVE_TRANS> listTrans = new List<STOCK_RAW_RECEIVE_TRANS>();
+        //private List<STOCK_RAW_RECEIVE_TRANS> GetUpdateTrans(List<STOCK_RAW_STOCK> listStock, string trans_type)
+        //{
+        //    List<STOCK_RAW_RECEIVE_TRANS> listTrans = new List<STOCK_RAW_RECEIVE_TRANS>();
 
-            foreach (STOCK_RAW_STOCK stock in listStock)
-            {
-                STOCK_RAW_RECEIVE_TRANS trans = new STOCK_RAW_RECEIVE_TRANS();
-                trans.RAW_ID = stock.RAW_ID;
-                trans.TRANS_DATE = DateTime.Now;
-                trans.TRANS_TYPE = (trans_type == "ADJ" ? (stock.RAW_REMAIN - stock.STOCK_BEFORE > 0 ? "IN" : "OUT") : trans_type);
-                trans.PO_BK_NO = "-";
-                trans.PO_RN_NO = "-";
-                trans.PO_YY = "-";
-                trans.VENDOR_ID = -1;
-                trans.STOCK_BEFORE = stock.STOCK_BEFORE;
-                trans.TRANS_QTY = stock.RAW_REMAIN - stock.STOCK_BEFORE;
-                trans.STOCK_AFTER = stock.RAW_REMAIN;
-                trans.APPROVE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
-                trans.SYS_TIME = DateTime.Now.TimeOfDay;
-                trans.CREATE_DATE = DateTime.Now;
-                trans.UPDATE_DATE = DateTime.Now;
-                trans.CREATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
-                trans.UPDATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
-                trans.SYE_DEL = false;
-                trans.Action = ActionEnum.Create;
-                listTrans.Add(trans);
-            }
+        //    foreach (STOCK_RAW_STOCK stock in listStock)
+        //    {
+        //        STOCK_RAW_RECEIVE_TRANS trans = new STOCK_RAW_RECEIVE_TRANS();
+        //        trans.RAW_ID = stock.RAW_ID;
+        //        trans.TRANS_DATE = DateTime.Now;
+        //        trans.TRANS_TYPE = (trans_type == "ADJ" ? (stock.RAW_REMAIN - stock.STOCK_BEFORE > 0 ? "IN" : "OUT") : trans_type);
+        //        trans.PO_BK_NO = "-";
+        //        trans.PO_RN_NO = "-";
+        //        trans.PO_YY = "-";
+        //        trans.VENDOR_ID = -1;
+        //        trans.STOCK_BEFORE = stock.STOCK_BEFORE;
+        //        trans.TRANS_QTY = stock.RAW_REMAIN - stock.STOCK_BEFORE;
+        //        trans.STOCK_AFTER = stock.RAW_REMAIN;
+        //        trans.APPROVE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
+        //        trans.SYS_TIME = DateTime.Now.TimeOfDay;
+        //        trans.CREATE_DATE = DateTime.Now;
+        //        trans.UPDATE_DATE = DateTime.Now;
+        //        trans.CREATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
+        //        trans.UPDATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
+        //        trans.SYE_DEL = false;
+        //        trans.Action = ActionEnum.Create;
+        //        listTrans.Add(trans);
+        //    }
 
-            return listTrans;
-        }
+        //    return listTrans;
+        //}
         #endregion
 
         #region ASP control
@@ -230,16 +229,16 @@ namespace SPW.UI.Web.Page
         protected void btnSave_Click(object sender, EventArgs e)
         {
             List<STOCK_RAW_STOCK> listUpdate = new List<STOCK_RAW_STOCK>();
-            List<STOCK_RAW_RECEIVE_TRANS> listSPT = new List<STOCK_RAW_RECEIVE_TRANS>();
+            //List<STOCK_RAW_RECEIVE_TRANS> listSPT = new List<STOCK_RAW_RECEIVE_TRANS>();
             if (gridStockRawSet.Rows.Count > 0)
             {
                 listUpdate = GetUpdateItem(gridStockRawSet);
-                listSPT = GetUpdateTrans(listUpdate, "SET");
+                //listSPT = GetUpdateTrans(listUpdate, "SET");
             }
             else if (gridStockRawAdd.Rows.Count > 0)
             {
                 listUpdate = GetUpdateItem(gridStockRawAdd);
-                listSPT = GetUpdateTrans(listUpdate, "ADJ");
+                //listSPT = GetUpdateTrans(listUpdate, "ADJ");
             }
             if (listUpdate.Count > 0)
             {
