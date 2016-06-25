@@ -75,39 +75,40 @@ namespace SPW.UI.Web.Page
                 _item = cmdUser.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
                 if (_item != null)
                 {
-                    popTxt1.Text = _item.USER_NAME;
-                    popTxt2.TextMode = TextBoxMode.SingleLine;
-                    popTxt2.Text = "*************";
-                    popTxt2.Enabled = false;
+                    TextBox1.Text = _item.USER_NAME;
+                    TextBox1.Enabled = false;
+                    TextBox2.TextMode = TextBoxMode.SingleLine;
+                    TextBox2.Text = "*************";
+                    TextBox2.Enabled = false;
                     dllEmp.SelectedValue = _item.EMPLOYEE_ID.ToString();
                     dllRole.SelectedValue = _item.ROLE_ID.ToString();
                     flag.Text = "Edit";
-                    lblName.Text = popTxt1.Text;
+                    lblName.Text = TextBox1.Text;
                 }
             }
-            else 
+            else
             {
-                popTxt1.Text = "";
-                popTxt2.Text = "";
-                popTxt2.TextMode = TextBoxMode.Password;
-                popTxt2.Enabled = true;
+                TextBox1.Text = "";
+                //TextBox1.TextMode = TextBoxMode.SingleLine;
+                TextBox2.Text = "";
+                //TextBox2.TextMode = TextBoxMode.Password;
+                TextBox2.Enabled = true;
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
-            if (cmdUser.Select(popTxt1.Text) == null)
+            if (cmdUser.Select(TextBox1.Text) == null)
             {
                 var obj = new USER();
-                obj.USER_NAME = popTxt1.Text;
-
+                obj.USER_NAME = TextBox1.Text;
 
                 obj.EMPLOYEE_ID = Convert.ToInt32(dllEmp.SelectedValue);
                 obj.ROLE_ID = Convert.ToInt32(dllRole.SelectedValue);
                 if (flag.Text.Equals("Add"))
                 {
-                    obj.PASSWORD = popTxt2.Text;
+                    obj.PASSWORD = TextBox2.Text;
                     obj.Action = ActionEnum.Create;
                     obj.CREATE_DATE = DateTime.Now;
                     obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
