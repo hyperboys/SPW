@@ -12,18 +12,26 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ACCOUNT_MAST
+    public partial class RECEIVE_RAW_TRANS
     {
-        public string ACCOUNT_ID { get; set; }
-        public string ACCOUNT_NAME { get; set; }
-        public string BANK_NAME { get; set; }
-        public string BANK_SH_NAME { get; set; }
-        public string BANK_BRH_NAME { get; set; }
-        public int PAYIN_FORMAT { get; set; }
+        public string RECEIVE_NO { get; set; }
+        public string RECEIVE_YY { get; set; }
+        public System.DateTime RECEIVE_DATE { get; set; }
+        public string PO_BK_NO { get; set; }
+        public string PO_RN_NO { get; set; }
+        public string PO_YY { get; set; }
+        public int PO_SEQ_NO { get; set; }
+        public int RAW_ID { get; set; }
+        public int RECEIVE_QTY { get; set; }
+        public string RECEIVE_COMPLETE { get; set; }
+        public Nullable<int> APPROVE_EMPLOYEE_ID { get; set; }
+        public Nullable<System.TimeSpan> SYS_TIME { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual PO_DT_TRANS PO_DT_TRANS { get; set; }
     }
 }

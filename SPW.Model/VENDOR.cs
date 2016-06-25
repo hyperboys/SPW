@@ -17,6 +17,7 @@ namespace SPW.Model
         public VENDOR()
         {
             this.AP_VEHICLE_TRANS = new HashSet<AP_VEHICLE_TRANS>();
+            this.PO_HD_TRANS = new HashSet<PO_HD_TRANS>();
             this.PR_HD_TRANS = new HashSet<PR_HD_TRANS>();
             this.RAW_PACK_PRICE_HIST = new HashSet<RAW_PACK_PRICE_HIST>();
             this.VENDOR_DEAL_DISCOUNT = new HashSet<VENDOR_DEAL_DISCOUNT>();
@@ -49,6 +50,7 @@ namespace SPW.Model
         public Nullable<bool> SYE_DEL { get; set; }
     
         public virtual ICollection<AP_VEHICLE_TRANS> AP_VEHICLE_TRANS { get; set; }
+        public virtual ICollection<PO_HD_TRANS> PO_HD_TRANS { get; set; }
         public virtual ICollection<PR_HD_TRANS> PR_HD_TRANS { get; set; }
         public virtual PROVINCE PROVINCE { get; set; }
         public virtual ICollection<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }

@@ -22,7 +22,6 @@ namespace SPW.Model
             this.PRODUCT_PRICELIST = new HashSet<PRODUCT_PRICELIST>();
             this.PRODUCT_PROMOTION = new HashSet<PRODUCT_PROMOTION>();
             this.STOCK_PRODUCT_COLOR = new HashSet<STOCK_PRODUCT_COLOR>();
-            this.STOCK_PRODUCT_STOCK = new HashSet<STOCK_PRODUCT_STOCK>();
             this.STOCK_PRODUCT_TRANS = new HashSet<STOCK_PRODUCT_TRANS>();
             this.STOCK_PRODUCT_WITHDRAW_TRANS = new HashSet<STOCK_PRODUCT_WITHDRAW_TRANS>();
             this.SUB_DELIVERY_INDEX_DETAIL = new HashSet<SUB_DELIVERY_INDEX_DETAIL>();
@@ -57,7 +56,7 @@ namespace SPW.Model
         public virtual ICollection<PRODUCT_PROMOTION> PRODUCT_PROMOTION { get; set; }
         public virtual STOCK_TYPE STOCK_TYPE { get; set; }
         public virtual ICollection<STOCK_PRODUCT_COLOR> STOCK_PRODUCT_COLOR { get; set; }
-        public virtual ICollection<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
+        public virtual STOCK_PRODUCT_STOCK STOCK_PRODUCT_STOCK { get; set; }
         public virtual ICollection<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
         public virtual ICollection<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
         public virtual ICollection<SUB_DELIVERY_INDEX_DETAIL> SUB_DELIVERY_INDEX_DETAIL { get; set; }

@@ -71,6 +71,7 @@
     <Compile Include="CustomModel\CATEGORY.cs" />
     <Compile Include="CustomModel\COLOR_TYPE.cs" />
     <Compile Include="CustomModel\COLOR.cs" />
+    <Compile Include="CustomModel\RECEIVE_RAW_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_WITHDRAW_TRANS.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX_DETAIL.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_RAW_RECEIVE_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_RAW_STOCK.cs" />
+    <Compile Include="CustomModel\STOCK_RAW_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
     <Compile Include="CustomModel\UNIT_TYPE.cs" />
     <Compile Include="CustomModel\VENDOR.cs" />
@@ -188,6 +190,9 @@
     <Compile Include="RAW_TYPE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="RECEIVE_RAW_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="ROAD.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
@@ -218,10 +223,10 @@
     <Compile Include="STOCK_PRODUCT_WITHDRAW_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
-    <Compile Include="STOCK_RAW_RECEIVE_TRANS.cs">
+    <Compile Include="STOCK_RAW_STOCK.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
-    <Compile Include="STOCK_RAW_STOCK.cs">
+    <Compile Include="STOCK_RAW_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STOCK_TYPE.cs">

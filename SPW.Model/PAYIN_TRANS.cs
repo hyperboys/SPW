@@ -22,7 +22,7 @@ namespace SPW.Model
         public int PAYIN_SEQ_NO { get; set; }
         public int CHQ_SEQ_NO { get; set; }
         public string CHQ_NO { get; set; }
-        public System.DateTime CHQ_DATE { get; set; }
+        public Nullable<System.DateTime> CHQ_DATE { get; set; }
         public string CHQ_BANK { get; set; }
         public string CHQ_BR_BANK { get; set; }
         public Nullable<int> STORE_ID_PAID { get; set; }
@@ -37,7 +37,6 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ACCOUNT_MAST ACCOUNT_MAST { get; set; }
         public virtual PAYIN_APPROVER PAYIN_APPROVER { get; set; }
     }
 }

@@ -48,7 +48,7 @@
                                             ValidationGroup="group" ControlToValidate="popTxt1" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
                                     </td>
                                     <td class="auto-style4"></td>
-                                    <td>รหัสหัสผู้ใช้งาน</td>
+                                    <td>รหัสผู้ใช้งาน</td>
                                     <td style="text-align: center">:</td>
                                     <td class="auto-style3">
                                         <asp:TextBox ID="popTxt2" class="form-control" runat="server" Height="30px" Width="145px" TextMode="Password"></asp:TextBox>

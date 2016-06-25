@@ -584,6 +584,7 @@
     </Compile>
     <Compile Include="Page\SearchPurchaseOrderReceipts.aspx.cs">
       <DependentUpon>SearchPurchaseOrderReceipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Page\SearchPurchaseOrderReceipts.aspx.designer.cs">
       <DependentUpon>SearchPurchaseOrderReceipts.aspx</DependentUpon>

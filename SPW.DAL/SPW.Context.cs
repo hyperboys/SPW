@@ -55,6 +55,7 @@ namespace SPW.DAL
         public DbSet<RAW_PACK_SIZE> RAW_PACK_SIZE { get; set; }
         public DbSet<RAW_PRODUCT> RAW_PRODUCT { get; set; }
         public DbSet<RAW_TYPE> RAW_TYPE { get; set; }
+        public DbSet<RECEIVE_RAW_TRANS> RECEIVE_RAW_TRANS { get; set; }
         public DbSet<ROAD> ROAD { get; set; }
         public DbSet<ROLE> ROLE { get; set; }
         public DbSet<ROLE_FUNCTION> ROLE_FUNCTION { get; set; }
@@ -63,8 +64,8 @@ namespace SPW.DAL
         public DbSet<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
         public DbSet<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
         public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
-        public DbSet<STOCK_RAW_RECEIVE_TRANS> STOCK_RAW_RECEIVE_TRANS { get; set; }
         public DbSet<STOCK_RAW_STOCK> STOCK_RAW_STOCK { get; set; }
+        public DbSet<STOCK_RAW_TRANS> STOCK_RAW_TRANS { get; set; }
         public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
         public DbSet<STORE> STORE { get; set; }
         public DbSet<SUB_DELIVERY_INDEX> SUB_DELIVERY_INDEX { get; set; }

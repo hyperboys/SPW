@@ -12,16 +12,20 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class STOCK_RAW_RECEIVE_TRANS
+    public partial class STOCK_RAW_TRANS
     {
         public int TRANS_ID { get; set; }
         public int RAW_ID { get; set; }
         public System.DateTime TRANS_DATE { get; set; }
         public string TRANS_TYPE { get; set; }
-        public string PO_BK_NO { get; set; }
-        public string PO_RN_NO { get; set; }
-        public string PO_YY { get; set; }
-        public int VENDOR_ID { get; set; }
+        public string REF_DOC_TYPE { get; set; }
+        public string REF_DOC_BKNO { get; set; }
+        public string REF_DOC_RNNO { get; set; }
+        public Nullable<int> REF_DOC_YY { get; set; }
+        public Nullable<int> REF_NO1 { get; set; }
+        public Nullable<int> REF_NO2 { get; set; }
+        public string REF_REMARK1 { get; set; }
+        public string REF_REMARK2 { get; set; }
         public Nullable<int> STOCK_BEFORE { get; set; }
         public Nullable<int> TRANS_QTY { get; set; }
         public Nullable<int> STOCK_AFTER { get; set; }
@@ -33,7 +37,6 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual PO_HD_TRANS PO_HD_TRANS { get; set; }
         public virtual RAW_PRODUCT RAW_PRODUCT { get; set; }
     }
 }

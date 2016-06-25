@@ -16,6 +16,7 @@ namespace SPW.Model
     {
         public RAW_PACK_SIZE()
         {
+            this.PO_DT_TRANS = new HashSet<PO_DT_TRANS>();
             this.PR_DT_TRANS = new HashSet<PR_DT_TRANS>();
             this.RAW_PACK_PRICE_HIST = new HashSet<RAW_PACK_PRICE_HIST>();
         }
@@ -32,6 +33,7 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
+        public virtual ICollection<PO_DT_TRANS> PO_DT_TRANS { get; set; }
         public virtual ICollection<PR_DT_TRANS> PR_DT_TRANS { get; set; }
         public virtual ICollection<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }
     }

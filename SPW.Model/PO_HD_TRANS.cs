@@ -14,11 +14,6 @@ namespace SPW.Model
     
     public partial class PO_HD_TRANS
     {
-        public PO_HD_TRANS()
-        {
-            this.STOCK_RAW_RECEIVE_TRANS = new HashSet<STOCK_RAW_RECEIVE_TRANS>();
-        }
-    
         public string PO_BK_NO { get; set; }
         public string PO_RN_NO { get; set; }
         public string PO_YY { get; set; }
@@ -46,6 +41,7 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ICollection<STOCK_RAW_RECEIVE_TRANS> STOCK_RAW_RECEIVE_TRANS { get; set; }
+        public virtual PR_HD_TRANS PR_HD_TRANS { get; set; }
+        public virtual VENDOR VENDOR { get; set; }
     }
 }

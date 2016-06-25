@@ -846,7 +846,7 @@ namespace SPW.UI.Web.Page
                 {
                     DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
                     drpayInSlipPaper["SEQ"] = (i++).ToString();
-                    drpayInSlipPaper["DATE"] = convertToDateThai(pt.CHQ_DATE.ToString("dd/MM/yyyy"));
+                    drpayInSlipPaper["DATE"] = convertToDateThai(pt.CHQ_DATE.Value.ToString("dd/MM/yyyy"));
                     drpayInSlipPaper["CHECK_NO"] = pt.CHQ_NO.ToString();
                     drpayInSlipPaper["CHECK_BANK"] = pt.CHQ_BANK.ToString();
                     drpayInSlipPaper["AMOUNT"] = pt.CHQ_AMOUNT.ToString("#,#.00#"); ;
