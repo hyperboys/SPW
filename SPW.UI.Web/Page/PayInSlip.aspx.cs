@@ -6,6 +6,7 @@ using SPW.UI.Web.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -450,7 +451,16 @@ namespace SPW.UI.Web.Page
                 ACCOUNT_MAST accountMast = _accountMastService.Select(ddlAccountMast.SelectedValue);
                 SQLUtility sql = new SQLUtility();
                 int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = '" + convertToDateUSA(txtDatePayIn.Text) + "' GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
-                int payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
+                int payInSeq = 0;
+                if (rbPayin.Checked)
+                {
+                    payInSeq = Convert.ToInt32(txtPayInSeq.Text);
+                }
+                else
+                {
+                    payInSeq = txtPageSeq.Text == "1" ? count + 1 : Convert.ToInt32(txtPayInSeq.Text);
+                }
+
                 foreach (PAYIN_TRANS tmpItem in lstPayIn)
                 {
                     tmpItem.ACCOUNT_ID = accountMast.ACCOUNT_ID;
@@ -472,7 +482,6 @@ namespace SPW.UI.Web.Page
                     {
                         tmpItem.CHQ_SEQ_NO += ((Convert.ToInt32(txtPageSeq.Text) - 1) * 25);
                     }
-
                 }
 
                 _payInTranService.AddList(lstPayIn);
@@ -494,6 +503,15 @@ namespace SPW.UI.Web.Page
                 grdBank.DataSource = null;
                 grdBank.DataBind();
                 SumAmt();
+            }
+            catch (SqlException sex)
+            {
+                if (sex.Number == 2601)
+                {
+                    lblError.Text = "บันทึกข้อมูลไม่สำเร็จ เนื่องจากเลขที่ PayIn ซ้ำ";
+                    danger.Visible = true;
+                }
+                DebugLog.WriteLog(sex.ToString());
             }
             catch (Exception ex)
             {
@@ -846,7 +864,7 @@ namespace SPW.UI.Web.Page
                 {
                     DataRow drpayInSlipPaper = payInSlipPaper.NewRow();
                     drpayInSlipPaper["SEQ"] = (i++).ToString();
-                    drpayInSlipPaper["DATE"] = convertToDateThai(pt.CHQ_DATE.Value.ToString("dd/MM/yyyy"));
+                    drpayInSlipPaper["DATE"] = convertToDateThai(pt.CHQ_DATE.ToString("dd/MM/yyyy"));
                     drpayInSlipPaper["CHECK_NO"] = pt.CHQ_NO.ToString();
                     drpayInSlipPaper["CHECK_BANK"] = pt.CHQ_BANK.ToString();
                     drpayInSlipPaper["AMOUNT"] = pt.CHQ_AMOUNT.ToString("#,#.00#"); ;

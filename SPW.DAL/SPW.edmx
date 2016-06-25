@@ -704,7 +704,7 @@
           <Property Name="PAYIN_SEQ_NO" Type="int" Nullable="false" />
           <Property Name="CHQ_SEQ_NO" Type="int" Nullable="false" />
           <Property Name="CHQ_NO" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="CHQ_DATE" Type="date" />
+          <Property Name="CHQ_DATE" Type="date" Nullable="false" />
           <Property Name="CHQ_BANK" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CHQ_BR_BANK" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="STORE_ID_PAID" Type="int" />
@@ -3270,7 +3270,7 @@
           <Property Type="Int32" Name="PAYIN_SEQ_NO" Nullable="false" />
           <Property Type="Int32" Name="CHQ_SEQ_NO" Nullable="false" />
           <Property Type="String" Name="CHQ_NO" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="CHQ_DATE" Precision="0" />
+          <Property Type="DateTime" Name="CHQ_DATE" Nullable="false" Precision="0" />
           <Property Type="String" Name="CHQ_BANK" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CHQ_BR_BANK" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="STORE_ID_PAID" />
@@ -6272,62 +6272,62 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="82">
-        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="5.1969332626075175" PointY="7.5937772577599514" />
-        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="3.4467773174153535" PointY="28.569115741443408" />
-        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="7.49390787421442" PointY="12.887670835893449" />
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="8.3396861275377159" PointY="6.5772097886433869" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="7.1684493977429575" PointY="29.63345454523035" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="3.7327354996151918" PointY="31.021835162780171" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="9.8564533599915229" PointY="0.91145938677315574" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="5.12778414279585" PointY="4.1029539574417075" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="8.0990942195519313" PointY="5.0157558494320869" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="9.7568877887711327" PointY="16.516199387850332" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="1.6185278397139757" PointY="3.4421294645602485" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="9.3592888532948173" PointY="17.90766436695478" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="0.057689812061232422" PointY="16.629094563717533" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="2.8934066402229512" PointY="25.349163037421722" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="0.2539234535088406" PointY="25.889487725631096" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="4.7781618911671275" PointY="23.557895865085488" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="6.5857744750500533" PointY="1.0393716548752838" />
-        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="3.920337390117504" PointY="15.5748264564084" />
-        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="11.595937035789685" PointY="17.703022875684791" />
-        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="11.579798932922911" PointY="28.252302361769743" />
-        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="8.106982909192789" PointY="4.0741933901208425" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="2.9238470359350774" PointY="1.8284983047416892" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="6.8206260310582012" PointY="17.979942702678937" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="8.4520228246469156" PointY="12.331594249388013" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="3.9169622715175905" PointY="4.1954833884702456" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="4.9773210403403834" PointY="28.751412047423148" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="11.047269885915924" PointY="23.619564290912621" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="7.1917293459138509" PointY="10.416359235726464" />
-        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="5.4883776183651651" PointY="23.283741812819496" />
-        <EntityTypeShape EntityType="SPWModel.RECEIVE_RAW_TRANS" Width="1.5" PointX="10.655728590980045" PointY="3.3546597675209213" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="1.9394699232370916" PointY="28.889999969345517" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="2.2125302172324295" PointY="25.226377335016792" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="6.3343835632942547" PointY="18.396065467221693" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="5.04741371099251" PointY="25.244503971768779" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="8.42145987992243" PointY="30.0992645910472" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="1.9426706982509561" PointY="3.8945617097870269" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="2.3011095106141219" PointY="29.766065074953282" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="10.086591861251085" PointY="0.24188084911642635" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="10.366951513275016" PointY="23.129605304044489" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_TRANS" Width="1.5" PointX="11.894748106549843" PointY="14.173896796151016" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="9.78388763674716" PointY="27.384156791206522" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="5.5889738675155556" PointY="28.481645820886662" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="4.731236856771277" PointY="15.990352995689191" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="9.7869410634911347" PointY="25.942500975887523" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="5.1980350246643816" PointY="0.037873804586880749" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="0.35218230278798485" PointY="7.6387569492863294" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="7.982904987401751" PointY="27.524804053606839" />
-        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="8.6551434624265617" PointY="24.728621121835253" />
-        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="11.315292304062886" PointY="14.570548094143415" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="6.3513033009838793" PointY="31.792270615600174" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="1.6950648025120909" PointY="29.294223560622996" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="8.2028879635980765" PointY="12.34596813299971" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="11.630635572425387" PointY="9.3782943977873288" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="8.4806700071695591" PointY="31.69332128748918" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="10.770744747841146" PointY="18.936064073320509" />
+      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="76">
+        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="5.5391832001224088" PointY="23.506068344929286" />
+        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="8.836655073257468" PointY="14.241379446462439" />
+        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="3.4741097760731865" PointY="9.7877630040923886" />
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="5.2447761209890134" PointY="9.4184347583998154" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="4.7286546438600192" PointY="0.90133650642881935" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="9.111583486717" PointY="19.5172689200925" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="4.2686539647489106" PointY="22.419352541872929" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="10.935041918854715" PointY="29.541698246049553" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="5.4775556537683849" PointY="10.611487974697486" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="2.5071309406809186" PointY="2.1689571748343095" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="0.77541301435577359" PointY="13.074655941256628" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="2.3222986880328036" PointY="31.927057668532736" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="3.62014649604454" PointY="28.796143470702759" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="2.0661708331043696" PointY="2.557962180375104" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="11.049981610407114" PointY="3.2383372202694125" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="9.5157123662138883" PointY="26.405188215153846" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="10.957693118116675" PointY="26.925362659117841" />
+        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="6.4750194765976712" PointY="9.4330844625053381" />
+        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="6.0278787827249047" PointY="7.0463671866088955" />
+        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="6.8476917440293787" PointY="13.292619562378441" />
+        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="4.0284567996992058" PointY="20.755678052434547" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="0.73530089144376154" PointY="16.035472296194857" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="2.8105179941330656" PointY="17.002903886606408" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="6.7166798704847137" PointY="31.455015361055274" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="5.6946961310201774" PointY="1.4733299470848078" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="10.039304745401863" PointY="12.003632044421337" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="9.377864542127524" PointY="26.553028819408748" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="6.325611013139417" PointY="1.6964992590697945" />
+        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="6.4924769413156795" PointY="23.637355860153846" />
+        <EntityTypeShape EntityType="SPWModel.RECEIVE_RAW_TRANS" Width="1.5" PointX="1.7203707963788748" PointY="12.468149265492405" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="1.6042402934302762" PointY="11.4281074755956" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="4.4819314239928181" PointY="9.37140849669064" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="2.822288823696919" PointY="29.892367749424821" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="8.361282726918013" PointY="16.457714580212588" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="1.9322377266046766" PointY="19.727027321107233" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="5.0502580595436779" PointY="7.5604478901067971" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="9.131616246482178" PointY="25.39306294610401" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="8.7849021408636609" PointY="13.312089985847516" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="4.1676950865274733" PointY="22.157324205225951" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_TRANS" Width="1.5" PointX="9.162128631566711" PointY="24.6508201028457" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="4.0818739310288219" PointY="6.0547735272230456" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="7.2645396866204877" PointY="27.993287680667493" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="3.1750717121991663" PointY="13.371600932149031" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="0.52408103855516819" PointY="2.6674861622357211" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="3.7713999840297738" PointY="15.570219345190665" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="9.0449297321238227" PointY="24.436987560445903" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="0.92201689859946112" PointY="5.7923620519192713" />
+        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="3.3804920424616389" PointY="31.314443990268952" />
+        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="3.301447845670137" PointY="24.589393880492725" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="3.191013287376153" PointY="9.602346901596686" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="10.014806230559389" PointY="1.4534317410799822" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="9.863393033791052" PointY="27.458829028279908" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="7.5022406706131246" PointY="19.211031430964837" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="7.3697457701758236" PointY="31.614575832902723" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="1.17248366641462" PointY="3.55620604919093" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VEHICLE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VENDOR" />

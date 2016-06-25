@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
 using SPW.Common;
+using System.Data.SqlClient;
 
 namespace SPW.DataService
 {
@@ -50,6 +51,10 @@ namespace SPW.DataService
                     this.Datacontext.PAYIN_TRANS.Add(tmp);
                 }
                 this.Datacontext.SaveChanges();
+            }
+            catch (SqlException sex)
+            {
+                throw sex;
             }
             catch (Exception ex)
             {

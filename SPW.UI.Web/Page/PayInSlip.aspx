@@ -156,6 +156,19 @@
                                             <td class="auto-style30"></td>
                                         </tr>
                                         <tr>
+                                            <td class="auto-style5">พิมพ์ PayIn ร่วมกัน</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style2">
+                                                <asp:RadioButton ID="rbPayin" runat="server" AutoPostBack="True" GroupName="bankGroup" OnCheckedChanged="rbBankKrungThai_CheckedChanged" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" Width="150px" />
+                                            </td>
+                                            <td class="auto-style13"></td>
+                                            <td class="auto-style12"></td>
+                                            <td class="auto-style1" style="text-align: center"></td>
+                                            <td class="auto-style2">
+                                               </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
                                             <td class="auto-style5">ลำดับ PayIn</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
