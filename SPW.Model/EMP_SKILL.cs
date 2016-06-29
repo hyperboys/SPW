@@ -12,12 +12,11 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DEPARTMENT
+    public partial class EMP_SKILL
     {
-        public int DEPARTMENT_ID { get; set; }
-        public string DEPARTMENT_CODE { get; set; }
-        public string DEPARTMENT_NAME { get; set; }
-        public int SUPERVISOR_EMP_ID { get; set; }
+        public int SKILL_ID { get; set; }
+        public string SKILL_NAME { get; set; }
+        public string SKILL_TYPE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }

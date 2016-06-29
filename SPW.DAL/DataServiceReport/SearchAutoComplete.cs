@@ -78,6 +78,7 @@ namespace SPW.DAL
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 return null;
             }
         }
@@ -115,6 +116,7 @@ namespace SPW.DAL
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 return null;
             }
         }

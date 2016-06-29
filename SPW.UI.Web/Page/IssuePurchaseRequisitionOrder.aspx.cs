@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.DAL;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -22,7 +23,7 @@ namespace SPW.UI.Web.Page
         private PoHdTransService cmdPoHdTrans;
         private PoDtTransService cmdPoDtTrans;
         private StockRawStockService cmdStockRawStockService;
-        
+
 
         public class DATAGRID
         {
@@ -128,7 +129,7 @@ namespace SPW.UI.Web.Page
             {
                 nameList[i] = nameList[i].Replace("\"", "นิ้ว");
                 nameList[i] = nameList[i].Replace("'", "นิ้ว");
-                str = str + '"' + nameList[i].ToString().Replace(","," ") + '"' + ',';
+                str = str + '"' + nameList[i].ToString().Replace(",", " ") + '"' + ',';
             }
             if (str != "")
             {
@@ -191,6 +192,7 @@ namespace SPW.UI.Web.Page
             }
             catch (Exception e)
             {
+                DebugLog.WriteLog(e.ToString());
                 lblerror2.Text = "*พบข้อผิดพลาดระหว่างการตรวจสอบ กรุณาติดต่อเจ้าหน้าที่";
                 return false;
             }
@@ -372,7 +374,7 @@ namespace SPW.UI.Web.Page
                 return false;
             }
         }
-        private bool SaveNewPoDtData(string PO_BK_NO, string PO_RN_NO,PR_HD_TRANS _PR_HD_TRANS)
+        private bool SaveNewPoDtData(string PO_BK_NO, string PO_RN_NO, PR_HD_TRANS _PR_HD_TRANS)
         {
             try
             {
@@ -516,7 +518,7 @@ namespace SPW.UI.Web.Page
                 ReloadPageEngine();
             }
         }
-        
+
         protected void txtRawName_TextChanged(object sender, EventArgs e)
         {
             ViewState["RAWPRODUCT"] = GetProductCode(txtRawName.Text);
@@ -542,7 +544,7 @@ namespace SPW.UI.Web.Page
                 txtRawCode.Text = string.Empty;
                 txtStockRemain.Text = string.Empty;
             }
-                
+
         }
 
         protected void txtVendorName_TextChanged(object sender, EventArgs e)
@@ -561,7 +563,7 @@ namespace SPW.UI.Web.Page
                     isFoundRawCode.Value = "false";
                     spVendorCode.Visible = false;
                 }
-                
+
             }
             else
             {
@@ -607,8 +609,9 @@ namespace SPW.UI.Web.Page
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 lblError.Text = "*พบข้อผิดพลาดจากการตรวจสอบข้อมูล กรุณาติดต่อเจ้าหน้าที่";
             }
         }

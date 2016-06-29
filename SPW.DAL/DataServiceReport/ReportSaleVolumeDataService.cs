@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPW.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -68,6 +69,7 @@ namespace SPW.DAL
             }
             catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 return null;
             }
         }

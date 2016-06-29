@@ -37,15 +37,29 @@ namespace SPW.DataService
             throw new NotImplementedException();
         }
 
-        public void Edit(EMPLOYEE obj)
+        public void Edit(EMPLOYEE o)
         {
-            var item = this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_ID == obj.EMPLOYEE_ID).FirstOrDefault();
-            item.EMPLOYEE_NAME = obj.EMPLOYEE_NAME;
-            item.EMPLOYEE_SURNAME = obj.EMPLOYEE_SURNAME;
-            item.EMPLOYEE_CODE = obj.EMPLOYEE_CODE;
-            item.DEPARTMENT_ID = obj.DEPARTMENT_ID;
-            item.UPDATE_DATE = obj.UPDATE_DATE;
-            item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            var i = this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_ID == o.EMPLOYEE_ID).FirstOrDefault();
+            i.EMPLOYEE_NAME = o.EMPLOYEE_NAME;
+            i.EMPLOYEE_SURNAME = o.EMPLOYEE_SURNAME;
+            i.EMPLOYEE_CODE = o.EMPLOYEE_CODE;
+            i.ADDRESS1 = o.ADDRESS1;
+            i.ADDRESS2 = o.ADDRESS2;
+            i.ADDRESS3 = o.ADDRESS3;
+            i.BIR_DATE = o.BIR_DATE;
+            i.EDUCATION_GRADE = o.EDUCATION_GRADE;
+            i.EDUCATION_NAME = o.EDUCATION_NAME;
+            i.EMPLOYEE_MIDNAME = o.EMPLOYEE_MIDNAME;
+            i.GEND = o.GEND;
+            i.MARI_STT = o.MARI_STT;
+            i.MILI_STT = o.MILI_STT;
+            i.NAT = o.NAT;
+            i.RELI = o.RELI;
+            i.TEL1 = o.TEL1;
+            i.TEL2 = o.TEL2;
+            i.UPDATE_DATE = o.UPDATE_DATE;
+            i.UPDATE_EMPLOYEE_ID = o.UPDATE_EMPLOYEE_ID;
+            i.SYE_DEL = o.SYE_DEL;
             this.Datacontext.SaveChanges();
         }
 

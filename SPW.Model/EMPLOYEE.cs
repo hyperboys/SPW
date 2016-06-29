@@ -23,15 +23,27 @@ namespace SPW.Model
         public int EMPLOYEE_ID { get; set; }
         public string EMPLOYEE_CODE { get; set; }
         public string EMPLOYEE_NAME { get; set; }
+        public string EMPLOYEE_MIDNAME { get; set; }
         public string EMPLOYEE_SURNAME { get; set; }
-        public int DEPARTMENT_ID { get; set; }
+        public string GEND { get; set; }
+        public Nullable<System.DateTime> BIR_DATE { get; set; }
+        public string NAT { get; set; }
+        public string RELI { get; set; }
+        public string ADDRESS1 { get; set; }
+        public string ADDRESS2 { get; set; }
+        public string ADDRESS3 { get; set; }
+        public string TEL1 { get; set; }
+        public string TEL2 { get; set; }
+        public string MILI_STT { get; set; }
+        public string MARI_STT { get; set; }
+        public string EDUCATION_GRADE { get; set; }
+        public string EDUCATION_NAME { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual DEPARTMENT DEPARTMENT { get; set; }
         public virtual ICollection<USER> USER { get; set; }
         public virtual ICollection<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.DAL;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -178,8 +179,9 @@ namespace SPW.UI.Web.Page
                 else
                     returnValue = true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                DebugLog.WriteLog(ex.ToString());
                 lblerror2.Text = "*พบข้อผิดพลาดระหว่างการตรวจสอบ กรุณาติดต่อเจ้าหน้าที่";
                 return false;
             }

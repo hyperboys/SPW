@@ -137,6 +137,15 @@
     <Compile Include="EMPLOYEE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="EMPLOYEE_HIST.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_POSITION.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_SKILL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="FUNCTION.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>

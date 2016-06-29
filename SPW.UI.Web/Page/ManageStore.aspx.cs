@@ -74,7 +74,7 @@ namespace SPW.UI.Web.Page
                 ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString()));
             }
 
-            foreach (var item in cmdEmp.GetAllInclude().Where(x => x.DEPARTMENT.DEPARTMENT_NAME == "Sale").ToList())
+            foreach (var item in cmdEmp.GetAllInclude().ToList())
             {
                 ddlSell.Items.Add(new ListItem((item.EMPLOYEE_NAME + " " + item.EMPLOYEE_SURNAME), item.EMPLOYEE_ID.ToString()));
             }

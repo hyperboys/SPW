@@ -330,6 +330,7 @@ namespace SPW.UI.Web.Page
                 }
                 catch (Exception ex)
                 {
+                    DebugLog.WriteLog(ex.ToString());
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Warning Message", "<script>alert('ไม่สามารถทำรายการได้');</script>", true);
                 }
 

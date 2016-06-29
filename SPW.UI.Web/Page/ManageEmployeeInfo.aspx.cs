@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.DAL;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
-    public partial class ManageEmployee : System.Web.UI.Page
+    public partial class ManageEmployeeInfo : System.Web.UI.Page
     {
         private DataServiceEngine _dataServiceEngine;
         private DepartmentService cmdDepartmentService;
@@ -87,7 +91,7 @@ namespace SPW.UI.Web.Page
             var list = cmdDepartmentService.GetAll();
             foreach (var item in list)
             {
-                ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
+                //ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
             }
 
             if (Request.QueryString["id"] != null)
@@ -98,9 +102,17 @@ namespace SPW.UI.Web.Page
                     popTxtEmployeeCode.Text = _employee.EMPLOYEE_CODE;
                     txtName.Text = _employee.EMPLOYEE_NAME;
                     txtLastName.Text = _employee.EMPLOYEE_SURNAME;
-                    ddlDepartment.SelectedValue = _employee.DEPARTMENT_ID.ToString();
                     lblName.Text = _employee.EMPLOYEE_CODE;
-                    flag.Text = "Edit";
+                    txtAddress1.Text = _employee.ADDRESS1;
+                    txtGrade.Text = _employee.EDUCATION_GRADE;
+                    txtMarry.Text = _employee.MARI_STT;
+                    txtNationality.Text = _employee.NAT;
+                    txtPhone1.Text = _employee.TEL1;
+                    txtPhone2.Text = _employee.TEL2;
+                    txtReligion.Text = _employee.RELI;
+                    txtSoldier.Text = _employee.MILI_STT;
+                    txtUniversity.Text = _employee.EDUCATION_NAME;
+                    txtBDate.Text = _employee.BIR_DATE != null ? _employee.BIR_DATE.Value.ToString("dd/MM/yyyy") : "";
                 }
             }
         }
@@ -125,45 +137,62 @@ namespace SPW.UI.Web.Page
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            var obj = new EMPLOYEE();
-            obj.DEPARTMENT_ID = Convert.ToInt32(ddlDepartment.SelectedValue);
-            obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
-            obj.EMPLOYEE_NAME = txtName.Text;
-            obj.EMPLOYEE_SURNAME = txtLastName.Text;
-            if (flag.Text.Equals("Add"))
+            try
             {
-                obj.Action = ActionEnum.Create;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdEmployeeService.Add(obj);
+
+                USER userItem = Session["user"] as USER;
+                var obj = new EMPLOYEE();
+                obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
+                obj.EMPLOYEE_NAME = txtName.Text;
+                obj.EMPLOYEE_SURNAME = txtLastName.Text;
+                obj.ADDRESS1 = txtAddress1.Text;
+                obj.BIR_DATE = DateTime.ParseExact(txtBDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (obj.BIR_DATE.Value.Year > 2500)
+                {
+                    obj.BIR_DATE = obj.BIR_DATE.Value.AddYears(-543);
+                }
+                obj.EDUCATION_GRADE = txtGrade.Text;
+                obj.EDUCATION_NAME = txtUniversity.Text;
+                obj.GEND = ddlSex.SelectedValue;
+                obj.MARI_STT = txtMarry.Text;
+                obj.MILI_STT = txtSoldier.Text;
+                obj.NAT = txtNationality.Text;
+                obj.RELI = txtReligion.Text;
+                obj.TEL1 = txtPhone1.Text;
+                obj.TEL2 = txtPhone2.Text;
+                if (Request.QueryString["id"] != null)
+                {
+                    obj.Action = ActionEnum.Update;
+                    obj.EMPLOYEE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.SYE_DEL = false;
+                    cmdEmployeeService.Edit(obj);
+                }
+                else
+                {
+                    obj.Action = ActionEnum.Create;
+                    obj.CREATE_DATE = DateTime.Now;
+                    obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.SYE_DEL = false;
+                    cmdEmployeeService.Add(obj);
+                }
+
+                btnSave.Enabled = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                lblAlert.Text = "บันทึกข้อมูลสำเร็จ Save Success";
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchEmployee.aspx");
             }
-            else
+            catch (Exception ex)
             {
-                obj.Action = ActionEnum.Update;
-                obj.EMPLOYEE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdEmployeeService.Edit(obj);
+                DebugLog.WriteLog(ex.ToString());
+                lblAlert.Text = "บันทึกข้อมูลไม่สำเร็จ กรุณาทำรายการใหม่";
+                alert.Visible = true;
             }
-
-            btnSave.Enabled = false;
-            btnSave.Visible = false;
-            btnCancel.Visible = false;
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchEmployee.aspx");
-        }
-
-        protected void btnAddZone_Click(object sender, EventArgs e)
-        {
-            USER userItem = Session["user"] as USER;
-            var cmdZoneService = new ZoneService();
-            List<ZONE_DETAIL> list = new List<ZONE_DETAIL>();
-            PrepareObjectScreen();
         }
     }
 }

@@ -158,6 +158,7 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ManageEmployeeInfo.aspx" />
     <Content Include="Page\IssuePurchaseOrders.aspx" />
     <Content Include="Page\IssuePurchaseRequisitionOrder.aspx" />
     <Content Include="Page\ManageAccountMast.aspx" />
@@ -196,7 +197,6 @@
     <Content Include="Page\ManageStore.aspx" />
     <Content Include="Page\ManageRole.aspx" />
     <Content Include="Page\ManageProduct.aspx" />
-    <Content Include="Page\ManageEmployee.aspx" />
     <Content Include="Page\ManageDepartment.aspx" />
     <Content Include="Page\ManageColorProduct.aspx" />
     <Content Include="Page\ManageCategory.aspx" />
@@ -273,6 +273,13 @@
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageEmployeeInfo.aspx.cs">
+      <DependentUpon>ManageEmployeeInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageEmployeeInfo.aspx.designer.cs">
+      <DependentUpon>ManageEmployeeInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\IssuePurchaseOrders.aspx.cs">
       <DependentUpon>IssuePurchaseOrders.aspx</DependentUpon>
@@ -539,13 +546,6 @@
     </Compile>
     <Compile Include="Page\ManageProduct.aspx.designer.cs">
       <DependentUpon>ManageProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Page\ManageEmployee.aspx.cs">
-      <DependentUpon>ManageEmployee.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\ManageEmployee.aspx.designer.cs">
-      <DependentUpon>ManageEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ManageDepartment.aspx.cs">
       <DependentUpon>ManageDepartment.aspx</DependentUpon>
