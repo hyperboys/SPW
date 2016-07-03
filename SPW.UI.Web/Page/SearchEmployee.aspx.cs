@@ -98,7 +98,7 @@ namespace SPW.UI.Web.Page
 
         protected void gridEmployee_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            Response.RedirectPermanent("ManageEmployeeInfo.aspx?id=" + gridEmployee.DataKeys[e.NewEditIndex].Values[0].ToString());
+            Response.RedirectPermanent("ManageEmployee.aspx?id=" + gridEmployee.DataKeys[e.NewEditIndex].Values[0].ToString());
         }
 
         protected void gridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -109,7 +109,7 @@ namespace SPW.UI.Web.Page
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            Response.RedirectPermanent("ManageEmployeeInfo.aspx");
+            Response.RedirectPermanent("ManageEmployee.aspx");
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

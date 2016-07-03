@@ -70,7 +70,6 @@ namespace SPW.DataService
         public void Delete(int ID)
         {
             var obj = this.Datacontext.EMP_POSITION.Where(x => x.POSITION_ID == ID).FirstOrDefault();
-            //obj.SYE_DEL = true;
             this.Datacontext.EMP_POSITION.Remove(obj);
             this.Datacontext.SaveChanges();
         }

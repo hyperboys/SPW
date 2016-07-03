@@ -158,7 +158,9 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
-    <Content Include="Page\ManageEmployeeInfo.aspx" />
+    <Content Include="Page\ManageEmpPosition.aspx" />
+    <Content Include="Page\SearchEmpPosition.aspx" />
+    <Content Include="Page\ManageEmployee.aspx" />
     <Content Include="Page\IssuePurchaseOrders.aspx" />
     <Content Include="Page\IssuePurchaseRequisitionOrder.aspx" />
     <Content Include="Page\ManageAccountMast.aspx" />
@@ -274,12 +276,26 @@
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\ManageEmployeeInfo.aspx.cs">
-      <DependentUpon>ManageEmployeeInfo.aspx</DependentUpon>
+    <Compile Include="Page\ManageEmpPosition.aspx.cs">
+      <DependentUpon>ManageEmpPosition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\ManageEmployeeInfo.aspx.designer.cs">
-      <DependentUpon>ManageEmployeeInfo.aspx</DependentUpon>
+    <Compile Include="Page\ManageEmpPosition.aspx.designer.cs">
+      <DependentUpon>ManageEmpPosition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmpPosition.aspx.cs">
+      <DependentUpon>SearchEmpPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmpPosition.aspx.designer.cs">
+      <DependentUpon>SearchEmpPosition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageEmployee.aspx.cs">
+      <DependentUpon>ManageEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageEmployee.aspx.designer.cs">
+      <DependentUpon>ManageEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\IssuePurchaseOrders.aspx.cs">
       <DependentUpon>IssuePurchaseOrders.aspx</DependentUpon>

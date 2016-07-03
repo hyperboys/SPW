@@ -13,7 +13,7 @@ using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
-    public partial class ManageEmployeeInfo : System.Web.UI.Page
+    public partial class ManageEmployee : System.Web.UI.Page
     {
         private DataServiceEngine _dataServiceEngine;
         private DepartmentService cmdDepartmentService;
@@ -140,16 +140,20 @@ namespace SPW.UI.Web.Page
             try
             {
 
+
                 USER userItem = Session["user"] as USER;
                 var obj = new EMPLOYEE();
                 obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
                 obj.EMPLOYEE_NAME = txtName.Text;
                 obj.EMPLOYEE_SURNAME = txtLastName.Text;
                 obj.ADDRESS1 = txtAddress1.Text;
-                obj.BIR_DATE = DateTime.ParseExact(txtBDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (obj.BIR_DATE.Value.Year > 2500)
+                if (!String.IsNullOrEmpty(txtBDate.Text))
                 {
-                    obj.BIR_DATE = obj.BIR_DATE.Value.AddYears(-543);
+                    obj.BIR_DATE = DateTime.ParseExact(txtBDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    if (obj.BIR_DATE.Value.Year > 2500)
+                    {
+                        obj.BIR_DATE = obj.BIR_DATE.Value.AddYears(-543);
+                    }
                 }
                 obj.EDUCATION_GRADE = txtGrade.Text;
                 obj.EDUCATION_NAME = txtUniversity.Text;
@@ -193,6 +197,58 @@ namespace SPW.UI.Web.Page
                 lblAlert.Text = "บันทึกข้อมูลไม่สำเร็จ กรุณาทำรายการใหม่";
                 alert.Visible = true;
             }
+        }
+
+        protected void btnAddEmpPos_Click(object sender, EventArgs e)
+        {
+            HideAddEmpPos(true);
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCan_Click(object sender, EventArgs e)
+        {
+            txtEmpPosEff.Text = "";
+            txtEmpPosExp.Text = "";
+            txtEmpPosSalary.Text = "";
+            txtEmpPosSalaryPos.Text = "";
+            txtEmpPosSalarySkill.Text = "";
+            txtEmpPosSeq.Text = "";
+            ddlDepart.SelectedIndex = 0;
+            ddlSex.SelectedIndex = 0;
+
+            HideAddEmpPos(false);
+        }
+
+        private void HideAddEmpPos(bool visible)
+        {
+            this.addEmpPos1.Visible = visible;
+            this.addEmpPos2.Visible = visible;
+            this.addEmpPos3.Visible = visible;
+            this.addEmpPos4.Visible = visible;
+            this.addEmpPos5.Visible = visible;
+        }
+
+        protected void grdEmpPos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void grdEmpPos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                //_empPositionService.Delete(Convert.ToInt32(grdEmpPos.DataKeys[e.RowIndex].Values[0].ToString()));
+            }
+            catch
+            {
+                lblAlert.Text = "ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้";
+                alert.Visible = true;
+            }
+            PrepareObjectScreen();
         }
     }
 }
