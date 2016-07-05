@@ -20,8 +20,8 @@ namespace SPW.UI.Web.Page
         private EmployeeService cmdEmployeeService;
         private ZoneDetailService cmdZoneDetailService;
         private ZoneService cmdZoneService;
-
         private EMPLOYEE _employee;
+        private static bool isOpen = false;
 
         public List<ZONE_DETAIL> DataSouceRoleFunction
         {
@@ -91,7 +91,7 @@ namespace SPW.UI.Web.Page
             var list = cmdDepartmentService.GetAll();
             foreach (var item in list)
             {
-                //ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
+                ddlDepart.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
             }
 
             if (Request.QueryString["id"] != null)
@@ -139,8 +139,6 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-
-
                 USER userItem = Session["user"] as USER;
                 var obj = new EMPLOYEE();
                 obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
@@ -201,7 +199,18 @@ namespace SPW.UI.Web.Page
 
         protected void btnAddEmpPos_Click(object sender, EventArgs e)
         {
-            HideAddEmpPos(true);
+            isOpen = !isOpen;
+            HideAddEmpPos(isOpen);
+            if (isOpen == false)
+            {
+                ClearEmpPos();
+                btnAddEmpPos.Text = "+";
+            }
+            else
+            {
+                btnAddEmpPos.Text = "-";
+            }
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -209,7 +218,7 @@ namespace SPW.UI.Web.Page
 
         }
 
-        protected void btnCan_Click(object sender, EventArgs e)
+        private void ClearEmpPos()
         {
             txtEmpPosEff.Text = "";
             txtEmpPosExp.Text = "";
@@ -219,8 +228,6 @@ namespace SPW.UI.Web.Page
             txtEmpPosSeq.Text = "";
             ddlDepart.SelectedIndex = 0;
             ddlSex.SelectedIndex = 0;
-
-            HideAddEmpPos(false);
         }
 
         private void HideAddEmpPos(bool visible)

@@ -281,7 +281,6 @@
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
                                             <asp:Button ID="btnAdd" runat="server" Text="เพิ่ม" Width="75px" class="btn btn-primary" OnClick="btnAdd_Click" />
-                                            <asp:Button ID="btnCan" runat="server" Text="ยกเลิก" Width="75px" class="btn btn-primary" OnClick="btnCan_Click" />
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
