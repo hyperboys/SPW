@@ -41,8 +41,8 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            var cmd = new TraceryService();
-            DataSouce = cmd.GetALL();
+            var cmd = new ColorTypeService();
+            DataSouce = cmd.GetAll();
             gridTracery.DataSource = DataSouce;
             gridTracery.DataBind();
         }
@@ -102,7 +102,7 @@ namespace SPW.UI.Web.Page
         {
             if (ViewState["colorTypeId"] != null)
             {
-                var cmd = new TraceryService();
+                var cmd = new ColorTypeService();
                 _colorType = cmd.Select(Convert.ToInt32(ViewState["colorTypeId"].ToString()));
                 if (_colorType != null)
                 {
@@ -118,7 +118,7 @@ namespace SPW.UI.Web.Page
             var obj = new COLOR_TYPE();
             obj.COLOR_TYPE_NAME = popTxtColorTypeName.Text;
             obj.COLOR_TYPE_SUBNAME = popTxtColorTypeSubName.Text;
-            var cmd = new TraceryService(obj);
+            var cmd = new ColorTypeService();
             if (flag.Text.Equals("Add"))
             {
                 obj.Action = ActionEnum.Create;
@@ -127,7 +127,7 @@ namespace SPW.UI.Web.Page
                 obj.UPDATE_DATE = DateTime.Now;
                 obj.UPDATE_EMPLOYEE_ID = 0;
                 obj.SYE_DEL = true;
-                cmd.Add();
+                cmd.Add(obj);
             }
             else
             {
@@ -136,7 +136,7 @@ namespace SPW.UI.Web.Page
                 obj.UPDATE_DATE = DateTime.Now;
                 obj.UPDATE_EMPLOYEE_ID = 0;
                 obj.SYE_DEL = true;
-                cmd.Edit();
+                cmd.Edit(obj);
             }
             ViewState["colorTypeId"] = null;
             Response.Redirect("SearchTracery.aspx");

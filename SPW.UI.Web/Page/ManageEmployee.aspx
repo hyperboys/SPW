@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
-    CodeBehind="ManageEmployee.aspx.cs" Inherits="SPW.UI.Web.Page.ManageEmployee" %>
+    CodeBehind="ManageEmployee.aspx.cs" Inherits="SPW.UI.Web.Page.ManageEmployee" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
@@ -85,16 +85,15 @@
         }
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
     <div class="panel panel-primary">
         <div class="panel-heading">
             ข้อมูลพนักงาน        
         </div>
-
         <div class="panel-body">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div class="row">
+
+            <div class="row">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
                         <div class="col-lg-12">
                             <div class="form">
                                 <div class="form-group">
@@ -195,6 +194,7 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-2">
                                             เพิ่มข้อมูลการทำงาน
@@ -207,6 +207,7 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
+
                                     <div runat="server" id="addEmpPos1" visible="false" class="row">
                                         <div class="col-md-2">
                                             ลำดับที่
@@ -216,7 +217,7 @@
                                         </div>
                                         <div class="col-md-2">ตำแหน่ง</div>
                                         <div class="col-md-3">
-                                            <asp:DropDownList ID="dllEmpPos" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                            <asp:DropDownList ID="ddlEmpPos" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
                                                 <asp:ListItem Text="กรุณาเลือก" Selected="True" Value="0"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
@@ -280,72 +281,86 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
-                                            <asp:Button ID="btnAdd" runat="server" Text="เพิ่ม" Width="75px" class="btn btn-primary" OnClick="btnAdd_Click" />
+                                            <asp:Button ID="btnAdd" runat="server" Text="บันทึกข้อมูลการทำงาน" Width="150px" class="btn btn-primary" OnClick="btnAdd_Click" />
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <div class="panel panel-primary">
-                <asp:GridView ID="grdEmpPos" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" 
-                    DataKeyNames="POSITION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลตำแหน่งพนักงาน"
-                    Style="text-align: center" CssClass="grid" OnRowDataBound="grdEmpPos_RowDataBound" OnRowDeleting="grdEmpPos_RowDeleting">
-                    <AlternatingRowStyle BackColor="White" />
-                    <Columns>
-                        <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
-                            <ItemTemplate>
-                                <%# Container.DataItemIndex + 1 %>
-                            </ItemTemplate>
-                            <ItemStyle BorderStyle="Solid" />
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="POSITION_NAME" HeaderText="ชื่อตำแหน่งพนักงาน" ItemStyle-Width="75%">
-                            <ItemStyle Width="85%"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lbtnDetail" runat="server">
+
+
+                        <%--<div class="panel panel-primary">--%>
+                        <div class="col-lg-12">
+                            <asp:GridView ID="grdEmpPos" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                                DataKeyNames="HIST_SEQ_NO" PageSize="20" Width="100%"
+                                Style="text-align: center" CssClass="grid" OnRowEditing="grdEmpPos_RowEditing" OnRowCommand="grdEmpPos_RowCommand">
+                                <AlternatingRowStyle BackColor="White" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
+                                        <ItemTemplate>
+                                            <%# Container.DataItemIndex + 1 %>
+                                        </ItemTemplate>
+                                        <ItemStyle BorderStyle="Solid" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="POSITION_NAME" HeaderText="ชื่อตำแหน่งพนักงาน" ItemStyle-Width="36%">
+                                        <ItemStyle Width="36%"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="SAL_AMT" HeaderText="เงินเดือน" ItemStyle-Width="13%" DataFormatString="{0:###,###,###.00}">
+                                        <ItemStyle Width="13%"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="POSI_AMT" HeaderText="ค่าตำแหน่ง" ItemStyle-Width="13%" DataFormatString="{0:###,###,###.00}">
+                                        <ItemStyle Width="13%"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="JOBB_AMT" HeaderText="ค่าจ้างตามความถนัด" ItemStyle-Width="13%" DataFormatString="{0:###,###,###.00}">
+                                        <ItemStyle Width="13%"></ItemStyle>
+                                    </asp:BoundField>
+                                    <%-- <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="รายละเอียด"
+                                        ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center" CancelImageUrl="~/Image/Icon/find.png" DeleteImageUrl="~/Image/Icon/find.png" InsertImageUrl="~/Image/Icon/find.png" NewImageUrl="~/Image/Icon/find.png" SelectImageUrl="~/Image/Icon/find.png" UpdateImageUrl="~/Image/Icon/find.png">
+                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+                                        <ItemStyle Width="10%"></ItemStyle>
+                                    </asp:CommandField>--%>
+                                    <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnDetail" runat="server">
                                     <div class='glyphicon glyphicon-list'></div>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ลบ" ShowHeader="False">
-                            <ItemTemplate>
-                                <asp:ImageButton ID="ImageButton1" runat="server" ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
-                                    ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                    </Columns>
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                    <PagerSettings Mode="NumericFirstLast" />
-                </asp:GridView>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <EditRowStyle BackColor="#2461BF" />
+                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                            </asp:GridView>
+                            <%--</div>--%>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
-        </div>
-        <div style="float: right;">
-            <table>
-                <tr>
-                    <td>
-                        <asp:Button ID="btnSave" runat="server" Text="บันทึก" class="btn btn-primary" ValidationGroup="group" OnClick="btnSave_Click" />
-                    </td>
-                    <td>&nbsp;&nbsp;</td>
-                    <td>
-                        <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
-                    </td>
-                </tr>
-            </table>
+            <div style="float: right; margin-top: 5px;">
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Button ID="btnSave" runat="server" Text="บันทึก" class="btn btn-primary" ValidationGroup="group" OnClick="btnSave_Click" />
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <!-- /.panel -->

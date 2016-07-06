@@ -81,7 +81,6 @@
     <Compile Include="StockTransService.cs" />
     <Compile Include="StockTypeService.cs" />
     <Compile Include="SupplierService.cs" />
-    <Compile Include="TraceryService.cs" />
     <Compile Include="UnitTypeService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="VehicleService.cs" />

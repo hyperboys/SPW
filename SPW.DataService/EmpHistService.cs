@@ -78,6 +78,11 @@ namespace SPW.DataService
             return this.Datacontext.EMPLOYEE_HIST.Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == EMP_ID).ToList();
         }
 
+        public int GetSeqNo(int EMP_ID)
+        {
+            return this.Datacontext.EMPLOYEE_HIST.Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == EMP_ID).ToList().Count();
+        }
+
         public void Delete(int ID)
         {
             var obj = this.Datacontext.EMPLOYEE_HIST.Where(x => x.HIST_SEQ_NO == ID).FirstOrDefault();
