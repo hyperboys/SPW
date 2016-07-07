@@ -283,6 +283,13 @@
     <Compile Include="Page\ManageEmpPosition.aspx.designer.cs">
       <DependentUpon>ManageEmpPosition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\PurchaseOrderReceipts.aspx.cs">
+      <DependentUpon>PurchaseOrderReceipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PurchaseOrderReceipts.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderReceipts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\SearchEmpPosition.aspx.cs">
       <DependentUpon>SearchEmpPosition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
