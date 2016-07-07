@@ -101,5 +101,13 @@ namespace SPW.DataService
                 return 0;
             }
         }
+        public void SetRawStockQty(int RAW_ID, int RAW_REMAIN, int UPDATE_EMPLOYEE_ID)
+        {
+            STOCK_RAW_STOCK obj = Datacontext.STOCK_RAW_STOCK.Where(x => x.RAW_ID == RAW_ID).FirstOrDefault();
+            obj.RAW_REMAIN = RAW_REMAIN;
+            obj.UPDATE_DATE = DateTime.Now;
+            obj.UPDATE_EMPLOYEE_ID = UPDATE_EMPLOYEE_ID;
+            Datacontext.SaveChanges();
+        }
     }
 }

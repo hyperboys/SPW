@@ -76,9 +76,9 @@ namespace SPW.DataService
             throw new NotImplementedException();
         }
 
-        public RECEIVE_RAW_TRANS Select(string PO_BK_NO, string PO_RN_NO)
+        public List<RECEIVE_RAW_TRANS> Select(string PO_BK_NO, string PO_RN_NO, string PO_YY)
         {
-            throw new NotImplementedException();
+            return Datacontext.RECEIVE_RAW_TRANS.Where(x => x.PO_BK_NO == PO_BK_NO && x.PO_RN_NO == PO_RN_NO && x.PO_YY == PO_YY).ToList();
         }
 
         public List<RECEIVE_RAW_TRANS> GetAll()
@@ -97,11 +97,23 @@ namespace SPW.DataService
         {
             return this.Datacontext.RECEIVE_RAW_TRANS.Where(x => x.SYE_DEL == false).OrderBy(x => x.RECEIVE_NO).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
         }
-        public string GetMaxBKNo()
+        public string GetMaxRecNo()
         {
             RECEIVE_RAW_TRANS _RECEIVE_RAW_TRANS = new RECEIVE_RAW_TRANS();
-            _RECEIVE_RAW_TRANS = this.Datacontext.RECEIVE_RAW_TRANS.Where(e => e.PO_BK_NO.Contains("BK-REC-")).OrderByDescending(x => x.RECEIVE_NO).FirstOrDefault();
+            _RECEIVE_RAW_TRANS = this.Datacontext.RECEIVE_RAW_TRANS.Where(e => e.RECEIVE_NO.Contains("REC-")).OrderByDescending(x => x.RECEIVE_NO).FirstOrDefault();
             return (_RECEIVE_RAW_TRANS == null) ? null : _RECEIVE_RAW_TRANS.RECEIVE_NO;
+        }
+        public int GetSumReceiveQty(string PO_BK_NO, string PO_RN_NO, string PO_YY, int RAW_ID)
+        {
+            List<RECEIVE_RAW_TRANS> lstReceive = Datacontext.RECEIVE_RAW_TRANS.Where(x => x.PO_BK_NO == PO_BK_NO && x.PO_RN_NO == PO_RN_NO && x.PO_YY == PO_YY && x.RAW_ID == RAW_ID).ToList();
+            if (lstReceive.Count > 0)
+            {
+                return lstReceive.Sum(x => Convert.ToInt32(x.RECEIVE_QTY));
+            }
+            else
+            {
+                return 0;
+            }
         }
         #endregion
     }

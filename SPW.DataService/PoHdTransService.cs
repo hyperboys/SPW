@@ -82,7 +82,7 @@ namespace SPW.DataService
         }
         public List<PO_HD_TRANS> GetAllByStatusApprove()
         {
-            return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false && x.PO_HD_STATUS == "20").ToList();
+            return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false).ToList();
         }
         public List<PO_HD_TRANS> GetAllByFilter(int PageIndex, int PageLimit)
         {
@@ -100,14 +100,15 @@ namespace SPW.DataService
             _PO_HD_TRANS = this.Datacontext.PO_HD_TRANS.Where(e => e.PO_BK_NO.Contains(_maxBKNo)).OrderByDescending(x => x.PO_RN_NO).FirstOrDefault();
             return (_PO_HD_TRANS == null) ? null : _PO_HD_TRANS.PO_RN_NO;
         }
-        public void UpdateStatusToApprove(string PO_BK_NO, string PO_RN_NO, int EMPLOYEE_ID)
+        public bool UpdateStatusPoHd(string PO_BK_NO, string PO_RN_NO, int EMPLOYEE_ID, string PO_HD_STATUS)
         {
             var item = this.Datacontext.PO_HD_TRANS.Where(x => x.PO_BK_NO == PO_BK_NO && x.PO_RN_NO == PO_RN_NO).FirstOrDefault();
 
-            item.PO_HD_STATUS = "20";
+            item.PO_HD_STATUS = PO_HD_STATUS;
             item.UPDATE_DATE = DateTime.Now;
             item.UPDATE_EMPLOYEE_ID = EMPLOYEE_ID;
             this.Datacontext.SaveChanges();
+            return true;
         }
         #endregion
     }

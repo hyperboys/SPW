@@ -111,14 +111,14 @@ namespace SPW.DataService
             _PO_DT_TRANS = this.Datacontext.PO_DT_TRANS.Where(e => e.PO_BK_NO.Contains(_maxBKNo)).OrderByDescending(x => x.PO_RN_NO).FirstOrDefault();
             return (_PO_DT_TRANS == null) ? null : _PO_DT_TRANS.PO_RN_NO;
         }
-        public void UpdateStatusToApprove(string PO_BK_NO, string PO_RN_NO, int EMPLOYEE_ID)
+        public void UpdateStatusPoDt(string PO_BK_NO, string PO_RN_NO, int EMPLOYEE_ID, string PO_HD_STATUS)
         {
             try
             {
                 var lstItem = this.Datacontext.PO_DT_TRANS.Where(x => x.PO_BK_NO == PO_BK_NO && x.PO_RN_NO == PO_RN_NO);
                 foreach (var item in lstItem)
                 {
-                    item.PO_DT_STATUS = "20";
+                    item.PO_DT_STATUS = PO_HD_STATUS;
                     item.UPDATE_DATE = DateTime.Now;
                     item.UPDATE_EMPLOYEE_ID = EMPLOYEE_ID;
                 }
