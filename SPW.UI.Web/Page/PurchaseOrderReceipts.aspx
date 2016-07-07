@@ -49,9 +49,9 @@
                                         <div class="col-md-5">
                                             <div class="btn-group" role="group" aria-label="First group">
                                                 <asp:Button ID="btnActive" class="btn" Text="Active" runat="server" type="button"/>
-                                                <asp:Button ID="btnApprove" class="btn" Text="Approve" runat="server" type="button"/>
-                                                <asp:Button ID="btnFinish" class="btn" Text="Finish" runat="server" type="button"/>
-                                                <asp:Button ID="btnCancel" class="btn" Text="Cancel" runat="server" type="button"/>
+                                                <asp:Button ID="btnApprove" class="btn" Text="Approve" runat="server" type="button" OnClick="btnApprove_Click"/>
+                                                <asp:Button ID="btnFinish" class="btn" Text="Finish" runat="server" type="button" OnClick="btnFinish_Click"/>
+                                                <asp:Button ID="btnCancel" class="btn" Text="Cancel" runat="server" type="button"  OnClick="btnCancel_Click"/>
                                                 <%--<asp:Button ID="btnIssue" class="btn" Text="I" runat="server" type="button"/>
                                                 <asp:Button ID="btnApprove" class="btn" Text="A" runat="server" type="button"/>
                                                 <asp:Button ID="btnFinish" class="btn" Text="F" runat="server" type="button"/>
@@ -125,7 +125,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวนที่รับ" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:TextBox runat="server" ID="txtQtyReceive" class="form-control" style="text-align:center" Text='<%# ((DATAGRID) Container.DataItem).PO_QTY %>' />                                        
+                                        <asp:TextBox runat="server" ID="txtQtyReceive" class="form-control" style="text-align:center" Text='<%# ((DATAGRID) Container.DataItem).RECEIVE_QTY %>' />                     
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสแพ็ค" ItemStyle-Width="10%">

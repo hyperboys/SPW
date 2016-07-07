@@ -469,11 +469,13 @@ namespace SPW.UI.Web.Page
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
-            cmdPoHdTrans.UpdateStatusToApprove(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID);
-            cmdPoDtTrans.UpdateStatusToApprove(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID);
+            if (cmdPoHdTrans.UpdateStatusPoHd(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID, "20"))
+            {
+                cmdPoDtTrans.UpdateStatusPoDt(txtBKNo.Text, txtRNNo.Text, userItem.EMPLOYEE_ID,"20");
 
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrder.aspx");
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrder.aspx");
+            }
         }
         protected void gdvPO_RowEditing(object sender, GridViewEditEventArgs e)
         {

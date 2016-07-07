@@ -31,6 +31,7 @@ namespace SPW.UI.Web.Page
             public int RAW_PACK_ID { get; set; }
             public int STOCK_REMAIN { get; set; }
             public int PO_QTY { get; set; }
+            public int RECEIVE_QTY { get; set; }
         }
         #endregion
 
@@ -94,6 +95,7 @@ namespace SPW.UI.Web.Page
                         _datagrid.STOCK_REMAIN = cmdStockRawStockService.GetRemainQty(e.RAW_ID);
                         _datagrid.PO_QTY = e.PO_QTY;
                         _datagrid.RAW_ID = e.RAW_ID;
+                        _datagrid.RECEIVE_QTY = cmdReceiveRawTransService.GetSumReceiveQty(e.PO_BK_NO,e.PO_RN_NO,e.PO_YY,e.RAW_ID);
                         listDataGrid.Add(_datagrid);
                     });
 
@@ -160,7 +162,6 @@ namespace SPW.UI.Web.Page
                 }
                 if (SaveReceiveRawTrans())
                 {
-                    ClearSession();
                     return true;
                 }
                 else
@@ -215,9 +216,32 @@ namespace SPW.UI.Web.Page
                 throw e;
             }
         }
+        private bool SaveReceiveRawStock()
+        {
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                USER userItem = Session["user"] as USER;
+                if (listDataGrid.Count > 0)
+                {
+                    listDataGrid.ForEach(e =>
+                    {
+                        int oPO_QTY = cmdStockRawStockService.GetRemainQty(e.RAW_ID);
+                        cmdStockRawStockService.SetRawStockQty(e.RAW_ID, oPO_QTY+e.PO_QTY, userItem.EMPLOYEE_ID);
+                    });
+                }
+                ClearSession();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
         private string GenerateReceiveNo()
         {
-            string _maxBKNo = cmdReceiveRawTransService.GetMaxBKNo();
+            string _maxBKNo = cmdReceiveRawTransService.GetMaxRecNo();
 
             if (_maxBKNo == null)
             {
@@ -225,7 +249,7 @@ namespace SPW.UI.Web.Page
             }
             else
             {
-                int nextNo = int.Parse(_maxBKNo.Substring(8, 4)) + 1;
+                int nextNo = int.Parse(_maxBKNo.Substring(9, 4)) + 1;
                 _maxBKNo = "REC-" + DateTime.Now.ToString("yy") + DateTime.Now.ToString("MM") + "-" + nextNo.ToString().PadLeft(4, '0');
             }
             return _maxBKNo;
@@ -279,22 +303,51 @@ namespace SPW.UI.Web.Page
                     TextBox txtQtyReceive = (TextBox)gdvREC.Rows[i].FindControl("txtQtyReceive");
                     Label lblRawID = (Label)gdvREC.Rows[i].FindControl("lblRawID");
                     DATAGRID _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text)).FirstOrDefault();
-                    _DATAGRID.PO_QTY = int.Parse(txtQtyReceive.Text);
+                    _DATAGRID.PO_QTY = int.Parse(txtQtyReceive.Text) - _DATAGRID.RECEIVE_QTY;
                     listNewData.Add(_DATAGRID);
                 }
                 Session["LISTDATAGRID"] = listNewData;
                 if (SaveStockRawTrans())
                 {
-                    alert.Visible = true;
-                    Response.AppendHeader("Refresh", "2; url=SearchPurchaseRequisitionOrder.aspx");
+                    if (SaveReceiveRawStock())
+                    {
+                        alert.Visible = true;
+                        Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrderReceipts.aspx");
+                    }
+                    else
+                        lblerror2.Text = "*Fail to commit stock";
                 }
                 else
-                    lblerror2.Text = "*Fail";
+                    lblerror2.Text = "*Fail to commit transection";
             }
             else
                 lblerror2.Text = "*Data not found";
 
         }
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+            USER userItem = Session["user"] as USER;
+            if (cmdPoHdTrans.UpdateStatusPoHd(Request.QueryString["PO_BK_NO"].ToString(), Request.QueryString["PO_RN_NO"].ToString(), userItem.EMPLOYEE_ID,"20"))
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+        }
+        protected void btnFinish_Click(object sender, EventArgs e)
+        {
+            USER userItem = Session["user"] as USER;
+            if (cmdPoHdTrans.UpdateStatusPoHd(Request.QueryString["PO_BK_NO"].ToString(), Request.QueryString["PO_RN_NO"].ToString(), userItem.EMPLOYEE_ID,"30"))
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+        }
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            USER userItem = Session["user"] as USER;
+            if (cmdPoHdTrans.UpdateStatusPoHd(Request.QueryString["PO_BK_NO"].ToString(), Request.QueryString["PO_RN_NO"].ToString(), userItem.EMPLOYEE_ID,"40"))
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+        }        
         #endregion
 
     }
