@@ -159,6 +159,7 @@
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ManageEmpPosition.aspx" />
+    <Content Include="Page\PurchaseOrderReceipts.aspx" />
     <Content Include="Page\SearchEmpPosition.aspx" />
     <Content Include="Page\ManageEmployee.aspx" />
     <Content Include="Page\IssuePurchaseOrders.aspx" />
