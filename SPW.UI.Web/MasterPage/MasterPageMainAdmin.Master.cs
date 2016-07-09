@@ -52,7 +52,7 @@ namespace SPW.UI.Web.MasterPage
                     USER userItem = Session["user"] as USER;
 
                     //  ข้อมูลระบบ
-                    listSystem.DataSource = _subFunctionService.GetAll(2).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 2 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listSystem.DataSource = _subFunctionService.GetAll(2).Where(x =>x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 2 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listSystem.DataBind();
                     if (listSystem.Items.Count() == 0) 
                     {

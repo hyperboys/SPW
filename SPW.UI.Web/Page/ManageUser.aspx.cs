@@ -11,11 +11,9 @@ namespace SPW.UI.Web.Page
 {
     public partial class ManageUser : System.Web.UI.Page
     {
-        private USER _item;
         private DataServiceEngine _dataServiceEngine;
         private UserService cmdUser;
         private EmployeeService cmdEmp;
-        private RoleService cmdRole;
 
         private void ReloadPageEngine()
         {
@@ -34,7 +32,6 @@ namespace SPW.UI.Web.Page
         {
             cmdUser = (UserService)_dataServiceEngine.GetDataService(typeof(UserService));
             cmdEmp = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));
-            cmdRole = (RoleService)_dataServiceEngine.GetDataService(typeof(RoleService));
         }
 
         private void CreatePageEngine()
@@ -59,85 +56,59 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            dllEmp.Items.Clear();
-            dllRole.Items.Clear();
-            foreach (var item in cmdEmp.GetAll())
-            {
-                dllEmp.Items.Add(new ListItem(item.EMPLOYEE_NAME + " " + item.EMPLOYEE_SURNAME, item.EMPLOYEE_ID.ToString()));
-            }
-            foreach (var item in cmdRole.GetAll())
-            {
-                dllRole.Items.Add(new ListItem(item.ROLE_NAME, item.ROLE_ID.ToString()));
-            }
 
-            if (Request.QueryString["id"] != null)
+            USER userItem = Session["user"] as USER;
+
+            if (userItem != null)
             {
-                _item = cmdUser.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
-                if (_item != null)
+
+                if (userItem != null)
                 {
-                    TextBox1.Text = _item.USER_NAME;
-                    TextBox1.Enabled = false;
-                    TextBox2.TextMode = TextBoxMode.SingleLine;
-                    TextBox2.Text = "*************";
-                    TextBox2.Enabled = false;
-                    dllEmp.SelectedValue = _item.EMPLOYEE_ID.ToString();
-                    dllRole.SelectedValue = _item.ROLE_ID.ToString();
-                    flag.Text = "Edit";
-                    lblName.Text = TextBox1.Text;
+                    txtUsername.Text = userItem.USER_NAME;
+                    txtUsername.Enabled = false;
+                    txtUsername.TextMode = TextBoxMode.SingleLine;
+                    lblName.Text = txtUsername.Text;
                 }
-            }
-            else
-            {
-                TextBox1.Text = "";
-                //TextBox1.TextMode = TextBoxMode.SingleLine;
-                TextBox2.Text = "";
-                //TextBox2.TextMode = TextBoxMode.Password;
-                TextBox2.Enabled = true;
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            if (cmdUser.Select(TextBox1.Text) == null)
+            if (txtPassword1.Text != "" && txtPassword2.Text != "")
             {
-                var obj = new USER();
-                obj.USER_NAME = TextBox1.Text;
-
-                obj.EMPLOYEE_ID = Convert.ToInt32(dllEmp.SelectedValue);
-                obj.ROLE_ID = Convert.ToInt32(dllRole.SelectedValue);
-                if (flag.Text.Equals("Add"))
+                if (txtPassword1.Text == txtPassword2.Text)
                 {
-                    obj.PASSWORD = TextBox2.Text;
-                    obj.Action = ActionEnum.Create;
-                    obj.CREATE_DATE = DateTime.Now;
-                    obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                    obj.UPDATE_DATE = DateTime.Now;
-                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                    obj.SYE_DEL = false;
-                    cmdUser.Add(obj);
+                    USER userItem = Session["user"] as USER;
+                    userItem.PASSWORD = txtPassword1.Text;
+                    userItem.UPDATE_DATE = DateTime.Now;
+                    userItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    cmdUser.Edit(userItem);
+                    btnSave.Enabled = false;
+                    btnSave.Visible = false;
+                    btnCancel.Visible = false;
+                    warning.Visible = false;
+                    alert.Visible = true;
+                    Response.AppendHeader("Refresh", "2; url=MainAdmin.aspx");
                 }
-                else
+                else 
                 {
-                    obj.Action = ActionEnum.Update;
-                    obj.USER_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                    obj.UPDATE_DATE = DateTime.Now;
-                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                    obj.SYE_DEL = false;
-                    cmdUser.Edit(obj);
+                    lblWarning.Text = "กรุณรกรอกข้อมูลรหัสผ่านทั้ง 2 ช่องให้ตรงกัน";
+                    warning.Visible = true;
+                    alert.Visible = false;
                 }
-
-                btnSave.Enabled = false;
-                btnSave.Visible = false;
-                btnCancel.Visible = false;
-                alert.Visible = true;
-                Response.AppendHeader("Refresh", "2; url=SearchUser.aspx");
+            }
+            else 
+            {
+                lblWarning.Text = "กรุณรกรอกข้อมูลรหัสผ่านทั้ง 2 ช่อง";
+                warning.Visible = true;
+                alert.Visible = false;
             }
         }
 
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.RedirectPermanent("SearchUser.aspx");
+            Response.RedirectPermanent("MainAdmin.aspx");
         }
     }
 }

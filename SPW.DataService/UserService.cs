@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class UserService : ServiceBase, IDataService<USER>, IService 
+    public class UserService : ServiceBase, IDataService<USER>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -40,9 +40,8 @@ namespace SPW.DataService
         public void Edit(USER obj)
         {
             var item = this.Datacontext.USER.Where(x => x.USER_ID == obj.USER_ID).FirstOrDefault();
-            item.USER_NAME = obj.USER_NAME;
             item.PASSWORD = obj.PASSWORD;
-            item.EMPLOYEE_ID = obj.EMPLOYEE_ID;
+            item.ROLE_ID = obj.ROLE_ID;
             item.UPDATE_DATE = obj.UPDATE_DATE;
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
             this.Datacontext.SaveChanges();
@@ -61,6 +60,11 @@ namespace SPW.DataService
         public USER Select(int ID)
         {
             return this.Datacontext.USER.Where(x => x.USER_ID == ID).FirstOrDefault();
+        }
+
+        public USER SelectByEmp(int EMPLOYEE_ID)
+        {
+            return this.Datacontext.USER.Where(x => x.EMPLOYEE_ID == EMPLOYEE_ID).FirstOrDefault();
         }
 
         public USER Select(string username)
@@ -99,6 +103,6 @@ namespace SPW.DataService
         }
 
         #endregion
-   
+
     }
 }

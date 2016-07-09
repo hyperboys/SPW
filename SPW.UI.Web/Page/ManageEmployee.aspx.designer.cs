@@ -337,6 +337,24 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.GridView grdEmpPos;
         
         /// <summary>
+        /// txtUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        
+        /// <summary>
+        /// ddlRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

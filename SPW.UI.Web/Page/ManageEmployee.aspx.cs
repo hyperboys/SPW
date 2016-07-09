@@ -20,6 +20,8 @@ namespace SPW.UI.Web.Page
         private EmployeeService cmdEmployeeService;
         private EmpHistService cmdEmpHistService;
         private EmpPositionService cmdEmpPositionService;
+        private UserService cmdUser;
+        private RoleService cmdRole;
         private EMPLOYEE _employee;
         private static bool isOpen = false;
         private static bool flagEdit = false;
@@ -74,10 +76,18 @@ namespace SPW.UI.Web.Page
             cmdEmployeeService = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));
             cmdEmpHistService = (EmpHistService)_dataServiceEngine.GetDataService(typeof(EmpHistService));
             cmdEmpPositionService = (EmpPositionService)_dataServiceEngine.GetDataService(typeof(EmpPositionService));
+            cmdUser = (UserService)_dataServiceEngine.GetDataService(typeof(UserService));
+            cmdRole = (RoleService)_dataServiceEngine.GetDataService(typeof(RoleService));
         }
 
         private void PrepareObjectScreen()
         {
+            var listRole = cmdRole.GetAll().OrderByDescending(x => x.ROLE_ID);
+            foreach (var item in listRole)
+            {
+                ddlRole.Items.Add(new ListItem(item.ROLE_NAME, item.ROLE_ID.ToString()));
+            }
+
             var list = cmdDepartmentService.GetAll();
             foreach (var item in list)
             {
@@ -109,6 +119,13 @@ namespace SPW.UI.Web.Page
                     txtSoldier.Text = _employee.MILI_STT;
                     txtUniversity.Text = _employee.EDUCATION_NAME;
                     txtBDate.Text = _employee.BIR_DATE != null ? _employee.BIR_DATE.Value.ToString("dd/MM/yyyy") : "";
+                    USER userItem = cmdUser.SelectByEmp(_employee.EMPLOYEE_ID);
+                    if (userItem != null)
+                    {
+                        txtUsername.Text = userItem.USER_NAME;
+                        txtUsername.Enabled = false;
+                        ddlRole.SelectedValue = userItem.ROLE_ID.ToString();
+                    }
                     BindData();
                 }
             }
@@ -141,7 +158,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                USER userItem = Session["user"] as USER;
+                USER curUser = Session["user"] as USER;
                 EMPLOYEE obj = new EMPLOYEE();
                 obj.EMPLOYEE_CODE = popTxtEmployeeCode.Text;
                 obj.EMPLOYEE_NAME = txtName.Text;
@@ -169,17 +186,41 @@ namespace SPW.UI.Web.Page
                     obj.Action = ActionEnum.Update;
                     obj.EMPLOYEE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
                     obj.UPDATE_DATE = DateTime.Now;
-                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.UPDATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
                     obj.SYE_DEL = false;
                     cmdEmployeeService.Edit(obj);
+                    USER userItem = cmdUser.SelectByEmp(obj.EMPLOYEE_ID);
+                    if (userItem != null)
+                    {
+                        userItem.ROLE_ID = Convert.ToInt32(ddlRole.SelectedValue);
+                        cmdUser.Edit(userItem);
+                    }
+                    else 
+                    {
+                        if (txtUsername.Text != "")
+                        {
+                            userItem = new USER();
+                            userItem.Action = ActionEnum.Create;
+                            userItem.CREATE_DATE = DateTime.Now;
+                            userItem.CREATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
+                            userItem.EMPLOYEE_ID = obj.EMPLOYEE_ID;
+                            userItem.PASSWORD = popTxtEmployeeCode.Text;
+                            userItem.ROLE_ID = Convert.ToInt32(ddlRole.SelectedValue);
+                            userItem.SYE_DEL = false;
+                            userItem.UPDATE_DATE = DateTime.Now;
+                            userItem.UPDATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
+                            userItem.USER_NAME = popTxtEmployeeCode.Text;
+                            cmdUser.Add(userItem);
+                        }
+                    }
                 }
                 else
                 {
                     obj.Action = ActionEnum.Create;
                     obj.CREATE_DATE = DateTime.Now;
-                    obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.CREATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
                     obj.UPDATE_DATE = DateTime.Now;
-                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.UPDATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
                     obj.SYE_DEL = false;
                     cmdEmployeeService.Add(obj);
 
@@ -190,6 +231,22 @@ namespace SPW.UI.Web.Page
                             item.EMPLOYEE_ID = obj.EMPLOYEE_ID;
                             cmdEmpHistService.Add(item);
                         }
+                    }
+
+                    if (txtUsername.Text != "")
+                    {
+                        USER userItem = new USER();
+                        userItem.Action = ActionEnum.Create;
+                        userItem.CREATE_DATE = DateTime.Now;
+                        userItem.CREATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
+                        userItem.EMPLOYEE_ID = obj.EMPLOYEE_ID;
+                        userItem.PASSWORD = popTxtEmployeeCode.Text;
+                        userItem.ROLE_ID = Convert.ToInt32(ddlRole.SelectedValue);
+                        userItem.SYE_DEL = false;
+                        userItem.UPDATE_DATE = DateTime.Now;
+                        userItem.UPDATE_EMPLOYEE_ID = curUser.EMPLOYEE_ID;
+                        userItem.USER_NAME = popTxtEmployeeCode.Text;
+                        cmdUser.Add(userItem);
                     }
                 }
 
@@ -238,6 +295,7 @@ namespace SPW.UI.Web.Page
                 ClearEmpPos();
                 btnAddEmpPos.Text = "+";
                 grdEmpPos.Enabled = true;
+                flagEdit = false;
             }
             else
             {
@@ -410,6 +468,11 @@ namespace SPW.UI.Web.Page
             }
             //btnAdd.Visible = false;
             ValidateHideAddEmpPos();
+        }
+
+        protected void popTxtEmployeeCode_TextChanged(object sender, EventArgs e)
+        {
+            txtUsername.Text = popTxtEmployeeCode.Text;
         }
     }
 }

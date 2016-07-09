@@ -90,7 +90,6 @@
             ข้อมูลพนักงาน        
         </div>
         <div class="panel-body">
-
             <div class="row">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
@@ -100,7 +99,7 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสพนักงาน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="popTxtEmployeeCode" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสพนักงาน"></asp:TextBox>
+                                            <asp:TextBox ID="popTxtEmployeeCode" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสพนักงาน" AutoPostBack="True" OnTextChanged="popTxtEmployeeCode_TextChanged"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
@@ -285,13 +284,10 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
-
-
                         <%--<div class="panel panel-primary">--%>
                         <div class="col-lg-12">
                             <asp:GridView ID="grdEmpPos" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
@@ -344,6 +340,26 @@
                                 <PagerSettings Mode="NumericFirstLast" />
                             </asp:GridView>
                             <%--</div>--%>
+                        </div>
+                        <div></div>
+                        <div class="col-lg-12">
+                            <div class="form">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2">ชื่อผู้ใช้งาน</div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txtUsername" class="form-control" runat="server" Height="35px" Width="200px" placeholder="ชื่อผู้ใช้งาน" Enabled="False"></asp:TextBox>
+
+                                        </div>
+                                        <div class="col-md-2">Role</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlRole" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

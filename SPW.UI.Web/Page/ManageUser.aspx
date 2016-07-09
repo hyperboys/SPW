@@ -23,7 +23,13 @@
         -
         <asp:Label ID="lblName" runat="server" Text="เพิ่มผู้ใช้งานใหม่"></asp:Label></h1>
     <div class="alert alert-info" id="alert" runat="server" visible="false">
-        <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
+        <strong>
+            <asp:Label ID="lblAlert" runat="server" Text="บันทึกข้อมูลสำเร็จ Save Success"></asp:Label>
+        </strong>
+    </div>
+    <div class="alert alert-warning" id="warning" runat="server" visible="false">
+        <strong>
+            <asp:Label ID="lblWarning" runat="server" Text=""></asp:Label></strong>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -35,73 +41,58 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-6">
-                    <div role="form">
+                <div class="col-lg-12">
+                    <div class="form">
                         <div class="form-group">
-                            <table style="width: 766px; height: 97px;">
-                                <tr>
-                                    <td>ชื่อผู้ใช้งาน</td>
-                                    <td style="text-align: center">:</td>
-                                    <td class="auto-style3">
-                                        <asp:TextBox ID="TextBox1" class="form-control" runat="server" Height="30px" Width="145px"></asp:TextBox>
-
-                                    </td>
-                                    <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณากรอกชื่อผู้ใช้งาน"
-                                            ValidationGroup="group" ControlToValidate="TextBox1" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    </td>
-                                    <td class="auto-style4"></td>
-                                    <td>รหัสผู้ใช้งาน</td>
-                                    <td style="text-align: center">:</td>
-                                    <td class="auto-style3">
-                                        <asp:TextBox ID="TextBox2" class="form-control" runat="server" Height="30px" Width="145px"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="กรุณากรอกรหัสหัสผู้ใช้งาน"
-                                            ValidationGroup="group" ControlToValidate="TextBox2" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    </td>
-                                    <td class="auto-style5"></td>
-                                    <td>
-                                        <asp:Button ID="btnSave" runat="server" ValidationGroup="group" Text="บันทึก" class="btn btn-primary" OnClick="btnSave_Click" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Role</td>
-                                    <td style="text-align: center">:</td>
-                                    <td class="auto-style3">
-                                        <asp:DropDownList ID="dllRole" class="form-control" runat="server" Height="35px" Width="145px" SelectedValue='<%# Eval("Key") %>'>
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td></td>
-                                    <td class="auto-style4"></td>
-                                    <td>พนักงาน</td>
-                                    <td style="text-align: center">:</td>
-                                    <td class="auto-style3">
-                                        <asp:DropDownList ID="dllEmp" class="form-control" runat="server" Height="35px" Width="145px" SelectedValue='<%# Eval("Key") %>'>
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td></td>
-                                    <td class="auto-style5"></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
+                            <div class="row">
+                                <div class="col-md-2">รหัสผู้ใช้งาน</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtUsername" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสผู้ใช้งาน" Enabled="false"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">รหัสผ่านใหม่</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtPassword1" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสผู้ใช้งาน" TextMode="Password"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">รหัสผ่านใหม่อีกครั้ง</div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txtPassword2" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสผู้ใช้งาน" TextMode="Password"></asp:TextBox>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <asp:Button ID="btnSave" runat="server" Text="บันทึก" class="btn btn-primary" ValidationGroup="group" OnClick="btnSave_Click" />
+                                    <asp:Button ID="btnCancel" class="btn btn-primary" Text="ยกเลิก" runat="server" OnClick="btnCancel_Click" />
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"
-                    ValidationGroup="group" ShowMessageBox="True" ShowSummary="False" />
-            </div>
         </div>
+        <ajax:ConfirmButtonExtender ID="btnSave_ConfirmButtonExtender" runat="server"
+            ConfirmText="ต้องการจะบันทึกหรือไม่" Enabled="True" TargetControlID="btnSave">
+        </ajax:ConfirmButtonExtender>
     </div>
-    <ajax:ConfirmButtonExtender ID="btnSave_ConfirmButtonExtender" runat="server"
-        ConfirmText="ต้องการจะบันทึกหรือไม่" Enabled="True" TargetControlID="btnSave">
-    </ajax:ConfirmButtonExtender>
 </asp:Content>
