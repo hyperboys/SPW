@@ -52,7 +52,7 @@ namespace SPW.UI.Web.MasterPage
                     USER userItem = Session["user"] as USER;
 
                     //  ข้อมูลระบบ
-                    listSystem.DataSource = _subFunctionService.GetAll(2).Where(x =>x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 2 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listSystem.DataSource = _subFunctionService.GetAll(2).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 2 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listSystem.DataBind();
                     if (listSystem.Items.Count() == 0) 
                     {
@@ -60,7 +60,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  ข้อมูลพื้นฐาน
-                    listStandard.DataSource = _subFunctionService.GetAll(3).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 3 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listStandard.DataSource = _subFunctionService.GetAll(3).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 3 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listStandard.DataBind();
                     if (listStandard.Items.Count() == 0)
                     {
@@ -68,7 +68,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  การสั่งซื้อสินค้า
-                    listOrder.DataSource = _subFunctionService.GetAll(4).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 4 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listOrder.DataSource = _subFunctionService.GetAll(4).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 4 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listOrder.DataBind();
                     if (listOrder.Items.Count() == 0)
                     {
@@ -76,7 +76,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  รายงาน
-                    listReport.DataSource = _subFunctionService.GetAll(5).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 5 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listReport.DataSource = _subFunctionService.GetAll(5).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 5 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listReport.DataBind();
                     if (listReport.Items.Count() == 0)
                     {
@@ -84,7 +84,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  คลัง
-                    listStock.DataSource = _subFunctionService.GetAll(6).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 6 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listStock.DataSource = _subFunctionService.GetAll(6).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 6 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listStock.DataBind();
                     if (listStock.Items.Count() == 0)
                     {
@@ -92,7 +92,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  ทรัพย์สิน
-                    listInvoice.DataSource = _subFunctionService.GetAll(7).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 7 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listInvoice.DataSource = _subFunctionService.GetAll(7).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 7 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listInvoice.DataBind();
                     if (listInvoice.Items.Count() == 0)
                     {
@@ -100,7 +100,7 @@ namespace SPW.UI.Web.MasterPage
                     }
 
                     //  Purchase Order
-                    listPO.DataSource = _subFunctionService.GetAll(8).Where(x => (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 8 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listPO.DataSource = _subFunctionService.GetAll(8).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 8 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
                     listPO.DataBind();
                     if (listPO.Items.Count() == 0)
                     {
