@@ -87,7 +87,7 @@ namespace SPW.DataService
         }
         public List<RECEIVE_RAW_TRANS> GetAll(string PO_BK_NO, string PO_RN_NO)
         {
-            throw new NotImplementedException();
+            return this.Datacontext.RECEIVE_RAW_TRANS.Where(x => x.SYE_DEL == false && x.PO_BK_NO == PO_BK_NO && x.PO_RN_NO == PO_RN_NO).ToList();
         }
         public int GetAllCount()
         {

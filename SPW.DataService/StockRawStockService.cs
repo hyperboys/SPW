@@ -26,8 +26,11 @@ namespace SPW.DataService
 
         public void Add(STOCK_RAW_STOCK item)
         {
-            Datacontext.STOCK_RAW_STOCK.Add(item);
-            Datacontext.SaveChanges();
+            if (item.Action == ActionEnum.Create)
+            {
+                Datacontext.STOCK_RAW_STOCK.Add(item);
+                Datacontext.SaveChanges();
+            }
         }
 
         public void AddList(List<STOCK_RAW_STOCK> lstItem)

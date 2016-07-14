@@ -86,6 +86,10 @@ namespace SPW.DataService
         {
             return this.Datacontext.RAW_PRODUCT.Where(x => x.SYE_DEL == false).ToList();
         }
+        public List<RAW_PRODUCT> GetAll(int RAW_TYPE_ID)
+        {
+            return this.Datacontext.RAW_PRODUCT.Where(x => x.SYE_DEL == false && x.RAW_TYPE_ID == RAW_TYPE_ID).ToList();
+        }
         public List<RAW_PRODUCT> GetAll(int RAW_ID, string RAW_PRODUCT_NAME)
         {
             return this.Datacontext.RAW_PRODUCT.Where(x => x.SYE_DEL == false && x.RAW_ID == RAW_ID && x.RAW_NAME1.Contains(RAW_PRODUCT_NAME)).ToList();

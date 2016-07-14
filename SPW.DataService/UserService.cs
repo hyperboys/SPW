@@ -72,6 +72,10 @@ namespace SPW.DataService
             return this.Datacontext.USER.Where(x => x.USER_NAME.ToUpper() == username.ToUpper()).FirstOrDefault();
         }
 
+        public USER SelectFromEmpID(int EMPLOYEE_ID)
+        {
+            return this.Datacontext.USER.Where(x => x.EMPLOYEE_ID == EMPLOYEE_ID).FirstOrDefault();
+        }
         public USER SelectIncludeEmployee(int ID)
         {
             return this.Datacontext.USER.Include("EMPLOYEE").Where(x => x.USER_ID == ID).FirstOrDefault();
