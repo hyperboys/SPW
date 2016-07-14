@@ -279,6 +279,9 @@
                                     <li>
                                         <a href="../Page/SearchPurchaseOrderReceipts.aspx">Purchase Order Receipts</a>
                                     </li>
+                                    <li>
+                                        <a href="../Page/PurchaseOrderRpt.aspx">Purchase Order Report</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
