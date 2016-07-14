@@ -92,6 +92,8 @@ namespace SPW.UI.Web.Page
 
             List<CATEGORY> listCategory = (List<CATEGORY>)ViewState["categorylist"];
             listCategory.ForEach(item => ddlProductType.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString())));
+
+            CheckRawStock();
         }
         #endregion
 
@@ -168,6 +170,41 @@ namespace SPW.UI.Web.Page
             }
 
             return listUpdate;
+        }
+        public void CheckRawStock()
+        {
+            try
+            {
+                List<STOCK_RAW_STOCK> lstSTOCK_RAW_STOCK = _stockRawStockService.GetAll();
+                List<RAW_PRODUCT> lstRAW_PRODUCT = _rawProductService.GetAll(1);
+                List<RAW_PRODUCT> lstNewRaw = new List<RAW_PRODUCT>();
+                USER userItem = Session["user"] as USER;
+                if (lstSTOCK_RAW_STOCK.Count != lstRAW_PRODUCT.Count)
+                {
+                    lstRAW_PRODUCT.ForEach(e =>
+                        {
+                            if (!lstSTOCK_RAW_STOCK.Exists(f => f.RAW_ID.Equals(e.RAW_ID)))
+                            {
+                                lstNewRaw.Add(e);
+                                STOCK_RAW_STOCK item = new STOCK_RAW_STOCK();
+                                item.RAW_ID = e.RAW_ID;
+                                item.RAW_MINIMUM = 0;
+                                item.RAW_REMAIN = 0;
+                                item.CREATE_DATE = DateTime.Now;
+                                item.UPDATE_DATE = DateTime.Now;
+                                item.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                                item.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                                item.SYE_DEL = false;
+                                item.Action = ActionEnum.Create;
+                                _stockRawStockService.Add(item);
+                            }
+                        });
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         //private List<STOCK_RAW_RECEIVE_TRANS> GetUpdateTrans(List<STOCK_RAW_STOCK> listStock, string trans_type)
         //{
