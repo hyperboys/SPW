@@ -101,6 +101,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -159,7 +160,14 @@
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ManageEmpPosition.aspx" />
+<<<<<<< .mine
     <Content Include="Page\PurchaseOrderReceipts.aspx" />
+    <Content Include="Page\PurchaseOrderReceiptsHistory.aspx" />
+    <Content Include="Page\PurchaseOrderRpt.aspx" />
+||||||| .r208
+=======
+    <Content Include="Page\PurchaseOrderReceipts.aspx" />
+>>>>>>> .r216
     <Content Include="Page\SearchEmpPosition.aspx" />
     <Content Include="Page\ManageEmployee.aspx" />
     <Content Include="Page\IssuePurchaseOrders.aspx" />
@@ -285,11 +293,25 @@
       <DependentUpon>ManageEmpPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\PurchaseOrderReceipts.aspx.cs">
-      <DependentUpon>PurchaseOrderReceipts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>PurchaseOrderReceipts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\PurchaseOrderReceipts.aspx.designer.cs">
       <DependentUpon>PurchaseOrderReceipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PurchaseOrderReceiptsHistory.aspx.cs">
+      <DependentUpon>PurchaseOrderReceiptsHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PurchaseOrderReceiptsHistory.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderReceiptsHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\PurchaseOrderRpt.aspx.cs">
+      <DependentUpon>PurchaseOrderRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PurchaseOrderRpt.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchEmpPosition.aspx.cs">
       <DependentUpon>SearchEmpPosition.aspx</DependentUpon>
@@ -904,6 +926,12 @@
       <DependentUpon>PayInSummaryReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\PurchaseOrdersRpt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrdersRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SaleVolume.aspx.cs">
       <DependentUpon>SaleVolume.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1085,6 +1113,10 @@
     <EmbeddedResource Include="Reports\PayInSummaryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayInSummaryReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PurchaseOrdersRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseOrdersRpt.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SaleVolumeReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
