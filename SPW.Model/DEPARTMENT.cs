@@ -14,6 +14,11 @@ namespace SPW.Model
     
     public partial class DEPARTMENT
     {
+        public DEPARTMENT()
+        {
+            this.EMP_MEASURE_HD_TEMPLATE = new HashSet<EMP_MEASURE_HD_TEMPLATE>();
+        }
+    
         public int DEPARTMENT_ID { get; set; }
         public string DEPARTMENT_CODE { get; set; }
         public string DEPARTMENT_NAME { get; set; }
@@ -23,5 +28,7 @@ namespace SPW.Model
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
+    
+        public virtual ICollection<EMP_MEASURE_HD_TEMPLATE> EMP_MEASURE_HD_TEMPLATE { get; set; }
     }
 }

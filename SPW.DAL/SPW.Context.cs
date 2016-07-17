@@ -37,8 +37,12 @@ namespace SPW.DAL
         public DbSet<DELIVERY_ORDER> DELIVERY_ORDER { get; set; }
         public DbSet<DELIVERY_ORDER_DETAIL> DELIVERY_ORDER_DETAIL { get; set; }
         public DbSet<DEPARTMENT> DEPARTMENT { get; set; }
+        public DbSet<EMP_GRADE_SET> EMP_GRADE_SET { get; set; }
+        public DbSet<EMP_MEASURE_DT_TEMPLATE> EMP_MEASURE_DT_TEMPLATE { get; set; }
+        public DbSet<EMP_MEASURE_HD_TEMPLATE> EMP_MEASURE_HD_TEMPLATE { get; set; }
         public DbSet<EMP_POSITION> EMP_POSITION { get; set; }
         public DbSet<EMP_SKILL> EMP_SKILL { get; set; }
+        public DbSet<EMP_SKILL_TYPE> EMP_SKILL_TYPE { get; set; }
         public DbSet<EMPLOYEE> EMPLOYEE { get; set; }
         public DbSet<EMPLOYEE_HIST> EMPLOYEE_HIST { get; set; }
         public DbSet<FUNCTION> FUNCTION { get; set; }

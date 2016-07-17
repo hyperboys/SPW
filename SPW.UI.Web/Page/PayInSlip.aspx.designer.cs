@@ -76,6 +76,15 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
+        /// rbPayin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox rbPayin;
+        
+        /// <summary>
         /// rbBankThai control.
         /// </summary>
         /// <remarks>
@@ -101,15 +110,6 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDatePayIn;
-        
-        /// <summary>
-        /// rbPayin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbPayin;
         
         /// <summary>
         /// txtPayInSeq control.
@@ -274,13 +274,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Label lbl1;
         
         /// <summary>
-        /// btnPrintX control.
+        /// btnPrintXSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrintX;
+        protected global::System.Web.UI.WebControls.Button btnPrintXSubmit;
         
         /// <summary>
         /// lbl2 control.
@@ -292,22 +292,22 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Label lbl2;
         
         /// <summary>
-        /// btnPrint1 control.
+        /// btnPrint1Submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint1;
+        protected global::System.Web.UI.WebControls.Button btnPrint1Submit;
         
         /// <summary>
-        /// btnPrint2 control.
+        /// btnPrint2Submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint2;
+        protected global::System.Web.UI.WebControls.Button btnPrint2Submit;
         
         /// <summary>
         /// grdBank control.

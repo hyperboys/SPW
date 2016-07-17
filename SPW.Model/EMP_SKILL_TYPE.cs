@@ -12,21 +12,22 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMP_SKILL
+    public partial class EMP_SKILL_TYPE
     {
-        public EMP_SKILL()
+        public EMP_SKILL_TYPE()
         {
-            this.EMP_MEASURE_DT_TEMPLATE = new HashSet<EMP_MEASURE_DT_TEMPLATE>();
+            this.EMP_MEASURE_HD_TEMPLATE = new HashSet<EMP_MEASURE_HD_TEMPLATE>();
         }
     
-        public int SKILL_ID { get; set; }
-        public string SKILL_NAME { get; set; }
+        public int EMP_SKILL_TYPE_ID { get; set; }
+        public string EMP_SKILL_TYPE_NA { get; set; }
+        public decimal EMP_SKILL_TYPE_DEFAULT { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual ICollection<EMP_MEASURE_DT_TEMPLATE> EMP_MEASURE_DT_TEMPLATE { get; set; }
+        public virtual ICollection<EMP_MEASURE_HD_TEMPLATE> EMP_MEASURE_HD_TEMPLATE { get; set; }
     }
 }

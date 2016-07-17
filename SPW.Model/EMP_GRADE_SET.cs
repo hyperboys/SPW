@@ -12,21 +12,18 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMP_SKILL
+    public partial class EMP_GRADE_SET
     {
-        public EMP_SKILL()
-        {
-            this.EMP_MEASURE_DT_TEMPLATE = new HashSet<EMP_MEASURE_DT_TEMPLATE>();
-        }
-    
-        public int SKILL_ID { get; set; }
-        public string SKILL_NAME { get; set; }
+        public int GRADE_SET_SEQ_NO { get; set; }
+        public string GRADE_SET { get; set; }
+        public decimal GRADE_SET_PERCENTAGE { get; set; }
+        public string GRADE_SET_ACTIVE { get; set; }
+        public System.DateTime EFFECTIVE_DATE { get; set; }
+        public Nullable<System.DateTime> EXPIRE_DATE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
-    
-        public virtual ICollection<EMP_MEASURE_DT_TEMPLATE> EMP_MEASURE_DT_TEMPLATE { get; set; }
     }
 }

@@ -25,7 +25,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">รายงานสรุปยอดขายราย Item (ต่อภาค / ต่อ Sale)</h1>
+    <h1 class="page-header">รายงานคงค้างส่ง</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -88,9 +88,26 @@
                                             <td></td>
                                             <td class="col-md-3"></td>
                                             <td style="width: 5px"></td>
+                                            <td class="col-md-3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-2">รหัสร้านค้า</td>
+                                            <td class="col-md-3">
+                                                <asp:TextBox ID="txtStoreCode" class="form-control" runat="server" Height="35px" placeholder="รหัสสั่งซื้อสินค้า"></asp:TextBox>
+                                            </td>
+                                            <td class="col-md-2">สถานะ</td>
+                                            <td class="col-md-3">
+                                                <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                                    <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                                    <asp:ListItem Value="12">ยกเลิก</asp:ListItem>
+                                                    <asp:ListItem Value="11">สำเร็จ</asp:ListItem>
+                                                    <asp:ListItem Value="10" Selected="True">ไม่สำเร็จ</asp:ListItem>
+                                                </asp:DropDownList></td>
+                                            <td></td>
+                                            <td class="col-md-3"></td>
+                                            <td style="width: 5px"></td>
                                             <td class="col-md-3">
                                                 <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" Height="30px" Width="70px" OnClick="btnSearch_Click" />
-
                                             </td>
                                         </tr>
                                     </table>

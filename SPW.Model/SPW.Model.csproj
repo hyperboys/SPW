@@ -142,10 +142,22 @@
     <Compile Include="EMPLOYEE_HIST.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
+    <Compile Include="EMP_GRADE_SET.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_MEASURE_DT_TEMPLATE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_MEASURE_HD_TEMPLATE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
     <Compile Include="EMP_POSITION.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="EMP_SKILL.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_SKILL_TYPE.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="FUNCTION.cs">

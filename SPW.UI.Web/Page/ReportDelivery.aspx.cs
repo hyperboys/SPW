@@ -39,7 +39,7 @@ namespace SPW.UI.Web.Page
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             SQLUtility sql = new SQLUtility();
-            string query = @"SELECT  TOP 50 O.ORDER_CODE,CONVERT(VARCHAR(10),O.ORDER_DATE,101) AS ORDER_DATE,S.STORE_CODE,
+            string query = @"SELECT O.ORDER_CODE,CONVERT(VARCHAR(10),O.ORDER_DATE,101) AS ORDER_DATE,S.STORE_CODE,
                 PRD.PRODUCT_NAME,CT.COLOR_TYPE_NAME,C.COLOR_NAME,
                 SUM(OD.PRODUCT_QTY) AS PRODUCT_QTY
                 ,SUM(OD.PRODUCT_SEND_QTY) AS PRODUCT_SEND_QTY,SUM(OD.PRODUCT_SEND_REMAIN) AS PRODUCT_SEND_REMAIN
@@ -54,9 +54,19 @@ namespace SPW.UI.Web.Page
                 query += " AND O.ORDER_CODE LIKE '%" + txtOrderCode.Text + "%'";
             }
 
+            if (txtStoreCode.Text != "")
+            {
+                query += " AND S.STORE_CODE  LIKE '%" + txtStoreCode.Text + "%'";
+            }
+
             if (txtProductCode.Text != "")
             {
                 query += " AND PRD.PRODUCT_CODE LIKE '%" + txtProductCode.Text + "%'";
+            }
+
+            if (ddlStatus.SelectedValue != "0")
+            {
+                query += " AND O.ORDER_STEP = " + ddlStatus.SelectedValue;
             }
 
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
@@ -66,6 +76,43 @@ namespace SPW.UI.Web.Page
 
             query += @" GROUP BY OD.PRODUCT_ID,OD.COLOR_ID,OD.COLOR_TYPE_ID,O.ORDER_CODE,O.ORDER_DATE,
                 S.STORE_CODE,PRD.PRODUCT_NAME,CT.COLOR_TYPE_NAME,C.COLOR_NAME";
+
+//            query += " UNION ";
+
+//            query += @" SELECT  TOP 1 'ยอดรวม' AS ORDER_CODE,'' AS ORDER_DATE,'' AS STORE_CODE,
+//                '' AS PRODUCT_NAME,'' AS COLOR_TYPE_NAME,'' AS COLOR_NAME,
+//                SUM(OD.PRODUCT_QTY) AS PRODUCT_QTY
+//                ,SUM(OD.PRODUCT_SEND_QTY) AS PRODUCT_SEND_QTY,SUM(OD.PRODUCT_SEND_REMAIN) AS PRODUCT_SEND_REMAIN
+//                FROM [ORDER] O INNER JOIN [ORDER_DETAIL] OD ON O.ORDER_ID = OD.ORDER_ID
+//                INNER JOIN PRODUCT PRD ON OD.PRODUCT_ID = PRD.PRODUCT_ID
+//                INNER JOIN COLOR C ON OD.COLOR_ID = C.COLOR_ID
+//                INNER JOIN COLOR_TYPE CT ON OD.COLOR_TYPE_ID = CT.COLOR_TYPE_ID
+//                INNER JOIN STORE S ON O.STORE_ID = S.STORE_ID WHERE 1=1 ";
+
+//            if (txtOrderCode.Text != "")
+//            {
+//                query += " AND O.ORDER_CODE LIKE '%" + txtOrderCode.Text + "%'";
+//            }
+
+//            if (txtStoreCode.Text != "")
+//            {
+//                query += " AND S.STORE_CODE  LIKE '%" + txtStoreCode.Text + "%'";
+//            }
+
+//            if (txtProductCode.Text != "")
+//            {
+//                query += " AND PRD.PRODUCT_CODE LIKE '%" + txtProductCode.Text + "%'";
+//            }
+
+//            if (ddlStatus.SelectedValue != "0")
+//            {
+//                query += " AND O.ORDER_STEP = " + ddlStatus.SelectedValue;
+//            }
+
+//            if (txtStartDate.Text != "" && txtEndDate.Text != "")
+//            {
+//                query += @" AND O.ORDER_DATE BETWEEN CONVERT(DATE,'" + convertToDate102(txtStartDate.Text) + "') AND CONVERT(DATE,'" + convertToDate102(txtEndDate.Text) + "') ";
+//            }
 
             DataSouce = sql.Query(query);
             gridProduct.DataSource = DataSouce;

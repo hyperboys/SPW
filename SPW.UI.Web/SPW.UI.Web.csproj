@@ -163,7 +163,6 @@
     <Content Include="Page\PurchaseOrderReceipts.aspx" />
     <Content Include="Page\PurchaseOrderReceiptsHistory.aspx" />
     <Content Include="Page\PurchaseOrderRpt.aspx" />
-    <Content Include="Page\PurchaseOrderReceipts.aspx" />
     <Content Include="Page\SearchEmpPosition.aspx" />
     <Content Include="Page\ManageEmployee.aspx" />
     <Content Include="Page\IssuePurchaseOrders.aspx" />
@@ -922,12 +921,6 @@
       <DependentUpon>PayInSummaryReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\PurchaseOrdersRpt.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseOrdersRpt.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\SaleVolume.aspx.cs">
       <DependentUpon>SaleVolume.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1109,10 +1102,6 @@
     <EmbeddedResource Include="Reports\PayInSummaryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayInSummaryReport.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\PurchaseOrdersRpt.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>PurchaseOrdersRpt.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SaleVolumeReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

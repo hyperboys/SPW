@@ -27,6 +27,7 @@
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPayInSlip.aspx">PayIn Slip</asp:HyperLink>
         -
         <asp:Label ID="lblName" runat="server" Text="จัดการใบ PayIn"></asp:Label></h1>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -114,6 +115,7 @@
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="alert alert-success" id="alert" runat="server" visible="false">
@@ -129,11 +131,25 @@
                     จัดการใบ Payin
                 </div>
                 <div class="panel-body">
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form">
                                 <div class="form-group">
                                     <table style="width: 800px; height: 222px;">
+                                        <tr>
+                                            <td class="auto-style5">พิมพ์ PayIn ร่วมกัน</td>
+                                            <td class="auto-style1" style="text-align: center">:</td>
+                                            <td class="auto-style2">
+                                                <%--<asp:RadioButton ID="rbPayin" runat="server" Width="150px" />--%>
+                                                <asp:CheckBox ID="rbPayin" runat="server" Width="150px" Text="" OnCheckedChanged="rbPayin_CheckedChanged" AutoPostBack="True" />
+                                            </td>
+                                            <td class="auto-style13"></td>
+                                            <td class="auto-style12"></td>
+                                            <td class="auto-style1" style="text-align: center"></td>
+                                            <td class="auto-style2"></td>
+                                            <td></td>
+                                        </tr>
                                         <tr>
                                             <td class="auto-style25">
                                                 <asp:RadioButton ID="rbBankThai" runat="server" AutoPostBack="True" Checked="True" GroupName="bankGroup" OnCheckedChanged="rbBankThai_CheckedChanged" Text="ธ.ทหารไทย" TextAlign="Right" Width="170px" />
@@ -155,30 +171,18 @@
                                             </td>
                                             <td class="auto-style30"></td>
                                         </tr>
-                                        <tr>
-                                            <td class="auto-style5">พิมพ์ PayIn ร่วมกัน</td>
-                                            <td class="auto-style1" style="text-align: center">:</td>
-                                            <td class="auto-style2">
-                                                <asp:RadioButton ID="rbPayin" runat="server" AutoPostBack="True" GroupName="bankGroup" OnCheckedChanged="rbBankKrungThai_CheckedChanged" Text="ธ.กรุงศรีอยุธยา" TextAlign="Right" Width="150px" />
-                                            </td>
-                                            <td class="auto-style13"></td>
-                                            <td class="auto-style12"></td>
-                                            <td class="auto-style1" style="text-align: center"></td>
-                                            <td class="auto-style2">
-                                               </td>
-                                            <td></td>
-                                        </tr>
+
                                         <tr>
                                             <td class="auto-style5">ลำดับ PayIn</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-                                                <asp:TextBox ID="txtPayInSeq" runat="server" class="form-control" Height="35px" Width="200px"></asp:TextBox>
+                                                <asp:TextBox ID="txtPayInSeq" runat="server" class="form-control" Height="35px" Width="200px" Enabled="false"></asp:TextBox>
                                             </td>
                                             <td class="auto-style13"></td>
                                             <td class="auto-style12">หน้า</td>
                                             <td class="auto-style1" style="text-align: center">:</td>
                                             <td class="auto-style2">
-                                                <asp:TextBox ID="txtPageSeq" runat="server" class="form-control" Height="35px" Width="200px"></asp:TextBox>
+                                                <asp:TextBox ID="txtPageSeq" runat="server" class="form-control" Height="35px" Width="200px" Enabled="false"></asp:TextBox>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -290,6 +294,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div style="margin-top: 20px;">
                         <table id="T1" runat="server" style="width: 800px; height: 50px;">
                             <tr>
@@ -298,7 +303,7 @@
                                 </td>
                                 <td class="auto-style24"></td>
                                 <td class="auto-style31">
-                                    <asp:Button ID="btnPrintX" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrintX_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
+                                    <asp:Button ID="btnPrintXSubmit" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrintXSubmit_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
                                 </td>
                                 <td></td>
                                 <td>
@@ -320,11 +325,11 @@
                                 </td>
                                 <td class="auto-style24"></td>
                                 <td class="auto-style31">
-                                    <asp:Button ID="btnPrint1" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrint1_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
+                                    <asp:Button ID="btnPrint1Submit" runat="server" class="btn btn-primary" Height="30px" OnClick="btnPrint1Submit_Click" Text="พิมพ์ PayIn" Visible="False" Width="100px" />
                                 </td>
                                 <td></td>
                                 <td>
-                                    <asp:Button ID="btnPrint2" class="btn btn-primary" runat="server" Text="พิมพ์ Paper" Height="30px" Width="130px" Visible="False" OnClick="btnPrint2_Click" />
+                                    <asp:Button ID="btnPrint2Submit" class="btn btn-primary" runat="server" Text="พิมพ์ Paper" Height="30px" Width="130px" Visible="False" OnClick="btnPrint2Submit_Click" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -341,9 +346,6 @@
                                         <%# Container.DataItemIndex + 1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <%--  <asp:BoundField DataField="CHQ_SEQ_NO" HeaderText="ลำดับ" ItemStyle-Width="5%" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle Width="5%"></ItemStyle>
-                                </asp:BoundField>--%>
                                 <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
@@ -388,28 +390,12 @@
                             </tr>
                         </table>
                     </div>
-                    <%-- <div style="margin-top: 20px;">
-                        <table style="width: 800px; height: 50px;">
-                            <tr>
-                                <td class="auto-style21"></td>
-                                <td class="auto-style19">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="80px" OnClick="btnSave_Click" Visible="False" />
-                                </td>
-                                <td class="auto-style20"></td>
-                                <td class="auto-style19">&nbsp;</td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>--%>
                     <div>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" Style="color: #FF0000; font-size: large;"
                             ValidationGroup="group" ShowMessageBox="True" ShowSummary="False" />
                     </div>
                 </div>
             </div>
-            <%--<ajax:ConfirmButtonExtender ID="btnSave_ConfirmButtonExtender" runat="server"
-                ConfirmText="ต้องการจะพิมพ์หรือไม่" Enabled="True" TargetControlID="btnSave">
-            </ajax:ConfirmButtonExtender>--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
