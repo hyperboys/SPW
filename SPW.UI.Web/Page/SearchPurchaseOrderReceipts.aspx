@@ -52,9 +52,7 @@
                                         <asp:Button ID="btnReset" class="btn btn-primary" Text="รีเซท" runat="server" OnClick="btnReset_Click" />
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
-                                    <td>
-                                        <%--<asp:Button ID="btnAdd" class="btn btn-primary" Text="เพิ่ม" runat="server" OnClick="btnAdd_Click" />--%>
-                                    </td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>

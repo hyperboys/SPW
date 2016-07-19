@@ -52,10 +52,6 @@
                                                 <asp:Button ID="btnApprove" class="btn" Text="Approve" runat="server" type="button" OnClick="btnApprove_Click"/>
                                                 <asp:Button ID="btnFinish" class="btn" Text="Finish" runat="server" type="button" OnClick="btnFinish_Click"/>
                                                 <asp:Button ID="btnCancel" class="btn" Text="Cancel" runat="server" type="button"  OnClick="btnCancel_Click"/>
-                                                <%--<asp:Button ID="btnIssue" class="btn" Text="I" runat="server" type="button"/>
-                                                <asp:Button ID="btnApprove" class="btn" Text="A" runat="server" type="button"/>
-                                                <asp:Button ID="btnFinish" class="btn" Text="F" runat="server" type="button"/>
-                                                <asp:Button ID="btnCancel" class="btn" Text="C" runat="server" type="button"/>--%>
                                             </div>
                                         </div>
                                         <div class="col-md-1"></div>

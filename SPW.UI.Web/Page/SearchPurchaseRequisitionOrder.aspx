@@ -85,7 +85,7 @@
                         </asp:BoundField>
                         <asp:TemplateField HeaderText="สถานะ" ItemStyle-Width="10%">
                             <ItemTemplate>
-                                <%# (Eval("PR_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PR_HD_STATUS").ToString() == "20") ? "Converted" : "Cancel") %>
+                                <%# (Eval("PO_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PO_HD_STATUS").ToString() == "20") ? "Approved" : ((Eval("PO_HD_STATUS").ToString() == "30") ? "Finish" : "Cancel")) %>
                             </ItemTemplate>
                         </asp:TemplateField>
                          <asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
