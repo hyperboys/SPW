@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PurchaseOrdersReport" targetNamespace="http://tempuri.org/PurchaseOrdersReport.xsd" xmlns:mstns="http://tempuri.org/PurchaseOrdersReport.xsd" xmlns="http://tempuri.org/PurchaseOrdersReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PurchaseOrdersReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PurchaseOrdersReport" msprop:Generator_UserDSName="PurchaseOrdersReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PODATATABLE" msprop:Generator_TableClassName="PODATATABLEDataTable" msprop:Generator_TableVarName="tablePODATATABLE" msprop:Generator_TablePropName="PODATATABLE" msprop:Generator_RowDeletingName="PODATATABLERowDeleting" msprop:Generator_RowChangingName="PODATATABLERowChanging" msprop:Generator_RowEvHandlerName="PODATATABLERowChangeEventHandler" msprop:Generator_RowDeletedName="PODATATABLERowDeleted" msprop:Generator_UserTableName="PODATATABLE" msprop:Generator_RowChangedName="PODATATABLERowChanged" msprop:Generator_RowEvArgName="PODATATABLERowChangeEvent" msprop:Generator_RowClassName="PODATATABLERow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SEQ" msprop:Generator_ColumnVarNameInTable="columnSEQ" msprop:Generator_ColumnPropNameInRow="SEQ" msprop:Generator_ColumnPropNameInTable="SEQColumn" msprop:Generator_UserColumnName="SEQ" type="xs:int" minOccurs="0" />
+              <xs:element name="RAW_NAME" msprop:Generator_ColumnVarNameInTable="columnRAW_NAME" msprop:Generator_ColumnPropNameInRow="RAW_NAME" msprop:Generator_ColumnPropNameInTable="RAW_NAMEColumn" msprop:Generator_UserColumnName="RAW_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="PO_QTY" msprop:Generator_ColumnVarNameInTable="columnPO_QTY" msprop:Generator_ColumnPropNameInRow="PO_QTY" msprop:Generator_ColumnPropNameInTable="PO_QTYColumn" msprop:Generator_UserColumnName="PO_QTY" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
