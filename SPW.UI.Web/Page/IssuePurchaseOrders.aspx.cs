@@ -96,6 +96,10 @@ namespace SPW.UI.Web.Page
 
                     gdvPO.DataSource = listDataGrid;
                     gdvPO.DataBind();
+                    if (_PO_HD_TRANS.PO_HD_STATUS != "10")
+                    {
+                        btnApprove.Visible = false;
+                    }
                 }
             }
 
