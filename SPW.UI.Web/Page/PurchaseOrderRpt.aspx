@@ -62,6 +62,57 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-primary">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                <asp:GridView ID="gridPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="PO_BK_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
+                    OnRowEditing="gridPO_EditCommand" OnPageIndexChanging="gridPO_PageIndexChanging"
+                    Style="text-align: center" CssClass="grid">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="ดูข้อมล"
+                            ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="10%"></ItemStyle>
+                        </asp:CommandField>
+                        <asp:BoundField DataField="PO_BK_NO" HeaderText="เล่มที่ PO" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="PO_RN_NO" HeaderText="เลขที่ PO" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="VENDOR_ID" HeaderText="รหัสซัพพลายเออร์" ItemStyle-Width="40%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="สถานะ" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <%# (Eval("PO_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PO_HD_STATUS").ToString() == "20") ? "Approved" : ((Eval("PO_HD_STATUS").ToString() == "30") ? "Finish" : "Cancel")) %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                         <%--<asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="ImageButton1" runat="server"  ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
+                                ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>--%>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                        </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
         </div>
     </div>
 </asp:Content>

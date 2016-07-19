@@ -56,5 +56,32 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// gridPO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridPO;
+        
+        /// <summary>
+        /// PlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
     }
 }

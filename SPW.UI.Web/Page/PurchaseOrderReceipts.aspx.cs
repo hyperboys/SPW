@@ -108,6 +108,10 @@ namespace SPW.UI.Web.Page
                     Session["LISTDATAGRID"] = listDataGrid;
                     gdvREC.DataSource = listDataGrid;
                     gdvREC.DataBind();
+                    if (_PO_HD_TRANS.PO_HD_STATUS != "20")
+                    {
+                        btnSave.Visible = false;
+                    }
                 }
             }
             else
