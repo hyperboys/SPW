@@ -308,6 +308,17 @@
     <Compile Include="Page\PurchaseOrderRpt.aspx.designer.cs">
       <DependentUpon>PurchaseOrderRpt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\Reports\PurchaseOrdersReport.cs">
+      <DependentUpon>PurchaseOrdersReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Page\Reports\PurchaseOrdersRptDataTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Page\SearchEmpPosition.aspx.cs">
       <DependentUpon>SearchEmpPosition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -982,6 +993,17 @@
     <Content Include="Fonts\FontAwesome.otf" />
     <Content Include="MasterPage\MasterPageMainAdmin.Master" />
     <Content Include="MasterPage\MasterPageReport.Master" />
+    <Content Include="Page\Reports\PurchaseOrdersRptDataTable.xsc">
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Content>
+    <None Include="Page\Reports\PurchaseOrdersRptDataTable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseOrdersRptDataTable.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Page\Reports\PurchaseOrdersRptDataTable.xss">
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\SPW.pubxml" />
     <Content Include="Reports\SendOrderReportData.xsc">
       <DependentUpon>SendOrderReportData.xsd</DependentUpon>
@@ -1079,6 +1101,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Page\Reports\PurchaseOrdersReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseOrdersReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\PayInSlipKSB.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayInSlipKSB.cs</LastGenOutput>
