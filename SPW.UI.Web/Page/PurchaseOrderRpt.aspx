@@ -71,7 +71,7 @@
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="ดูข้อมล"
+                        <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="พิมพ์"
                             ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:CommandField>
@@ -89,12 +89,12 @@
                                 <%# (Eval("PO_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PO_HD_STATUS").ToString() == "20") ? "Approved" : ((Eval("PO_HD_STATUS").ToString() == "30") ? "Finish" : "Cancel")) %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <%--<asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
-                        <ItemTemplate>
-                            <asp:ImageButton ID="ImageButton1" runat="server"  ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
-                                ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" />
+                        <%--<asp:TemplateField HeaderText="พิมพ์" ItemStyle-Width="5%">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit">
+                                    <div class='glyphicon glyphicon glyphicon-print'></div>
+                                </asp:LinkButton>
+                            </ItemTemplate>
                         </asp:TemplateField>--%>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />

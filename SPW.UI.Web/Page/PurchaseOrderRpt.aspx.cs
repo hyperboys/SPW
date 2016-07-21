@@ -143,9 +143,6 @@ namespace SPW.UI.Web.Page
 
         protected void gridPO_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            //Response.RedirectPermanent("IssuePurchaseOrders.aspx?PO_BK_NO=" + gridPO.DataKeys[e.NewEditIndex].Values[0].ToString() + "&PO_RN_NO=" + gridPO.Rows[e.NewEditIndex].Cells[2].Text);
-
-
             PO_HD_TRANS _PO_HD_TRANS = cmdPoHdTransService.Select(gridPO.DataKeys[e.NewEditIndex].Values[0].ToString(), gridPO.Rows[e.NewEditIndex].Cells[2].Text);
             List<PO_DT_TRANS> listPoDtTrans = cmdPoDtTransService.Select(gridPO.DataKeys[e.NewEditIndex].Values[0].ToString(), gridPO.Rows[e.NewEditIndex].Cells[2].Text);
             List<PODATATABLE> lstPODATATABLE = new List<PODATATABLE>();
