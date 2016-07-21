@@ -86,10 +86,7 @@ namespace SPW.UI.Web.Page
             //ddlCategory.Items.Insert(0, new ListItem("เพิ่มคลัง", "0"));
             //ddlCategory.Items.Insert(1, new ListItem("ตั้งค่าคลัง", "1"));
             ddlCategory.Items.Insert(0, new ListItem("ตั้งค่าคลัง", "1"));
-
-            List<STOCK_TYPE> listStockType = (List<STOCK_TYPE>)ViewState["stocktypelist"];
-            listStockType.ForEach(item => ddlStock.Items.Add(new ListItem(item.STOCK_TYPE_NAME, item.STOCK_TYPE_ID.ToString())));
-
+            
             List<CATEGORY> listCategory = (List<CATEGORY>)ViewState["categorylist"];
             listCategory.ForEach(item => ddlProductType.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString())));
 
@@ -108,7 +105,7 @@ namespace SPW.UI.Web.Page
             List<DATAGRID> query = (from stock in data1
                                     join product in data2 on stock.RAW_ID equals product.RAW_ID into joined
                                     from j in joined.DefaultIfEmpty(new RAW_PRODUCT())
-                                    //where j.CATEGORY_ID.Equals((ddlProductType.SelectedValue == "0" ? j.CATEGORY_ID : int.Parse(ddlProductType.SelectedValue)))
+                                    where j.RAW_NAME1.Contains((txtRawName.Text == "" ? j.RAW_NAME1 : txtRawName.Text)) && (j.RAW_ID.ToString()).Contains((txtRawID.Text == "" ? j.RAW_ID.ToString() : txtRawID.Text))                                    
                                     select new DATAGRID
                                     {
                                         RAW_ID = stock.RAW_ID,
@@ -130,7 +127,7 @@ namespace SPW.UI.Web.Page
             List<DATAGRID> query = (from stock in data1
                                     join product in data2 on stock.RAW_ID equals product.RAW_ID into joined
                                     from j in joined.DefaultIfEmpty(new RAW_PRODUCT())
-                                    //where j.CATEGORY_ID.Equals((ddlProductType.SelectedValue == "0" ? j.CATEGORY_ID : int.Parse(ddlProductType.SelectedValue)))
+                                    where j.RAW_NAME1.Contains((txtRawName.Text == "" ? j.RAW_NAME1 : txtRawName.Text)) && (j.RAW_ID.ToString()).Contains((txtRawID.Text == "" ? j.RAW_ID.ToString() : txtRawID.Text))
                                     select new DATAGRID
                                     {
                                         RAW_ID = stock.RAW_ID,

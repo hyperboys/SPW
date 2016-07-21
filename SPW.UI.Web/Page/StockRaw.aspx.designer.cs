@@ -49,13 +49,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// txtPRODUCT_CODE control.
+        /// txtRawID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPRODUCT_CODE;
+        protected global::System.Web.UI.WebControls.TextBox txtRawID;
         
         /// <summary>
         /// lblUser control.
@@ -67,15 +67,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Label lblUser;
         
         /// <summary>
-        /// ddlStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStock;
-        
-        /// <summary>
         /// ddlProductType control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
+        
+        /// <summary>
+        /// txtRawName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRawName;
         
         /// <summary>
         /// btnSearch control.
