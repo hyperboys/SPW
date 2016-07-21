@@ -12,7 +12,6 @@ using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using System.Data;
 using System.Reflection;
-using SPW.UI.Web.Page.Reports;
 using System.Data.SqlClient;
 
 namespace SPW.UI.Web.Page
@@ -158,7 +157,6 @@ namespace SPW.UI.Web.Page
                 });
 
                 ReportDocument rpt = new ReportDocument();
-                PurchaseOrdersReport purchaseOrdersReport = new PurchaseOrdersReport();
                 rpt.Load(Server.MapPath("Reports/PurchaseOrdersReport.rpt"));
                 rpt.SetDataSource(ToDataTable(lstPODATATABLE));
                 // Assign Paramters after set datasource

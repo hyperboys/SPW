@@ -639,7 +639,7 @@ namespace SPW.UI.Web.Page
                         tmpTotalAmt += pt.CHQ_AMOUNT;
                     }
 
-                    Reports.PayInSlip ds = new Reports.PayInSlip();
+                    SPW.UI.Web.Reports.PayInSlip ds = new SPW.UI.Web.Reports.PayInSlip();
                     DataTable payInSlipMain = ds.Tables["MAIN"];
                     DataRow drPayInSlipMain = payInSlipMain.NewRow();
 
@@ -720,7 +720,7 @@ namespace SPW.UI.Web.Page
                         tmpTotalAmt += pt.CHQ_AMOUNT;
                     }
 
-                    Reports.PayInSlip ds = new Reports.PayInSlip();
+                    SPW.UI.Web.Reports.PayInSlip ds = new SPW.UI.Web.Reports.PayInSlip();
                     DataTable payInSlipMain = ds.Tables["MAIN"];
                     DataRow drPayInSlipMain = payInSlipMain.NewRow();
 
@@ -831,7 +831,7 @@ namespace SPW.UI.Web.Page
                         lstPayIn = Session["PAYIN_PRINT"] as List<PAYIN_TRANS>;
                     }
 
-                    Reports.PayInSlip ds = new Reports.PayInSlip();
+                    SPW.UI.Web.Reports.PayInSlip ds = new SPW.UI.Web.Reports.PayInSlip();
                     DataTable payInSlipMain = ds.Tables["MAIN"];
 
                     DataTable payInSlipPaper = ds.Tables["SUM_PAPER"];

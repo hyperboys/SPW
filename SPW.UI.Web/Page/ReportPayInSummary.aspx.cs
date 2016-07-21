@@ -10,6 +10,7 @@ using SPW.DAL;
 using SPW.UI.Web.Reports;
 using System.Data;
 using SPW.Common;
+using SPW.UI.Web.Reports;
 
 namespace SPW.UI.Web.Page
 {
@@ -100,7 +101,7 @@ namespace SPW.UI.Web.Page
                 List<PAYIN_TRANS> lstPayin = Session["ListPayin"] as List<PAYIN_TRANS>;
                 lstPayin = lstPayin.OrderBy(x => x.PAYIN_DATE).ToList();
 
-                Reports.PayInSummaryData ds = new Reports.PayInSummaryData();
+                SPW.UI.Web.Reports.PayInSummaryData ds = new SPW.UI.Web.Reports.PayInSummaryData();
                 DataTable payInSummaryData = ds.Tables["PAYIN"];
                 foreach (PAYIN_TRANS item in lstPayin)
                 {
