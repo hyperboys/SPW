@@ -82,7 +82,7 @@ namespace SPW.DataService
         }
         public List<PO_HD_TRANS> GetAllByStatusApprove()
         {
-            return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.PO_HD_TRANS.Where(x => x.SYE_DEL == false && x.PO_HD_STATUS == "20").ToList();
         }
         public List<PO_HD_TRANS> GetAllByStatusFinish()
         {
