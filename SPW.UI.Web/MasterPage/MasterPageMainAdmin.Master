@@ -119,31 +119,6 @@
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-                            <li runat="server" id="KPI" visible="true">
-                                <a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;KPI<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="../Page/SearchGrade.aspx">ข้อมูลพนักงาน</a>
-                                    </li>
-                                    <li>
-                                        <a href="../Page/SearchDepartment.aspx">ข้อมูลแผนก</a>
-                                    </li>
-                                    <li>
-                                        <a href="../Page/SearchUser.aspx">ข้อมูลผู้ใช้งาน</a>
-                                    </li>
-                                    <li>
-                                        <a href="../Page/SearchRole.aspx">ข้อมูล Role</a>
-                                    </li>
-                                   <%-- <asp:ListView ID="ListView1" runat="server">
-                                        <ItemTemplate>
-                                            <li>
-                                                <a href='<%#Eval("SUB_FUNCTION_PATH")%>'><%#Eval("SUB_FUNCTION_NAME")%></a>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:ListView>--%>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
                             <li runat="server" id="StandardData" visible="true">
                                 <a href="#"><i class="fa fa-cubes fa-fw"></i>&nbsp;ข้อมูลพื้นฐาน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
