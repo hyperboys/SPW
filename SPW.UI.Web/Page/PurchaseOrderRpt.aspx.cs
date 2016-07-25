@@ -117,7 +117,7 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            DataSouce = cmdPoHdTransService.GetAllByStatusApprove();
+            DataSouce = cmdPoHdTransService.GetAll();
             gridPO.DataSource = DataSouce;
             gridPO.DataBind();
         }

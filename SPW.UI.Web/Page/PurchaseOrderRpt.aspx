@@ -47,7 +47,7 @@
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
                                     <td>
-                                        <asp:Button ID="btnPrint" class="btn btn-primary" runat="server" Text="พิมพ์" OnClick="btnPrint_Click"/>
+                                        <%--<asp:Button ID="btnPrint" class="btn btn-primary" runat="server" Text="พิมพ์" OnClick="btnPrint_Click"/>--%>
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
                                     <td>
@@ -66,7 +66,7 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                 <asp:GridView ID="gridPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="PO_BK_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
+                    DataKeyNames="PO_BK_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลใบสั่งซือ"
                     OnRowEditing="gridPO_EditCommand" OnPageIndexChanging="gridPO_PageIndexChanging"
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
