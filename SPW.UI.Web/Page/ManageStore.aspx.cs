@@ -74,7 +74,7 @@ namespace SPW.UI.Web.Page
                 ddlSector.Items.Add(new ListItem(item.SECTOR_NAME, item.SECTOR_ID.ToString()));
             }
 
-            foreach (var item in cmdEmp.GetAllInclude().ToList())
+            foreach (var item in cmdEmp.GetAll().ToList())
             {
                 ddlSell.Items.Add(new ListItem((item.EMPLOYEE_NAME + " " + item.EMPLOYEE_SURNAME), item.EMPLOYEE_ID.ToString()));
             }
@@ -159,7 +159,7 @@ namespace SPW.UI.Web.Page
                 obj.ZONE_DETAIL.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                 obj.ZONE_DETAIL.UPDATE_DATE = DateTime.Now;
                 obj.ZONE_DETAIL.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-
+                obj.ZONE_DETAIL.SYE_DEL = false;
                 obj.CREATE_DATE = DateTime.Now;
                 obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                 obj.UPDATE_DATE = DateTime.Now;

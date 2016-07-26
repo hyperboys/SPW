@@ -215,7 +215,6 @@
     <Content Include="Page\SearchRawType.aspx" />
     <Content Include="Page\SearchRole.aspx" />
     <Content Include="Page\SearchSupplier.aspx" />
-    <Content Include="Page\SearchTracery.aspx" />
     <Content Include="Page\SearchTranspotLine.aspx" />
     <Content Include="Page\SearchUnitType.aspx" />
     <Content Include="Page\SearchUser.aspx" />
@@ -682,13 +681,6 @@
     </Compile>
     <Compile Include="Page\SearchSupplier.aspx.designer.cs">
       <DependentUpon>SearchSupplier.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Page\SearchTracery.aspx.cs">
-      <DependentUpon>SearchTracery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\SearchTracery.aspx.designer.cs">
-      <DependentUpon>SearchTracery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchTranspotLine.aspx.cs">
       <DependentUpon>SearchTranspotLine.aspx</DependentUpon>

@@ -77,17 +77,6 @@
                                     </td>
                                 </tr>
                             </table>
-                            <table style="width: 803px; height: 51px;">
-                                <tr>
-                                    <td class="auto-style4">พนักงานขาย</td>
-                                    <td class="auto-style1" style="text-align: center">:</td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlSell" class="form-control" runat="server" Height="35px" Width="456px" SelectedValue='<%# Eval("Key") %>'>
-                                            <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                </tr>
-                            </table>
                         </div>
                         <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>
                     </div>
