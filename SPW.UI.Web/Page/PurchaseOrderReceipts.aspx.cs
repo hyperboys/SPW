@@ -354,7 +354,7 @@ namespace SPW.UI.Web.Page
                         DATAGRID _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text)).FirstOrDefault();
                         _DATAGRID.PO_QTY = int.Parse(txtQtyReceive.Text);
                         listNewData.Add(_DATAGRID);
-                        isExceedLimit = (int.Parse(txtQtyReceive.Text) + _DATAGRID.RECEIVE_QTY > _DATAGRID.PO_QTY) ? false : isExceedLimit;
+                        isExceedLimit = (int.Parse(txtQtyReceive.Text) < 0) ? false : isExceedLimit;
                     }
                     if (isExceedLimit)
                     {
