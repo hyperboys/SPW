@@ -82,7 +82,7 @@
                               </div>
                               <div class="col-md-2">
                                         <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
-                                        <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Height="30px" Width="70px" Text="บันทึก" OnClick="btnSave_Click" />
+                                        <%--<asp:Button ID="btnSave" class="btn btn-primary" runat="server" Height="30px" Width="70px" Text="บันทึก" OnClick="btnSave_Click" />--%>
                               </div>
                             </div>
                         </div>
@@ -93,9 +93,8 @@
             <!-- /.row (nested) -->
             <div class="panel panel-primary">
                 <asp:Panel ID="PanelSet" runat="server">
-                    <asp:GridView ID="gridStockRawSet" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                        DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสินค้า"
-                        Style="text-align: center" CssClass="grid">
+                    <asp:GridView ID="gridStockRawSet" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="RAW_ID" PageSize="20" Width="100%" 
+                        EmptyDataText="ไม่พบข้อมูลสินค้า" OnRowEditing="gridStockRawSet_EditCommand" Style="text-align: center" CssClass="grid">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="20%">
@@ -112,11 +111,17 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="ยอดคงเหลือ" ItemStyle-Width="25%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtRAW_REMAIN" class="form-control" runat="server" Text='<%# Bind("RAW_REMAIN") %>'></asp:TextBox>
+                                    <asp:Label ID="lblRAW_REMAIN" runat="server" Text='<%# Bind("RAW_REMAIN") %>'></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle Width="10%"></ItemStyle>
+                            </asp:TemplateField>
+                            <%--<asp:TemplateField HeaderText="ยอดคงเหลือ" ItemStyle-Width="25%" Visible="false">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtRAW_REMAIN" class="form-control" runat="server" Text='<%# Bind("RAW_REMAIN") %>' Visible="false"></asp:TextBox>
                                     <asp:HiddenField ID="hfRAW_REMAIN" runat="server" Value='<%# Bind("RAW_REMAIN") %>' />
                                 </ItemTemplate>
                                 <ItemStyle Width="25%"></ItemStyle>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Safety Stock" ItemStyle-Width="10%">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtRAW_MINIMUM" class="form-control" runat="server" Text='<%# Bind("RAW_MINIMUM") %>'></asp:TextBox>
@@ -124,6 +129,13 @@
                                 </ItemTemplate>
                                 <ItemStyle Width="10%"></ItemStyle>
                             </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit">
+                                    <div class='glyphicon glyphicon glyphicon glyphicon-list'></div>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

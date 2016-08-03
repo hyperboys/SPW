@@ -281,6 +281,10 @@ namespace SPW.UI.Web.Page
                 btnSearch_Click(null, null);
             }
         }
+        protected void gridStockRawSet_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+        {
+            Response.RedirectPermanent("PurchaseOrderReceiptsHistory.aspx?PO_BK_NO=" + Request.QueryString["PO_BK_NO"].ToString() + "&PO_RN_NO=" + Request.QueryString["PO_RN_NO"].ToString() + "&RAW_ID=" + Request.QueryString["PO_RN_NO"].ToString());
+        }
         #endregion
     }
 }
