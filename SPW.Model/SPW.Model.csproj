@@ -73,6 +73,8 @@
     <Compile Include="CustomModel\COLOR.cs" />
     <Compile Include="CustomModel\EMPLOYEE_HIST.cs" />
     <Compile Include="CustomModel\EMP_POSITION.cs" />
+    <Compile Include="CustomModel\EMP_SKILL.cs" />
+    <Compile Include="CustomModel\EMP_SKILL_TYPE.cs" />
     <Compile Include="CustomModel\RECEIVE_RAW_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_WITHDRAW_TRANS.cs" />
     <Compile Include="CustomModel\DELIVERY_INDEX.cs" />

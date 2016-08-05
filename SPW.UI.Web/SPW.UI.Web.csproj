@@ -159,6 +159,10 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ManageEmpSkillType.aspx" />
+    <Content Include="Page\SearchEmpSkillType.aspx" />
+    <Content Include="Page\ManageEmpSkill.aspx" />
+    <Content Include="Page\SearchEmpSkill.aspx" />
     <Content Include="Page\ManageEmpPosition.aspx" />
     <Content Include="Page\PurchaseOrderReceipts.aspx" />
     <Content Include="Page\PurchaseOrderReceiptsHistory.aspx" />
@@ -278,6 +282,34 @@
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageEmpSkillType.aspx.cs">
+      <DependentUpon>ManageEmpSkillType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageEmpSkillType.aspx.designer.cs">
+      <DependentUpon>ManageEmpSkillType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmpSkillType.aspx.cs">
+      <DependentUpon>SearchEmpSkillType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmpSkillType.aspx.designer.cs">
+      <DependentUpon>SearchEmpSkillType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageEmpSkill.aspx.cs">
+      <DependentUpon>ManageEmpSkill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageEmpSkill.aspx.designer.cs">
+      <DependentUpon>ManageEmpSkill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmpSkill.aspx.cs">
+      <DependentUpon>SearchEmpSkill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmpSkill.aspx.designer.cs">
+      <DependentUpon>SearchEmpSkill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ManageEmpPosition.aspx.cs">
       <DependentUpon>ManageEmpPosition.aspx</DependentUpon>

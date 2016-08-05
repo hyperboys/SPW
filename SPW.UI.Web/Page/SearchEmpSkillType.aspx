@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
-    CodeBehind="SearchEmpPosition.aspx.cs" Inherits="SPW.UI.Web.Page.SearchEmpPosition" %>
+    CodeBehind="SearchEmpSkillType.aspx.cs" Inherits="SPW.UI.Web.Page.SearchEmpSkillType" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">ตำแหน่งพนักงาน</h1>
+    <h1 class="page-header">ประเภททักษะพนักงาน</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -30,7 +30,7 @@
         <ContentTemplate>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    ข้อมูลตำแหน่งพนักงาน        
+                    ข้อมูลประเภททักษะพนักงาน        
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -39,15 +39,15 @@
                                 <div class="form-group">
                                     <%--first row--%>
                                     <div class="row">
-                                        <div class="col-md-2">ชื่อตำแหน่ง</div>
+                                        <div class="col-md-2">ชื่อประเภททักษะ</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtPosition" class="form-control" runat="server" Height="35px" placeholder="ชื่อตำแหน่ง"></asp:TextBox>
+                                            <asp:TextBox ID="txtSkill" class="form-control" runat="server" Height="35px" placeholder="ชื่อประเภททักษะ"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
                                         </div>
                                         <div class="col-md-3">
-                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageEmpPosition.aspx" />
+                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageEmpSkillType.aspx" />
                                         </div>
                                         <%--<div class="col-md-2">
                                         </div>--%>
@@ -60,7 +60,7 @@
                     <!-- /.row (nested) -->
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdEmpPos" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" OnRowDataBound="grdEmpPos_RowDataBound"
-                            DataKeyNames="POSITION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลตำแหน่งพนักงาน"
+                            DataKeyNames="EMP_SKILL_TYPE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลประเภททักษะพนักงาน"
                             Style="text-align: center" CssClass="grid" OnRowDeleting="grdEmpPos_RowDeleting">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
@@ -70,8 +70,11 @@
                                     </ItemTemplate>
                                     <ItemStyle BorderStyle="Solid" />
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="POSITION_NAME" HeaderText="ชื่อตำแหน่งพนักงาน" ItemStyle-Width="75%">
-                                    <ItemStyle Width="85%"></ItemStyle>
+                                <asp:BoundField DataField="EMP_SKILL_TYPE_NA" HeaderText="ประเภททักษะพนักงาน" ItemStyle-Width="75%">
+                                    <ItemStyle Width="75%"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="EMP_SKILL_TYPE_DEFAULT" HeaderText="เปอร์เซ็น" ItemStyle-Width="10%">
+                                    <ItemStyle Width="10%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">
                                     <ItemTemplate>
