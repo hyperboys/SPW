@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="บันทึก" OnClick="btnSave_Click" ValidationGroup="group" />
-                                <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Text="ยกเลิก" PostBackUrl="~/Page/SearchEmpSkillType.aspx" />
+                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Text="ยกเลิก" PostBackUrl="~/Page/SearchEmpSkillType.aspx" />
                                 </div>
                             </div>
                         </div>

@@ -490,7 +490,7 @@ namespace SPW.UI.Web.Page
                     tmpItem.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                     tmpItem.PAYIN_APPROVE_ID = 1;
                     tmpItem.PAYIN_SEQ_NO = payInSeq;
-                    tmpItem.PAYIN_TOTAL_AMOUNT = txtPageSeq.Text == "1" ? tmpTotalAmt : sql.GetAmount("SELECT SUM(CHQ_AMOUNT) FROM [SPW].[dbo].[PAYIN_TRANS] WHERE PAYIN_SEQ_NO = " + payInSeq) + tmpTotalAmt;
+                    tmpItem.PAYIN_TOTAL_AMOUNT = 0; //txtPageSeq.Text == "1" ? tmpTotalAmt : sql.GetAmount("SELECT SUM(CHQ_AMOUNT) FROM [SPW].[dbo].[PAYIN_TRANS] WHERE PAYIN_SEQ_NO = " + payInSeq + " AND PAYIN_DATE = '" + convertToDateUSA(lstPayIn[0].PAYIN_DATE.ToString("dd-MM-yyyy")) + "'") + tmpTotalAmt;
                     tmpItem.SYE_DEL = false;
                     tmpItem.UPDATE_DATE = DateTime.Now;
                     tmpItem.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
@@ -507,7 +507,7 @@ namespace SPW.UI.Web.Page
 
                 try
                 {
-                    sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
+                    sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq + " AND PAYIN_DATE = '" + convertToDateUSA(lstPayIn[0].PAYIN_DATE.ToString("dd-MM-yyyy")) + "'");
                 }
                 catch (Exception ex)
                 {

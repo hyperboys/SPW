@@ -159,6 +159,7 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ManageGrade.aspx" />
     <Content Include="Page\ManageEmpSkillType.aspx" />
     <Content Include="Page\SearchEmpSkillType.aspx" />
     <Content Include="Page\ManageEmpSkill.aspx" />
@@ -282,6 +283,13 @@
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageGrade.aspx.cs">
+      <DependentUpon>ManageGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageGrade.aspx.designer.cs">
+      <DependentUpon>ManageGrade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ManageEmpSkillType.aspx.cs">
       <DependentUpon>ManageEmpSkillType.aspx</DependentUpon>
