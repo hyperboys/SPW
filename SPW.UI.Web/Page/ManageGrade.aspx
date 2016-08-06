@@ -101,6 +101,10 @@
                                     </script>
                                 </div>
                                 <div class="col-md-2">
+                                    <asp:Label ID="lblDate1" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="col-md-3">
+                                    ถึงปัจจุบัน
                                 </div>
                             </div>
                             <div class="row">
@@ -123,6 +127,11 @@
                                     </script>
                                 </div>
                                 <div class="col-md-2">
+                                    <asp:Label ID="lblDate2" runat="server" Text=""></asp:Label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    ถึงปัจจุบัน
                                 </div>
                             </div>
                             <div class="row">
@@ -145,6 +154,11 @@
                                     </script>
                                 </div>
                                 <div class="col-md-2">
+                                    <asp:Label ID="lblDate3" runat="server" Text=""></asp:Label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    ถึงปัจจุบัน
                                 </div>
                             </div>
                             <div class="row">
@@ -167,6 +181,11 @@
                                     </script>
                                 </div>
                                 <div class="col-md-2">
+                                    <asp:Label ID="lblDate4" runat="server" Text=""></asp:Label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    ถึงปัจจุบัน
                                 </div>
                             </div>
                             <div class="row">
@@ -189,6 +208,11 @@
                                     </script>
                                 </div>
                                 <div class="col-md-2">
+                                    <asp:Label ID="lblDate5" runat="server" Text=""></asp:Label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    ถึงปัจจุบัน
                                 </div>
                             </div>
                             <div class="row">
@@ -196,7 +220,10 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-2">
                                     <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="บันทึก" OnClick="btnSave_Click" ValidationGroup="group" />
+                                </div>
+                                <div class="col-md-3">
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Text="ยกเลิก" PostBackUrl="~/Page/SearchEmpSkillType.aspx" />
+
                                 </div>
                             </div>
                         </div>

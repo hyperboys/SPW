@@ -69,6 +69,11 @@ namespace SPW.DataService
             return this.Datacontext.EMP_GRADE_SET.Where(x => x.SYE_DEL == false).ToList();
         }
 
+        public List<EMP_GRADE_SET> GetAllTop5()
+        {
+            return this.Datacontext.EMP_GRADE_SET.Where(x => x.SYE_DEL == false && x.GRADE_SET_ACTIVE == "A").OrderByDescending(x => x.EFFECTIVE_DATE).OrderBy(y => y.GRADE_SET_SEQ_NO).ToList();
+        }
+
         public void Delete(int ID)
         {
             var obj = this.Datacontext.EMP_GRADE_SET.Where(x => x.GRADE_SET_SEQ_NO == ID).FirstOrDefault();
