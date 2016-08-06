@@ -48,6 +48,8 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="ColorService.cs" />
     <Compile Include="AccountMastService.cs" />
+    <Compile Include="EmpMeasureDtTemplate.cs" />
+    <Compile Include="EmpMeasureHdTemplate.cs" />
     <Compile Include="EmpSkillTypeService.cs" />
     <Compile Include="EmpSkillService.cs" />
     <Compile Include="EmpGradeService.cs" />
