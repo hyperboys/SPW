@@ -58,6 +58,24 @@ namespace SPW.UI.Web.MasterPage {
         protected global::System.Web.UI.WebControls.ListView listSystem;
         
         /// <summary>
+        /// KPI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl KPI;
+        
+        /// <summary>
+        /// listKPI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listKPI;
+        
+        /// <summary>
         /// StandardData control.
         /// </summary>
         /// <remarks>

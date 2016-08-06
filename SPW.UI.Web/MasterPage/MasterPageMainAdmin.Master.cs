@@ -106,6 +106,14 @@ namespace SPW.UI.Web.MasterPage
                     {
                         PO.Visible = false;
                     }
+
+                    //  KPI
+                    listKPI.DataSource = _subFunctionService.GetAll(9).Where(x => x.SYE_DEL == false && (userItem.ROLE.ROLE_FUNCTION.Where(y => y.FUNCTION_ID == 9 && y.SYE_DEL == false).Select(z => z.SUB_FUNCTION_ID).ToList()).Contains(x.SUB_FUNCTION_ID)).ToList();
+                    listKPI.DataBind();
+                    if (listKPI.Items.Count() == 0)
+                    {
+                        KPI.Visible = false;
+                    }
                 }
                 catch
                 {
