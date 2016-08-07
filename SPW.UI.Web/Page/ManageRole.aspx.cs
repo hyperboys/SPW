@@ -30,36 +30,6 @@ namespace SPW.UI.Web.Page
             }
         }
 
-        //public List<ROLE_FUNCTION> DataSouceRoleFunction
-        //{
-        //    get
-        //    {
-        //        var list = (List<ROLE_FUNCTION>)ViewState["listRoleFunction"];
-        //        return list;
-        //    }
-        //    set
-        //    {
-        //        ViewState["listRoleFunction"] = value;
-        //    }
-        //}
-
-        //public List<ROLE_FUNCTION> DataSouceNewRoleFunction
-        //{
-        //    get
-        //    {
-        //        if (ViewState["listNewRoleFunction"] == null)
-        //        {
-        //            ViewState["listNewRoleFunction"] = new List<ROLE_FUNCTION>();
-        //        }
-        //        var list = (List<ROLE_FUNCTION>)ViewState["listNewRoleFunction"];
-        //        return list;
-        //    }
-        //    set
-        //    {
-        //        ViewState["listNewRoleFunction"] = value;
-        //    }
-        //}
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -128,6 +98,8 @@ namespace SPW.UI.Web.Page
             fncAsset.DataBind();
             fncPO.DataSource = cmdFunctionService.Select(8).SUB_FUNCTION.ToList();
             fncPO.DataBind();
+            fncKPI.DataSource = cmdFunctionService.Select(9).SUB_FUNCTION.ToList();
+            fncKPI.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -271,6 +243,24 @@ namespace SPW.UI.Web.Page
                         rf.CREATE_DATE = DateTime.Now;
                         rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                         rf.FUNCTION_ID = 8;
+                        rf.ROLE_ID = tmpRole.ROLE_ID;
+                        rf.SUB_FUNCTION_ID = (int)fncPO.DataKeys[row.RowIndex].Value;
+                        rf.UPDATE_DATE = DateTime.Now;
+                        rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.SYE_DEL = false;
+                        lstRoleFunc.Add(rf);
+                    }
+                }
+
+                foreach (GridViewRow row in fncKPI.Rows)
+                {
+                    if (((CheckBox)row.FindControl("check")).Checked)
+                    {
+                        ROLE_FUNCTION rf = new ROLE_FUNCTION();
+                        rf.Action = ActionEnum.Create;
+                        rf.CREATE_DATE = DateTime.Now;
+                        rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        rf.FUNCTION_ID = 9;
                         rf.ROLE_ID = tmpRole.ROLE_ID;
                         rf.SUB_FUNCTION_ID = (int)fncPO.DataKeys[row.RowIndex].Value;
                         rf.UPDATE_DATE = DateTime.Now;

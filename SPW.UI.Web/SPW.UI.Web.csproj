@@ -159,7 +159,7 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
-    <Content Include="Page\SearchHDTemplate.aspx" />
+    <Content Include="Page\SearchEmpHdTemplate.aspx" />
     <Content Include="Page\ManageHDTemplate.aspx" />
     <Content Include="Page\ManageGrade.aspx" />
     <Content Include="Page\ManageEmpSkillType.aspx" />
@@ -286,12 +286,12 @@
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\SearchHDTemplate.aspx.cs">
-      <DependentUpon>SearchHDTemplate.aspx</DependentUpon>
+    <Compile Include="Page\SearchEmpHdTemplate.aspx.cs">
+      <DependentUpon>SearchEmpHdTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\SearchHDTemplate.aspx.designer.cs">
-      <DependentUpon>SearchHDTemplate.aspx</DependentUpon>
+    <Compile Include="Page\SearchEmpHdTemplate.aspx.designer.cs">
+      <DependentUpon>SearchEmpHdTemplate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\ManageHDTemplate.aspx.cs">
       <DependentUpon>ManageHDTemplate.aspx</DependentUpon>

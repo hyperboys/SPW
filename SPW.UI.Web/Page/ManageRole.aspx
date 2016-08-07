@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" CodeBehind="ManageRole.aspx.cs" Inherits="SPW.UI.Web.Page.ManageRole" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" 
+    AutoEventWireup="true" CodeBehind="ManageRole.aspx.cs" Inherits="SPW.UI.Web.Page.ManageRole" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
@@ -254,6 +255,34 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชัน Purchase Order" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="90%"></ItemStyle>
+                        </asp:BoundField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
+            </div>
+            <div class="panel-body">
+                <asp:GridView ID="fncKPI" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="SUB_FUNCTION_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล KPI"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="fncPO_RowDataBound">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="เลือก" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="check" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SUB_FUNCTION_NAME" HeaderText="ชื่อฟังก์ชัน KPI" ItemStyle-Width="90%" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle Width="90%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>

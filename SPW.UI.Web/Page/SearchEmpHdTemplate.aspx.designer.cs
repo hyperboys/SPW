@@ -8,9 +8,10 @@
 //------------------------------------------------------------------------------
 
 namespace SPW.UI.Web.Page {
-    
-    
-    public partial class SearchHDTemplate {
+
+
+    public partial class SearchEmpHdTemplate
+    {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -31,22 +32,22 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// txtStartDate control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
         
         /// <summary>
-        /// txtEndDate control.
+        /// txtSkill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
+        protected global::System.Web.UI.WebControls.TextBox txtSkill;
         
         /// <summary>
         /// btnSearch control.
@@ -58,24 +59,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// txtAccountNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAccountNo;
-        
-        /// <summary>
-        /// txtCheckNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCheckNo;
-        
-        /// <summary>
         /// btnAdd control.
         /// </summary>
         /// <remarks>
@@ -85,13 +68,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// grdPayIn control.
+        /// grdEmpPos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPayIn;
+        protected global::System.Web.UI.WebControls.GridView grdEmpPos;
         
         /// <summary>
         /// PlaceHolder1 control.

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.Model;
 using SPW.DataService;
+using SPW.Common;
 
 namespace SPW.UI.Web.MasterPage
 {
@@ -115,8 +116,9 @@ namespace SPW.UI.Web.MasterPage
                         KPI.Visible = false;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    DebugLog.WriteLog(ex.ToString());
                     Response.RedirectPermanent("../PageLogin/Login.aspx");
                 }
             }

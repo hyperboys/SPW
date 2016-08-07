@@ -64,7 +64,7 @@ namespace SPW.DataService
 
         public List<EMP_MEASURE_HD_TEMPLATE> GetAll()
         {
-            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.SYE_DEL == false).ToList();
         }
 
         public void Delete(string ID)
