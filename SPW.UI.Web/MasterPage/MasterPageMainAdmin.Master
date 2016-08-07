@@ -97,7 +97,7 @@
                             <li runat="server" id="SystemData" visible="true">
                                 <a href="#"><i class="fa fa-user fa-fw"></i>&nbsp;ข้อมูลระบบ<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li>
+                                 <%--   <li>
                                         <a href="../Page/SearchEmployee.aspx">ข้อมูลพนักงาน</a>
                                     </li>
                                     <li>
@@ -108,7 +108,7 @@
                                     </li>
                                     <li>
                                         <a href="../Page/SearchRole.aspx">ข้อมูล Role</a>
-                                    </li>
+                                    </li>--%>
                                     <asp:ListView ID="listSystem" runat="server">
                                         <ItemTemplate>
                                             <li>
