@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace SPW.UI.Web.Page {
-    
-    
-    public partial class SearchRole {
+
+
+    public partial class SearchRoleFunc {
         
         /// <summary>
         /// txtRoleCode control.

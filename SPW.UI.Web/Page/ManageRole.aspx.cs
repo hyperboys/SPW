@@ -262,7 +262,7 @@ namespace SPW.UI.Web.Page
                         rf.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                         rf.FUNCTION_ID = 9;
                         rf.ROLE_ID = tmpRole.ROLE_ID;
-                        rf.SUB_FUNCTION_ID = (int)fncPO.DataKeys[row.RowIndex].Value;
+                        rf.SUB_FUNCTION_ID = (int)fncKPI.DataKeys[row.RowIndex].Value;
                         rf.UPDATE_DATE = DateTime.Now;
                         rf.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                         rf.SYE_DEL = false;
@@ -276,7 +276,7 @@ namespace SPW.UI.Web.Page
                 }
 
                 alert.Visible = true;
-                Response.AppendHeader("Refresh", "2; url=SearchRole.aspx");
+                Response.AppendHeader("Refresh", "2; url=SearchRoleFunc.aspx");
             }
             catch (Exception ex)
             {

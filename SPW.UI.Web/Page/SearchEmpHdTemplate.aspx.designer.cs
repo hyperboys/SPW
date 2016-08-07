@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace SPW.UI.Web.Page {
-
-
-    public partial class SearchEmpHdTemplate
-    {
+    
+    
+    public partial class SearchEmpHdTemplate {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -41,15 +40,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.TextBox txtDepartment;
         
         /// <summary>
-        /// txtSkill control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSkill;
-        
-        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>
@@ -57,6 +47,15 @@ namespace SPW.UI.Web.Page {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// txtSkill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSkill;
         
         /// <summary>
         /// btnAdd control.

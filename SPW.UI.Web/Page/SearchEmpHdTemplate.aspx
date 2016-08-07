@@ -44,15 +44,24 @@
                                             <asp:TextBox ID="txtDepartment" class="form-control" runat="server" Height="35px" placeholder="ชื่อแผนก" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">
-                                            ชื่อประเภททักษะ
+                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
                                         </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">ชื่อประเภททักษะ</div>
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txtSkill" class="form-control" runat="server" Height="35px" placeholder="ชื่อประเภททักษะ" data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">
-                                            <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" Height="30px" Width="70px" />
-                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageEmpSkillType.aspx" />
-
+                                            <asp:Button ID="btnAdd" class="btn btn-primary" runat="server" Text="เพิ่ม" Height="30px" Width="70px" PostBackUrl="~/Page/ManageHDTemplate.aspx" />
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
                                         </div>
                                     </div>
                                 </div>

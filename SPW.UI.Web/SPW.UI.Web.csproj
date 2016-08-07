@@ -220,7 +220,7 @@
     <Content Include="Page\SearchRawPack.aspx" />
     <Content Include="Page\SearchRawProduct.aspx" />
     <Content Include="Page\SearchRawType.aspx" />
-    <Content Include="Page\SearchRole.aspx" />
+    <Content Include="Page\SearchRoleFunc.aspx" />
     <Content Include="Page\SearchSupplier.aspx" />
     <Content Include="Page\SearchTranspotLine.aspx" />
     <Content Include="Page\SearchUnitType.aspx" />
@@ -724,12 +724,12 @@
     <Compile Include="Page\SearchRawType.aspx.designer.cs">
       <DependentUpon>SearchRawType.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Page\SearchRole.aspx.cs">
-      <DependentUpon>SearchRole.aspx</DependentUpon>
+    <Compile Include="Page\SearchRoleFunc.aspx.cs">
+      <DependentUpon>SearchRoleFunc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Page\SearchRole.aspx.designer.cs">
-      <DependentUpon>SearchRole.aspx</DependentUpon>
+    <Compile Include="Page\SearchRoleFunc.aspx.designer.cs">
+      <DependentUpon>SearchRoleFunc.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchSupplier.aspx.cs">
       <DependentUpon>SearchSupplier.aspx</DependentUpon>

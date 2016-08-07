@@ -9,7 +9,7 @@ using SPW.Model;
 
 namespace SPW.UI.Web.Page
 {
-    public partial class SearchRole : System.Web.UI.Page
+    public partial class SearchRoleFunc : System.Web.UI.Page
     {
         private DataServiceEngine _dataServiceEngine;
         private RoleService cmdRole;
