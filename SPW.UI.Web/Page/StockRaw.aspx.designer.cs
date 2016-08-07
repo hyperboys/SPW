@@ -49,15 +49,6 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// txtRawID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRawID;
-        
-        /// <summary>
         /// lblUser control.
         /// </summary>
         /// <remarks>
@@ -67,13 +58,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.Label lblUser;
         
         /// <summary>
-        /// ddlProductType control.
+        /// txtRawID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
+        protected global::System.Web.UI.WebControls.TextBox txtRawID;
         
         /// <summary>
         /// txtRawName control.

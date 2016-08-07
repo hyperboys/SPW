@@ -63,18 +63,15 @@
                                             <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
                                         </asp:DropDownList>
                               </div>
-                              <div class="col-md-2">รหัสสินค้า</div>
+                              <div class="col-md-2"></div>
                               <div class="col-md-3">
-                                    <asp:TextBox ID="txtRawID" class="form-control" runat="server" Height="35px" placeholder="รหัสสินค้า"></asp:TextBox>
                               </div>
                               <div class="col-md-2">ผู้ทำรายการ : <asp:Label ID="lblUser" runat="server"></asp:Label></div>
                             </div>
                             <div class="row">
-                              <div class="col-md-2">กลุ่มสินค้า</div>
+                              <div class="col-md-2">รหัสสินค้า</div>
                               <div class="col-md-3">
-                                    <asp:DropDownList ID="ddlProductType" class="form-control" runat="server" Height="35px" Width="200px">
-                                        <asp:ListItem Value ="0">กรุณาเลือก</asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:TextBox ID="txtRawID" class="form-control" runat="server" Height="35px" placeholder="รหัสสินค้า"></asp:TextBox>
                               </div>
                               <div class="col-md-2">ชื่อสินค้า</div>
                               <div class="col-md-3">

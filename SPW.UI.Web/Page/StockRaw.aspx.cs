@@ -87,8 +87,8 @@ namespace SPW.UI.Web.Page
             //ddlCategory.Items.Insert(1, new ListItem("ตั้งค่าคลัง", "1"));
             ddlCategory.Items.Insert(0, new ListItem("ตั้งค่าคลัง", "1"));
             
-            List<CATEGORY> listCategory = (List<CATEGORY>)ViewState["categorylist"];
-            listCategory.ForEach(item => ddlProductType.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString())));
+            //List<CATEGORY> listCategory = (List<CATEGORY>)ViewState["categorylist"];
+            //listCategory.ForEach(item => ddlProductType.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString())));
 
             CheckRawStock();
         }
