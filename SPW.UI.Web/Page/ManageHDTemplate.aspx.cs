@@ -12,6 +12,8 @@ namespace SPW.UI.Web.Page
     public partial class ManageHDTemplate : System.Web.UI.Page
     {
         private DataServiceEngine _dataServiceEngine;
+        private EmpHdTemplateService cmdEmpHdTemplateService;
+        private DepartmentService cmdDepartmentService;
         private EmpSkillTypeService cmdEmpSkillTypeService;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +31,6 @@ namespace SPW.UI.Web.Page
         private void InitialPage()
         {
             CreatePageEngine();
-            //ReloadDatasource();
             PrepareObjectScreen();
         }
 
@@ -42,24 +43,41 @@ namespace SPW.UI.Web.Page
 
         private void InitialDataService()
         {
+            cmdEmpHdTemplateService = (EmpHdTemplateService)_dataServiceEngine.GetDataService(typeof(EmpHdTemplateService));
+            cmdDepartmentService = (DepartmentService)_dataServiceEngine.GetDataService(typeof(DepartmentService));
             cmdEmpSkillTypeService = (EmpSkillTypeService)_dataServiceEngine.GetDataService(typeof(EmpSkillTypeService));
         }
 
         private void ReloadDatasource()
         {
-            //DataSouce = cmdColorService.GetAll();
+
         }
 
         private void PrepareObjectScreen()
         {
+            var list = cmdDepartmentService.GetAll();
+            foreach (var item in list)
+            {
+                ddlDepartment.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
+            }
+
+            var listSkill = cmdEmpSkillTypeService.GetAll();
+            foreach (var item in listSkill)
+            {
+                ddlSkillType.Items.Add(new ListItem(item.EMP_SKILL_TYPE_NA, item.EMP_SKILL_TYPE_ID.ToString()));
+            }
+
             if (Request.QueryString["id"] != null)
             {
-                EMP_SKILL_TYPE item = cmdEmpSkillTypeService.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
+                EMP_MEASURE_HD_TEMPLATE item = cmdEmpHdTemplateService.Select(Request.QueryString["id"].ToString());
                 if (item != null)
                 {
-                    txtPosition.Text = item.EMP_SKILL_TYPE_NA;
-                    lblName.Text = item.EMP_SKILL_TYPE_NA;
-                    txtPercen.Text = item.EMP_SKILL_TYPE_DEFAULT.ToString();
+                    ddlDepartment.SelectedValue = item.DEPARTMENT.DEPARTMENT_ID.ToString();
+                    ddlDepartment.Enabled = false;
+                    lblName.Text = item.TEMPLATE_ID;
+                    txtPercen.Text = item.EMP_SKILL_TYPE_PERCENTAGE.ToString();
+                    ddlSkillType.SelectedValue = item.EMP_SKILL_TYPE.EMP_SKILL_TYPE_ID.ToString();
+                    ddlSkillType.Enabled = false;
                 }
             }
         }
@@ -80,9 +98,12 @@ namespace SPW.UI.Web.Page
         protected void btnSave_Click(object sender, EventArgs e)
         {
             USER userItem = Session["user"] as USER;
-            EMP_SKILL_TYPE item = new EMP_SKILL_TYPE();
-            item.EMP_SKILL_TYPE_NA = txtPosition.Text;
-            item.EMP_SKILL_TYPE_DEFAULT = Convert.ToDecimal(txtPercen.Text);
+            EMP_MEASURE_HD_TEMPLATE item = new EMP_MEASURE_HD_TEMPLATE();
+            item.DEPARTMENT_ID = Convert.ToInt32(ddlDepartment.SelectedValue);
+            item.EMP_SKILL_TYPE_ID = Convert.ToInt32(ddlSkillType.SelectedValue);
+            item.EMP_SKILL_TYPE_PERCENTAGE = Convert.ToDecimal(txtPercen.Text);
+            string tmpId = "TMP-" + item.DEPARTMENT_ID + "-";
+            item.TEMPLATE_ID = tmpId + (cmdEmpHdTemplateService.GetCount(tmpId) + 1).ToString("D6");
             if (Request.QueryString["id"] == null)
             {
                 item.CREATE_DATE = DateTime.Now;
@@ -90,22 +111,22 @@ namespace SPW.UI.Web.Page
                 item.UPDATE_DATE = DateTime.Now;
                 item.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                 item.SYE_DEL = false;
-                cmdEmpSkillTypeService.Add(item);
+                cmdEmpHdTemplateService.Add(item);
             }
             else
             {
-                item.EMP_SKILL_TYPE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                item.TEMPLATE_ID = Request.QueryString["id"].ToString();
                 item.UPDATE_DATE = DateTime.Now;
                 item.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
                 item.SYE_DEL = false;
-                cmdEmpSkillTypeService.Edit(item);
+                cmdEmpHdTemplateService.Edit(item);
             }
 
             btnSave.Enabled = false;
             btnSave.Visible = false;
             btnCancel.Visible = false;
             alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchEmpSkillType.aspx");
+            Response.AppendHeader("Refresh", "2; url=SearchEmpHdTemplate.aspx");
         }
     }
 }

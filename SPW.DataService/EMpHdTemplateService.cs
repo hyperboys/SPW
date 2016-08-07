@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class EmpMeasureHdTemplate : ServiceBase, IDataService<EMP_MEASURE_HD_TEMPLATE>, IService
+    public class EmpHdTemplateService : ServiceBase, IDataService<EMP_MEASURE_HD_TEMPLATE>, IService
     {
 
         #region IService Members
@@ -59,7 +59,12 @@ namespace SPW.DataService
 
         public EMP_MEASURE_HD_TEMPLATE Select(string ID)
         {
-            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Where(x => x.TEMPLATE_ID == ID).FirstOrDefault();
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.TEMPLATE_ID == ID && x.SYE_DEL == false).FirstOrDefault();
+        }
+
+        public int GetCount(string tmpId)
+        {
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Where(x => x.TEMPLATE_ID.Contains(tmpId) && x.SYE_DEL == false).Count();
         }
 
         public List<EMP_MEASURE_HD_TEMPLATE> GetAll()

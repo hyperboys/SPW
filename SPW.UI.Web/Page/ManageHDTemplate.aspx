@@ -17,60 +17,12 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <style type="text/css">
-        .auto-style1 {
-            width: 18px;
-        }
-
         .right {
             text-align: right;
         }
 
-        .auto-style2 {
-            width: 160px;
-        }
-
         .grid td, .grid th {
             text-align: center;
-        }
-
-        .auto-style4 {
-            width: 85px;
-        }
-
-        .auto-style5 {
-            width: 287px;
-        }
-
-        .auto-style7 {
-            width: 80px;
-        }
-
-        .auto-style8 {
-            width: 83px;
-        }
-
-        .auto-style9 {
-            width: 215px;
-        }
-
-        .auto-style10 {
-            width: 184px;
-        }
-
-        .auto-style12 {
-            width: 229px;
-        }
-
-        .auto-style13 {
-            width: 63px;
-        }
-
-        .auto-style14 {
-            width: 29px;
-        }
-
-        .auto-style15 {
-            width: 76px;
         }
     </style>
     <div class="panel panel-primary">
@@ -82,37 +34,39 @@
                 <div class="col-lg-12">
                     <div class="form">
                         <div class="form-group">
-                            <%--first row--%>
                             <div class="row">
+                                <div class="col-md-2">ชื่อแผนก</div>
+                                <div class="col-md-3">
+                                    <asp:DropDownList ID="ddlDepartment" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                    </asp:DropDownList>
+                                </div>
                                 <div class="col-md-2">ชื่อประเภททักษะ</div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtPosition" class="form-control" runat="server" Height="35px" placeholder="ชื่อประเภททักษะ"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณากรอกชื่อประเภททักษะ"
-                                        ControlToValidate="txtPosition" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                    <asp:DropDownList ID="ddlSkillType" class="form-control" runat="server" Height="35px" Width="200px" SelectedValue='<%# Eval("Key") %>'>
+                                    </asp:DropDownList>
                                 </div>
-                                <div class="col-md-2">
-                                    เปอร์เซ็น
-                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-3">&nbsp;</div>
+                                <div class="col-md-2">&nbsp;</div>
+                                <div class="col-md-3">&nbsp;</div>
+                                <div class="col-md-2">&nbsp;</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">เปอร์เซ็น</div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtPercen" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
-                                        ControlToValidate="txtPosition" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    <span id="error" style="color: Red; display: none">*กรุณกรอกเป็นตัวเลข</span>
-                                    <script type="text/javascript">
-                                        var specialKeys = new Array();
-                                        specialKeys.push(8); //Backspace
-                                        function IsNumeric(e) {
-                                            var keyCode = e.which ? e.which : e.keyCode
-                                            var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
-                                            //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("error").style.display = ret ? "inline" : "none";
-                                            return !ret;
-                                        }
-                                    </script>
+                                    <asp:TextBox ID="txtPercen" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
+                                        ControlToValidate="txtPercen" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="บันทึก" OnClick="btnSave_Click" ValidationGroup="group" />
+                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Text="ยกเลิก" PostBackUrl="~/Page/SearchEmpHdTemplate.aspx" />
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary" Text="บันทึก" OnClick="btnSave_Click" ValidationGroup="group" />
-                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-primary" Text="ยกเลิก" PostBackUrl="~/Page/SearchEmpSkillType.aspx" />
                                 </div>
                             </div>
                         </div>

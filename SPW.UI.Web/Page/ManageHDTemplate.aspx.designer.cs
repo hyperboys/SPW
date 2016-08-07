@@ -49,22 +49,22 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// txtPosition control.
+        /// ddlDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPosition;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// ddlSkillType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSkillType;
         
         /// <summary>
         /// txtPercen control.
@@ -76,13 +76,13 @@ namespace SPW.UI.Web.Page {
         protected global::System.Web.UI.WebControls.TextBox txtPercen;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
         /// btnSave control.

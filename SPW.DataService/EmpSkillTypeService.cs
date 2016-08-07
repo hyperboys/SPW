@@ -63,6 +63,11 @@ namespace SPW.DataService
             return this.Datacontext.EMP_SKILL_TYPE.Where(x => x.EMP_SKILL_TYPE_ID == ID).FirstOrDefault();
         }
 
+        public int SelectIDbyName(string name)
+        {
+            return this.Datacontext.EMP_SKILL_TYPE.Where(x => x.EMP_SKILL_TYPE_NA == name).FirstOrDefault().EMP_SKILL_TYPE_ID;
+        }
+
         public List<EMP_SKILL_TYPE> GetAll()
         {
             return this.Datacontext.EMP_SKILL_TYPE.Where(x => x.SYE_DEL == false).ToList();

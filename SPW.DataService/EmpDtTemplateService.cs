@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class EmpMeasureDtTemplate : ServiceBase, IDataService<EMP_MEASURE_DT_TEMPLATE>, IService
+    public class EmpDtTemplateService : ServiceBase, IDataService<EMP_MEASURE_DT_TEMPLATE>, IService
     {
 
         #region IService Members

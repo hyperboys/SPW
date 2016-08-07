@@ -62,6 +62,11 @@ namespace SPW.DataService
             return this.Datacontext.DEPARTMENT.Where(x => x.DEPARTMENT_ID == ID).FirstOrDefault();
         }
 
+        public int SelectIDbyName(string name)
+        {
+            return this.Datacontext.DEPARTMENT.Where(x => x.DEPARTMENT_NAME == name).FirstOrDefault().DEPARTMENT_ID;
+        }
+
         public List<DEPARTMENT> GetAll()
         {
             return this.Datacontext.DEPARTMENT.Where(x => x.SYE_DEL == false).ToList();

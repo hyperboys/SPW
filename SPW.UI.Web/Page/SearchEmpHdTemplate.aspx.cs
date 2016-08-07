@@ -20,7 +20,7 @@ namespace SPW.UI.Web.Page
         #endregion
 
         #region Sevice control
-        private EmpMeasureHdTemplate _empMeasureHdTemplate;
+        private EmpHdTemplateService _empMeasureHdTemplate;
         public List<EMP_MEASURE_HD_TEMPLATE> DataSouce
         {
             get
@@ -34,7 +34,7 @@ namespace SPW.UI.Web.Page
             }
             set
             {
-                ViewState["EMP_SKILL_TYPE"] = value;
+                ViewState["EMP_MEASURE_HD_TEMPLATE"] = value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace SPW.UI.Web.Page
 
         private void InitialDataService()
         {
-            _empMeasureHdTemplate = (EmpMeasureHdTemplate)_dataServiceEngine.GetDataService(typeof(EmpMeasureHdTemplate));
+            _empMeasureHdTemplate = (EmpHdTemplateService)_dataServiceEngine.GetDataService(typeof(EmpHdTemplateService));
         }
 
         private void InitialData()
