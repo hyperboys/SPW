@@ -24,6 +24,7 @@
         }
 
         .auto-style10 {
+
             width: 67px;
         }
 

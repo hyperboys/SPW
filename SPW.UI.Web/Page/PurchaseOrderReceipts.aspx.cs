@@ -24,6 +24,7 @@ namespace SPW.UI.Web.Page
         private ReceiveRawTransService cmdReceiveRawTransService;
         private StockRawStockService cmdRawStockService;
         private RawProductService cmdRawProductService;
+        private StockRawSettingService cmdStockRawSettingService;
 
 
         public class DATAGRID
@@ -64,6 +65,7 @@ namespace SPW.UI.Web.Page
             cmdReceiveRawTransService = (ReceiveRawTransService)_dataServiceEngine.GetDataService(typeof(ReceiveRawTransService));
             cmdRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
             cmdRawProductService = (RawProductService)_dataServiceEngine.GetDataService(typeof(RawProductService));
+            cmdStockRawSettingService = (StockRawSettingService)_dataServiceEngine.GetDataService(typeof(StockRawSettingService)); 
         }
 
         private void CreatePageEngine()
@@ -170,17 +172,70 @@ namespace SPW.UI.Web.Page
                         cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
                     });
                 }
-                if (SaveReceiveRawTrans())
+                if (SaveRawSetting())
                 {
-                    return true;
+                    if (SaveReceiveRawTrans())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
+                {
                     return false;
+                }
             }
             catch (Exception e)
             {
                 lblerror2.Text = "*พบข้อผิดพลาดระหว่างบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่";
                 return false;
+            }
+        }
+        private bool SaveRawSetting()
+        {
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                if (listDataGrid.Count > 0)
+                {
+                    PO_HD_TRANS _PO_HD_TRANS = cmdPoHdTrans.Select(txtBKNo.Text, txtRNNo.Text);
+                    List<PO_DT_TRANS> LstPO_DT_TRANS = cmdPoDtTrans.Select(txtBKNo.Text, txtRNNo.Text);
+                    USER userItem = Session["user"] as USER;
+                    int count = 1;
+                    listDataGrid.ForEach(e =>
+                    {
+                        STOCK_RAW_SETTING _STOCK_RAW_SETTING = new STOCK_RAW_SETTING();
+                        _STOCK_RAW_SETTING.STOCK_TRANS_NO = cmdStockRawSettingService.GetNextTran().ToString();
+                        _STOCK_RAW_SETTING.STOCK_TRANS_YY = _PO_HD_TRANS.PO_YY;
+                        _STOCK_RAW_SETTING.STOCK_TRANS_DATE = DateTime.Now;
+                        _STOCK_RAW_SETTING.REF_DOC_NO1 = "1";
+                        _STOCK_RAW_SETTING.REF_DOC_NO2 = "1";
+                        _STOCK_RAW_SETTING.REF_DOC_NO3 = "1";
+                        _STOCK_RAW_SETTING.VENDOR_ID = _PO_HD_TRANS.VENDOR_ID;
+                        _STOCK_RAW_SETTING.RAW_ID = e.RAW_ID;
+                        _STOCK_RAW_SETTING.STOCK_RAW_REF_NO1 = "1";
+                        _STOCK_RAW_SETTING.STOCK_RAW_REF_NO2 = count.ToString();
+                        _STOCK_RAW_SETTING.STOCK_QTY = e.PO_QTY;
+                        _STOCK_RAW_SETTING.APPROVE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_SETTING.SYS_TIME = DateTime.Now.TimeOfDay;
+                        _STOCK_RAW_SETTING.CREATE_DATE = DateTime.Now;
+                        _STOCK_RAW_SETTING.UPDATE_DATE = DateTime.Now;
+                        _STOCK_RAW_SETTING.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_SETTING.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_SETTING.SYE_DEL = false;
+                        cmdStockRawSettingService.Add(_STOCK_RAW_SETTING);
+                        count++;
+                    });
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
             }
         }
         private bool SaveReceiveRawTrans()
