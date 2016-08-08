@@ -283,7 +283,7 @@ namespace SPW.UI.Web.Page
         }
         protected void gridStockRawSet_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            Response.RedirectPermanent("PurchaseOrderReceiptsHistory.aspx?PO_BK_NO=" + Request.QueryString["PO_BK_NO"].ToString() + "&PO_RN_NO=" + Request.QueryString["PO_RN_NO"].ToString() + "&RAW_ID=" + Request.QueryString["PO_RN_NO"].ToString());
+            Response.RedirectPermanent("StockRawSetting.aspx?RAW_ID=" + gridStockRawSet.DataKeys[e.NewEditIndex].Value.ToString());
         }
         #endregion
     }
