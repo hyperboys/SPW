@@ -20,6 +20,8 @@
           <EntitySet Name="EMP_GRADE_SET" EntityType="SPWModel.Store.EMP_GRADE_SET" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EMP_MEASURE_DT_TEMPLATE" EntityType="SPWModel.Store.EMP_MEASURE_DT_TEMPLATE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EMP_MEASURE_HD_TEMPLATE" EntityType="SPWModel.Store.EMP_MEASURE_HD_TEMPLATE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EMP_MEASURE_TRANS" EntityType="SPWModel.Store.EMP_MEASURE_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EMP_MEASURE_WEIGHT" EntityType="SPWModel.Store.EMP_MEASURE_WEIGHT" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EMP_POSITION" EntityType="SPWModel.Store.EMP_POSITION" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EMP_SKILL" EntityType="SPWModel.Store.EMP_SKILL" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EMP_SKILL_TYPE" EntityType="SPWModel.Store.EMP_SKILL_TYPE" store:Type="Tables" Schema="dbo" />
@@ -51,6 +53,7 @@
           <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.Store.STOCK_PRODUCT_STOCK" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_TRANS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.Store.STOCK_PRODUCT_WITHDRAW_TRANS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="STOCK_RAW_SETTING" EntityType="SPWModel.Store.STOCK_RAW_SETTING" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_RAW_STOCK" EntityType="SPWModel.Store.STOCK_RAW_STOCK" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_RAW_TRANS" EntityType="SPWModel.Store.STOCK_RAW_TRANS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.Store.STOCK_TYPE" store:Type="Tables" Schema="dbo" />
@@ -159,6 +162,18 @@
           <AssociationSet Name="FK_HD_VENDOR" Association="SPWModel.Store.FK_HD_VENDOR">
             <End Role="VENDOR" EntitySet="VENDOR" />
             <End Role="PR_HD_TRANS" EntitySet="PR_HD_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_EMP" Association="SPWModel.Store.FK_MEA_TRN_EMP">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_TEMP" Association="SPWModel.Store.FK_MEA_TRN_TEMP">
+            <End Role="EMP_MEASURE_DT_TEMPLATE" EntitySet="EMP_MEASURE_DT_TEMPLATE" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_WEI" Association="SPWModel.Store.FK_MEA_TRN_WEI">
+            <End Role="EMP_MEASURE_WEIGHT" EntitySet="EMP_MEASURE_WEIGHT" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDER_DETAIL_COLOR" Association="SPWModel.Store.FK_ORDER_DETAIL_COLOR">
             <End Role="COLOR" EntitySet="COLOR" />
@@ -665,6 +680,50 @@
           <Property Name="DEPARTMENT_ID" Type="int" Nullable="false" />
           <Property Name="EMP_SKILL_TYPE_ID" Type="int" Nullable="false" />
           <Property Name="EMP_SKILL_TYPE_PERCENTAGE" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMP_MEASURE_TRANS">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+            <PropertyRef Name="MEASURE_YY" />
+            <PropertyRef Name="MEASURE_SEQ_NO" />
+            <PropertyRef Name="WEIGHT_ID" />
+            <PropertyRef Name="TEMPLATE_ID" />
+            <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+            <PropertyRef Name="SEQ_NO" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+          <Property Name="EMPLOYEE_CODE" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MEASURE_YY" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="MEASURE_SEQ_NO" Type="int" Nullable="false" />
+          <Property Name="MEASURE_DATE" Type="date" Nullable="false" />
+          <Property Name="WEIGHT_ID" Type="int" Nullable="false" />
+          <Property Name="WEIGHT_VALUE" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="TEMPLATE_ID" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="EMP_SKILL_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="EMP_SKILL_TYPE_DEFAULT" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="EMP_SKILL_TYPE_ACTUAL" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="SEQ_NO" Type="int" Nullable="false" />
+          <Property Name="SCORE_ACTUAL" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMP_MEASURE_WEIGHT">
+          <Key>
+            <PropertyRef Name="WEIGHT_ID" />
+          </Key>
+          <Property Name="WEIGHT_ID" Type="int" Nullable="false" />
+          <Property Name="WEIGHT_NAME" Type="nvarchar" Nullable="false" MaxLength="75" />
+          <Property Name="WEIGHT_VALUE" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="EFFECTIVE_DATE" Type="date" Nullable="false" />
+          <Property Name="EXPIRE_DATE" Type="date" />
           <Property Name="CREATE_DATE" Type="date" />
           <Property Name="UPDATE_DATE" Type="date" />
           <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
@@ -1248,6 +1307,33 @@
           <Property Name="STOCK_AFTER" Type="int" />
           <Property Name="WITHDRAW_REMAIN_QTY" Type="int" />
           <Property Name="WITHDRAW_COMPLETE_FLG" Type="int" />
+          <Property Name="APPROVE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYS_TIME" Type="time" />
+          <Property Name="CREATE_DATE" Type="date" />
+          <Property Name="UPDATE_DATE" Type="date" />
+          <Property Name="CREATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="UPDATE_EMPLOYEE_ID" Type="int" />
+          <Property Name="SYE_DEL" Type="bit" />
+        </EntityType>
+        <EntityType Name="STOCK_RAW_SETTING">
+          <Key>
+            <PropertyRef Name="STOCK_TRANS_NO" />
+            <PropertyRef Name="VENDOR_ID" />
+            <PropertyRef Name="RAW_ID" />
+            <PropertyRef Name="STOCK_RAW_REF_NO1" />
+            <PropertyRef Name="STOCK_RAW_REF_NO2" />
+          </Key>
+          <Property Name="STOCK_TRANS_NO" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="STOCK_TRANS_YY" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="STOCK_TRANS_DATE" Type="date" Nullable="false" />
+          <Property Name="REF_DOC_NO1" Type="nvarchar" MaxLength="25" />
+          <Property Name="REF_DOC_NO2" Type="nvarchar" MaxLength="25" />
+          <Property Name="REF_DOC_NO3" Type="nvarchar" MaxLength="25" />
+          <Property Name="VENDOR_ID" Type="int" Nullable="false" />
+          <Property Name="RAW_ID" Type="int" Nullable="false" />
+          <Property Name="STOCK_RAW_REF_NO1" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="STOCK_RAW_REF_NO2" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="STOCK_QTY" Type="int" Nullable="false" />
           <Property Name="APPROVE_EMPLOYEE_ID" Type="int" />
           <Property Name="SYS_TIME" Type="time" />
           <Property Name="CREATE_DATE" Type="date" />
@@ -1846,6 +1932,46 @@
             </Principal>
             <Dependent Role="PR_HD_TRANS">
               <PropertyRef Name="VENDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEA_TRN_EMP">
+          <End Role="EMPLOYEE" Type="SPWModel.Store.EMPLOYEE" Multiplicity="1" />
+          <End Role="EMP_MEASURE_TRANS" Type="SPWModel.Store.EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEA_TRN_TEMP">
+          <End Role="EMP_MEASURE_DT_TEMPLATE" Type="SPWModel.Store.EMP_MEASURE_DT_TEMPLATE" Multiplicity="1" />
+          <End Role="EMP_MEASURE_TRANS" Type="SPWModel.Store.EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_MEASURE_DT_TEMPLATE">
+              <PropertyRef Name="TEMPLATE_ID" />
+              <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+              <PropertyRef Name="SEQ_NO" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="TEMPLATE_ID" />
+              <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+              <PropertyRef Name="SEQ_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEA_TRN_WEI">
+          <End Role="EMP_MEASURE_WEIGHT" Type="SPWModel.Store.EMP_MEASURE_WEIGHT" Multiplicity="1" />
+          <End Role="EMP_MEASURE_TRANS" Type="SPWModel.Store.EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_MEASURE_WEIGHT">
+              <PropertyRef Name="WEIGHT_ID" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="WEIGHT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2692,6 +2818,8 @@
           <EntitySet Name="EMP_GRADE_SET" EntityType="SPWModel.EMP_GRADE_SET" />
           <EntitySet Name="EMP_MEASURE_DT_TEMPLATE" EntityType="SPWModel.EMP_MEASURE_DT_TEMPLATE" />
           <EntitySet Name="EMP_MEASURE_HD_TEMPLATE" EntityType="SPWModel.EMP_MEASURE_HD_TEMPLATE" />
+          <EntitySet Name="EMP_MEASURE_TRANS" EntityType="SPWModel.EMP_MEASURE_TRANS" />
+          <EntitySet Name="EMP_MEASURE_WEIGHT" EntityType="SPWModel.EMP_MEASURE_WEIGHT" />
           <EntitySet Name="EMP_POSITION" EntityType="SPWModel.EMP_POSITION" />
           <EntitySet Name="EMP_SKILL" EntityType="SPWModel.EMP_SKILL" />
           <EntitySet Name="EMP_SKILL_TYPE" EntityType="SPWModel.EMP_SKILL_TYPE" />
@@ -2723,6 +2851,7 @@
           <EntitySet Name="STOCK_PRODUCT_STOCK" EntityType="SPWModel.STOCK_PRODUCT_STOCK" />
           <EntitySet Name="STOCK_PRODUCT_TRANS" EntityType="SPWModel.STOCK_PRODUCT_TRANS" />
           <EntitySet Name="STOCK_PRODUCT_WITHDRAW_TRANS" EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" />
+          <EntitySet Name="STOCK_RAW_SETTING" EntityType="SPWModel.STOCK_RAW_SETTING" />
           <EntitySet Name="STOCK_RAW_STOCK" EntityType="SPWModel.STOCK_RAW_STOCK" />
           <EntitySet Name="STOCK_RAW_TRANS" EntityType="SPWModel.STOCK_RAW_TRANS" />
           <EntitySet Name="STOCK_TYPE" EntityType="SPWModel.STOCK_TYPE" />
@@ -2864,9 +2993,21 @@
             <End Role="EMP_SKILL" EntitySet="EMP_SKILL" />
             <End Role="EMP_MEASURE_DT_TEMPLATE" EntitySet="EMP_MEASURE_DT_TEMPLATE" />
           </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_TEMP" Association="SPWModel.FK_MEA_TRN_TEMP">
+            <End Role="EMP_MEASURE_DT_TEMPLATE" EntitySet="EMP_MEASURE_DT_TEMPLATE" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
+          </AssociationSet>
           <AssociationSet Name="FK_EMP_TMPLT_SKL_TYPE" Association="SPWModel.FK_EMP_TMPLT_SKL_TYPE">
             <End Role="EMP_SKILL_TYPE" EntitySet="EMP_SKILL_TYPE" />
             <End Role="EMP_MEASURE_HD_TEMPLATE" EntitySet="EMP_MEASURE_HD_TEMPLATE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_EMP" Association="SPWModel.FK_MEA_TRN_EMP">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEA_TRN_WEI" Association="SPWModel.FK_MEA_TRN_WEI">
+            <End Role="EMP_MEASURE_WEIGHT" EntitySet="EMP_MEASURE_WEIGHT" />
+            <End Role="EMP_MEASURE_TRANS" EntitySet="EMP_MEASURE_TRANS" />
           </AssociationSet>
           <AssociationSet Name="FK_USER_EMPLOYEE" Association="SPWModel.FK_USER_EMPLOYEE">
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
@@ -3366,6 +3507,7 @@
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
           <NavigationProperty Name="EMP_SKILL" Relationship="SPWModel.FK_EMP_TMPLT_SKL" FromRole="EMP_MEASURE_DT_TEMPLATE" ToRole="EMP_SKILL" />
+          <NavigationProperty Name="EMP_MEASURE_TRANS" Relationship="SPWModel.FK_MEA_TRN_TEMP" FromRole="EMP_MEASURE_DT_TEMPLATE" ToRole="EMP_MEASURE_TRANS" />
         </EntityType>
         <EntityType Name="EMP_MEASURE_HD_TEMPLATE">
           <Key>
@@ -3383,6 +3525,54 @@
           <Property Type="Boolean" Name="SYE_DEL" />
           <NavigationProperty Name="DEPARTMENT" Relationship="SPWModel.FK_EMP_TMPLT_DEPART" FromRole="EMP_MEASURE_HD_TEMPLATE" ToRole="DEPARTMENT" />
           <NavigationProperty Name="EMP_SKILL_TYPE" Relationship="SPWModel.FK_EMP_TMPLT_SKL_TYPE" FromRole="EMP_MEASURE_HD_TEMPLATE" ToRole="EMP_SKILL_TYPE" />
+        </EntityType>
+        <EntityType Name="EMP_MEASURE_TRANS">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+            <PropertyRef Name="MEASURE_YY" />
+            <PropertyRef Name="MEASURE_SEQ_NO" />
+            <PropertyRef Name="WEIGHT_ID" />
+            <PropertyRef Name="TEMPLATE_ID" />
+            <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+            <PropertyRef Name="SEQ_NO" />
+          </Key>
+          <Property Type="Int32" Name="EMPLOYEE_ID" Nullable="false" />
+          <Property Type="String" Name="EMPLOYEE_CODE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MEASURE_YY" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MEASURE_SEQ_NO" Nullable="false" />
+          <Property Type="DateTime" Name="MEASURE_DATE" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="WEIGHT_ID" Nullable="false" />
+          <Property Type="Decimal" Name="WEIGHT_VALUE" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="TEMPLATE_ID" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EMP_SKILL_TYPE_ID" Nullable="false" />
+          <Property Type="Decimal" Name="EMP_SKILL_TYPE_DEFAULT" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="EMP_SKILL_TYPE_ACTUAL" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="SEQ_NO" Nullable="false" />
+          <Property Type="Decimal" Name="SCORE_ACTUAL" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMP_MEASURE_DT_TEMPLATE" Relationship="SPWModel.FK_MEA_TRN_TEMP" FromRole="EMP_MEASURE_TRANS" ToRole="EMP_MEASURE_DT_TEMPLATE" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="SPWModel.FK_MEA_TRN_EMP" FromRole="EMP_MEASURE_TRANS" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="EMP_MEASURE_WEIGHT" Relationship="SPWModel.FK_MEA_TRN_WEI" FromRole="EMP_MEASURE_TRANS" ToRole="EMP_MEASURE_WEIGHT" />
+        </EntityType>
+        <EntityType Name="EMP_MEASURE_WEIGHT">
+          <Key>
+            <PropertyRef Name="WEIGHT_ID" />
+          </Key>
+          <Property Type="Int32" Name="WEIGHT_ID" Nullable="false" />
+          <Property Type="String" Name="WEIGHT_NAME" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="WEIGHT_VALUE" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="EFFECTIVE_DATE" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="EXPIRE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMP_MEASURE_TRANS" Relationship="SPWModel.FK_MEA_TRN_WEI" FromRole="EMP_MEASURE_WEIGHT" ToRole="EMP_MEASURE_TRANS" />
         </EntityType>
         <EntityType Name="EMP_POSITION">
           <Key>
@@ -3450,6 +3640,7 @@
           <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
           <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
           <Property Type="Boolean" Name="SYE_DEL" />
+          <NavigationProperty Name="EMP_MEASURE_TRANS" Relationship="SPWModel.FK_MEA_TRN_EMP" FromRole="EMPLOYEE" ToRole="EMP_MEASURE_TRANS" />
           <NavigationProperty Name="USER" Relationship="SPWModel.FK_USER_EMPLOYEE" FromRole="EMPLOYEE" ToRole="USER" />
           <NavigationProperty Name="ZONE_DETAIL" Relationship="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="ZONE_DETAIL" />
         </EntityType>
@@ -4054,6 +4245,33 @@
           <NavigationProperty Name="PRODUCT" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_PRODUCT" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="PRODUCT" />
           <NavigationProperty Name="STORE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_STORE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="STORE" />
           <NavigationProperty Name="VEHICLE" Relationship="SPWModel.FK_STOCK_PRODUCT_WD_VEHICLE" FromRole="STOCK_PRODUCT_WITHDRAW_TRANS" ToRole="VEHICLE" />
+        </EntityType>
+        <EntityType Name="STOCK_RAW_SETTING">
+          <Key>
+            <PropertyRef Name="STOCK_TRANS_NO" />
+            <PropertyRef Name="VENDOR_ID" />
+            <PropertyRef Name="RAW_ID" />
+            <PropertyRef Name="STOCK_RAW_REF_NO1" />
+            <PropertyRef Name="STOCK_RAW_REF_NO2" />
+          </Key>
+          <Property Type="String" Name="STOCK_TRANS_NO" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STOCK_TRANS_YY" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="STOCK_TRANS_DATE" Nullable="false" Precision="0" />
+          <Property Type="String" Name="REF_DOC_NO1" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REF_DOC_NO2" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REF_DOC_NO3" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="VENDOR_ID" Nullable="false" />
+          <Property Type="Int32" Name="RAW_ID" Nullable="false" />
+          <Property Type="String" Name="STOCK_RAW_REF_NO1" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STOCK_RAW_REF_NO2" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="STOCK_QTY" Nullable="false" />
+          <Property Type="Int32" Name="APPROVE_EMPLOYEE_ID" />
+          <Property Type="Time" Name="SYS_TIME" Precision="7" />
+          <Property Type="DateTime" Name="CREATE_DATE" Precision="0" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="0" />
+          <Property Type="Int32" Name="CREATE_EMPLOYEE_ID" />
+          <Property Type="Int32" Name="UPDATE_EMPLOYEE_ID" />
+          <Property Type="Boolean" Name="SYE_DEL" />
         </EntityType>
         <EntityType Name="STOCK_RAW_STOCK">
           <Key>
@@ -4793,6 +5011,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MEA_TRN_TEMP">
+          <End Type="SPWModel.EMP_MEASURE_DT_TEMPLATE" Role="EMP_MEASURE_DT_TEMPLATE" Multiplicity="1" />
+          <End Type="SPWModel.EMP_MEASURE_TRANS" Role="EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_MEASURE_DT_TEMPLATE">
+              <PropertyRef Name="TEMPLATE_ID" />
+              <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+              <PropertyRef Name="SEQ_NO" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="TEMPLATE_ID" />
+              <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+              <PropertyRef Name="SEQ_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EMP_TMPLT_SKL_TYPE">
           <End Type="SPWModel.EMP_SKILL_TYPE" Role="EMP_SKILL_TYPE" Multiplicity="1" />
           <End Type="SPWModel.EMP_MEASURE_HD_TEMPLATE" Role="EMP_MEASURE_HD_TEMPLATE" Multiplicity="*" />
@@ -4802,6 +5036,30 @@
             </Principal>
             <Dependent Role="EMP_MEASURE_HD_TEMPLATE">
               <PropertyRef Name="EMP_SKILL_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEA_TRN_EMP">
+          <End Type="SPWModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+          <End Type="SPWModel.EMP_MEASURE_TRANS" Role="EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEA_TRN_WEI">
+          <End Type="SPWModel.EMP_MEASURE_WEIGHT" Role="EMP_MEASURE_WEIGHT" Multiplicity="1" />
+          <End Type="SPWModel.EMP_MEASURE_TRANS" Role="EMP_MEASURE_TRANS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_MEASURE_WEIGHT">
+              <PropertyRef Name="WEIGHT_ID" />
+            </Principal>
+            <Dependent Role="EMP_MEASURE_TRANS">
+              <PropertyRef Name="WEIGHT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5781,6 +6039,46 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EMP_MEASURE_TRANS">
+            <EntityTypeMapping TypeName="SPWModel.EMP_MEASURE_TRANS">
+              <MappingFragment StoreEntitySet="EMP_MEASURE_TRANS">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SCORE_ACTUAL" ColumnName="SCORE_ACTUAL" />
+                <ScalarProperty Name="SEQ_NO" ColumnName="SEQ_NO" />
+                <ScalarProperty Name="EMP_SKILL_TYPE_ACTUAL" ColumnName="EMP_SKILL_TYPE_ACTUAL" />
+                <ScalarProperty Name="EMP_SKILL_TYPE_DEFAULT" ColumnName="EMP_SKILL_TYPE_DEFAULT" />
+                <ScalarProperty Name="EMP_SKILL_TYPE_ID" ColumnName="EMP_SKILL_TYPE_ID" />
+                <ScalarProperty Name="TEMPLATE_ID" ColumnName="TEMPLATE_ID" />
+                <ScalarProperty Name="WEIGHT_VALUE" ColumnName="WEIGHT_VALUE" />
+                <ScalarProperty Name="WEIGHT_ID" ColumnName="WEIGHT_ID" />
+                <ScalarProperty Name="MEASURE_DATE" ColumnName="MEASURE_DATE" />
+                <ScalarProperty Name="MEASURE_SEQ_NO" ColumnName="MEASURE_SEQ_NO" />
+                <ScalarProperty Name="MEASURE_YY" ColumnName="MEASURE_YY" />
+                <ScalarProperty Name="EMPLOYEE_CODE" ColumnName="EMPLOYEE_CODE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP_MEASURE_WEIGHT">
+            <EntityTypeMapping TypeName="SPWModel.EMP_MEASURE_WEIGHT">
+              <MappingFragment StoreEntitySet="EMP_MEASURE_WEIGHT">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
+                <ScalarProperty Name="WEIGHT_VALUE" ColumnName="WEIGHT_VALUE" />
+                <ScalarProperty Name="WEIGHT_NAME" ColumnName="WEIGHT_NAME" />
+                <ScalarProperty Name="WEIGHT_ID" ColumnName="WEIGHT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="EMP_POSITION">
             <EntityTypeMapping TypeName="SPWModel.EMP_POSITION">
               <MappingFragment StoreEntitySet="EMP_POSITION">
@@ -6372,6 +6670,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="STOCK_RAW_SETTING">
+            <EntityTypeMapping TypeName="SPWModel.STOCK_RAW_SETTING">
+              <MappingFragment StoreEntitySet="STOCK_RAW_SETTING">
+                <ScalarProperty Name="SYE_DEL" ColumnName="SYE_DEL" />
+                <ScalarProperty Name="UPDATE_EMPLOYEE_ID" ColumnName="UPDATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="CREATE_EMPLOYEE_ID" ColumnName="CREATE_EMPLOYEE_ID" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="SYS_TIME" ColumnName="SYS_TIME" />
+                <ScalarProperty Name="APPROVE_EMPLOYEE_ID" ColumnName="APPROVE_EMPLOYEE_ID" />
+                <ScalarProperty Name="STOCK_QTY" ColumnName="STOCK_QTY" />
+                <ScalarProperty Name="STOCK_RAW_REF_NO2" ColumnName="STOCK_RAW_REF_NO2" />
+                <ScalarProperty Name="STOCK_RAW_REF_NO1" ColumnName="STOCK_RAW_REF_NO1" />
+                <ScalarProperty Name="RAW_ID" ColumnName="RAW_ID" />
+                <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+                <ScalarProperty Name="REF_DOC_NO3" ColumnName="REF_DOC_NO3" />
+                <ScalarProperty Name="REF_DOC_NO2" ColumnName="REF_DOC_NO2" />
+                <ScalarProperty Name="REF_DOC_NO1" ColumnName="REF_DOC_NO1" />
+                <ScalarProperty Name="STOCK_TRANS_DATE" ColumnName="STOCK_TRANS_DATE" />
+                <ScalarProperty Name="STOCK_TRANS_YY" ColumnName="STOCK_TRANS_YY" />
+                <ScalarProperty Name="STOCK_TRANS_NO" ColumnName="STOCK_TRANS_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="STOCK_RAW_STOCK">
             <EntityTypeMapping TypeName="SPWModel.STOCK_RAW_STOCK">
               <MappingFragment StoreEntitySet="STOCK_RAW_STOCK">
@@ -6719,69 +7041,72 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="76">
-        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="10.864061671711534" PointY="9.996283878570555" />
-        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="3.8224699589528468" PointY="14.542453504420097" />
-        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="7.3449144881893487" PointY="8.6181776861744837" />
-        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="6.34232801494297" PointY="22.124717961123547" />
-        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="1.9891341971182888" PointY="0.61893054871770115" />
-        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="3.1019598017921481" PointY="14.574358797899615" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="4.08328890245561" PointY="26.033267197214656" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="10.507226540943247" PointY="14.034080511906222" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="1.7161962118540872" PointY="18.682189026233829" />
-        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="4.0887369048263587" PointY="9.1948286188742276" />
-        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="9.3674958037992457" PointY="22.725417192431827" />
-        <EntityTypeShape EntityType="SPWModel.EMP_GRADE_SET" Width="1.5" PointX="5.7671385955843792" PointY="24.239796187840309" />
-        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_DT_TEMPLATE" Width="1.5" PointX="11.938784418599115" PointY="14.666469014560091" />
-        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_HD_TEMPLATE" Width="1.5" PointX="10.691653478281411" PointY="6.6912093789741443" />
-        <EntityTypeShape EntityType="SPWModel.EMP_POSITION" Width="1.5" PointX="6.5546218802009806" PointY="25.506029662446132" />
-        <EntityTypeShape EntityType="SPWModel.EMP_SKILL" Width="1.5" PointX="3.7903813234485604" PointY="13.91402328662296" />
-        <EntityTypeShape EntityType="SPWModel.EMP_SKILL_TYPE" Width="1.5" PointX="0.63946565270399" PointY="4.4435932060906636" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="1.6124655723629824" PointY="23.3935756196238" />
-        <EntityTypeShape EntityType="SPWModel.EMPLOYEE_HIST" Width="1.5" PointX="11.296159743934943" PointY="21.038125912210962" />
-        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="10.715603274626472" PointY="27.224894998234181" />
-        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="5.5079927637744657" PointY="8.7889186631836544" />
-        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="7.419058138234103" PointY="17.966895186326884" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="0.060535104973490864" PointY="3.1814092710527633" />
-        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="6.494728169634346" PointY="31.043039813192113" />
-        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="9.8445946322030355" PointY="6.5059538662927014" />
-        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="10.838440356235225" PointY="22.450358416163528" />
-        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="5.1220543464282784" PointY="10.449037839867659" />
-        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="6.7583067988782677" PointY="6.2454139321322621" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="9.98146785887958" PointY="17.953457036033953" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="5.5146356455584229" PointY="4.9199696206115044" />
-        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="4.54016315403402" PointY="10.221665327540443" />
-        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="1.7421473552203493" PointY="11.798328196535971" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="8.4417176323205787" PointY="26.357869518156104" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="4.8259188965083659" PointY="6.4451772004576293" />
-        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="8.1500096265925137" PointY="4.6256951562248609" />
-        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="5.9666204480298894" PointY="15.538397319399937" />
-        <EntityTypeShape EntityType="SPWModel.RECEIVE_RAW_TRANS" Width="1.5" PointX="8.2902176102112133" PointY="15.678403414636106" />
-        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="9.94006796830337" PointY="16.191070146947666" />
-        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="1.1029733089278329" PointY="29.412141068564793" />
-        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="9.0293884654666243" PointY="28.655349178544874" />
-        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="11.005197710825687" PointY="29.468036128891647" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="4.6646088849122673" PointY="10.973037814243249" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="10.726320767182076" PointY="19.657325113032631" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="0.095704386055331853" PointY="23.256203900676315" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="6.9080406534057293" PointY="30.054494260835693" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="10.791122998479345" PointY="12.169635614459233" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_TRANS" Width="1.5" PointX="2.3746615715206891" PointY="23.654972445059091" />
-        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="5.6691724703037982" PointY="4.4663153758581338" />
-        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="1.5536971434735214" PointY="7.985826838754968" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="10.295868062552003" PointY="5.8035574284398734" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="8.3671095801364217" PointY="10.874097918567294" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="3.4911303033545291" PointY="21.626557196316568" />
-        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="8.4731122518298729" PointY="13.364110297227329" />
-        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="0.12866679585011062" PointY="29.9804081758393" />
-        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="5.9783212216470023" PointY="1.8310813167277171" />
-        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="1.2390569156217652" PointY="29.205106555114085" />
-        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="9.703157923046108" PointY="18.050345876277586" />
-        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="2.8397908969036258" PointY="14.639065615199071" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="11.168515612915398" PointY="25.672688466344351" />
-        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="5.6980523065189139" PointY="2.8539219064889112" />
-        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="9.7884966832532072" PointY="21.612913156679326" />
-        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="7.5089007967658805" PointY="23.678864743411012" />
+      <Diagram DiagramId="4861262dbc05473bba177cb80072f2b1" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SPWModel.ACCOUNT_MAST" Width="1.5" PointX="5.3954757272244782" PointY="9.5141081556277847" />
+        <EntityTypeShape EntityType="SPWModel.AP_VEHICLE_TRANS" Width="1.5" PointX="7.3504879285350855" PointY="8.3477697262297248" />
+        <EntityTypeShape EntityType="SPWModel.ASSET_TYPE" Width="1.5" PointX="5.2519546175617506" PointY="1.7156644471528308" />
+        <EntityTypeShape EntityType="SPWModel.CATEGORY" Width="1.5" PointX="9.9365455684887927" PointY="31.322352528256527" />
+        <EntityTypeShape EntityType="SPWModel.COLOR" Width="1.5" PointX="11.545088097241283" PointY="6.0673738597274633" />
+        <EntityTypeShape EntityType="SPWModel.COLOR_TYPE" Width="1.5" PointX="9.1598057156241524" PointY="10.269617517604315" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX" Width="1.5" PointX="0.17413497165503677" PointY="3.25086607190355" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_INDEX_DETAIL" Width="1.5" PointX="5.7537214428902237" PointY="4.2111235280573016" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER" Width="1.5" PointX="4.3799769209604609" PointY="27.442391974591832" />
+        <EntityTypeShape EntityType="SPWModel.DELIVERY_ORDER_DETAIL" Width="1.5" PointX="11.630369569934146" PointY="20.208129817716838" />
+        <EntityTypeShape EntityType="SPWModel.DEPARTMENT" Width="1.5" PointX="9.1239230004716312" PointY="2.5825722676620688" />
+        <EntityTypeShape EntityType="SPWModel.EMP_GRADE_SET" Width="1.5" PointX="10.42554116175768" PointY="22.694552327829669" />
+        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_DT_TEMPLATE" Width="1.5" PointX="5.0858856854428938" PointY="8.3378190735065463" />
+        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_HD_TEMPLATE" Width="1.5" PointX="6.7151480776794008" PointY="11.503870194546819" />
+        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_TRANS" Width="1.5" PointX="4.2453244348267676" PointY="21.088488663122284" />
+        <EntityTypeShape EntityType="SPWModel.EMP_MEASURE_WEIGHT" Width="1.5" PointX="10.217964424853196" PointY="15.266402832822131" />
+        <EntityTypeShape EntityType="SPWModel.EMP_POSITION" Width="1.5" PointX="10.673743480198898" PointY="26.125750836974824" />
+        <EntityTypeShape EntityType="SPWModel.EMP_SKILL" Width="1.5" PointX="6.1346989917264789" PointY="21.259517158036825" />
+        <EntityTypeShape EntityType="SPWModel.EMP_SKILL_TYPE" Width="1.5" PointX="11.897073838811869" PointY="18.53615541129194" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE" Width="1.5" PointX="9.028161678941995" PointY="21.239648501034662" />
+        <EntityTypeShape EntityType="SPWModel.EMPLOYEE_HIST" Width="1.5" PointX="0.0659066532114086" PointY="10.358119373376537" />
+        <EntityTypeShape EntityType="SPWModel.FUNCTION" Width="1.5" PointX="3.4911225473001242" PointY="10.122761194651369" />
+        <EntityTypeShape EntityType="SPWModel.ORDER" Width="1.5" PointX="11.476777838299414" PointY="13.919615454003036" />
+        <EntityTypeShape EntityType="SPWModel.ORDER_DETAIL" Width="1.5" PointX="8.6654800533621952" PointY="17.147694029448413" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_APPROVER" Width="1.5" PointX="4.0215148795496276" PointY="11.036677768005374" />
+        <EntityTypeShape EntityType="SPWModel.PAYIN_TRANS" Width="1.5" PointX="7.7152723054007026" PointY="29.00648188451607" />
+        <EntityTypeShape EntityType="SPWModel.PO_DT_TRANS" Width="1.5" PointX="8.6442623160054275" PointY="20.875799501722586" />
+        <EntityTypeShape EntityType="SPWModel.PO_HD_TRANS" Width="1.5" PointX="4.5572390018763205" PointY="11.80536300493654" />
+        <EntityTypeShape EntityType="SPWModel.PR_DT_TRANS" Width="1.5" PointX="5.14224939660274" PointY="28.906748814930555" />
+        <EntityTypeShape EntityType="SPWModel.PR_HD_TRANS" Width="1.5" PointX="10.044527961893254" PointY="5.6673932399914566" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT" Width="1.5" PointX="5.9282260900029105" PointY="14.993584654756628" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PRICELIST" Width="1.5" PointX="7.5005577632694305" PointY="9.698412929521135" />
+        <EntityTypeShape EntityType="SPWModel.PRODUCT_PROMOTION" Width="1.5" PointX="4.0573007725446022" PointY="9.159745742175609" />
+        <EntityTypeShape EntityType="SPWModel.PROVINCE" Width="1.5" PointX="5.1773630889027205" PointY="6.3386090874386065" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_PRICE_HIST" Width="1.5" PointX="7.0843757852373539" PointY="26.08374002300377" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PACK_SIZE" Width="1.5" PointX="1.6820974842096201" PointY="25.143783044602621" />
+        <EntityTypeShape EntityType="SPWModel.RAW_PRODUCT" Width="1.5" PointX="1.2627353115299416" PointY="9.7746703521230582" />
+        <EntityTypeShape EntityType="SPWModel.RAW_TYPE" Width="1.5" PointX="7.5121420284324056" PointY="13.972341961214479" />
+        <EntityTypeShape EntityType="SPWModel.RECEIVE_RAW_TRANS" Width="1.5" PointX="9.4773420530731514" PointY="17.67868190336911" />
+        <EntityTypeShape EntityType="SPWModel.ROAD" Width="1.5" PointX="9.0336792846367135" PointY="31.64274637384468" />
+        <EntityTypeShape EntityType="SPWModel.ROLE" Width="1.5" PointX="6.4612020992027608" PointY="0.759367511029992" />
+        <EntityTypeShape EntityType="SPWModel.ROLE_FUNCTION" Width="1.5" PointX="0.29243644340542907" PointY="0.28418739153267231" />
+        <EntityTypeShape EntityType="SPWModel.SECTOR" Width="1.5" PointX="0.19291094327015379" PointY="30.241423248425789" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_COLOR" Width="1.5" PointX="9.0806387463028724" PointY="7.5875164454744741" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_STOCK" Width="1.5" PointX="5.2399175619892393" PointY="4.5538343063340685" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_TRANS" Width="1.5" PointX="2.8300695376610707" PointY="2.8187814219010909" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_PRODUCT_WITHDRAW_TRANS" Width="1.5" PointX="8.9065303173412254" PointY="18.407704570520533" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_SETTING" Width="1.5" PointX="2.0366420978850881" PointY="17.182166420473795" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_STOCK" Width="1.5" PointX="8.38373700174677" PointY="31.611247196612528" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_RAW_TRANS" Width="1.5" PointX="11.738734675449662" PointY="21.444995159956157" />
+        <EntityTypeShape EntityType="SPWModel.STOCK_TYPE" Width="1.5" PointX="0.042492706348417654" PointY="16.769337721527247" />
+        <EntityTypeShape EntityType="SPWModel.STORE" Width="1.5" PointX="11.3460094758058" PointY="16.640299655795236" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX" Width="1.5" PointX="2.4566566787923949" PointY="27.43027643646592" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_INDEX_DETAIL" Width="1.5" PointX="9.6146953951635847" PointY="13.276695823891412" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER" Width="1.5" PointX="0.31628278471356386" PointY="30.180295377122377" />
+        <EntityTypeShape EntityType="SPWModel.SUB_DELIVERY_ORDER_DETAIL" Width="1.5" PointX="6.94966907377805" PointY="28.033983154238193" />
+        <EntityTypeShape EntityType="SPWModel.SUB_FUNCTION" Width="1.5" PointX="1.8063515209622454" PointY="27.142661524537328" />
+        <EntityTypeShape EntityType="SPWModel.TRANSPORT_LINE" Width="1.5" PointX="7.6640703657940357" PointY="15.049235395644436" />
+        <EntityTypeShape EntityType="SPWModel.UNIT_TYPE" Width="1.5" PointX="5.3301578021283067" PointY="19.71729997718581" />
+        <EntityTypeShape EntityType="SPWModel.USER" Width="1.5" PointX="3.4439939053002715" PointY="12.578045478359817" />
+        <EntityTypeShape EntityType="SPWModel.VEHICLE" Width="1.5" PointX="6.3542659070129819" PointY="6.218785124932781" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR" Width="1.5" PointX="9.1370608458002387" PointY="14.337834454298873" />
+        <EntityTypeShape EntityType="SPWModel.VENDOR_DEAL_DISCOUNT" Width="1.5" PointX="6.9513329709653426" PointY="1.666811869324563" />
+        <EntityTypeShape EntityType="SPWModel.ZONE" Width="1.5" PointX="0.52238832438475835" PointY="16.959589593559311" />
+        <EntityTypeShape EntityType="SPWModel.ZONE_DETAIL" Width="1.5" PointX="1.6288592841610587" PointY="2.85021232201262" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_ASSET_TYPE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VEHICLE" />
         <AssociationConnector Association="SPWModel.FK_AP_VEHICLE_VENDOR" />
@@ -6813,7 +7138,10 @@
         <AssociationConnector Association="SPWModel.FK_DELIVERY_ORDER_DETAIL_PRODUCT" />
         <AssociationConnector Association="SPWModel.FK_EMP_TMPLT_DEPART" />
         <AssociationConnector Association="SPWModel.FK_EMP_TMPLT_SKL" />
+        <AssociationConnector Association="SPWModel.FK_MEA_TRN_TEMP" />
         <AssociationConnector Association="SPWModel.FK_EMP_TMPLT_SKL_TYPE" />
+        <AssociationConnector Association="SPWModel.FK_MEA_TRN_EMP" />
+        <AssociationConnector Association="SPWModel.FK_MEA_TRN_WEI" />
         <AssociationConnector Association="SPWModel.FK_USER_EMPLOYEE" />
         <AssociationConnector Association="SPWModel.FK_ZONE_DETAIL_EMPLOYEE" />
         <AssociationConnector Association="SPWModel.FK_ROLE_FUNCTION_FUNCTION1" />

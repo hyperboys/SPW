@@ -159,6 +159,11 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ResultEmpAssessment.aspx" />
+    <Content Include="Page\SearchEmpResultAssessment.aspx" />
+    <Content Include="Page\SearchEmployeeAssessment.aspx" />
+    <Content Include="Page\KeyInEmpAssessment.aspx" />
+    <Content Include="Page\ManageMeasureWeight.aspx" />
     <Content Include="Page\SearchEmpHdTemplate.aspx" />
     <Content Include="Page\ManageHDTemplate.aspx" />
     <Content Include="Page\ManageGrade.aspx" />
@@ -286,6 +291,41 @@
     </Compile>
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ResultEmpAssessment.aspx.cs">
+      <DependentUpon>ResultEmpAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ResultEmpAssessment.aspx.designer.cs">
+      <DependentUpon>ResultEmpAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmpResultAssessment.aspx.cs">
+      <DependentUpon>SearchEmpResultAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmpResultAssessment.aspx.designer.cs">
+      <DependentUpon>SearchEmpResultAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchEmployeeAssessment.aspx.cs">
+      <DependentUpon>SearchEmployeeAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchEmployeeAssessment.aspx.designer.cs">
+      <DependentUpon>SearchEmployeeAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\KeyInEmpAssessment.aspx.cs">
+      <DependentUpon>KeyInEmpAssessment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\KeyInEmpAssessment.aspx.designer.cs">
+      <DependentUpon>KeyInEmpAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\ManageMeasureWeight.aspx.cs">
+      <DependentUpon>ManageMeasureWeight.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ManageMeasureWeight.aspx.designer.cs">
+      <DependentUpon>ManageMeasureWeight.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchEmpHdTemplate.aspx.cs">
       <DependentUpon>SearchEmpHdTemplate.aspx</DependentUpon>

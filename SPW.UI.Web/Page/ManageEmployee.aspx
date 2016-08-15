@@ -313,16 +313,10 @@
                                     <asp:BoundField DataField="JOBB_AMT" HeaderText="ค่าจ้างตามความถนัด" ItemStyle-Width="13%" DataFormatString="{0:###,###,###.00}">
                                         <ItemStyle Width="13%"></ItemStyle>
                                     </asp:BoundField>
-                                    <%-- <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="รายละเอียด"
-                                        ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center" CancelImageUrl="~/Image/Icon/find.png" DeleteImageUrl="~/Image/Icon/find.png" InsertImageUrl="~/Image/Icon/find.png" NewImageUrl="~/Image/Icon/find.png" SelectImageUrl="~/Image/Icon/find.png" UpdateImageUrl="~/Image/Icon/find.png">
-                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-
-                                        <ItemStyle Width="10%"></ItemStyle>
-                                    </asp:CommandField>--%>
                                     <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbtnDetail" runat="server">
-                                    <div class='glyphicon glyphicon-list'></div>
+                                                <div class='glyphicon glyphicon-list'></div>
                                             </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -339,8 +333,8 @@
                                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
                                 <PagerSettings Mode="NumericFirstLast" />
                             </asp:GridView>
-                            <%--</div>--%>
                         </div>
+                        <%--</div>--%>
                         <div></div>
                         <div class="col-lg-12">
                             <div class="form">

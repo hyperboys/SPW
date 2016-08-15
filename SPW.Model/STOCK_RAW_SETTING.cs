@@ -12,25 +12,25 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMP_MEASURE_DT_TEMPLATE
+    public partial class STOCK_RAW_SETTING
     {
-        public EMP_MEASURE_DT_TEMPLATE()
-        {
-            this.EMP_MEASURE_TRANS = new HashSet<EMP_MEASURE_TRANS>();
-        }
-    
-        public string TEMPLATE_ID { get; set; }
-        public int EMP_SKILL_TYPE_ID { get; set; }
-        public int SEQ_NO { get; set; }
-        public int SKILL_ID { get; set; }
-        public decimal SKILL_TARGET_SCORE { get; set; }
+        public string STOCK_TRANS_NO { get; set; }
+        public string STOCK_TRANS_YY { get; set; }
+        public System.DateTime STOCK_TRANS_DATE { get; set; }
+        public string REF_DOC_NO1 { get; set; }
+        public string REF_DOC_NO2 { get; set; }
+        public string REF_DOC_NO3 { get; set; }
+        public int VENDOR_ID { get; set; }
+        public int RAW_ID { get; set; }
+        public string STOCK_RAW_REF_NO1 { get; set; }
+        public string STOCK_RAW_REF_NO2 { get; set; }
+        public int STOCK_QTY { get; set; }
+        public Nullable<int> APPROVE_EMPLOYEE_ID { get; set; }
+        public Nullable<System.TimeSpan> SYS_TIME { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
-    
-        public virtual EMP_SKILL EMP_SKILL { get; set; }
-        public virtual ICollection<EMP_MEASURE_TRANS> EMP_MEASURE_TRANS { get; set; }
     }
 }

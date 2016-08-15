@@ -154,24 +154,9 @@ namespace SPW.UI.Web.Page
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbtnDetail = (LinkButton)e.Row.FindControl("lbtnDetail");
-                lbtnDetail.PostBackUrl = "ManageHDTemplate.aspx?id=" + grdEmpPos.DataKeys[e.Row.RowIndex].Values[0].ToString();
+                lbtnDetail.PostBackUrl = "ManageHDTemplate.aspx?id=" + grdEmpPos.DataKeys[e.Row.RowIndex].Values[0].ToString() + "&typeId=" + grdEmpPos.DataKeys[e.Row.RowIndex].Values[1].ToString();
             }
         }
         #endregion
-
-        protected void grdEmpPos_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
-                _empMeasureHdTemplate.Delete(grdEmpPos.DataKeys[e.RowIndex].Values[0].ToString());
-            }
-            catch
-            {
-                string script = "alert(\"ข้อมูลมีการใช้งานแล้ว ไม่สามารถลบได้\");";
-                ScriptManager.RegisterStartupScript(this, GetType(),
-                                      "ServerControlScript", script, true);
-            }
-            InitialData();
-        }
     }
 }

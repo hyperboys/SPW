@@ -78,6 +78,11 @@ namespace SPW.DataService
             return this.Datacontext.EMPLOYEE.Where(x => x.EMPLOYEE_ID == ID).FirstOrDefault();
         }
 
+        public EMPLOYEE SelectIncludeTrans(int ID)
+        {
+            return this.Datacontext.EMPLOYEE.Include("EMP_MEASURE_TRANS").Where(x => x.EMPLOYEE_ID == ID).FirstOrDefault();
+        }
+
         public List<EMPLOYEE> GetAll()
         {
             return this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();

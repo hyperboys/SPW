@@ -43,7 +43,7 @@ namespace SPW.DataService
         }
         public List<DELIVERY_INDEX> GetAll()
         {
-            return this.Datacontext.DELIVERY_INDEX.Include("DELIVERY_ORDER").Include("DELIVERY_INDEX_DETAIL").Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.DELIVERY_INDEX.Include("DELIVERY_ORDER").Include("DELIVERY_INDEX_DETAIL").Include("VEHICLE").Where(x => x.SYE_DEL == false).ToList();
         }
 
 

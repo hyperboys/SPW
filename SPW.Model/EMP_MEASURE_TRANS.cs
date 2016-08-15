@@ -12,25 +12,29 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMP_MEASURE_DT_TEMPLATE
+    public partial class EMP_MEASURE_TRANS
     {
-        public EMP_MEASURE_DT_TEMPLATE()
-        {
-            this.EMP_MEASURE_TRANS = new HashSet<EMP_MEASURE_TRANS>();
-        }
-    
+        public int EMPLOYEE_ID { get; set; }
+        public string EMPLOYEE_CODE { get; set; }
+        public string MEASURE_YY { get; set; }
+        public int MEASURE_SEQ_NO { get; set; }
+        public System.DateTime MEASURE_DATE { get; set; }
+        public int WEIGHT_ID { get; set; }
+        public decimal WEIGHT_VALUE { get; set; }
         public string TEMPLATE_ID { get; set; }
         public int EMP_SKILL_TYPE_ID { get; set; }
+        public decimal EMP_SKILL_TYPE_DEFAULT { get; set; }
+        public decimal EMP_SKILL_TYPE_ACTUAL { get; set; }
         public int SEQ_NO { get; set; }
-        public int SKILL_ID { get; set; }
-        public decimal SKILL_TARGET_SCORE { get; set; }
+        public decimal SCORE_ACTUAL { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual EMP_SKILL EMP_SKILL { get; set; }
-        public virtual ICollection<EMP_MEASURE_TRANS> EMP_MEASURE_TRANS { get; set; }
+        public virtual EMP_MEASURE_DT_TEMPLATE EMP_MEASURE_DT_TEMPLATE { get; set; }
+        public virtual EMPLOYEE EMPLOYEE { get; set; }
+        public virtual EMP_MEASURE_WEIGHT EMP_MEASURE_WEIGHT { get; set; }
     }
 }

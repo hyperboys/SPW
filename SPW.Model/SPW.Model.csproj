@@ -74,6 +74,8 @@
     <Compile Include="CustomModel\EMPLOYEE_HIST.cs" />
     <Compile Include="CustomModel\EMP_MEASURE_DT_TEMPLATE.cs" />
     <Compile Include="CustomModel\EMP_MEASURE_HD_TEMPLATE.cs" />
+    <Compile Include="CustomModel\EMP_MEASURE_TRANS.cs" />
+    <Compile Include="CustomModel\EMP_MEASURE_WEIGHT.cs" />
     <Compile Include="CustomModel\EMP_POSITION.cs" />
     <Compile Include="CustomModel\EMP_SKILL.cs" />
     <Compile Include="CustomModel\EMP_SKILL_TYPE.cs" />
@@ -153,6 +155,12 @@
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="EMP_MEASURE_HD_TEMPLATE.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_MEASURE_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_MEASURE_WEIGHT.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="EMP_POSITION.cs">
@@ -248,6 +256,9 @@
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STOCK_PRODUCT_WITHDRAW_TRANS.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCK_RAW_SETTING.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STOCK_RAW_STOCK.cs">

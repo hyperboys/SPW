@@ -72,8 +72,8 @@
                     <!-- /.row (nested) -->
                     <div class="panel panel-primary">
                         <asp:GridView ID="grdEmpPos" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" OnRowDataBound="grdEmpPos_RowDataBound"
-                            DataKeyNames="TEMPLATE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลเกณฑ์การประเมินทักษะในแผนก"
-                            Style="text-align: center" CssClass="grid" OnRowDeleting="grdEmpPos_RowDeleting">
+                            DataKeyNames="TEMPLATE_ID,EMP_SKILL_TYPE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลเกณฑ์การประเมินทักษะในแผนก"
+                            Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
@@ -82,14 +82,14 @@
                                     </ItemTemplate>
                                     <ItemStyle BorderStyle="Solid" />
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="TEMPLATE_ID" HeaderText="ประเภททักษะพนักงาน" ItemStyle-Width="25%">
+                                <asp:BoundField DataField="TEMPLATE_ID" HeaderText="รหัส Template" ItemStyle-Width="25%">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="DEPARTMENT.DEPARTMENT_NAME" HeaderText="ชื่อแผนก" ItemStyle-Width="25%">
                                     <ItemStyle Width="25%"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="EMP_SKILL_TYPE.EMP_SKILL_TYPE_NA" HeaderText="ชื่อประเภททักษะ" ItemStyle-Width="25%">
-                                    <ItemStyle Width="25%"></ItemStyle>
+                                <asp:BoundField DataField="EMP_SKILL_TYPE.EMP_SKILL_TYPE_NA" HeaderText="ชื่อประเภททักษะ" ItemStyle-Width="35%">
+                                    <ItemStyle Width="35%"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="รายละเอียด" ItemStyle-Width="10%">
                                     <ItemTemplate>
@@ -97,13 +97,6 @@
                                     <div class='glyphicon glyphicon-list'></div>
                                         </asp:LinkButton>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ลบ" ShowHeader="False">
-                                    <ItemTemplate>
-                                        <asp:ImageButton ID="ImageButton1" runat="server" ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
-                                            ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />

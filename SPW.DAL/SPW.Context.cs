@@ -40,6 +40,8 @@ namespace SPW.DAL
         public DbSet<EMP_GRADE_SET> EMP_GRADE_SET { get; set; }
         public DbSet<EMP_MEASURE_DT_TEMPLATE> EMP_MEASURE_DT_TEMPLATE { get; set; }
         public DbSet<EMP_MEASURE_HD_TEMPLATE> EMP_MEASURE_HD_TEMPLATE { get; set; }
+        public DbSet<EMP_MEASURE_TRANS> EMP_MEASURE_TRANS { get; set; }
+        public DbSet<EMP_MEASURE_WEIGHT> EMP_MEASURE_WEIGHT { get; set; }
         public DbSet<EMP_POSITION> EMP_POSITION { get; set; }
         public DbSet<EMP_SKILL> EMP_SKILL { get; set; }
         public DbSet<EMP_SKILL_TYPE> EMP_SKILL_TYPE { get; set; }
@@ -71,6 +73,7 @@ namespace SPW.DAL
         public DbSet<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
         public DbSet<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
         public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
+        public DbSet<STOCK_RAW_SETTING> STOCK_RAW_SETTING { get; set; }
         public DbSet<STOCK_RAW_STOCK> STOCK_RAW_STOCK { get; set; }
         public DbSet<STOCK_RAW_TRANS> STOCK_RAW_TRANS { get; set; }
         public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }

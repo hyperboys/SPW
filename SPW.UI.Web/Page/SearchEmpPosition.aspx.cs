@@ -103,6 +103,7 @@ namespace SPW.UI.Web.Page
                 ReloadPageEngine();
             }
         }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridview();

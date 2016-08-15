@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master"
-    AutoEventWireup="true" CodeBehind="ManageGrade.aspx.cs" Inherits="SPW.UI.Web.Page.ManageGrade" %>
+    AutoEventWireup="true" CodeBehind="ManageMeasureWeight.aspx.cs" Inherits="SPW.UI.Web.Page.ManageMeasureWeight" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
-        <asp:Label ID="lblName" runat="server" Text="ข้อมูลเกรดล่าสุด"></asp:Label></h1>
+        <asp:Label ID="lblName" runat="server" Text="ข้อมูลน้ำหนักการประเมินล่าสุด"></asp:Label></h1>
     <div class="alert alert-info" id="alert" runat="server" visible="false">
         <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
     </div>
@@ -73,7 +73,7 @@
     </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            ข้อมูลเกรด
+            ข้อมูลน้ำหนักการประเมิน
         </div>
         <div class="panel-body">
             <div class="row">
@@ -82,7 +82,7 @@
                         <div class="form-group">
                             <%--first row--%>
                             <div class="row">
-                                <div class="col-md-2">Grade A</div>
+                                <div class="col-md-2">ผู้บริหาร</div>
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtPercenA" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
@@ -95,7 +95,7 @@
                                             var keyCode = e.which ? e.which : e.keyCode
                                             var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
                                             //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("errorA").style.display = ret ? "inline" : "none";
+                                            document.getElementById("Span1").style.display = ret ? "inline" : "none";
                                             return !ret;
                                         }
                                     </script>
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">Grade B</div>
+                                <div class="col-md-2">Supervisor</div>
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtPercenB" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
@@ -121,95 +121,13 @@
                                             var keyCode = e.which ? e.which : e.keyCode
                                             var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
                                             //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("errorB").style.display = ret ? "inline" : "none";
+                                            document.getElementById("Span2").style.display = ret ? "inline" : "none";
                                             return !ret;
                                         }
                                     </script>
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblDate2" runat="server" Text=""></asp:Label>
-
-                                </div>
-                                <div class="col-md-3">
-                                    ถึงปัจจุบัน
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">Grade C</div>
-                                <div class="col-md-3">
-                                    <asp:TextBox ID="txtPercenC" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
-                                        ControlToValidate="txtPercenC" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    <span id="Span3" style="color: Red; display: none">*กรุณกรอกเป็นตัวเลข</span>
-                                    <script type="text/javascript">
-                                        var specialKeys = new Array();
-                                        specialKeys.push(8); //Backspace
-                                        function IsNumeric(e) {
-                                            var keyCode = e.which ? e.which : e.keyCode
-                                            var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
-                                            //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("errorC").style.display = ret ? "inline" : "none";
-                                            return !ret;
-                                        }
-                                    </script>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:Label ID="lblDate3" runat="server" Text=""></asp:Label>
-
-                                </div>
-                                <div class="col-md-3">
-                                    ถึงปัจจุบัน
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">Grade D</div>
-                                <div class="col-md-3">
-                                    <asp:TextBox ID="txtPercenD" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
-                                        ControlToValidate="txtPercenD" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    <span id="Span4" style="color: Red; display: none">*กรุณกรอกเป็นตัวเลข</span>
-                                    <script type="text/javascript">
-                                        var specialKeys = new Array();
-                                        specialKeys.push(8); //Backspace
-                                        function IsNumeric(e) {
-                                            var keyCode = e.which ? e.which : e.keyCode
-                                            var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
-                                            //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("errorD").style.display = ret ? "inline" : "none";
-                                            return !ret;
-                                        }
-                                    </script>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:Label ID="lblDate4" runat="server" Text=""></asp:Label>
-
-                                </div>
-                                <div class="col-md-3">
-                                    ถึงปัจจุบัน
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">Grade E</div>
-                                <div class="col-md-3">
-                                    <asp:TextBox ID="txtPercenE" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
-                                        ControlToValidate="txtPercenE" ValidationGroup="group" Style="color: #FF0000; font-size: large;">*</asp:RequiredFieldValidator>
-                                    <span id="Span5" style="color: Red; display: none">*กรุณกรอกเป็นตัวเลข</span>
-                                    <script type="text/javascript">
-                                        var specialKeys = new Array();
-                                        specialKeys.push(8); //Backspace
-                                        function IsNumeric(e) {
-                                            var keyCode = e.which ? e.which : e.keyCode
-                                            var ret = (keyCode != 13 && keyCode != 46 && (keyCode < 48 || keyCode > 57) || specialKeys.indexOf(keyCode) != -1);
-                                            //var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                            document.getElementById("errorE").style.display = ret ? "inline" : "none";
-                                            return !ret;
-                                        }
-                                    </script>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:Label ID="lblDate5" runat="server" Text=""></asp:Label>
-
                                 </div>
                                 <div class="col-md-3">
                                     ถึงปัจจุบัน

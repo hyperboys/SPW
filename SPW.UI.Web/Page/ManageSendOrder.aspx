@@ -71,10 +71,10 @@
                                 <div class="form-group">
                                     <%--first row--%>
                                     <div class="row">
-                                        <div class="col-md-2">วันที่สั่งซื้อ</div>
+                                        <div class="col-md-2">วันที่ทำรายการ</div>
                                         <div class="col-md-3">
                                             <div class='input-group date' id='datetimepicker1'>
-                                                <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สิ้นสุด"></asp:TextBox>
+                                                <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่ทำรายการ"></asp:TextBox>
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>

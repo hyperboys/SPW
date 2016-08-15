@@ -62,14 +62,29 @@ namespace SPW.DataService
             return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.TEMPLATE_ID == ID && x.SYE_DEL == false).FirstOrDefault();
         }
 
+        public EMP_MEASURE_HD_TEMPLATE Select(string ID,int type_id)
+        {
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.TEMPLATE_ID == ID && x.EMP_SKILL_TYPE_ID == type_id && x.SYE_DEL == false).FirstOrDefault();
+        }
+
         public int GetCount(string tmpId)
         {
             return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Where(x => x.TEMPLATE_ID.Contains(tmpId) && x.SYE_DEL == false).Count();
         }
 
+        public EMP_MEASURE_HD_TEMPLATE Select(int DEPARTMENT_ID,int type)
+        {
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.SYE_DEL == false && x.DEPARTMENT_ID == DEPARTMENT_ID && x.EMP_SKILL_TYPE_ID == type).FirstOrDefault();
+        }
+
         public List<EMP_MEASURE_HD_TEMPLATE> GetAll()
         {
             return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.SYE_DEL == false).ToList();
+        }
+
+        public List<EMP_MEASURE_HD_TEMPLATE> GetAll(int DEPARTMENT_ID, int type)
+        {
+            return this.Datacontext.EMP_MEASURE_HD_TEMPLATE.Include("DEPARTMENT").Include("EMP_SKILL_TYPE").Where(x => x.SYE_DEL == false && x.DEPARTMENT_ID == DEPARTMENT_ID && x.EMP_SKILL_TYPE_ID == type).ToList();
         }
 
         public void Delete(string ID)

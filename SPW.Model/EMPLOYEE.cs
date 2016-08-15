@@ -16,6 +16,7 @@ namespace SPW.Model
     {
         public EMPLOYEE()
         {
+            this.EMP_MEASURE_TRANS = new HashSet<EMP_MEASURE_TRANS>();
             this.USER = new HashSet<USER>();
             this.ZONE_DETAIL = new HashSet<ZONE_DETAIL>();
         }
@@ -44,6 +45,7 @@ namespace SPW.Model
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
+        public virtual ICollection<EMP_MEASURE_TRANS> EMP_MEASURE_TRANS { get; set; }
         public virtual ICollection<USER> USER { get; set; }
         public virtual ICollection<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }

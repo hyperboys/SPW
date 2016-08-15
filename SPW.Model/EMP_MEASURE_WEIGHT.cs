@@ -12,25 +12,24 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMP_MEASURE_DT_TEMPLATE
+    public partial class EMP_MEASURE_WEIGHT
     {
-        public EMP_MEASURE_DT_TEMPLATE()
+        public EMP_MEASURE_WEIGHT()
         {
             this.EMP_MEASURE_TRANS = new HashSet<EMP_MEASURE_TRANS>();
         }
     
-        public string TEMPLATE_ID { get; set; }
-        public int EMP_SKILL_TYPE_ID { get; set; }
-        public int SEQ_NO { get; set; }
-        public int SKILL_ID { get; set; }
-        public decimal SKILL_TARGET_SCORE { get; set; }
+        public int WEIGHT_ID { get; set; }
+        public string WEIGHT_NAME { get; set; }
+        public decimal WEIGHT_VALUE { get; set; }
+        public System.DateTime EFFECTIVE_DATE { get; set; }
+        public Nullable<System.DateTime> EXPIRE_DATE { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
         public Nullable<int> UPDATE_EMPLOYEE_ID { get; set; }
         public Nullable<bool> SYE_DEL { get; set; }
     
-        public virtual EMP_SKILL EMP_SKILL { get; set; }
         public virtual ICollection<EMP_MEASURE_TRANS> EMP_MEASURE_TRANS { get; set; }
     }
 }
