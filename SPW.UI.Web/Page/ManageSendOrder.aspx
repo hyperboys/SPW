@@ -109,6 +109,20 @@
                                             <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="เพิ่มใบขึ้นของ" Height="30px" Width="100px" OnClick="Button1_Click" />
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-2">สถานะ</div>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlStatus" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True">
+                                                <asp:ListItem Value="30" Selected="True">ไม่สำเร็จ</asp:ListItem>
+                                                <asp:ListItem Value="50">สำเร็จ</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.col-lg-6 (nested) -->

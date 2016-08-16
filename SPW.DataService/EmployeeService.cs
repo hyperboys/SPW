@@ -90,7 +90,7 @@ namespace SPW.DataService
 
         public List<EMPLOYEE> GetAllInclude()
         {
-            return this.Datacontext.EMPLOYEE.Include("DEPARTMENT").Where(x => x.SYE_DEL == false).ToList();
+            return this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();
         }
 
         public List<EMPLOYEE> GetAll(EMPLOYEE item)

@@ -117,17 +117,17 @@ namespace SPW.UI.Web.Page
             {
                 List<object> ParamItems = (List<object>)Session[this.GetType().Name + "Filter"];
                 int SourceItemCount = 0;
-                DataSource = cmdDelIndex.GetAllByFilterCondition((string)ParamItems[0], (int)ParamItems[1], (DateTime?)ParamItems[2], (DateTime?)ParamItems[3], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount);
+                DataSource = cmdDelIndex.GetAllByFilterCondition((string)ParamItems[0], (int)ParamItems[1], (DateTime?)ParamItems[2], (DateTime?)ParamItems[3], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount, ddlStatus.SelectedValue);
                 CreateFilterPageSelected(SourceItemCount);
                 UpdatePageControl((int)ViewState["PageIndex"]);
-                gdvManageOrderHQ.DataSource = DataSource;
+                gdvManageOrderHQ.DataSource = DataSource.OrderByDescending(x => x.CREATE_DATE);
                 gdvManageOrderHQ.DataBind();
                 PrepareButtonFilterDisplay();
             }
             else
             {
-                DataSource = cmdDelIndex.GetAllByFilter((int)ViewState["PageIndex"], (int)ViewState["PageLimit"]);
-                gdvManageOrderHQ.DataSource = DataSource;
+                DataSource = cmdDelIndex.GetAllByFilter((int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ddlStatus.SelectedValue);
+                gdvManageOrderHQ.DataSource = DataSource.OrderByDescending(x => x.CREATE_DATE);
                 gdvManageOrderHQ.DataBind();
                 PrepareButtonFilterDisplay();
             }
