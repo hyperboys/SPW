@@ -24,7 +24,7 @@ namespace SPW.UI.Web.Page
         private ReceiveRawTransService cmdReceiveRawTransService;
         private StockRawStockService cmdRawStockService;
         private RawProductService cmdRawProductService;
-        private StockRawSettingService cmdStockRawSettingService;
+        private StockRawLotService cmdStockRawLotService;
 
 
         public class DATAGRID
@@ -65,7 +65,7 @@ namespace SPW.UI.Web.Page
             cmdReceiveRawTransService = (ReceiveRawTransService)_dataServiceEngine.GetDataService(typeof(ReceiveRawTransService));
             cmdRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
             cmdRawProductService = (RawProductService)_dataServiceEngine.GetDataService(typeof(RawProductService));
-            cmdStockRawSettingService = (StockRawSettingService)_dataServiceEngine.GetDataService(typeof(StockRawSettingService)); 
+            cmdStockRawLotService = (StockRawLotService)_dataServiceEngine.GetDataService(typeof(StockRawLotService)); 
         }
 
         private void CreatePageEngine()
@@ -154,14 +154,13 @@ namespace SPW.UI.Web.Page
                         _STOCK_RAW_TRANS.REF_DOC_TYPE = "PO";
                         _STOCK_RAW_TRANS.REF_DOC_BKNO = _PO_HD_TRANS.PO_BK_NO;
                         _STOCK_RAW_TRANS.REF_DOC_RNNO = _PO_HD_TRANS.PO_RN_NO;
-                        _STOCK_RAW_TRANS.REF_DOC_YY = int.Parse(_PO_HD_TRANS.PO_YY);
-                        _STOCK_RAW_TRANS.REF_NO1 = 0;
-                        _STOCK_RAW_TRANS.REF_NO2 = 0;
+                        _STOCK_RAW_TRANS.REF_DOC_YY = _PO_HD_TRANS.PO_YY;
+                        _STOCK_RAW_TRANS.VENDOR_ID = _PO_HD_TRANS.VENDOR_ID;
+                        _STOCK_RAW_TRANS.VENDOR_CODE = _PO_HD_TRANS.VENDOR_CODE;
+                        _STOCK_RAW_TRANS.LOT_NO = GetLotNo(_PO_HD_TRANS.VENDOR_CODE);
                         _STOCK_RAW_TRANS.REF_REMARK1 = "";
                         _STOCK_RAW_TRANS.REF_REMARK2 = "";
-                        _STOCK_RAW_TRANS.STOCK_BEFORE = cmdStockRawStockService.GetRemainQty(e.RAW_ID);
                         _STOCK_RAW_TRANS.TRANS_QTY = e.PO_QTY;
-                        _STOCK_RAW_TRANS.STOCK_AFTER = cmdStockRawStockService.GetRemainQty(e.RAW_ID) + e.PO_QTY;
                         _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = _PO_HD_TRANS.CREATE_EMPLOYEE_ID;
                         _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
                         _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
@@ -172,7 +171,7 @@ namespace SPW.UI.Web.Page
                         cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
                     });
                 }
-                if (SaveRawSetting())
+                if (SaveRawLot())
                 {
                     if (SaveReceiveRawTrans())
                     {
@@ -194,7 +193,7 @@ namespace SPW.UI.Web.Page
                 return false;
             }
         }
-        private bool SaveRawSetting()
+        private bool SaveRawLot()
         {
             try
             {
@@ -204,30 +203,27 @@ namespace SPW.UI.Web.Page
                     PO_HD_TRANS _PO_HD_TRANS = cmdPoHdTrans.Select(txtBKNo.Text, txtRNNo.Text);
                     List<PO_DT_TRANS> LstPO_DT_TRANS = cmdPoDtTrans.Select(txtBKNo.Text, txtRNNo.Text);
                     USER userItem = Session["user"] as USER;
-                    int count = 1;
                     listDataGrid.ForEach(e =>
                     {
-                        STOCK_RAW_SETTING _STOCK_RAW_SETTING = new STOCK_RAW_SETTING();
-                        _STOCK_RAW_SETTING.STOCK_TRANS_NO = cmdStockRawSettingService.GetNextTran().ToString();
-                        _STOCK_RAW_SETTING.STOCK_TRANS_YY = _PO_HD_TRANS.PO_YY;
-                        _STOCK_RAW_SETTING.STOCK_TRANS_DATE = DateTime.Now;
-                        _STOCK_RAW_SETTING.REF_DOC_NO1 = "1";
-                        _STOCK_RAW_SETTING.REF_DOC_NO2 = "1";
-                        _STOCK_RAW_SETTING.REF_DOC_NO3 = "1";
-                        _STOCK_RAW_SETTING.VENDOR_ID = _PO_HD_TRANS.VENDOR_ID;
-                        _STOCK_RAW_SETTING.RAW_ID = e.RAW_ID;
-                        _STOCK_RAW_SETTING.STOCK_RAW_REF_NO1 = "1";
-                        _STOCK_RAW_SETTING.STOCK_RAW_REF_NO2 = count.ToString();
-                        _STOCK_RAW_SETTING.STOCK_QTY = e.PO_QTY;
-                        _STOCK_RAW_SETTING.APPROVE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _STOCK_RAW_SETTING.SYS_TIME = DateTime.Now.TimeOfDay;
-                        _STOCK_RAW_SETTING.CREATE_DATE = DateTime.Now;
-                        _STOCK_RAW_SETTING.UPDATE_DATE = DateTime.Now;
-                        _STOCK_RAW_SETTING.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _STOCK_RAW_SETTING.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _STOCK_RAW_SETTING.SYE_DEL = false;
-                        cmdStockRawSettingService.Add(_STOCK_RAW_SETTING);
-                        count++;
+                        if (!cmdStockRawLotService.isHasLot(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE)))
+                        {
+                            STOCK_RAW_LOT _STOCK_RAW_LOT = new STOCK_RAW_LOT();
+                            _STOCK_RAW_LOT.RAW_ID = e.RAW_ID;
+                            _STOCK_RAW_LOT.VENDOR_ID = _PO_HD_TRANS.VENDOR_ID;
+                            _STOCK_RAW_LOT.VENDOR_CODE = _PO_HD_TRANS.VENDOR_CODE;
+                            _STOCK_RAW_LOT.LOT_NO = GetLotNo(_PO_HD_TRANS.VENDOR_CODE);
+                            _STOCK_RAW_LOT.RAW_REMAIN = e.PO_QTY;
+                            _STOCK_RAW_LOT.CREATE_DATE = DateTime.Now;
+                            _STOCK_RAW_LOT.UPDATE_DATE = DateTime.Now;
+                            _STOCK_RAW_LOT.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            _STOCK_RAW_LOT.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            _STOCK_RAW_LOT.SYE_DEL = false;
+                            cmdStockRawLotService.Add(_STOCK_RAW_LOT);
+                        }
+                        else
+                        {
+                            cmdStockRawLotService.Edit(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE), cmdStockRawLotService.GetRemainQty(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE)), userItem.EMPLOYEE_ID);
+                        }
                     });
                 }
                 return true;
@@ -376,6 +372,11 @@ namespace SPW.UI.Web.Page
             {
                 throw e;
             }
+        }
+
+        public string GetLotNo(string VENDOR_CODE)
+        {
+            return VENDOR_CODE + DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("dd");
         }
         #endregion
 

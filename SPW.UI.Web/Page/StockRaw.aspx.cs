@@ -283,7 +283,7 @@ namespace SPW.UI.Web.Page
         }
         protected void gridStockRawSet_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
-            Response.RedirectPermanent("StockRawSetting.aspx?RAW_ID=" + gridStockRawSet.DataKeys[e.NewEditIndex].Value.ToString());
+            Response.RedirectPermanent("StockRawLot.aspx?RAW_ID=" + gridStockRawSet.DataKeys[e.NewEditIndex].Value.ToString());
         }
         #endregion
     }
