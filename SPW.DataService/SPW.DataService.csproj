@@ -59,7 +59,7 @@
     <Compile Include="EmpPositionService.cs" />
     <Compile Include="ReceiveRawTransService.cs" />
     <Compile Include="StockProductWithdrawService.cs" />
-    <Compile Include="StockRawSettingService.cs" />
+    <Compile Include="StockRawLotService.cs" />
     <Compile Include="StockRawTransService.cs" />
     <Compile Include="SubFunctionService.cs" />
     <Compile Include="PoDtTransService.cs" />
