@@ -10,5 +10,6 @@ namespace SPW.Model
     public partial class USER
     {
         public ActionEnum Action;
+        public DEPARTMENT DEPARTMENT { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace SPW.UI.Web.PageLogin
         private DataServiceEngine _dataServiceEngine;
         private UserService cmdUserService;
         private RoleService cmdRoleService;
+        private EmployeeService cmdEmpService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +50,8 @@ namespace SPW.UI.Web.PageLogin
         {
             cmdUserService = (UserService)_dataServiceEngine.GetDataService(typeof(UserService));
             cmdRoleService = (RoleService)_dataServiceEngine.GetDataService(typeof(RoleService));
+            cmdEmpService = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));
+         
         }
 
         private void ReloadDatasource()
@@ -80,6 +83,8 @@ namespace SPW.UI.Web.PageLogin
             if (tmpUser != null)
             {
                 tmpUser.ROLE = cmdRoleService.SelectIncludeEmployee(tmpUser.ROLE.ROLE_ID);
+                tmpUser.EMPLOYEE = cmdEmpService.SelectIncludeTrans(tmpUser.EMPLOYEE_ID);
+                //tmpUser.DEPARTMENT = cmdDepartmentService.Select(cmdEmpHistService.GetAll(tmpUser.EMPLOYEE_ID).OrderByDescending(x=>x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
                 Session["user"] = tmpUser;
                 Response.RedirectPermanent("../Page/MainAdmin.aspx");
             }

@@ -8,10 +8,27 @@
 //------------------------------------------------------------------------------
 
 namespace SPW.UI.Web.Page {
-
-
-    public partial class SearchEmployeeAssessment
-    {
+    
+    
+    public partial class SearchEmployeeAssessment {
+        
+        /// <summary>
+        /// warning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warning;
+        
+        /// <summary>
+        /// lblWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWarning;
         
         /// <summary>
         /// ScriptManager1 control.

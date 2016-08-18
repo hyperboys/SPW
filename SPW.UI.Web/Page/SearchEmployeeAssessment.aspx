@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true" 
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master" AutoEventWireup="true"
     CodeBehind="SearchEmployeeAssessment.aspx.cs" Inherits="SPW.UI.Web.Page.SearchEmployeeAssessment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,6 +6,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">พนักงาน</h1>
+    <div class="alert alert-warning" id="warning" runat="server" visible="false">
+        <strong>
+            <asp:Label ID="lblWarning" runat="server" Text=""></asp:Label></strong>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -44,9 +48,7 @@
                                         <asp:Button ID="btnReset" class="btn btn-primary" runat="server" Height="30px" Width="70px" Text="รีเซท" OnClick="btnReset_Click" />
                                     </td>
                                     <td class="auto-style1" style="text-align: center">&nbsp;</td>
-                                    <td>
-                                        
-                                    </td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>

@@ -10,5 +10,6 @@ namespace SPW.Model
     public partial class EMPLOYEE
     {
         public ActionEnum Action;
+        public EMPLOYEE_HIST EMPLOYEE_HIST { get; set; }
     }
 }

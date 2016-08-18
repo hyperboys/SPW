@@ -90,7 +90,12 @@ namespace SPW.DataService
 
         public List<EMPLOYEE> GetAllInclude()
         {
-            return this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();
+            List<EMPLOYEE> listItem = this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();
+            foreach (EMPLOYEE item in listItem)
+            {
+                item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+            }
+            return listItem;
         }
 
         public List<EMPLOYEE> GetAll(EMPLOYEE item)

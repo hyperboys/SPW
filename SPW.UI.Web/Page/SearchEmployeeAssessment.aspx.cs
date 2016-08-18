@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -13,6 +14,8 @@ namespace SPW.UI.Web.Page
     {
         private DataServiceEngine _dataServiceEngine;
         private EmployeeService cmdEmp;
+        private DepartmentService cmdDepartmentService;
+        private EmpHistService cmdEmpHistService;
         public List<EMPLOYEE> DataSouce
         {
             get
@@ -42,6 +45,8 @@ namespace SPW.UI.Web.Page
         private void InitialDataService()
         {
             cmdEmp = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));
+            cmdDepartmentService = (DepartmentService)_dataServiceEngine.GetDataService(typeof(DepartmentService));
+            cmdEmpHistService = (EmpHistService)_dataServiceEngine.GetDataService(typeof(EmpHistService));
         }
 
 
@@ -73,7 +78,27 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            DataSouce = cmdEmp.GetAll();
+            DataSouce = cmdEmp.GetAllInclude();
+
+            DEPARTMENT DepartmentItem;
+            USER userItem = Session["user"] as USER;
+            if (userItem.ROLE.ROLE_CODE != "Admin")
+            {
+                try
+                {
+                    DepartmentItem = cmdDepartmentService.Select(cmdEmpHistService.GetAll(userItem.EMPLOYEE_ID).OrderByDescending(x => x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
+                }
+                catch (Exception ex)
+                {
+                    DebugLog.WriteLog(ex.ToString());
+                    lblWarning.Text = "ผู้ใช้งานไม่มีข้อมูลแผนก กรุณาเพิ่มข้อมูลก่อนทำรายงาน";
+                    warning.Visible = true;
+                    gridEmployee.DataSource = null;
+                    gridEmployee.DataBind();
+                    return;
+                }
+                DataSouce = DataSouce.Where(x => x.EMPLOYEE_HIST.DEPARTMENT_ID == DepartmentItem.DEPARTMENT_ID).ToList();
+            }
             gridEmployee.DataSource = DataSouce;
             gridEmployee.DataBind();
         }
@@ -85,7 +110,7 @@ namespace SPW.UI.Web.Page
 
         private void SearchGrid()
         {
-            if (txtEmployeeCode.Text.Equals(""))
+            if (!txtEmployeeCode.Text.Equals(""))
             {
                 gridEmployee.DataSource = DataSouce;
             }
