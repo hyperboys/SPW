@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.Common;
+using SPW.DAL;
 
 namespace SPW.UI.Web.Page
 {
@@ -78,6 +79,12 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
+            var list = cmdDepartmentService.GetAll();
+            foreach (var item in list)
+            {
+                ddlDepart.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
+            }
+
             DataSouce = cmdEmp.GetAllInclude();
 
             DEPARTMENT DepartmentItem;
@@ -110,14 +117,23 @@ namespace SPW.UI.Web.Page
 
         private void SearchGrid()
         {
+            List<EMPLOYEE> tmpDataSouce = ObjectCopier.Clone<List<EMPLOYEE>>(DataSouce);
             if (!txtEmployeeCode.Text.Equals(""))
             {
-                gridEmployee.DataSource = DataSouce;
+                tmpDataSouce = tmpDataSouce.Where(x => x.EMPLOYEE_CODE.Contains(txtEmployeeCode.Text)).ToList();
             }
-            else
+
+            if (!txtName.Text.Equals(""))
             {
-                gridEmployee.DataSource = DataSouce.Where(x => x.EMPLOYEE_CODE.Contains(txtEmployeeCode.Text) && x.SYE_DEL == false).ToList();
+                tmpDataSouce = tmpDataSouce.Where(x => x.EMPLOYEE_NAME.Contains(txtName.Text)).ToList();
             }
+
+            if (ddlDepart.SelectedValue != "0")
+            {
+                tmpDataSouce = tmpDataSouce.Where(x => x.EMPLOYEE_HIST != null && x.EMPLOYEE_HIST.DEPARTMENT_ID == Convert.ToInt32(ddlDepart.SelectedValue)).ToList();
+            }
+
+            gridEmployee.DataSource = tmpDataSouce;
             gridEmployee.DataBind();
         }
 
@@ -149,7 +165,7 @@ namespace SPW.UI.Web.Page
                     lbtnSelect.Attributes["href"] = "KeyInEmpAssessment.aspx?id=" + gridEmployee.DataKeys[e.Row.RowIndex][0].ToString();
                     lbtnSelect.Visible = true;
                 }
-                
+
                 lbtnEdit.Attributes["href"] = "ManageEmployee.aspx?id=" + gridEmployee.DataKeys[e.Row.RowIndex][0].ToString();
             }
         }

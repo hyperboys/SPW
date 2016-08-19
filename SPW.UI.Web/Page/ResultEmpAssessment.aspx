@@ -39,7 +39,7 @@
                                     <div class="row">
                                         <div class="col-md-2">รหัสพนักงาน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtEmpCode" class="form-control" runat="server" Height="35px" placeholder="รหัสพนักงาน" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtEmpCode" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสพนักงาน" Enabled="false"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
@@ -49,7 +49,7 @@
                                     <div class="row">
                                         <div class="col-md-2">ชื่อพนักงาน</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtName" class="form-control" runat="server" Height="35px" placeholder="ชื่อพนักงาน" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtName" class="form-control" runat="server" Height="35px"  Width="200px" placeholder="ชื่อพนักงาน" Enabled="false"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
@@ -59,7 +59,7 @@
                                     <div class="row">
                                         <div class="col-md-2">ตำแหน่ง</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtPosition" class="form-control" runat="server" Height="35px" placeholder="รหัสพนักงาน" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtPosition" class="form-control" runat="server" Height="35px" Width="200px" placeholder="รหัสพนักงาน" Enabled="false"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3">
