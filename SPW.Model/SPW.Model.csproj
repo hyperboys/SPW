@@ -258,7 +258,7 @@
     <Compile Include="STOCK_PRODUCT_WITHDRAW_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
-    <Compile Include="STOCK_RAW_SETTING.cs">
+    <Compile Include="STOCK_RAW_LOT.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="STOCK_RAW_STOCK.cs">
@@ -304,6 +304,9 @@
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="VENDOR_DEAL_DISCOUNT.cs">
+      <DependentUpon>SPW.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WR_DT_TRANS.cs">
       <DependentUpon>SPW.tt</DependentUpon>
     </Compile>
     <Compile Include="ZONE.cs">

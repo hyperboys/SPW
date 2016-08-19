@@ -19,6 +19,7 @@ namespace SPW.Model
             this.PO_DT_TRANS = new HashSet<PO_DT_TRANS>();
             this.PR_DT_TRANS = new HashSet<PR_DT_TRANS>();
             this.RAW_PACK_PRICE_HIST = new HashSet<RAW_PACK_PRICE_HIST>();
+            this.WR_DT_TRANS = new HashSet<WR_DT_TRANS>();
         }
     
         public int RAW_PACK_ID { get; set; }
@@ -36,5 +37,6 @@ namespace SPW.Model
         public virtual ICollection<PO_DT_TRANS> PO_DT_TRANS { get; set; }
         public virtual ICollection<PR_DT_TRANS> PR_DT_TRANS { get; set; }
         public virtual ICollection<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }
+        public virtual ICollection<WR_DT_TRANS> WR_DT_TRANS { get; set; }
     }
 }

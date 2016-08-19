@@ -20,6 +20,8 @@ namespace SPW.Model
             this.PO_HD_TRANS = new HashSet<PO_HD_TRANS>();
             this.PR_HD_TRANS = new HashSet<PR_HD_TRANS>();
             this.RAW_PACK_PRICE_HIST = new HashSet<RAW_PACK_PRICE_HIST>();
+            this.STOCK_RAW_LOT = new HashSet<STOCK_RAW_LOT>();
+            this.STOCK_RAW_TRANS = new HashSet<STOCK_RAW_TRANS>();
             this.VENDOR_DEAL_DISCOUNT = new HashSet<VENDOR_DEAL_DISCOUNT>();
         }
     
@@ -55,6 +57,8 @@ namespace SPW.Model
         public virtual PROVINCE PROVINCE { get; set; }
         public virtual ICollection<RAW_PACK_PRICE_HIST> RAW_PACK_PRICE_HIST { get; set; }
         public virtual ROAD ROAD { get; set; }
+        public virtual ICollection<STOCK_RAW_LOT> STOCK_RAW_LOT { get; set; }
+        public virtual ICollection<STOCK_RAW_TRANS> STOCK_RAW_TRANS { get; set; }
         public virtual ICollection<VENDOR_DEAL_DISCOUNT> VENDOR_DEAL_DISCOUNT { get; set; }
     }
 }

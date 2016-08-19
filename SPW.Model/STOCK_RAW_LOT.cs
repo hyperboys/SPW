@@ -12,24 +12,13 @@ namespace SPW.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class STOCK_RAW_TRANS
+    public partial class STOCK_RAW_LOT
     {
-        public int TRANS_ID { get; set; }
         public int RAW_ID { get; set; }
-        public System.DateTime TRANS_DATE { get; set; }
-        public string TRANS_TYPE { get; set; }
-        public string REF_DOC_TYPE { get; set; }
-        public string REF_DOC_BKNO { get; set; }
-        public string REF_DOC_RNNO { get; set; }
-        public string REF_DOC_YY { get; set; }
         public int VENDOR_ID { get; set; }
         public string VENDOR_CODE { get; set; }
         public string LOT_NO { get; set; }
-        public string REF_REMARK1 { get; set; }
-        public string REF_REMARK2 { get; set; }
-        public int TRANS_QTY { get; set; }
-        public Nullable<int> APPROVE_EMPLOYEE_ID { get; set; }
-        public Nullable<System.TimeSpan> SYS_TIME { get; set; }
+        public int RAW_REMAIN { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
         public Nullable<int> CREATE_EMPLOYEE_ID { get; set; }
