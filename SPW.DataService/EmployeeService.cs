@@ -8,7 +8,7 @@ using SPW.Model;
 
 namespace SPW.DataService
 {
-    public class EmployeeService : ServiceBase, IDataService<EMPLOYEE>, IService 
+    public class EmployeeService : ServiceBase, IDataService<EMPLOYEE>, IService
     {
         #region IService Members
         public DAL.SPWEntities Datacontext
@@ -81,6 +81,14 @@ namespace SPW.DataService
         public EMPLOYEE SelectIncludeTrans(int ID)
         {
             return this.Datacontext.EMPLOYEE.Include("EMP_MEASURE_TRANS").Where(x => x.EMPLOYEE_ID == ID).FirstOrDefault();
+        }
+
+
+        public EMPLOYEE SelectIncludeHits(int ID)
+        {
+            EMPLOYEE item = this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == ID).FirstOrDefault();
+            item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+            return item;
         }
 
         public List<EMPLOYEE> GetAll()

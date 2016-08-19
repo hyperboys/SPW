@@ -58,16 +58,12 @@
             <div class="panel panel-primary">
                 <asp:GridView ID="gridEmployee" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                     DataKeyNames="EMPLOYEE_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลพนักงาน"
-                    OnRowEditing="gridEmployee_EditCommand" OnPageIndexChanging="gridEmployee_PageIndexChanging"
-                    Style="text-align: center" CssClass="grid">
+                    OnPageIndexChanging="gridEmployee_PageIndexChanging"
+                    Style="text-align: center" CssClass="grid" OnRowDataBound="gridEmployee_RowDataBound">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:CommandField ButtonType="Image" EditImageUrl="~/Image/Icon/find.png" HeaderText="ดูข้อมล"
-                            ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="10%"></ItemStyle>
-                        </asp:CommandField>
-                        <asp:BoundField DataField="EMPLOYEE_CODE" HeaderText="รหัสพนักงาน" ItemStyle-Width="30%">
-                            <ItemStyle Width="30%"></ItemStyle>
+                        <asp:BoundField DataField="EMPLOYEE_CODE" HeaderText="รหัสพนักงาน" ItemStyle-Width="20%">
+                            <ItemStyle Width="20%"></ItemStyle>
                         </asp:BoundField>
                         <asp:BoundField DataField="EMPLOYEE_NAME" HeaderText="ชื่อ" ItemStyle-Width="30%">
                             <ItemStyle Width="30%"></ItemStyle>
@@ -75,6 +71,20 @@
                         <asp:BoundField DataField="EMPLOYEE_SURNAME" HeaderText="นามสกุล" ItemStyle-Width="30%">
                             <ItemStyle Width="30%"></ItemStyle>
                         </asp:BoundField>
+                            <asp:TemplateField HeaderText="แก้ไข" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit">
+                                            <div class='glyphicon glyphicon-edit'></div>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ประเมิน" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnSelect" runat="server" Visible="false" CommandName="Select">
+                                            <div class='glyphicon glyphicon-list'></div>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

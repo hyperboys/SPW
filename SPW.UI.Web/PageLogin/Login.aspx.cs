@@ -83,7 +83,7 @@ namespace SPW.UI.Web.PageLogin
             if (tmpUser != null)
             {
                 tmpUser.ROLE = cmdRoleService.SelectIncludeEmployee(tmpUser.ROLE.ROLE_ID);
-                tmpUser.EMPLOYEE = cmdEmpService.SelectIncludeTrans(tmpUser.EMPLOYEE_ID);
+                tmpUser.EMPLOYEE = cmdEmpService.SelectIncludeHits(tmpUser.EMPLOYEE_ID);
                 //tmpUser.DEPARTMENT = cmdDepartmentService.Select(cmdEmpHistService.GetAll(tmpUser.EMPLOYEE_ID).OrderByDescending(x=>x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
                 Session["user"] = tmpUser;
                 Response.RedirectPermanent("../Page/MainAdmin.aspx");

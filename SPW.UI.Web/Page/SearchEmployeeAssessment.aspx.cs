@@ -137,5 +137,21 @@ namespace SPW.UI.Web.Page
             txtEmployeeCode.Text = "";
             SearchGrid();
         }
+
+        protected void gridEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbtnEdit = (LinkButton)e.Row.FindControl("lbtnEdit");
+                LinkButton lbtnSelect = (LinkButton)e.Row.FindControl("lbtnSelect");
+                if (cmdEmpHistService.GetAll(Convert.ToInt32(gridEmployee.DataKeys[e.Row.RowIndex][0].ToString())).Count() > 0)
+                {
+                    lbtnSelect.Attributes["href"] = "KeyInEmpAssessment.aspx?id=" + gridEmployee.DataKeys[e.Row.RowIndex][0].ToString();
+                    lbtnSelect.Visible = true;
+                }
+                
+                lbtnEdit.Attributes["href"] = "ManageEmployee.aspx?id=" + gridEmployee.DataKeys[e.Row.RowIndex][0].ToString();
+            }
+        }
     }
 }
