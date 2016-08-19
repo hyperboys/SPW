@@ -429,7 +429,7 @@ namespace SPW.UI.Web.Page
                             lblerror2.Text = "*Fail to commit transection";
                     }
                     else
-                        lblerror2.Text = "*Over limit";
+                        lblerror2.Text = "*Limit at zero";
                 }
                 else
                     lblerror2.Text = "*Data not found";
