@@ -73,7 +73,7 @@ namespace SPW.DAL
         public DbSet<STOCK_PRODUCT_STOCK> STOCK_PRODUCT_STOCK { get; set; }
         public DbSet<STOCK_PRODUCT_TRANS> STOCK_PRODUCT_TRANS { get; set; }
         public DbSet<STOCK_PRODUCT_WITHDRAW_TRANS> STOCK_PRODUCT_WITHDRAW_TRANS { get; set; }
-        public DbSet<STOCK_RAW_SETTING> STOCK_RAW_SETTING { get; set; }
+        public DbSet<STOCK_RAW_LOT> STOCK_RAW_LOT { get; set; }
         public DbSet<STOCK_RAW_STOCK> STOCK_RAW_STOCK { get; set; }
         public DbSet<STOCK_RAW_TRANS> STOCK_RAW_TRANS { get; set; }
         public DbSet<STOCK_TYPE> STOCK_TYPE { get; set; }
@@ -89,6 +89,7 @@ namespace SPW.DAL
         public DbSet<VEHICLE> VEHICLE { get; set; }
         public DbSet<VENDOR> VENDOR { get; set; }
         public DbSet<VENDOR_DEAL_DISCOUNT> VENDOR_DEAL_DISCOUNT { get; set; }
+        public DbSet<WR_DT_TRANS> WR_DT_TRANS { get; set; }
         public DbSet<ZONE> ZONE { get; set; }
         public DbSet<ZONE_DETAIL> ZONE_DETAIL { get; set; }
     }
