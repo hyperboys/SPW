@@ -406,9 +406,9 @@ namespace SPW.UI.Web.Page
                         listPoDtTrans.Add(_PO_DT_TRANS);
                         count++;
                     });
+                    cmdPoDtTrans.AddList(listPoDtTrans);
                 }
 
-                cmdPoDtTrans.AddList(listPoDtTrans);
                 return true;
             }
             catch (Exception e)

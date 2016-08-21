@@ -304,6 +304,12 @@
                                     <li>
                                         <a href="../Page/PurchaseOrderRpt.aspx">Purchase Order Report</a>
                                     </li>
+                                    <li>
+                                        <a href="../Page/SearchStockWithdraw.aspx">Stock Withdraw</a>
+                                    </li>
+                                    <li>
+                                        <a href="../Page/StockWithdrawIssue.aspx">Issue Stock Withdraw</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

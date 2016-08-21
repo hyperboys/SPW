@@ -160,6 +160,7 @@
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ResultEmpListAssessment.aspx" />
+    <Content Include="Page\SearchStockWithdraw.aspx" />
     <Content Include="Page\SelectResultEmpAssessment.aspx" />
     <Content Include="Page\ResultEmpAssessment.aspx" />
     <Content Include="Page\SearchEmpResultAssessment.aspx" />
@@ -253,6 +254,8 @@
     <Content Include="Page\StockIn.aspx" />
     <Content Include="Page\StockRaw.aspx" />
     <Content Include="Page\StockRawLot.aspx" />
+    <Content Include="Page\StockWithdrawApprove.aspx" />
+    <Content Include="Page\StockWithdrawIssue.aspx" />
     <Content Include="Reports\ResultEmpListAssessmentPageReport.aspx" />
     <Content Include="Reports\PayInSlipPaper.aspx" />
     <Content Include="Reports\PayInSummary.aspx" />
@@ -301,6 +304,13 @@
     </Compile>
     <Compile Include="Page\ResultEmpListAssessment.aspx.designer.cs">
       <DependentUpon>ResultEmpListAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchStockWithdraw.aspx.cs">
+      <DependentUpon>SearchStockWithdraw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchStockWithdraw.aspx.designer.cs">
+      <DependentUpon>SearchStockWithdraw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SelectResultEmpAssessment.aspx.cs">
       <DependentUpon>SelectResultEmpAssessment.aspx</DependentUpon>
@@ -959,9 +969,24 @@
     </Compile>
     <Compile Include="Page\StockRawLot.aspx.cs">
       <DependentUpon>StockRawLot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Page\StockRawLot.aspx.designer.cs">
       <DependentUpon>StockRawLot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\StockWithdrawApprove.aspx.cs">
+      <DependentUpon>StockWithdrawApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\StockWithdrawApprove.aspx.designer.cs">
+      <DependentUpon>StockWithdrawApprove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\StockWithdrawIssue.aspx.cs">
+      <DependentUpon>StockWithdrawIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\StockWithdrawIssue.aspx.designer.cs">
+      <DependentUpon>StockWithdrawIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ResultEmpListAssessmentPageReport.aspx.cs">
