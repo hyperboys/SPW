@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SPW.DAL;
 using SPW.Model;
+using SPW.Common;
 
 namespace SPW.DataService
 {
@@ -87,7 +88,16 @@ namespace SPW.DataService
         public EMPLOYEE SelectIncludeHits(int ID)
         {
             EMPLOYEE item = this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false && x.EMPLOYEE_ID == ID).FirstOrDefault();
-            item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+            try
+            {
+                item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+                item.EMPLOYEE_HIST.POSITION_NAME = this.Datacontext.EMP_POSITION.Where(x => x.POSITION_ID == item.EMPLOYEE_HIST.POSITION_ID).FirstOrDefault().POSITION_NAME;
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                item.EMPLOYEE_HIST = null;
+            }
             return item;
         }
 
@@ -101,7 +111,15 @@ namespace SPW.DataService
             List<EMPLOYEE> listItem = this.Datacontext.EMPLOYEE.Where(x => x.SYE_DEL == false).ToList();
             foreach (EMPLOYEE item in listItem)
             {
-                item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+                try
+                {
+                    item.EMPLOYEE_HIST = this.Datacontext.EMPLOYEE_HIST.Where(x => x.EMPLOYEE_ID == item.EMPLOYEE_ID).OrderByDescending(y => y.EFF_DATE).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    DebugLog.WriteLog(ex.ToString());
+                    item.EMPLOYEE_HIST = null;
+                }
             }
             return listItem;
         }

@@ -84,27 +84,49 @@ namespace SPW.UI.Web.Page
             {
                 ddlDepart.Items.Add(new ListItem(item.DEPARTMENT_NAME, item.DEPARTMENT_ID.ToString()));
             }
-
             DataSouce = cmdEmp.GetAllInclude();
-
-            DEPARTMENT DepartmentItem;
             USER userItem = Session["user"] as USER;
-            if (userItem.ROLE.ROLE_CODE != "Admin")
+            try
             {
-                try
+                if (userItem.EMPLOYEE.EMPLOYEE_HIST.POSITION_NAME != "ผู้บริหาร")
                 {
-                    DepartmentItem = cmdDepartmentService.Select(cmdEmpHistService.GetAll(userItem.EMPLOYEE_ID).OrderByDescending(x => x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
+                    try
+                    {
+                        if (userItem.EMPLOYEE.EMPLOYEE_HIST.POSITION_NAME == "Supervisor")
+                        {
+                            DataSouce = DataSouce.Where(x =>x.EMPLOYEE_HIST != null && x.EMPLOYEE_HIST.DEPARTMENT_ID == userItem.EMPLOYEE.EMPLOYEE_HIST.DEPARTMENT_ID).ToList();
+                        }
+                        else
+                        {
+                            lblWarning.Text = "ผู้ใช้งานไม่ได้เป็น Supervisor ของแผนก";
+                            warning.Visible = true;
+                            DataSouce = null;
+                            gridEmployee.DataSource = null;
+                            gridEmployee.DataBind();
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        DebugLog.WriteLog(ex.ToString());
+                        lblWarning.Text = "ผู้ใช้งานไม่มีข้อมูลแผนก หรือไม่มีพนักงานให้ทำการประเมิน กรุณาตรวจสอบข้อมูล";
+                        warning.Visible = true;
+                        DataSouce = null;
+                        gridEmployee.DataSource = null;
+                        gridEmployee.DataBind();
+                        return;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    DebugLog.WriteLog(ex.ToString());
-                    lblWarning.Text = "ผู้ใช้งานไม่มีข้อมูลแผนก กรุณาเพิ่มข้อมูลก่อนทำรายงาน";
-                    warning.Visible = true;
-                    gridEmployee.DataSource = null;
-                    gridEmployee.DataBind();
-                    return;
-                }
-                DataSouce = DataSouce.Where(x => x.EMPLOYEE_HIST.DEPARTMENT_ID == DepartmentItem.DEPARTMENT_ID).ToList();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+                lblWarning.Text = "ผู้ใช้งานไม่มีข้อมูลตำแหน่งหน้าที่ กรุณาตรวจสอบข้อมูล";
+                warning.Visible = true;
+                DataSouce = null;
+                gridEmployee.DataSource = null;
+                gridEmployee.DataBind();
+                return;
             }
             gridEmployee.DataSource = DataSouce;
             gridEmployee.DataBind();

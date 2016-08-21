@@ -50,6 +50,8 @@ namespace SPW.UI.Web.Page
             {
                 CreatePageEngine();
                 PrepareObjectScreen();
+                AutoCompleteChqNo();
+                AutoCompleteAccount();
             }
             else
             {
@@ -68,13 +70,52 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                Session["ListPayin"] = _payInTranService.GetAllCondition(Convert.ToDateTime(convertToDateThai(txtStartDate.Text)), Convert.ToDateTime(convertToDateThai(txtEndDate.Text))).OrderBy(x => x.PAYIN_DATE).ToList();
+                Session["ListPayin"] = _payInTranService.GetAllCondition(Convert.ToDateTime(convertToDateThai(txtStartDate.Text)), Convert.ToDateTime(convertToDateThai(txtEndDate.Text))).ToList()
+                    .Where(y=>y.ACCOUNT_ID.Contains(txtAccountId.Text) && y.CHQ_NO.Contains(txtCHQ.Text)).OrderBy(x => x.PAYIN_DATE).ToList();
                 gridProduct.DataSource = Session["ListPayin"] as List<PAYIN_TRANS>;
                 gridProduct.DataBind();
             }
             catch (Exception ex)
             {
                 DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        private void AutoCompleteAccount()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("ACCOUNT_MAST", "ACCOUNT_ID", "ACCOUNT_ID", "");
+            string str = "";
+            if (nameList != null)
+            {
+                for (int i = 0; i < nameList.Count; i++)
+                {
+                    str = str + '"' + nameList[i].ToString() + '"' + ',';
+                }
+                if (str != "")
+                {
+                    str = str.Remove(str.Length - 1);
+                }
+                str = "[" + str + "]";
+                txtAccountId.Attributes.Add("data-source", str);
+            }
+        }
+
+        private void AutoCompleteChqNo()
+        {
+            List<string> nameList = SearchAutoCompleteDataService.SearchGroupBy("PAYIN_TRANS", "CHQ_NO", "CHQ_NO", "", "CHQ_NO");
+            string str = "";
+            if (nameList != null)
+            {
+                for (int i = 0; i < nameList.Count; i++)
+                {
+                    str = str + '"' + nameList[i].ToString() + '"' + ',';
+                }
+                if (str != "")
+                {
+                    str = str.Remove(str.Length - 1);
+                }
+                str = "[" + str + "]";
+                txtCHQ.Attributes.Add("data-source", str);
             }
         }
 

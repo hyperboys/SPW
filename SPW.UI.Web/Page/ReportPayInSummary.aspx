@@ -77,9 +77,24 @@
                                             </td>
                                             <td style="width: 5px"></td>
                                             <td class="col-md-3">
-                                                <asp:Button ID="btnPrint" class="btn btn-primary" runat="server" Text="พิมพ์" Height="30px" Width="70px" OnClick="btnPrint_Click" />
-
+                                                
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-2">เลขที่บัญชีที่นำเข้า</td>
+                                            <td class="col-md-3">
+                                                <asp:TextBox ID="txtAccountId" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off" placeholder="เลขที่บัญชีที่นำเข้า"></asp:TextBox>
+                                            </td>
+                                            <td class="col-md-2">เลขที่เช็ค</td>
+                                            <td class="col-md-3">
+                                                <asp:TextBox ID="txtCHQ" class="form-control" runat="server" data-provide="typeahead" data-items="5" autocomplete="off" Height="35px" placeholder="เลขที่เช็ค"></asp:TextBox>
+                                            </td>
+                                            <td></td>
+                                            <td class="col-md-3">
+                                                <asp:Button ID="btnPrint" class="btn btn-primary" runat="server" Text="พิมพ์" Height="30px" Width="70px" OnClick="btnPrint_Click" />
+                                            </td>
+                                            <td style="width: 5px"></td>
+                                            <td class="col-md-3"></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -100,7 +115,7 @@
                             <asp:BoundField DataField="BANK_NAME" HeaderText="ธนาคารที่นำเข้า" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
                                 <ItemStyle Width="20%"></ItemStyle>
                             </asp:BoundField>
-                             <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="CHQ_NO" HeaderText="เลขที่เช็ค" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                 <ItemStyle Width="10%"></ItemStyle>
                             </asp:BoundField>
                             <asp:BoundField DataField="CHQ_BANK" HeaderText="ธนาคาร/สาขา เช็ค" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">

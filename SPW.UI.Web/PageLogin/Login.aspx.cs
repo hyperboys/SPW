@@ -79,18 +79,26 @@ namespace SPW.UI.Web.PageLogin
 
         protected void btnSingon_Click(object sender, EventArgs e)
         {
-            USER tmpUser = cmdUserService.SelectInclude(txtUsername.Text, txtPassword.Text);
-            if (tmpUser != null)
+            try
             {
-                tmpUser.ROLE = cmdRoleService.SelectIncludeEmployee(tmpUser.ROLE.ROLE_ID);
-                tmpUser.EMPLOYEE = cmdEmpService.SelectIncludeHits(tmpUser.EMPLOYEE_ID);
-                //tmpUser.DEPARTMENT = cmdDepartmentService.Select(cmdEmpHistService.GetAll(tmpUser.EMPLOYEE_ID).OrderByDescending(x=>x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
-                Session["user"] = tmpUser;
-                Response.RedirectPermanent("../Page/MainAdmin.aspx");
+                USER tmpUser = cmdUserService.SelectInclude(txtUsername.Text, txtPassword.Text);
+                if (tmpUser != null)
+                {
+                    tmpUser.ROLE = cmdRoleService.SelectIncludeEmployee(tmpUser.ROLE.ROLE_ID);
+                    tmpUser.EMPLOYEE = cmdEmpService.SelectIncludeHits(tmpUser.EMPLOYEE_ID);
+                    //tmpUser.DEPARTMENT = cmdDepartmentService.Select(cmdEmpHistService.GetAll(tmpUser.EMPLOYEE_ID).OrderByDescending(x=>x.EFF_DATE).ToList().FirstOrDefault().DEPARTMENT_ID.Value);
+                    Session["user"] = tmpUser;
+                    Response.RedirectPermanent("../Page/MainAdmin.aspx");
+                }
+                else
+                {
+                    this.alert.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 this.alert.Visible = true;
+                DebugLog.WriteLog(ex.ToString());
             }
         }
     }
