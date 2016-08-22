@@ -4,7 +4,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">Stock Withdraw</h1>
+    <h1 class="page-header">Stock Withdraw Approve</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -23,7 +23,7 @@
         </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Stock Withdraw        
+            Stock Withdraw Approve        
         </div>
         <div class="panel-body">
             <div class="row">
@@ -53,7 +53,7 @@
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
                                     <td>
-                                        <%--<asp:Button ID="btnAdd" class="btn btn-primary" Text="เพิ่ม" runat="server" OnClick="btnAdd_Click" />--%>
+                                        <asp:Button ID="btnAdd" class="btn btn-primary" Text="เพิ่ม" runat="server" OnClick="btnAdd_Click" />
                                     </td>
                                 </tr>
                             </table>

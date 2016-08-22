@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -75,7 +73,7 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            DataSouce = cmdWrDtTransService.GetAll();
+            DataSouce = cmdWrDtTransService.GetAllByStatusRequest();
             gridWR.DataSource = DataSouce;
             gridWR.DataBind();
         }
