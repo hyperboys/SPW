@@ -161,6 +161,7 @@
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ResultEmpListAssessment.aspx" />
     <Content Include="Page\SearchStockWithdraw.aspx" />
+    <Content Include="Page\SearchStockWithdrawExpose.aspx" />
     <Content Include="Page\SelectResultEmpAssessment.aspx" />
     <Content Include="Page\ResultEmpAssessment.aspx" />
     <Content Include="Page\SearchEmpResultAssessment.aspx" />
@@ -255,6 +256,7 @@
     <Content Include="Page\StockRaw.aspx" />
     <Content Include="Page\StockRawLot.aspx" />
     <Content Include="Page\StockWithdrawApprove.aspx" />
+    <Content Include="Page\StockWithdrawExpose.aspx" />
     <Content Include="Page\StockWithdrawIssue.aspx" />
     <Content Include="Reports\ResultEmpListAssessmentPageReport.aspx" />
     <Content Include="Reports\PayInSlipPaper.aspx" />
@@ -311,6 +313,13 @@
     </Compile>
     <Compile Include="Page\SearchStockWithdraw.aspx.designer.cs">
       <DependentUpon>SearchStockWithdraw.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchStockWithdrawExpose.aspx.cs">
+      <DependentUpon>SearchStockWithdrawExpose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchStockWithdrawExpose.aspx.designer.cs">
+      <DependentUpon>SearchStockWithdrawExpose.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SelectResultEmpAssessment.aspx.cs">
       <DependentUpon>SelectResultEmpAssessment.aspx</DependentUpon>
@@ -980,6 +989,13 @@
     </Compile>
     <Compile Include="Page\StockWithdrawApprove.aspx.designer.cs">
       <DependentUpon>StockWithdrawApprove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\StockWithdrawExpose.aspx.cs">
+      <DependentUpon>StockWithdrawExpose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\StockWithdrawExpose.aspx.designer.cs">
+      <DependentUpon>StockWithdrawExpose.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\StockWithdrawIssue.aspx.cs">
       <DependentUpon>StockWithdrawIssue.aspx</DependentUpon>
