@@ -80,9 +80,9 @@ namespace SPW.DataService
             throw new NotImplementedException();
         }
 
-        public WR_DT_TRANS Select(string WR_BK_NO, string WR_RN_NO)
+        public WR_DT_TRANS Select(string WR_BK_NO, string WR_RN_NO, int RAW_ID)
         {
-            return this.Datacontext.WR_DT_TRANS.Where(x => x.SYE_DEL == false && x.WR_BK_NO == WR_BK_NO && x.WR_RN_NO == WR_RN_NO).FirstOrDefault();
+            return this.Datacontext.WR_DT_TRANS.Where(x => x.SYE_DEL == false && x.WR_BK_NO == WR_BK_NO && x.WR_RN_NO == WR_RN_NO && x.RAW_ID == RAW_ID).FirstOrDefault();
         }
 
         public List<WR_DT_TRANS> GetAll()
@@ -92,6 +92,14 @@ namespace SPW.DataService
         public List<WR_DT_TRANS> GetAll(string WR_BK_NO, string WR_RN_NO)
         {
             return this.Datacontext.WR_DT_TRANS.Where(x => x.SYE_DEL == false && x.WR_BK_NO == WR_BK_NO && x.WR_RN_NO == WR_RN_NO).ToList();
+        }
+        public List<WR_DT_TRANS> GetAllByStatusRequest()
+        {
+            return this.Datacontext.WR_DT_TRANS.Where(x => x.SYE_DEL == false && x.WR_DT_STATUS == "10").ToList();
+        }
+        public List<WR_DT_TRANS> GetAllByStatusApprove()
+        {
+            return this.Datacontext.WR_DT_TRANS.Where(x => x.SYE_DEL == false && x.WR_DT_STATUS == "20").ToList();
         }
         public int GetAllCount()
         {
@@ -118,6 +126,24 @@ namespace SPW.DataService
             try
             {
                 var lstItem = this.Datacontext.WR_DT_TRANS.Where(x => x.WR_BK_NO == WR_BK_NO && x.WR_RN_NO == WR_RN_NO);
+                foreach (var item in lstItem)
+                {
+                    item.WR_DT_STATUS = WR_HD_STATUS;
+                    item.UPDATE_DATE = DateTime.Now;
+                    item.UPDATE_EMPLOYEE_ID = EMPLOYEE_ID;
+                }
+                Datacontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+        public void UpdateStatusWrDtByProduct(int RAW_ID,string WR_BK_NO, string WR_RN_NO, int EMPLOYEE_ID, string WR_HD_STATUS)
+        {
+            try
+            {
+                var lstItem = this.Datacontext.WR_DT_TRANS.Where(x => x.WR_BK_NO == WR_BK_NO && x.WR_RN_NO == WR_RN_NO && x.RAW_ID == RAW_ID);
                 foreach (var item in lstItem)
                 {
                     item.WR_DT_STATUS = WR_HD_STATUS;
