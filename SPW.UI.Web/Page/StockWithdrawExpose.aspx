@@ -92,7 +92,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="15%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_ID %>
+                                        <asp:Label ID="lblRawID" runat="server" Text='<%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_ID %>'></asp:Label>
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อสินค้า(ปกติ)" ItemStyle-Width="15%">
@@ -105,9 +106,19 @@
                                         <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_NAME2 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="จำนวน" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="คงเหลือ" ItemStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="จำนวนขอเบิก" ItemStyle-Width="10%">
                                     <ItemTemplate>
                                         <%# ((DATAGRID) Container.DataItem).WR_QTY %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="จำนวนเบิก" ItemStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" ID="txtWRQty" class="form-control" style="text-align:center" Text="0" />      
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสแพ็ค" ItemStyle-Width="10%">

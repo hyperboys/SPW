@@ -18,13 +18,21 @@ namespace SPW.UI.Web.Page
         private RawProductService cmdRawProductService;
         private WrDtTransService cmdWrDtTransService;
         private RawPackService cmdRawPackService;
+        private StockRawLotService cmdStockRawLotService;
+        private StockRawTransService cmdStockRawTransService;
+        private StockRawStockService cmdStockRawStockService;        
 
         public class DATAGRID
         {
             public RAW_PRODUCT RAW_PRODUCT { get; set; }
             public int RAW_ID { get; set; }
             public int WR_QTY { get; set; }
+            public int WD_QTY { get; set; }
             public int RAW_PACK_ID { get; set; }
+            public string LOT_NO { get; set; }
+            public int RAW_REMAIN { get; set; }
+            public int VENDOR_ID { get; set; }
+            public string VENDOR_CODE { get; set; }
         }
         #endregion
 
@@ -47,6 +55,9 @@ namespace SPW.UI.Web.Page
             cmdRawProductService = (RawProductService)_dataServiceEngine.GetDataService(typeof(RawProductService));
             cmdWrDtTransService = (WrDtTransService)_dataServiceEngine.GetDataService(typeof(WrDtTransService));
             cmdRawPackService = (RawPackService)_dataServiceEngine.GetDataService(typeof(RawPackService));
+            cmdStockRawLotService = (StockRawLotService)_dataServiceEngine.GetDataService(typeof(StockRawLotService));
+            cmdStockRawTransService = (StockRawTransService)_dataServiceEngine.GetDataService(typeof(StockRawTransService));
+            cmdStockRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
         }
 
         private void CreatePageEngine()
@@ -59,26 +70,51 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            if (Request.QueryString["WR_BK_NO"] != null && Request.QueryString["WR_RN_NO"] != null)
+            if (Request.QueryString["WR_BK_NO"] != null && Request.QueryString["WR_RN_NO"] != null && Request.QueryString["RAW_ID"] != null)
             {
-                List<WR_DT_TRANS> listWrDtTrans = cmdWrDtTransService.GetAll(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString());
+                List<STOCK_RAW_LOT> lstSTOCK_RAW_LOT = cmdStockRawLotService.GetAll(int.Parse(Request.QueryString["RAW_ID"].ToString()));
                 List<DATAGRID> listDataGrid = new List<DATAGRID>();
+                WR_DT_TRANS _WR_DT_TRANS = cmdWrDtTransService.Select(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), int.Parse(Request.QueryString["RAW_ID"].ToString()));
                 DATAGRID _datagrid = new DATAGRID();
 
-                flag.Text = "Edit";
-
-                listWrDtTrans.ForEach(e =>
+                if (lstSTOCK_RAW_LOT != null)
                 {
-                    _datagrid = new DATAGRID();
-                    _datagrid.RAW_PRODUCT = cmdRawProductService.Select(e.RAW_ID);
-                    _datagrid.RAW_PACK_ID = e.RAW_PACK_ID;
-                    _datagrid.WR_QTY = e.WR_QTY;
-                    _datagrid.RAW_ID = e.RAW_ID;
-                    listDataGrid.Add(_datagrid);
-                });
+                    lstSTOCK_RAW_LOT.ForEach(e =>
+                    {
+                        _datagrid = new DATAGRID();
+                        _datagrid.RAW_PRODUCT = cmdRawProductService.Select(e.RAW_ID);
+                        _datagrid.RAW_ID = e.RAW_ID;
+                        _datagrid.LOT_NO = e.LOT_NO;
+                        _datagrid.RAW_REMAIN = e.RAW_REMAIN;
+                        _datagrid.WR_QTY = _WR_DT_TRANS.WR_QTY;
+                        _datagrid.WD_QTY = 0;
+                        _datagrid.VENDOR_ID = e.VENDOR_ID;
+                        _datagrid.VENDOR_CODE = e.VENDOR_CODE;
+                        listDataGrid.Add(_datagrid);
+                    });
 
-                gdvWR.DataSource = listDataGrid;
-                gdvWR.DataBind();
+                    Session["LISTDATAGRID"] = listDataGrid;
+                    gdvWR.DataSource = listDataGrid;
+                    gdvWR.DataBind();
+                }
+                //List<WR_DT_TRANS> listWrDtTrans = cmdWrDtTransService.GetAll(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString());
+                //List<DATAGRID> listDataGrid = new List<DATAGRID>();
+                //DATAGRID _datagrid = new DATAGRID();
+
+                //flag.Text = "Edit";
+
+                //listWrDtTrans.ForEach(e =>
+                //{
+                //    _datagrid = new DATAGRID();
+                //    _datagrid.RAW_PRODUCT = cmdRawProductService.Select(e.RAW_ID);
+                //    _datagrid.RAW_PACK_ID = e.RAW_PACK_ID;
+                //    _datagrid.WR_QTY = e.WR_QTY;
+                //    _datagrid.RAW_ID = e.RAW_ID;
+                //    listDataGrid.Add(_datagrid);
+                //});
+
+                //gdvWR.DataSource = listDataGrid;
+                //gdvWR.DataBind();
                 //if (_PO_HD_TRANS.PO_HD_STATUS != "10")
                 //{
                 //    btnApprove.Visible = false;
@@ -90,7 +126,7 @@ namespace SPW.UI.Web.Page
                 ddlPack.Items.Add(new ListItem(item.RAW_PACK_SIZE1, item.RAW_PACK_ID.ToString()));
             }
             AutoCompleteTxtRawName();
-            ClearSession();
+            //ClearSession();
         }
         #endregion
 
@@ -270,6 +306,102 @@ namespace SPW.UI.Web.Page
             }
             return returnValue;
         }
+        private bool SaveStockRawTrans()
+        {
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                if (listDataGrid.Count > 0)
+                {
+                    USER userItem = Session["user"] as USER;
+                    WR_DT_TRANS _WR_DT_TRANS = cmdWrDtTransService.Select(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), int.Parse(Request.QueryString["RAW_ID"].ToString()));
+                    listDataGrid.ForEach(e =>
+                    {
+                        STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
+                        _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
+                        _STOCK_RAW_TRANS.RAW_ID = e.RAW_ID;
+                        _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.TRANS_TYPE = "REC";
+                        _STOCK_RAW_TRANS.REF_DOC_TYPE = "PO";
+                        _STOCK_RAW_TRANS.REF_DOC_BKNO = _WR_DT_TRANS.WR_BK_NO;
+                        _STOCK_RAW_TRANS.REF_DOC_RNNO = _WR_DT_TRANS.WR_RN_NO;
+                        _STOCK_RAW_TRANS.REF_DOC_YY = _WR_DT_TRANS.WR_YY;
+                        _STOCK_RAW_TRANS.VENDOR_ID = e.VENDOR_ID;
+                        _STOCK_RAW_TRANS.VENDOR_CODE = e.VENDOR_CODE;
+                        _STOCK_RAW_TRANS.LOT_NO = e.LOT_NO;
+                        _STOCK_RAW_TRANS.REF_REMARK1 = "";
+                        _STOCK_RAW_TRANS.REF_REMARK2 = "";
+                        _STOCK_RAW_TRANS.TRANS_QTY = e.WD_QTY;
+                        _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = _WR_DT_TRANS.APPROVE_EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                        _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                        _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        _STOCK_RAW_TRANS.SYE_DEL = false;
+                        cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                    });
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                lblerror2.Text = "*พบข้อผิดพลาดระหว่างบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่";
+                return false;
+            }
+        }
+        private bool SaveRawLot()
+        {
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                if (listDataGrid.Count > 0)
+                {
+                    USER userItem = Session["user"] as USER;
+                    listDataGrid.ForEach(e =>
+                    {
+                        cmdStockRawLotService.Edit(e.RAW_ID, e.LOT_NO, cmdStockRawLotService.GetRemainQty(e.RAW_ID, e.LOT_NO) - e.WD_QTY, userItem.EMPLOYEE_ID);
+                        cmdWrDtTransService.UpdateStatusWrDtByProduct(e.RAW_ID,Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), userItem.EMPLOYEE_ID, "30");
+                    });
+                }
+                if (SaveReceiveRawStock())
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
+        private bool SaveReceiveRawStock()
+        {
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                USER userItem = Session["user"] as USER;
+                if (listDataGrid.Count > 0)
+                {
+                    listDataGrid.ForEach(e =>
+                    {
+                        int _RAW_REMAIN = cmdStockRawStockService.GetRemainQty(e.RAW_ID);
+                        cmdStockRawStockService.SetRawStockQty(e.RAW_ID, _RAW_REMAIN - e.WD_QTY, userItem.EMPLOYEE_ID);
+                    });
+                }
+                ClearSession();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
         #endregion
 
         #region ASP control
@@ -285,7 +417,6 @@ namespace SPW.UI.Web.Page
                 ReloadPageEngine();
             }
         }
-
         protected void txtRawName_TextChanged(object sender, EventArgs e)
         {
             ViewState["RAWPRODUCT"] = GetProductCode(txtRawName.Text);
@@ -352,11 +483,50 @@ namespace SPW.UI.Web.Page
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            cmdWrDtTransService.UpdateStatusWrDt(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), userItem.EMPLOYEE_ID, "20");
-
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchStockWithdraw.aspx");
+            try
+            {
+                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                List<DATAGRID> listNewData = new List<DATAGRID>();
+                if (listDataGrid != null)
+                {
+                    bool isNotExceedLimit = true;
+                    int sum = 0;
+                    for (int i = 0; i < gdvWR.Rows.Count; i++)
+                    {
+                        TextBox txtWRQty = (TextBox)gdvWR.Rows[i].FindControl("txtWRQty");
+                        Label lblRawID = (Label)gdvWR.Rows[i].FindControl("lblRawID");
+                        DATAGRID _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text)).FirstOrDefault();
+                        _DATAGRID.WD_QTY = int.Parse(txtWRQty.Text);
+                        sum = sum + int.Parse(txtWRQty.Text);
+                        listNewData.Add(_DATAGRID);
+                        isNotExceedLimit = (int.Parse(txtWRQty.Text) < 0 || int.Parse(txtWRQty.Text) > _DATAGRID.RAW_REMAIN || sum > _DATAGRID.WR_QTY) ? false : isNotExceedLimit;
+                    }
+                    if (isNotExceedLimit)
+                    {
+                        Session["LISTDATAGRID"] = listNewData;
+                        if (SaveStockRawTrans())
+                        {
+                            if (SaveRawLot())
+                            {
+                                alert.Visible = true;
+                                Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrderReceipts.aspx");
+                            }
+                            else
+                                lblerror2.Text = "*Fail to commit stock";
+                        }
+                        else
+                            lblerror2.Text = "*Fail to commit transection";
+                    }
+                    else
+                        lblerror2.Text = "*Limit Exceed";
+                }
+                else
+                    lblerror2.Text = "*Data not found";
+            }
+            catch (Exception ex)
+            {
+                lblerror2.Text = "*Critical error";
+            }
         }
 
         protected void gdvWR_RowDeleting(object sender, GridViewDeleteEventArgs e)
