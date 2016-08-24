@@ -11,7 +11,7 @@ namespace SPW.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    [Serializable]
     public partial class STOCK_RAW_LOT
     {
         public int RAW_ID { get; set; }
