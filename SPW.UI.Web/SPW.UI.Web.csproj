@@ -161,7 +161,6 @@
     <Content Include="PageLogin\Login.aspx" />
     <Content Include="Page\ResultEmpListAssessment.aspx" />
     <Content Include="Page\SearchStockWithdraw.aspx" />
-    <Content Include="Page\SearchStockWithdrawExpose.aspx" />
     <Content Include="Page\SelectResultEmpAssessment.aspx" />
     <Content Include="Page\ResultEmpAssessment.aspx" />
     <Content Include="Page\SearchEmpResultAssessment.aspx" />
@@ -313,13 +312,6 @@
     </Compile>
     <Compile Include="Page\SearchStockWithdraw.aspx.designer.cs">
       <DependentUpon>SearchStockWithdraw.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Page\SearchStockWithdrawExpose.aspx.cs">
-      <DependentUpon>SearchStockWithdrawExpose.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\SearchStockWithdrawExpose.aspx.designer.cs">
-      <DependentUpon>SearchStockWithdrawExpose.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SelectResultEmpAssessment.aspx.cs">
       <DependentUpon>SelectResultEmpAssessment.aspx</DependentUpon>
