@@ -358,6 +358,14 @@ namespace SPW.UI.Web.Page
             alert.Visible = true;
             Response.AppendHeader("Refresh", "2; url=SearchStockWithdraw.aspx");
         }
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            USER userItem = Session["user"] as USER;
+            cmdWrDtTransService.UpdateStatusWrDt(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), userItem.EMPLOYEE_ID, "90");
+
+            alert.Visible = true;
+            Response.AppendHeader("Refresh", "2; url=SearchStockWithdraw.aspx");
+        }
 
         protected void gdvWR_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

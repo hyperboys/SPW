@@ -142,7 +142,8 @@
                                     <asp:Label ID="lblerror2" runat="server" forecolor="Red"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
+                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="อนุมัติ" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
+                                    <asp:Button ID="btnCancel" class="btn btn-primary" runat="server" Text="ยกเลิก" Height="30px" Width="70px" OnClick="btnCancel_Click"/> 
                                     <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>            
                                     <asp:Label ID="lblError" runat="server"></asp:Label>                                         
                                 </div>
