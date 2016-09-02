@@ -105,6 +105,7 @@
     <Compile Include="CustomModel\STOCK_TYPE.cs" />
     <Compile Include="CustomModel\UNIT_TYPE.cs" />
     <Compile Include="CustomModel\VENDOR.cs" />
+    <Compile Include="CustomModel\WR_DT_TRANS.cs" />
     <Compile Include="CustomModel\ZONE_DETAIL.cs" />
     <Compile Include="CustomModel\ROLE_FUNCTION.cs" />
     <Compile Include="CustomModel\SUB_FUNCTION.cs" />

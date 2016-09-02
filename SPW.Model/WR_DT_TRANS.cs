@@ -11,7 +11,7 @@ namespace SPW.Model
 {
     using System;
     using System.Collections.Generic;
-[Serializable]
+    
     public partial class WR_DT_TRANS
     {
         public string WR_BK_NO { get; set; }
