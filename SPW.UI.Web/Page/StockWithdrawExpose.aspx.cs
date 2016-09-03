@@ -509,7 +509,7 @@ namespace SPW.UI.Web.Page
                             if (SaveRawLot())
                             {
                                 alert.Visible = true;
-                                Response.AppendHeader("Refresh", "2; url=SearchPurchaseOrderReceipts.aspx");
+                                Response.AppendHeader("Refresh", "2; url=SearchStockWithdrawExpose.aspx");
                             }
                             else
                                 lblerror2.Text = "*Fail to commit stock";
