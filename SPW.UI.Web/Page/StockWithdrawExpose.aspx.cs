@@ -321,8 +321,8 @@ namespace SPW.UI.Web.Page
                         _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
                         _STOCK_RAW_TRANS.RAW_ID = e.RAW_ID;
                         _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
-                        _STOCK_RAW_TRANS.TRANS_TYPE = "REC";
-                        _STOCK_RAW_TRANS.REF_DOC_TYPE = "PO";
+                        _STOCK_RAW_TRANS.TRANS_TYPE = "WD";
+                        _STOCK_RAW_TRANS.REF_DOC_TYPE = "WR";
                         _STOCK_RAW_TRANS.REF_DOC_BKNO = _WR_DT_TRANS.WR_BK_NO;
                         _STOCK_RAW_TRANS.REF_DOC_RNNO = _WR_DT_TRANS.WR_RN_NO;
                         _STOCK_RAW_TRANS.REF_DOC_YY = _WR_DT_TRANS.WR_YY;
