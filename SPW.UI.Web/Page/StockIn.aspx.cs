@@ -37,6 +37,7 @@ namespace SPW.UI.Web.Page
         private CategoryService _categoryService;
         private ProductService _productService;
         private StockTransService _stockTransService;
+        private StockProductService _stockProductService;
 
         private void InitialPage()
         {
@@ -72,6 +73,7 @@ namespace SPW.UI.Web.Page
             _categoryService = (CategoryService)_dataServiceEngine.GetDataService(typeof(CategoryService));
             _productService = (ProductService)_dataServiceEngine.GetDataService(typeof(ProductService));
             _stockTransService = (StockTransService)_dataServiceEngine.GetDataService(typeof(StockTransService));
+            _stockProductService = (StockProductService)_dataServiceEngine.GetDataService(typeof(StockProductService));
         }
 
         private void ReloadDatasource()
@@ -88,11 +90,13 @@ namespace SPW.UI.Web.Page
             lblUser.Text = ((USER)Session["user"]).USER_NAME;
 
             ddlCategory.Items.Clear();
-            ddlCategory.Items.Insert(0, new ListItem("เพิ่มคลัง", "0"));
-            ddlCategory.Items.Insert(1, new ListItem("ตั้งค่าคลัง", "1"));
+            ddlCategory.Items.Insert(0, new ListItem("ตั้งค่าคลัง", "0"));
 
-            List<STOCK_TYPE> listStockType = (List<STOCK_TYPE>)ViewState["stocktypelist"];
-            listStockType.ForEach(item => ddlStock.Items.Add(new ListItem(item.STOCK_TYPE_NAME, item.STOCK_TYPE_ID.ToString())));
+
+            ddlStock.Items.Clear();
+            ddlStock.Items.Insert(0, new ListItem("สำเร็จรูป", "0"));
+            //List<STOCK_TYPE> listStockType = (List<STOCK_TYPE>)ViewState["stocktypelist"];
+            //listStockType.ForEach(item => ddlStock.Items.Add(new ListItem(item.STOCK_TYPE_NAME, item.STOCK_TYPE_ID.ToString())));
 
             List<CATEGORY> listCategory = (List<CATEGORY>)ViewState["categorylist"];
             listCategory.ForEach(item => ddlProductType.Items.Add(new ListItem(item.CATEGORY_NAME, item.CATEGORY_ID.ToString())));
@@ -230,14 +234,14 @@ namespace SPW.UI.Web.Page
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            if (ddlCategory.SelectedValue == "0")
-            {
-                BindGridStockInAdd();
-            }
-            else
-            {
+            //if (ddlCategory.SelectedValue == "0")
+            //{
+            //    BindGridStockInAdd();
+            //}
+            //else
+            //{
                 BindGridStockInSet();
-            }
+            //}
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -256,6 +260,7 @@ namespace SPW.UI.Web.Page
             }
             if (listUpdate.Count > 0)
             {
+                _stockProductService.EditListFrmColor(listUpdate);
                 _StockProductColorService.EditList(listUpdate);
                 _stockTransService.AddList(listSPT);
                 btnSearch_Click(null, null);
