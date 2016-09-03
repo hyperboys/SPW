@@ -81,6 +81,21 @@ namespace SPW.DataService
             //    }
             //}
         }
+        public void EditListFrmColor(List<STOCK_PRODUCT_COLOR> lstSTOCK_PRODUCT_COLOR)
+        {
+            foreach (var item in lstSTOCK_PRODUCT_COLOR)
+            {
+                STOCK_PRODUCT_STOCK obj = Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_CODE.Contains(item.PRODUCT_CODE) && x.PRODUCT_ID == item.PRODUCT_ID).FirstOrDefault();
+                if (obj != null)
+                {
+                    int STOCK_REMAIN = (int)obj.STOCK_REMAIN;
+                    obj.STOCK_REMAIN = STOCK_REMAIN + item.STOCK_REMAIN;
+                    obj.UPDATE_DATE = item.UPDATE_DATE;
+                    obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                    Datacontext.SaveChanges();
+                }
+            }
+        }
 
         public STOCK_PRODUCT_STOCK Select()
         {
