@@ -168,8 +168,7 @@ namespace SPW.UI.Web.Page
                     TextBox txtSTOCK_REMAIN = (TextBox)gv.Rows[row.RowIndex].FindControl("txtSTOCK_REMAIN");
                     HiddenField hfSTOCK_MINIMUM = (HiddenField)gv.Rows[row.RowIndex].FindControl("hfSTOCK_MINIMUM");
                     TextBox txtSTOCK_MINIMUM = (TextBox)gv.Rows[row.RowIndex].FindControl("txtSTOCK_MINIMUM");
-                    if ((hfSTOCK_REMAIN.Value != txtSTOCK_REMAIN.Text && !string.IsNullOrEmpty(txtSTOCK_REMAIN.Text)) ||
-                        (hfSTOCK_MINIMUM.Value != txtSTOCK_MINIMUM.Text && !string.IsNullOrEmpty(txtSTOCK_MINIMUM.Text)))
+                    if ((hfSTOCK_REMAIN.Value != txtSTOCK_REMAIN.Text && !string.IsNullOrEmpty(txtSTOCK_REMAIN.Text)))
                     {
                         STOCK_PRODUCT_COLOR sps = new STOCK_PRODUCT_COLOR();
                         sps.Action = ActionEnum.Update;
@@ -178,6 +177,22 @@ namespace SPW.UI.Web.Page
                         sps.COLOR_ID = int.Parse(((HiddenField)row.FindControl("hfCOLOR_ID")).Value);
                         sps.COLOR_TYPE_ID = int.Parse(((HiddenField)row.FindControl("hfCOLOR_TYPE_ID")).Value);
                         sps.STOCK_REMAIN = int.Parse(((TextBox)row.FindControl("txtSTOCK_REMAIN")).Text == "" ? "0" : ((TextBox)row.FindControl("txtSTOCK_REMAIN")).Text);
+                        sps.STOCK_BEFORE = int.Parse(((HiddenField)row.FindControl("hfSTOCK_REMAIN")).Value);
+                        sps.STOCK_MINIMUM = int.Parse(((TextBox)row.FindControl("txtSTOCK_MINIMUM")).Text);
+                        sps.UPDATE_DATE = DateTime.Now;
+                        listUpdate.Add(sps);
+                        int REMAIN = (int)sps.STOCK_REMAIN - int.Parse(hfSTOCK_REMAIN.Value);
+                        _stockProductService.EditFrmColor(REMAIN, sps.PRODUCT_CODE);
+                    }
+                    else if (hfSTOCK_MINIMUM.Value != txtSTOCK_MINIMUM.Text && !string.IsNullOrEmpty(txtSTOCK_MINIMUM.Text))
+                    {
+                        STOCK_PRODUCT_COLOR sps = new STOCK_PRODUCT_COLOR();
+                        sps.Action = ActionEnum.Update;
+                        sps.PRODUCT_ID = int.Parse(gv.DataKeys[row.RowIndex].Value.ToString());
+                        sps.PRODUCT_CODE = ((Label)row.FindControl("lblPRODUCT_CODE")).Text;
+                        sps.COLOR_ID = int.Parse(((HiddenField)row.FindControl("hfCOLOR_ID")).Value);
+                        sps.COLOR_TYPE_ID = int.Parse(((HiddenField)row.FindControl("hfCOLOR_TYPE_ID")).Value);
+                        sps.STOCK_REMAIN = 0;
                         sps.STOCK_BEFORE = int.Parse(((HiddenField)row.FindControl("hfSTOCK_REMAIN")).Value);
                         sps.STOCK_MINIMUM = int.Parse(((TextBox)row.FindControl("txtSTOCK_MINIMUM")).Text);
                         sps.UPDATE_DATE = DateTime.Now;
@@ -260,9 +275,12 @@ namespace SPW.UI.Web.Page
             }
             if (listUpdate.Count > 0)
             {
-                _stockProductService.EditListFrmColor(listUpdate);
                 _StockProductColorService.EditList(listUpdate);
                 _stockTransService.AddList(listSPT);
+                //listUpdate.ForEach(x => 
+                //    {
+                //        x.STOCK_REMAIN = x.STOCK_REMAIN + _stockProductService.SelectForCutStock(x.PRODUCT_ID).STOCK_REMAIN;
+                //    });
                 btnSearch_Click(null, null);
             }
         }

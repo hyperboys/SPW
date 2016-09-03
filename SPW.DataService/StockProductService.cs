@@ -90,11 +90,18 @@ namespace SPW.DataService
                 {
                     int STOCK_REMAIN = (int)obj.STOCK_REMAIN;
                     obj.STOCK_REMAIN = STOCK_REMAIN + item.STOCK_REMAIN;
-                    obj.UPDATE_DATE = item.UPDATE_DATE;
-                    obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+                    obj.UPDATE_DATE = DateTime.Now;
                     Datacontext.SaveChanges();
                 }
             }
+        }
+        public void EditFrmColor(int REMAIN, string PRODUCT_CODE)
+        {
+            STOCK_PRODUCT_STOCK obj = Datacontext.STOCK_PRODUCT_STOCK.Where(x => x.PRODUCT_CODE.Contains(PRODUCT_CODE)).FirstOrDefault();
+            int STOCK_REMAIN = (int)obj.STOCK_REMAIN;
+            obj.STOCK_REMAIN = STOCK_REMAIN + REMAIN;
+            obj.UPDATE_DATE = DateTime.Now;
+            Datacontext.SaveChanges();
         }
 
         public STOCK_PRODUCT_STOCK Select()
