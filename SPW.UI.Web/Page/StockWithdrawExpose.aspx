@@ -108,7 +108,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="คงเหลือ" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>
+                                        <asp:Label ID="lblRawRemain" runat="server" Text='<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>'></asp:Label>
+                                        <%--<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวนขอเบิก" ItemStyle-Width="10%">

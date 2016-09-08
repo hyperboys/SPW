@@ -32,13 +32,13 @@
                         <div class="form-group">
                             <table style="width: 630px">
                                 <tr>
-                                    <td>รหัส</td>
+                                    <td>เล่มที่</td>
                                     <td class="auto-style6" style="text-align: center"></td>
                                     <td>
                                         <asp:TextBox ID="txtBkNo" class="form-control" runat="server" Width="115px"></asp:TextBox>
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
-                                    <td>ชื่อ</td>
+                                    <td>เลขที่</td>
                                     <td class="auto-style6" style="text-align: center"></td>
                                     <td>
                                         <asp:TextBox ID="txtRnNo" class="form-control" runat="server" Width="115px"></asp:TextBox>

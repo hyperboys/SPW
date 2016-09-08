@@ -317,29 +317,32 @@ namespace SPW.UI.Web.Page
                     WR_DT_TRANS _WR_DT_TRANS = cmdWrDtTransService.Select(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), int.Parse(Request.QueryString["RAW_ID"].ToString()));
                     listDataGrid.ForEach(e =>
                     {
-                        STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
-                        _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
-                        _STOCK_RAW_TRANS.RAW_ID = e.RAW_ID;
-                        _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
-                        _STOCK_RAW_TRANS.TRANS_TYPE = "WD";
-                        _STOCK_RAW_TRANS.REF_DOC_TYPE = "WR";
-                        _STOCK_RAW_TRANS.REF_DOC_BKNO = _WR_DT_TRANS.WR_BK_NO;
-                        _STOCK_RAW_TRANS.REF_DOC_RNNO = _WR_DT_TRANS.WR_RN_NO;
-                        _STOCK_RAW_TRANS.REF_DOC_YY = _WR_DT_TRANS.WR_YY;
-                        _STOCK_RAW_TRANS.VENDOR_ID = e.VENDOR_ID;
-                        _STOCK_RAW_TRANS.VENDOR_CODE = e.VENDOR_CODE;
-                        _STOCK_RAW_TRANS.LOT_NO = e.LOT_NO;
-                        _STOCK_RAW_TRANS.REF_REMARK1 = "";
-                        _STOCK_RAW_TRANS.REF_REMARK2 = "";
-                        _STOCK_RAW_TRANS.TRANS_QTY = e.WD_QTY;
-                        _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = _WR_DT_TRANS.APPROVE_EMPLOYEE_ID;
-                        _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
-                        _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
-                        _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
-                        _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                        _STOCK_RAW_TRANS.SYE_DEL = false;
-                        cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                        if (e.WD_QTY > 0)
+                        {
+                            STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
+                            _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
+                            _STOCK_RAW_TRANS.RAW_ID = e.RAW_ID;
+                            _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
+                            _STOCK_RAW_TRANS.TRANS_TYPE = "WD";
+                            _STOCK_RAW_TRANS.REF_DOC_TYPE = "WR";
+                            _STOCK_RAW_TRANS.REF_DOC_BKNO = _WR_DT_TRANS.WR_BK_NO;
+                            _STOCK_RAW_TRANS.REF_DOC_RNNO = _WR_DT_TRANS.WR_RN_NO;
+                            _STOCK_RAW_TRANS.REF_DOC_YY = _WR_DT_TRANS.WR_YY;
+                            _STOCK_RAW_TRANS.VENDOR_ID = e.VENDOR_ID;
+                            _STOCK_RAW_TRANS.VENDOR_CODE = e.VENDOR_CODE;
+                            _STOCK_RAW_TRANS.LOT_NO = e.LOT_NO;
+                            _STOCK_RAW_TRANS.REF_REMARK1 = "";
+                            _STOCK_RAW_TRANS.REF_REMARK2 = "";
+                            _STOCK_RAW_TRANS.TRANS_QTY = e.WD_QTY;
+                            _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = _WR_DT_TRANS.APPROVE_EMPLOYEE_ID;
+                            _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                            _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                            _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                            _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            _STOCK_RAW_TRANS.SYE_DEL = false;
+                            cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                        }
                     });
                     return true;
                 }
@@ -495,7 +498,10 @@ namespace SPW.UI.Web.Page
                     {
                         TextBox txtWRQty = (TextBox)gdvWR.Rows[i].FindControl("txtWRQty");
                         Label lblRawID = (Label)gdvWR.Rows[i].FindControl("lblRawID");
-                        DATAGRID _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text)).FirstOrDefault();
+                        Label lblRawRemain = (Label)gdvWR.Rows[i].FindControl("lblRawRemain");
+                        DATAGRID _DATAGRID = new DATAGRID();
+                        ///check primary key ไม่ได้
+                        _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text) && data.RAW_REMAIN == int.Parse(lblRawRemain.Text)).FirstOrDefault();
                         _DATAGRID.WD_QTY = int.Parse(txtWRQty.Text);
                         sum = sum + int.Parse(txtWRQty.Text);
                         listNewData.Add(_DATAGRID);
