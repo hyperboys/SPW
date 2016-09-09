@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.DAL;
+using System.Globalization;
 
 namespace SPW.UI.Web.Page
 {
@@ -222,7 +223,7 @@ namespace SPW.UI.Web.Page
                         }
                         else
                         {
-                            cmdStockRawLotService.Edit(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE), cmdStockRawLotService.GetRemainQty(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE)), userItem.EMPLOYEE_ID);
+                            cmdStockRawLotService.Edit(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE), cmdStockRawLotService.GetRemainQty(e.RAW_ID, GetLotNo(_PO_HD_TRANS.VENDOR_CODE)) + e.PO_QTY, userItem.EMPLOYEE_ID);
                         }
                     });
                 }
@@ -376,7 +377,7 @@ namespace SPW.UI.Web.Page
 
         public string GetLotNo(string VENDOR_CODE)
         {
-            return VENDOR_CODE + DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("dd");
+            return VENDOR_CODE + DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture) + DateTime.Now.ToString("MM", CultureInfo.InvariantCulture) + DateTime.Now.ToString("dd", CultureInfo.InvariantCulture);
         }
         #endregion
 
