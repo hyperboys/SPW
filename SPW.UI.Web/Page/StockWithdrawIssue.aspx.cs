@@ -79,6 +79,7 @@ namespace SPW.UI.Web.Page
             {
                 nameList[i] = nameList[i].Replace("\"", "นิ้ว");
                 nameList[i] = nameList[i].Replace("'", "นิ้ว");
+                nameList[i] = nameList[i].Replace(",", "comma");
                 str = str + '"' + nameList[i].ToString().Replace(",", " ") + '"' + ',';
             }
             if (str != "")
@@ -266,7 +267,7 @@ namespace SPW.UI.Web.Page
 
         protected void txtRawName_TextChanged(object sender, EventArgs e)
         {
-            ViewState["RAWPRODUCT"] = GetProductCode(txtRawName.Text);
+            ViewState["RAWPRODUCT"] = GetProductCode(txtRawName.Text.Replace("comma", ","));
             if (ViewState["RAWPRODUCT"] != null)
             {
                 txtRawID.Text = ((RAW_PRODUCT)ViewState["RAWPRODUCT"]).RAW_ID.ToString();
