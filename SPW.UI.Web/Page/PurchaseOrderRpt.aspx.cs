@@ -157,13 +157,37 @@ namespace SPW.UI.Web.Page
                 });
 
                 ReportDocument rpt = new ReportDocument();
-                rpt.Load(Server.MapPath("Reports/PurchaseOrdersReport.rpt"));
-                rpt.SetDataSource(ToDataTable(lstPODATATABLE));
+                rpt.Load(Server.MapPath("../Reports/ReportPurchaseOrders.rpt"));
+                DataSet ds = new DataSet();
+
+                DataTable dt1 = new DataTable();
+                dt1 = ToDataTable(lstPODATATABLE);
+                dt1.TableName = "PODATATABLE";
+
+                DataTable dt2 = new DataTable();
+                dt2.Clear();
+                dt2.Columns.Add("FROM_NAME");
+                dt2.Columns.Add("TO_NAME");
+                dt2.Columns.Add("PO_DATE");
+
+                DataRow dr = dt2.NewRow();
+                dr["FROM_NAME"] = "S.P.W. Sunshine";
+                dr["TO_NAME"] = _PO_HD_TRANS.VENDOR_NAME;
+                dr["PO_DATE"] = DateTime.Now;
+                dt2.TableName = "HEADER";
+                dt2.Rows.Add(dr);
+
+                ds.Tables.Add(dt1);
+                ds.Tables.Add(dt2);
+
+                rpt.SetDataSource(ds);
+                Session["DataToReportPO"] = rpt;
+                Response.RedirectPermanent("../Reports/Report.aspx");
                 // Assign Paramters after set datasource
-                rpt.SetParameterValue("PO_DATE", DateTime.Now);
-                rpt.SetParameterValue("TO_NAME", _PO_HD_TRANS.VENDOR_NAME);
-                rpt.SetParameterValue("FROM_NAME", "S.P.W. Sunshine");
-                rpt.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "PurchaseOrderReport");
+                //rpt.SetParameterValue("PO_DATE", DateTime.Now);
+                //rpt.SetParameterValue("TO_NAME", _PO_HD_TRANS.VENDOR_NAME);
+                //rpt.SetParameterValue("FROM_NAME", "S.P.W. Sunshine");
+                //rpt.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, "PurchaseOrderReport");
             }
         }
 

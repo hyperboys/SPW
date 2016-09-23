@@ -258,6 +258,7 @@
     <Content Include="Page\StockWithdrawApprove.aspx" />
     <Content Include="Page\StockWithdrawExpose.aspx" />
     <Content Include="Page\StockWithdrawIssue.aspx" />
+    <Content Include="Reports\Report.aspx" />
     <Content Include="Reports\ResultEmpListAssessmentPageReport.aspx" />
     <Content Include="Reports\PayInSlipPaper.aspx" />
     <Content Include="Reports\PayInSummary.aspx" />
@@ -1005,6 +1006,22 @@
       <DependentUpon>StockWithdrawIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\PurchaseOrdersRptDataTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportPurchaseOrders.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportPurchaseOrders.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ResultEmpListAssessmentPageReport.aspx.cs">
       <DependentUpon>ResultEmpListAssessmentPageReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1229,6 +1246,17 @@
     <Content Include="Reports\ResultEmpListAssessmentData.xsc">
       <DependentUpon>ResultEmpListAssessmentData.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\PurchaseOrdersRptDataTable.xsc">
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\PurchaseOrdersRptDataTable.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseOrdersRptDataTable.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reports\PurchaseOrdersRptDataTable.xss">
+      <DependentUpon>PurchaseOrdersRptDataTable.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\ResultEmpListAssessmentData.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1310,6 +1338,10 @@
     <EmbeddedResource Include="Reports\PayInSummaryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayInSummaryReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportPurchaseOrders.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportPurchaseOrders.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ResultEmpListAssessmentReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
