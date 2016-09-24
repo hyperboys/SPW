@@ -2,7 +2,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage/MasterPageMainAdmin.Master"  AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="SPW.UI.Web.Page.Reports.Report" %>
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="/crystalreportviewers13/js/crviewer/crv.js"></script>
+    <%--<script type="text/javascript" src="/crystalreportviewers13/js/crviewer/crv.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">ใบสั่งซื้อ</h1>

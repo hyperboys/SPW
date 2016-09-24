@@ -302,7 +302,7 @@
                                         <a href="../Page/SearchPurchaseOrderReceipts.aspx">เลขที่บิลรับสินค้า</a>
                                     </li>--%>
                                     <li>
-                                        <a href="../Page/PurchaseOrderRpt.aspx">Purchase Order Report</a>
+                                        <a href="../Page/PurchaseOrderRpt.aspx">พิมพ์ใบสั่งซื้อ</a>
                                     </li>
                                     <%--<li>
                                         <a href="../Page/StockWithdrawIssue.aspx">ใบเบิกสินค้า</a>

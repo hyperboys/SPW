@@ -13,6 +13,7 @@ using System.IO;
 using System.Data;
 using System.Reflection;
 using System.Data.SqlClient;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -142,6 +143,7 @@ namespace SPW.UI.Web.Page
 
         protected void gridPO_EditCommand(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
+            DebugLog.WriteLog("[gridPO_EditCommand] : START");
             PO_HD_TRANS _PO_HD_TRANS = cmdPoHdTransService.Select(gridPO.DataKeys[e.NewEditIndex].Values[0].ToString(), gridPO.Rows[e.NewEditIndex].Cells[2].Text);
             List<PO_DT_TRANS> listPoDtTrans = cmdPoDtTransService.Select(gridPO.DataKeys[e.NewEditIndex].Values[0].ToString(), gridPO.Rows[e.NewEditIndex].Cells[2].Text);
             List<PODATATABLE> lstPODATATABLE = new List<PODATATABLE>();
@@ -157,6 +159,7 @@ namespace SPW.UI.Web.Page
                 });
 
                 ReportDocument rpt = new ReportDocument();
+                DebugLog.WriteLog("[gridPO_EditCommand][Server.MapPath] : " + Server.MapPath("../Reports/ReportPurchaseOrders.rpt"));
                 rpt.Load(Server.MapPath("../Reports/ReportPurchaseOrders.rpt"));
                 DataSet ds = new DataSet();
 
@@ -182,6 +185,8 @@ namespace SPW.UI.Web.Page
 
                 rpt.SetDataSource(ds);
                 Session["DataToReportPO"] = rpt;
+                DebugLog.WriteLog("[gridPO_EditCommand][ds.Tables] :" + ds.Tables.Count);
+                DebugLog.WriteLog("[gridPO_EditCommand] : END");
                 Response.RedirectPermanent("../Reports/Report.aspx");
                 // Assign Paramters after set datasource
                 //rpt.SetParameterValue("PO_DATE", DateTime.Now);
