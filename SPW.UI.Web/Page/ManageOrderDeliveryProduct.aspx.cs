@@ -237,7 +237,16 @@ namespace SPW.UI.Web.Page
 
         public bool ISEnabled() 
         {
-            return !(bool)Session["DelEdit"];
+            try
+            {
+                return !(bool)Session["DelEdit"];
+            }
+            catch (Exception ex) 
+            {
+                
+            }
+
+            return false;
         }
 
         protected void btnConfirmZeroDelOrder_Click(object sender, EventArgs e)
