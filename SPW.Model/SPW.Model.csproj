@@ -99,6 +99,7 @@
     <Compile Include="CustomModel\STOCK_PRODUCT_COLOR.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_PRODUCT_TRANS.cs" />
+    <Compile Include="CustomModel\STOCK_RAW_LOT.cs" />
     <Compile Include="CustomModel\STOCK_RAW_RECEIVE_TRANS.cs" />
     <Compile Include="CustomModel\STOCK_RAW_STOCK.cs" />
     <Compile Include="CustomModel\STOCK_RAW_TRANS.cs" />

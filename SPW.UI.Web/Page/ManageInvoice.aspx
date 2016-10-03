@@ -113,11 +113,11 @@
                                     <div class="row">
                                         <div class="col-md-2">ชื่อ Supplier</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtVendorName" runat="server" Height="35px" placeholder="ชื่อ"></asp:TextBox>
+                                            <asp:TextBox ID="txtVendorName" class="form-control" runat="server" Height="35px" placeholder="ชื่อ"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2">รหัส Supplier</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtVendorCode" runat="server" Height="35px" placeholder="รหัส"></asp:TextBox>
+                                            <asp:TextBox ID="txtVendorCode" class="form-control" runat="server" Height="35px" placeholder="รหัส"></asp:TextBox>
                                             <asp:HiddenField ID="hfVendorID" runat="server" />
                                             <asp:Button ID="btnShow" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnShow_Click" />
                                         </div>
@@ -128,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-md-2">เลขไมล์</div>
                                         <div class="col-md-3">
-                                            <asp:TextBox ID="txtMileNo" runat="server" Height="35px" placeholder="เลขไมล์"></asp:TextBox>
+                                            <asp:TextBox ID="txtMileNo" class="form-control" runat="server" Height="35px" placeholder="เลขไมล์"></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3"></div>
@@ -136,7 +136,7 @@
                                     </div>
                                     <%--forth row--%>
                                     <div class="row">
-                                        <div class="col-md-2"><h5><u>ระยะเวลาที่เข้าซ่อม</u></h5></div>
+                                        <div class="col-md-2"><h5><b>ระยะเวลาที่เข้าซ่อม</b></h5></div>
                                         <div class="col-md-3"></div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-3"></div>
@@ -165,27 +165,27 @@
                                         <div class="col-md-2"></div>
                                     </div>
                                     <%--six row--%>
-                                    <div class="row">
+                                   <%-- <div class="row">
                                         <div class="col-md-2">เวลาเริ่มต้น</div>
                                         <div class="col-md-3">
                                             <div class='input-group date' id='Div4'>
-                                                <asp:TextBox ID="TextBox4" runat="server" Height="35px" placeholder="วันที่เริ่มต้น"></asp:TextBox>
+                                                <asp:TextBox ID="TextBox4" class="form-control" runat="server" Height="35px" placeholder="วันที่เริ่มต้น"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-2">เวลาสิ้นสุด</div>
                                         <div class="col-md-3">
                                             <div class='input-group date' id='Div5'>
-                                                <asp:TextBox ID="TextBox5" runat="server" Height="35px" placeholder="วันที่สิ้นสุด"></asp:TextBox>
+                                                <asp:TextBox ID="TextBox5" class="form-control" runat="server" Height="35px" placeholder="วันที่สิ้นสุด"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-2"></div>
-                                    </div>
+                                    </div>--%>
                                     <%--seven row--%>
                                     <div class="row">
                                         <div class="col-md-2">ค่าใช้จ่าย</div>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <asp:TextBox ID="txtAmt" runat="server" Height="35px" placeholder="ค่าใช้จ่าย" class="form-control" ></asp:TextBox>
+                                                <asp:TextBox ID="txtAmt" class="form-control" runat="server" Height="35px" placeholder="ค่าใช้จ่าย" ></asp:TextBox>
                                                 <span class="input-group-addon">บาท</span>
                                             </div>
                                         </div>

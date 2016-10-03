@@ -86,7 +86,7 @@ namespace SPW.UI.Web.Page
                     txtVendorName.Text = _PR_HD_TRANS.VENDOR_NAME;
                     txtVendorCode.Text = _PR_HD_TRANS.VENDOR_CODE;
                     flag.Text = "Edit";
-                    lblName.Text = "Edit Purchase Requisition Order";
+                    lblName.Text = "แก้ไขใบขอซื้อ";
 
                     listPrDtTrans.ForEach(e =>
                     {

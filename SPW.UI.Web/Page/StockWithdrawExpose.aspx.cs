@@ -22,7 +22,7 @@ namespace SPW.UI.Web.Page
         private StockRawTransService cmdStockRawTransService;
         private StockRawStockService cmdStockRawStockService;        
 
-        public class DATAGRID
+        public class DATAGRIDWRLOT
         {
             public RAW_PRODUCT RAW_PRODUCT { get; set; }
             public int RAW_ID { get; set; }
@@ -73,15 +73,15 @@ namespace SPW.UI.Web.Page
             if (Request.QueryString["WR_BK_NO"] != null && Request.QueryString["WR_RN_NO"] != null && Request.QueryString["RAW_ID"] != null)
             {
                 List<STOCK_RAW_LOT> lstSTOCK_RAW_LOT = cmdStockRawLotService.GetAll(int.Parse(Request.QueryString["RAW_ID"].ToString()));
-                List<DATAGRID> listDataGrid = new List<DATAGRID>();
+                List<DATAGRIDWRLOT> listDataGrid = new List<DATAGRIDWRLOT>();
                 WR_DT_TRANS _WR_DT_TRANS = cmdWrDtTransService.Select(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString(), int.Parse(Request.QueryString["RAW_ID"].ToString()));
-                DATAGRID _datagrid = new DATAGRID();
+                DATAGRIDWRLOT _datagrid = new DATAGRIDWRLOT();
 
                 if (lstSTOCK_RAW_LOT != null)
                 {
                     lstSTOCK_RAW_LOT.ForEach(e =>
                     {
-                        _datagrid = new DATAGRID();
+                        _datagrid = new DATAGRIDWRLOT();
                         _datagrid.RAW_PRODUCT = cmdRawProductService.Select(e.RAW_ID);
                         _datagrid.RAW_ID = e.RAW_ID;
                         _datagrid.LOT_NO = e.LOT_NO;
@@ -93,19 +93,19 @@ namespace SPW.UI.Web.Page
                         listDataGrid.Add(_datagrid);
                     });
 
-                    Session["LISTDATAGRID"] = listDataGrid;
-                    gdvWR.DataSource = listDataGrid;
-                    gdvWR.DataBind();
+                    Session["LISTDATAGRIDWRLOT"] = listDataGrid;
+                    gdvWRLot.DataSource = listDataGrid;
+                    gdvWRLot.DataBind();
                 }
                 //List<WR_DT_TRANS> listWrDtTrans = cmdWrDtTransService.GetAll(Request.QueryString["WR_BK_NO"].ToString(), Request.QueryString["WR_RN_NO"].ToString());
-                //List<DATAGRID> listDataGrid = new List<DATAGRID>();
-                //DATAGRID _datagrid = new DATAGRID();
+                //List<DATAGRIDWRLOT> listDataGrid = new List<DATAGRIDWRLOT>();
+                //DATAGRIDWRLOT _datagrid = new DATAGRIDWRLOT();
 
                 //flag.Text = "Edit";
 
                 //listWrDtTrans.ForEach(e =>
                 //{
-                //    _datagrid = new DATAGRID();
+                //    _datagrid = new DATAGRIDWRLOT();
                 //    _datagrid.RAW_PRODUCT = cmdRawProductService.Select(e.RAW_ID);
                 //    _datagrid.RAW_PACK_ID = e.RAW_PACK_ID;
                 //    _datagrid.WR_QTY = e.WR_QTY;
@@ -113,8 +113,8 @@ namespace SPW.UI.Web.Page
                 //    listDataGrid.Add(_datagrid);
                 //});
 
-                //gdvWR.DataSource = listDataGrid;
-                //gdvWR.DataBind();
+                //gdvWRLot.DataSource = listDataGrid;
+                //gdvWRLot.DataBind();
                 //if (_PO_HD_TRANS.PO_HD_STATUS != "10")
                 //{
                 //    btnApprove.Visible = false;
@@ -165,7 +165,7 @@ namespace SPW.UI.Web.Page
                     returnValue = false;
                     lblError.Text = "*ไม่พบรหัสสินค้า";
                 }
-                else if (Session["LISTDATAGRID"] != null && ((List<DATAGRID>)Session["LISTDATAGRID"]).Any(e => e.RAW_ID == int.Parse(txtRawID.Text)))
+                else if (Session["LISTDATAGRIDWRLOT"] != null && ((List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"]).Any(e => e.RAW_ID == int.Parse(txtRawID.Text)))
                 {
                     returnValue = false;
                     lblError.Text = "*มีสินค้านี้อยู่ในรายการแล้ว";
@@ -187,7 +187,7 @@ namespace SPW.UI.Web.Page
             {
                 USER userItem = Session["user"] as USER;
                 List<WR_DT_TRANS> lstWR_DT_TRANS = new List<WR_DT_TRANS>();
-                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
                 if (listDataGrid.Count > 0)
                 {
                     int seq = 1;
@@ -278,8 +278,8 @@ namespace SPW.UI.Web.Page
         }
         private void ClearSession()
         {
-            Session["LISTDATAGRID"] = null;
-            Session.Remove("LISTDATAGRID");
+            Session["LISTDATAGRIDWRLOT"] = null;
+            Session.Remove("LISTDATAGRIDWRLOT");
         }
         private RAW_PRODUCT GetProductCode(string RawName)
         {
@@ -290,7 +290,7 @@ namespace SPW.UI.Web.Page
             bool returnValue = true;
             try
             {
-                if (Session["LISTDATAGRID"] == null || ((List<DATAGRID>)Session["LISTDATAGRID"]).Count == 0)
+                if (Session["LISTDATAGRIDWRLOT"] == null || ((List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"]).Count == 0)
                 {
                     returnValue = false;
                     lblerror2.Text = "*ไม่พบรายการสินค้าในระบบ";
@@ -310,7 +310,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
                 if (listDataGrid.Count > 0)
                 {
                     USER userItem = Session["user"] as USER;
@@ -361,7 +361,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
                 if (listDataGrid.Count > 0)
                 {
                     USER userItem = Session["user"] as USER;
@@ -386,7 +386,7 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+                List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
                 USER userItem = Session["user"] as USER;
                 if (listDataGrid.Count > 0)
                 {
@@ -450,8 +450,8 @@ namespace SPW.UI.Web.Page
                 {
                     if (ViewState["RAWPRODUCT"] != null)
                     {
-                        List<DATAGRID> listDataGrid = (Session["LISTDATAGRID"] == null) ? new List<DATAGRID>() : (List<DATAGRID>)Session["LISTDATAGRID"];
-                        DATAGRID _datagrid = new DATAGRID();
+                        List<DATAGRIDWRLOT> listDataGrid = (Session["LISTDATAGRIDWRLOT"] == null) ? new List<DATAGRIDWRLOT>() : (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
+                        DATAGRIDWRLOT _datagrid = new DATAGRIDWRLOT();
                         RAW_PRODUCT _rawProduct = (RAW_PRODUCT)ViewState["RAWPRODUCT"];
                         _datagrid.RAW_PRODUCT = _rawProduct;
                         _datagrid.RAW_ID = int.Parse(txtRawID.Text);
@@ -459,22 +459,22 @@ namespace SPW.UI.Web.Page
                         _datagrid.RAW_PACK_ID = int.Parse(ddlPack.SelectedValue);
 
                         listDataGrid.Add(_datagrid);
-                        Session["LISTDATAGRID"] = listDataGrid;
+                        Session["LISTDATAGRIDWRLOT"] = listDataGrid;
 
                         ViewState["RAWPRODUCT"] = null;
 
-                        gdvWR.DataSource = (List<DATAGRID>)Session["LISTDATAGRID"];
-                        gdvWR.DataBind();
+                        gdvWRLot.DataSource = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
+                        gdvWRLot.DataBind();
                         ClearDataScreen();
 
-                        if (((List<DATAGRID>)Session["LISTDATAGRID"]).Count > 0)
-                        {
-                            btnSave.Visible = true;
-                        }
-                        else
-                        {
-                            btnSave.Visible = false;
-                        }
+                        //if (((List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"]).Count > 0)
+                        //{
+                        //    btnSave.Visible = true;
+                        //}
+                        //else
+                        //{
+                        //    btnSave.Visible = false;
+                        //}
                     }
                 }
             }
@@ -488,18 +488,18 @@ namespace SPW.UI.Web.Page
         {
             try
             {
-                List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
-                List<DATAGRID> listNewData = new List<DATAGRID>();
+                List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
+                List<DATAGRIDWRLOT> listNewData = new List<DATAGRIDWRLOT>();
                 if (listDataGrid != null)
                 {
                     bool isNotExceedLimit = true;
                     int sum = 0;
-                    for (int i = 0; i < gdvWR.Rows.Count; i++)
+                    for (int i = 0; i < gdvWRLot.Rows.Count; i++)
                     {
-                        TextBox txtWRQty = (TextBox)gdvWR.Rows[i].FindControl("txtWRQty");
-                        Label lblRawID = (Label)gdvWR.Rows[i].FindControl("lblRawID");
-                        Label lblRawRemain = (Label)gdvWR.Rows[i].FindControl("lblRawRemain");
-                        DATAGRID _DATAGRID = new DATAGRID();
+                        TextBox txtWRQty = (TextBox)gdvWRLot.Rows[i].FindControl("txtWRQty");
+                        Label lblRawID = (Label)gdvWRLot.Rows[i].FindControl("lblRawID");
+                        Label lblRawRemain = (Label)gdvWRLot.Rows[i].FindControl("lblRawRemain");
+                        DATAGRIDWRLOT _DATAGRID = new DATAGRIDWRLOT();
                         ///check primary key ไม่ได้
                         _DATAGRID = listDataGrid.Where(data => data.RAW_ID == int.Parse(lblRawID.Text) && data.RAW_REMAIN == int.Parse(lblRawRemain.Text)).FirstOrDefault();
                         _DATAGRID.WD_QTY = int.Parse(txtWRQty.Text);
@@ -509,12 +509,12 @@ namespace SPW.UI.Web.Page
                     }
                     if (isNotExceedLimit)
                     {
-                        Session["LISTDATAGRID"] = listNewData;
+                        Session["LISTDATAGRIDWRLOT"] = listNewData;
                         if (SaveStockRawTrans())
                         {
                             if (SaveRawLot())
                             {
-                                alert.Visible = true;
+                                //alert.Visible = true;
                                 Response.AppendHeader("Refresh", "2; url=SearchStockWithdrawExpose.aspx");
                             }
                             else
@@ -537,12 +537,12 @@ namespace SPW.UI.Web.Page
 
         protected void gdvWR_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            List<DATAGRID> listDataGrid = (List<DATAGRID>)Session["LISTDATAGRID"];
+            List<DATAGRIDWRLOT> listDataGrid = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
             listDataGrid.RemoveAt(e.RowIndex);
-            Session["LISTDATAGRID"] = listDataGrid;
+            Session["LISTDATAGRIDWRLOT"] = listDataGrid;
 
-            gdvWR.DataSource = (List<DATAGRID>)Session["LISTDATAGRID"];
-            gdvWR.DataBind();
+            gdvWRLot.DataSource = (List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"];
+            gdvWRLot.DataBind();
         }
         protected void gdvWR_RowEditing(object sender, GridViewEditEventArgs e)
         {

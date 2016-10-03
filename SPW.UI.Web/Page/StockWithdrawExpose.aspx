@@ -5,10 +5,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
-        Stock Withdraw Expose
-    </h1>
-    <div class="alert alert-info" id="alert" runat="server" visible="false">
-        <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchStockWithdrawExpose.aspx">ค้นหาใบเบิกสินค้า</asp:HyperLink>
+        /
+        <asp:Label ID="lblName" runat="server" Text="ดูข้อมูลใบเบิกสินค้า"></asp:Label></h1>
+    <div class="alert alert-info" id="Div1" runat="server" visible="false">
+        <strong>สั่งซื้อสินค้าสำเร็จ Order Success</strong>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -32,7 +33,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Stock Withdraw Expose
+                ดูข้อมูลใบเบิกสินค้า
             </div>
             <div class="panel-body">
                     
@@ -80,7 +81,7 @@
                     </div>
                     <!-- /.row (nested) -->                    
                     <div class="panel panel-primary">
-                        <asp:GridView ID="gdvWR" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                        <asp:GridView ID="gdvWRLot" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
                             DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล" OnRowDeleting="gdvWR_RowDeleting" OnRowEditing="gdvWR_RowEditing"
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
@@ -92,39 +93,39 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสสินค้า" ItemStyle-Width="15%">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRawID" runat="server" Text='<%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_ID %>'></asp:Label>
+                                        <asp:Label ID="lblRawID" runat="server" Text='<%# ((DATAGRIDWRLOT) Container.DataItem).RAW_PRODUCT.RAW_ID %>'></asp:Label>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อสินค้า(ปกติ)" ItemStyle-Width="15%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_NAME1 %>
+                                        <%# ((DATAGRIDWRLOT) Container.DataItem).RAW_PRODUCT.RAW_NAME1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อสินค้า(สำหรับโรงงาน)" ItemStyle-Width="15%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_PRODUCT.RAW_NAME2 %>
+                                        <%# ((DATAGRIDWRLOT) Container.DataItem).RAW_PRODUCT.RAW_NAME2 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="คงเหลือ" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRawRemain" runat="server" Text='<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>'></asp:Label>
-                                        <%--<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>--%>
+                                        <asp:Label ID="lblRawRemain" runat="server" Text='<%# ((DATAGRIDWRLOT) Container.DataItem).RAW_REMAIN %>'></asp:Label>
+                                        <%--<%# ((DATAGRIDWRLOT) Container.DataItem).RAW_REMAIN %>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="จำนวนขอเบิก" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).WR_QTY %>
+                                        <%# ((DATAGRIDWRLOT) Container.DataItem).WR_QTY %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="จำนวนเบิก" ItemStyle-Width="10%">
+                                <%--<asp:TemplateField HeaderText="จำนวนเบิก" ItemStyle-Width="10%">
                                     <ItemTemplate>
                                         <asp:TextBox runat="server" ID="txtWRQty" class="form-control" style="text-align:center" Text="0" />      
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                                 <asp:TemplateField HeaderText="รหัสแพ็ค" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_PACK_ID %>
+                                        <%# ((DATAGRIDWRLOT) Container.DataItem).RAW_PACK_ID %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -154,7 +155,7 @@
                                     <asp:Label ID="lblerror2" runat="server" forecolor="Red"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
+                                    <%--<asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/>--%> 
                                     <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>            
                                     <asp:Label ID="lblError" runat="server"></asp:Label>                                         
                                 </div>

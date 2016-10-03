@@ -4,7 +4,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">Search Purchase Order Receipts</h1>
+    <h1 class="page-header">ค้นหาเลขที่บิลรับสินค้า</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -23,7 +23,7 @@
         </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Search Purchase Order Receipts        
+            ค้นหาเลขที่บิลรับสินค้า        
         </div>
         <div class="panel-body">
             <div class="row">
@@ -63,7 +63,7 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                 <asp:GridView ID="gridPO" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="PO_BK_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
+                    DataKeyNames="PO_BK_NO" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล"
                     OnRowEditing="gridPO_EditCommand" OnPageIndexChanging="gridPO_PageIndexChanging"
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />

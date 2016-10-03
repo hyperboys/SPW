@@ -73,7 +73,7 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
-            DataSouce = cmdWrDtTransService.GetAllByStatusApprove();
+            DataSouce = cmdWrDtTransService.GetAll();
             gridWR.DataSource = DataSouce;
             gridWR.DataBind();
         }

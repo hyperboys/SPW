@@ -6,7 +6,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">Purchase Order Report</h1>
+    <h1 class="page-header">พิมพ์ใบสั่งซื้อ</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -25,7 +25,7 @@
         </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Purchase Order Report        
+            พิมพ์ใบสั่งซื้อ        
         </div>
         <div class="panel-body">
             <div class="row">

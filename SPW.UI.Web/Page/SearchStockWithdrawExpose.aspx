@@ -4,7 +4,7 @@
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">Stock Withdraw Expose</h1>
+    <h1 class="page-header">ค้นหาใบเบิกสินค้า</h1>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -23,7 +23,7 @@
         </style>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Stock Withdraw Expose        
+            ค้นหาใบเบิกสินค้า        
         </div>
         <div class="panel-body">
             <div class="row">

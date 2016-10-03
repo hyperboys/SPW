@@ -102,6 +102,20 @@ namespace SPW.DataService
         {
             return this.Datacontext.RAW_PRODUCT.Where(x => x.SYE_DEL == false).OrderBy(x => x.RAW_ID).Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
         }
+        public List<RAW_PRODUCT> GetAllByFilterCondition(int RawID, string RawName, int PageIndex, int PageLimit, ref int ItemsCount)
+        {
+            List<RAW_PRODUCT> SourceItems = GetAll();
+            if (RawID != 0)
+            {
+                SourceItems = SourceItems.Where(x => x.RAW_ID == RawID).ToList();
+            }
+            if (RawName.Trim() != "")
+            {
+                SourceItems = SourceItems.Where(x => x.RAW_NAME1.ToUpper().Contains(RawName.ToUpper())).ToList();
+            }
+            ItemsCount = SourceItems.Count();
+            return SourceItems.Skip(PageLimit * (PageIndex - 1)).Take(PageLimit).ToList();
+        }
         #endregion
 
     }

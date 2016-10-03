@@ -122,14 +122,14 @@ namespace SPW.UI.Web.Page
         {
             if (Session[this.GetType().Name + "Filter"] != null)
             {
-                //List<object> ParamItems = (List<object>)Session[this.GetType().Name + "Filter"];
-                //int SourceItemCount = 0;
-                //DataSouce = cmdRawProduct.GetAllByFilterCondition((string)ParamItems[0], (string)ParamItems[1], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount);
-                //CreateFilterPageSelected(SourceItemCount);
-                //UpdatePageControl((int)ViewState["PageIndex"]);
-                //gridRawProduct.DataSource = DataSouce;
-                //gridRawProduct.DataBind();
-                //PrepareButtonFilterDisplay();
+                List<object> ParamItems = (List<object>)Session[this.GetType().Name + "Filter"];
+                int SourceItemCount = 0,output = 0;
+                DataSouce = cmdRawProduct.GetAllByFilterCondition(int.TryParse((string)ParamItems[0],out output) ? (int)ParamItems[0] : 0, (string)ParamItems[1], (int)ViewState["PageIndex"], (int)ViewState["PageLimit"], ref SourceItemCount);
+                CreateFilterPageSelected(SourceItemCount);
+                UpdatePageControl((int)ViewState["PageIndex"]);
+                gridRawProduct.DataSource = DataSouce;
+                gridRawProduct.DataBind();
+                PrepareButtonFilterDisplay();
             }
             else
             {

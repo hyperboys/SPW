@@ -116,6 +116,7 @@ namespace SPW.UI.Web.Page
         protected void btnReset_Click(object sender, EventArgs e)
         {
             txtBkNo.Text = "";
+            txtRnNo.Text = "";
             SearchGrid();
         }
     }

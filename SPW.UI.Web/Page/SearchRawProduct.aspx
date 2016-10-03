@@ -65,7 +65,7 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                 <asp:GridView ID="gridRawProduct" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลร้านค้า"
+                    DataKeyNames="RAW_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลวัตถุดิบ"
                     OnRowEditing="gridRawProduct_EditCommand" OnPageIndexChanging="gridRawProduct_PageIndexChanging"
                     OnRowDeleting="gridRawProduct_RowDeleting" OnRowDataBound="gridRawProduct_RowDataBound"
                     Style="text-align: center" CssClass="grid">

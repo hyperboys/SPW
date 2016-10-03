@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPurchaseOrderReceipts.aspx">Search Purchase Order Receipts</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchPurchaseOrderReceipts.aspx">ค้นหาเลขที่บิลรับสินค้า</asp:HyperLink>
         /
-        <asp:Label ID="lblName" runat="server" Text="Purchase Order Receipts"></asp:Label>
+        <asp:Label ID="lblName" runat="server" Text="เลขที่บิลรับสินค้า"></asp:Label>
     </h1>
     <div class="alert alert-info" id="alert" runat="server" visible="false">
         <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
@@ -35,7 +35,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Purchase Order Receipts
+                เลขที่บิลรับสินค้า
             </div>
             <div class="panel-body">
                     

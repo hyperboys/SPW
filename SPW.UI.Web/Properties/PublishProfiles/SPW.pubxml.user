@@ -21,16 +21,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2016 00:29:36</publishTime>
     </File>
     <File Include="bin/SPW.DAL.dll">
-      <publishTime>09/24/2016 00:29:38</publishTime>
+      <publishTime>10/03/2016 23:07:58</publishTime>
     </File>
     <File Include="bin/SPW.DataService.dll">
-      <publishTime>09/24/2016 00:29:38</publishTime>
+      <publishTime>10/03/2016 23:07:59</publishTime>
     </File>
     <File Include="bin/SPW.Model.dll">
-      <publishTime>09/24/2016 00:29:36</publishTime>
+      <publishTime>09/24/2016 15:39:02</publishTime>
     </File>
     <File Include="bin/SPW.UI.Web.dll">
-      <publishTime>09/24/2016 11:51:50</publishTime>
+      <publishTime>10/03/2016 23:08:01</publishTime>
     </File>
     <File Include="CSS/bootstrap-theme.css">
       <publishTime>09/22/2016 22:27:37</publishTime>
@@ -147,7 +147,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:38</publishTime>
     </File>
     <File Include="MasterPage/MasterPageMainAdmin.Master">
-      <publishTime>09/24/2016 11:12:58</publishTime>
+      <publishTime>10/03/2016 22:05:11</publishTime>
     </File>
     <File Include="MasterPage/MasterPageReport.Master">
       <publishTime>09/22/2016 22:27:38</publishTime>
@@ -159,10 +159,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/19/2015 08:43:38</publishTime>
     </File>
     <File Include="Page/IssuePurchaseOrders.aspx">
-      <publishTime>09/22/2016 22:27:38</publishTime>
+      <publishTime>10/03/2016 22:19:55</publishTime>
     </File>
     <File Include="Page/IssuePurchaseRequisitionOrder.aspx">
-      <publishTime>09/22/2016 22:27:38</publishTime>
+      <publishTime>10/03/2016 22:20:20</publishTime>
     </File>
     <File Include="Page/KeyInEmpAssessment.aspx">
       <publishTime>09/22/2016 22:27:38</publishTime>
@@ -204,7 +204,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:39</publishTime>
     </File>
     <File Include="Page/ManageInvoice.aspx">
-      <publishTime>09/22/2016 22:27:39</publishTime>
+      <publishTime>10/03/2016 23:01:47</publishTime>
     </File>
     <File Include="Page/ManageMeasureWeight.aspx">
       <publishTime>09/22/2016 22:27:39</publishTime>
@@ -300,13 +300,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:39</publishTime>
     </File>
     <File Include="Page/PurchaseOrderReceipts.aspx">
-      <publishTime>09/22/2016 22:27:39</publishTime>
+      <publishTime>10/03/2016 22:20:58</publishTime>
     </File>
     <File Include="Page/PurchaseOrderReceiptsHistory.aspx">
-      <publishTime>09/22/2016 22:27:39</publishTime>
+      <publishTime>10/03/2016 22:21:24</publishTime>
     </File>
     <File Include="Page/PurchaseOrderRpt.aspx">
-      <publishTime>09/24/2016 11:45:25</publishTime>
+      <publishTime>10/03/2016 22:21:41</publishTime>
     </File>
     <File Include="Page/ReportDelivery.aspx">
       <publishTime>09/22/2016 22:27:39</publishTime>
@@ -375,19 +375,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:40</publishTime>
     </File>
     <File Include="Page/SearchPurchaseOrder.aspx">
-      <publishTime>09/22/2016 22:27:40</publishTime>
+      <publishTime>10/03/2016 22:22:44</publishTime>
     </File>
     <File Include="Page/SearchPurchaseOrderReceipts.aspx">
-      <publishTime>09/22/2016 22:27:40</publishTime>
+      <publishTime>10/03/2016 22:22:31</publishTime>
     </File>
     <File Include="Page/SearchPurchaseRequisitionOrder.aspx">
-      <publishTime>09/22/2016 22:27:40</publishTime>
+      <publishTime>10/03/2016 22:22:25</publishTime>
     </File>
     <File Include="Page/SearchRawPack.aspx">
       <publishTime>09/22/2016 22:27:40</publishTime>
     </File>
     <File Include="Page/SearchRawProduct.aspx">
-      <publishTime>09/22/2016 22:27:40</publishTime>
+      <publishTime>10/03/2016 22:24:15</publishTime>
     </File>
     <File Include="Page/SearchRawType.aspx">
       <publishTime>09/22/2016 22:27:40</publishTime>
@@ -402,7 +402,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:40</publishTime>
     </File>
     <File Include="Page/SearchStockWithdrawExpose.aspx">
-      <publishTime>09/22/2016 22:27:40</publishTime>
+      <publishTime>10/03/2016 21:49:51</publishTime>
     </File>
     <File Include="Page/SearchStore.aspx">
       <publishTime>09/22/2016 22:27:40</publishTime>
@@ -465,10 +465,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2016 22:27:40</publishTime>
     </File>
     <File Include="Page/StockWithdrawExpose.aspx">
-      <publishTime>09/22/2016 22:27:41</publishTime>
+      <publishTime>10/03/2016 21:59:14</publishTime>
     </File>
     <File Include="Page/StockWithdrawIssue.aspx">
-      <publishTime>09/22/2016 22:27:41</publishTime>
+      <publishTime>10/03/2016 21:56:15</publishTime>
     </File>
     <File Include="Page/SurveyOrder.aspx">
       <publishTime>09/19/2015 10:09:34</publishTime>
@@ -525,7 +525,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/23/2016 22:34:43</publishTime>
     </File>
     <File Include="Reports/Report.aspx">
-      <publishTime>09/24/2016 00:14:44</publishTime>
+      <publishTime>09/24/2016 12:00:08</publishTime>
     </File>
     <File Include="Reports/ResultEmpListAssessmentData.xsc">
       <publishTime>09/22/2016 22:27:41</publishTime>
