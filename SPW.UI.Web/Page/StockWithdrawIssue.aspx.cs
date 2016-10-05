@@ -20,7 +20,8 @@ namespace SPW.UI.Web.Page
         private RawPackService cmdRawPackService;
         private StockRawLotService cmdStockRawLotService;
         private StockRawTransService cmdStockRawTransService;
-        private StockRawStockService cmdStockRawStockService;    
+        private StockRawStockService cmdStockRawStockService;
+        private EmployeeService cmdEmployeeService;    
 
         public class DATAGRIDWR
         {
@@ -66,6 +67,7 @@ namespace SPW.UI.Web.Page
             cmdStockRawLotService = (StockRawLotService)_dataServiceEngine.GetDataService(typeof(StockRawLotService));
             cmdStockRawTransService = (StockRawTransService)_dataServiceEngine.GetDataService(typeof(StockRawTransService));
             cmdStockRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
+            cmdEmployeeService = (EmployeeService)_dataServiceEngine.GetDataService(typeof(EmployeeService));            
         }
 
         private void CreatePageEngine()
@@ -88,6 +90,12 @@ namespace SPW.UI.Web.Page
             {
                 txtBKNo.Text = GenerateBKNo();
                 txtRNNo.Text = GenerateRNNo();
+            }
+            ViewState["listUser"] = cmdEmployeeService.GetAll();
+            foreach (var item in (List<EMPLOYEE>)ViewState["listUser"])
+            {
+                ddlUserRequest.Items.Add(new ListItem(item.EMPLOYEE_NAME, item.EMPLOYEE_ID.ToString()));
+                ddlUserApprove.Items.Add(new ListItem(item.EMPLOYEE_NAME, item.EMPLOYEE_ID.ToString()));
             }
             ViewState["listRawPack"] = cmdRawPackService.GetAll();
             foreach (var item in (List<RAW_PACK_SIZE>)ViewState["listRawPack"])
@@ -125,7 +133,7 @@ namespace SPW.UI.Web.Page
             bool returnValue = true;
             try
             {
-                if (ddlPack.SelectedIndex == 0 || txtWrQty.Text == "")
+                if (ddlPack.SelectedIndex == 0 || txtWrQty.Text == "" || ddlUserRequest.SelectedIndex == 0 || ddlUserApprove.SelectedIndex == 0 || txtGiveWrQty.Text == "")
                 {
                     returnValue = false;
                     lblError.Text = "*กรุณากรอกข้อมูลให้ครบ";
@@ -177,8 +185,8 @@ namespace SPW.UI.Web.Page
                         _WR_DT_TRANS.REMARK1= "WR";
                         _WR_DT_TRANS.REMARK2= "1";
                         _WR_DT_TRANS.WR_DT_STATUS= "10";
-                        _WR_DT_TRANS.REQUEST_EMPLOYEE_ID= userItem.EMPLOYEE_ID;
-                        _WR_DT_TRANS.APPROVE_EMPLOYEE_ID= null;
+                        _WR_DT_TRANS.REQUEST_EMPLOYEE_ID= int.Parse(ddlUserRequest.SelectedValue);
+                        _WR_DT_TRANS.APPROVE_EMPLOYEE_ID = int.Parse(ddlUserApprove.SelectedValue);
                         _WR_DT_TRANS.WITHDRAWER_EMPLOYEE_ID= userItem.EMPLOYEE_ID;
                         _WR_DT_TRANS.APPROVE_DATE= DateTime.Now;
                         _WR_DT_TRANS.WITHDRAW_DATE= DateTime.Now;
@@ -251,6 +259,9 @@ namespace SPW.UI.Web.Page
             txtRawName.Text = String.Empty;
             txtWrQty.Text = String.Empty;
             ddlPack.SelectedIndex = 0;
+            //ddlUserRequest.SelectedIndex = 0;
+            //ddlUserApprove.SelectedIndex = 0;
+            txtGiveWrQty.Text = String.Empty;
             spRawCode.Visible = false;
             lblError.Text = String.Empty;
         }
@@ -476,9 +487,10 @@ namespace SPW.UI.Web.Page
 
                         ClearDataScreen();
 
-                        if (((List<DATAGRIDWR>)Session["LISTDATAGRIDWR"]).Count > 0 || ((List<DATAGRIDWR>)Session["LISTDATAGRIDWRLOT"]).Count > 0)
+                        if (((List<DATAGRIDWR>)Session["LISTDATAGRIDWR"]).Count == 0 || ((List<DATAGRIDWRLOT>)Session["LISTDATAGRIDWRLOT"]).Count == 0)
                         {
                             btnSave.Visible = false;
+                            btnSaveNext.Visible = false;
                         }
                         else
                         {

@@ -91,6 +91,22 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
+                                    <%--forth row--%>
+                                    <div class="row">
+                                        <div class="col-md-2">ผู้ขอเบิก</div>
+                                        <div class="col-md-3">                                            
+                                            <asp:DropDownList ID="ddlUserRequest" class="form-control" runat="server" Height="35px" Width="200px">
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2">ผู้อนุมัติ</div>
+                                        <div class="col-md-3">                                            
+                                            <asp:DropDownList ID="ddlUserApprove" class="form-control" runat="server" Height="35px" Width="200px">
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
                                     <%--fifth row--%>
                                     <div class="row">
                                         <div class="col-md-2">จำนวนให้เบิก</div>
