@@ -309,10 +309,10 @@
                                     </li>
                                     <li>
                                         <a href="../Page/SearchStockWithdraw.aspx">ผู้อนุมัติ</a>
-                                    </li>--%>
+                                    </li>
                                     <li>
                                         <a href="../Page/SearchStockWithdrawExpose.aspx">ผู้จ่ายสินค้า</a>
-                                    </li>
+                                    </li>--%>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
