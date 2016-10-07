@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.Common;
+using System.Transactions;
 
 namespace SPW.UI.Web.Page
 {
@@ -218,122 +219,128 @@ namespace SPW.UI.Web.Page
 
             if (Session["DelOrderIndexSelected"] != null)
             {
-                DELIVERY_INDEX objDEl = (DELIVERY_INDEX)Session["DelOrderIndexSelected"];
-                List<DELIVERY_ORDER> DetailItems = cmdDelOrder.GetAllByDelIndexID(objDEl.DELIND_ID);
-                UpdateDefaultScreen(ref DetailItems);
-
-                try
-                {
-                    USER objUser = Session["user"] != null ? (USER)Session["user"] : null;
-                    //Update DeliveryOrderIndex
-                    cmdDeliveryOrderIndex.ConfirmDelOrderIndex(DetailItems, objDEl.DELIND_ID, objUser.EMPLOYEE_ID);
-                    //Update DeliveryOrder
-                    //cmdDelOrder.ConfirmDelOrder(DetailItems);
-                    //Update Order
-                    //cmdOrderDetails.ConfirmOrder(DetailItems);
-                    //Update OrderStatus
+                //using (TransactionScope txScope = new TransactionScope())
+                //{
+                    DELIVERY_INDEX objDEl = (DELIVERY_INDEX)Session["DelOrderIndexSelected"];
+                    List<DELIVERY_ORDER> DetailItems = cmdDelOrder.GetAllByDelIndexID(objDEl.DELIND_ID);
+                    UpdateDefaultScreen(ref DetailItems);
 
                     try
                     {
-                        //ตัด Stock
-                        foreach (DELIVERY_ORDER item in DetailItems)
+
+                        USER objUser = Session["user"] != null ? (USER)Session["user"] : null;
+                        //Update DeliveryOrderIndex
+                        cmdDeliveryOrderIndex.ConfirmDelOrderIndex(DetailItems, objDEl.DELIND_ID, objUser.EMPLOYEE_ID);
+                        //Update DeliveryOrder
+                        //cmdDelOrder.ConfirmDelOrder(DetailItems);
+                        //Update Order
+                        //cmdOrderDetails.ConfirmOrder(DetailItems);
+                        //Update OrderStatus
+                        UpdateOrderCompleteStatus(DetailItems);
+
+                        try
                         {
-                            foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
+                            //ตัด Stock
+                            foreach (DELIVERY_ORDER item in DetailItems)
                             {
-                                int stockAfter = 0;
-                                STOCK_PRODUCT_STOCK tmp = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
-                                if (tmp != null)
+                                foreach (DELIVERY_ORDER_DETAIL item2 in item.DELIVERY_ORDER_DETAIL)
                                 {
-                                    stockAfter = tmp.STOCK_REMAIN.Value;
-                                    tmp.PRODUCT_ID = item2.PRODUCT_ID;
-                                    tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
-                                    tmp.UPDATE_DATE = DateTime.Now;
-                                    tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                    cmdStockProductService.CutStock(tmp);
-                                }
-                                else 
-                                {
-                                    tmp = new STOCK_PRODUCT_STOCK();
-                                    tmp.CREATE_DATE = DateTime.Now;
-                                    tmp.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                    tmp.PRODUCT_CODE = item2.PRODUCT.PRODUCT_CODE;
-                                    tmp.STOCK_BEFORE = 0;
-                                    tmp.STOCK_MINIMUM = 0;
-                                    tmp.SYE_DEL = false;
-                                    tmp.STOCK_REMAIN = 0 - item2.PRODUCT_SENT_QTY;
-                                    tmp.UPDATE_DATE = DateTime.Now;
-                                    tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                    cmdStockProductService.CutStock(tmp);
-                                }
+                                    int stockAfter = 0;
+                                    STOCK_PRODUCT_STOCK tmp = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID);
+                                    if (tmp != null)
+                                    {
+                                        stockAfter = tmp.STOCK_REMAIN.Value;
+                                        tmp.PRODUCT_ID = item2.PRODUCT_ID;
+                                        tmp.STOCK_REMAIN = item2.PRODUCT_SENT_QTY;
+                                        tmp.UPDATE_DATE = DateTime.Now;
+                                        tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                        cmdStockProductService.CutStock(tmp);
+                                    }
+                                    else
+                                    {
+                                        tmp = new STOCK_PRODUCT_STOCK();
+                                        tmp.CREATE_DATE = DateTime.Now;
+                                        tmp.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                        tmp.PRODUCT_ID = item2.PRODUCT_ID;
+                                        tmp.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
+                                        tmp.STOCK_BEFORE = 0;
+                                        tmp.STOCK_MINIMUM = 0;
+                                        tmp.SYE_DEL = false;
+                                        tmp.STOCK_REMAIN = 0 - item2.PRODUCT_SENT_QTY;
+                                        tmp.UPDATE_DATE = DateTime.Now;
+                                        tmp.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                        cmdStockProductService.Add(tmp);
+                                    }
 
-                                STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
-                                tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                tmpTrans.COLOR_ID = item2.COLOR_ID;
-                                tmpTrans.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
-                                tmpTrans.CREATE_DATE = DateTime.Now;
-                                tmpTrans.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                tmpTrans.PRODUCT_ID = item2.PRODUCT_ID;
-                                tmpTrans.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
-                                tmpTrans.STOCK_AFTER = stockAfter;
-                                tmpTrans.STOCK_BEFORE = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID).STOCK_REMAIN.Value;
-                                tmpTrans.SYE_DEL = false;
-                                tmpTrans.SYS_TIME = DateTime.Now.TimeOfDay;
-                                tmpTrans.TRANS_DATE = DateTime.Now;
-                                tmpTrans.TRANS_QTY = item2.PRODUCT_SENT_QTY;
-                                tmpTrans.TRANS_TYPE = "OUT";
-                                tmpTrans.UPDATE_DATE = DateTime.Now;
-                                tmpTrans.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                cmdStockTransService.Add(tmpTrans);
+                                    STOCK_PRODUCT_TRANS tmpTrans = new STOCK_PRODUCT_TRANS();
+                                    tmpTrans.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmpTrans.COLOR_ID = item2.COLOR_ID;
+                                    tmpTrans.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
+                                    tmpTrans.CREATE_DATE = DateTime.Now;
+                                    tmpTrans.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmpTrans.PRODUCT_ID = item2.PRODUCT_ID;
+                                    tmpTrans.PRODUCT_CODE = cmdProductService.SelectNotInclude(item2.PRODUCT_ID).PRODUCT_CODE;
+                                    tmpTrans.STOCK_AFTER = stockAfter;
+                                    tmpTrans.STOCK_BEFORE = cmdStockProductService.SelectForCutStock(item2.PRODUCT_ID).STOCK_REMAIN.Value;
+                                    tmpTrans.SYE_DEL = false;
+                                    tmpTrans.SYS_TIME = DateTime.Now.TimeOfDay;
+                                    tmpTrans.TRANS_DATE = DateTime.Now;
+                                    tmpTrans.TRANS_QTY = item2.PRODUCT_SENT_QTY;
+                                    tmpTrans.TRANS_TYPE = "OUT";
+                                    tmpTrans.UPDATE_DATE = DateTime.Now;
+                                    tmpTrans.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    cmdStockTransService.Add(tmpTrans);
 
-                                STOCK_PRODUCT_WITHDRAW_TRANS tmpWithdraw = new STOCK_PRODUCT_WITHDRAW_TRANS();
-                                tmpWithdraw.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                tmpWithdraw.COLOR_ID = item2.COLOR_ID;
-                                tmpWithdraw.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
-                                tmpWithdraw.CREATE_DATE = DateTime.Now;
-                                tmpWithdraw.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                tmpWithdraw.ORDER_CODE = item2.ORDER_CODE;
-                                tmpWithdraw.ORDER_DATE = item2.ORDER_DETAIL.CREATE_DATE;
-                                tmpWithdraw.ORDER_DETAIL_ID = item2.ORDER_DETAIL_ID;
-                                tmpWithdraw.ORDER_ID = item2.ORDER_DETAIL.ORDER_ID;
-                                tmpWithdraw.PRODUCT_CODE = item2.PRODUCT.PRODUCT_CODE;
-                                tmpWithdraw.PRODUCT_ID = item2.PRODUCT_ID;
-                                tmpWithdraw.PRODUCT_QTY = item2.PRODUCT_SENT_QTY;
-                                tmpWithdraw.PRODUCT_SEQ = item2.PRODUCT_SEQ;
-                                tmpWithdraw.STOCK_AFTER = stockAfter;
-                                tmpWithdraw.STOCK_BEFORE = tmpTrans.STOCK_BEFORE;
-                                tmpWithdraw.STORE_ID = item.STORE_ID;
-                                tmpWithdraw.SYE_DEL = false;
-                                tmpWithdraw.SYS_TIME = DateTime.Now.TimeOfDay;
-                                tmpWithdraw.TRANS_DATE = DateTime.Now;
-                                tmpWithdraw.UPDATE_DATE = DateTime.Now;
-                                tmpWithdraw.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
-                                tmpWithdraw.VEHICLE_ID = item.VEHICLE_ID;
-                                tmpWithdraw.WITHDRAW_QTY = item2.PRODUCT_SENT_QTY;
-                                tmpWithdraw.WITHDRAW_REMAIN_QTY = tmpTrans.STOCK_BEFORE;
-                                tmpWithdraw.WITHDRAW_COMPLETE_FLG = 0;
-                                cmdStockProductWithdrawService.Add(tmpWithdraw);
+                                    STOCK_PRODUCT_WITHDRAW_TRANS tmpWithdraw = new STOCK_PRODUCT_WITHDRAW_TRANS();
+                                    tmpWithdraw.APPROVE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmpWithdraw.COLOR_ID = item2.COLOR_ID;
+                                    tmpWithdraw.COLOR_TYPE_ID = item2.COLOR_TYPE_ID;
+                                    tmpWithdraw.CREATE_DATE = DateTime.Now;
+                                    tmpWithdraw.CREATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmpWithdraw.ORDER_CODE = item2.ORDER_CODE;
+                                    tmpWithdraw.ORDER_DATE = item2.ORDER_DETAIL.CREATE_DATE;
+                                    tmpWithdraw.ORDER_DETAIL_ID = item2.ORDER_DETAIL_ID;
+                                    tmpWithdraw.ORDER_ID = item2.ORDER_DETAIL.ORDER_ID;
+                                    tmpWithdraw.PRODUCT_CODE = item2.PRODUCT.PRODUCT_CODE;
+                                    tmpWithdraw.PRODUCT_ID = item2.PRODUCT_ID;
+                                    tmpWithdraw.PRODUCT_QTY = item2.PRODUCT_SENT_QTY;
+                                    tmpWithdraw.PRODUCT_SEQ = item2.PRODUCT_SEQ;
+                                    tmpWithdraw.STOCK_AFTER = stockAfter;
+                                    tmpWithdraw.STOCK_BEFORE = tmpTrans.STOCK_BEFORE;
+                                    tmpWithdraw.STORE_ID = item.STORE_ID;
+                                    tmpWithdraw.SYE_DEL = false;
+                                    tmpWithdraw.SYS_TIME = DateTime.Now.TimeOfDay;
+                                    tmpWithdraw.TRANS_DATE = DateTime.Now;
+                                    tmpWithdraw.UPDATE_DATE = DateTime.Now;
+                                    tmpWithdraw.UPDATE_EMPLOYEE_ID = objUser.EMPLOYEE_ID;
+                                    tmpWithdraw.VEHICLE_ID = item.VEHICLE_ID;
+                                    tmpWithdraw.WITHDRAW_QTY = item2.PRODUCT_SENT_QTY;
+                                    tmpWithdraw.WITHDRAW_REMAIN_QTY = tmpTrans.STOCK_BEFORE;
+                                    tmpWithdraw.WITHDRAW_COMPLETE_FLG = 0;
+                                    cmdStockProductWithdrawService.Add(tmpWithdraw);
+                                }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            DebugLog.WriteLog(ex.ToString());
+                        }
+
+                        //Clear Session
+                        Session["DelOrderSelected"] = null;
+                        Session["DelOrderSelectedValidate"] = null;
+                        Session["DelEdit"] = null;
+
+                        Response.Redirect("~/Page/ManageOrderDeliveryPreview.aspx?delID=" + objDEl.DELIND_ID.ToString(),false);
                     }
                     catch (Exception ex)
                     {
+                        //txScope.Dispose();
                         DebugLog.WriteLog(ex.ToString());
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Warning Message", "<script>alert('ไม่สามารถทำรายการได้');</script>", true);
                     }
-
-                    UpdateOrderCompleteStatus(DetailItems);
-                    //Clear Session
-                    Session["DelOrderIndexSelected"] = null;
-                    Session["DelOrderSelected"] = null;
-                    Session["DelOrderSelectedValidate"] = null;
-                    Session["DelEdit"] = null;
-                    Response.RedirectPermanent("~/Page/ManageOrderDeliveryPreview.aspx?delID=" + objDEl.DELIND_ID.ToString());
-                }
-                catch (Exception ex)
-                {
-                    DebugLog.WriteLog(ex.ToString());
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Warning Message", "<script>alert('ไม่สามารถทำรายการได้');</script>", true);
-                }
-
+                //    txScope.Complete();
+                //}
             }
         }
     }

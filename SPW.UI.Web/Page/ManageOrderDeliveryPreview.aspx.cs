@@ -24,6 +24,8 @@ namespace SPW.UI.Web.Page
             {
                 CreatePageEngine();
                 PrepareDefaultScreen();
+
+                Session["DelOrderIndexSelected"] = null;
             }
             else
             {

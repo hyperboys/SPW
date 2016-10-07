@@ -77,6 +77,7 @@ namespace SPW.UI.Web.Page
             query += @" GROUP BY OD.PRODUCT_ID,OD.COLOR_ID,OD.COLOR_TYPE_ID,O.ORDER_CODE,O.ORDER_DATE,
                 S.STORE_CODE,PRD.PRODUCT_NAME,CT.COLOR_TYPE_NAME,C.COLOR_NAME";
 
+            #region SqlSumOld
 //            query += " UNION ";
 
 //            query += @" SELECT  TOP 1 'ยอดรวม' AS ORDER_CODE,'' AS ORDER_DATE,'' AS STORE_CODE,
@@ -113,8 +114,25 @@ namespace SPW.UI.Web.Page
 //            {
 //                query += @" AND O.ORDER_DATE BETWEEN CONVERT(DATE,'" + convertToDate102(txtStartDate.Text) + "') AND CONVERT(DATE,'" + convertToDate102(txtEndDate.Text) + "') ";
 //            }
+            #endregion
 
+            Sumary.Visible = true;
             DataSouce = sql.Query(query);
+            int sumOrder = 0;
+            int sumSend = 0;
+            int sumTotal = 0;
+
+            foreach (DataRow item in DataSouce.Rows)
+            {
+                sumOrder += Convert.ToInt32(item[6].ToString());
+                sumSend += Convert.ToInt32(item[7].ToString());
+                sumTotal += Convert.ToInt32(item[8].ToString());
+            }
+
+            this.sumOrder.Text = sumOrder.ToString();
+            this.sumSend.Text = sumSend.ToString();
+            this.sumTotal.Text = sumTotal.ToString();
+
             gridProduct.DataSource = DataSouce;
             gridProduct.DataBind();
         }

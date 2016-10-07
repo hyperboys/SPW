@@ -176,14 +176,21 @@ namespace SPW.DataService
 
         public void FlagStatus(List<int> objOrderItems, string Flag, int UpdateID)
         {
-            foreach (var item in objOrderItems)
+            try
             {
-                ORDER objOrder = Select(item);
-                objOrder.ORDER_STEP = Flag;
-                objOrder.UPDATE_EMPLOYEE_ID = UpdateID;
-                objOrder.UPDATE_DATE = DateTime.Now;
+                foreach (var item in objOrderItems)
+                {
+                    ORDER objOrder = Select(item);
+                    objOrder.ORDER_STEP = Flag;
+                    objOrder.UPDATE_EMPLOYEE_ID = UpdateID;
+                    objOrder.UPDATE_DATE = DateTime.Now;
+                }
+                this.Datacontext.SaveChanges();
             }
-            this.Datacontext.SaveChanges();
+            catch (Exception ex) 
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         public List<ORDER> GetAllByID(List<int> KeyItems)

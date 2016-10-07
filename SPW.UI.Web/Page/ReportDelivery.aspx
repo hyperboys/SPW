@@ -160,6 +160,31 @@
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                         <PagerSettings Mode="NumericFirstLast" />
                     </asp:GridView>
+                    <div class="row" runat="server" id="Sumary" visible="false">
+                        <table style="margin-right: 15px;" align="right">
+                            <tr>
+                                <td class="auto-style21" style="text-align: right">
+                                    <h4>ยอดสั่งทั้งหมด :
+                                        <asp:Label ID="sumOrder" runat="server"></asp:Label>
+                                        ชิ้น </h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style21" style="text-align: right">
+                                    <h4>ยอดส่งทั้งหมด :
+                                        <asp:Label ID="sumSend" runat="server"></asp:Label>
+                                        ชิ้น </h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style21" style="text-align: right">
+                                    <h4>ยอดสั่งคงเหลือทั้งหมด :
+                                        <asp:Label ID="sumTotal" runat="server"></asp:Label>
+                                        บาท</h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </ContentTemplate>
