@@ -82,7 +82,7 @@
                         <div class="form-group">
                             <%--first row--%>
                             <div class="row">
-                                <div class="col-md-2">ผู้บริหาร</div>
+                                <div class="col-md-2">ฝ่ายบุคคล</div>
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtPercenA" ondrop="return true;" onkeypress="return IsNumeric(event);" onpaste="return true;" class="form-control" runat="server" Height="35px" placeholder="เปอร์เซ็น"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="กรุณากรอกเปอร์เซ็น"
