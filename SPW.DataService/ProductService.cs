@@ -99,6 +99,10 @@ namespace SPW.DataService
         {
             return this.Datacontext.PRODUCT.Where(x => x.PRODUCT_CODE.Contains(item.PRODUCT_CODE)).ToList();
         }
+        public List<PRODUCT> GetAllByProductCode(string PRODUCT_CODE)
+        {
+            return this.Datacontext.PRODUCT.Where(x => x.PRODUCT_CODE.Contains(PRODUCT_CODE)).ToList();
+        }
 
         public List<PRODUCT> GetAllInclude()
         {
