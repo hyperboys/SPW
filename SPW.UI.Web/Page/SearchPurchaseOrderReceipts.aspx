@@ -86,13 +86,13 @@
                                 <%# (Eval("PO_HD_STATUS").ToString() == "10") ? "Active" : ((Eval("PO_HD_STATUS").ToString() == "20") ? "Approved" : ((Eval("PO_HD_STATUS").ToString() == "30") ? "Finish" : "Cancel")) %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
+                         <%--<asp:TemplateField HeaderText="ลบ" ShowHeader="False" ItemStyle-Width="5%">
                         <ItemTemplate>
                             <asp:ImageButton ID="ImageButton1" runat="server"  ItemStyle-Width="10%" CausesValidation="False" CommandName="Delete"
                                 ImageUrl="~/Image/Icon/close.png" Text="ลบ" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
