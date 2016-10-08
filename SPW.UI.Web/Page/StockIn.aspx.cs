@@ -106,15 +106,16 @@ namespace SPW.UI.Web.Page
         #region Business
         private void BindGridStockInSet()
         {
+            ;
             PanelSet.Visible = true;
             PanelAdd.Visible = false;
             gridStockInAdd.DataSource = null;
             var data1 = _StockProductColorService.GetAllColorDetail();
-            var data2 = _productService.GetAll();
+            var data2 = (txtPRODUCT_CODE.Text == "") ? _productService.GetAll() : _productService.GetAllByProductCode(txtPRODUCT_CODE.Text);
             List<DATAGRID> query = (from stock in data1
                                     join product in data2 on stock.PRODUCT_ID equals product.PRODUCT_ID into joined
                                     from j in joined.DefaultIfEmpty(new PRODUCT())
-                                    where j.CATEGORY_ID.Equals((ddlProductType.SelectedValue == "0" ? j.CATEGORY_ID : int.Parse(ddlProductType.SelectedValue)))
+                                    where j.CATEGORY_ID.Equals((ddlProductType.SelectedValue == "0" ? j.CATEGORY_ID : int.Parse(ddlProductType.SelectedValue)))                                     
                                     select new DATAGRID
                                     {
                                         PRODUCT_ID = stock.PRODUCT_ID,
