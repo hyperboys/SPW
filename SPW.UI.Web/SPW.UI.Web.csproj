@@ -160,7 +160,9 @@
     <Content Include="JQuery\npm.js" />
     <Content Include="JQuery\sb-admin-2.js" />
     <Content Include="PageLogin\Login.aspx" />
+    <Content Include="Page\ReportInvoice.aspx" />
     <Content Include="Page\ResultEmpListAssessment.aspx" />
+    <Content Include="Page\SearchInvoice.aspx" />
     <Content Include="Page\SearchStockWithdraw.aspx" />
     <Content Include="Page\SearchStockWithdrawExpose.aspx" />
     <Content Include="Page\SelectResultEmpAssessment.aspx" />
@@ -302,12 +304,26 @@
     <Compile Include="PageLogin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\ReportInvoice.aspx.cs">
+      <DependentUpon>ReportInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ReportInvoice.aspx.designer.cs">
+      <DependentUpon>ReportInvoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\ResultEmpListAssessment.aspx.cs">
       <DependentUpon>ResultEmpListAssessment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Page\ResultEmpListAssessment.aspx.designer.cs">
       <DependentUpon>ResultEmpListAssessment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page\SearchInvoice.aspx.cs">
+      <DependentUpon>SearchInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\SearchInvoice.aspx.designer.cs">
+      <DependentUpon>SearchInvoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page\SearchStockWithdraw.aspx.cs">
       <DependentUpon>SearchStockWithdraw.aspx</DependentUpon>

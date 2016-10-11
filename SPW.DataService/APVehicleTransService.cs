@@ -62,8 +62,23 @@ namespace SPW.DataService
 
         public void Edit(AP_VEHICLE_TRANS item)
         {
-
+            AP_VEHICLE_TRANS obj = Datacontext.AP_VEHICLE_TRANS.Where(x => x.AP_VEHICLE_TRANS_ID == (item.AP_VEHICLE_TRANS_ID)).FirstOrDefault();
+            obj.ASSET_TYPE_ID = item.ASSET_TYPE_ID;
+            obj.VEHICLE_ID = item.VEHICLE_ID;
+            obj.VEHICLE_CODE = item.VEHICLE_CODE;
+            obj.VENDOR_ID = item.VENDOR_ID;
+            obj.VENDOR_CODE = item.VENDOR_CODE;
+            obj.MILE_NO = item.MILE_NO;
+            obj.MA_START_DATE = item.MA_START_DATE;
+            obj.MA_FINISH_DATE = item.MA_FINISH_DATE;
+            obj.MA_AMOUNT = item.MA_AMOUNT;
+            obj.PAY_TYPE = item.PAY_TYPE;
+            obj.PAY_DATE = item.PAY_DATE;
+            obj.UPDATE_DATE = item.UPDATE_DATE;
+            obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+            Datacontext.SaveChanges();
         }
+
 
         public void EditList(List<AP_VEHICLE_TRANS> lstItem)
         {
@@ -73,6 +88,11 @@ namespace SPW.DataService
         public AP_VEHICLE_TRANS Select()
         {
             throw new NotImplementedException();
+        }
+
+        public AP_VEHICLE_TRANS Select(int AP_VEHICLE_TRANS_ID)
+        {
+            return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.AP_VEHICLE_TRANS_ID == AP_VEHICLE_TRANS_ID && x.SYE_DEL == false).FirstOrDefault();
         }
 
         public List<AP_VEHICLE_TRANS> GetAll()

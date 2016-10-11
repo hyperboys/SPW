@@ -269,9 +269,10 @@
                             <li runat="server" id="Asset" visible="true">
                                 <a href="#"><i class="fa fa-car fa-fw"></i>&nbsp;ทรัพย์สิน<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <%--<li>
-                                        <a href="../Page/ManageInvoice.aspx">ทำรายการส่งซ่อม</a>
-                                    </li>--%>
+                                    <li>
+                                        <a href="../Page/SearchInvoice.aspx">รายการส่งซ่อม</a>
+                                        <a href="../Page/ReportInvoice.aspx">พิมพ์รายการส่งซ่อม</a>
+                                    </li>
                                     <asp:ListView ID="listInvoice" runat="server">
                                         <ItemTemplate>
                                             <li>

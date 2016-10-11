@@ -89,6 +89,27 @@ namespace SPW.UI.Web.Page
 
             lblUser.Text = ((USER)Session["user"]).USER_NAME;
             pnl.Visible = false;
+
+
+            if (Request.QueryString["AP_VEHICLE_TRANS_ID"] != null)
+            {
+                AP_VEHICLE_TRANS apTrans = _apVehicleTransService.Select(int.Parse(Request.QueryString["AP_VEHICLE_TRANS_ID"].ToString()));
+                if (apTrans != null)
+                {
+                    VENDOR vendor = _supplierService.Select(apTrans.VENDOR_ID);
+                    ddlAssetType.SelectedValue = apTrans.ASSET_TYPE_ID.ToString();
+                    ddlVehicle.SelectedValue = apTrans.VEHICLE_ID.ToString();
+                    txtVendorName.Text = vendor.VENDOR_NAME;
+                    txtVendorCode.Text = vendor.VENDOR_CODE;
+                    txtMileNo.Text = apTrans.MILE_NO.ToString();
+                    txtStartDate.Text = apTrans.MA_START_DATE.ToString("dd/MM/yyyy");
+                    txtEndDate.Text = apTrans.MA_FINISH_DATE.ToString("dd/MM/yyyy");
+                    txtAmt.Text = apTrans.MA_AMOUNT.ToString();
+                    lblUser.Text = apTrans.CREATE_EMPLOYEE_ID.ToString();
+                    btnShow.Visible = false;
+                    btnSave.Visible = false;
+                }
+            }
         }
         private bool SaveData()
         {
@@ -118,6 +139,43 @@ namespace SPW.UI.Web.Page
                 data.Action = ActionEnum.Create;
 
                 _apVehicleTransService.Add(data);
+            }
+            catch (Exception ex)
+            {
+                returnValue = false;
+            }
+
+
+            return returnValue;
+        }
+        private bool UpdateData()
+        {
+            bool returnValue = true;
+
+            try
+            {
+                AP_VEHICLE_TRANS data = new AP_VEHICLE_TRANS();
+                data.AP_VEHICLE_TRANS_ID = int.Parse(Request.QueryString["AP_VEHICLE_TRANS_ID"].ToString());
+                data.AP_VEHICLE_TRANS_DATE = DateTime.Now;
+                data.ASSET_TYPE_ID = int.Parse(ddlAssetType.SelectedValue);
+                data.VEHICLE_ID = int.Parse(ddlVehicle.SelectedValue);
+                data.VEHICLE_CODE = _vehicleService.GetVehicleCode(int.Parse(ddlVehicle.SelectedValue));
+                data.VENDOR_ID = _supplierService.GetVendorID(txtVendorCode.Text);
+                data.VENDOR_CODE = txtVendorCode.Text;
+                data.MILE_NO = int.Parse(txtMileNo.Text);
+                data.MA_START_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", null);
+                data.MA_FINISH_DATE = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", null);
+                data.MA_AMOUNT = Decimal.Parse(txtAmt.Text);
+                data.PAY_TYPE = null;
+                data.PAY_DATE = null;
+                data.CREATE_DATE = DateTime.Now;
+                data.UPDATE_DATE = DateTime.Now;
+                data.CREATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
+                data.UPDATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
+                data.SYE_DEL = false;
+                data.Action = ActionEnum.Update;
+
+                _apVehicleTransService.Edit(data);
             }
             catch (Exception ex)
             {
@@ -212,7 +270,7 @@ namespace SPW.UI.Web.Page
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
@@ -223,6 +281,38 @@ namespace SPW.UI.Web.Page
                 btnSave.Visible = false;
                 pnl.Visible = true;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "setInterval(function(){location.href='ManageInvoice.aspx';},2000);", true);
+            }
+            else
+            {
+                lblError.Text = "พบข้อผิดพลาดในการบันทึก";
+            }
+        }
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            bool returnValue = false;
+            try
+            {
+                if (ValidateData())
+                {
+                    returnValue = UpdateData();
+                }
+                else
+                {
+                    lblError.Text = "กรุณากรอกข้อมูลให้ถูกต้อง";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+
+            if (returnValue)
+            {
+                btnSave.Enabled = false;
+                btnSave.Visible = false;
+                pnl.Visible = true;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "setInterval(function(){location.href='SearchInvoice.aspx';},2000);", true);
             }
             else
             {

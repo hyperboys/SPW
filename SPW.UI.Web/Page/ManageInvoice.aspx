@@ -37,7 +37,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="page-header">ทำรายการส่งซ่อม</h1>
+    <h1 class="page-header">
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Page/SearchInvoice.aspx">ค้นหารายการส่งซ่อม</asp:HyperLink>
+        /
+        <asp:Label ID="lblName" runat="server" Text="ทำรายการส่งซ่อม"></asp:Label>
+    </h1>
+    <div class="alert alert-info" id="Div4" runat="server" visible="false">
+        <strong>บันทึกข้อมูลสำเร็จ Save Success</strong>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style type="text/css">
@@ -198,7 +205,10 @@
                                         <div class="col-md-2">ชื่อผู้บันทึก  <asp:Label ID="lblUser" runat="server" ForeColor="Blue"></asp:Label></div>
                                         <div class="col-md-3"></div>
                                         <div class="col-md-2"></div>
-                                        <div class="col-md-5"><asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnSave_Click" /></div>                                        
+                                        <div class="col-md-5">
+                                            <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnSave_Click" />
+                                            <asp:Button ID="btnUpdate" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnUpdate_Click" />
+                                        </div>                                        
                                     </div>
                                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                                 </div>
