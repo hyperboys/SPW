@@ -262,6 +262,7 @@
     <Content Include="Page\StockWithdrawExpose.aspx" />
     <Content Include="Page\StockWithdrawIssue.aspx" />
     <Content Include="Reports\Report.aspx" />
+    <Content Include="Reports\Report2.aspx" />
     <Content Include="Reports\ResultEmpListAssessmentPageReport.aspx" />
     <Content Include="Reports\PayInSlipPaper.aspx" />
     <Content Include="Reports\PayInSummary.aspx" />
@@ -1023,6 +1024,11 @@
       <DependentUpon>StockWithdrawIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\InvoiceRptDataTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceRptDataTable.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\PurchaseOrdersRptDataTable.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1034,6 +1040,19 @@
     </Compile>
     <Compile Include="Reports\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Report2.aspx.cs">
+      <DependentUpon>Report2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Report2.aspx.designer.cs">
+      <DependentUpon>Report2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportInvoices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportInvoices.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ReportPurchaseOrders.cs">
       <AutoGen>True</AutoGen>
@@ -1232,6 +1251,17 @@
     <Content Include="Reports\MonthlySaleData.xsc">
       <DependentUpon>MonthlySaleData.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\InvoiceRptDataTable.xsc">
+      <DependentUpon>InvoiceRptDataTable.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\InvoiceRptDataTable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InvoiceRptDataTable.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\InvoiceRptDataTable.xss">
+      <DependentUpon>InvoiceRptDataTable.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\MonthlySaleData.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1357,6 +1387,10 @@
     <EmbeddedResource Include="Reports\PayInSummaryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PayInSummaryReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportInvoices.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportInvoices.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportPurchaseOrders.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

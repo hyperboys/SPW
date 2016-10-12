@@ -2,6 +2,27 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+    <script type="text/javascript" src="../JQuery/bootstrap-datepicker.js"></script>
+    <link href="../CSS/datepicker.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        //แก้ไขตอนที่ใส่ update panel แล้ว datetimepicker ไม่ทำงาน
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+            function EndRequestHandler(sender, args) {
+                $('.datetimepicker').datepicker({
+                    format: 'dd/mm/yyyy',
+                    showOn: "button"
+                });
+            }
+        });
+        $(function () {
+            $('.datetimepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                showOn: "button"
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="page-header">ค้นหารายการส่งซ่อม</h1>
@@ -32,17 +53,68 @@
                         <div class="form-group">
                             <table style="width: 630px">
                                 <tr>
-                                    <td>รหัส</td>
+                                    <td>ทรัพย์สิน</td>
                                     <td class="auto-style6" style="text-align: center"></td>
                                     <td>
-                                        <asp:TextBox ID="txtTransID" class="form-control" runat="server" Width="115px"></asp:TextBox>
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <asp:DropDownList ID="ddlAssetType" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True">
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
                                     </td>
                                     <td style="text-align: center">&nbsp;</td>
-                                    <td>รายการ</td>
+                                    <td>ทะเบียน</td>
                                     <td class="auto-style6" style="text-align: center"></td>
                                     <td>
-                                        <asp:TextBox ID="txtRnNo" class="form-control" runat="server" Width="115px"></asp:TextBox>
+                                        <div class='input-group date' id='Div1'>
+                                            <asp:DropDownList ID="ddlVehicle" class="form-control" runat="server" Height="35px" Width="200px" AutoPostBack="True">
+                                                <asp:ListItem Value="0">กรุณาเลือก</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td>
+                                    </td>
+                                    <td style="text-align: center">&nbsp;</td>
+                                    <td></td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>เริ่มต้น</td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td>
+                                        <div class='input-group date' id='Div2'>
+                                            <asp:TextBox ID="txtStartDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่เริ่มต้น"></asp:TextBox>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center">&nbsp;</td>
+                                    <td>สิ้นสุด</td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td>
+                                        <div class='input-group date' id='Div3'>
+                                            <asp:TextBox ID="txtEndDate" class="form-control datetimepicker" runat="server" Height="35px" placeholder="วันที่สิ้นสุด"></asp:TextBox>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td></td>
+                                    <td style="text-align: center">&nbsp;</td>
+                                    <td></td>
+                                    <td class="auto-style6" style="text-align: center"></td>
+                                    <td></td>
                                     <td style="text-align: center">&nbsp;</td>
                                     <td>
                                         <asp:Button ID="btnSearch" class="btn btn-primary" runat="server" Text="ค้นหา" OnClick="btnSearch_Click" />
@@ -74,20 +146,32 @@
                             ShowCancelButton="False" ShowEditButton="True" ItemStyle-Width="10%" HeaderStyle-HorizontalAlign="Center">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:CommandField>
-                        <asp:BoundField DataField="AP_VEHICLE_TRANS_ID" HeaderText="เลขที่ส่งซ่อม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
+                        <asp:BoundField DataField="AP_VEHICLE_TRANS_ID" HeaderText="เลขที่ส่งซ่อม" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="AP_VEHICLE_TRANS_DATE" HeaderText="วันที่ส่งซ่อม" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
+                        <asp:BoundField DataField="AP_VEHICLE_TRANS_DATE" HeaderText="วันที่ส่งซ่อม" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/M/yyyy}">
+                            <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="ASSET_TYPE_ID" HeaderText="ประเภททรัพย์สิน" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
+                        <asp:TemplateField HeaderText="ประเภททรัพย์สิน" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <%# ((SPW.Model.AP_VEHICLE_TRANS) Container.DataItem).ASSET_TYPE.ASSET_TYPE_NAME %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ทะเบียนรถ" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <%# ((SPW.Model.AP_VEHICLE_TRANS) Container.DataItem).VEHICLE.VEHICLE_REGNO %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="VENDOR_CODE" HeaderText="รหัสซัพพลายเออร์" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                            <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
-                        <asp:BoundField DataField="VEHICLE_CODE" HeaderText="รหัสรถ" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="VENDOR_CODE" HeaderText="รหัสซัพพลายเออร์" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center">
-                            <ItemStyle Width="20%"></ItemStyle>
+                        <asp:TemplateField HeaderText="ชื่อซัพพลายเออร์" ItemStyle-Width="10%">
+                            <ItemTemplate>
+                                <%# ((SPW.Model.AP_VEHICLE_TRANS) Container.DataItem).VENDOR.VENDOR_NAME %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="MA_AMOUNT" HeaderText="ราคา" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:#,0}">
+                            <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />

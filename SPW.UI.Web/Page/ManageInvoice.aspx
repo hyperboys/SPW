@@ -196,16 +196,18 @@
                                                 <span class="input-group-addon">บาท</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2">อาการเสีย</div>
+                                        <div class="col-md-3">
+                                                <asp:TextBox ID="txtReason" class="form-control" runat="server" Height="35px" placeholder="อาการเสีย" ></asp:TextBox>
+                                        </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                     <%--eight row--%>
                                     <div class="row">
                                         <div class="col-md-2">ชื่อผู้บันทึก  <asp:Label ID="lblUser" runat="server" ForeColor="Blue"></asp:Label></div>
                                         <div class="col-md-3"></div>
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3">
                                             <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnSave_Click" />
                                             <asp:Button ID="btnUpdate" class="btn btn-primary" runat="server" Text="บันทึก" OnClick="btnUpdate_Click" />
                                         </div>                                        

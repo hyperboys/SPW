@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
+using System.Globalization;
 
 namespace SPW.UI.Web.Page
 {
@@ -13,6 +14,8 @@ namespace SPW.UI.Web.Page
     {
         private DataServiceEngine _dataServiceEngine;
         private APVehicleTransService cmdAPVehicleTransService;
+        private AssetTypeService _assetTypeService;
+        private VehicleService _vehicleService;
         public List<AP_VEHICLE_TRANS> DataSouce
         {
             get
@@ -41,6 +44,8 @@ namespace SPW.UI.Web.Page
 
         private void InitialDataService()
         {
+            _assetTypeService = (AssetTypeService)_dataServiceEngine.GetDataService(typeof(AssetTypeService));
+            _vehicleService = (VehicleService)_dataServiceEngine.GetDataService(typeof(VehicleService));
             cmdAPVehicleTransService = (APVehicleTransService)_dataServiceEngine.GetDataService(typeof(APVehicleTransService));
         }
 
@@ -73,6 +78,12 @@ namespace SPW.UI.Web.Page
 
         private void InitialData()
         {
+            List<ASSET_TYPE> listAssetType = _assetTypeService.GetAll();
+            listAssetType.ForEach(item => ddlAssetType.Items.Add(new ListItem(item.ASSET_TYPE_NAME, item.ASSET_TYPE_ID.ToString())));
+
+            List<VEHICLE> listVehicle = _vehicleService.GetAll();
+            listVehicle.ForEach(item => ddlVehicle.Items.Add(new ListItem(item.VEHICLE_REGNO, item.VEHICLE_ID.ToString())));
+
             DataSouce = cmdAPVehicleTransService.GetAll();
             gdvInv.DataSource = DataSouce;
             gdvInv.DataBind();
@@ -85,13 +96,17 @@ namespace SPW.UI.Web.Page
 
         private void SearchGrid()
         {
-            if (txtTransID.Text.Equals(""))
+            if (!txtStartDate.Text.Equals("") || !txtEndDate.Text.Equals("") || ddlAssetType.SelectedIndex != 0 || ddlVehicle.SelectedIndex != 0)
             {
-                gdvInv.DataSource = DataSouce;
+                gdvInv.DataSource = DataSouce.Where(x => x.AP_VEHICLE_TRANS_DATE >= ((txtStartDate.Text == "") ? x.AP_VEHICLE_TRANS_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)) &&
+                    x.AP_VEHICLE_TRANS_DATE <= ((txtEndDate.Text == "") ? x.AP_VEHICLE_TRANS_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture)) &&
+                    x.ASSET_TYPE_ID == ((ddlAssetType.SelectedIndex == 0) ? x.ASSET_TYPE_ID : int.Parse(ddlAssetType.SelectedValue)) &&
+                    x.VEHICLE_ID == ((ddlVehicle.SelectedIndex == 0) ? x.VEHICLE_ID : int.Parse(ddlVehicle.SelectedValue)) && 
+                    x.SYE_DEL == false).ToList();
             }
             else
             {
-                gdvInv.DataSource = DataSouce.Where(x => x.AP_VEHICLE_TRANS_ID == int.Parse(txtTransID.Text) && x.SYE_DEL == false).ToList();
+                gdvInv.DataSource = DataSouce;
             }
             gdvInv.DataBind();
         }
@@ -115,7 +130,10 @@ namespace SPW.UI.Web.Page
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtTransID.Text = "";
+            ddlAssetType.SelectedIndex = 0;
+            ddlVehicle.SelectedIndex = 0;
+            txtStartDate.Text = "";
+            txtEndDate.Text = "";
             SearchGrid();
         }
     }
