@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-md-2">อาการเสีย</div>
                                         <div class="col-md-3">
-                                                <asp:TextBox ID="txtReason" class="form-control" runat="server" Height="35px" placeholder="อาการเสีย" ></asp:TextBox>
+                                                <asp:TextBox ID="txtReason" class="form-control" runat="server" Height="140px" TextMode="MultiLine" Rows="5" placeholder="อาการเสีย" ></asp:TextBox>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -255,7 +255,7 @@
                                 <!-- /.col-lg-6 (nested) -->
                             </div>      
                         </div>
-                        <asp:GridView ID="gridSupplier" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="VENDOR_ID" PageSize="20" EmptyDataText="ไม่พบข้อมูลซัพพลายเออร์"
+                        <asp:GridView ID="gridSupplier" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="VENDOR_ID" PageSize="5" EmptyDataText="ไม่พบข้อมูลซัพพลายเออร์"
                             Style="text-align: center" CssClass="grid">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>

@@ -44,6 +44,7 @@ namespace SPW.UI.Web.Page
             public decimal MA_AMOUNT { get; set; }
             public string VEHICLE_REGNO { get; set; }
             public string ASSET_TYPE_NAME { get; set; }
+            public string MA_DESC { get; set; }
         }
 
         private void ReloadPageEngine()
@@ -189,6 +190,7 @@ namespace SPW.UI.Web.Page
                         _INVDATATABLE.MA_AMOUNT = f.MA_AMOUNT;
                         _INVDATATABLE.VEHICLE_REGNO = f.VEHICLE.VEHICLE_REGNO;
                         _INVDATATABLE.ASSET_TYPE_NAME = f.ASSET_TYPE.ASSET_TYPE_NAME;
+                        _INVDATATABLE.MA_DESC = f.MA_DESC;
                         lstINVDATATABLE.Add(_INVDATATABLE);
                     });
             }
