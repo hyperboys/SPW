@@ -104,9 +104,9 @@ namespace SPW.UI.Web.Page
                 if (ddlRawProductType.SelectedValue == "1")
                 {
                     obj.RAW_NAME2 = txtRawName2.Text;
-                    obj.RAW_WD = decimal.Parse(txtRawWD.Text);
-                    obj.RAW_HG = decimal.Parse(txtRawHG.Text);
-                    obj.RAW_BD = decimal.Parse(txtRawBD.Text);
+                    obj.RAW_WD = txtRawWD.Text;
+                    obj.RAW_HG = txtRawHG.Text;
+                    obj.RAW_BD = txtRawBD.Text;
                     obj.RAW_TYPE_ID = int.Parse(ddlRawProductType.SelectedValue);
                     obj.RAW_WD_UID = int.Parse(ddlWDUnit.SelectedValue);
                     obj.RAW_HG_UID = int.Parse(ddlHGUnit.SelectedValue);

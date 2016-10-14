@@ -105,6 +105,7 @@ namespace SPW.UI.Web.Page
                     txtStartDate.Text = apTrans.MA_START_DATE.ToString("dd/MM/yyyy");
                     txtEndDate.Text = apTrans.MA_FINISH_DATE.ToString("dd/MM/yyyy");
                     txtAmt.Text = apTrans.MA_AMOUNT.ToString();
+                    txtReason.Text = apTrans.MA_DESC;
                     lblUser.Text = apTrans.CREATE_EMPLOYEE_ID.ToString();
                     btnShow.Visible = false;
                     btnSave.Visible = false;
@@ -136,6 +137,7 @@ namespace SPW.UI.Web.Page
                 data.CREATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
                 data.UPDATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
                 data.SYE_DEL = false;
+                data.MA_DESC = txtReason.Text;
                 data.Action = ActionEnum.Create;
 
                 _apVehicleTransService.Add(data);
@@ -173,6 +175,7 @@ namespace SPW.UI.Web.Page
                 data.CREATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
                 data.UPDATE_EMPLOYEE_ID = ((USER)Session["user"]).USER_ID;
                 data.SYE_DEL = false;
+                data.MA_DESC = txtReason.Text;
                 data.Action = ActionEnum.Update;
 
                 _apVehicleTransService.Edit(data);

@@ -21,6 +21,7 @@ namespace SPW.Model
         public string VEHICLE_CODE { get; set; }
         public int VENDOR_ID { get; set; }
         public string VENDOR_CODE { get; set; }
+        public string MA_DESC { get; set; }
         public int MILE_NO { get; set; }
         public System.DateTime MA_START_DATE { get; set; }
         public System.DateTime MA_FINISH_DATE { get; set; }

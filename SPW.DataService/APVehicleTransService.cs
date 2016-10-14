@@ -76,6 +76,7 @@ namespace SPW.DataService
             obj.PAY_DATE = item.PAY_DATE;
             obj.UPDATE_DATE = item.UPDATE_DATE;
             obj.UPDATE_EMPLOYEE_ID = item.UPDATE_EMPLOYEE_ID;
+            obj.MA_DESC = item.MA_DESC;
             Datacontext.SaveChanges();
         }
 
@@ -99,7 +100,7 @@ namespace SPW.DataService
         {
             try
             {
-                return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList();
+                return this.Datacontext.AP_VEHICLE_TRANS.Include("ASSET_TYPE").Include("VEHICLE").Include("VENDOR").Where(x => x.SYE_DEL == false).ToList();
             }
             catch (Exception ex)
             {

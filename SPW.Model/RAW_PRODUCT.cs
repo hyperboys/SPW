@@ -28,11 +28,11 @@ namespace SPW.Model
         public string RAW_NAME1 { get; set; }
         public string RAW_NAME2 { get; set; }
         public int RAW_TYPE_ID { get; set; }
-        public Nullable<decimal> RAW_WD { get; set; }
+        public string RAW_WD { get; set; }
         public Nullable<int> RAW_WD_UID { get; set; }
-        public Nullable<decimal> RAW_HG { get; set; }
+        public string RAW_HG { get; set; }
         public Nullable<int> RAW_HG_UID { get; set; }
-        public Nullable<decimal> RAW_BD { get; set; }
+        public string RAW_BD { get; set; }
         public Nullable<int> RAW_BD_UID { get; set; }
         public Nullable<System.DateTime> CREATE_DATE { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
