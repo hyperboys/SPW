@@ -111,6 +111,10 @@ namespace SPW.UI.Web.Page
                     btnSave.Visible = false;
                 }
             }
+            else
+            {
+                btnUpdate.Visible = false;
+            }
         }
         private bool SaveData()
         {

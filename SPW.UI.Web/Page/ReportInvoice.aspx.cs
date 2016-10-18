@@ -45,6 +45,8 @@ namespace SPW.UI.Web.Page
             public string VEHICLE_REGNO { get; set; }
             public string ASSET_TYPE_NAME { get; set; }
             public string MA_DESC { get; set; }
+            public System.DateTime MA_START_DATE { get; set; }
+            public System.DateTime MA_FINISH_DATE { get; set; }
         }
 
         private void ReloadPageEngine()
