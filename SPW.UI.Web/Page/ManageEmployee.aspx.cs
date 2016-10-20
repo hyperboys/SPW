@@ -119,6 +119,7 @@ namespace SPW.UI.Web.Page
                     txtSoldier.Text = _employee.MILI_STT;
                     txtUniversity.Text = _employee.EDUCATION_NAME;
                     txtBDate.Text = _employee.BIR_DATE != null ? _employee.BIR_DATE.Value.ToString("dd/MM/yyyy") : "";
+                    ddlSex.SelectedValue = _employee.GEND;
                     USER userItem = cmdUser.SelectByEmp(_employee.EMPLOYEE_ID);
                     if (userItem != null)
                     {
