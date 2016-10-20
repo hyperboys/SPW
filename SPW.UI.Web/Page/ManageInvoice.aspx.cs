@@ -131,8 +131,8 @@ namespace SPW.UI.Web.Page
                 data.VENDOR_ID = _supplierService.GetVendorID(txtVendorCode.Text);
                 data.VENDOR_CODE = txtVendorCode.Text;
                 data.MILE_NO = int.Parse(txtMileNo.Text);
-                data.MA_START_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", null);
-                data.MA_FINISH_DATE = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", null);
+                data.MA_START_DATE = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                data.MA_FINISH_DATE = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 data.MA_AMOUNT = Decimal.Parse(txtAmt.Text);
                 data.PAY_TYPE = null;
                 data.PAY_DATE = null;

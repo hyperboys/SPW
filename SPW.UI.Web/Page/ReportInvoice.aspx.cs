@@ -193,6 +193,8 @@ namespace SPW.UI.Web.Page
                         _INVDATATABLE.VEHICLE_REGNO = f.VEHICLE.VEHICLE_REGNO;
                         _INVDATATABLE.ASSET_TYPE_NAME = f.ASSET_TYPE.ASSET_TYPE_NAME;
                         _INVDATATABLE.MA_DESC = f.MA_DESC;
+                        _INVDATATABLE.MA_START_DATE = f.MA_START_DATE;
+                        _INVDATATABLE.MA_FINISH_DATE = f.MA_FINISH_DATE;
                         lstINVDATATABLE.Add(_INVDATATABLE);
                     });
             }
