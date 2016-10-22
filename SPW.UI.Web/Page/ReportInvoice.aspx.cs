@@ -25,8 +25,8 @@ namespace SPW.UI.Web.Page
         {
             get
             {
-                var list = (List<AP_VEHICLE_TRANS>)ViewState["listINV"];
-                return list;
+                List<AP_VEHICLE_TRANS> list = (List<AP_VEHICLE_TRANS>)ViewState["listINV"];
+                return list.OrderBy(o => o.MA_START_DATE).ToList(); ;
             }
             set
             {
@@ -205,7 +205,7 @@ namespace SPW.UI.Web.Page
 
             DataTable dt1 = new DataTable();
             dt1 = ToDataTable(lstINVDATATABLE);
-            dt1.TableName = "INVDATATABLE";
+            dt1.TableName = "INVDATATABLE";            
             ds.Tables.Add(dt1);
             rpt.SetDataSource(ds);
             Session["DataToReportINV"] = rpt;
