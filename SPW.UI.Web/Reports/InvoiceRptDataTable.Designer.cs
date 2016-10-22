@@ -469,7 +469,7 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public INVDATATABLERow AddINVDATATABLERow(string AP_VEHICLE_TRANS_ID, string AP_VEHICLE_TRANS_DATE, string ASSET_TYPE_ID, string VEHICLE_ID, string VENDOR_ID, string MILE_NO, decimal MA_AMOUNT, string VEHICLE_REGNO, string ASSET_TYPE_NAME, string MA_DESC, string MA_START_DATE, string MA_FINISH_DATE) {
+            public INVDATATABLERow AddINVDATATABLERow(string AP_VEHICLE_TRANS_ID, string AP_VEHICLE_TRANS_DATE, string ASSET_TYPE_ID, string VEHICLE_ID, string VENDOR_ID, string MILE_NO, decimal MA_AMOUNT, string VEHICLE_REGNO, string ASSET_TYPE_NAME, string MA_DESC, System.DateTime MA_START_DATE, System.DateTime MA_FINISH_DATE) {
                 INVDATATABLERow rowINVDATATABLERow = ((INVDATATABLERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AP_VEHICLE_TRANS_ID,
@@ -543,9 +543,9 @@ namespace SPW.UI.Web.Reports {
                 base.Columns.Add(this.columnASSET_TYPE_NAME);
                 this.columnMA_DESC = new global::System.Data.DataColumn("MA_DESC", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMA_DESC);
-                this.columnMA_START_DATE = new global::System.Data.DataColumn("MA_START_DATE", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnMA_START_DATE = new global::System.Data.DataColumn("MA_START_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMA_START_DATE);
-                this.columnMA_FINISH_DATE = new global::System.Data.DataColumn("MA_FINISH_DATE", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnMA_FINISH_DATE = new global::System.Data.DataColumn("MA_FINISH_DATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMA_FINISH_DATE);
             }
             
@@ -849,10 +849,10 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MA_START_DATE {
+            public System.DateTime MA_START_DATE {
                 get {
                     try {
-                        return ((string)(this[this.tableINVDATATABLE.MA_START_DATEColumn]));
+                        return ((global::System.DateTime)(this[this.tableINVDATATABLE.MA_START_DATEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'MA_START_DATE\' in table \'INVDATATABLE\' is DBNull.", e);
@@ -865,10 +865,10 @@ namespace SPW.UI.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MA_FINISH_DATE {
+            public System.DateTime MA_FINISH_DATE {
                 get {
                     try {
-                        return ((string)(this[this.tableINVDATATABLE.MA_FINISH_DATEColumn]));
+                        return ((global::System.DateTime)(this[this.tableINVDATATABLE.MA_FINISH_DATEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'MA_FINISH_DATE\' in table \'INVDATATABLE\' is DBNull.", e);
