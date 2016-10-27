@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.DAL;
+using SPW.Common;
 
 namespace SPW.UI.Web.Page
 {
@@ -102,15 +103,24 @@ namespace SPW.UI.Web.Page
                     ddlSector.SelectedValue = _store.SECTOR_ID.ToString();
                     txtProvince.Text = _store.PROVINCE.PROVINCE_NAME;
                     ddlZone.SelectedValue = _store.ZONE_ID.ToString();
-                    ddlSell.SelectedValue = _store.ZONE_DETAIL.EMPLOYEE_ID.ToString();
+                    if (_store.ROAD != null)
+                    {
+                        txtRoad.Text = _store.ROAD.ROAD_NAME;
+                    }
+                    if (_store.ZONE_DETAIL != null)
+                    {
+                        ddlSell.SelectedValue = _store.ZONE_DETAIL.EMPLOYEE_ID.ToString();
+                    }
                     txtRoad.Text = _store.STORE_STREET;
                     flag.Text = "Edit";
                     AutoCompleteProvince(ddlSector.SelectedValue);
+                    AutoCompleteRoad();
                 }
-                else 
-                {
-                    AutoCompleteProvince();
-                }
+            }
+            else
+            {
+                AutoCompleteProvince();
+                AutoCompleteRoad();
             }
         }
 
@@ -130,65 +140,146 @@ namespace SPW.UI.Web.Page
             txtProvince.Attributes.Add("data-source", str);
         }
 
+        private void AutoCompleteRoad(string ID = "")
+        {
+            List<string> nameList = SearchAutoCompleteDataService.Search("ROAD", "ROAD_NAME", "ROAD_NAME");
+            string str = "";
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                str = str + '"' + nameList[i].ToString() + '"' + ',';
+            }
+            if (str != "")
+            {
+                str = str.Remove(str.Length - 1);
+            }
+            str = "[" + str + "]";
+            txtRoad.Attributes.Add("data-source", str);
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            USER userItem = Session["user"] as USER;
-            var obj = new STORE();
-
-            obj.PROVINCE_ID = cmdProvice.Select(txtProvince.Text).PROVINCE_ID;
-            obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
-            obj.STORE_ADDR1 = txtAddress.Text;
-            obj.STORE_CODE = popTxtStoreCode.Text;
-            obj.STORE_DISTRICT = txtAmpur.Text;
-            obj.STORE_FAX = txtFax.Text;
-            obj.STORE_MOBILE = txtMobli.Text;
-            obj.STORE_NAME = poptxtStoreName.Text;
-            obj.STORE_POSTCODE = txtPostCode.Text;
-            obj.STORE_STREET = txtRoad.Text;
-            obj.STORE_SUBDISTRICT = txtTumbon.Text;
-            obj.STORE_TEL1 = txtTel1.Text;
-            obj.STORE_TEL2 = txtTel2.Text;
-            obj.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
-            if (flag.Text.Equals("Add"))
+            try
             {
-                obj.Action = ActionEnum.Create;
-                obj.ZONE_DETAIL = new ZONE_DETAIL();
-                obj.ZONE_DETAIL.EMPLOYEE_ID = Convert.ToInt32(ddlSell.SelectedValue);
-                obj.ZONE_DETAIL.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
-                obj.ZONE_DETAIL.CREATE_DATE = DateTime.Now;
-                obj.ZONE_DETAIL.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.ZONE_DETAIL.UPDATE_DATE = DateTime.Now;
-                obj.ZONE_DETAIL.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.ZONE_DETAIL.SYE_DEL = false;
-                obj.CREATE_DATE = DateTime.Now;
-                obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdStore.Add(obj);
-            }
-            else
-            {
-                if (obj.PROVINCE_ID == 0)
+                USER userItem = Session["user"] as USER;
+                var obj = new STORE();
+                if (ddlSector.SelectedValue == "0")
+                {
+                    string script = "alert(\"กรุณาเลือกข้อมูลภาค\");";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+                    return;
+                }
+                if (cmdProvice.Select(txtProvince.Text) != null)
+                {
+                    obj.PROVINCE_ID = cmdProvice.Select(txtProvince.Text).PROVINCE_ID;
+                }
+                else
+                {
+                    string script = "alert(\"กรุณากรอกข้อมูลจังหวัดให้ถูกต้อง\");";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+                    return;
+                }
+                if (ddlZone.SelectedValue == "0") 
+                {
+                    string script = "alert(\"กรุณากรอกข้อมูลราคาขายสินค้า\");";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+                    return;
+                }
+                if (ddlSell.SelectedValue == "0")
+                {
+                    string script = "alert(\"กรุณากรอกข้อมูล	พนักงานขาย\");";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+                    return;
+                }
+                
+                obj.SECTOR_ID = Convert.ToInt32(ddlSector.SelectedValue);
+                obj.STORE_ADDR1 = txtAddress.Text;
+                obj.STORE_CODE = popTxtStoreCode.Text;
+                obj.STORE_DISTRICT = txtAmpur.Text;
+                obj.STORE_FAX = txtFax.Text;
+                obj.STORE_MOBILE = txtMobli.Text;
+                obj.STORE_NAME = poptxtStoreName.Text;
+                obj.STORE_POSTCODE = txtPostCode.Text;
+                obj.STORE_STREET = txtRoad.Text;
+                obj.STORE_SUBDISTRICT = txtTumbon.Text;
+                obj.STORE_TEL1 = txtTel1.Text;
+                obj.STORE_TEL2 = txtTel2.Text;
+                if (ddlZone.SelectedValue != "0")
+                {
+                    obj.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
+                }
+                else
+                {
+                    obj.ZONE = null;
+                }
+                if (flag.Text.Equals("Add"))
+                {
+                    obj.Action = ActionEnum.Create;
+                    obj.ZONE_DETAIL = new ZONE_DETAIL();
+                    obj.ZONE_DETAIL.EMPLOYEE_ID = Convert.ToInt32(ddlSell.SelectedValue);
+                    obj.ZONE_DETAIL.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
+                    obj.ZONE_DETAIL.CREATE_DATE = DateTime.Now;
+                    obj.ZONE_DETAIL.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.ZONE_DETAIL.UPDATE_DATE = DateTime.Now;
+                    obj.ZONE_DETAIL.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.ZONE_DETAIL.SYE_DEL = false;
+                    obj.CREATE_DATE = DateTime.Now;
+                    obj.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.SYE_DEL = false;
+                    cmdStore.Add(obj);
+                }
+                else
                 {
                     _store = cmdStore.Select(Convert.ToInt32(Request.QueryString["id"].ToString()));
-                    obj.PROVINCE_ID = _store.PROVINCE_ID;
-                }
-                obj.ZONE_DETAIL = cmdStore.Select(Convert.ToInt32(Request.QueryString["id"].ToString())).ZONE_DETAIL;
-                obj.ZONE_DETAIL.EMPLOYEE_ID = Convert.ToInt32(ddlSell.SelectedValue);
-                obj.Action = ActionEnum.Update;
-                obj.STORE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                obj.UPDATE_DATE = DateTime.Now;
-                obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
-                obj.SYE_DEL = false;
-                cmdStore.Edit(obj);
-            }
+                    if (obj.PROVINCE_ID == 0)
+                    {
+                        obj.PROVINCE_ID = _store.PROVINCE_ID;
+                    }
+                    if (_store.ZONE_DETAIL == null)
+                    {
+                        obj.ZONE_DETAIL = new ZONE_DETAIL();
+                        obj.ZONE_DETAIL.ZONE_ID = Convert.ToInt32(ddlZone.SelectedValue);
+                        obj.ZONE_DETAIL.CREATE_DATE = DateTime.Now;
+                        obj.ZONE_DETAIL.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        obj.ZONE_DETAIL.UPDATE_DATE = DateTime.Now;
+                        obj.ZONE_DETAIL.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                        obj.ZONE_DETAIL.SYE_DEL = false;
+                    }
+                    else
+                    {
+                        obj.ZONE_DETAIL = cmdStore.Select(Convert.ToInt32(Request.QueryString["id"].ToString())).ZONE_DETAIL;
+                    }
 
-            btnSave.Enabled = false;
-            btnSave.Visible = false;
-            btnCancel.Visible = false;
-            alert.Visible = true;
-            Response.AppendHeader("Refresh", "2; url=SearchStore.aspx");
+                    ROAD tmpRoad = cmdRoad.Select(txtRoad.Text);
+                    if (tmpRoad == null)
+                    {
+                        tmpRoad = new ROAD();
+                        tmpRoad.ROAD_ID = cmdRoad.GetCount() + 1;
+                        tmpRoad.ROAD_NAME = txtRoad.Text;
+
+                        //cmdRoad.Add(tmpRoad);
+                    }
+                    obj.ROAD = tmpRoad;
+                    obj.ZONE_DETAIL.EMPLOYEE_ID = Convert.ToInt32(ddlSell.SelectedValue);
+                    obj.Action = ActionEnum.Update;
+                    obj.STORE_ID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                    obj.UPDATE_DATE = DateTime.Now;
+                    obj.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    obj.SYE_DEL = false;
+                    cmdStore.Edit(obj);
+                }
+
+                btnSave.Enabled = false;
+                btnSave.Visible = false;
+                btnCancel.Visible = false;
+                alert.Visible = true;
+                Response.AppendHeader("Refresh", "2; url=SearchStore.aspx");
+            }
+            catch (Exception ex) 
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

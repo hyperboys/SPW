@@ -143,7 +143,7 @@
                                     <td class="auto-style12">ถนน</td>
                                     <td style="text-align: center" class="auto-style5">:</td>
                                     <td class="auto-style15">
-                                        <asp:TextBox ID="txtRoad" class="form-control" runat="server" Height="30px" Width="200px" Visible="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtRoad" class="form-control" runat="server" Height="30px" Width="200px" Visible="true"  data-provide="typeahead" data-items="5" autocomplete="off"></asp:TextBox>
                                     </td>
                                     <td class="auto-style5">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="กรุณากรอกถนน"
