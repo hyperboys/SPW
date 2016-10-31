@@ -505,15 +505,15 @@ namespace SPW.UI.Web.Page
 
                 _payInTranService.AddList(lstPayIn);
 
-                try
-                {
-                    sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq + " AND PAYIN_DATE = '" + convertToDateUSA(lstPayIn[0].PAYIN_DATE.ToString("dd-MM-yyyy")) + "'");
-                }
-                catch (Exception ex)
-                {
-                    DebugLog.WriteLog("SQL UPDATE ERROR : " + "UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
-                    DebugLog.WriteLog(ex.ToString());
-                }
+                //try
+                //{
+                //    sql.SumAmount("UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq + " AND PAYIN_DATE = '" + convertToDateUSA(lstPayIn[0].PAYIN_DATE.ToString("dd-MM-yyyy")) + "'");
+                //}
+                //catch (Exception ex)
+                //{
+                //    DebugLog.WriteLog("SQL UPDATE ERROR : " + "UPDATE PAYIN_TRANS SET PAYIN_TOTAL_AMOUNT = " + lstPayIn[0].PAYIN_TOTAL_AMOUNT + "  WHERE PAYIN_SEQ_NO = " + payInSeq);
+                //    DebugLog.WriteLog(ex.ToString());
+                //}
 
                 //Session["PAYIN_PRINT"] = ObjectCopier.Clone<List<PAYIN_TRANS>>(lstPayIn);
 
