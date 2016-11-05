@@ -44,7 +44,7 @@ namespace SPW.DataService
             item.STORE_NAME = obj.STORE_NAME;
             item.PROVINCE_ID = obj.PROVINCE_ID;
             item.SECTOR_ID = obj.SECTOR_ID;
-            item.ROAD_ID = obj.ROAD_ID;
+            item.ROAD = obj.ROAD;
             item.ZONE_ID = obj.ZONE_ID;
             item.STORE_ADDR1 = obj.STORE_ADDR1;
             item.STORE_CODE = obj.STORE_CODE;
@@ -59,6 +59,7 @@ namespace SPW.DataService
             item.STORE_TEL2 = obj.STORE_TEL2;
             item.UPDATE_DATE = obj.UPDATE_DATE;
             item.UPDATE_EMPLOYEE_ID = obj.UPDATE_EMPLOYEE_ID;
+            item.ZONE_DETAIL = obj.ZONE_DETAIL;
             this.Datacontext.SaveChanges();
         }
 
@@ -81,7 +82,7 @@ namespace SPW.DataService
 
         public STORE Select(int ID)
         {
-            return this.Datacontext.STORE.Include("PROVINCE").Include("ZONE").Include("ZONE_DETAIL").Where(x => x.STORE_ID == ID).FirstOrDefault();
+            return this.Datacontext.STORE.Include("PROVINCE").Include("ZONE").Include("ZONE_DETAIL").Include("ROAD").Where(x => x.STORE_ID == ID).FirstOrDefault();
         }
 
         public STORE Select(string code, string name)

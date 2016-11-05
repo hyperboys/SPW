@@ -58,6 +58,16 @@ namespace SPW.DataService
             return this.Datacontext.ROAD.Where(x => x.ROAD_ID == ID).FirstOrDefault();
         }
 
+        public ROAD Select(string Name)
+        {
+            return this.Datacontext.ROAD.Where(x => x.ROAD_NAME.Contains(Name)).FirstOrDefault();
+        }
+
+        public int GetCount() 
+        {
+            return this.Datacontext.ROAD.Count();
+        }
+
         public List<ROAD> GetAll()
         {
             return this.Datacontext.ROAD.ToList();
