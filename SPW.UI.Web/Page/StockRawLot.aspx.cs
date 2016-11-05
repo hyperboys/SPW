@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using SPW.DataService;
 using SPW.Model;
 using SPW.DAL;
+using System.Globalization;
 
 namespace SPW.UI.Web.Page
 {
@@ -18,7 +19,9 @@ namespace SPW.UI.Web.Page
         private StockRawLotService cmdStockRawLotService;
         private RawProductService cmdRawProductService;
         private UserService cmdUserService;
-
+        private StockRawStockService cmdStockRawStockService;
+        private PoHdTransService cmdPoHdTrans;
+        private StockRawTransService cmdStockRawTransService;
         private SupplierService cmdSupplierService;
         
 
@@ -53,7 +56,10 @@ namespace SPW.UI.Web.Page
             cmdStockRawLotService = (StockRawLotService)_dataServiceEngine.GetDataService(typeof(StockRawLotService));
             cmdRawProductService = (RawProductService)_dataServiceEngine.GetDataService(typeof(RawProductService));
             cmdUserService = (UserService)_dataServiceEngine.GetDataService(typeof(UserService));
-            cmdSupplierService = (SupplierService)_dataServiceEngine.GetDataService(typeof(SupplierService)); 
+            cmdSupplierService = (SupplierService)_dataServiceEngine.GetDataService(typeof(SupplierService));
+            cmdStockRawStockService = (StockRawStockService)_dataServiceEngine.GetDataService(typeof(StockRawStockService));
+            cmdPoHdTrans = (PoHdTransService)_dataServiceEngine.GetDataService(typeof(PoHdTransService));
+            cmdStockRawTransService = (StockRawTransService)_dataServiceEngine.GetDataService(typeof(StockRawTransService));
         }
 
         private void CreatePageEngine()
@@ -93,10 +99,13 @@ namespace SPW.UI.Web.Page
             }
             AutoCompleteTxtVendorName();
         }
+        public string GetLotNo(string VENDOR_CODE)
+        {
+            return VENDOR_CODE + DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture) + DateTime.Now.ToString("MM", CultureInfo.InvariantCulture) + DateTime.Now.ToString("dd", CultureInfo.InvariantCulture);
+        }
         #endregion
 
         #region Business
-
         private void AutoCompleteTxtVendorName()
         {
             List<string> nameList = SearchAutoCompleteDataService.Search("VENDOR", "VENDOR_NAME", "VENDOR_NAME", "");
@@ -118,6 +127,161 @@ namespace SPW.UI.Web.Page
         {
             return cmdSupplierService.Select(VendorName);
         }
+        public void CheckRawStock()
+        {
+            try
+            {
+                List<STOCK_RAW_STOCK> lstSTOCK_RAW_STOCK = cmdStockRawStockService.GetAll();
+                List<RAW_PRODUCT> lstRAW_PRODUCT = cmdRawProductService.GetAll(1);
+                List<RAW_PRODUCT> lstNewRaw = new List<RAW_PRODUCT>();
+                USER userItem = Session["user"] as USER;
+                if (lstSTOCK_RAW_STOCK.Count != lstRAW_PRODUCT.Count)
+                {
+                    lstRAW_PRODUCT.ForEach(e =>
+                    {
+                        if (!lstSTOCK_RAW_STOCK.Exists(f => f.RAW_ID.Equals(e.RAW_ID)))
+                        {
+                            lstNewRaw.Add(e);
+                            STOCK_RAW_STOCK item = new STOCK_RAW_STOCK();
+                            item.RAW_ID = e.RAW_ID;
+                            item.RAW_MINIMUM = 0;
+                            item.RAW_REMAIN = 0;
+                            item.CREATE_DATE = DateTime.Now;
+                            item.UPDATE_DATE = DateTime.Now;
+                            item.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            item.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                            item.SYE_DEL = false;
+                            item.Action = ActionEnum.Create;
+                            cmdStockRawStockService.Add(item);
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        private bool SaveStockRawTrans()
+        {
+            try
+            {
+                USER userItem = Session["user"] as USER;
+                VENDOR _VENDOR = cmdSupplierService.SelectByVendorCode(txtVendorCode.Text);
+                STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
+                _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
+                _STOCK_RAW_TRANS.RAW_ID = int.Parse(Request.QueryString["RAW_ID"].ToString());
+                _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.TRANS_TYPE = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_TYPE = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_BKNO = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_RNNO = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_YY = DateTime.Now.ToString("yy");
+                _STOCK_RAW_TRANS.VENDOR_ID = _VENDOR.VENDOR_ID;
+                _STOCK_RAW_TRANS.VENDOR_CODE = _VENDOR.VENDOR_CODE;
+                _STOCK_RAW_TRANS.LOT_NO = GetLotNo(_VENDOR.VENDOR_CODE);
+                _STOCK_RAW_TRANS.REF_REMARK1 = "";
+                _STOCK_RAW_TRANS.REF_REMARK2 = "";
+                _STOCK_RAW_TRANS.TRANS_QTY = int.Parse(txtStockQty.Text);
+                _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.SYE_DEL = false;
+                cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                if (SaveRawLot())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                lblerror2.Text = "*พบข้อผิดพลาดระหว่างบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่";
+                return false;
+            }
+        }
+        private bool SaveRawLot()
+        {
+            try
+            {
+                int RAW_ID = int.Parse(Request.QueryString["RAW_ID"].ToString());
+                USER userItem = Session["user"] as USER;
+                VENDOR _VENDOR = cmdSupplierService.SelectByVendorCode(txtVendorCode.Text);
+                if (!cmdStockRawLotService.isHasLot(RAW_ID, GetLotNo(_VENDOR.VENDOR_CODE)))
+                {
+                    STOCK_RAW_LOT _STOCK_RAW_LOT = new STOCK_RAW_LOT();
+                    _STOCK_RAW_LOT.RAW_ID = RAW_ID;
+                    _STOCK_RAW_LOT.VENDOR_ID = _VENDOR.VENDOR_ID;
+                    _STOCK_RAW_LOT.VENDOR_CODE = _VENDOR.VENDOR_CODE;
+                    _STOCK_RAW_LOT.LOT_NO = GetLotNo(_VENDOR.VENDOR_CODE);
+                    _STOCK_RAW_LOT.RAW_REMAIN = int.Parse(txtStockQty.Text);
+                    _STOCK_RAW_LOT.CREATE_DATE = DateTime.Now;
+                    _STOCK_RAW_LOT.UPDATE_DATE = DateTime.Now;
+                    _STOCK_RAW_LOT.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    _STOCK_RAW_LOT.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                    _STOCK_RAW_LOT.SYE_DEL = false;
+                    cmdStockRawLotService.Add(_STOCK_RAW_LOT);
+                }
+                else
+                {
+                    cmdStockRawLotService.Edit(RAW_ID, GetLotNo(_VENDOR.VENDOR_CODE), cmdStockRawLotService.GetRemainQty(RAW_ID, GetLotNo(_VENDOR.VENDOR_CODE)) + int.Parse(txtStockQty.Text), userItem.EMPLOYEE_ID);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
+        private bool SaveReceiveRawStock()
+        {
+            try
+            {
+                int RAW_ID = int.Parse(Request.QueryString["RAW_ID"].ToString());
+                USER userItem = Session["user"] as USER;
+                int oPO_QTY = cmdStockRawStockService.GetRemainQty(RAW_ID);
+                cmdStockRawStockService.SetRawStockQty(RAW_ID, oPO_QTY + int.Parse(txtStockQty.Text), userItem.EMPLOYEE_ID);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
+        private bool ValidateAllScreenData()
+        {
+            bool returnValue = true;
+            try
+            {
+                int result = 0;
+                if (txtVendorName.Text == "" || txtVendorCode.Text == "")
+                {
+                    returnValue = false;
+                    lblerror2.Text = "*กรุณาใส่ชื่อผู้จำหน่าย";
+                }
+                else if (txtStockQty.Text == "" || !int.TryParse(txtStockQty.Text, out result))
+                {
+                    returnValue = false;
+                    lblerror2.Text = "*กรุณาใส่จำนวนให้ถูกต้อง";
+                }
+                else
+                    returnValue = true;
+            }
+            catch (Exception e)
+            {
+                lblerror2.Text = "*พบข้อผิดพลาดระหว่างการตรวจสอบ กรุณาติดต่อเจ้าหน้าที่";
+                return false;
+            }
+            return returnValue;
+        }
         #endregion
 
         #region ASP control
@@ -135,7 +299,29 @@ namespace SPW.UI.Web.Page
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (ValidateAllScreenData())
+                {
+                    CheckRawStock();
+                    if (SaveStockRawTrans())
+                    {
+                        if (SaveReceiveRawStock())
+                        {
+                            alert.Visible = true;
+                            Response.AppendHeader("Refresh", "2; url=StockRaw.aspx");
+                        }
+                        else
+                            lblerror2.Text = "*Fail to commit stock";
+                    }
+                    else
+                        lblerror2.Text = "*Fail to commit transection";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblerror2.Text = "*Critical error";
+            }
         }
         protected void txtVendorName_TextChanged(object sender, EventArgs e)
         {
@@ -144,7 +330,6 @@ namespace SPW.UI.Web.Page
             {
                 txtVendorCode.Text = _vendor.VENDOR_CODE.ToString();
             }
-
         }
         #endregion
 
