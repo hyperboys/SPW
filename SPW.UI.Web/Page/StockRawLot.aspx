@@ -62,7 +62,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="รหัสเวนเดอร์" ItemStyle-Width="5%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).VENDOR_ID %>
+                                        <asp:Label ID="lblVendorID" runat="server" Text='<%# ((DATAGRID) Container.DataItem).VENDOR_ID %>'></asp:Label>                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อเวนเดอร์" ItemStyle-Width="20%">
@@ -72,12 +72,13 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="เลขล็อท" ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).LOT_NO %>
+                                        <asp:Label ID="lblLotNo" runat="server" Text='<%# ((DATAGRID) Container.DataItem).LOT_NO %>'></asp:Label>                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="จำนวนคงเหลือ" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="จำนวนคงเหลือ" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>
+                                        <asp:TextBox ID="txtRawRemain" runat="server" class="form-control" Style="height: 35px;" Text='<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>'></asp:TextBox>
+                                        <asp:HiddenField ID="hfOldRawRemain" runat="server" Value='<%# ((DATAGRID) Container.DataItem).RAW_REMAIN %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -140,11 +141,12 @@
                         <div class="form-group">
                             <%--first row--%>
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <asp:Label ID="lblerror2" runat="server" forecolor="Red"/>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="บันทึก" Height="30px" Width="70px" OnClick="btnSave_Click"/> 
+                                    <asp:Button ID="btnUpdate" class="btn btn-primary" runat="server" Text="อัพเดท" Height="30px" Width="70px" OnClick="btnUpdate_Click"/> 
                                     <asp:Label ID="flag" runat="server" Text="Add" Visible="false"></asp:Label>                                         
                                 </div>
                             </div>

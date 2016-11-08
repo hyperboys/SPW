@@ -256,6 +256,73 @@ namespace SPW.UI.Web.Page
                 throw e;
             }
         }
+        private bool UpdateStockRawStock(int rawID,int qty)
+        {
+            try
+            {
+                USER userItem = Session["user"] as USER;
+                int oPO_QTY = cmdStockRawStockService.GetRemainQty(rawID);
+                cmdStockRawStockService.SetRawStockQty(rawID, oPO_QTY + qty, userItem.EMPLOYEE_ID);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
+        private bool UpdateStockRawLot(int rawID,string lotNo, int qty)
+        {
+            try
+            {
+                int RAW_ID = rawID;
+                USER userItem = Session["user"] as USER;
+                cmdStockRawLotService.SetRawLotQty(RAW_ID, qty, userItem.EMPLOYEE_ID, lotNo);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw e;
+            }
+        }
+        private bool UpdateStockRawTrans(string lot,int qty,int vendorID)
+        {
+            try
+            {
+                USER userItem = Session["user"] as USER;
+                VENDOR _VENDOR = cmdSupplierService.Select(vendorID);
+                STOCK_RAW_TRANS _STOCK_RAW_TRANS = new STOCK_RAW_TRANS();
+                _STOCK_RAW_TRANS.TRANS_ID = cmdStockRawTransService.GetNextTransID();
+                _STOCK_RAW_TRANS.RAW_ID = int.Parse(Request.QueryString["RAW_ID"].ToString());
+                _STOCK_RAW_TRANS.TRANS_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.TRANS_TYPE = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_TYPE = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_BKNO = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_RNNO = "SET";
+                _STOCK_RAW_TRANS.REF_DOC_YY = DateTime.Now.ToString("yy");
+                _STOCK_RAW_TRANS.VENDOR_ID = _VENDOR.VENDOR_ID;
+                _STOCK_RAW_TRANS.VENDOR_CODE = _VENDOR.VENDOR_CODE;
+                _STOCK_RAW_TRANS.LOT_NO = lot;
+                _STOCK_RAW_TRANS.REF_REMARK1 = "";
+                _STOCK_RAW_TRANS.REF_REMARK2 = "";
+                _STOCK_RAW_TRANS.TRANS_QTY = qty;
+                _STOCK_RAW_TRANS.APPROVE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.SYS_TIME = DateTime.Now.TimeOfDay;
+                _STOCK_RAW_TRANS.CREATE_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.UPDATE_DATE = DateTime.Now;
+                _STOCK_RAW_TRANS.CREATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.UPDATE_EMPLOYEE_ID = userItem.EMPLOYEE_ID;
+                _STOCK_RAW_TRANS.SYE_DEL = false;
+                cmdStockRawTransService.Add(_STOCK_RAW_TRANS);
+                return true;
+            }
+            catch (Exception e)
+            {
+                lblerror2.Text = "*พบข้อผิดพลาดระหว่างบันทึกข้อมูล กรุณาติดต่อเจ้าหน้าที่";
+                return false;
+            }
+        }
         private bool ValidateAllScreenData()
         {
             bool returnValue = true;
@@ -329,6 +396,59 @@ namespace SPW.UI.Web.Page
             if (_vendor != null)
             {
                 txtVendorCode.Text = _vendor.VENDOR_CODE.ToString();
+            }
+        }
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isError = false;
+                foreach (GridViewRow row in gdvRawSetting.Rows)
+                {
+                    int rawID = int.Parse(((Label)row.FindControl("lblRawID")).Text);
+                    string lotNo = ((Label)row.FindControl("lblLotNo")).Text;
+                    int vendorID = int.Parse(((Label)row.FindControl("lblVendorID")).Text);
+                    int oldRawRemain = int.Parse(((HiddenField)row.FindControl("hfOldRawRemain")).Value);
+                    int newRawRemain = int.Parse(((TextBox)row.FindControl("txtRawRemain")).Text);
+                    if (oldRawRemain != newRawRemain)
+                    {
+                        if (UpdateStockRawStock(rawID,newRawRemain - oldRawRemain))
+                        {
+                            if (UpdateStockRawLot(rawID, lotNo, newRawRemain))
+                            {
+                                if (!UpdateStockRawTrans(lotNo, newRawRemain - oldRawRemain, vendorID))
+                                {
+                                    lblerror2.Text = "*Fail to update stock trans";
+                                    isError = true;
+                                }
+                            }
+                            else
+                            {
+                                lblerror2.Text = "*Fail to update stock lot";
+                                isError = true;
+                            }
+                        }
+                        else
+                        {
+                            lblerror2.Text = "*Fail to update stock";
+                            isError = true;
+                        }
+                    }
+                }
+
+                if (!isError)
+                {
+                    alert.Visible = true;
+                    Response.AppendHeader("Refresh", "2; url=StockRaw.aspx");
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblerror2.Text = "*Critical error";
             }
         }
         #endregion
