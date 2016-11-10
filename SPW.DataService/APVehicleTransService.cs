@@ -112,7 +112,7 @@ namespace SPW.DataService
         {
             try
             {
-                return this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.SYE_DEL == false).ToList().Count + 1;
+                return this.Datacontext.AP_VEHICLE_TRANS.ToList().Count + 1;
             }
             catch (Exception ex)
             {
