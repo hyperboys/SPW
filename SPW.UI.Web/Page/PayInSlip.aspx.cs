@@ -520,10 +520,8 @@ namespace SPW.UI.Web.Page
                 Session["PAYIN_PRINT"] = lstPayIn;
                 lbl1.Visible = true;
                 lbl2.Visible = true;
-                Session.Remove("PAYIN");
 
                 SumAmt();
-
                 rbBankKrungThai.Enabled = true;
                 rbBankThai.Enabled = true;
                 rbPayin.Enabled = true;
@@ -535,6 +533,7 @@ namespace SPW.UI.Web.Page
                 {
                     grdBank.Columns[4].Visible = false;
                 }
+                Session.Remove("PAYIN");
 
                 return true;
             }
@@ -681,6 +680,8 @@ namespace SPW.UI.Web.Page
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
                     }
                     Session["PAYIN_PRINT"] = lstPayIn;
+
+                    PrepareSeq();
                 }
             }
             catch (Exception ex)
@@ -798,6 +799,8 @@ namespace SPW.UI.Web.Page
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipKSBReport.aspx');", true);
                     }
+
+                    PrepareSeq();
                 }
             }
             catch (Exception ex)
@@ -865,9 +868,33 @@ namespace SPW.UI.Web.Page
 
                     Session["DataToReport"] = ds;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('../Reports/PayInSlipPaper.aspx');", true);
+                    PrepareSeq();
                 }
             }
             catch (Exception ex)
+            {
+                DebugLog.WriteLog(ex.ToString());
+            }
+        }
+
+        private void PrepareSeq() 
+        {
+            try
+            {
+                SQLUtility sql = new SQLUtility();
+                int count = sql.GetCount(@"SELECT TOP 1 PAYIN_SEQ_NO FROM PAYIN_TRANS WHERE PAYIN_DATE = CONVERT(char(10), GetDate(),126) GROUP BY PAYIN_SEQ_NO ORDER BY PAYIN_SEQ_NO DESC");
+                txtPayInSeq.Text = (count + 1).ToString();
+                txtPageSeq.Text = "1";
+                ddlAccountMast.Items.Clear();
+                ddlAccountMast.Items.Add(new ListItem("กรุณาเลือก", "0"));
+                txtAccountName.Text = string.Empty;
+                var list = _accountMastService.GetAllBank(1);
+                foreach (var item in list)
+                {
+                    ddlAccountMast.Items.Add(new ListItem(item.ACCOUNT_ID, item.ACCOUNT_ID.ToString()));
+                }
+            }
+            catch (Exception ex) 
             {
                 DebugLog.WriteLog(ex.ToString());
             }
