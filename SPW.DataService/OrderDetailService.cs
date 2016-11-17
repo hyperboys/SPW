@@ -61,9 +61,9 @@ namespace SPW.DataService
             var item = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_DETAIL_ID == ORDER_DETAIL_ID).FirstOrDefault();
             var itemFree = this.Datacontext.ORDER_DETAIL.Where(x => x.ORDER_ID == item.ORDER_ID && x.PRODUCT_SEQ == item.PRODUCT_SEQ && x.IS_FREE == "F").FirstOrDefault();
             itemFree.UPDATE_DATE = DateTime.Now;
-            itemFree.SYE_DEL = null;
+            itemFree.SYE_DEL = true;
             item.UPDATE_DATE = DateTime.Now;
-            item.SYE_DEL = null;
+            item.SYE_DEL = true;
             this.Datacontext.SaveChanges();
         }
 

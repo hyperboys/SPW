@@ -128,7 +128,7 @@ namespace SPW.UI.Web.Page
             listStore = _storeService.GetAllIncludeOrder().Where(x => x.ORDER.Where(y => y.ORDER_STEP == "11" || y.ORDER_STEP == "20").FirstOrDefault() != null).ToList();
             listStore = listStore.Where(x =>
                 x.ORDER.Any(y => isBetweenDate((DateTime)y.ORDER_DATE, (string.IsNullOrEmpty(txtStartDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))), (string.IsNullOrEmpty(txtEndDate.Text) ? (DateTime)y.ORDER_DATE : DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("en-US"))))) &&
-                x.STORE_CODE.ToUpper() == (txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper()) &&
+                x.STORE_CODE.ToUpper().Contains((txtStoreCode.Text == "" ? x.STORE_CODE.ToUpper():txtStoreCode.Text.ToUpper())) &&
                 x.PROVINCE.PROVINCE_NAME.Contains(txtProvince.Text)).Distinct().ToList();
 
             if (ddlTranspot.SelectedValue != "0") 
