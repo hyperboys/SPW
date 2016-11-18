@@ -114,6 +114,18 @@ namespace SPW.DataService
                 return 0;
             }
         }
+        public int GetSumRemainQty(int RAW_ID)
+        {
+            List<STOCK_RAW_LOT> lstSTOCK_RAW_LOT = Datacontext.STOCK_RAW_LOT.Where(x => x.SYE_DEL == false && x.RAW_ID == RAW_ID).ToList();
+            if (lstSTOCK_RAW_LOT != null)
+            {
+                return (int)lstSTOCK_RAW_LOT.Sum(e => e.RAW_REMAIN);
+            }
+            else
+            {
+                return 0;
+            }
+        }
         public void SetRawLotQty(int RAW_ID, int RAW_REMAIN, int UPDATE_EMPLOYEE_ID,string LOT_NO)
         {
             STOCK_RAW_LOT obj = Datacontext.STOCK_RAW_LOT.Where(x => x.RAW_ID == RAW_ID && x.LOT_NO == LOT_NO).FirstOrDefault();
