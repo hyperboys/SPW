@@ -246,8 +246,10 @@ namespace SPW.UI.Web.Page
             {
                 int RAW_ID = int.Parse(Request.QueryString["RAW_ID"].ToString());
                 USER userItem = Session["user"] as USER;
-                int oPO_QTY = cmdStockRawStockService.GetRemainQty(RAW_ID);
-                cmdStockRawStockService.SetRawStockQty(RAW_ID, oPO_QTY + int.Parse(txtStockQty.Text), userItem.EMPLOYEE_ID);
+                //int oPO_QTY = cmdStockRawStockService.GetRemainQty(RAW_ID);
+                //cmdStockRawStockService.SetRawStockQty(RAW_ID, oPO_QTY + int.Parse(txtStockQty.Text), userItem.EMPLOYEE_ID);
+                int sumRemain = cmdStockRawLotService.GetSumRemainQty(RAW_ID);
+                cmdStockRawStockService.SetRawStockQty(RAW_ID, sumRemain, userItem.EMPLOYEE_ID);
                 return true;
             }
             catch (Exception e)
@@ -261,8 +263,10 @@ namespace SPW.UI.Web.Page
             try
             {
                 USER userItem = Session["user"] as USER;
-                int oPO_QTY = cmdStockRawStockService.GetRemainQty(rawID);
-                cmdStockRawStockService.SetRawStockQty(rawID, oPO_QTY + qty, userItem.EMPLOYEE_ID);
+                //int oPO_QTY = cmdStockRawStockService.GetRemainQty(rawID);
+                //cmdStockRawStockService.SetRawStockQty(rawID, oPO_QTY + qty, userItem.EMPLOYEE_ID);
+                int sumRemain = cmdStockRawLotService.GetSumRemainQty(rawID);
+                cmdStockRawStockService.SetRawStockQty(rawID, sumRemain, userItem.EMPLOYEE_ID);
                 return true;
             }
             catch (Exception e)
@@ -412,9 +416,9 @@ namespace SPW.UI.Web.Page
                     int newRawRemain = int.Parse(((TextBox)row.FindControl("txtRawRemain")).Text);
                     if (oldRawRemain != newRawRemain)
                     {
-                        if (UpdateStockRawStock(rawID,newRawRemain - oldRawRemain))
+                        if (UpdateStockRawLot(rawID, lotNo, newRawRemain))
                         {
-                            if (UpdateStockRawLot(rawID, lotNo, newRawRemain))
+                            if (UpdateStockRawStock(rawID, newRawRemain - oldRawRemain))
                             {
                                 if (!UpdateStockRawTrans(lotNo, newRawRemain - oldRawRemain, vendorID))
                                 {
@@ -424,13 +428,13 @@ namespace SPW.UI.Web.Page
                             }
                             else
                             {
-                                lblerror2.Text = "*Fail to update stock lot";
+                                lblerror2.Text = "*Fail to update stock";
                                 isError = true;
                             }
                         }
                         else
                         {
-                            lblerror2.Text = "*Fail to update stock";
+                            lblerror2.Text = "*Fail to update stock lot";
                             isError = true;
                         }
                     }
