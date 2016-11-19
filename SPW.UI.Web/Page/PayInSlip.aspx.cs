@@ -933,6 +933,11 @@ namespace SPW.UI.Web.Page
                     lbl1.Visible = false;
                     lbl2.Visible = false;
                 }
+                int i = 1;
+                foreach (PAYIN_TRANS item in lstPayIn)
+                {
+                    item.CHQ_SEQ_NO = i++;
+                }
             }
             catch (Exception ex)
             {
