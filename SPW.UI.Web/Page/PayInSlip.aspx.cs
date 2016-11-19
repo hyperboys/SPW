@@ -559,6 +559,12 @@ namespace SPW.UI.Web.Page
                 danger.Visible = true;
                 DebugLog.WriteLog(ex.ToString());
 
+                List<PAYIN_TRANS> lstPayIn = Session["PAYIN"] as List<PAYIN_TRANS>;
+                foreach (var item in lstPayIn)
+                {
+                    DebugLog.WriteLog("ACCOUNT_ID:" + item.ACCOUNT_ID + "|PAYIN_DATE:" + item.PAYIN_DATE + "|PAYIN_SEQ_NO:" + item.PAYIN_SEQ_NO + "|CHQ_SEQ_NO:" + item.CHQ_SEQ_NO);
+                }
+
                 return false;
             }
         }
