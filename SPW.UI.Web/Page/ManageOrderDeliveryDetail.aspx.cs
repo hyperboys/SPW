@@ -216,9 +216,10 @@ namespace SPW.UI.Web.Page
 
         protected void btnConfirmDelOrder_Click(object sender, EventArgs e)
         {
-
             if (Session["DelOrderIndexSelected"] != null)
             {
+                btnConfirmDelOrderIndex.Enabled = false;
+                btnConfirmDelOrderIndex.Visible = false;
                 //using (TransactionScope txScope = new TransactionScope())
                 //{
                     DELIVERY_INDEX objDEl = (DELIVERY_INDEX)Session["DelOrderIndexSelected"];

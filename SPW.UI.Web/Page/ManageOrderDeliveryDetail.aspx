@@ -60,73 +60,69 @@
         }
     </style>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <asp:Label ID="lb_Vehicle" runat="server" Text="ทะเบียนรถยนต์ : "></asp:Label>
-                </div>
-                <div class="panel-body">
-                    <!-- /.row (nested) -->
-                    <div class="panel panel-primary">
-                        <asp:GridView ID="gdvManageOrderHQ" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                            DataKeyNames="DELORDER_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสั่งซื้อ"
-                            Style="text-align: center" CssClass="grid" OnRowCommand="gdvManageOrderHQ_RowCommand">
-                            <AlternatingRowStyle BackColor="White" />
-                            <Columns>
-                                <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%" >
-                                    <ItemTemplate>
-                                        <%# Container.DataItemIndex + 1 %>
-                                    </ItemTemplate>
-                                    <ItemStyle BorderStyle="Solid" />
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="STORE.STORE_CODE" HeaderText="รหัสร้าน" ItemStyle-Width="15%" >
-                                    <ItemStyle Width="15%"></ItemStyle>
-                                </asp:BoundField>
-                                <asp:BoundField DataField="STORE.STORE_NAME" HeaderText="ชื่อร้าน" ItemStyle-Width="35%">
-                                    <ItemStyle Width="35%"></ItemStyle>
-                                </asp:BoundField>
-                                <asp:BoundField DataField="DELORDER_PRICE_TOTAL" HeaderText="ราคา" ItemStyle-Width="20%">
-                                    <ItemStyle Width="20%"></ItemStyle>
-                                </asp:BoundField>
-                                <asp:BoundField DataField="DELORDER_WEIGHT_TOTAL" HeaderText="น้ำหนัก" ItemStyle-Width="20%">
-                                    <ItemStyle Width="20%"></ItemStyle>
-                                </asp:BoundField>
-                                <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnDetail" runat="server" CommandArgument="<%#((GridViewRow)Container).RowIndex%>" CommandName="ViewDeliveryOrder">
-                                    <div class='glyphicon glyphicon-search'></div>
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                            <EditRowStyle BackColor="#2461BF" />
-                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#507CD1" ForeColor="White" />
-                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
-                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                            <PagerSettings Mode="NumericFirstLast" />
-                        </asp:GridView>
-                    </div>
-                    <table style="float: right">
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>
-                                <asp:Button ID="btnConfirmDelOrderIndex" runat="server" Text="ยืนยัน" class="btn btn-primary" Height="30px" Width="125px" OnClientClick="return confirm();" AlternateText="Yes" OnClick="btnConfirmDelOrder_Click" Enabled="False" />
 
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <asp:Label ID="lb_Vehicle" runat="server" Text="ทะเบียนรถยนต์ : "></asp:Label>
+        </div>
+        <div class="panel-body">
+            <!-- /.row (nested) -->
+            <div class="panel panel-primary">
+                <asp:GridView ID="gdvManageOrderHQ" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
+                    DataKeyNames="DELORDER_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูลสั่งซื้อ"
+                    Style="text-align: center" CssClass="grid" OnRowCommand="gdvManageOrderHQ_RowCommand">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="ลำดับ" ItemStyle-Width="5%">
+                            <ItemTemplate>
+                                <%# Container.DataItemIndex + 1 %>
+                            </ItemTemplate>
+                            <ItemStyle BorderStyle="Solid" />
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="STORE.STORE_CODE" HeaderText="รหัสร้าน" ItemStyle-Width="15%">
+                            <ItemStyle Width="15%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="STORE.STORE_NAME" HeaderText="ชื่อร้าน" ItemStyle-Width="35%">
+                            <ItemStyle Width="35%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="DELORDER_PRICE_TOTAL" HeaderText="ราคา" ItemStyle-Width="20%">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="DELORDER_WEIGHT_TOTAL" HeaderText="น้ำหนัก" ItemStyle-Width="20%">
+                            <ItemStyle Width="20%"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="ตรวจสอบ" ItemStyle-Width="5%">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnDetail" runat="server" CommandArgument="<%#((GridViewRow)Container).RowIndex%>" CommandName="ViewDeliveryOrder">
+                                    <div class='glyphicon glyphicon-search'></div>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" Height="20px" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
             </div>
-            <!-- /.panel -->
-        </ContentTemplate>
-    </asp:UpdatePanel>
+            <table style="float: right">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>
+                        <asp:Button ID="btnConfirmDelOrderIndex" runat="server" Text="ยืนยัน" class="btn btn-primary" Height="30px" Width="125px" OnClientClick="return confirm();" AlternateText="Yes" OnClick="btnConfirmDelOrder_Click" Enabled="False" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
 </asp:Content>
