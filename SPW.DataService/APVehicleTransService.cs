@@ -80,6 +80,14 @@ namespace SPW.DataService
             Datacontext.SaveChanges();
         }
 
+        public void EditOrderStepCancel(int AP_VEHICLE_TRANS_ID)
+        {
+            var item = this.Datacontext.AP_VEHICLE_TRANS.Where(x => x.AP_VEHICLE_TRANS_ID == AP_VEHICLE_TRANS_ID).FirstOrDefault();
+            item.SYE_DEL = true; //Cancel
+            item.UPDATE_DATE = DateTime.Now;
+            this.Datacontext.SaveChanges();
+        }
+
 
         public void EditList(List<AP_VEHICLE_TRANS> lstItem)
         {
