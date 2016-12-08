@@ -136,9 +136,8 @@
             <div class="panel panel-primary">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                <asp:GridView ID="gdvInv" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False"
-                    DataKeyNames="AP_VEHICLE_TRANS_ID" PageSize="20" Width="100%" EmptyDataText="ไม่พบข้อมูล"
-                    OnRowEditing="gdvInv_EditCommand" OnPageIndexChanging="gdvInv_PageIndexChanging"
+                <asp:GridView ID="gdvInv" runat="server" ForeColor="#507CD1" AutoGenerateColumns="False" DataKeyNames="AP_VEHICLE_TRANS_ID" PageSize="20" Width="100%" 
+                    EmptyDataText="ไม่พบข้อมูล" OnRowEditing="gdvInv_EditCommand" OnPageIndexChanging="gdvInv_PageIndexChanging" OnRowDeleting="gdvInv_RowDeleting"
                     Style="text-align: center" CssClass="grid">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
@@ -173,6 +172,13 @@
                         <asp:BoundField DataField="MA_AMOUNT" HeaderText="ราคา" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:#,0}">
                             <ItemStyle Width="10%"></ItemStyle>
                         </asp:BoundField>
+                        <asp:TemplateField HeaderText="ยกเลิก" ItemStyle-Width="5%">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete">
+                                    <div class='glyphicon glyphicon-remove'></div>
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

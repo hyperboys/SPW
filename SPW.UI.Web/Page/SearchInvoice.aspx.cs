@@ -136,5 +136,13 @@ namespace SPW.UI.Web.Page
             txtEndDate.Text = "";
             SearchGrid();
         }
+        protected void gdvInv_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int AP_VEHICLE_TRANS_ID = int.Parse(gdvInv.DataKeys[e.RowIndex].Value.ToString());
+            cmdAPVehicleTransService.EditOrderStepCancel(AP_VEHICLE_TRANS_ID);
+            DataSouce = cmdAPVehicleTransService.GetAll();
+            gdvInv.DataSource = DataSouce;
+            gdvInv.DataBind();
+        }
     }
 }
